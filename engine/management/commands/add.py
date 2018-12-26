@@ -1,8 +1,8 @@
 from django.core.management.base import BaseCommand
-from subprocess import call
+from django.core.management import call_command
 
 def load_fixture(n):
-	call(['manage.py', 'loaddata', '{}.json'.format(str(n))])
+	call_command('loaddata', '{}.json'.format(str(n)))
 
 class Command(BaseCommand):
     def handle(self, **options):
