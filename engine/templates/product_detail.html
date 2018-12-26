@@ -1,0 +1,82 @@
+{% extends "home.html" %}
+
+{% block set_list %}
+{% load staticfiles %}
+{% include 'product_detail_style.html' %}
+
+
+
+    <div class="col-sm-1"></div>
+
+    <div class="col-sm-10">
+
+        <div class="row">
+          <div class="col-sm-1"></div>
+            <div id="box">
+              <iframe name="submit-frame" style="display: none"></iframe>
+              <form action="{% url 'add_to_cart' products.id %}" method="post" target="submit-frame">{% csrf_token %}
+                  <center>
+                    <input size="2" id='qtyBox' type="number" name="quantity" min="1" max="8">
+                    <button class="btn btn-success" data-toggle="popover" data-animation="true"  data-content="Added to cart"  type="submit" id='button'>+</button>
+                    <b style="color: lightgray; font-size:16px;">&nbsp;{% if price != 0 and price != 1000 %}${{price|floatformat:2}}!{% elif price == 0 or price == 1000 %}Price Unavailable{% endif %}</b>
+                  </center>
+              </form>
+            </div>
+        </div>
+
+
+        <div class="row">
+
+          <div>
+            <div class="col-sm-3" id="productImage"> <img class="img-responsive center-block visible-lg" src="{{products.image_url}}"> </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-7"> 
+                <div id="cardInfo">
+                  <div style="color: lightgray;" id="cardInfoPadding">
+                      <h1>{{products.name}} </h1> <br>
+                      <div id="expansion"><b>{{products.set_name}} {{products.rarity}} - Art by <em>{{products.artist}}</em></b></div>
+                      <h4>Rarity: {{products.rarity}}</h4>
+
+                      {% if "Land" in products.types %}
+                      <h4> Card Type: {{products.types}}</h4>
+                      {% endif %}
+
+                      {% if "Planeswalker" in products.types %}
+                      <h4> Card Type: {{products.types}} - {{products.subtypes}}</h4>
+                      {% endif %}
+
+                      {% if "Creature" in products.types %}
+                      <h4> Mana Cost: {{products.mana_cost}}</h4>
+                      <h4> Card Type: {{products.types}} - {{products.subtypes}}</h4>
+                      <h4>Power/Toughness: {{products.power}}/{{products.toughness}}</h4><br>
+                      {% endif %}
+
+                      <h4> {{products.text}} </h4>
+                      <hr>
+                      {% if products.flavor != None %}
+                      <h4><em>"{{products.flavor}}"</em></h4>
+                      {% endif %}
+                  </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <hr>
+       <div style="color: lightgray" class="row">
+                <h2>Other versions</h2>
+                    {% for version in versions %}
+                      <h4> <a href="{% url 'product_detail' version.id %}">{{version}}</a> ({{version.set_name}}) </h4>
+                    {% endfor %}
+            </div>
+
+
+
+
+
+  
+
+   
+
+  
+{% endblock %}

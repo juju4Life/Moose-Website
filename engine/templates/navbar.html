@@ -1,0 +1,271 @@
+{% block styles %}
+{%  load staticfiles %}
+
+<style type="text/css">
+  
+#logo {
+  position: relative;
+  max-height: 50px;
+  bottom: 65%;
+  right: 30%;
+}
+
+#go {
+}
+
+
+
+</style>
+{% endblock %}
+
+
+
+<!-- Fixed navbar -->
+   
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"> <img class="img-responsive" id="logo" src="{% static 'img/mtg first logo.png' %}" /></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul id="go" class="nav navbar-nav">
+          	{% url 'home' as home %}
+            {% url 'buylist_page' as buylist %}
+          	{% url 'contact' as contact %}
+            {% url 'preorders' as preorders %}
+            <li {% if request.path == home %} class="active" {% endif %}><a href="{% url 'home' %}">Home</a></li>
+            <li {% if request.path == buylist %} class="active" {% endif %}><a href="{% url 'buylist_page' %}">Buylist</a></li>
+            <li {% if request.path == contact %} class="active" {% endif %}><a href="{% url 'contact' %}">Contact</a></li>
+            <li {% if request.path == preorders %} class="active" {% endif %}><a href="{% url 'preorders' %}">Preorders</a></li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Supplies <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a href="{% url 'item' 'Booster Packs' %}">&nbsp;Booster Pack Specials</a>
+                <hr>
+                <a href="/sleeves/">&nbsp;Sleeves</a>
+                <hr>
+                <a href="/deckboxes/">&nbsp;Deckboxes</a>
+                <hr>
+                <a href="/binders/">&nbsp;Binders</a>
+                <hr>
+                <a href="/playmats-tubes/">&nbsp;Playmats / Tubes</a>
+                <hr>
+                <a href="{% url 'item' 'Snacks' %}">&nbsp;Snacks</a>
+              </div>
+            </li>
+            
+              <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Expansions <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+           <ul class="nav nav-pills nav-stacked", id='myUL'>
+            <center>
+          
+              <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Find Set...">
+          <li><a id='menu' href='{% url "expansion" "1" %}'>Aether Revolt</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "2" %}'>Alara Reborn</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "3" %}'>Alliances</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "4" %}'>Amonkhet</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "5" %}'>Anthologies</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "6" %}'>Antiquities</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "7" %}'>Apocalypse</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "8" %}'>Arabian Nights</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "9" %}'>Archenemy</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "10" %}'>Archenemy: Nicol Bolas</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "13" %}'>Avacyn Restored</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "223" %}'>Battlebond</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "14" %}'>Battle Royale Box Set</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "15" %}'>Battle for Zendikar</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "16" %}'>Beatdown Box Set</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "17" %}'>Betrayers of Kamigawa</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "18" %}'>Born of the Gods</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "20" %}'>Champions of Kamigawa</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "22" %}'>Chronicles</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "23" %}'>Classic Sixth Edition</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "24" %}'>Coldsnap</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "25" %}'>Coldsnap Theme Decks</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "133" %}'>Commander</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "27" %}'>Commander 2013 Edition</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "28" %}'>Commander 2014</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "29" %}'>Commander 2015</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "30" %}'>Commander 2016</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "31" %}'>Commander 2017</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "32" %}'>Commander Anthology</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "225" %}'>Commander Anthology VOlume II</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "33" %}'>Commander's Arsenal</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "34" %}'>Conflux</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "134" %}'>Conspiracy</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "35" %}'>Conspiracy: Take the Crown</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "36" %}'>Dark Ascension</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "37" %}'>Darksteel</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "39" %}'>Dissension</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "40" %}'>Dominaria</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "42" %}'>Dragon's Maze</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "43" %}'>Dragons of Tarkir</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "44" %}'>Duel Decks Anthology, Divine vs. Demonic</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "45" %}'>Duel Decks Anthology, Elves vs. Goblins</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "46" %}'>Duel Decks Anthology, Garruk vs. Liliana</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "47" %}'>Duel Decks Anthology, Jace vs. Chandra</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "48" %}'>Duel Decks: Ajani vs. Nicol Bolas</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "49" %}'>Duel Decks: Blessed vs. Cursed</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "50" %}'>Duel Decks: Divine vs. Demonic</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "51" %}'>Duel Decks: Elspeth vs. Kiora</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "52" %}'>Duel Decks: Elspeth vs. Tezzeret</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "53" %}'>Duel Decks: Elves vs. Goblins</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "54" %}'>Duel Decks: Elves vs. Inventors</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "55" %}'>Duel Decks: Garruk vs. Liliana</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "56" %}'>Duel Decks: Heroes vs. Monsters</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "57" %}'>Duel Decks: Izzet vs. Golgari</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "58" %}'>Duel Decks: Jace vs. Chandra</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "59" %}'>Duel Decks: Jace vs. Vraska</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "60" %}'>Duel Decks: Knights vs. Dragons</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "61" %}'>Duel Decks: Merfolk vs. Goblins</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "62" %}'>Duel Decks: Mind vs. Might</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "63" %}'>Duel Decks: Nissa vs. Ob Nixilis</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "64" %}'>Duel Decks: Phyrexia vs. the Coalition</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "65" %}'>Duel Decks: Sorin vs. Tibalt</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "66" %}'>Duel Decks: Speed vs. Cunning</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "67" %}'>Duel Decks: Venser vs. Koth</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "68" %}'>Duel Decks: Zendikar vs. Eldrazi</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "70" %}'>Eighth Edition</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "71" %}'>Eldritch Moon</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "72" %}'>Eternal Masters</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "74" %}'>Eventide</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "75" %}'>Exodus</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "76" %}'>Explorers of Ixalan</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "77" %}'>Fallen Empires</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "78" %}'>Fate Reforged</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "80" %}'>Fifth Dawn</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "81" %}'>Fifth Edition</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "82" %}'>Fourth Edition</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "84" %}'>From the Vault: Angels</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "85" %}'>From the Vault: Annihilation (2014)</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "86" %}'>From the Vault: Dragons</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "87" %}'>From the Vault: Exiled</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "88" %}'>From the Vault: Legends</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "89" %}'>From the Vault: Lore</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "90" %}'>From the Vault: Realms</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "91" %}'>From the Vault: Relics</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "92" %}'>From the Vault: Transform</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "93" %}'>From the Vault: Twenty</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "94" %}'>Future Sight</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "95" %}'>Gatecrash</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "96" %}'>Gateway</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "97" %}'>Grand Prix</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "98" %}'>Guildpact</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "101" %}'>Homelands</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "102" %}'>Hour of Devastation</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "103" %}'>Ice Age</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "104" %}'>Iconic Masters</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "105" %}'>Innistrad</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "108" %}'>Invasion</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "109" %}'>Ixalan</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "110" %}'>Journey into Nyx</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "112" %}'>Judgment</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "113" %}'>Kaladesh</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "114" %}'>Khans of Tarkir</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "117" %}'>Legends</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "118" %}'>Legions</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "121" %}'>Lorwyn</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "122" %}'>Magic 2010</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "123" %}'>Magic 2011</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "124" %}'>Magic 2012</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "125" %}'>Magic 2013</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "126" %}'>Magic 2014</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "128" %}'>Magic 2015</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "224" %}'>Magic 2019</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "130" %}'>Magic Origins</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "135" %}'>Masterpiece Series: Amonkhet Invocations</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "136" %}'>Masterpiece Series: Kaladesh Inventions</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "137" %}'>Masters 25</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "143" %}'>Mercadian Masques</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "144" %}'>Mirage</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "145" %}'>Mirrodin</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "146" %}'>Mirrodin Besieged</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "147" %}'>Modern Event Deck 2014</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "148" %}'>Modern Masters</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "149" %}'>Modern Masters 2015 Edition</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "150" %}'>Modern Masters 2017 Edition</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "151" %}'>Morningtide</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "153" %}'>Nemesis</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "154" %}'>New Phyrexia</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "155" %}'>Ninth Edition</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "156" %}'>Oath of the Gatewatch</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "157" %}'>Odyssey</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "158" %}'>Onslaught</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "159" %}'>Planar Chaos</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "160" %}'>Planechase</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "161" %}'>Planechase 2012 Edition</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "162" %}'>Planechase Anthology</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "163" %}'>Planeshift</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "164" %}'>Portal</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "166" %}'>Portal Second Age</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "167" %}'>Portal Three Kingdoms</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "168" %}'>Premium Deck Series: Fire and Lightning</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "169" %}'>Premium Deck Series: Graveborn</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "170" %}'>Premium Deck Series: Slivers</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "173" %}'>Prophecy</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "174" %}'>Ravnica: City of Guilds</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "176" %}'>Return to Ravnica</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "177" %}'>Revised Edition</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "178" %}'>Rise of the Eldrazi</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "180" %}'>Rivals of Ixalan</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "181" %}'>Saviors of Kamigawa</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "182" %}'>Scars of Mirrodin</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "183" %}'>Scourge</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "184" %}'>Seventh Edition</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "185" %}'>Shadowmoor</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "186" %}'>Shadows over Innistrad</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "187" %}'>Shards of Alara</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "226" %}'>Signature Spellbook: Jace</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "188" %}'>Starter 1999</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "189" %}'>Starter 2000</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "190" %}'>Stronghold</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "193" %}'>Tempest</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "195" %}'>Tenth Edition</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "196" %}'>The Dark</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "197" %}'>Theros</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "198" %}'>Time Spiral</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "199" %}'>Timeshifted</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "200" %}'>Torment</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "203" %}'>Unglued</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "204" %}'>Unhinged</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "205" %}'>Unlimited Edition</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "206" %}'>Unstable</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "207" %}'>Urza's Destiny</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "208" %}'>Urza's Legacy</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "209" %}'>Urza's Saga</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "212" %}'>Visions</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "213" %}'>Weatherlight</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "219" %}'>Worlds</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "220" %}'>Worldwake</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "221" %}'>Zendikar</a><hr></li>
+          <li><a id='menu' href='{% url "expansion" "222" %}'>Zendikar Expeditions</a><hr></li>
+
+
+        </center>
+      </ul>
+        </div>
+      </li>
+            <li>
+              <form class="navbar-form pull-left" method="GET" action="{% url 'search' %}">
+                <input id="" name="q" value="{{request.GET.q}}" type="text" class="form-control" placeholder="Search Store..">
+                <button id="" class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+              </form>
+            </li>
+            <li> <a href="/admin/">admin</a> </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>

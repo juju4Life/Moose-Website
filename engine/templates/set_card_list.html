@@ -1,0 +1,46 @@
+{% extends "buylist_home.html" %}
+{% load staticfiles %}
+
+{% block style %}
+<style type="text/css">
+
+  #pagination {
+      margin-left: -30%;
+  }
+</style>
+{% endblock %}
+
+{% block set_list %}
+
+<div class=""></div>
+
+      <div class="inner col-md-9 col-sm-9">
+        <table class="nav nav-pills nav-stacked table" id="myTable">
+          <thead class="thead-inverse">
+            <tr class="header">
+              <th>Name </th>
+              <th>Buy Price</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+        {% for product in products %}
+          <tbody>
+                <tr>
+                   <td> 
+                  
+                    <a href= "{% url 'product_detail' product.id %}">{{product.name}}</a>
+                  </td>
+                  <td>
+                           
+                  </td>       
+                </tr>
+            </tbody>
+        {% endfor %}
+        </table>
+        {% include 'pagination.html' %}
+      </div>
+
+  </div>
+
+
+{% endblock %}

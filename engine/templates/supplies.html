@@ -1,0 +1,74 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% block set_list %}
+
+
+{% include 'supply_style.html' %}
+<center>
+
+<div id="suppliesBackgroundFrame">	
+	<div id="suppliesBackground">
+		<div class="col-sm-3">
+			<a href="{% url 'item' 'Booster Packs' %}"> 
+				<img id="supplyImage" src="{% static 'img/boosters2.png' %}" class="img-responsive" />
+				<div id="words" class="">
+				<b>Booster Pack Specials</b>
+				</div>
+			</a>
+		</div>
+
+
+
+		<div class="col-sm-3">
+			<a href="/sleeves/">
+				<img id="supplyImage" src="{% static 'img/up Eclipse Pumpkin Orange 100.png' %}" class="img-responsive center-block" />
+				<b>Sleeves</b>
+		    </a>
+		</div>
+
+
+		<div class="col-sm-3">
+			 <a href="/deckboxes/">
+				<img id="supplyImage" src="{% static 'img/up Satin Tower Green.png' %}" class="img-responsive center-block" />
+				<b>Deckboxes</b>
+		    </a>
+		</div>
+
+
+		<div class="col-sm-3">
+			<a href="/binders/">
+				<img id="supplyImage" src="{% static 'img/up Leather Binder Blue.png' %}" class="img-responsive center-block" />
+				<b> Binders</b>
+			</a>
+		</div>
+
+
+		<div class="col-sm-3">
+			<a href="/playmats-tubes/">
+				<img id="supplyImage" src="{% static 'img/monster Prism Playmat Tube Pink.png' %}" class="img-responsive center-block" />
+				<b>Playmats & Playmat Tubes</b>
+		    </a>
+		</div>
+
+
+		<div class="col-sm-3">
+			<a href="{% url 'item' 'Snacks' %}"> 
+				<img id="supplyImage" src="{% static 'img/snacks all.png' %}" class="img-responsive center-block" />
+				<div id="words2" class="row">
+				<b>Snacks & Drinks </b>
+		    </a>
+			</div>
+		</div>
+	</div>
+</div>
+<center>
+
+
+
+
+
+
+
+
+
+{% endblock %}

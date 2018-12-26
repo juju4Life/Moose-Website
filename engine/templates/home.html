@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block styles %}
+{% include 'home_style.html' %}
+{% endblock %}
+
+
+
+{% block content %}
+ <div class="col-sm-12">
+    <small><a href="{% url 'cart' %}"><span id="shoppingCart" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></small>
+  </div>
+
+<div class="container-fluid" style="min-height:95%;">
+		<div class="row">
+				<div class="col-sm-12">
+
+					<div class="col-sm-5 hidden-lg hidden-md">
+						<form method="GET" action="{% url 'search' %}">
+							
+							<div id="searchAndButton" class="container-fluid" style="min-height:95%;">
+         					 <div class="col-sm-10">
+         					 	<input id="searchBarMaster" name="q" value="{{request.GET.q}}" type="text" class="form-control" placeholder="Search Store..">
+         					 	<div class="col-sm-10"></div>
+         					 	<div class="col-sm-2">
+         					 </div>
+         					 </div>
+
+
+
+      
+         					 </div>
+						</form>
+					</div>
+
+		</div>
+
+			 
+		  {% if not request.path %}
+		  <div class="row">
+		<div id="searchFrame" class="col-sm-12">
+			<div class="col-sm-4"></div>	
+
+	      	<div class="col-sm-4">
+
+
+				<div class="form-group">
+					   <form method="GET" action="{% url 'search_list' %}">
+			    	<div class="col-sm-12">
+			    		<center>
+			    		<p><span style="color: lightblue;" id="listLabel"><em>"Paste or write your list below"</em></span></p>
+	
+ 					 	 <button id="searchButtonList" class="btn btn-success" value="list" name="a">
+ 					 	 	SEARCH LIST & CHOOSE SETS
+ 					 	</button>
+
+ 					 	<button data-toggle="popover" data-animation="true"  data-content="This could take a while"  type="submit" id="searchButtonList" class="btn btn-success" value="express" name="a">
+ 					 	 	EXPRESS ADD LIST TO CART
+ 					 	</button>
+
+
+ 					    </center>
+ 					 </div>
+				    <textarea class="form-control" id="exampleFormControlTextarea1" name="q" value="{{request.GET.q}}" type="text" rows="16"></textarea>
+		        </form>
+					
+				</div>
+
+	      	</div>
+
+
+	      	<!--
+			<div class="col-sm-4">
+				<img style="max-width: 20%;" class="img-responsive center-block visible-lg" alt="Responsive image" id="mainImg" src="{% static 'img/front photo.png' %}">
+			</div></div> -->
+
+
+ 					
+		    
+	    </div></div>
+			  {% endif %}
+
+			   {% block set_list %}
+		  {% endblock %}
+		
+
+{% endblock %}
+
+

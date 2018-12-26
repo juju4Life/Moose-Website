@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'cart_style.html' %}
+
+
+<div class="row">
+	  	<div class="col-sm-2">
+		<h1 style="color: royalblue" id='title'>Checkout</h1>
+		</div></div>
+
+			<div class="row">
+				<div class="col-sm-2 col-sm-2"></div>
+				<div class="inner col-sm-7 col-sm-7">
+	<table style="color: lightgray;" class="nav nav-pills nav-stacked table table">
+	<thead class="thead-inverse">
+		<tr class="header">
+		  <th id="n">Name</th>
+		  <th id="p">Price</th>
+		  <th>Qty.</th>
+		  <th id="q">Total</th>
+		  <th></th>
+		</tr>
+	</thead>
+
+{% for card, price in cart %}
+	<form action="{% url 'add_to_cart' card.product.id %}" method="post">
+			{% csrf_token %}
+
+	<tbody>
+        <tr>
+          <td>
+          	{% if card.product.site == 'error' %}
+
+          	<h4 id="name"><a style="color:red" id="nameHead" href= '{{card.product.get_absolute_url}}'>{{card.product.name}}
+            </h4></a>
+            <p id="set">{{card.set_name}}</p>
+             </td> 
+           <td id="price"><strong> ---- </strong></td>
+           <td><input id="box" size="3" type="number" name="quantity" min="1" max="{{card.product.quantity}}" value="{{card.quantity}}"></td>
+           	<td><strong> ---- </strong></td>
+            <td>
+          <button id="trashButton" type="submit" formaction="{% url 'remove_from_cart' card.product.id %}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+      	   </td> 
+
+            {% else %}
+
+            <h4 id="name"><a id="nameHead" href= '{{card.product.get_absolute_url}}'>{{card.product.name}}
+            </h4></a>
+            <p id="set">{{card.product.set_name}}</p>
+            </td> 
+           {% if card.product.price == 1000 or card.product.price == 0 %}
+           <td id="price"><strong> See Employee for Pricing</strong></td>
+           <td><input id="box" size="3" type="number" name="quantity" min="1" max="{{card.product.quantity}}" value="{{card.quantity}}"></td>
+           	<td><strong> ---- </strong></td>
+           {% else %}
+           <td id="price"><strong>${{card.product.price|floatformat:2}}</strong></td>
+           <td><input style="color: black;" id="box" size="3" type="number" name="quantity" min="1" max="8" value="{{card.quantity}}"></td>
+           	<td><strong>${{price|floatformat:2}}</strong></td>
+           {% endif %} 
+           <td>
+          <button id="updateButton" type="submit">Update</button>
+          <button id="trashButton" type="submit" formaction="{% url 'remove_from_cart' card.product.id %}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+      	   </td> 
+           {% endif %}
+
+
+        </tr>
+        </form> 
+        </tbody>
+         {% endfor %}
+    
+		</table>				
+		</div>	
+
+		<div class="row">
+	<div id="totalBox" class="col-sm-2">
+				<center><h3 style="color: lightgray;">Summary</h3></center>
+				<hr>
+        <h4>Subtotal: ${{sub_total|floatformat:2}}</h4>
+				<h4>Number of items: {{length}}</h4>
+				<hr>
+				<center>
+          <form action="" method="post">
+            {% csrf_token %}
+				<button name="checkout" value="check" id="checkout" type="submit" formaction="{% url 'checkout' %}">Checkout&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
+				<button id="checkout" type="submit" formaction="{% url 'empty_cart' %}" style="background-color:gray">Empty Cart&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></center>
+				</div>
+</div>			</form>        
+
+</div>
+
+
+{% endblock %} 

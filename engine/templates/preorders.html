@@ -1,0 +1,31 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+
+
+
+{% block set_list %}
+{% include 'supply_style.html' %}
+
+{% for preorder in supplies %}
+
+<div class="col-md-3">
+
+	<div class="row">
+    <div class="col-md-1"></div>
+       
+    </div>
+
+
+	<img id="supplyImage" src="{{preorder.image.url}}" class="img-responsive" />
+	<b>{{preorder.name}}</b>
+	<br>    
+	<b>${{preorder.price}}</b>
+	<br>
+	 <form action="{% url 'add_to_cart' preorder.id %}" method="post">{% csrf_token %}
+          <input size="2" id='qtyBox' type="number" name="quantity" min="1" max="">
+          <button type="submit" id='button'>Add</button>
+    </form>
+</div>
+{% endfor %}
+
+{% endblock %}
