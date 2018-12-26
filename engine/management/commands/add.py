@@ -11,6 +11,6 @@ class Command(BaseCommand):
     	while current <= stop:
     		load_fixture(current)
     		current += 1
-    		print current -= 1
+    		print(current)
 
         
