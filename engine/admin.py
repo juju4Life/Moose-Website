@@ -149,15 +149,17 @@ class ReleasedProductsAdmin(admin.ModelAdmin):
 
 class StoreDatabaseAdmin(admin.ModelAdmin):
     list_display = ['name', 'expansion', 'condition', 'language', 'foil']
-    list_filter = ['foil', 'language']
+    list_filter = ['foil', 'language', 'condition']
     readonly_fields = ('sku', 'product_id', 'condition', 'name', 'expansion', 'image', 'foil', 'language')
     fieldsets = (
         (None,{
             'fields': (
-                ('condition', 'quantity',),
-                ('name', 'expansion',),
-                ('language','custom_percentage',),
                 'foil',
+                ('quantity', 'condition',),
+                'custom_percentage',
+                'name',
+                'expansion',
+                'language',
             )
         }),
 
