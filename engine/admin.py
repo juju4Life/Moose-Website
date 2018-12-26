@@ -147,6 +147,29 @@ class ReleasedProductsAdmin(admin.ModelAdmin):
     list_display = ['product', 'release_date', 'price', 'link']
 
 
+class StoreDatabaseAdmin(admin.ModelAdmin):
+    list_display = ['name', 'expansion', 'condition', 'language', 'foil']
+    list_filter = ['foil', 'language']
+    readonly_fields = ('sku', 'product_id', 'condition', 'name', 'expansion', 'image', 'foil', 'language')
+    fieldsets = (
+        (None,{
+            'fields': (
+                ('condition', 'quantity',),
+                ('name', 'expansion',),
+                ('language','custom_percentage',),
+                'foil',
+            )
+        }),
+
+        ('Advanced options', {
+            'classes': ('collapse',),
+            'fields': ('sku', 'product_id', 'image'),
+        }),
+    )
+
+
+
+
 
 admin.site.site_header = 'MTGFIRST ADMIN'
 admin.site.site_title = ''
@@ -154,7 +177,7 @@ admin.site.index_title = ''
 admin.site.index_title = ''
 admin.site.register(UpdatedInventory, UpdatedInventoryAdmin)
 admin.site.register(CaseCards, CaseCardsAdmin)
-admin.site.register(StoreDatabase)
+admin.site.register(StoreDatabase, StoreDatabaseAdmin)
 admin.site.register(PreordersReady, PreordersReadyAdmin)
 admin.site.register(Preorder, PreorderAdmin)
 admin.site.register(Customer, CustomerAdmin)

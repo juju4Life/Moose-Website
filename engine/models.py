@@ -85,12 +85,12 @@ class StoreDatabase(models.Model):
     expansion = models.CharField(max_length=255, default='', db_index=True)
     sku = models.CharField(max_length=255, default='')
     product_id = models.CharField(max_length=255, default='')
-    condition = models.CharField(max_length=255, choices=choices, default='Lightly Played')
+    condition = models.CharField(max_length=255, default='')
     quantity = models.IntegerField(null=True, default=0)
     foil = models.BooleanField(default=False)
     image = models.CharField(max_length=255, default='', blank=True, null=True)
     custom_percentage = models.IntegerField(null=True, default=0)
-    language = models.CharField(max_length=255, choices=language_choices, default='English', db_index=True)
+    language = models.CharField(max_length=255, default='', db_index=True)
 
 
     def __str__(self):
