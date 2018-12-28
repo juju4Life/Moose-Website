@@ -148,6 +148,7 @@ class ReleasedProductsAdmin(admin.ModelAdmin):
 
 
 class StoreDatabaseAdmin(admin.ModelAdmin):
+    search_fields = ['name']
     list_display = ['name', 'expansion', 'condition', 'language', 'foil']
     list_filter = ['foil', 'language', 'condition']
     readonly_fields = ('sku', 'product_id', 'condition', 'name', 'expansion', 'image', 'foil', 'language')
