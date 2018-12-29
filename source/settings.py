@@ -65,6 +65,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'users.apps.UsersConfig',
     'django.contrib.auth',
     'django.contrib.sites',
     'django.contrib.contenttypes',
@@ -113,7 +114,7 @@ PROJECT_DIR = os.path.dirname(__file__)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['engine\\templates','customer\\templates',
+        'DIRS': ['engine\\templates','customer\\templates', 'users\\templates'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -157,7 +158,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': '',
-        'NAME': 'sqldatabase',
+        'NAME': 'local_db',
         'USER': 'root',
         'PASSWORD': 'Safarizone99',
 

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class='row'>
+	<div style="background-color:white" class='col-sm-6 col-sm-offset-3'>   
+		<h1>{{title}}</h1>
+		{% if confirm_message %}
+		<p> {{confirm_message}} </p>
+		{% endif %}
+		{% if form %}
+		<form style='padding: 1%;' method="POST" action="">{% csrf_token %}
+			{{form|crispy}}
+			<input type="submit" value="Sign up" class ='btn btn-success' />
+			<small style="font-size: 16px" class="text-muted">&nbsp;
+				Already have an account? <a class="ml-2" href="#">Login</a>
+			</small>
+		</form>
+
+
+
+	</div>
+</div>
+
+{% endif %}
+{% endblock %}

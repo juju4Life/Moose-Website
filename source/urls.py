@@ -21,6 +21,7 @@ from contact import views as contact_views
 from engine import views as home_views
 from buylist import views as buylist_views
 from customer import views as customer_views
+from users import views as user_views
 if settings.DEBUG == True:
     import debug_toolbar
 
@@ -29,6 +30,7 @@ urlpatterns = [
     path('sms/', include('sms.urls')),
     path('admin/', admin.site.urls),
     path('', home_views.home, name='home'),
+    path('register/', user_views.register, name='register'),
     path('contact/', contact_views.contact, name='contact'),
     path('ip/', customer_views.get_ip, name='ip'),
     path('buylist/', buylist_views.buylist_home, name='buylist'),
