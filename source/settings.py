@@ -228,7 +228,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 SITE_ID = 1
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'profile'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = False

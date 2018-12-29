@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegisterForm
+from customer.models import Customer
 
 def register(request):
 	if request.method == 'POST':
@@ -21,6 +22,8 @@ def register(request):
 
 @login_required
 def profile(request):
+	print(request.get('user.username'))
+	#data = Customer.objects.get(email=)
 	return render(request, 'users/profile.html')
 
 
