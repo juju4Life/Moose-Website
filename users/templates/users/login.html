@@ -4,14 +4,14 @@
 
 <div class='row'>
 	<div style="background-color:white" class='col-sm-6 col-sm-offset-3'>   
-		<legend class="border-bottom mb-4">Sign up for an account</legend>
+		<legend class="border-bottom mb-4">Login into your account</legend>
 		
 		{% if form %}
 		<form style='padding: 1%;' method="POST" action="">{% csrf_token %}
 			{{form|crispy}}
-			<input type="submit" value="Sign up now" class ='btn btn-success' />
+			<input type="submit" value="Login" class ='btn btn-success' />
 			<small style="font-size: 16px" class="text-muted">&nbsp;
-				Already have an account? <a class="ml-2" href="{% url 'login' %}">Login</a>
+				Need an account? <a class="ml-2" href="{% url 'register' %}">Sign up here.</a>
 			</small>
 		</form>
 

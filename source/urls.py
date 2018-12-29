@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from contact import views as contact_views
 from engine import views as home_views
@@ -31,6 +32,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_views.home, name='home'),
     path('register/', user_views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('contact/', contact_views.contact, name='contact'),
     path('ip/', customer_views.get_ip, name='ip'),
     path('buylist/', buylist_views.buylist_home, name='buylist'),
