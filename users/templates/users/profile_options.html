@@ -1,0 +1,154 @@
+{% load staticfiles %}
+<div" class="col-sm-11">
+    <small><a href="{% url 'buylist_cart' %}"><span id="shoppingCart" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></small>
+  </div>
+<div class="row">
+    <div class="col-sm-4">
+      <h1 style="color: royalblue" id='title'> Welcome back {{user.username}}!</h1>
+    </div>
+
+</div>
+
+<div style="color: lightgray;" class="col-sm-12">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#cardList" aria-controls="cardList" role="tab" data-toggle="tab">Store Credit</a></li>
+          <li role="presentation"><a href="#grading" aria-controls="grading" role="tab" data-toggle="tab">Wishlist</a></li>
+          <li role="presentation"><a href="#mtg" aria-controls="mtg" role="tab" data-toggle="tab">MTG Bulk Pricing</a></li>
+          <li role="presentation"><a href="#instructions" aria-controls="instructions" role="tab" data-toggle="tab">Selling Instructions</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div  role="tabpanel" class="tab-pane active" id="cardList">
+            <div id="buylistCardFrame" class="col-sm-12">
+            <table class="nav nav-pills nav-stacked table" id="myTable">
+              <div class="row">
+              <center>
+              <div id="buylistInputFrame" class="col-sm-6">
+                <form class="navbar-form pull-left" method="GET" action="{% url 'search_buylist' %}">
+                  <input id="buylistSearchBar" name="q" value="{{request.GET.q}}" type="text" class="" placeholder="Search Buylist..">
+                  <button id="buylistSearchButton" class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </form>
+              </div>
+              </center>
+              </div>
+              {% for item in items %}
+                <div class="col-sm-3">
+                  <img class="img-responsive center-block" id="cardImage" src="{{item.image}}">
+                    <center>
+                    <h4>{{item.name}}</h4>
+                    <div id="x">
+                    <p>({{item.set_name}})</p>
+                    <b>Sell for <span style="color:#63bc0a;font-size: 120%;">${{item.price}}</span></b>
+                    <iframe name="submit-frame" style="display: none"></iframe>
+                    <form action="{% url 'add_to_cart_buylist' item.id %}" method="post" target="submit-frame">{% csrf_token %}
+                        <input style="color: black;" size="2" id='qtyBox' type="number" name="quantity" min="1" max="{{item.quantity}}">
+                        <button style="color: black;" data-toggle="popover" data-animation="true"  data-content="Added to cart"  type="submit" id='button'>Add</button>
+                          </form>
+                      </div>
+                    <hr>
+                </div>
+              {% endfor %}
+            </table>
+             {% include 'pagination.html' %}
+
+          </div>            
+        </div>
+         
+          <div role="tabpanel" class="tab-pane" id="grading">
+            <div class="col-md-6">
+              <table class="nav nav-pills nav-stacked table" id="myTable">
+                <thead class="thead-inverse">
+                  <tr class="header">
+                    <th>Price Guide</th>
+                    <th>NM</th>
+                    <th>Played</th>
+                    <th>Heavily Played</th>
+                    <th>Damaged</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Less than $25</th>
+                    <td>100%</td>
+                    <th>80%</th>
+                    <th>60%</th>
+                    <th>30%</th>
+                  </tr>
+                  <tr>
+                    <th>$25 - $99.99</th>
+                    <td>100%</td>
+                    <th>85%</th>
+                    <th>70%</th>
+                    <th>50%</th>
+                  </tr>
+                  <tr>
+                    <th>$100+</th>
+                    <td>100%</td>
+                    <th>90%</th>
+                    <th>75%</th>
+                    <th>50%</th>
+                  </tr>
+                  <tr>
+                    <th>Foils</th>
+                    <td>100%</td>
+                    <th>75%</th>
+                    <th>50%</th>
+                    <th>30%</th>
+                  </tr>
+
+
+                </tbody>
+              </table></div>
+          </div>
+                        <div role="tabpanel" class="tab-pane" id="mtg">
+            <img class="img-responsive" style="max-width: 40%; margin-top: 1%;" id="tradeMark" src="{% static 'img/Mtg Logo.png' %}">
+            <p>
+              <ul>
+                <li><strong>Mythic Rare:</strong> $0.25 each</li>
+                <li><strong>Rare:</strong> $0.08 each</li>
+                <li><strong>Common / Uncommon:</strong> $4.00 per 1000 cards ($5.00 if organized by set)</li>
+                <li><strong>Unstable:</strong> $6.00 per 1000 cards</li>
+                <li><strong>Basic Land:</strong> $2.00 per 1000 cards</li>
+                <hr>
+                <li><strong>Foil Mythic Rares:</strong> $0.30 each</li>
+                <li><strong>Foil Rare:</strong> $0.25 each</li>
+                <li><strong>Foil Common / Uncommon:</strong> $0.05 each</li>
+                <li><strong>Foil Basic Land:</strong> $0.25 each</li>
+              </ul>
+            </p>
+          </div>
+
+
+
+          <div role="tabpanel" class="tab-pane" id="instructions">
+            <h3>Selling Instructions</h3>
+              <ul>
+                <li>All of our Buylist prices are based on Near Mint Conditioned cards and scales for condition. Please refer to our grading guide.</li><br>
+                <li>After you have added all cards you wish to sell, proceed to checkout. You may choose Paypal, check, or store credit as your payment method.</li><br>
+                <li><strong>Your sell request must be approved!</strong> You will receive an email within one business day containg your approval status, Sell Request Number and invoice.</li><br>
+                <li>Please ensure that all cards are sorted by the exact order that they appear in the invoice of the email, and that sleeves are removed from cards with a sell value of less than $10. Failure to do so could result in a significant delay in processing your order. And a fee of up to 20% could be deducted from your final payment.</li><br>
+                <li>When you package this order, please ensure that each item is packaged securely. <em> We are not responsible for cards that are damaged while en route to our buying center</em>. We strongly recommend that you add tracking to your package so you know where it is at all times, and insure packages worth $100 or more. <em>We are not responsible for packages lost or stolen before we sign for them.</em></li><br>
+                <li>Please ship packages to
+                  <br>
+                    <h4>
+                    ATTN. Buyer<br>
+                    MTG First Game Center<br>
+                    7602 Baltimore Annapolis Blvd.<br>
+                    Glen Burnie, MD 21060
+                  </h4>
+                </li><br>
+                <li>Once we receive your order, please allow up to 2 business days for verification and processing. Your funds will automatically be distributed per the method you have chosen. If you chose to reject condition downgrades during checkout, the amount for those cards will be deducted from your total, along with cost of the materials and/or labels used to create them.</li>
+              </ul>
+
+          </div>
+
+
+        </div>
+
+      </div>    
+      
+
+
+  </div>
