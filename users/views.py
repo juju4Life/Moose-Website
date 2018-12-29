@@ -22,7 +22,7 @@ def register(request):
 
 @login_required
 def profile(request):
-	print(request.get('user.username'))
+	print(request)
 	#data = Customer.objects.get(email=)
 	return render(request, 'users/profile.html')
 
