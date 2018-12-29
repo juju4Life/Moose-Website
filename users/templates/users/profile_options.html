@@ -18,40 +18,19 @@
           <li role="presentation"><a href="#mtg" aria-controls="mtg" role="tab" data-toggle="tab">MTG Bulk Pricing</a></li>
           <li role="presentation"><a href="#instructions" aria-controls="instructions" role="tab" data-toggle="tab">Selling Instructions</a></li>
         </ul>
+
         <!-- Tab panes -->
         <div class="tab-content">
           <div  role="tabpanel" class="tab-pane active" id="cardList">
             <div id="buylistCardFrame" class="col-sm-12">
             <table class="nav nav-pills nav-stacked table" id="myTable">
-              <div class="row">
-              <center>
-              <div id="buylistInputFrame" class="col-sm-6">
-                <form class="navbar-form pull-left" method="GET" action="{% url 'search_buylist' %}">
-                  <input id="buylistSearchBar" name="q" value="{{request.GET.q}}" type="text" class="" placeholder="Search Buylist..">
-                  <button id="buylistSearchButton" class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                </form>
-              </div>
-              </center>
-              </div>
+             
               {% for item in items %}
                 <div class="col-sm-3">
-                  <img class="img-responsive center-block" id="cardImage" src="{{item.image}}">
-                    <center>
-                    <h4>{{item.name}}</h4>
-                    <div id="x">
-                    <p>({{item.set_name}})</p>
-                    <b>Sell for <span style="color:#63bc0a;font-size: 120%;">${{item.price}}</span></b>
-                    <iframe name="submit-frame" style="display: none"></iframe>
-                    <form action="{% url 'add_to_cart_buylist' item.id %}" method="post" target="submit-frame">{% csrf_token %}
-                        <input style="color: black;" size="2" id='qtyBox' type="number" name="quantity" min="1" max="{{item.quantity}}">
-                        <button style="color: black;" data-toggle="popover" data-animation="true"  data-content="Added to cart"  type="submit" id='button'>Add</button>
-                          </form>
-                      </div>
-                    <hr>
+                   
                 </div>
               {% endfor %}
             </table>
-             {% include 'pagination.html' %}
 
           </div>            
         </div>
