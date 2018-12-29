@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-
 {% block styles %}
 {% include 'home_style.html' %}
 {% endblock %}
@@ -8,6 +7,8 @@
 
 
 {% block content %}
+    {% include 'navbar.html' %}
+
 
  <div class="col-sm-12">
     <small><a href="{% url 'cart' %}"><span id="shoppingCart" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></small>
