@@ -40,6 +40,10 @@
             {% url 'buylist_page' as buylist %}
           	{% url 'contact' as contact %}
             {% url 'preorders' as preorders %}
+            {% url 'login' as login %}
+            {% url 'logout' as logout %}
+            {% url 'register' as register %}
+            {% url 'profile' as profile %}
             <li {% if request.path == home %} class="active" {% endif %}><a href="{% url 'home' %}">Home</a></li>
             <li {% if request.path == buylist %} class="active" {% endif %}><a href="{% url 'buylist_page' %}">Buylist</a></li>
             <li {% if request.path == contact %} class="active" {% endif %}><a href="{% url 'contact' %}">Contact</a></li>
@@ -265,12 +269,14 @@
               </form>
             </li>
             {% if user.is_authenticated %}
-            <li> <a href="{% url 'logout' %}">Logout</a> </li>
+            <li {% if request.path == logout %} class="active" {% endif %}><a href="{% url 'logout' %}">Logout</a></li>
+            <li {% if request.path == profile %} class="active" {% endif %}><a href="{% url 'profile' %}">Profile</a></li>
             {% else %}
-            <li> <a href="{% url 'login' %}">Login</a> </li>
-            <li> <a href="{% url 'register' %}">Register</a> </li>
-            {% endif %}
+            <li {% if request.path == login %} class="active" {% endif %}><a href="{% url 'login' %}">Login</a></li>
+            <li {% if request.path == register %} class="active" {% endif %}><a href="{% url 'register' %}">Register</a></li>
             <li> <a href="/admin/">admin</a> </li>
+            {% endif %}
+            
           </ul>
         </div><!--/.nav-collapse -->
       </div>

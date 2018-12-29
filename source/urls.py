@@ -19,6 +19,7 @@ urlpatterns = [
     path('', home_views.home_base, name='base'),
     path('home/', home_views.home, name='home'),
     path('register/', user_views.register, name='register'),
+    path('profile/', user_views.register, name='profile'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('contact/', contact_views.contact, name='contact'),
