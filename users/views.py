@@ -24,7 +24,7 @@ def register(request):
 def profile(request):
     #data = Customer.objects.get(email=)
     username = None
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         username = request.user.email
     return render(request, 'users/profile.html', {'data': username})
 
