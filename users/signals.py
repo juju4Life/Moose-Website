@@ -8,7 +8,7 @@ from customer.models import Customer
 def create_Profile(sender, instance, created, **kwargs):
 	if created:
 		Customer.objects.create(
-			name=instance.username,
 			email=instance.email,
-			
+			name = f'{instance.first_name} {instance.last_name}'
+
 			)
