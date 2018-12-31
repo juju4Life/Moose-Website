@@ -12,6 +12,6 @@ def create_Profile(sender, instance, created, **kwargs):
 			name = f'{instance.first_name} {instance.last_name}'
 			)
 
-@receiver(post_save, sender=User)
+'''@receiver(post_save, sender=User)
 def save_Profile(sender, instance, **kwargs):
-		instance.customer.save()
+		pass'''
