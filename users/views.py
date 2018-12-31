@@ -22,9 +22,9 @@ def register(request):
 
 @login_required
 def profile(request):
-    #data = Customer.objects.get(email=)
     if request.user.is_authenticated:
-        username = request.user.email
-    return render(request, 'users/profile.html', {'data': username})
+        data = Customer.objects.get(email=request.user.email)
+
+    return render(request, 'users/profile.html', {'data': data})
 
 
