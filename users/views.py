@@ -30,6 +30,9 @@ def profile(request):
 
             if user_form.is_valid():
                 user_form.save()
+                email = request.user.email
+                data.email = email
+                data.save()
                 messages.success(request, 'Your account has been updated successfully')
             return redirect('profile')
 
