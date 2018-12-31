@@ -26,7 +26,7 @@ def profile(request):
         data = Customer.objects.get(email=request.user.email)
 
         if request.method == 'POST':
-            user_form = UserUpdateForm(request.POST, isntance=request.user)
+            user_form = UserUpdateForm(request.POST, instance=request.user)
 
             if user_form.is_valid():
                 user_form.save()
@@ -37,7 +37,7 @@ def profile(request):
             return redirect('profile')
 
         else:
-            user_form = UserUpdateForm(isntance=request.user)
+            user_form = UserUpdateForm(instance=request.user)
 
     return render(request, 'users/profile.html', {'data': data, 'user_form': user_form})
 
