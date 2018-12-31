@@ -40,10 +40,11 @@ X_FRAME_OPTIONS = "DENY"""
 
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'jermol.jupiter@gmail.com'
-EMAIL_HOST_PASSWORD = 'zipzipSafarizone99'
+EMAIL_HOST_USER = 'jermol@mtgfirst.com'
+EMAIL_HOST_PASSWORD = 'Spacejam99'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'mtgfirst'
 
 
 # Quick-start development settings - unsuitable for production
