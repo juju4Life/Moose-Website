@@ -1,15 +1,15 @@
 {% load staticfiles %}
-<div" style='background-color: white; background-size: 80%;' class="col-sm-11">
+<div class="col-sm-11">
     <small><a href="{% url 'buylist_cart' %}"><span id="shoppingCart" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></small>
   </div>
 <div class="row">
-    <div class="col-sm-4">
-      <h2 style="color: royalblue" id='title'> Welcome back {{user.username}}!</h2>
+    <div class="col-sm-12">
+      <h2 style="color: white" id='title'> Welcome back {{user.username}}!</h2>
     </div>
 
 </div>
 
-<div style="color: lightgray;" class="col-sm-12">
+<div style="color: white;" class="col-sm-12">
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -23,6 +23,7 @@
         <div class="tab-content">
           <div  role="tabpanel" class="tab-pane active" id="cardList">
             <div id="buylistCardFrame" class="col-sm-12">
+
             <table class="nav nav-pills nav-stacked table" id="myTable">
              
               <h3>Store Credit Balance: {{data.credit}}</h3>
