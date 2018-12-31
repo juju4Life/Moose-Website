@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from customer.models import Customer
 
 def register(request):
@@ -23,8 +23,10 @@ def register(request):
 @login_required
 def profile(request):
     if request.user.is_authenticated:
+        user_form = UserUpdateForm()
+        profile_form = ProfileUpdateForm()
         data = Customer.objects.get(email=request.user.email)
 
-    return render(request, 'users/profile.html', {'data': data})
+    return render(request, 'users/profile.html', {'data': data, 'user_form': user_form, 'profile_form': profile_form})
 
 

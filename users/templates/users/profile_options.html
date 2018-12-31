@@ -9,7 +9,7 @@
 
 </div>
 
-<div style="color: white;" class="col-sm-4">
+<div style="color: white;" class="col-sm-6">
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -100,24 +100,14 @@
 
 
           <div role="tabpanel" class="tab-pane" id="instructions">
-            <h3>Selling Instructions</h3>
-              <ul>
-                <li>All of our Buylist prices are based on Near Mint Conditioned cards and scales for condition. Please refer to our grading guide.</li><br>
-                <li>After you have added all cards you wish to sell, proceed to checkout. You may choose Paypal, check, or store credit as your payment method.</li><br>
-                <li><strong>Your sell request must be approved!</strong> You will receive an email within one business day containg your approval status, Sell Request Number and invoice.</li><br>
-                <li>Please ensure that all cards are sorted by the exact order that they appear in the invoice of the email, and that sleeves are removed from cards with a sell value of less than $10. Failure to do so could result in a significant delay in processing your order. And a fee of up to 20% could be deducted from your final payment.</li><br>
-                <li>When you package this order, please ensure that each item is packaged securely. <em> We are not responsible for cards that are damaged while en route to our buying center</em>. We strongly recommend that you add tracking to your package so you know where it is at all times, and insure packages worth $100 or more. <em>We are not responsible for packages lost or stolen before we sign for them.</em></li><br>
-                <li>Please ship packages to
-                  <br>
-                    <h4>
-                    ATTN. Buyer<br>
-                    MTG First Game Center<br>
-                    7602 Baltimore Annapolis Blvd.<br>
-                    Glen Burnie, MD 21060
-                  </h4>
-                </li><br>
-                <li>Once we receive your order, please allow up to 2 business days for verification and processing. Your funds will automatically be distributed per the method you have chosen. If you chose to reject condition downgrades during checkout, the amount for those cards will be deducted from your total, along with cost of the materials and/or labels used to create them.</li>
-              </ul>
+            <h3>Profile info</h3>
+              <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
+
+                {{user_form|crispy}}
+                {{profile_form|crispy}}
+                <input type="submit" value="Update" class ='btn btn-success' />
+    
+              </form>
 
           </div>
 

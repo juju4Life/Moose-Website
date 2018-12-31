@@ -10,5 +10,8 @@ def create_Profile(sender, instance, created, **kwargs):
 		Customer.objects.create(
 			email=instance.email,
 			name = f'{instance.first_name} {instance.last_name}'
-
 			)
+
+@receiver(post_save, sender=User)
+def save_Profile(sender, instance, **kwargs):
+		instance.customer.save()
