@@ -115,7 +115,8 @@ PROJECT_DIR = os.path.dirname(__file__)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['engine\\templates','customer\\templates', 'users\\templates'
+        'DIRS': ['engine\\templates','customer\\templates', 'users\\templates',
+                'users\\templates\\registration'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
