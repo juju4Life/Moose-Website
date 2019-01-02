@@ -6,13 +6,13 @@ from customer.models import Customer
 
 
 class UserRegisterForm(UserCreationForm):
-	email = forms.EmailField()
+	email = forms.EmailField(unique=True)
 	first_name = forms.CharField()
 	last_name = forms.CharField()
  
 	class Meta:
 		model = User
-		fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+		fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
 class LoginForm(AuthenticationForm):
 	class Meta:
