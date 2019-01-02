@@ -273,7 +273,7 @@
             <li {% if request.path == profile %} class="active" {% endif %}><a href="{% url 'profile' %}">Profile</a></li>
             {% else %}
             <li {% if request.path == login %} class="active" {% endif %}><a href="{% url 'login' %}">Login</a></li>
-            <li {% if request.path == register %} class="active" {% endif %}><a href="{% url 'register' %}">Register</a></li>
+            <li {% if request.path == register %} class="active" {% endif %}><a href="{% url 'register' %}">Sign up</a></li>
             <li> <a href="/admin/">admin</a> </li>
             {% endif %}
             
