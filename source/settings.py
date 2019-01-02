@@ -39,6 +39,7 @@ CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = "DENY"""
 
 
+#EMAIL_BACKEND = 'django.core.email.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'jermol@mtgfirst.com'
 EMAIL_HOST_PASSWORD = 'Spacejam99'
