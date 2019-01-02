@@ -6,7 +6,7 @@ from customer.models import Customer
 
 
 class UserRegisterForm(UserCreationForm):
-	email = forms.EmailField(unique=True)
+	email = forms.EmailField()
 	first_name = forms.CharField()
 	last_name = forms.CharField()
  
@@ -20,7 +20,7 @@ class LoginForm(AuthenticationForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-	email = forms.EmailField(unique=True)
+	email = forms.EmailField()
 
 	class Meta:
 		model = User
