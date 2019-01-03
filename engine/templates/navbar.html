@@ -268,6 +268,7 @@
                 <button id="" class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
               </form>
             </li>
+            
             {% if user.is_authenticated %}
             <li {% if request.path == logout %} class="active" {% endif %}><a href="{% url 'logout' %}">Logout</a></li>
             <li {% if request.path == profile %} class="active" {% endif %}><a href="{% url 'profile' %}">Profile</a></li>

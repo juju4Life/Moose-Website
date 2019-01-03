@@ -81,6 +81,9 @@ def price_algorithm(condition ,market, direct=None, mid=None, low=None):
         if new_price < .25:
             new_price = .25
 
+        if new_price >= 2. and new_price <= 2.25:
+            new_price = 1.99
+
 
     return new_price
 
