@@ -62,7 +62,7 @@ class StoreDatabase(models.Model):
 
     name = models.CharField(max_length=255, default='', db_index=True)
     expansion = models.CharField(max_length=255, default='', db_index=True)
-    price = models.DecimalField(max_digits=12, decimal_places=2, default=None, null=True, blank= True)
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=0, null=True, blank= True)
     sku = models.CharField(max_length=255, default='')
     product_id = models.CharField(max_length=255, default='')
     condition = models.CharField(max_length=255, default='')
