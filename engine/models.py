@@ -59,30 +59,10 @@ class Product(models.Model):
         return self.name
 
 class StoreDatabase(models.Model):
-    choices = (
-        ('Near Mint', 'Near Mint'),
-        ('Lightly Played', 'Lightly Played'),
-        ('Moderately Played', 'Moderately Played'),
-        ('Heavily Played', 'Heavily Played'),
-        ('Damaged', 'Damaged'),
-        )
-
-    language_choices = (
-        ('English', 'English'),
-        ('Japanese', 'Japanese'),
-        ('Korean', 'Korean'),
-        ('Chinese (S)', 'Chinese (S)'),
-        ('Chinese (T)', 'Chinese (T)'),
-        ('Russian', 'Russian'),
-        ('German', 'German'),
-        ('Spanish', 'Spanish'),
-        ('French', 'French'),
-        ('Italian', 'Italian'),
-        ('Portuguese', 'Portuguese'),
-        )
 
     name = models.CharField(max_length=255, default='', db_index=True)
     expansion = models.CharField(max_length=255, default='', db_index=True)
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=None, null=True, blank= True)
     sku = models.CharField(max_length=255, default='')
     product_id = models.CharField(max_length=255, default='')
     condition = models.CharField(max_length=255, default='')

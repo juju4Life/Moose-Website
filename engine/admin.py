@@ -123,7 +123,6 @@ class PreordersReadyAdmin(SimpleHistoryAdmin):
     save_on_top = True
     history_list_display = ['name', 'price', 'paid']
     list_display = ['product','name' ,'price', 'paid', 'quantity']
-    search_fields = ['name']
     list_filter = ['product']
     autocomplete_fields = ['customer_name', 'product']
 
@@ -150,7 +149,7 @@ class ReleasedProductsAdmin(admin.ModelAdmin):
 class StoreDatabaseAdmin(admin.ModelAdmin):
     search_fields = ['name']
     list_display = ['name', 'expansion', 'condition', 'language', 'foil']
-    list_filter = ['foil', 'language', 'condition']
+    list_filter = ['foil', 'language', 'condition', 'expansion']
     readonly_fields = ('sku', 'product_id', 'condition', 'name', 'expansion', 'image', 'foil', 'language')
     fieldsets = (
         (None,{
@@ -162,6 +161,7 @@ class StoreDatabaseAdmin(admin.ModelAdmin):
                 'expansion',
                 'language',
             )
+
         }),
 
         ('Advanced options', {
