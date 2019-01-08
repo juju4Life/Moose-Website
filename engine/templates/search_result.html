@@ -1,4 +1,5 @@
 {% extends "home.html" %}
+{% load crispy_forms_tags %}
 {% block set_list %}
 {% include 'search_result_style.html' %}
 
@@ -16,11 +17,9 @@
 
 
 
-      	{% for product in products %}
+      	{% for product, card_price in products %}
       	{% if product.id != 'error' %}
 		<div class="col-sm-12">
-
-			
             <div style="" class="col-sm-5" id="productImage"> <img class="img-responsive center-block" src="{{product.image_url}}"> </div>
             
             <div class="col-sm-7"> 
@@ -29,14 +28,15 @@
                       <h1>
                       	<div class="col-sm-9">
                       	{{product.name}} 
-     					 <div style="font-size: 14px; font-weight: bold;" id="expansion"><b>{{product.set_name}} - Art by <em>{{product.artist}}</em></b></div>
+     					 <div style="font-size: 14px; font-weight: bold;" id="expansion"><b>{{product.expansion}}</b></div>
                       </div>
 
                       <div class="col-sm-3">
                       	<form action="{% url 'add_to_cart' product.id %}" method="post" target="submit-frame">{% csrf_token %}
 			                  <center>
-			                  	<p style="color: lightgray; font-size:20px;">&nbsp;{% if product.price != 0 and product.price != 1000 %}${{product.price|floatformat:2}}{% elif product.price == 0 or product.price == 1000 %}Price Unavailable{% endif %}</p>
-			                    <input style="color: black;" size="2" id='qtyBox' type="number" name="quantity" min="1" max="8">
+			                  	<p style="color: lightgray; font-size:20px;">&nbsp;${{card_price|floatformat:2}}</p>
+                          {{form|crispy}}
+                          <input id='card_price' type="hidden" name="card_price" min={{card_price}} max={{card_price}} value={{card_price}}>
 			                    <button style="margin-top: -5%; margin-left: -5%;" class="btn btn-success" data-toggle="popover" data-animation="true"  data-content="Added to cart"  type="submit" id='button'>+</button>
 			                    
 			                  </center>
@@ -47,25 +47,7 @@
                    
                       <h4>Rarity: {{product.rarity}}</h4>
 
-                      {% if "Land" in product.types %}
-                      <h4> Card Type: {{product.types}}</h4>
-                      {% endif %}
-
-                      {% if "Planeswalker" in product.types %}
-                      <h4> Card Type: {{product.types}} - {{product.subtypes}}</h4>
-                      {% endif %}
-
-                      {% if "Creature" in product.types %}
-                      <h4> Mana Cost: {{product.mana_cost}}</h4>
-                      <h4> Card Type: {{product.types}} - {{product.subtypes}}</h4>
-                      <h4>Power/Toughness: {{product.power}}/{{product.toughness}}</h4><br>
-                      {% endif %}
-
-                      <h4> {{product.text}} </h4>
-                      <hr>
-                      {% if product.flavor != None %}
-                      <h4><em>"{{product.flavor}}"</em></h4>
-                      {% endif %}
+                      
                   </div>
                 </div>
             </div>

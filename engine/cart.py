@@ -44,14 +44,10 @@ class Cart(object):
 
         self.cart = cart
 
-    def add(self, product, price, set_name, quantity=1,):
+    def add(self, product, price, set_name, condition, language, quantity=1,):
         product_id = str(product.id)
         if product_id not in self.cart:
-            self.cart[product_id] = {'price': str(price), 'set_name': set_name, 'quantity': 0}
-
-        self.cart[product_id]['quantity'] = int(quantity)
-        self.save()
-
+            self.cart[product_id] = {'price': str(price), 'set_name': set_name, 'condition': condition, 'language': language, 'quantity': 0}
 
         self.cart[product_id]['quantity'] = int(quantity)
         self.save()
@@ -59,16 +55,24 @@ class Cart(object):
         self.cart[product_id]['set_name'] = set_name
         self.save()
 
+        self.cart[product_id]['condition'] = condition
+        self.save()
+
+        self.cart[product_id]['language'] = language
+        self.save()
+
 
     def save(self):
         self.session[settings.CART_SESSION_KEY] = self.cart
         self.session.modified = True
+
 
     def remove(self, product):
         product_id = str(product.id)
         if product_id in self.cart:
             del self.cart[product_id]
             self.save()
+
 
     def empty(self):
         for each in self.cart:
@@ -103,7 +107,10 @@ class Cart(object):
         return sum(item['quantity'] for item in self.cart.values())
 
 
+    @property
     def total_price(self):
+        for item in self.cart.values():
+            print(item)
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
 
     @property

@@ -29,11 +29,11 @@
 	<tbody>
         <tr>
           <td>
-          	{% if card.product.site == 'error' %}
+          	{% if card.product.name == 'error' %}
 
           	<h4 id="name"><a style="color:red" id="nameHead" href= '{{card.product.get_absolute_url}}'>{{card.product.name}}
             </h4></a>
-            <p id="set">{{card.set_name}}</p>
+            <p id="set">{{card.product.expansion}}</p>
              </td> 
            <td id="price"><strong> ---- </strong></td>
            <td><input id="box" size="3" type="number" name="quantity" min="1" max="{{card.product.quantity}}" value="{{card.quantity}}"></td>
@@ -44,16 +44,16 @@
 
             {% else %}
 
-            <h4 id="name"><a id="nameHead" href= '{{card.product.get_absolute_url}}'>{{card.product.name}}
+            <h4 id="name"><a id="nameHead" href= '{{card.product.get_absolute_url}}'>{{card.product.name}} - {{card.condition}} - {{card.language}}
             </h4></a>
-            <p id="set">{{card.product.set_name}}</p>
+            <p id="set">{{card.product.expansion}}</p>
             </td> 
-           {% if card.product.price == 1000 or card.product.price == 0 %}
+           {% if card.price == 1000 or card.product.price == 0 %}
            <td id="price"><strong> See Employee for Pricing</strong></td>
            <td><input id="box" size="3" type="number" name="quantity" min="1" max="{{card.product.quantity}}" value="{{card.quantity}}"></td>
            	<td><strong> ---- </strong></td>
            {% else %}
-           <td id="price"><strong>${{card.product.price|floatformat:2}}</strong></td>
+           <td id="price"><strong>${{card.price|floatformat:2}}</strong></td>
            <td><input style="color: black;" id="box" size="3" type="number" name="quantity" min="1" max="8" value="{{card.quantity}}"></td>
            	<td><strong>${{price|floatformat:2}}</strong></td>
            {% endif %} 

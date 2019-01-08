@@ -262,7 +262,7 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 CART_SESSION_KEY = 'cart_id'
 BUYLIST_CART_SESSION_KEY = 'buylist_cart_id'
-PRODUCT_MODEL = "engine.Product"
+PRODUCT_MODEL = "engine.StoreDatabase"
 BUYLIST_MODEL = "buylist.Buying"
 
 

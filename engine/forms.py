@@ -25,3 +25,31 @@ class contactForm(forms.Form):
     email = forms.EmailField(required=False,label='Email - (if Contact by Email selected)')
     phone_number = forms.CharField(required=False, max_length='15', label='Phone Number - (if Contact by Phone selected)')
     notes = forms.CharField(required=False, widget=forms.Textarea)
+
+
+class ConditionSkuForm(forms.Form):
+    condition_choices = (
+        ('NM / LP', 'Near Mint / Lightly Played'),
+        ('MP', 'Moderately Played'),
+        ('HP', 'Heavily Played'),
+        ('Damaged', 'Damaged'),
+        ('Unopened', 'Unopened'),
+        )
+
+    language_choices = (
+        ('English', 'English'),
+        ('Japanese', 'Japanese'),
+        ('Chinese (s)', 'Chinese (S)'),
+        ('Chinese (t)', 'Chinese (T)'),
+        ('Korean', 'Korean'),
+        ('Russian', 'Russian'),
+        ('Spanish', 'Spanish'),
+        ('Italian', 'Italian'),
+        ('French', 'French'),
+        ('Portuguese', 'Portuguese'),
+        )
+
+
+    condition = forms.ChoiceField(choices=condition_choices)
+    language = forms.ChoiceField(choices=language_choices)
+    quantity = forms.IntegerField(initial=1)

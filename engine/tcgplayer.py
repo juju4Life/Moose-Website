@@ -85,7 +85,7 @@ def card_price(*product_id):
     price_dict = {str(i["productId"]): {
         "market_price": Decimal(i["marketPrice"]),
         "low_price": Decimal(i["lowPrice"]) }
-        for i in results if i["subTypeName"] == "Normal" and i["marketPrice"] != None and i["lowPrice"] != None}
+        for i in results if  i["marketPrice"] != None and i["lowPrice"] != None}
     for each in price_dict.keys():
         if price_dict[each]["market_price"] < price_dict[each]["low_price"]:
             price_dict[each]["market_price"] = price_dict[each]["low_price"]

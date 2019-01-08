@@ -58,14 +58,30 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
+
+class Events(models.Model):
+    title = models.CharField(max_length=255, default='')  
+    game = models.CharField(max_length=255, default='')
+    entry_fee = models.DecimalField(max_digits=12, decimal_places=2, default=None, blank=True)
+    game_format = models.CharField(max_length=255, default='')
+    description = models.TextField(default='', blank=True)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.title
+
+
+
 class StoreDatabase(models.Model):
 
     name = models.CharField(max_length=255, default='', db_index=True)
     expansion = models.CharField(max_length=255, default='', db_index=True)
-    price = models.DecimalField(max_digits=12, decimal_places=2, default=0, null=True, blank= True)
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=0, null=True, blank=True)
     sku = models.CharField(max_length=255, default='')
     product_id = models.CharField(max_length=255, default='')
-    condition = models.CharField(max_length=255, default='')
+    condition = models.CharField(max_length=255, default='', db_index=True)
     quantity = models.IntegerField(null=True, default=0)
     foil = models.BooleanField(default=False)
     image = models.CharField(max_length=255, default='', blank=True, null=True)
