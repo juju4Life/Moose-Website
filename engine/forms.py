@@ -1,11 +1,7 @@
 from django import forms
+from .models import StoreDatabase
 
 class contactForm(forms.Form):
-    condition_choice = (
-        ('near mint / lightly played', 'Near Mint / Lightly Played'),
-        ('played / moderately played', 'Played / Moderately Played'),
-        ('heavily played', 'Heavily Played'),
-    )
 
     yes_no = (
         ('yes', 'Yes'),
@@ -27,29 +23,43 @@ class contactForm(forms.Form):
     notes = forms.CharField(required=False, widget=forms.Textarea)
 
 
+
 class ConditionSkuForm(forms.Form):
-    condition_choices = (
-        ('NM / LP', 'Near Mint / Lightly Played'),
-        ('MP', 'Moderately Played'),
-        ('HP', 'Heavily Played'),
-        ('Damaged', 'Damaged'),
-        ('Unopened', 'Unopened'),
+
+
+    def __init__(self, instance, *args, **kwargs):
+        self.condition_choices = (
+        ('near mint', 'Near Mint / Lightly Played'),
+        ('moderately played', 'Moderately Played'),
+        ('heavily played', 'Heavily Played'),
+        ('damaged', 'Damaged'),
+        )    
+        self.language_choices = (
+        ('english', 'English'),
+        ('japanese', 'Japanese'),
+        ('chinese (s)', 'Chinese (S)'),
+        ('chinese (t)', 'Chinese (T)'),
+        ('korean', 'Korean'),
+        ('russian', 'Russian'),
+        ('spanish', 'Spanish'),
+        ('italian', 'Italian'),
+        ('french', 'French'),
+        ('portuguese', 'Portuguese'),
         )
+        super(ConditionSkuForm, self).__init__(*args, **kwargs)
+        #self.fields['condition'].widget.attrs['id'] = instance.id
 
-    language_choices = (
-        ('English', 'English'),
-        ('Japanese', 'Japanese'),
-        ('Chinese (s)', 'Chinese (S)'),
-        ('Chinese (t)', 'Chinese (T)'),
-        ('Korean', 'Korean'),
-        ('Russian', 'Russian'),
-        ('Spanish', 'Spanish'),
-        ('Italian', 'Italian'),
-        ('French', 'French'),
-        ('Portuguese', 'Portuguese'),
-        )
+        self.fields['condition'].widget = forms.Select(choices=self.condition_choices, attrs={"id": instance.product_id, "onchange": "conditionChange(this)"})
+        self.fields['language'].widget = forms.Select(choices=self.language_choices, attrs={"id": instance.product_id, "onchange": "languageChange(this)"})
 
 
-    condition = forms.ChoiceField(choices=condition_choices)
-    language = forms.ChoiceField(choices=language_choices)
-    quantity = forms.IntegerField(initial=1)
+
+    
+
+
+    condition = forms.ChoiceField(initial='near mint')
+    language = forms.ChoiceField(initial='english')
+    #quantity = forms.IntegerField(initial=1)
+
+
+    

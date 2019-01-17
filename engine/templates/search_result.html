@@ -1,5 +1,6 @@
 {% extends "home.html" %}
 {% load crispy_forms_tags %}
+{% load extended_tags %}
 {% block set_list %}
 {% include 'search_result_style.html' %}
 
@@ -11,54 +12,100 @@
 			      	<h4>Please check your spelling</h4>
 		        </div>
 	        </div>
-        </center?>
+        </center>
       	{% else %}
       	<iframe name="submit-frame" style="display: none"></iframe>
 
 
-
-      	{% for product, card_price in products %}
-      	{% if product.id != 'error' %}
-		<div class="col-sm-12">
-            <div style="" class="col-sm-5" id="productImage"> <img class="img-responsive center-block" src="{{product.image_url}}"> </div>
-            
-            <div class="col-sm-7"> 
-                <div id="cardInfo">
-                  <div style="color: lightgray;" id="cardInfoPadding">
-                      <h1>
-                      	<div class="col-sm-9">
-                      	{{product.name}} 
-     					 <div style="font-size: 14px; font-weight: bold;" id="expansion"><b>{{product.expansion}}</b></div>
-                      </div>
-
-                      <div class="col-sm-3">
-                      	<form action="{% url 'add_to_cart' product.id %}" method="post" target="submit-frame">{% csrf_token %}
-			                  <center>
-			                  	<p style="color: lightgray; font-size:20px;">&nbsp;${{card_price|floatformat:2}}</p>
-                          {{form|crispy}}
-                          <input id='card_price' type="hidden" name="card_price" min={{card_price}} max={{card_price}} value={{card_price}}>
-			                    <button style="margin-top: -5%; margin-left: -5%;" class="btn btn-success" data-toggle="popover" data-animation="true"  data-content="Added to cart"  type="submit" id='button'>+</button>
-			                    
-			                  </center>
-			              </form>
-                      </div>
-
-                      </h1> <br>
-                   
-                      <h4>Rarity: {{product.rarity}}</h4>
-
-                      
-                  </div>
-                </div>
+      	{% for product, card_price, form in products %}
+		<div style="margin-bottom: 3%;" class="col-sm-3">
+        <div class=col-sm-12>
+          <form action="{% url 'add_to_cart' product.id %}" method="post" target="submit-frame">{% csrf_token %}
+            <div style="" class="row" id=""> 
+              <img class="img-responsive center-block" src="https://6d4be195623157e28848-7697ece4918e0a73861de0eb37d08968.ssl.cf1.rackcdn.com/33252_200w.jpg">
             </div>
 
+            <div style="" class="row" id=""> 
+            <center>
+            {{form|crispy}}
+
+
+              <div class="col-sm-4">             
+                <h4><span class="price_id" id="price_{{product.product_id}}">{{product.condition}} - ${{product.price}}</span></h4>
+              </div>
+
+              <input id='card_price' type="hidden" name="card_price" min={{card_price}} max={{card_price}} value={{card_price}}>
+
+              <div class="col-sm-3"></div>
+
+              
+
+
+              <div class="col-sm-2">
+              <input style="color: black;" size="2" id='qtyBox' type="number" name="quantity" min="1" max="8">
+              </div>
+
+              <div class="col-sm-1">
+              <button style="margin-top: -5%; margin-left: -5%;" class="btn btn-success" data-toggle="popover" data-animation="true"  data-content="Added to cart"  type="submit" id='button'>+</button>
+              </div>
+
+              <div class="col-sm-4"></div>
+              
+            </center>
+          </div>
+          </form>
         </div>
+                  
+    </div>
+
+
  
-     	{% endif %}
      	{% endfor %}
      	{% endif %}
 
-    
+ <script>
+  var c = 'near mint';
+  var l = 'english';
+  var dict = {{model|safe}};
+  
+
+  function conditionChange(obj){
+    var condition = obj.value;
+    c = condition;
+    var idee = obj.id;
+    var item_condition = dict[idee][l][condition]['condition'];
+    var item_quantity = dict[idee][l][condition]['quantity'];
+
+    var item_price = dict[idee][l][condition]['price'];
+
+    document.getElementById('price_' + obj.id).innerText = item_condition + '- $' + item_price + " " + (item_quantity);
+
+  }
+
+
+  function languageChange(obj){
+    var language = obj.value;
+    l = language;
+    var idee = obj.id;
+    var item_condition = dict[idee][language][c]['condition'];
+    var item_price = dict[idee][language][c]['price'];
+    var item_quantity = dict[idee][l][condition]['quantity'];
+
+    document.getElementById('price_' + obj.id).innerText = item_condition + '- $' + item_price + " " + (item_quantity);
+
+  }
+
+
+
+
+</script>      
 
 
 {% endblock %}
+
+
+
+  
+
+
+
