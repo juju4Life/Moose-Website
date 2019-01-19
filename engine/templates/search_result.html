@@ -18,10 +18,11 @@
 
 
       	{% for product, card_price, form in products %}
-		<div style="margin-bottom: 3%;" class="col-sm-3">
+		<div style="margin-bottom: 3%;" class="col-sm-2">
         <div class=col-sm-12>
           <form action="{% url 'add_to_cart' product.id %}" method="post" target="submit-frame">{% csrf_token %}
             <div style="" class="row" id=""> 
+              <legend class="border-bottom mb-4">{{product.name}}</legend>
               <img class="img-responsive center-block" src="https://6d4be195623157e28848-7697ece4918e0a73861de0eb37d08968.ssl.cf1.rackcdn.com/33252_200w.jpg">
             </div>
 
@@ -30,26 +31,26 @@
             {{form|crispy}}
 
 
-              <div class="col-sm-4">             
-                <h4><span class="price_id" id="price_{{product.product_id}}">{{product.condition}} - ${{product.price}}</span></h4>
+              <div class="col-sm-12">             
+                <b><span class="price_id" id="price_{{product.product_id}}">${{product.price}} ({{product.quantity}} in stock)</span></b>
               </div>
 
               <input id='card_price' type="hidden" name="card_price" min={{card_price}} max={{card_price}} value={{card_price}}>
-
-              <div class="col-sm-3"></div>
-
               
 
+              <div class="col-sm-12">
+                
+              <input style="color: black;" size="2" id='qtyBox' type="number" name="quantity" min="1" max="8">
+            
+              <button style="margin-top: -2%;" class="btn btn-success" data-toggle="popover" data-animation="true"  data-content="Added to cart"  type="submit" id='button'>+</button>
+            
+              </div>
 
               <div class="col-sm-2">
-              <input style="color: black;" size="2" id='qtyBox' type="number" name="quantity" min="1" max="8">
+              
               </div>
 
-              <div class="col-sm-1">
-              <button style="margin-top: -5%; margin-left: -5%;" class="btn btn-success" data-toggle="popover" data-animation="true"  data-content="Added to cart"  type="submit" id='button'>+</button>
-              </div>
-
-              <div class="col-sm-4"></div>
+              
               
             </center>
           </div>
@@ -64,34 +65,45 @@
      	{% endif %}
 
  <script>
-  var c = 'near mint';
-  var l = 'english';
+  var init_condition = 'near mint';
+  var init_language = 'english';
+  var init_foil = false;
   var dict = {{model|safe}};
   
 
   function conditionChange(obj){
     var condition = obj.value;
-    c = condition;
+    init_condition = condition;
     var idee = obj.id;
-    var item_condition = dict[idee][l][condition]['condition'];
-    var item_quantity = dict[idee][l][condition]['quantity'];
+    var item_condition = dict[idee][init_foil][init_language][condition]['condition'];
+    var item_quantity = dict[idee][init_foil][init_language][condition]['quantity'];
+    var item_price = dict[idee][init_foil][init_language][condition]['price'];
 
-    var item_price = dict[idee][l][condition]['price'];
-
-    document.getElementById('price_' + obj.id).innerText = item_condition + '- $' + item_price + " " + (item_quantity);
-
+    document.getElementById('price_' + obj.id).innerText = '$' + item_price + " " + "(" + (item_quantity) + " in stock)";
   }
 
 
   function languageChange(obj){
     var language = obj.value;
-    l = language;
+    init_language = language;
     var idee = obj.id;
-    var item_condition = dict[idee][language][c]['condition'];
-    var item_price = dict[idee][language][c]['price'];
-    var item_quantity = dict[idee][l][condition]['quantity'];
+    var item_condition = dict[idee][init_foil][language][init_condition]['condition'];
+    var item_price = dict[idee][init_foil][language][init_condition]['price'];
+    var item_quantity = dict[idee][init_foil][language][init_condition]['quantity'];
 
-    document.getElementById('price_' + obj.id).innerText = item_condition + '- $' + item_price + " " + (item_quantity);
+    document.getElementById('price_' + obj.id).innerText = '$' + item_price + " " + "(" + (item_quantity) + " in stock)";
+
+  }
+
+
+  function foilChange(obj){
+    var foil = obj.value;
+    init_foil = foil;
+    var idee = obj.id;
+    var item_condition = dict[idee][foil][init_language][init_condition]['condition'];
+    var item_price = dict[idee][foil][init_language][init_condition]['price'];
+    var item_quantity = dict[idee][foil][init_language][init_condition]['quantity'];
+    document.getElementById('price_' + obj.id).innerText = '$' + item_price + " " + "(" + (item_quantity) + " in stock)";
 
   }
 

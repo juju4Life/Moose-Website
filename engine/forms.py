@@ -38,7 +38,7 @@ class ConditionSkuForm(forms.Form):
         ('english', 'English'),
         ('japanese', 'Japanese'),
         ('chinese (s)', 'Chinese (S)'),
-        ('chinese (t)', 'Chinese (T)'),
+        ('german', 'German'),
         ('korean', 'Korean'),
         ('russian', 'Russian'),
         ('spanish', 'Spanish'),
@@ -46,11 +46,16 @@ class ConditionSkuForm(forms.Form):
         ('french', 'French'),
         ('portuguese', 'Portuguese'),
         )
+        self.foil_choices = (
+            ('false', 'Non-foil',),
+            ('true','Foil'),
+            )
         super(ConditionSkuForm, self).__init__(*args, **kwargs)
         #self.fields['condition'].widget.attrs['id'] = instance.id
 
         self.fields['condition'].widget = forms.Select(choices=self.condition_choices, attrs={"id": instance.product_id, "onchange": "conditionChange(this)"})
         self.fields['language'].widget = forms.Select(choices=self.language_choices, attrs={"id": instance.product_id, "onchange": "languageChange(this)"})
+        self.fields['foil'].widget = forms.Select(choices=self.foil_choices, attrs={"id": instance.product_id, "onchange": "foilChange(this)"})
 
 
 
@@ -59,6 +64,7 @@ class ConditionSkuForm(forms.Form):
 
     condition = forms.ChoiceField(initial='near mint')
     language = forms.ChoiceField(initial='english')
+    foil = forms.ChoiceField(initial='false')
     #quantity = forms.IntegerField(initial=1)
 
 
