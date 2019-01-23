@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Orders, ForeignOrder, TcgCredentials, UpdatedInventory, CaseCards, StoreDatabase, mtgDatabase
+from .models import Product, Orders, ForeignOrder, TcgCredentials, UpdatedInventory, CaseCards, StoreDatabase, MtgDatabase
 from simple_history.admin import SimpleHistoryAdmin
 from customer.models import Preorder, Customer, PreordersReady, OrderRequest, ReleasedProducts
 from django.contrib.auth.models import User, Group
@@ -189,6 +189,6 @@ admin.site.register(Product, MasterAdmin)
 admin.site.register(ReleasedProducts, ReleasedProductsAdmin)
 admin.site.register(ForeignOrder, ForeignAdmin)
 admin.site.register(TcgCredentials)
-admin.site.register(mtgDatabase)
+admin.site.register(MtgDatabase)
 admin.site.register(OrderRequest, OrderRequestAdmin)
 admin.site.unregister(Group)
