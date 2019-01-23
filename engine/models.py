@@ -93,7 +93,7 @@ class StoreDatabase(models.Model):
         return self.name
 
 
-class MainDatabase(models.Model):
+class MtgDatabase(models.Model):
 
     language_choices = (
         ('english', 'English',),
