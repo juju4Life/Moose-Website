@@ -96,7 +96,7 @@ class StoreDatabase(models.Model):
 class MainDatabase(models.Model):
 
     language_choices = (
-        ('english', 'English'),
+        ('english', 'English',),
         ('japanese', 'Japanese',),
         ('korean', 'Korean',),
         ('chinese (s)', 'Chinese (s)',),
@@ -119,7 +119,7 @@ class MainDatabase(models.Model):
 
     foil_choices = (
         ('non-foil', 'Non-foil',),
-        ('foil', 'foil,'),
+        ('foil', 'foil',),
         )
 
     name = models.CharField(max_length=150, default='', db_index=True)
