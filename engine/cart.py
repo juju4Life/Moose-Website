@@ -44,7 +44,7 @@ class Cart(object):
 
         self.cart = cart
 
-    def add(self, product, price, set_name, condition, language, quantity=1,):
+    def add(self, product, price, set_name, condition, language, quantity=1):
         product_id = str(product.id)
         if product_id not in self.cart:
             self.cart[product_id] = {'price': str(price), 'set_name': set_name, 'condition': condition, 'language': language, 'quantity': 0}
