@@ -110,8 +110,8 @@ class MtgDatabase(models.Model):
         )
 
     condition_choices = (
-        ('near mint', 'Near Mint',),
         ('lightly played', 'Lightly played',),
+        ('near mint', 'Near Mint',),
         ('moderately played', 'Moderately played',),
         ('heavily played', 'Heavily played',),
         ('damaged', 'Damaged',),
