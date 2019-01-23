@@ -130,21 +130,8 @@ class MainDatabase(models.Model):
     language_select = models.CharField(max_length=15, choices=language_choices, default=language_choices[1])
     condition_select = models.CharField(max_length=20, choices=condition_choices, default=condition_choices[1])
     foil_select = models.CharField(max_length=10, choices=foil_choices, default=foil_choices[1])
-    english_near_mint_sku = models.CharField(max_length=12, default="")
-    english_near_mint_price = models.DecimalField(max_digits=6, decimal_places=2, default=0, null=True, blank=True)
-    english_near_mint_quantity = models.IntegerField(null=True, default=0)
-    english_lightly_played_sku = models.CharField(max_length=12, default="")
-    english_lightly_played_price = models.DecimalField(max_digits=6, decimal_places=2, default=0, null=True, blank=True)
-    english_lightly_played_quantity = models.IntegerField(null=True, default=0)
-    english_moderately_played_sku = models.CharField(max_length=12, default="")
-    english_moderately_played_price = models.DecimalField(max_digits=6, decimal_places=2, default=0, null=True, blank=True)
-    english_moderately_played_quantity = models.IntegerField(null=True, default=0)
-    english_heavily_played_sku = models.CharField(max_length=12, default="")
-    english_heavily_played_price = models.DecimalField(max_digits=6, decimal_places=2, default=0, null=True, blank=True)
-    english_heavily_played_quantity = models.IntegerField(null=True, default=0)
-    english_damaged_sku = models.CharField(max_length=12, default="")
-    english_damaged_price = models.DecimalField(max_digits=6, decimal_places=2, default=0, null=True, blank=True)
-    english_damaged_quantity = models.IntegerField(null=True, default=0)
+    
+    
     
     
     
