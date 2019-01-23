@@ -127,9 +127,7 @@ class MainDatabase(models.Model):
     product_id = models.CharField(max_length=12, default='')
     image = models.CharField(max_length=255, default='', blank=True, null=True)
     custom_percentage = models.IntegerField(null=True, default=0)
-    language_select = models.CharField(max_length=15, choices=language_choices, default=language_choices[1])
-    condition_select = models.CharField(max_length=20, choices=condition_choices, default=condition_choices[1])
-    foil_select = models.CharField(max_length=10, choices=foil_choices, default=foil_choices[1])
+    
     
     
     
