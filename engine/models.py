@@ -125,6 +125,7 @@ class MtgDatabase(models.Model):
     name = models.CharField(max_length=150, default='', db_index=True)
     expansion = models.CharField(max_length=100, default='')
     product_id = models.CharField(max_length=12, default='')
+    rarity = models.CharField(max_length=12, default='')
     image = models.CharField(max_length=255, default='', blank=True, null=True)
     custom_percentage = models.IntegerField(null=True, default=0)
     language_select = models.CharField(max_length=15, choices=language_choices, default=language_choices[0][0])
