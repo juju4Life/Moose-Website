@@ -90,10 +90,9 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'customer',
     'sms',
-#'customer.startup.BotConfig',
+    'orders',
+#  'customer.startup.BotConfig',
 ]
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

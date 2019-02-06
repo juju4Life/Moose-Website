@@ -64,7 +64,35 @@
      	{% endfor %}
      	{% endif %}
 
- <script>
+    
+    {% block script %}
+    <script>
+
+       $(document).on('change','#id_condition_select',function(){
+          var product_id = this.dataset.product_id;
+
+           $.ajax({
+            url: '/ajax/info/',
+            data: {
+              'product_id': product_id
+            },
+
+            dataType: 'json',
+            success: function (data) {
+              alert("D" + data.card);
+              
+            }
+          });
+
+       });
+       $(document).on('change','#id_language_select',function(){console.log(this.value)});
+       $(document).on('change','#id_foil_select',function(){console.log(this.value)});
+
+  </script>
+{% endblock %}
+
+
+ <!-- <script>
   var init_condition = 'near mint';
   var init_language = 'english';
   var init_foil = false;
@@ -110,7 +138,7 @@
 
 
 
-</script>      
+</script>   -->   
 
 
 {% endblock %}

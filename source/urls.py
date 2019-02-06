@@ -10,7 +10,9 @@ from engine import views as home_views
 from buylist import views as buylist_views
 from customer import views as customer_views
 from users import views as user_views
-if settings.DEBUG == True:
+
+
+if settings.DEBUG:
     import debug_toolbar
 
 urlpatterns = [
@@ -19,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_views.home_base, name='base'),
     path('home/', home_views.home, name='home'),
+    path('ajax/info/', home_views.info, name='info'),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html', authentication_form=LoginForm), name='login'),
