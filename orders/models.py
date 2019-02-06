@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Orders(models.Model):
-    order_number = models.CharField(max_length=100, default='')
+    order_number = models.CharField(max_length=100, default='', unique=True)
     order_channel_type = models.CharField(max_length=100, default='')
     order_status_type = models.CharField(max_length=100, default='')
     order_delivery_type = models.CharField(max_length=100, default='')
