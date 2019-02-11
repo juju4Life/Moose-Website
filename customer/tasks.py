@@ -30,7 +30,6 @@ def send_order(cart, name, notes, email, phone_number, contact_type):
         i['price'],
         ["{}: {}".format(v['set_name'], v['qty']) for v in ver if i['name'] == v['name']]) for i in new_list]
 
-
     # shopping_cart.sort(key=attrgetter('set_name'))
     no_price = ["{}({})".format(i['name'], i['set_name']) for i in new_list if i['price'] == 0.]
     final_price = (format(sum(i['quantity'] * float(i['price']) for i in new_list), '.2f'))
@@ -59,7 +58,6 @@ def send_order(cart, name, notes, email, phone_number, contact_type):
     # Link to Order:\nhttps://www.tcgfirst.com/admin/customer/orderrequest/{}/change/
 
 
-
 @shared_task(name='customer.tasks.alert')
 def alert(ip, obj_name, obj_credit, obj_id):
     time_of_change = datetime.now()
@@ -72,8 +70,9 @@ def alert(ip, obj_name, obj_credit, obj_id):
                   "Name: {}\n" \
                   "Current Store Credit: {}\n" \
                   "Unique ID: {}\n".format(
-            time_of_change, ip, obj_name, obj_credit, obj_id,
+                        time_of_change, ip, obj_name, obj_credit, obj_id,
         )
+
         emailFrom = 'DATABASE ALERTS'
         emailTo = ['jermol@mtgfirst.com', 'jason@mtgfirst.com']
         send_mail(subject, message, emailFrom, emailTo, fail_silently=True)

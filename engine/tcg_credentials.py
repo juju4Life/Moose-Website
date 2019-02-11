@@ -1,6 +1,7 @@
 from .models import TcgCredentials
 import requests
 
+
 class Credentials:
     bearer_token = TcgCredentials.objects.get(name='').token
     content_type = "application/json"
@@ -21,7 +22,6 @@ class Credentials:
         except requests.exceptions.ConnectionError as e:
             print(e)
 
-
     def get_request(self, url, **kwargs):
         path = self.url + url
         try:
@@ -34,7 +34,6 @@ class Credentials:
         except requests.exceptions.ConnectionError as e:
             print(e)
 
-
     def post_request(self, url, **kwargs):
         path = self.url + url
         try:
@@ -43,23 +42,18 @@ class Credentials:
         except requests.exceptions.ConnectionError as e:
             print(e)
 
-
     def put_request(self, url, _data, _json, **kwargs):
         path = self.url + url
         try:
-            if _json == True:
+            if _json is True:
                 r = requests.put(path, headers=self.headers, json=kwargs['json'])
                 return r.json()
-            elif _data == True:
+            elif _data is True:
                 r = requests.put(path, headers=self.headers, data=str(kwargs['data']))
                 return r.json()
 
-
-
         except requests.exceptions.ConnectionError as e:
             print(e)
-
-
 
     def new_bearer_token(self):
         import requests

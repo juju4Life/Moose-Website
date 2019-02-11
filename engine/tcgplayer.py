@@ -223,10 +223,10 @@ def full_order():
                         for each in order_details:
                             sku = card_info_by_sku(each['skuId'])
                             card_details = get_card_info(sku['productId'])
-                            name = "{} | {}".format( Manifest.language(sku['languageId']) ,card_details['productName'])
+                            name = "{} | {}".format( Manifest.language(sku['languageId']) , card_details['productName'])
                             expansion = Manifest.expansion(card_details['groupId'])
                             condition = Manifest.condition(sku['conditionId'])
-                            card = "{} ({}) | {} | ${} | Qty: {} - ".format(name, expansion,condition, each['price'], each['quantity'],)
+                            card = "{} ({}) | {} | ${} | Qty: {} - ".format(name, expansion, condition, each['price'], each['quantity'],)
                             all_cards.append(card)
                         all_cards = "\n".join(all_cards)
                         #order_channel_type = results['orderChannelTypeId']
@@ -330,11 +330,9 @@ def update_buylist():
             print("{} - Error for {}-{}".format(e, each.name, each.set_name))
 
 
-
 def update_inventory():
     from datetime import date
     tcg_api = TcgPlayerApi()
-
 
     def get_inventory(group_id, limit, offset):
         url = "http://api.tcgplayer.com/stores/{}/inventory/products".format(store_key)
@@ -346,29 +344,24 @@ def update_inventory():
         response = requests.get(url, params=params, headers=headers)
         return response.json()
 
-
     def card_price(*args):
         url = 'http://api.tcgplayer.com/V1.9.0/pricing/product/{}'.format(*args)
         r = requests.get(url, headers=headers)
         return r.json()
-
 
     tcg = Manifest()
     weekday = date.today().strftime('%A')
     group_id_list = tcg.group_id_by_day(weekday)
     group_id_count = 0
 
-
     # Delete Previous records for day before creating new ones
     old_records = UpdatedInventory.objects.filter(group_id__in=group_id_list)
     old_records.delete()
-
 
     # Loop through each mtg set in the online inventory
     while group_id_count < len(group_id_list):
         offset_count = 0
         total = get_inventory(group_id_list[group_id_count], 1, 0)['totalItems']
-
 
         # Loop through every 100 items from inventory until var total is reached
         while total > 0:
@@ -376,15 +369,12 @@ def update_inventory():
             non_foil_prices = {}
             inventory = get_inventory(group_id_list[group_id_count], 100, offset_count)['results']
 
-
             # Get Product ID for each card in out inventory (FOil or Non-foil)
             product_ids = [str(i['productId']) for i in inventory]
-
 
             # Format to string with comma to mass get_price for product_Ids
             joined_product_ids = ','.join(product_ids)
             card_price_results = card_price(joined_product_ids)['results']
-
 
             # Loop through returned card_price_results for card prices and create 2 dictionaries
             # One Dict will have all Normal SKUS and prices. The other will have all foil SKUS
@@ -404,7 +394,6 @@ def update_inventory():
                         'directLowPrice': each['directLowPrice'],
                     }
 
-
             # Create variables for each item in inventory > This Set > SKU, ProductId etc for each card.
             for each_product in inventory:
                 for each_sku in each_product['skus']:
@@ -420,41 +409,37 @@ def update_inventory():
                             foil = each_sku['foil']
                             previous_price = each_sku['price']
 
-
                             # Get dictionary of all prices for foil cards or non-foil cards
-                            if foil == False:
+                            if foil is False:
                                 all_prices = non_foil_prices[product_id]
-                            elif foil == True:
+                            elif foil is True:
                                 all_prices = foil_prices[product_id]
+
                             market = all_prices['marketPrice']
                             low_price = all_prices['lowPrice']
                             mid_price = all_prices['midPrice']
                             direct_price = all_prices['directLowPrice']
 
-
                             # Use Pricing Algorithm to determine updated price to list card at
                             upload_price = price_algorithm(condition=condition, market=market, direct=direct_price, low=low_price, mid=mid_price)
-
 
                             # Create Exceptions in pricing for certain sets
                             exceptions = ['portal three kingdoms', 'portal second age', 'portal', 'starter 99', 'starter 2000']
                             if expansion.lower().strip() in exceptions:
-                                if low_price != None:
+                                if low_price is not None:
                                     upload_price = low_price
                                 else:
                                     pass
 
-
                             # Changes pricing variable to Zero if None to display on record page
-                            if low_price == None:
+                            if low_price is None:
                                 low_price = 0
-                            if mid_price == None:
+                            if mid_price is None:
                                 mid_price = 0
-                            if market == None:
+                            if market is None:
                                 market = 0
-                            if direct_price == None:
+                            if direct_price is None:
                                 direct_price = 0
-
 
                             # Add record of Item to Database
                             record = UpdatedInventory(
@@ -477,8 +462,6 @@ def update_inventory():
                             # Update Live TCGPlayer Inventory if there is a valid change in price
                             if upload_price != previous_price:
                                 tcg_api.update_sku_price(sku, upload_price, _json=True)
-
-
 
             total -= 100
             offset_count += 100

@@ -34,3 +34,19 @@ class Orders(models.Model):
     def __str__(self):
         return self.order_number
 
+    class Meta:
+        verbose_name_plural = 'Orders'
+
+
+class GroupName(models.Model):
+    group_name = models.CharField(max_length=255, default=None)
+    group_id = models.CharField(max_length=255, default=None, unique=True)
+
+    def __str__(self):
+        return self.group_name
+
+
+
+
+
+

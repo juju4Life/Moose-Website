@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_views.home_base, name='base'),
     path('home/', home_views.home, name='home'),
+    path('', include('orders.urls')),
     path('ajax/info/', home_views.info, name='info'),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),

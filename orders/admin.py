@@ -4,3 +4,4 @@ from .models import Orders
 # Register your models here.
 
 admin.site.register(Orders)
+
