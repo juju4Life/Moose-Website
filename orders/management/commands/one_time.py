@@ -35,7 +35,6 @@ class Command(BaseCommand):
 
                     sku_list = [str(i) for i in card_data]
                     product_info = api.card_info_by_sku(','.join(sku_list))['results']
-                    print(product_info)
                     for p in product_info:
                         q = card_data[p['skuId']]['quantity']
                         price = card_data[p['skuId']]['price']

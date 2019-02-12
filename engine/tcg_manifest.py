@@ -14,6 +14,7 @@ class Manifest:
             35: 'Playmats',
             14: 'Supplies',
             22: 'TCGplayer',
+
         }
 
         return game_dict[ids]
@@ -31,6 +32,18 @@ class Manifest:
             77: 'Reverser Holofoil',
             78: '1st Edition Normal',
             79: '1st Edition Holofoil',
+            46: 'Normal',
+            81: 'Parallel Foil',
+            52: 'Normal',
+            87: 'Normal',
+            26: 'Normal',
+            53: 'Normal',
+            31: 'Normal',
+            32: 'Foil',
+            48: 'Normal',
+            56: 'Normal',
+            38: 'Normal',
+
 
         }
 
