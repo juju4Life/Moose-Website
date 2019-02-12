@@ -18,6 +18,7 @@ except ImportError:
 
 from admin_tools.dashboard import modules, Dashboard, AppIndexDashboard
 from admin_tools.utils import get_admin_site_name
+from admin_tools_stats.modules import DashboardCharts, get_active_graph
 
 
 class CustomIndexDashboard(Dashboard):
@@ -45,10 +46,17 @@ class CustomIndexDashboard(Dashboard):
             ]
         ))
 
+        # append an app list module for "Country_prefix"
+        self.children.append(modules.AppList(
+            _('Dashboard Stats Settings'),
+            models=('admin_tools_stats.*',),
+        ))
+
         # append an app list module for "Applications"
         self.children.append(modules.AppList(
             _('Applications'),
             exclude=('django.contrib.*',),
+
         ))
 
         # append an app list module for "Administration"
@@ -59,6 +67,17 @@ class CustomIndexDashboard(Dashboard):
 
         # append a recent actions module
         self.children.append(modules.RecentActions(_('Recent Actions'), 5))
+
+        graph_list = get_active_graph()
+        for i in graph_list:
+            kwargs = {}
+            kwargs['graph_key'] = i.graph_key
+            kwargs['require_chart_jscss'] = False
+
+            if context['request'].POST.get('select_box_' + i.graph_key):
+                kwargs['select_box_' + i.graph_key] = context['request'].POST['select_box_' + i.graph_key]
+
+            self.children.append(DashboardCharts(**kwargs))
 
         # append a feed module
         self.children.append(modules.Feed(
@@ -116,3 +135,4 @@ class CustomAppIndexDashboard(AppIndexDashboard):
         Use this method if you need to access the request context.
         """
         return super(CustomAppIndexDashboard, self).init_with_context(context)
+
