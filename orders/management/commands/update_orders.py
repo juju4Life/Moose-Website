@@ -79,7 +79,7 @@ class Command(BaseCommand):
                                 product_id = p['productId']
                                 language = M.language(p['languageId'])
                                 condition = M.condition(p['conditionId'])
-                                # printing = M.printing(p['printingId'])
+                                printing = M.printing(p['printingId'])
                                 item_details = api.get_card_info(str(product_id))['results']
                                 for item in item_details:
                                     name = item['name']
