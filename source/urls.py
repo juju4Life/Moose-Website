@@ -17,6 +17,7 @@ if settings.DEBUG:
 
 urlpatterns = [
     path(r'^__debug__/', include(debug_toolbar.urls)),
+    path(r'^at/', include('admin_tools.urls')),
     path('sms/', include('sms.urls')),
     path('admin/', admin.site.urls),
     path('', home_views.home_base, name='base'),
