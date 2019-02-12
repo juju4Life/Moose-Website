@@ -1,4 +1,40 @@
 class Manifest:
+    def game(self, ids):
+        game_dict = {
+            1: 'Magic the Gathering',
+            2: 'Yugioh',
+            3: 'Pokemon',
+            31: 'Card Sleeves',
+            56: 'BUlk Lots',
+            16: 'Cardfight Vanguard',
+            32: 'Deck Boxes',
+            27: 'Dragon Ball Super CCG',
+            17: 'Force of WIll',
+            29: 'Funko',
+            35: 'Playmats',
+            14: 'Supplies',
+            22: 'TCGplayer',
+        }
+
+        return game_dict[ids]
+
+
+    def printing(self, ids):
+        printing_dict = {
+            1: 'Normal',
+            2: 'Foil',
+            7: 'Unlimited',
+            8: '1st Edition',
+            23: 'Limited',
+            10: 'Normal',
+            11: 'Holofoil',
+            77: 'Reverser Holofoil',
+            78: '1st Edition Normal',
+            79: '1st Edition Holofoil',
+
+        }
+
+        return printing_dict[ids]
 
     def language(self, id):
         language_dict = {
@@ -16,9 +52,27 @@ class Manifest:
         }
         return language_dict[id]
 
+    def order_type(self, key):
 
-    def order_status(self, id):
-        order_status_dict = {
+        manifester = {
+            0: 'Unknown',
+            1: 'Normal',
+            2: 'Direct',
+        }
+
+        return manifester[key]
+
+    def order_channel_type(self, key):
+        manifester = {
+            0: 'Marketplace',
+            1: 'Website',
+            1000: 'Unknown',
+        }
+
+        return manifester[key]
+
+    def order_status_type(self, key):
+        manifester = {
             0: 'Unknown',
             1: 'Processing',
             2: 'Ready to Ship',
@@ -26,26 +80,49 @@ class Manifest:
             4: 'Delivered',
             5: 'Cancelled',
         }
-        return order_status_dict[id]
+        return manifester[key]
 
+    def order_pickup_status(self, key):
+        manifester = {
+            0: 'Unknown',
+            1: 'Received',
+            2: 'Pulling',
+            3: 'Ready for Pickup',
+            4: 'Picked Up',
+            5: 'Cancelled',
+        }
 
-    def delivery_type(self, id):
-        delivery_dict = {
+        return manifester[key]
+
+    def order_delivery_types(self, key):
+        manifester = {
+            0: 'Unknown',
             1: 'Standard',
             2: 'Expedited',
             3: 'International',
-            4: 'Cancelled',
+            4: 'In-Store Pickup',
         }
-        return delivery_dict[id]
 
+        return manifester[key]
 
-    def channel_type(self, id):
-        channel = {
+    def order_presale_status_type(self, key):
+        manifester = {
             0: 'Unknown',
-            1: 'Market Place',
-            2: 'Website',
+            1: 'Non-Presale',
+            2: 'Presale',
+            3: 'Presale: Shippable',
         }
-        return channel[id]
+
+        return manifester[key]
+
+    def order_refund_type(self, key):
+        manifester = {
+            0: 'Unknown',
+            1: 'Full',
+            2: 'Partial',
+        }
+
+        return manifester[key]
 
 
     def condition(self, id):

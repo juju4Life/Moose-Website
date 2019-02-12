@@ -6,7 +6,7 @@ class Credentials:
     bearer_token = TcgCredentials.objects.get(name='').token
     content_type = "application/json"
     store_key = "399a7564"
-    url = 'http://api.tcgplayer.com/V1.9.0/'
+    url = 'http://api.tcgplayer.com/v1.19.0/'
 
     headers = {
         "Accept": content_type,

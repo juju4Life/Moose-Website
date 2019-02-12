@@ -53,10 +53,10 @@ class TcgPlayerApi(object):
         return self.credentials.get_request_with_params("stores/{}/orders".format(store_key), params=params)
 
     def get_order_details(self, order_numbers):
-        return self.credentials.get_request("stores/{}/orders/{}".format(store_key, order_numbers))
+        return self.credentials.get_request(f"stores/{store_key}/orders/{','.join(order_numbers)}")
 
-    def get_order_items(self, order_numbers):
-        return self.credentials.get_request("stores/{}/orders/{}/items".format(store_key, order_numbers))
+    def get_order_items(self, order_number):
+        return self.credentials.get_request(f"stores/{store_key}/orders/{order_number}/items")
 
     def get_buylist_cards(self, limit, offset):
         params = {
@@ -90,4 +90,12 @@ class TcgPlayerApi(object):
             "limit": 100,
         }
         return self.credentials.get_request(f'catalog/categories/{cat_id}/groups', params=params)
+
+    def get_recent_orders(self, offset):
+        params = {
+            "offset": offset,
+            "limit": 100,
+            "sort": "OrderDate Desc"
+        }
+        return self.credentials.get_request(f'stores/{store_key}/orders', params=params)
 
