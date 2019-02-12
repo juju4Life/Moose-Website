@@ -276,6 +276,10 @@ DATABASES['default'].update(db_from_env)"""
 
 INTERNAL_IPS = ('127.0.0.1', 'www.tcgfirst.com')
 
+ADMIN_TOOLS_MENU = 'source.menu.CustomMenu'
+ADMIN_TOOLS_INDEX_DASHBOARD = 'source.dashboard.CustomIndexDashboard'
+ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'source.dashboard.CustomAppIndexDashboard'
+
 
 
 
