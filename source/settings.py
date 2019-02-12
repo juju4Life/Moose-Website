@@ -66,10 +66,6 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'admin_tools',
-    'admin_tools.theming',
-    'admin_tools.menu',
-    'admin_tools.dashboard',
     'django.contrib.admin',
     'users.apps.UsersConfig',
     'django.contrib.auth',
@@ -123,7 +119,7 @@ TEMPLATES = [
                 'users\\templates\\registration',
         ],
         'OPTIONS': {
-            'loaders': ['admin_tools.template_loaders.Loader', 'django.template.loaders.app_directories.Loader'],
+            'loaders': ['django.template.loaders.app_directories.Loader'],
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
