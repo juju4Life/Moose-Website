@@ -95,8 +95,7 @@ class Command(BaseCommand):
                                     conc = f"{category}<>{q}<>{name}<>{expansion}<>{language}<>{condition}<>{printing}<>{price}<>{sku}"
                                     ordered_items.append(conc)
                             total -= 100
-                        db = Orders.objects
-                        db.create(
+                        db = Orders(
                             category=category,
                             order_number=order_number,
                             order_channel_type=order_channel,
