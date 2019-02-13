@@ -3,12 +3,12 @@ from django.utils.translation import gettext_lazy as _
 
 
 def validate_name(name):
-    print(name.isalpha())
 
-    if name.isalpha is False:
+    if name.isalpha() is False:
         raise ValidationError(
             _('Name can only contain letters A-Z. Not numbers.'),
-            params={'name': name},
+            params={'na'
+                    'me': name},
         )
 
 

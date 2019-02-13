@@ -18,30 +18,18 @@ class Command(BaseCommand):
         offset = 0
         while offset < 5000:
             print(offset)
-            orders = Orders.objects.values_list('order_number', flat=True)
+            # orders = Orders.objects.values_list('order_number', flat=True)
             recent_orders = api.get_recent_orders(offset=offset)['results']
             if recent_orders:
                 to_upload = []
-                dups = []
                 for recent in recent_orders:
-                    if recent not in orders:
+                    if Orders.objects.filter(order_number=recent).exists():
                         to_upload.append(recent)
-                    if recent in orders:
-                        dups.append(recent)
-                print(dups)
-                print(len(recent_orders))
-                print(len(to_upload))
-                print(len(dups))
-
-                print(f"Length of order {len(orders)}")
-                if len(dups) == 0:
-                    print(to_upload)
-
+                print(f"Number of orders to upload {len(to_upload)}")
                 if to_upload:
                     order_details = api.get_order_details(to_upload)['results']
                     for o in order_details:
                         order_number = o['orderNumber']
-                        assert (order_number not in orders), f"{order_number} is a duplicate. dups, {dups}"
                         order_channel = M.order_channel_type(o['orderChannelTypeId'])
                         order_status = M.order_status_type(o['orderStatusTypeId'])
                         order_delivery = M.order_delivery_types(o['orderDeliveryTypeId'])
