@@ -23,7 +23,7 @@ class Command(BaseCommand):
             if recent_orders:
                 to_upload = []
                 for recent in recent_orders:
-                    if Orders.objects.filter(order_number=recent).exists():
+                    if not Orders.objects.filter(order_number=recent).exists():
                         to_upload.append(recent)
                 print(f"Number of orders to upload {len(to_upload)}")
                 if to_upload:
