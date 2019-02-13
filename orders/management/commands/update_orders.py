@@ -38,12 +38,19 @@ class Command(BaseCommand):
                         modified = o['modifiedOn'][0:10]
                         token = o['customer']['token']
                         first_name = o['customer']['firstName']
+                        if first_name is None:
+                            first_name = ''
                         last_name = o['customer']['lastName']
+                        if last_name is None:
+                            last_name = ''
+
                         email = o['customer']['email']
                         shipping_first_name = o['customer']['shippingAddress']['firstName']
                         shipping_last_name = o['customer']['shippingAddress']['lastName']
                         address_1 = o['customer']['shippingAddress']['address1']
                         address_2 = o['customer']['shippingAddress']['address2']
+                        if address_2 is None:
+                            address_2 = ''
                         city = o['customer']['shippingAddress']['city']
                         state = o['customer']['shippingAddress']['state']
                         postal_code = o['customer']['shippingAddress']['postalCode']
