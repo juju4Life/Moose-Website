@@ -4,7 +4,7 @@ from .models import Orders, GroupName
 
 @admin.register(Orders)
 class OrdersAdmin(admin.ModelAdmin):
-    pass
+    ordering = ['order_number']
 
 
 admin.site.register(GroupName)
