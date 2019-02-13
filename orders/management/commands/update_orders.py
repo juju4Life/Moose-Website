@@ -13,10 +13,12 @@ class Command(BaseCommand):
     @report_error
     def handle(self, **options):
         order_count = 0
-        orders = Orders.objects.values_list('order_number', flat=True)
+
         group = GroupName.objects
         offset = 0
         while offset < 5000:
+            print(offset)
+            orders = Orders.objects.values_list('order_number', flat=True)
             recent_orders = api.get_recent_orders(offset=offset)['results']
             if recent_orders:
                 to_upload = []
