@@ -33,8 +33,9 @@ class Command(BaseCommand):
                 print(len(to_upload))
                 print(len(dups))
 
-                print('06199-869296-812F8' in orders)
-
+                print(f"Length of order {len(orders)}")
+                if len(dups) == 0:
+                    print(to_upload)
 
                 if to_upload:
                     order_details = api.get_order_details(to_upload)['results']
