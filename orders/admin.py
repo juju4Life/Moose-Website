@@ -4,7 +4,7 @@ from .models import Orders, GroupName
 
 @admin.register(Orders)
 class OrdersAdmin(admin.ModelAdmin):
-    change_list_template = 'admin/sale_summary_change_list.html'
+    pass
 
 
 admin.site.register(GroupName)
