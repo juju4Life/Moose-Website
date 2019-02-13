@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from collections import Counter
 from matplotlib import pylab
 from matplotlib import pyplot as plt
 from pylab import *
@@ -6,6 +7,11 @@ import numpy as np
 from django.http import HttpResponse
 import PIL, PIL.Image
 from io import BytesIO
+from django.http import JsonResponse
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import Orders
+from datetime import date
 
 
 def graph(request):
@@ -32,3 +38,25 @@ def graph(request):
     pylab.close()
     return HttpResponse(buffer.getvalue(), 'image/png')
 
+
+def chart_home(request):
+    template = 'charts.html'
+    context = {}
+    return render(request, template, context)
+
+
+class ChartData(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        start = date(2019, 1, 1)
+        stop = date(2019, 1, 31)
+        orders = Orders.objects.filter(order_date__range=(start, stop)).values_list('order_date', flat=True)
+        orders = Counter(map(str, orders))
+        data = {
+            "orders": orders,
+            "sales": 100,
+            "customers": 10,
+        }
+        return Response(data)

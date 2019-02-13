@@ -95,8 +95,7 @@ INSTALLED_APPS = [
     'customer',
     'sms',
     'orders',
-    'admin_tools_stats',
-    'django_nvd3',
+    'rest_framework',
 #  'customer.startup.BotConfig',
 ]
 

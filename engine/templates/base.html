@@ -30,7 +30,7 @@
     <!-- Bootstrap theme -->
     <link href="{% static 'css/bootstrap-theme.min.css' %}" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/theme.css' %}" rel="stylesheet">
@@ -83,42 +83,15 @@
     </script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    
     <script type="text/javascript">
         $('#myTabs a').click(function (e) {
         e.preventDefault()
         $(this).tab('show')
     </script>
 
-    <script type="text/javascript">
-        FB.init({
-      appId      : '1710757452377491',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v3.1'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-  
-    FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-    });
-</script>
-
-    </script>
-
-    <script>
+  <script>
 function myFunction() {
     // Declare variables
     var input, filter, ul, li, a, i, table, tbody, tr, td;
@@ -140,12 +113,9 @@ function myFunction() {
 
 </script>
 
- 
-
 
     {% block script %}
     {% endblock %}
-  </body>
 </html>
 
 

@@ -12,10 +12,11 @@ M = Manifest()
 class Command(BaseCommand):
     @report_error
     def handle(self, **options):
+        order_count = 0
         orders = Orders.objects.values_list('order_number', flat=True)
-        group = GroupName.Objects
+        group = GroupName.objects
         offset = 0
-        while offset < 300:
+        while offset < 5000:
             recent_orders = api.get_recent_orders(offset=offset)['results']
             if recent_orders:
                 to_upload = []
@@ -72,7 +73,6 @@ class Command(BaseCommand):
                             product_info = api.card_info_by_sku(','.join(sku_list))['results']
 
                             for p in product_info:
-                                print(p)
                                 q = card_data[p['skuId']]['quantity']
                                 price = card_data[p['skuId']]['price']
                                 sku = p['skuId']
@@ -84,26 +84,57 @@ class Command(BaseCommand):
                                 for item in item_details:
                                     name = item['name']
                                     category = M.game(item['categoryId'])
-                                    expansion = M.group(item['groupId'])
+                                    expansion = group.get(group_id=str(item['groupId']))
                                     conc = f"{category}<>{q}<>{name}<>{expansion}<>{language}<>{condition}<>{printing}<>{price}<>{sku}"
                                     ordered_items.append(conc)
                             total -= 100
-
                         db = Orders.objects
                         db.create(
+                            category=category,
                             order_number=order_number,
                             order_channel_type=order_channel,
                             order_status_type=order_status,
                             order_delivery_type=order_delivery,
                             is_direct=is_direct,
                             international=international,
-
+                            presale_status_type=presale,
+                            order_date=order_date,
+                            modified_on_date=modified,
+                            customer_token=token,
+                            first_name=first_name,
+                            last_name=last_name,
+                            email=email,
+                            shipping_first_name=shipping_first_name,
+                            shipping_last_name=shipping_last_name,
+                            address_1=address_1,
+                            address_2=address_2,
+                            city=city,
+                            state=state,
+                            postal_code=postal_code,
+                            country=country,
+                            product_value=product_value,
+                            shipping=shipping,
+                            tax=tax,
+                            gross=gross,
+                            fees=fees,
+                            net=net,
+                            ordered_items='\n'.join(ordered_items),
 
                         )
+                        db.save()
+                        order_count += 1
+
             else:
                 subject = "Api for orders returned empty list"
-
+                errors = api.get_recent_orders(offset=offset)['errors']
+                message = f"Api returned empty list. May be a problem with Credentials. API call for errors: {errors}"
+                to = ('jermol.jupiter@gmail.com',)
+                email_from = 'tcgfirst.com'
+                send_mail(subject, message, email_from, to)
+            print(f"{offset}-{offset+100} of recent orders")
+            print(f"Total orders added: {order_count}")
             offset += 100
+
 
 
 
