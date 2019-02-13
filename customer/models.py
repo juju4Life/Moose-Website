@@ -35,7 +35,7 @@ class Customer(models.Model):
 
 
     )
-    name = models.CharField(validators=[validate_name], max_length=100, default='', unique=True)
+    name = models.CharField(max_length=100, default='', unique=True)
     credit = models.DecimalField(max_digits=12, decimal_places=2, default=0., blank=True, verbose_name='Credit')
     tournament_entry = models.CharField(max_length=255, choices=tournament_entry_choices, default='none', verbose_name='Subtract Event Entry')
     tournament_results_credit = models.CharField(max_length=255, choices=tournament_results_choices, default='none', verbose_name='Add Event Credit')
