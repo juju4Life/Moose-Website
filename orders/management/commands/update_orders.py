@@ -33,6 +33,11 @@ class Command(BaseCommand):
                 print(len(to_upload))
                 print(len(dups))
 
+                if len(dups) == 0:
+                    for each in to_upload:
+                        if each in orders:
+                            print(each)
+
                 if to_upload:
                     order_details = api.get_order_details(to_upload)['results']
                     for o in order_details:
