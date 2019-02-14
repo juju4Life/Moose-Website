@@ -13,6 +13,7 @@ class Command(BaseCommand):
     @report_error
     def handle(self, **options):
         order_count = 0
+        erorrs = []
 
         group = GroupName.objects
         offset = 0
@@ -130,7 +131,11 @@ class Command(BaseCommand):
                             ordered_items='\n'.join(ordered_items),
 
                         )
-                        db.save()
+                        try:
+                            db.save()
+                        except Exception as e:
+                            print(e)
+                            errors.append(order_number)
                         order_count += 1
 
             else:
@@ -143,6 +148,8 @@ class Command(BaseCommand):
             print(f"{offset}-{offset+100} of recent orders")
             print(f"Total orders added: {order_count}")
             offset += 100
+
+        print(errors)
 
 
 
