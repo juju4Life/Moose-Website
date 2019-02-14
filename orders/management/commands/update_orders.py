@@ -13,7 +13,7 @@ class Command(BaseCommand):
     @report_error
     def handle(self, **options):
         order_count = 0
-        erorrs = []
+        errors = []
 
         group = GroupName.objects
         offset = 0
