@@ -22,7 +22,7 @@ class Command(BaseCommand):
                 for i in group_ids:
                     if str(i['groupId']) not in groups:
 
-                        new_id = GroupName.objects.create(
+                        new_id = GroupName(
                             group_id=i['groupId'],
                             group_name=i['name'],
                         )

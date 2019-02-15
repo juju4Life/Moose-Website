@@ -12,6 +12,9 @@ M = Manifest()
 class Command(BaseCommand):
     @report_error
     def handle(self, **options):
+
+        # Check for new group ids
+
         order_count = 0
         errors = []
 
@@ -47,7 +50,6 @@ class Command(BaseCommand):
                         last_name = o['customer']['lastName']
                         if last_name is None:
                             last_name = ''
-
                         email = o['customer']['email']
                         shipping_first_name = o['customer']['shippingAddress']['firstName']
                         shipping_last_name = o['customer']['shippingAddress']['lastName']
