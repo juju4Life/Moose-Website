@@ -52,16 +52,17 @@ class ScatterEvent(models.Model):
     choices = (
         ('none', 'None',),
         ('release_events', 'Release Events',),
-        ('tcgplayer_kickback', 'TCGplayer Lickback',),
+        ('tcgplayer_kickback', 'TCGplayer Kickback',),
         ('ban_list_update', 'Ban-list Update',),
         ('special', 'Special',),
     )
 
+    name = models.CharField(max_length=255, default='')
     event = models.CharField(max_length=255, default='None', choices=choices, validators=[validate_event_choice])
     date = models.DateField()
 
     def __str__(self):
-        return self.event
+        return self.name
 
 
 
