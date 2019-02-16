@@ -37,7 +37,7 @@
 	var nonFoilEnglishCount = ''
 	var boxesCount = ''
 	var deckBoxCount = ''
-	var rnaDates = ''
+	var releaseEvents = ''
 	$.ajax({
 		method: 'GET',
 		url: endpoint,
@@ -75,7 +75,7 @@
             nonFoilEnglishCount = data.non_foil_english_count;
             boxesCount = data.boxes_count;
             deckBoxCount = data.deck_box_count;
-            rnaDates = data.rna_dates;
+            releaseEvents = data.release_events;
 			setChart();
 		},
 
@@ -384,6 +384,15 @@ var myChart = new Chart(ctx2, {
 	            borderColor: 'blue',
 	            borderWidth: 1,
 	             pointRadius: 0,
+	        },
+
+	        {
+	            label: 'Release Events',
+	            data: releaseEvents,
+	            backgroundColor: 'red',
+	            borderColor: 'red',
+	            borderWidth: 1,
+	             type: 'scatter',
 	        },
 
 

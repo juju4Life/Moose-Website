@@ -108,9 +108,7 @@ class ChartData(APIView):
         non_foil_foreign_count = sum(card_info['non_foil_foreign'])
         boxes_count = sum(card_info['boxes'])
 
-        rna_release = {i: 0 for i in dates}
-        rna_release['2019-01-25'] = 500
-        rna_dates = [i for i in rna_release.values()]
+        release_events = [{'x': '2019-01-25', 'y': max(mtg_orders[0])}]
 
         data = {
             "labels": dates,
@@ -146,7 +144,7 @@ class ChartData(APIView):
             "non_foil_english_count": non_foil_english_count,
             "boxes_count": boxes_count,
             "deck_box_count": deck_box_count,
-            "rna_dates": rna_dates,
+            "release_events": release_events,
 
         }
 

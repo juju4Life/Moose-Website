@@ -1,4 +1,5 @@
 from django.db import models
+from validators.model_validators import validate_event_choice
 
 
 class Orders(models.Model):
@@ -45,6 +46,27 @@ class GroupName(models.Model):
 
     def __str__(self):
         return self.group_name
+
+
+class ScatterEvent(models.Model):
+    choices = (
+        ('none', 'None',),
+        ('release_events', 'Release Events',),
+        ('tcgplayer_kickback', 'TCGplayer Lickback',),
+        ('ban_list_update', 'Ban-list Update',),
+        ('special', 'Special',),
+    )
+
+    event = models.CharField(max_length=255, default='None', choices=choices, validators=[validate_event_choice])
+    date = models.DateField()
+
+    def __str__(self):
+        return self.event
+
+
+
+
+
 
 
 

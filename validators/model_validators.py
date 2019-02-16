@@ -12,6 +12,16 @@ def validate_name(name):
         )
 
 
+def validate_event_choice(choice):
+    acceptable = ['Release Events', 'TCGplayer Kickback', 'Ban-list Update', 'Special']
+    if choice not in acceptable:
+        raise ValidationError(
+            _('Choice cannot be None. Please choose an option.'),
+            params={'choice': choice},
+
+        )
+
+
 
 
 
