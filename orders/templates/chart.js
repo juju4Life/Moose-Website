@@ -38,6 +38,9 @@
 	var boxesCount = ''
 	var deckBoxCount = ''
 	var releaseEvents = ''
+	var banListUpdate = ''
+	var tcgPlayerKickback = ''
+	var special = ''
 	$.ajax({
 		method: 'GET',
 		url: endpoint,
@@ -76,6 +79,9 @@
             boxesCount = data.boxes_count;
             deckBoxCount = data.deck_box_count;
             releaseEvents = data.release_events;
+            banListUpdate = data.ban_list_update;
+            tcgPlayerKickback = data.tcg_player_kickback;
+            special = data.special;
 			setChart();
 		},
 
@@ -387,10 +393,37 @@ var myChart = new Chart(ctx2, {
 	        },
 
 	        {
-	            label: 'Release Events',
+	            label: 'release events',
 	            data: releaseEvents,
+	            backgroundColor: 'green',
+	            borderColor: 'green',
+	            borderWidth: 1,
+	             type: 'scatter',
+	        },
+
+	        {
+	            label: 'ban-list updates',
+	            data: banListUpdate,
 	            backgroundColor: 'red',
 	            borderColor: 'red',
+	            borderWidth: 1,
+	             type: 'scatter',
+	        },
+
+	        {
+	            label: 'tcgplayer kickback',
+	            data: tcgPlayerKickback,
+	            backgroundColor: 'purple',
+	            borderColor: 'purple',
+	            borderWidth: 1,
+	             type: 'scatter',
+	        },
+
+	        {
+	            label: 'special',
+	            data: special,
+	            backgroundColor: 'lightblue',
+	            borderColor: 'lightblue',
 	            borderWidth: 1,
 	             type: 'scatter',
 	        },

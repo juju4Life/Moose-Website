@@ -13,7 +13,7 @@ class OrdersAdmin(admin.ModelAdmin):
 
 @admin.register(ScatterEvent)
 class ScatterEventAdmin(admin.ModelAdmin):
-    list_display = ['event', 'date']
+    list_display = ['name', 'event', 'date']
 
 
 admin.site.register(GroupName)

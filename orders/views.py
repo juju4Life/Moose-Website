@@ -10,9 +10,9 @@ from io import BytesIO
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Orders
+from .models import Orders, ScatterEvent
 from datetime import date
-from .graph_functions import map_dates, orders_by_category, mtg_card_info
+from .graph_functions import map_dates, orders_by_category, mtg_card_info, scatter_plot
 
 
 def graph(request):
@@ -107,9 +107,12 @@ class ChartData(APIView):
         foil_foreign_count = sum(card_info['foil_foreign'])
         non_foil_foreign_count = sum(card_info['non_foil_foreign'])
         boxes_count = sum(card_info['boxes'])
+        max_num = max(mtg_orders[0])
 
-        release_events = [{'x': '2019-01-25', 'y': max(mtg_orders[0])}]
-
+        release_events = scatter_plot(ScatterEvent.objects, 'release_events', max_num)
+        ban_list_update = scatter_plot(ScatterEvent.objects, 'ban_list_update', max_num)
+        tcgplayer_kickback = scatter_plot(ScatterEvent.objects, 'tcgplayer_kickback', max_num)
+        special = scatter_plot(ScatterEvent.objects, 'special', max_num)
         data = {
             "labels": dates,
             "all_orders": orders_per_day,
@@ -145,6 +148,9 @@ class ChartData(APIView):
             "boxes_count": boxes_count,
             "deck_box_count": deck_box_count,
             "release_events": release_events,
+            "ban_list_update": ban_list_update,
+            "tcg_player_kickback": tcgplayer_kickback,
+            "special": special,
 
         }
 

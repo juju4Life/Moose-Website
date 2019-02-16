@@ -1,6 +1,12 @@
 from collections import Counter
 
 
+def scatter_plot(obj, event_type, max_num):
+    filtered = obj.filter(event=event_type)
+    points = [{'x': str(i.date), 'y': max_num} for i in filtered]
+    return points
+
+
 # Create list of category specific dates filling in empty dates with o.
 def map_dates(dates_list, dictionary):
     new_dict = {i: 0 for i in dates_list}

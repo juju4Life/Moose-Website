@@ -58,7 +58,7 @@ class ScatterEvent(models.Model):
     )
 
     name = models.CharField(max_length=255, default='')
-    event = models.CharField(max_length=255, default='None', choices=choices, validators=[validate_event_choice])
+    event = models.CharField(max_length=255, default='None', choices=choices)
     date = models.DateField()
 
     def __str__(self):
