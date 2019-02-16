@@ -194,7 +194,7 @@ function setChart(){
 
 	        title: {
 	            display: true,
-	            text: 'Last 10,000 mtg orders - total quantities of irregular singles/boxes',
+	            text: 'Last 10,000 mtg orders - total quantities of irregular singles / boxes',
 	            fontSize: 15,
 	        }
 	    }

@@ -20,7 +20,7 @@ class Command(BaseCommand):
 
         group = GroupName.objects
         offset = 0
-        while offset < 5000:
+        while offset < 2000:
             print(offset)
             # orders = Orders.objects.values_list('order_number', flat=True)
             recent_orders = api.get_recent_orders(offset=offset)['results']
