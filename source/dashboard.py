@@ -39,8 +39,10 @@ class CustomIndexDashboard(Dashboard):
                 #[_('Log out'), reverse('%s:logout' % site_name)],
 
                 [_('Store Credit'), 'customer/customer/'],
-                [_('||'), ''],
+                [_('-'), ''],
                 [_('Preorders'), 'customer/preordersready/'],
+                [_('-'), ''],
+                [_('Orders'), 'orders/orders/'],
             ]
         ))
 

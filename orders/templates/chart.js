@@ -30,42 +30,52 @@
 	var funkoCount = ''
 	var sleevesCount = ''
 	var suppliesCount = ''
+	var nonFoilForeignCount = ''
+	var foilForeignCount = ''
+	var foilEnglishCount = ''
+	var nonFoilEnglishCount = ''
+	var boxesCount = ''
 	$.ajax({
 		method: 'GET',
 		url: endpoint,
 		success: function(data){
 			labels = data.labels;
 			allOrders = data.all_orders;
-            mtgOrders = data.mtg
-            ygoOrders = data.ygo
-            pokemonOrders = data.pokemon
-            dbsOrders = data.dbs
-            fowOrders = data.fow
-            funkoOrders = data.funko
-            sleevesOrders = data.card_sleeves
-            suppliesOrders = data.supplies
-            nonFoilEnglishOrders = data.non_foil_english
-            foilEnglishOrders = data.foil_english
-            foilForeignOrders = data.foil_foreign
-            nonFoilForeignOrders = data.non_foil_foreign
-            boxesOrders = data.boxes
-            averageOrders = data.average
-            numberOfDays = data.number_of_days
-            mtgAverageOrders = data.mtg_average
-            mtgCount = data.mtg_count
-            ygoCount = data.ygo_count
-            pokemonCount = data.pokemon_count
-            dbsCount = data.db_count
-            fowCount = data.fow_count
-            funkoCount = data.funko_count
-            sleevesCount = data.sleeves_count
-            suppliesCount = data.supplies_count
-			setChart()
+            mtgOrders = data.mtg;
+            ygoOrders = data.ygo;
+            pokemonOrders = data.pokemon;
+            dbsOrders = data.dbs;
+            fowOrders = data.fow;
+            funkoOrders = data.funko;
+            sleevesOrders = data.card_sleeves;
+            suppliesOrders = data.supplies;
+            nonFoilEnglishOrders = data.non_foil_english;
+            foilEnglishOrders = data.foil_english;
+            foilForeignOrders = data.foil_foreign;
+            nonFoilForeignOrders = data.non_foil_foreign;
+            boxesOrders = data.boxes;
+            averageOrders = data.average;
+            numberOfDays = data.number_of_days;
+            mtgAverageOrders = data.mtg_average;
+            mtgCount = data.mtg_count;
+            ygoCount = data.ygo_count;
+            pokemonCount = data.pokemon_count;
+            dbsCount = data.dbs_count;
+            fowCount = data.fow_count;
+            funkoCount = data.funko_count;
+            sleevesCount = data.sleeves_count;
+            suppliesCount = data.supplies_count;
+            nonFoilForeignCount = data.non_foil_foreign_count;
+            foilForeignCount = data.foil_foreign_count;
+            foilEnglishCount = data.foil_english_count;
+            nonFoilEnglishCount = data.non_foil_english_count;
+            boxesCount = data.boxes_count;
+			setChart();
 		},
 
 
 		error: function(error_data){
-			console.log('Errors')
+			console.log('Errors');
 			console.log(error_data);
 		}
 	})
@@ -103,7 +113,7 @@ function setChart(){
 	        datasets: [
 
 	        {
-	            label: 'foil english',
+	            label: 'foil english: ' + foilEnglishCount,
 	            data: foilEnglishOrders,
 	            backgroundColor: "purple",
 	            borderColor: "purple",
@@ -111,15 +121,15 @@ function setChart(){
 	            fill: false,
 	            pointBorderColor: "white",
                 pointBorderWidth: 1,
-                pointHoverRadius: 4,
+                pointHoverRadius: 2,
                 pointHoverBackgroundColor: "yellow",
                 pointHoverBorderWidth: 2,
-                pointRadius: 3,
+                pointRadius: 2,
                 pointHitRadius: 10,
 	        },
 
 	        {
-	            label: 'foil foreign',
+	            label: 'foil foreign: ' + foilForeignCount,
 	            data: foilForeignOrders,
 	            backgroundColor: "red",
 	            borderColor: "red",
@@ -127,15 +137,15 @@ function setChart(){
 	            fill: false,
 	            pointBorderColor: "white",
                 pointBorderWidth: 1,
-                pointHoverRadius: 4,
+                pointHoverRadius: 2,
                 pointHoverBackgroundColor: "yellow",
                 pointHoverBorderWidth: 2,
-                pointRadius: 3,
+                pointRadius: 2,
                 pointHitRadius: 10,
 	        },
 
 	        {
-	            label: 'non-foil foreign',
+	            label: 'non-foil foreign: ' + nonFoilForeignCount,
 	            data: nonFoilForeignOrders,
 	            backgroundColor: "green",
 	            borderColor: "green",
@@ -143,15 +153,15 @@ function setChart(){
 	            fill: false,
 	            pointBorderColor: "white",
                 pointBorderWidth: 1,
-                pointHoverRadius: 4,
+                pointHoverRadius: 1,
                 pointHoverBackgroundColor: "yellow",
                 pointHoverBorderWidth: 2,
-                pointRadius: 3,
+                pointRadius: 2,
                 pointHitRadius: 10,
 	        },
 
 	        {
-	            label: 'Boxes',
+	            label: 'Boxes: ' + boxesCount,
 	            data: boxesOrders,
 	            backgroundColor: "blue",
 	            borderColor: "blue",
@@ -159,10 +169,10 @@ function setChart(){
 	            fill: false,
 	            pointBorderColor: "white",
                 pointBorderWidth: 1,
-                pointHoverRadius: 4,
+                pointHoverRadius: 2,
                 pointHoverBackgroundColor: "yellow",
                 pointHoverBorderWidth: 2,
-                pointRadius: 3,
+                pointRadius: 2,
                 pointHitRadius: 10,
 	        },
 	        ]
@@ -178,7 +188,7 @@ function setChart(){
 
 	        title: {
 	            display: true,
-	            text: 'MTG Orders (Normal Orders not included)',
+	            text: 'Last 10,000 mtg orders (Normal orders not included)',
 	            fontSize: 15,
 	        }
 	    }
@@ -190,7 +200,7 @@ var myChart = new Chart(ctx2, {
 	        labels: labels,
 	        datasets: [
 	            {
-	            label: 'fow',
+	            label: 'fow: ' + fowCount,
 	            data: fowOrders,
 	            backgroundColor: "orange",
 	            borderColor: "orange",
@@ -199,32 +209,32 @@ var myChart = new Chart(ctx2, {
 
 	            pointBorderColor: "white",
                 pointBorderWidth: 1,
-                pointHoverRadius: 4,
+                pointHoverRadius: 2,
                 pointHoverBackgroundColor: "yellow",
                 pointHoverBorderWidth: 2,
-                pointRadius: 3,
+                pointRadius: 2,
                 pointHitRadius: 10,
 	        },
 
                 {
-                    label: 'ygo',
+                    label: 'ygo: ' + ygoCount,
                     data: ygoOrders,
-                    backgroundColor: "green",
-                    borderColor: "green",
+                    backgroundColor: "gray",
+                    borderColor: "gray",
                     borderWidth: 1,
                     fill: false,
 
                     pointBorderColor: "white",
                     pointBorderWidth: 1,
-                    pointHoverRadius: 4,
+                    pointHoverRadius: 2,
                     pointHoverBackgroundColor: "yellow",
                     pointHoverBorderWidth: 2,
-                    pointRadius: 3,
+                    pointRadius: 2,
                     pointHitRadius: 10,
                 },
 
                 {
-                    label: 'pokemon',
+                    label: 'pokemon: ' + pokemonCount,
                     data: pokemonOrders,
                     backgroundColor: "red",
                     borderColor: "red",
@@ -233,15 +243,15 @@ var myChart = new Chart(ctx2, {
 
                     pointBorderColor: "white",
                     pointBorderWidth: 1,
-                    pointHoverRadius: 4,
+                    pointHoverRadius: 2,
                     pointHoverBackgroundColor: "yellow",
                     pointHoverBorderWidth: 2,
-                    pointRadius: 3,
+                    pointRadius: 2,
                     pointHitRadius: 10,
 	        },
 
 	        {
-	            label: 'supplies',
+	            label: 'supplies: ' + suppliesCount,
 	            data: suppliesOrders,
 	            backgroundColor: "blue",
 	            borderColor: "blue",
@@ -250,15 +260,15 @@ var myChart = new Chart(ctx2, {
 
 	            pointBorderColor: "white",
                 pointBorderWidth: 1,
-                pointHoverRadius: 4,
+                pointHoverRadius: 2,
                 pointHoverBackgroundColor: "yellow",
                 pointHoverBorderWidth: 2,
-                pointRadius: 3,
+                pointRadius: 2,
                 pointHitRadius: 10,
 	        },
 
 	        {
-	            label: 'dbs',
+	            label: 'dbs: ' + dbsCount,
 	            data: dbsOrders,
 	            backgroundColor: "purple",
 	            borderColor: "purple",
@@ -267,15 +277,15 @@ var myChart = new Chart(ctx2, {
 
 	            pointBorderColor: "white",
                 pointBorderWidth: 1,
-                pointHoverRadius: 4,
+                pointHoverRadius: 2,
                 pointHoverBackgroundColor: "yellow",
                 pointHoverBorderWidth: 2,
-                pointRadius: 3,
+                pointRadius: 2,
                 pointHitRadius: 10,
 	        },
 
 	        {
-	            label: 'sleeves',
+	            label: 'sleeves: ' + sleevesCount,
 	            data: sleevesOrders,
 	            backgroundColor: "pink",
 	            borderColor: "pink",
@@ -284,15 +294,15 @@ var myChart = new Chart(ctx2, {
 
 	            pointBorderColor: "white",
                 pointBorderWidth: 1,
-                pointHoverRadius: 4,
+                pointHoverRadius: 2,
                 pointHoverBackgroundColor: "yellow",
                 pointHoverBorderWidth: 2,
-                pointRadius: 3,
+                pointRadius: 2,
                 pointHitRadius: 10,
 	        },
 
 	        {
-	            label: 'funko',
+	            label: 'funko: ' + funkoCount,
 	            data: funkoOrders,
 	            backgroundColor: "black",
 	            borderColor: "black",
@@ -301,10 +311,10 @@ var myChart = new Chart(ctx2, {
 
 	            pointBorderColor: "white",
                 pointBorderWidth: 1,
-                pointHoverRadius: 4,
+                pointHoverRadius: 2,
                 pointHoverBackgroundColor: "yellow",
                 pointHoverBorderWidth: 2,
-                pointRadius: 3,
+                pointRadius: 2,
                 pointHitRadius: 10,
 	        },
 
@@ -322,7 +332,7 @@ var myChart = new Chart(ctx2, {
 
 	        title: {
 	            display: true,
-	            text: 'Non-MTG Orders',
+	            text: 'Last 10,000 non-mtg orders',
 	            fontSize: 15,
 	        }
 
@@ -357,7 +367,7 @@ var myChart = new Chart(ctx2, {
 
 	        title: {
 	            display: true,
-	            text: 'Last 10,000 Orders ( MTG orders) - Daily Average: ' + mtgAverageOrders + ' orders across ' + numberOfDays + ' days',
+	            text: 'Last 10,000 mtg orders (' + mtgCount + ') - daily average: ' + mtgAverageOrders + ' orders across ' + numberOfDays + ' days',
 	            fontSize: 15,
 	        }
 	    }
@@ -374,7 +384,7 @@ var myChart = new Chart(ctx2, {
 	            label: 'All orders',
 	            data: allOrders,
 	            backgroundColor: 'royalBlue',
-	            borderColor: 'blue',
+	            borderColor: 'purple',
 	            borderWidth: 1,
 
 	        },
@@ -392,7 +402,7 @@ var myChart = new Chart(ctx2, {
 
 	        title: {
 	            display: true,
-	            text: 'Last 10,000 Orders - Daily Average: ' + averageOrders + ' orders across ' + numberOfDays + ' days' ,
+	            text: 'Last 10,000 orders - daily average: ' + averageOrders + ' orders across ' + numberOfDays + ' days' ,
 	            fontSize: 15,
 	        }
 	    }

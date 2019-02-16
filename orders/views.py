@@ -99,6 +99,11 @@ class ChartData(APIView):
         sleeves_count = card_sleeves_orders[1]
         supplies_count = supplies_orders[1]
 
+        non_foil_english_count = sum(card_info['non_foil_english'])
+        foil_english_count = sum(card_info['foil_english'])
+        foil_foreign_count = sum(card_info['foil_foreign'])
+        non_foil_foreign_count = sum(card_info['non_foil_foreign'])
+        boxes_count = sum(card_info['boxes'])
 
         data = {
             "labels": dates,
@@ -127,6 +132,11 @@ class ChartData(APIView):
             "funko_count": funko_count,
             "sleeves_count": sleeves_count,
             "supplies_count": supplies_count,
+            "non_foil_foreign_count": non_foil_foreign_count,
+            "foil_foreign_count": foil_foreign_count,
+            "foil_english_count": foil_english_count,
+            "non_foil_english_count": non_foil_english_count,
+            "boxes_count": boxes_count,
 
         }
 
