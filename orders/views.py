@@ -76,6 +76,7 @@ class ChartData(APIView):
         funko = orders_by_category('Funko', sorted_orders)
         card_sleeves = orders_by_category('Card Sleeves', sorted_orders)
         supplies = orders_by_category('Supplies', sorted_orders)
+        deck_boxes = orders_by_category('Deck Boxes', sorted_orders)
 
         ygo_orders = map_dates(dates, ygo)
         mtg_orders = map_dates(dates, mtg)
@@ -85,11 +86,12 @@ class ChartData(APIView):
         funko_orders = map_dates(dates, funko)
         card_sleeves_orders = map_dates(dates, card_sleeves)
         supplies_orders = map_dates(dates, supplies)
+        deck_box_orders = map_dates(dates, deck_boxes)
 
         number_of_days = len(dates)
-        average_orders_perday = int(10000 / number_of_days)
+        average_orders_perday = round(10000 / number_of_days, 1)
         mtg_orders_total = mtg_orders[1]
-        mtg_average_orders = int(mtg_orders_total / number_of_days)
+        mtg_average_orders = round(mtg_orders_total / number_of_days, 1)
 
         ygo_count = ygo_orders[1]
         pokemon_count = pokemon_orders[1]
@@ -98,12 +100,17 @@ class ChartData(APIView):
         funko_count = funko_orders[1]
         sleeves_count = card_sleeves_orders[1]
         supplies_count = supplies_orders[1]
+        deck_box_count = deck_box_orders[1]
 
         non_foil_english_count = sum(card_info['non_foil_english'])
         foil_english_count = sum(card_info['foil_english'])
         foil_foreign_count = sum(card_info['foil_foreign'])
         non_foil_foreign_count = sum(card_info['non_foil_foreign'])
         boxes_count = sum(card_info['boxes'])
+
+        rna_release = {i: 0 for i in dates}
+        rna_release['2019-01-25'] = 500
+        rna_dates = [i for i in rna_release.values()]
 
         data = {
             "labels": dates,
@@ -116,6 +123,7 @@ class ChartData(APIView):
             "funko": funko_orders[0],
             "card_sleeves": card_sleeves_orders[0],
             "supplies": supplies_orders[0],
+            "deck_boxes": deck_box_orders[0],
             "non_foil_english": card_info['non_foil_english'],
             "foil_english": card_info['foil_english'],
             "foil_foreign": card_info['foil_foreign'],
@@ -137,6 +145,8 @@ class ChartData(APIView):
             "foil_english_count": foil_english_count,
             "non_foil_english_count": non_foil_english_count,
             "boxes_count": boxes_count,
+            "deck_box_count": deck_box_count,
+            "rna_dates": rna_dates,
 
         }
 

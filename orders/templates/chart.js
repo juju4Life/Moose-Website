@@ -19,6 +19,7 @@
 	var foilForeignOrders = []
 	var nonFoilForeignOrders = []
 	var boxesOrders = []
+	var deckBoxOrders = []
 	var averageOrders = ''
 	var numberOfDays = ''
 	var mtgAverageOrders = ''
@@ -35,6 +36,8 @@
 	var foilEnglishCount = ''
 	var nonFoilEnglishCount = ''
 	var boxesCount = ''
+	var deckBoxCount = ''
+	var rnaDates = ''
 	$.ajax({
 		method: 'GET',
 		url: endpoint,
@@ -54,6 +57,7 @@
             foilForeignOrders = data.foil_foreign;
             nonFoilForeignOrders = data.non_foil_foreign;
             boxesOrders = data.boxes;
+            deckBoxOrders = data.deck_boxes;
             averageOrders = data.average;
             numberOfDays = data.number_of_days;
             mtgAverageOrders = data.mtg_average;
@@ -70,6 +74,8 @@
             foilEnglishCount = data.foil_english_count;
             nonFoilEnglishCount = data.non_foil_english_count;
             boxesCount = data.boxes_count;
+            deckBoxCount = data.deck_box_count;
+            rnaDates = data.rna_dates;
 			setChart();
 		},
 
@@ -147,8 +153,8 @@ function setChart(){
 	        {
 	            label: 'non-foil foreign: ' + nonFoilForeignCount,
 	            data: nonFoilForeignOrders,
-	            backgroundColor: "green",
-	            borderColor: "green",
+	            backgroundColor: "darkgreen",
+	            borderColor: "darkgreen",
 	            borderWidth: 1,
 	            fill: false,
 	            pointBorderColor: "white",
@@ -188,7 +194,7 @@ function setChart(){
 
 	        title: {
 	            display: true,
-	            text: 'Last 10,000 mtg orders (Normal orders not included)',
+	            text: 'Last 10,000 mtg orders - total quantities of irregular singles/boxes',
 	            fontSize: 15,
 	        }
 	    }
@@ -302,13 +308,29 @@ var myChart = new Chart(ctx2, {
 	        },
 
 	        {
+	            label: 'deckboxes: ' + deckBoxCount,
+	            data: deckBoxOrders,
+	            backgroundColor: "green",
+	            borderColor: "green",
+	            borderWidth: 1,
+	            fill: false,
+
+	            pointBorderColor: "white",
+                pointBorderWidth: 1,
+                pointHoverRadius: 2,
+                pointHoverBackgroundColor: "yellow",
+                pointHoverBorderWidth: 2,
+                pointRadius: 2,
+                pointHitRadius: 10,
+	        },
+
+	        {
 	            label: 'funko: ' + funkoCount,
 	            data: funkoOrders,
 	            backgroundColor: "black",
 	            borderColor: "black",
 	            borderWidth: 1,
 	            fill: false,
-
 	            pointBorderColor: "white",
                 pointBorderWidth: 1,
                 pointHoverRadius: 2,
@@ -346,13 +368,24 @@ var myChart = new Chart(ctx2, {
 	        datasets: [
 
 	        {
-	            label: 'MTG Orders',
-	            data: nonFoilEnglishOrders,
+	            label: 'all orders',
+	            data: allOrders,
 	            backgroundColor: backgroudRGB,
 	            borderColor: borderRGB,
 	            borderWidth: 1,
+	             pointRadius: 0,
 
 	        },
+
+	        {
+	            label: `mtg Orders: ${mtgCount}`,
+	            data: mtgOrders,
+	            backgroundColor: 'blue',
+	            borderColor: 'blue',
+	            borderWidth: 1,
+	             pointRadius: 0,
+	        },
+
 
 	        ]
 	    },
@@ -367,7 +400,7 @@ var myChart = new Chart(ctx2, {
 
 	        title: {
 	            display: true,
-	            text: 'Last 10,000 mtg orders (' + mtgCount + ') - daily average: ' + mtgAverageOrders + ' orders across ' + numberOfDays + ' days',
+	            text: `Last 10,000 orders - Average(${averageOrders}), mtgAverage(${mtgAverageOrders}) across ${numberOfDays} days`,
 	            fontSize: 15,
 	        }
 	    }
@@ -381,11 +414,12 @@ var myChart = new Chart(ctx2, {
 	        datasets: [
 
 	        {
-	            label: 'All orders',
-	            data: allOrders,
-	            backgroundColor: 'royalBlue',
+	            label: `total cards: ${nonFoilEnglishCount}`,
+	            data: nonFoilEnglishOrders,
+	            backgroundColor: backgroudRGB,
 	            borderColor: 'purple',
 	            borderWidth: 1,
+	            pointRadius: 0,
 
 	        },
 
@@ -402,7 +436,7 @@ var myChart = new Chart(ctx2, {
 
 	        title: {
 	            display: true,
-	            text: 'Last 10,000 orders - daily average: ' + averageOrders + ' orders across ' + numberOfDays + ' days' ,
+	            text: `total quantity of mtg cards ordered` ,
 	            fontSize: 15,
 	        }
 	    }
