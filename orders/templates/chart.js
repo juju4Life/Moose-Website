@@ -41,6 +41,25 @@
 	var banListUpdate = ''
 	var tcgPlayerKickback = ''
 	var special = ''
+	var pieChart = []
+	var pieChart2 = []
+	var sumEnglishPrice = ''
+	var sumForeignPrice = ''
+	var sumFoilForeignPrice = ''
+	var sumFoilEnglishPrice = ''
+	var boxesPrice = ''
+	var sumMtgPrice = ''
+	var sumYgoPrice = ''
+	var sumPokemonPrice = ''
+	var sumDbsPrice = ''
+	var sumFowPrice = ''
+	var sumDeckBoxesPrice = ''
+	var sumCardSleevesPrice = ''
+	var sumSuppliesPrice = ''
+	var sumFunkoPrice = ''
+	var gross = ''
+	var refunds = ''
+	var sumOtherPrice = ''
 	$.ajax({
 		method: 'GET',
 		url: endpoint,
@@ -82,9 +101,27 @@
             banListUpdate = data.ban_list_update;
             tcgPlayerKickback = data.tcg_player_kickback;
             special = data.special;
+            pieChart = data.pie_chart;
+            pieChart2 = data.pie_chart_2;
+            sumEnglishPrice = data.sum_english_price;
+            sumForeignPrice = data.sum_foreign_price;
+            sumFoilForeignPrice = data.sum_foreign_foil_price;
+            sumFoilEnglishPrice = data.sum_english_foil_price;
+            sumBoxesPrice = data.sum_boxes_price;
+            sumMtgPrice = data.sum_mtg_price;
+            sumYgoPrice = data.sum_ygo_price;
+            sumPokemonPrice = data.sum_pokemon_price;
+            sumDbsPrice = data.sum_dbs_price;
+            sumFowPrice = data.sum_fow_price;
+            sumDeckBoxesPrice = data.sum_deckboxes_price;
+            sumCardSleevesPrice = data.sum_card_sleeves_price;
+            sumSuppliesPrice = data.sum_supplies_price;
+            sumFunkoPrice = data.sum_funko_price;
+            gross = data.gross;
+            refunds = data.refunds;
+            sumOtherPrice = data.sum_other_price;
 			setChart();
 		},
-
 
 		error: function(error_data){
 			console.log('Errors');
@@ -98,6 +135,8 @@ function setChart(){
 	var ctx2 = document.getElementById("myChart2").getContext('2d');
 	var ctx3 = document.getElementById("myChart3").getContext('2d');
 	var ctx4 = document.getElementById("myChart4").getContext('2d');
+	var ctx5 = document.getElementById("myChart5").getContext('2d');
+	var ctx6 = document.getElementById("myChart6").getContext('2d');
 
 	var backgroudRGB = [
 	                'rgba(255, 99, 132, 0.2)',
@@ -481,6 +520,86 @@ var myChart = new Chart(ctx2, {
 	            text: `total quantity of mtg cards ordered` ,
 	            fontSize: 15,
 	        }
+	    }
+	});
+
+	var myChart = new Chart(ctx5, {
+	    type: 'pie',
+	    data: {
+	        labels: [
+	            `mtg ${sumMtgPrice} | ${pieChart[0]}%`,
+	            `pokemon ${sumPokemonPrice} | ${pieChart[1]}%`,
+	            `yugioh ${sumYgoPrice} | ${pieChart[2]}%`,
+	            `dbs ${sumDbsPrice} | ${pieChart[3]}%`,
+	            `fow ${sumFowPrice} | ${pieChart[4]}%`,
+	            `deckboxes ${sumDeckBoxesPrice} | ${pieChart[5]}%`,
+	            `card sleeves ${sumCardSleevesPrice} | ${pieChart[6]}%`,
+	            `supplies ${sumSuppliesPrice} | ${pieChart[7]}%`,
+	            `funko ${sumFunkoPrice} | ${pieChart[8]}%`,
+
+	        ],
+	        datasets: [
+                {
+                    data: pieChart,
+                    backgroundColor: ['green', 'blue', 'purple', 'red', 'orange', 'pink', 'yellow', 'lightblue', 'maroon'],
+                },
+	        ]
+	    },
+	    options: {
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }]
+	        },
+
+	        title: {
+	            display: true,
+	            text: `Last 10,000 orders - total sales $${gross}` ,
+	            fontSize: 15,
+	        },
+
+	        animation: {animateScale: true}
+	    }
+	});
+
+
+	var myChart = new Chart(ctx6, {
+	    type: 'pie',
+	    data: {
+	        labels: [
+	            `non-foil english ${sumEnglishPrice} | ${pieChart2[0]}%`,
+	            `foil english ${sumFoilEnglishPrice} | ${pieChart2[1]}%`,
+	            `non-foil foreign ${sumForeignPrice} | ${pieChart2[2]}%`,
+	            `foil foreign ${sumFoilForeignPrice} | ${pieChart2[3]}%`,
+	            `Booster Boxes ${sumBoxesPrice} | ${pieChart2[4]}%`,
+	            `Other ${sumOtherPrice} | ${pieChart2[5]}%`,
+
+	        ],
+	        datasets: [
+                {
+                    data: pieChart2,
+                    backgroundColor: ['blue', 'purple', 'yellow', 'red', 'orange', 'black',],
+                },
+	        ]
+	    },
+	    options: {
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }]
+	        },
+
+	        title: {
+	            display: true,
+	            text: `Last 10,000 mtg orders - total: ${sumMtgPrice} (Refunds $${refunds})` ,
+	            fontSize: 15,
+	        },
+
+	        animation: {animateScale: true}
 	    }
 	});
 	}

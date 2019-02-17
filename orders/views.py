@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Orders, ScatterEvent
 from datetime import date
-from .graph_functions import map_dates, orders_by_category, mtg_card_info, scatter_plot
+from .graph_functions import map_dates, orders_by_category, mtg_card_info, scatter_plot, sales_data
 
 
 def graph(request):
@@ -109,10 +109,85 @@ class ChartData(APIView):
         boxes_count = sum(card_info['boxes'])
         max_num = max(mtg_orders[0])
 
+        total_english_price = card_info['sum_english']
+        total_foreign_price = card_info['sum_foreign']
+        total_foreign_foil_price = card_info['sum_foreign_foil']
+        total_english_foil_price = card_info['sum_english_foil']
+        total_boxes_price = card_info['sum_boxes']
+        total_other_price = card_info['sum_other']
+        refunds = card_info['refunds']
+
+        mtg_price = sales_data(sorted_orders, 'Magic the Gathering')
+        ygo_price = sales_data(sorted_orders, 'Yugioh')
+        pokemon_price = sales_data(sorted_orders, 'Pokemon')
+        dbs_price = sales_data(sorted_orders, 'Dragon Ball Super CCG')
+        fow_price = sales_data(sorted_orders, 'Force of Will')
+        deckboxes_price = sales_data(sorted_orders, 'Deckboxes')
+        card_sleeves_price = sales_data(sorted_orders, 'Card Sleeves')
+        supplies_price = sales_data(sorted_orders, 'Supplies')
+        funko_price = sales_data(sorted_orders, 'Funko')
+
+        gross = round(sum(sorted_orders.values_list('product_value', flat=True)))
+        sum_english = round((total_english_price / mtg_price) * 100, 2)
+        sum_foreign = round((total_foreign_price / mtg_price) * 100, 2)
+        sum_foreign_foil = round((total_foreign_foil_price / mtg_price) * 100, 2)
+        sum_english_foil = round((total_english_foil_price / mtg_price) * 100, 2)
+        sum_boxes = round((total_boxes_price / mtg_price) * 100, 2)
+        sum_other = round((total_other_price / mtg_price) * 100, 2)
+
+        sum_english_price = '$' + str(round(total_english_price, 2))
+        sum_foreign_price = '$' + str(round(total_foreign_price, 2))
+        sum_foreign_foil_price = '$' + str(round(total_foreign_foil_price, 2))
+        sum_english_foil_price = '$' + str(round(total_english_foil_price, 2))
+        sum_boxes_price = '$' + str(round(total_boxes_price, 2))
+        sum_other_price = '$' + str(round(total_other_price, 2))
+
+        sum_mtg = round((mtg_price / gross) * 100, 2)
+        sum_ygo = round((ygo_price / gross) * 100, 2)
+        sum_pokemon = round((pokemon_price / gross) * 100, 2)
+        sum_dbs = round((dbs_price / gross) * 100, 2)
+        sum_fow = round((fow_price / gross) * 100, 2)
+        sum_deckboxes = round((deckboxes_price / gross) * 100, 2)
+        sum_card_sleeves = round((card_sleeves_price / gross) * 100, 2)
+        sum_supplies = round((supplies_price / gross) * 100, 2)
+        sum_funko = round((funko_price / gross) * 100, 2)
+
+        sum_mtg_price = '$' + str(round(mtg_price, 2))
+        sum_ygo_price = '$' + str(round(ygo_price, 2))
+        sum_pokemon_price = '$' + str(round(pokemon_price, 2))
+        sum_dbs_price = '$' + str(round(dbs_price, 2))
+        sum_fow_price = '$' + str(round(fow_price, 2))
+        sum_deckboxes_price = '$' + str(round(deckboxes_price, 2))
+        sum_card_sleeves_price = '$' + str(round(card_sleeves_price, 2))
+        sum_supplies_price = '$' + str(round(supplies_price, 2))
+        sum_funko_price = '$' + str(round(funko_price, 2))
+
+        pie_chart_1 = [
+            sum_mtg,
+            sum_pokemon,
+            sum_ygo,
+            sum_dbs,
+            sum_fow,
+            sum_deckboxes,
+            sum_card_sleeves,
+            sum_supplies,
+            sum_funko,
+        ]
+
+        pie_chart_2 = [
+            sum_english,
+            sum_english_foil,
+            sum_foreign,
+            sum_foreign_foil,
+            sum_boxes,
+            sum_other,
+        ]
+
         release_events = scatter_plot(ScatterEvent.objects, 'release_events', max_num)
         ban_list_update = scatter_plot(ScatterEvent.objects, 'ban_list_update', max_num)
         tcgplayer_kickback = scatter_plot(ScatterEvent.objects, 'tcgplayer_kickback', max_num)
         special = scatter_plot(ScatterEvent.objects, 'special', max_num)
+
         data = {
             "labels": dates,
             "all_orders": orders_per_day,
@@ -151,6 +226,25 @@ class ChartData(APIView):
             "ban_list_update": ban_list_update,
             "tcg_player_kickback": tcgplayer_kickback,
             "special": special,
+            'pie_chart': pie_chart_1,
+            'pie_chart_2': pie_chart_2,
+            'sum_english_price': sum_english_price,
+            'sum_foreign_price': sum_foreign_price,
+            'sum_foreign_foil_price': sum_foreign_foil_price,
+            'sum_english_foil_price': sum_english_foil_price,
+            'sum_boxes_price': sum_boxes_price,
+            'sum_mtg_price': sum_mtg_price,
+            'sum_ygo_price': sum_ygo_price,
+            'sum_pokemon_price': sum_pokemon_price,
+            'sum_dbs_price': sum_dbs_price,
+            'sum_fow_price': sum_fow_price,
+            'sum_deckboxes_price': sum_deckboxes_price,
+            'sum_card_sleeves_price': sum_card_sleeves_price,
+            'sum_supplies_price': sum_supplies_price,
+            'sum_funko_price': sum_funko_price,
+            'sum_other_price': sum_other_price,
+            'refunds': refunds,
+            'gross': gross,
 
         }
 
