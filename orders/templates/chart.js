@@ -60,6 +60,7 @@
 	var gross = ''
 	var refunds = ''
 	var sumOtherPrice = ''
+	var mtgSinglesTotal = ''
 	$.ajax({
 		method: 'GET',
 		url: endpoint,
@@ -120,6 +121,7 @@
             gross = data.gross;
             refunds = data.refunds;
             sumOtherPrice = data.sum_other_price;
+            mtgSinglesTotal = nonFoilEnglishCount + foilEnglishCount + nonFoilForeignCount + foilForeignCount
 			setChart();
 		},
 
@@ -495,7 +497,7 @@ var myChart = new Chart(ctx2, {
 	        datasets: [
 
 	        {
-	            label: `total cards: ${nonFoilEnglishCount}`,
+	            label: `${mtgSinglesTotal} total cards`,
 	            data: nonFoilEnglishOrders,
 	            backgroundColor: backgroudRGB,
 	            borderColor: 'purple',
@@ -517,7 +519,7 @@ var myChart = new Chart(ctx2, {
 
 	        title: {
 	            display: true,
-	            text: `total quantity of mtg cards ordered` ,
+	            text: `Last 10,000 mtg orders - average of ${(mtgSinglesTotal / 10000).toFixed(1)} cards per order` ,
 	            fontSize: 15,
 	        }
 	    }
@@ -574,7 +576,7 @@ var myChart = new Chart(ctx2, {
 	            `non-foil foreign ${sumForeignPrice} | ${pieChart2[2]}%`,
 	            `foil foreign ${sumFoilForeignPrice} | ${pieChart2[3]}%`,
 	            `Booster Boxes ${sumBoxesPrice} | ${pieChart2[4]}%`,
-	            `Other ${sumOtherPrice} | ${pieChart2[5]}%`,
+	            `Other -${sumOtherPrice} | ${pieChart2[5]}%`,
 
 	        ],
 	        datasets: [
@@ -595,7 +597,7 @@ var myChart = new Chart(ctx2, {
 
 	        title: {
 	            display: true,
-	            text: `Last 10,000 mtg orders - total: ${sumMtgPrice} (Refunds $${refunds})` ,
+	            text: `Last 10,000 mtg orders - total: ${sumMtgPrice} (Refunds -${refunds})` ,
 	            fontSize: 15,
 	        },
 
