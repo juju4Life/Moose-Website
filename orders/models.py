@@ -1,5 +1,7 @@
 from django.db import models
+from datetime import date
 from validators.model_validators import validate_event_choice
+from django.utils import timezone
 
 
 class Orders(models.Model):
@@ -60,6 +62,27 @@ class ScatterEvent(models.Model):
     name = models.CharField(max_length=255, default='')
     event = models.CharField(max_length=255, default='None', choices=choices)
     date = models.DateField()
+
+    def __str__(self):
+        return self.name
+
+
+class Inventory(models.Model):
+    sku = models.CharField(max_length=255, default='', unique=True)
+    quantity = models.IntegerField(default=0)
+    expansion = models.CharField(max_length=255, default='')
+    name = models.CharField(max_length=255, default='')
+    condition = models.CharField(max_length=255, default='')
+    printing = models.CharField(max_length=255, default='')
+    language = models.CharField(max_length=255, default='')
+    category = models.CharField(max_length=255, default='')
+    rarity = models.CharField(max_length=255, default='')
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=0., blank=True)
+    last_upload_date = models.DateField(default=timezone.now)
+    last_upload_quantity = models.IntegerField(default=0)
+    last_sold_date = models.DateField()
+    last_sold_quantity = models.IntegerField(default=0)
+    last_sold_price = models.DecimalField(max_digits=12, default=0, decimal_places=2)
 
     def __str__(self):
         return self.name
