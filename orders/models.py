@@ -83,12 +83,14 @@ class Inventory(models.Model):
     last_sold_date = models.DateField(blank=True)
     last_sold_quantity = models.IntegerField(default=0)
     last_sold_price = models.DecimalField(max_digits=12, default=0, decimal_places=2)
+    total_quantity_sold = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
 
 
 class NewOrders(models.Model):
+    check_order_date = models.DateField()
     order_number = models.CharField(max_length=255, default='')
     sku = models.CharField(max_length=255, default='')
     name = models.CharField(max_length=255, default='')
