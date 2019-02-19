@@ -82,8 +82,8 @@
             {% else %}
             <li {% if request.path == login %} class="active" {% endif %}><a href="{% url 'login' %}">Login</a></li>
             <li {% if request.path == register %} class="active" {% endif %}><a href="{% url 'register' %}">Sign up</a></li>
-            <li> <a href="/admin/">admin</a> </li>
             {% endif %}
+            <li> <a href="/admin/">admin</a> </li>
 
             <li>
               <a href="{% url 'cart' %}"><span style="">Cart</span></a>

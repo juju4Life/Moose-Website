@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Orders, GroupName, ScatterEvent
+from .models import Orders, GroupName, ScatterEvent, NewOrders
 
 
 @admin.register(Orders)
@@ -14,6 +14,12 @@ class OrdersAdmin(admin.ModelAdmin):
 @admin.register(ScatterEvent)
 class ScatterEventAdmin(admin.ModelAdmin):
     list_display = ['name', 'event', 'date']
+
+
+@admin.register(NewOrders)
+class NewOrdersAdmin(admin.ModelAdmin):
+    ordering = ['-order_date']
+
 
 
 admin.site.register(GroupName)
