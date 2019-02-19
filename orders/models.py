@@ -91,6 +91,7 @@ class Inventory(models.Model):
 
 class NewOrders(models.Model):
     check_order_date = models.DateField()
+    order_date = models.DateField()
     order_number = models.CharField(max_length=255, default='')
     sku = models.CharField(max_length=255, default='')
     name = models.CharField(max_length=255, default='')

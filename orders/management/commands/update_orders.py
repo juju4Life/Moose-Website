@@ -4,6 +4,7 @@ from django.core.mail import send_mail
 from orders.models import Orders, GroupName
 from my_customs.decorators import report_error
 from engine.tcg_manifest import Manifest
+from orders.models import NewOrders
 
 api = TcgPlayerApi()
 M = Manifest()
@@ -100,6 +101,22 @@ class Command(BaseCommand):
                                     expansion = group.get(group_id=str(item['groupId']))
                                     conc = f"{category}<>{q}<>{name}<>{expansion}<>{language}<>{condition}<>{printing}<>{price}<>{sku}"
                                     ordered_items.append(conc)
+
+                                    # Create reference for each ordered card
+                                    items = NewOrders(
+                                        order_number=order_number,
+                                        order_date=order_date,
+                                        sku=sku,
+                                        name=name,
+                                        expansion=expansion,
+                                        category=category,
+                                        condition=condition,
+                                        printing=printing,
+                                        language=language,
+                                        price=price,
+                                        quantity=q,
+                                    )
+                                    items.save()
                             total -= 100
                         db = Orders(
                             category=category,

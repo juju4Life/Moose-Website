@@ -1,10 +1,10 @@
 from django.core.management.base import BaseCommand
 from engine.tcgplayer_api import TcgPlayerApi
 from django.core.mail import send_mail
-from orders.models import Inventory, NewOrders
+from orders.models import Inventory, NewOrders, Orders
 from my_customs.decorators import report_error
 from engine.tcg_manifest import Manifest
-from datetime import date
+from datetime import date, timedelta
 from django.core.exceptions import ObjectDoesNotExist
 
 
@@ -17,7 +17,7 @@ class Command(BaseCommand):
     def handle(self, **options):
         category_ids = [1, 2, 3, 31, 56, 16, 32, 27, 17, 29, 35, 14, 22]
         inventory = Inventory.objects.all()
-        new_orders = NewOrders.objects.all()
+        new_orders = Orders.objects.filter(order_date=date.today()-timedelta(1))
 
         # Contains difference in quantities for Inventory vs api call for
         # updated inventory for each sku
@@ -73,9 +73,15 @@ class Command(BaseCommand):
 
                 db_data = inventory.get(sku=sku)
 
-            db_quantity = db_data.quantity
-            compare_qty = abs(db_quantity - quantity)
-            db_quantity = quantity
+            compare_qty = abs(db_data.quantity - quantity)
+            db_data.quantity = quantity
+            db_data.total_quantity_sold += quantity
+            sum_orders = sum(new_orders.filter(sku=sku).values_list('quantity', flat=True))
+            compare_qty = compare_qty - sum_orders
+
+
+
+
 
 
 
