@@ -5,6 +5,7 @@ from orders.models import Orders, GroupName
 from my_customs.decorators import report_error
 from engine.tcg_manifest import Manifest
 from orders.models import NewOrders
+from datetime import date
 
 api = TcgPlayerApi()
 M = Manifest()
@@ -104,6 +105,7 @@ class Command(BaseCommand):
 
                                     # Create reference for each ordered card
                                     items = NewOrders(
+                                        check_order_date=date.today(),
                                         order_number=order_number,
                                         order_date=order_date,
                                         sku=sku,
