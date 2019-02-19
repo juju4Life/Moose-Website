@@ -10,7 +10,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 api = TcgPlayerApi()
 M = Manifest()
-1
+
 
 class Command(BaseCommand):
     @report_error
