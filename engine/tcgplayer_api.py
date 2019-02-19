@@ -99,3 +99,19 @@ class TcgPlayerApi(object):
         }
         return self.credentials.get_request(f'stores/{store_key}/orders', params=params)
 
+    def get_inventory(self, category):
+        return self.credentials.get_request(f'stores/{store_key}/categories/{category}/skus')
+
+    def get_sku_quantity(self, sku):
+        return self.credentials.get_request(f'stores/{store_key}/inventory/skus/{sku}/quantity')
+
+
+
+
+
+
+
+
+
+
+

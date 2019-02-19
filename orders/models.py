@@ -80,7 +80,7 @@ class Inventory(models.Model):
     price = models.DecimalField(max_digits=12, decimal_places=2, default=0., blank=True)
     last_upload_date = models.DateField(default=timezone.now)
     last_upload_quantity = models.IntegerField(default=0)
-    last_sold_date = models.DateField()
+    last_sold_date = models.DateField(blank=True)
     last_sold_quantity = models.IntegerField(default=0)
     last_sold_price = models.DecimalField(max_digits=12, default=0, decimal_places=2)
 
@@ -88,6 +88,20 @@ class Inventory(models.Model):
         return self.name
 
 
+class NewOrders(models.Model):
+    order_number = models.CharField(max_length=255, default='')
+    sku = models.CharField(max_length=255, default='')
+    name = models.CharField(max_length=255, default='')
+    expansion = models.CharField(max_length=255, default='')
+    category = models.CharField(max_length=255, default='')
+    condition = models.CharField(max_length=255, default='')
+    printing = models.CharField(max_length=255, default='')
+    language = models.CharField(max_length=255, default='')
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    quantity = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
 
 
 
