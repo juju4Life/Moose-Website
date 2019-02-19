@@ -78,7 +78,7 @@ class Inventory(models.Model):
     category = models.CharField(max_length=255, default='')
     rarity = models.CharField(max_length=255, default='')
     price = models.DecimalField(max_digits=12, decimal_places=2, default=0., blank=True)
-    last_upload_date = models.DateField(default=timezone.now)
+    last_upload_date = models.DateField(blank=True)
     last_upload_quantity = models.IntegerField(default=0)
     last_sold_date = models.DateField(blank=True)
     last_sold_quantity = models.IntegerField(default=0)
@@ -90,7 +90,7 @@ class Inventory(models.Model):
 
 
 class NewOrders(models.Model):
-    check_order_date = models.DateField()
+    check_order_date = models.DateField(blank=True)
     order_date = models.DateField()
     order_number = models.CharField(max_length=255, default='')
     sku = models.CharField(max_length=255, default='')
