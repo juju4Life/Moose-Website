@@ -88,17 +88,16 @@ class StoreDatabase(models.Model):
     custom_percentage = models.IntegerField(null=True, default=0)
     language = models.CharField(max_length=255, default='', db_index=True)
 
-
     def __str__(self):
         return self.name
 
 
 class MTG(models.Model):
-    product_name = models.CharField(max_length=255, default='', db_index=True)
+    product_name = models.CharField(max_length=255, default='', db_index=True, verbose_name='name')
     product_line = models.CharField(max_length=255, default='')
     title = models.CharField(max_length=255, default='')
     rarity = models.CharField(max_length=255, default='')
-    number = models.IntegerField(blank=True, default=0)
+    number = models.CharField(max_length=255, default='')
     set_name = models.CharField(max_length=255, default='', db_index=True)
     sku = models.CharField(max_length=255, default='')
     condition = models.CharField(max_length=255, default='', db_index=True)

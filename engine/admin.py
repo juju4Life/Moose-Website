@@ -1,11 +1,36 @@
 from django.contrib import admin
-from .models import Product, Orders, ForeignOrder, TcgCredentials, UpdatedInventory, CaseCards, StoreDatabase, MtgDatabase
+from .models import Product, Orders, ForeignOrder, TcgCredentials, UpdatedInventory, CaseCards, StoreDatabase, MtgDatabase, MTG
 from simple_history.admin import SimpleHistoryAdmin
 from customer.models import Preorder, Customer, PreordersReady, OrderRequest, ReleasedProducts
 from django.contrib.auth.models import Group
 from customer.tasks import alert
 from ipware import get_client_ip
 from decimal import Decimal
+from import_export.admin import ImportExportModelAdmin
+from import_export import resources
+from import_export.fields import Field
+
+
+class MTGResource(resources.ModelResource):
+    product_name = Field(attribute='product_name', column_name='Product Name')
+    set_name = Field(attribute='set_name', column_name='Set Name')
+    product_line = Field(attribute='product_line', column_name='Product Line')
+    title = Field(attribute='title', column_name='Title')
+    rarity = Field(attribute='rarity', column_name='Rarity')
+    number = Field(attribute='number', column_name='Number')
+    condition = Field(attribute='condition', column_name='Condition')
+    sku = Field(attribute='sku', column_name='TCGplayer Id')
+
+
+    class Meta:
+        model = MTG
+        exclude = ('language',)
+        import_id_fields = ('sku',)
+
+
+@admin.register(MTG)
+class MTGAdmin(ImportExportModelAdmin):
+    resource_class = MTGResource
 
 
 class MasterAdmin(admin.ModelAdmin):
