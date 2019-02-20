@@ -96,6 +96,7 @@ INSTALLED_APPS = [
     'sms',
     'orders',
     'rest_framework',
+    'import_export',
 #  'customer.startup.BotConfig',
 ]
 

@@ -1,3 +1,4 @@
+
 (function($) {
     'use strict';
     var fields = $('#django-admin-prepopulated-fields-constants').data('prepopulatedFields');

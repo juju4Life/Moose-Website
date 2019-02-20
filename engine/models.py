@@ -93,6 +93,21 @@ class StoreDatabase(models.Model):
         return self.name
 
 
+class MTG(models.Model):
+    product_name = models.CharField(max_length=255, default='', db_index=True)
+    product_line = models.CharField(max_length=255, default='')
+    title = models.CharField(max_length=255, default='')
+    rarity = models.CharField(max_length=255, default='')
+    number = models.IntegerField(blank=True, default=0)
+    set_name = models.CharField(max_length=255, default='', db_index=True)
+    sku = models.CharField(max_length=255, default='')
+    condition = models.CharField(max_length=255, default='', db_index=True)
+    language = models.CharField(max_length=255, default='English', db_index=True)
+
+    def __str__(self):
+        return self.product_name
+
+
 class MtgDatabase(models.Model):
 
     language_choices = (

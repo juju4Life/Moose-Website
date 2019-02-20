@@ -1,5 +1,13 @@
 from django.contrib import admin
-from .models import Orders, GroupName, ScatterEvent, NewOrders
+from .models import Orders, GroupName, ScatterEvent, NewOrders, Inventory
+from import_export.admin import ImportExportModelAdmin
+from import_export import resources
+
+
+class InventortResource(resources.ModelResource):
+    class Meta:
+        model = Inventory
+        fields = ('sku', 'name',)
 
 
 @admin.register(Orders)
@@ -21,6 +29,10 @@ class NewOrdersAdmin(admin.ModelAdmin):
     ordering = ['-order_date']
 
 
+@admin.register(Inventory)
+class InventoryAdmin(ImportExportModelAdmin):
+
+    resource_class = InventortResource
+
 
 admin.site.register(GroupName)
-
