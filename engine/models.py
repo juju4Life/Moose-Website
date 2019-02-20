@@ -108,6 +108,14 @@ class MTG(models.Model):
         return self.product_name
 
 
+class Upload(models.Model):
+    sku = models.CharField(max_length=255, default='')
+    quantity = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.sku
+
+
 class MtgDatabase(models.Model):
 
     language_choices = (
