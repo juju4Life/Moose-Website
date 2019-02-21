@@ -12,9 +12,8 @@ from import_export.fields import Field
 
 
 class UpdateResource(resources.ModelResource):
-    def before_import(self, dataset, dry_run):
-        dataset.headers = ['sku', 'quantity']
-
+    def before_import_row(self, row, **kwargs):
+        print(row)
     class Meta:
         model = Upload
         import_id_fields = ('sku',)
@@ -34,7 +33,6 @@ class MTGResource(resources.ModelResource):
     number = Field(attribute='number', column_name='Number')
     condition = Field(attribute='condition', column_name='Condition')
     sku = Field(attribute='sku', column_name='TCGplayer Id')
-
 
     class Meta:
         model = MTG
