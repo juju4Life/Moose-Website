@@ -60,7 +60,7 @@ class CustomIndexDashboard(Dashboard):
         ))
 
         # append a recent actions module
-        self.children.append(modules.RecentActions(_('Recent Actions'), 5))
+        self.children.append(modules.RecentActions(_('Recent Actions'), 30))
 
         # append a feed module
         self.children.append(modules.Feed(

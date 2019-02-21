@@ -105,9 +105,15 @@ class TcgPlayerApi(object):
     def get_sku_quantity(self, sku):
         return self.credentials.get_request(f'stores/{store_key}/inventory/skus/{sku}/quantity')
 
+    def upload(self, sku, price, quantity, _data=False, _json=True):
+        params = {
+            "price": price,
+            "quantity": quantity,
+        }
+        return self.credentials.put_request(f'stores/{store_key}/inventory/skus/{sku}', json=params, _data=_data, _json=_json)
 
-
-
+    def market_prices_by_sku(self, sku):
+        return self.credentials.get_request(f'pricing/sku/{",".join(sku)}')
 
 
 

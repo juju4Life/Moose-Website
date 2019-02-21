@@ -9,13 +9,34 @@ from decimal import Decimal
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from import_export.fields import Field
+from .tcgplayer_api import TcgPlayerApi
+from tcg.price_alogrithm import *
+from tcg.price_and_upload import upload
+
+api = TcgPlayerApi()
 
 
 class UpdateResource(resources.ModelResource):
-    def before_import_row(self, row, **kwargs):
-        print(row)
+    def before_import(self, dataset, using_transactions, dry_run, **kwargs):
+        temp = dataset.headers
+        dataset.insert(0, temp)
+        dataset.headers = ['sku', 'quantity']
+
+    def after_import(self, dataset, result, using_transactions, dry_run, **kwargs):
+        data = {i: {'quantity': k} for (i, k) in dataset}
+        upload(data)
+
+    def after_save_instance(self, instance, using_transactions, dry_run):
+        pass
+
+
+
+
+
+
     class Meta:
         model = Upload
+
         import_id_fields = ('sku',)
 
 

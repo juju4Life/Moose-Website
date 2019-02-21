@@ -73,7 +73,6 @@ class Events(models.Model):
         return self.title
 
 
-
 class StoreDatabase(models.Model):
 
     name = models.CharField(max_length=255, default='', db_index=True)
@@ -110,7 +109,15 @@ class MTG(models.Model):
 
 class Upload(models.Model):
     sku = models.CharField(max_length=255, default='')
-    quantity = models.IntegerField(default=0)
+    upload_status = models.BooleanField(default=False)
+    name = models.CharField(max_length=255, default='')
+    condition = models.CharField(max_length=255, default='')
+    printing = models.CharField(max_length=255, default='')
+    language = models.CharField(max_length=255, default='')
+    category = models.CharField(max_length=255, default='')
+    upload_quantity = models.IntegerField(default=0)
+    upload_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    upload_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.sku
