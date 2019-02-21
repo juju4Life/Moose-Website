@@ -23,20 +23,26 @@ class UpdateResource(resources.ModelResource):
         dataset.headers = ['sku', 'quantity']
 
     def after_import(self, dataset, result, using_transactions, dry_run, **kwargs):
-        data = {i: {'quantity': k} for (i, k) in dataset}
-        upload(data)
-
-    def after_save_instance(self, instance, using_transactions, dry_run):
+        # data = {i: {'quantity': k} for (i, k) in dataset}
+        # upload(data)
         pass
 
+    def after_save_instance(self, instance, using_transactions, dry_run):
+        print(instance)
+        print(instance.sku)
 
-
-
-
+    name = Field(attribute='name', column_name='name')
+    condition = Field(attribute='condition', column_name='condition')
+    group_name = Field(attribute='group_name', column_name='expansion_name')
+    printing = Field(attribute='printing', column_name='printing')
+    language = Field(attribute='language', column_name='language')
+    category = Field(attribute='category', column_name='category')
+    upload_price = Field(attribute='upload_price', column_name='upload_price')
+    upload_date = Field(attribute='upload_date', column_name='upload_date')
+    upload_status = Field(attribute='upload_status', column_name='upload_status')
 
     class Meta:
         model = Upload
-
         import_id_fields = ('sku',)
 
 

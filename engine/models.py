@@ -111,6 +111,7 @@ class Upload(models.Model):
     sku = models.CharField(max_length=255, default='')
     upload_status = models.BooleanField(default=False)
     name = models.CharField(max_length=255, default='')
+    group_name = models.CharField(max_length=255, default='')
     condition = models.CharField(max_length=255, default='')
     printing = models.CharField(max_length=255, default='')
     language = models.CharField(max_length=255, default='')
