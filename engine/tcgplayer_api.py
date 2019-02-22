@@ -6,7 +6,7 @@ store_key = credentials.store_key
 headers = Credentials.headers
 
 
-class TcgPlayerApi(object):
+class TcgPlayerApi:
     def __init__(self):
         self.credentials = Credentials()
         self.store_key = self.credentials.store_key

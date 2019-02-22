@@ -4,7 +4,7 @@ from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 
 
-class InventortResource(resources.ModelResource):
+class InventoryResource(resources.ModelResource):
     class Meta:
         model = Inventory
         fields = ('sku', 'name',)
@@ -31,8 +31,9 @@ class NewOrdersAdmin(admin.ModelAdmin):
 
 @admin.register(Inventory)
 class InventoryAdmin(ImportExportModelAdmin):
-
-    resource_class = InventortResource
+    resource_class = InventoryResource
+    search_fields = ['name']
+    list_display = ['category', 'name', 'expansion', 'printing', 'condition', 'language', 'price', 'quantity', 'last_upload_date', 'total_quantity_sold']
 
 
 admin.site.register(GroupName)

@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'engine',
+    'engine.apps.EngineConfig',
     'contact',
     'buylist',
     #'facebook_bot',
@@ -97,6 +98,7 @@ INSTALLED_APPS = [
     'orders',
     'rest_framework',
     'import_export',
+    'tcg',
 #  'customer.startup.BotConfig',
 ]
 

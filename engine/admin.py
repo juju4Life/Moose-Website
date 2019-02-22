@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Orders, ForeignOrder, TcgCredentials, UpdatedInventory, CaseCards, StoreDatabase, MtgDatabase, MTG, Upload
+from .models import Product, Orders, ForeignOrder, TcgCredentials, UpdatedInventory, CaseCards, StoreDatabase, MtgDatabase, MTG, Upload, Events
 from simple_history.admin import SimpleHistoryAdmin
 from customer.models import Preorder, Customer, PreordersReady, OrderRequest, ReleasedProducts
 from django.contrib.auth.models import Group
@@ -10,45 +10,55 @@ from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from import_export.fields import Field
 from .tcgplayer_api import TcgPlayerApi
+from django.core.exceptions import ObjectDoesNotExist
 from tcg.price_alogrithm import *
-from tcg.price_and_upload import upload
 
 api = TcgPlayerApi()
+
+
+@admin.register(Events)
+class EventsAdmin(admin.ModelAdmin):
+    pass
 
 
 class UpdateResource(resources.ModelResource):
     def before_import(self, dataset, using_transactions, dry_run, **kwargs):
         temp = dataset.headers
         dataset.insert(0, temp)
-        dataset.headers = ['sku', 'quantity']
+        dataset.headers = ['sku', 'upload_quantity']
+        dataset.insert_col(0, col=["", ] * dataset.height, header="id")
 
-    def after_import(self, dataset, result, using_transactions, dry_run, **kwargs):
-        # data = {i: {'quantity': k} for (i, k) in dataset}
-        # upload(data)
-        pass
+    def before_save_instance(self, instance, using_transactions, dry_run):
+        try:
+            lib = MTG.objects.get(sku=instance.sku)
+            instance.name = lib.product_name
+            instance.group_name = lib.set_name
+            instance.condition = lib.condition
+            instance.printing = lib.foil
+            instance.language = lib.language
+            instance.category = lib.product_line
+        except ObjectDoesNotExist:
+            pass
 
-    def after_save_instance(self, instance, using_transactions, dry_run):
-        print(instance)
-        print(instance.sku)
-
-    name = Field(attribute='name', column_name='name')
-    condition = Field(attribute='condition', column_name='condition')
-    group_name = Field(attribute='group_name', column_name='expansion_name')
-    printing = Field(attribute='printing', column_name='printing')
-    language = Field(attribute='language', column_name='language')
     category = Field(attribute='category', column_name='category')
-    upload_price = Field(attribute='upload_price', column_name='upload_price')
-    upload_date = Field(attribute='upload_date', column_name='upload_date')
-    upload_status = Field(attribute='upload_status', column_name='upload_status')
+    name = Field(attribute='name', column_name='Name')
+    group_name = Field(attribute='group_name', column_name='Set')
+    printing = Field(attribute='printing', column_name='Foil')
+    condition = Field(attribute='condition', column_name='Condition')
+    language = Field(attribute='language', column_name='Language')
+    upload_date = Field(attribute='upload_date', column_name='upload date')
+    upload_status = Field(attribute='upload_status', column_name='upload status')
 
     class Meta:
         model = Upload
-        import_id_fields = ('sku',)
+        exclude = ('upload_price',)
 
 
 @admin.register(Upload)
 class UploadAdmin(ImportExportModelAdmin):
     resource_class = UpdateResource
+    search_fields = ['name', ]
+    list_display = ['category', 'printing', 'name', 'group_name', 'condition', 'language', 'upload_price', 'upload_quantity', 'upload_date', 'upload_status',]
 
 
 class MTGResource(resources.ModelResource):
@@ -70,6 +80,8 @@ class MTGResource(resources.ModelResource):
 @admin.register(MTG)
 class MTGAdmin(ImportExportModelAdmin):
     resource_class = MTGResource
+    search_fields = ['product_name']
+    list_display = ['product_name', 'set_name', 'foil', 'condition', 'language']
 
 
 class MasterAdmin(admin.ModelAdmin):
@@ -78,7 +90,6 @@ class MasterAdmin(admin.ModelAdmin):
     list_display = ('name', 'set_name')
     search_fields = ['name']
     list_filter = ['site']
-
 
 
 class OrdersProcessingAdmin(admin.ModelAdmin):

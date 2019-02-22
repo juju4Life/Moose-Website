@@ -241,11 +241,11 @@ def sku_price_algorithm(market, direct=None, low=None):
         else:
             new_price = 0
 
-        if new_price < .25:
-            new_price = .25
+    if new_price < .25:
+        new_price = .25
 
-        if new_price >= 2. and new_price <= 2.25:
-            new_price = 1.99
+    if new_price >= 2. and new_price <= 2.25:
+        new_price = 1.99
 
     return new_price
 
