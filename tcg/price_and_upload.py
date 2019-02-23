@@ -33,11 +33,10 @@ def task_management(obj):
 
 @report_error
 def upload_sku(sku_list, data):
+    print(sku_list)
     errors_list = []
     inventory = Inventory.objects
-    print(sku_list)
     api_market_data = api.market_prices_by_sku(sku_list)
-    print(api_market_data)
 
     if api_market_data['success']:
         price_data = api_market_data['results']
@@ -72,13 +71,14 @@ def upload_sku(sku_list, data):
                 upload_price = sku_price_algorithm(market_price, direct=direct_low_price, low=low_price)
 
                 # Attempt to upload sku
-                uploaded_card = api.upload(sku, price=upload_price, quantity=upload_quantity)
+                uploaded_card = api.upload(sku, price='a', quantity=upload_quantity)
 
                 # Report any errors in uploading
                 if uploaded_card['errors']:
                     errors_list.append(uploaded_card['errors'][0] + f' for sku: {sku}' + '\n')
+                    print(uploaded_card['errors'])
 
-                else:
+                if True:
                     # Update item in Upload model to reflect a successful upload
                     for upload in all_skus:
                         upload.upload_status = True

@@ -10,7 +10,6 @@ from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from import_export.fields import Field
 from .tcgplayer_api import TcgPlayerApi
-from django.core.exceptions import ObjectDoesNotExist
 from tcg.price_alogrithm import *
 
 api = TcgPlayerApi()
@@ -23,22 +22,20 @@ class EventsAdmin(admin.ModelAdmin):
 
 class UpdateResource(resources.ModelResource):
     def before_import(self, dataset, using_transactions, dry_run, **kwargs):
+        print(type(dataset))
         temp = dataset.headers
         dataset.insert(0, temp)
         dataset.headers = ['sku', 'upload_quantity']
         dataset.insert_col(0, col=["", ] * dataset.height, header="id")
 
     def before_save_instance(self, instance, using_transactions, dry_run):
-        try:
-            lib = MTG.objects.get(sku=instance.sku)
-            instance.name = lib.product_name
-            instance.group_name = lib.set_name
-            instance.condition = lib.condition
-            instance.printing = lib.foil
-            instance.language = lib.language
-            instance.category = lib.product_line
-        except ObjectDoesNotExist:
-            pass
+        lib = MTG.objects.get(sku=instance.sku)
+        instance.name = lib.product_name
+        instance.group_name = lib.set_name
+        instance.condition = lib.condition
+        instance.printing = lib.foil
+        instance.language = lib.language
+        instance.category = lib.product_line
 
     category = Field(attribute='category', column_name='category')
     name = Field(attribute='name', column_name='Name')
