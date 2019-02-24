@@ -6,12 +6,15 @@ from django.contrib.auth.models import Group
 from customer.tasks import alert
 from ipware import get_client_ip
 from decimal import Decimal
-from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from import_export import resources
 from import_export.fields import Field
 from .tcgplayer_api import TcgPlayerApi
-from tcg.price_alogrithm import *
-
+from import_export.formats.base_formats import TablibFormat
+from import_export.tmp_storages import TempFolderStorage
+from import_export.instance_loaders import BaseInstanceLoader
+import tablib
+from import_export.resources import Resource
 api = TcgPlayerApi()
 
 
@@ -20,22 +23,18 @@ class EventsAdmin(admin.ModelAdmin):
     pass
 
 
-class UpdateResource(resources.ModelResource):
+class UpdateResource(resources.ModelResource, Resource):
+    def get_or_init_instance(self, instance_loader, row):
+        print(instance_loader)
+
     def before_import(self, dataset, using_transactions, dry_run, **kwargs):
-        print(type(dataset))
         temp = dataset.headers
         dataset.insert(0, temp)
         dataset.headers = ['sku', 'upload_quantity']
         dataset.insert_col(0, col=["", ] * dataset.height, header="id")
 
     def before_save_instance(self, instance, using_transactions, dry_run):
-        lib = MTG.objects.get(sku=instance.sku)
-        instance.name = lib.product_name
-        instance.group_name = lib.set_name
-        instance.condition = lib.condition
-        instance.printing = lib.foil
-        instance.language = lib.language
-        instance.category = lib.product_line
+        pass
 
     category = Field(attribute='category', column_name='category')
     name = Field(attribute='name', column_name='Name')
@@ -53,6 +52,7 @@ class UpdateResource(resources.ModelResource):
 
 @admin.register(Upload)
 class UploadAdmin(ImportExportModelAdmin):
+
     resource_class = UpdateResource
     search_fields = ['name', ]
     list_display = ['category', 'printing', 'name', 'group_name', 'condition', 'language', 'upload_price', 'upload_quantity', 'upload_date', 'upload_status',]

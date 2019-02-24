@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import sys
 from celery.schedules import crontab
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,12 +32,12 @@ CELERY_BEAT_SCHEDULE = {
 }
 
 
-"""SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-X_FRAME_OPTIONS = "DENY"""
+X_FRAME_OPTIONS = "DENY"
 
 
 #EMAIL_BACKEND = 'django.core.email.backends.smtp.EmailBackend'
@@ -55,7 +56,7 @@ DEFAULT_FROM_EMAIL = 'mtgfirst'
 SECRET_KEY = 'ow()u7-5je7qs34)2t@(cp+lcmoq^$9hf$6hr-#2yb(9be4leg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
                 'smiling-earth.herokuapp.com', 'localhost', '127.0.0.1','www.tcgfirst.com','4f8880b7.ngrok.io'
@@ -225,9 +226,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-if DEBUG:
-    MEDIA_URL = '/static/media/'
-    MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static', 'media')
+MEDIA_URL = '/static/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static', 'media')
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
@@ -283,12 +283,11 @@ INTERNAL_IPS = ('127.0.0.1', 'www.tcgfirst.com')
 ADMIN_TOOLS_MENU = 'source.menu.CustomMenu'
 ADMIN_TOOLS_INDEX_DASHBOARD = 'source.dashboard.CustomIndexDashboard'
 ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'source.dashboard.CustomAppIndexDashboard'
+# IMPORT_EXPORT_SKIP_ADMIN_LOG = False
 
-
-
-
-
-
-
+try:
+    from .local_settings import *
+except Exception as e:
+    print(f"{e}, Can't import local settings.")
 
 
