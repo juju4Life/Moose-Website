@@ -56,7 +56,7 @@ DEFAULT_FROM_EMAIL = 'mtgfirst'
 SECRET_KEY = 'ow()u7-5je7qs34)2t@(cp+lcmoq^$9hf$6hr-#2yb(9be4leg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
                 'smiling-earth.herokuapp.com', 'localhost', '127.0.0.1','www.tcgfirst.com','4f8880b7.ngrok.io'
@@ -284,5 +284,10 @@ ADMIN_TOOLS_MENU = 'source.menu.CustomMenu'
 ADMIN_TOOLS_INDEX_DASHBOARD = 'source.dashboard.CustomIndexDashboard'
 ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'source.dashboard.CustomAppIndexDashboard'
 # IMPORT_EXPORT_SKIP_ADMIN_LOG = False
+
+try:
+    from .local_settings import *
+except Exception as e:
+    print(f"{e}, Can't import local settings.")
 
 

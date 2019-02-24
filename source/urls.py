@@ -12,12 +12,7 @@ from customer import views as customer_views
 from users import views as user_views
 
 
-if settings.DEBUG:
-    import debug_toolbar
-
-
 urlpatterns = [
-    path('__debug__/', include(debug_toolbar.urls)),
     path('at/', include('admin_tools.urls')),
     path('sms/', include('sms.urls')),
     path('admin/', admin.site.urls),
@@ -71,5 +66,10 @@ urlpatterns = [
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT,)
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns.append(path('__debug__/', include(debug_toolbar.urls)),)
+
 
 
