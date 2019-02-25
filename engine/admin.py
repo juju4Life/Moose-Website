@@ -1,7 +1,7 @@
 import os
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import Product, Orders, ForeignOrder, TcgCredentials, UpdatedInventory, CaseCards, StoreDatabase, MtgDatabase, MTG, Upload, Events, Yugioh
+from .models import Product, Orders, ForeignOrder, TcgCredentials, UpdatedInventory, CaseCards, StoreDatabase, MtgDatabase, MTG, Upload, Events, Yugioh, Pokemon
 from simple_history.admin import SimpleHistoryAdmin
 from customer.models import Preorder, Customer, PreordersReady, OrderRequest, ReleasedProducts
 from django.contrib.auth.models import Group
@@ -35,6 +35,10 @@ class YugiohAdmin(admin.ModelAdmin):
     pass
 
 
+@admin.register(Pokemon)
+class PokemonAdmin(admin.ModelAdmin):
+    pass
+
 class UpdateResource(resources.ModelResource):
 
     def before_import(self, dataset, using_transactions, dry_run, **kwargs):
@@ -43,11 +47,10 @@ class UpdateResource(resources.ModelResource):
         dataset.headers = ['sku', 'upload_quantity']
         dataset.insert_col(0, col=["", ] * dataset.height, header="id")
 
-
     category = Field(attribute='category', column_name='category')
     name = Field(attribute='name', column_name='Name')
     group_name = Field(attribute='group_name', column_name='Set')
-    printing = Field(attribute='printing', column_name='Foil')
+    foil = Field(attribute='printing', column_name='Foil')
     condition = Field(attribute='condition', column_name='Condition')
     language = Field(attribute='language', column_name='Language')
     upload_date = Field(attribute='upload_date', column_name='upload date')

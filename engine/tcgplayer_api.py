@@ -21,12 +21,8 @@ class TcgPlayerApi:
     def search_inventory(self, product_id):
         return self.credentials.get_request('stores/{}/inventory/products/{}/quantity'.format(store_key, product_id))
 
-    def get_prices(self, *product_id):
-        if type(product_id[0][0]) == list:
-            product_ids = ','.join(product_id[0][0])
-        else:
-            product_ids = product_id[0]
-        return self.credentials.get_request('pricing/product/{}'.format(product_ids))
+    def get_market_price(self, product_id):
+        return self.credentials.get_request(f'pricing/product/{product_id}')
 
     def create_buylist_item(self, sku_id, price, _data=False, _json=False):
         json_params = {

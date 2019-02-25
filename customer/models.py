@@ -3,6 +3,7 @@ from simple_history.models import HistoricalRecords
 from datetime import datetime
 from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _
+from validators.model_validators import validate_name
 
 
 class Preorder(models.Model):
@@ -37,7 +38,7 @@ class Customer(models.Model):
 
     )
     letters_only = RegexValidator(r'^[a-zA-Z ]*$', _('Only letters are allowed.'))
-
+    from django.utils.translation import gettext_lazy as _
     name = models.CharField(validators=[letters_only], max_length=100, default='', unique=True)
     credit = models.DecimalField(max_digits=12, decimal_places=2, default=0., blank=True, verbose_name='Credit')
     tournament_entry = models.CharField(max_length=255, choices=tournament_entry_choices, default='none', verbose_name='Subtract Event Entry')

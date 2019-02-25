@@ -33,7 +33,8 @@ class NewOrdersAdmin(admin.ModelAdmin):
 class InventoryAdmin(ImportExportModelAdmin):
     resource_class = InventoryResource
     search_fields = ['name']
-    list_display = ['category', 'name', 'expansion', 'printing', 'condition', 'language', 'price', 'quantity', 'last_upload_date', 'total_quantity_sold']
+    list_display = ['category', 'name', 'expansion', 'printing', 'condition', 'language', 'price', 'quantity', 'last_upload_date',
+                    'last_sold_date', 'total_quantity_sold']
 
 
 admin.site.register(GroupName)

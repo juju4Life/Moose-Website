@@ -1,3 +1,7 @@
+from engine.tcgplayer_api import TcgPlayerApi
+
+api = TcgPlayerApi()
+
 
 def price_foreign(condition, language, low, direct=None, mid=None, market=None):
     condition_map = {
@@ -7,7 +11,7 @@ def price_foreign(condition, language, low, direct=None, mid=None, market=None):
         'damaged': .60,
     }
 
-    old_sets = ["urza's saga" ," urza's legacy" ,"urza's destiny" ,"exodus" ,"stronghold" ,"tempest" ,"mirage" ,"visions",
+    old_sets = ["urza's saga"," urza's legacy" ,"urza's destiny" ,"exodus" ,"stronghold" ,"tempest" ,"mirage" ,"visions",
 
                 "weatherlight" ,"fifth edition" ,"fourth edition" ,]
 
@@ -195,58 +199,125 @@ def buylist_algorithm(condition, market, low=None, mid=None, market_buylist=None
     return new_price
 
 
-def sku_price_algorithm(market, direct=None, low=None):
+def sku_price_algorithm(condition, sku, market, direct=None, low=None):
 
     new_price = market
     low_price = low
     direct_price = direct
 
-    # Use Pricing Algorithm to determine updated price to list card at
-    if new_price is not None:
+    if new_price is None and low_price is None:
 
-        if new_price > 1.99:
+        condition_dict = {
+            'near mint': 1,
+            'lightly played': 1,
+            'moderately played': .85,
+            'heavily played': .65,
+            'damaged': .5,
 
-            if low_price is not None:
+        }
 
-                if new_price < low_price:
-                    new_price = low_price
+        condition_price = 'near mint'
 
-                elif new_price > low_price * 1.15:
-                        new_price = new_price * .9
+        if 'lightly played' in condition.lower():
+            condition_price = condition_dict['lightly played']
+
+        elif 'moderately played' in condition.lower():
+            condition_price = condition_dict['moderately played']
+
+        elif 'heavily played' in condition.lower():
+            condition_price = condition_dict['heavily played']
+
+        elif 'damaged' in condition.lower():
+            condition_price = condition_dict['damaged']
+
+        product_id = api.card_info_by_sku(sku)['results'][0]['productId']
+        market_data = api.get_market_price(str(product_id))['results']
+
+        count = 0
+        while True:
+            print(market_data[count]['subTypeName'], condition)
+            if market_data[count]['subTypeName'].lower() in condition.lower():
+                market_data = market_data[count]
+                break
+            count += 1
+
+        market_price = market_data['marketPrice']
+        low_market_price = market_data['lowPrice']
+        direct_market_price = market_data['lowPrice']
+
+        if market_price is not None:
+            if low_market_price is not None:
+                if low_market_price > market_price:
+                    market_price = low_market_price
+            if direct_market_price is not None:
+                if direct_market_price > market_price:
+                    if direct_market_price > market_price * 1.15:
+                        market_price = market_price * 1.15
+                    else:
+                        market_price = direct_market_price
+
+        else:
+            market_price = low_market_price
+
+        if market_price is not None:
+            market_price = market_price * condition_price
+
+            if market_price < .25:
+                market_price = .25
+
+            if market_price >= 2. and market_price < 2.25:
+                market_price = 1.99
+
+            return market_price
+
+    else:
+
+        # Use Pricing Algorithm to determine updated price to list card at
+        if new_price is not None:
+
+            if new_price > 1.99:
+
+                if low_price is not None:
+
+                    if new_price < low_price:
+                        new_price = low_price
+
+                    elif new_price > low_price * 1.15:
+                            new_price = new_price * .9
+                    else:
+                        pass
                 else:
                     pass
             else:
                 pass
-        else:
-            pass
 
-        if low_price is not None:
-            if new_price < low_price:
-                new_price = low_price
+            if low_price is not None:
+                if new_price < low_price:
+                    new_price = low_price
 
-            else:
-                pass
-
-        if direct_price is not None:
-            if direct_price > new_price:
-                if direct_price > new_price * 1.15:
-                    new_price = new_price * 1.15
                 else:
-                    new_price = direct_price
+                    pass
 
-    else:
+            if direct_price is not None:
+                if direct_price > new_price:
+                    if direct_price > new_price * 1.15:
+                        new_price = new_price * 1.15
+                    else:
+                        new_price = direct_price
 
-        if low_price is not None:
-            new_price = low_price
         else:
-            new_price = 0
 
-    if new_price < .25:
-        new_price = .25
+            if low_price is not None:
+                new_price = low_price
+            else:
+                new_price = 0
 
-    if new_price >= 2. and new_price <= 2.25:
-        new_price = 1.99
+        if new_price < .25:
+            new_price = .25
 
-    return new_price
+        if new_price >= 2. and new_price <= 2.25:
+            new_price = 1.99
+
+        return new_price
 
 

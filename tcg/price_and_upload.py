@@ -1,6 +1,6 @@
 from .price_alogrithm import *
 from engine.tcgplayer_api import TcgPlayerApi
-from engine.models import MTG, Yugioh
+from engine.models import MTG, Yugioh, Pokemon
 from my_customs.decorators import report_error
 from django.core.mail import send_mail
 from orders.models import Inventory
@@ -48,13 +48,14 @@ def upload_sku(sku_list, data, cat_id):
     inventory = Inventory.objects
     mtg = MTG.objects
     ygo = Yugioh.objects
+    pokemon = Pokemon.objects
 
+    # map category_id of sku to correct database.
     category_map = {
         1: mtg,
         2: ygo,
-        3: '',
+        3: pokemon,
     }
-
     cat = category_map[cat_id]
 
     # Get market data for list of sku
@@ -83,6 +84,10 @@ def upload_sku(sku_list, data, cat_id):
                 # Query for all matching sku (Instances of Multiple cards with a upload_status of False)
                 all_skus = data.filter(sku=sku)
 
+                # Card details for give category
+                sku_card_info = cat.get(sku=sku)
+                condition = sku_card_info.condition
+
                 # Sum of all sku upload quantities to be uploaded to inventory
                 quantity = sum([i.upload_quantity for i in all_skus])
 
@@ -90,7 +95,7 @@ def upload_sku(sku_list, data, cat_id):
                 upload_quantity = quantity + current_quantity
 
                 # Use pricing tool to adjust upload price
-                upload_price = sku_price_algorithm(market_price, direct=direct_low_price, low=low_price)
+                upload_price = sku_price_algorithm(condition=condition, sku=sku, market=market_price, direct=direct_low_price, low=low_price)
 
                 # Attempt to upload sku
                 uploaded_card = api.upload(sku, price=upload_price, quantity=upload_quantity)
@@ -102,12 +107,10 @@ def upload_sku(sku_list, data, cat_id):
 
                 elif uploaded_card['success']:
                     # Update item in Upload model to reflect a successful upload
-                    # Query relevent database for details on sku
-                    sku_card_info = cat.get(sku=sku)
+                    # Query relevant database for details on sku
                     category = sku_card_info.product_line
                     name = sku_card_info.product_name
                     expansion = sku_card_info.set_name
-                    condition = sku_card_info.condition
                     printing = sku_card_info.foil
                     language = sku_card_info.language
 
