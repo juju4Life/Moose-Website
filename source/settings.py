@@ -11,19 +11,21 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-import sys
+from decouple import config
+import csv
 from celery.schedules import crontab
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+celery_broker_url = config('CELERY_BROKER_URL')
+
 from celery.schedules import crontab
 CELERY_RESULT_BACKEND = 'django-db'
-CELERY_BROKER_URL = 'amqp://mkdjqgzr:QD2ePUvZ-q-gJ3HL_CuQ0QYNbwS23N4O@chimpanzee.rmq.cloudamqp.com/mkdjqgzr'  # #'amqp://guest@localhost//'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
-#CELERY_BROKER_HEARTBEAT = 0
-#CELERY_WORKER_CONCURRENCY = 1
+# CELERY_BROKER_HEARTBEAT = 0
+# CELERY_WORKER_CONCURRENCY = 1
 CELERY_BEAT_SCHEDULE = {
     'task-update-key': {
         'task': 'customer.tasks.update_tcg_key',
@@ -31,32 +33,27 @@ CELERY_BEAT_SCHEDULE = {
     },
 }
 
-
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-X_FRAME_OPTIONS = "DENY"
-
-
 #EMAIL_BACKEND = 'django.core.email.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'jermol@mtgfirst.com'
-EMAIL_HOST_PASSWORD = 'Spacejam99'
-EMAIL_PORT = '587'
-EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'mtgfirst'
+EMAIL_USE_TLS = True
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ow()u7-5je7qs34)2t@(cp+lcmoq^$9hf$6hr-#2yb(9be4leg'
+
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', cast=bool)
+
+
+# SECURITY WARNING: don't run with debug turned on in production!
 
 ALLOWED_HOSTS = [
                 'smiling-earth.herokuapp.com', 'localhost', '127.0.0.1','www.tcgfirst.com','4f8880b7.ngrok.io'
@@ -153,30 +150,22 @@ WSGI_APPLICATION = 'source.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+host = config('host')
+name = config('name')
+user = config('user')
+password = config('password')
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': 'us-mm-dca-8626a5450af4.g5.cleardb.net',#'us-cdbr-iron-east-04.cleardb.net',
-        'NAME': 'heroku_bdc2cb56dc82638',
-        'USER': 'b06d0d31b3e553',
-        'PASSWORD': 'cefa17fc7d2bd60',
+        'HOST': host,
+        'NAME': name,
+        'USER': user,
+        'PASSWORD': password,
         'SQL_MODE': 'STRICT_TRANS_TABLES'
     }
 }
-
-
-'''DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': '',
-        'NAME': 'local_db',
-        'USER': 'root',
-        'PASSWORD': 'Safarizone99',
-
-
-    }
-}'''
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -272,22 +261,15 @@ BUYLIST_CART_SESSION_KEY = 'buylist_cart_id'
 PRODUCT_MODEL = "engine.StoreDatabase"
 BUYLIST_MODEL = "buylist.Buying"
 
-
-# Heroku: Update database configuration from $DATABASE_URL.
-"""import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)"""
-
 INTERNAL_IPS = ('127.0.0.1', 'www.tcgfirst.com')
 
 ADMIN_TOOLS_MENU = 'source.menu.CustomMenu'
 ADMIN_TOOLS_INDEX_DASHBOARD = 'source.dashboard.CustomIndexDashboard'
 ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'source.dashboard.CustomAppIndexDashboard'
-# IMPORT_EXPORT_SKIP_ADMIN_LOG = False
 
-try:
+'''try:
     from .local_settings import *
 except Exception as e:
-    print(f"{e}, Can't import local settings.")
+    print(f"{e}, Can't import local settings.")'''
 
 

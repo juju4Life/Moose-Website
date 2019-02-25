@@ -6,7 +6,5 @@ class EngineConfig(AppConfig):
 
     def ready(self):
         from engine import signals
-        from engine import tcg_credentials
-        from engine import models
 
 

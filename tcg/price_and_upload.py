@@ -33,11 +33,11 @@ def task_management(obj):
 
 @report_error
 def upload_sku(sku_list, data):
-    print(sku_list)
     errors_list = []
     inventory = Inventory.objects
-    api_market_data = api.market_prices_by_sku(sku_list)
 
+    # Get market data for list of sku
+    api_market_data = api.market_prices_by_sku(sku_list)
     if api_market_data['success']:
         price_data = api_market_data['results']
 
@@ -46,9 +46,8 @@ def upload_sku(sku_list, data):
             market_price = each['marketPrice']
             low_price = each['lowPrice']
             direct_low_price = each['directLowPrice']
-            # lowest_listing = each['lowestListingPrice']
 
-            # Get current quantity of sku on TCGplayer Inventory
+            # Get current quantity of sku from TCGplayer Inventory
             api_inventory_quantity = api.get_sku_quantity(sku)
             if api_inventory_quantity['errors']:
                 print(api_inventory_quantity['errors'])

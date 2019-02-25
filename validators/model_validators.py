@@ -7,9 +7,11 @@ def validate_name(name):
     if name.isalpha() is False:
         raise ValidationError(
             _('Name can only contain letters A-Z. Not numbers.'),
-            params={'na'
-                    'me': name},
+            params={'name': name},
+
         )
+
+    return name
 
 
 def validate_event_choice(choice):

@@ -1,4 +1,6 @@
+import os
 from django.contrib import admin
+from django.http import HttpResponseRedirect, HttpResponse
 from .models import Product, Orders, ForeignOrder, TcgCredentials, UpdatedInventory, CaseCards, StoreDatabase, MtgDatabase, MTG, Upload, Events
 from simple_history.admin import SimpleHistoryAdmin
 from customer.models import Preorder, Customer, PreordersReady, OrderRequest, ReleasedProducts
@@ -6,26 +8,36 @@ from django.contrib.auth.models import Group
 from customer.tasks import alert
 from ipware import get_client_ip
 from decimal import Decimal
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.template.response import TemplateResponse
+from django.utils.translation import ugettext_lazy as _
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from import_export import resources
 from import_export.fields import Field
+from import_export.forms import ConfirmImportForm
 from .tcgplayer_api import TcgPlayerApi
+from django.core.exceptions import PermissionDenied
+from django.utils.encoding import force_text
 from import_export.formats.base_formats import TablibFormat
 from import_export.tmp_storages import TempFolderStorage
 from import_export.instance_loaders import BaseInstanceLoader
 import tablib
 from import_export.resources import Resource
+
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import BytesIO
+
+# Api calls to TCGplayer
 api = TcgPlayerApi()
 
 
-@admin.register(Events)
-class EventsAdmin(admin.ModelAdmin):
-    pass
+class UpdateResource(resources.ModelResource):
 
 
-class UpdateResource(resources.ModelResource, Resource):
-    def get_or_init_instance(self, instance_loader, row):
-        print(instance_loader)
+    def import_data(self, dataset, *args, **kwargs):
+        return super(UpdateResource, self).import_data(dataset, *args, **kwargs)
 
     def before_import(self, dataset, using_transactions, dry_run, **kwargs):
         temp = dataset.headers
@@ -52,10 +64,90 @@ class UpdateResource(resources.ModelResource, Resource):
 
 @admin.register(Upload)
 class UploadAdmin(ImportExportModelAdmin):
+    def import_action(self, request, *args, **kwargs):
+        '''
+        Perform a dry_run of the import to make sure the import will not
+        result in errors.  If there where no error, save the user
+        uploaded file to a local temp file that will be used by
+        'process_import' for the actual import.
+        '''
+        if not self.has_import_permission(request):
+            raise PermissionDenied
+
+        resource = self.get_import_resource_class()(**self.get_import_resource_kwargs(request, *args, **kwargs))
+
+        context = self.get_import_context_data()
+
+        import_formats = self.get_import_formats()
+        fixed_file = BytesIO()
+        if request.FILES.get('import_file'):
+
+            lines = request.FILES.get('import_file').read()
+            if lines:
+                for line in lines.decode('utf-8').split("\n"):
+                    line = line.strip()
+                    if len(line):
+                        fixed_file.write(str.encode(line + "\r\n"))
+                fixed_file.seek(0, os.SEEK_END)
+                size = fixed_file.tell()
+
+                request.FILES['import_file'] = InMemoryUploadedFile(fixed_file, 'import_file', 'file.csv', 'text/csv', size, None)
+
+        form_type = self.get_import_form()
+        form = form_type(import_formats,
+                         request.POST or None,
+                         request.FILES or None)
+
+        if request.POST and form.is_valid():
+            input_format = import_formats[
+                int(form.cleaned_data['input_format'])
+            ]()
+            import_file = form.cleaned_data['import_file']
+            # first always write the uploaded file to disk as it may be a
+            # memory file or else based on settings upload handlers
+            tmp_storage = self.write_to_tmp_storage(import_file, input_format)
+
+            # then read the file, using the proper format-specific mode
+            # warning, big files may exceed memory
+            try:
+                data = tmp_storage.read(input_format.get_read_mode())
+                if not input_format.is_binary() and self.from_encoding:
+                    data = force_text(data, self.from_encoding)
+                dataset = input_format.create_dataset(data)
+            except UnicodeDecodeError as e:
+                return HttpResponse(_(u"<h1>Imported file has a wrong encoding: %s</h1>" % e))
+            except Exception as e:
+                return HttpResponse(_(u"<h1>%s encountered while trying to read file: %s</h1>" % (type(e).__name__, import_file.name)))
+            result = resource.import_data(dataset, dry_run=True,
+                                          raise_errors=False,
+                                          file_name=import_file.name,
+                                          user=request.user)
+
+            context['result'] = result
+
+            if not result.has_errors() and not result.has_validation_errors():
+                context['confirm_form'] = ConfirmImportForm(initial={
+                    'import_file_name': tmp_storage.name,
+                    'original_file_name': import_file.name,
+                    'input_format': form.cleaned_data['input_format'],
+                })
+
+        context.update(self.admin_site.each_context(request))
+
+        context['title'] = _("Import")
+        context['form'] = form
+        context['opts'] = self.model._meta
+        context['fields'] = [f.column_name for f in resource.get_user_visible_fields()]
+
+        request.current_app = self.admin_site.name
+        return TemplateResponse(request, [self.import_template_name],
+                                context)
 
     resource_class = UpdateResource
     search_fields = ['name', ]
     list_display = ['category', 'printing', 'name', 'group_name', 'condition', 'language', 'upload_price', 'upload_quantity', 'upload_date', 'upload_status',]
+
+# ----------------------------------------------------------------------------------------------------------------------------
 
 
 class MTGResource(resources.ModelResource):
