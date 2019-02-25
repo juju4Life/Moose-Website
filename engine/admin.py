@@ -1,7 +1,7 @@
 import os
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import Product, Orders, ForeignOrder, TcgCredentials, UpdatedInventory, CaseCards, StoreDatabase, MtgDatabase, MTG, Upload, Events
+from .models import Product, Orders, ForeignOrder, TcgCredentials, UpdatedInventory, CaseCards, StoreDatabase, MtgDatabase, MTG, Upload, Events, Yugioh
 from simple_history.admin import SimpleHistoryAdmin
 from customer.models import Preorder, Customer, PreordersReady, OrderRequest, ReleasedProducts
 from django.contrib.auth.models import Group
@@ -18,11 +18,8 @@ from import_export.forms import ConfirmImportForm
 from .tcgplayer_api import TcgPlayerApi
 from django.core.exceptions import PermissionDenied
 from django.utils.encoding import force_text
-from import_export.formats.base_formats import TablibFormat
-from import_export.tmp_storages import TempFolderStorage
-from import_export.instance_loaders import BaseInstanceLoader
-import tablib
-from import_export.resources import Resource
+from collections import Counter, OrderedDict, defaultdict
+from tablib import Dataset
 
 try:
     from StringIO import StringIO
@@ -33,11 +30,12 @@ except ImportError:
 api = TcgPlayerApi()
 
 
+@admin.register(Yugioh)
+class YugiohAdmin(admin.ModelAdmin):
+    pass
+
+
 class UpdateResource(resources.ModelResource):
-
-
-    def import_data(self, dataset, *args, **kwargs):
-        return super(UpdateResource, self).import_data(dataset, *args, **kwargs)
 
     def before_import(self, dataset, using_transactions, dry_run, **kwargs):
         temp = dataset.headers
@@ -45,8 +43,6 @@ class UpdateResource(resources.ModelResource):
         dataset.headers = ['sku', 'upload_quantity']
         dataset.insert_col(0, col=["", ] * dataset.height, header="id")
 
-    def before_save_instance(self, instance, using_transactions, dry_run):
-        pass
 
     category = Field(attribute='category', column_name='category')
     name = Field(attribute='name', column_name='Name')
@@ -84,10 +80,16 @@ class UploadAdmin(ImportExportModelAdmin):
 
             lines = request.FILES.get('import_file').read()
             if lines:
+                formated = defaultdict(int)
                 for line in lines.decode('utf-8').split("\n"):
                     line = line.strip()
                     if len(line):
-                        fixed_file.write(str.encode(line + "\r\n"))
+                        split_line = line.split(",")
+                        sku = split_line[0]
+                        qty = split_line[1]
+                        formated[sku] += int(qty)
+                for k, v in formated.items():
+                    fixed_file.write(str.encode(f"{k},{v}" + "\r\n"))
                 fixed_file.seek(0, os.SEEK_END)
                 size = fixed_file.tell()
 

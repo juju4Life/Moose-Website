@@ -1,5 +1,6 @@
 from .price_alogrithm import *
 from engine.tcgplayer_api import TcgPlayerApi
+from engine.models import MTG, Yugioh
 from my_customs.decorators import report_error
 from django.core.mail import send_mail
 from orders.models import Inventory
@@ -11,16 +12,26 @@ api = TcgPlayerApi()
 
 def task_management(obj):
     data = obj.objects.filter(upload_status=False)
-    if len(data) <= 100:
-        sku_list = [i.sku for i in data]
-        upload_sku(sku_list, data)
 
+    # All cards should be from one category
+    # APi for sku productId, which gets us the category ID for the category
+    sku = data[0].sku
+    product_id = api.card_info_by_sku(sku)['results'][0]['productId']
+    cat_id = api.get_card_info(str(product_id))['results'][0]['categoryId']
+
+    # Max of 100 skus for prices in a single api call. Request Info for entire list if <= 100
+    if len(data) <= 100:
+
+        sku_list = list({i.sku for i in data})
+        upload_sku(sku_list, data, cat_id)
+
+    # While loop running function for up to 100 skus for each iteration
     else:
         start = 0
         stop = 100
         while True:
             sku_list = [i.sku for i in data[start:stop]]
-            upload_sku(sku_list, data)
+            upload_sku(sku_list, data, cat_id)
 
             if stop == len(data):
                 break
@@ -32,9 +43,19 @@ def task_management(obj):
 
 
 @report_error
-def upload_sku(sku_list, data):
+def upload_sku(sku_list, data, cat_id):
     errors_list = []
     inventory = Inventory.objects
+    mtg = MTG.objects
+    ygo = Yugioh.objects
+
+    category_map = {
+        1: mtg,
+        2: ygo,
+        3: '',
+    }
+
+    cat = category_map[cat_id]
 
     # Get market data for list of sku
     api_market_data = api.market_prices_by_sku(sku_list)
@@ -50,13 +71,15 @@ def upload_sku(sku_list, data):
             # Get current quantity of sku from TCGplayer Inventory
             api_inventory_quantity = api.get_sku_quantity(sku)
             if api_inventory_quantity['errors']:
-                print(api_inventory_quantity['errors'])
+                pass
 
-            if api_inventory_quantity['success'] or api_inventory_quantity['errors'] == ['No Sku(s) were found for SkuId (315800).']:
+            if api_inventory_quantity['success'] or api_inventory_quantity['errors'] == [f'No Sku(s) were found for SkuId ({sku}).']:
+
                 try:
                     current_quantity = api.get_sku_quantity(sku)['results'][0]['quantity']
                 except IndexError:
                     current_quantity = 0
+
                 # Query for all matching sku (Instances of Multiple cards with a upload_status of False)
                 all_skus = data.filter(sku=sku)
 
@@ -70,19 +93,34 @@ def upload_sku(sku_list, data):
                 upload_price = sku_price_algorithm(market_price, direct=direct_low_price, low=low_price)
 
                 # Attempt to upload sku
-                uploaded_card = api.upload(sku, price='a', quantity=upload_quantity)
+                uploaded_card = api.upload(sku, price=upload_price, quantity=upload_quantity)
 
                 # Report any errors in uploading
                 if uploaded_card['errors']:
                     errors_list.append(uploaded_card['errors'][0] + f' for sku: {sku}' + '\n')
                     print(uploaded_card['errors'])
 
-                if True:
+                elif uploaded_card['success']:
                     # Update item in Upload model to reflect a successful upload
+                    # Query relevent database for details on sku
+                    sku_card_info = cat.get(sku=sku)
+                    category = sku_card_info.product_line
+                    name = sku_card_info.product_name
+                    expansion = sku_card_info.set_name
+                    condition = sku_card_info.condition
+                    printing = sku_card_info.foil
+                    language = sku_card_info.language
+
                     for upload in all_skus:
                         upload.upload_status = True
                         upload.upload_date = date.today()
                         upload.upload_price = upload_price
+                        upload.category = category
+                        upload.name = name
+                        upload.group_name = expansion
+                        upload.condition = condition
+                        upload.printing = printing
+                        upload.language = language
                         upload.save()
 
                     # All changes made are reflected in the online inventory
@@ -98,17 +136,17 @@ def upload_sku(sku_list, data):
                         new = Inventory(
                             sku=sku,
                             quantity=upload_quantity,
-                            expansion=all_skus[0].group_name,
-                            name=all_skus[0].name,
-                            condition=all_skus[0].condition,
-                            printing=all_skus[0].printing,
-                            language=all_skus[0].language,
-                            category=all_skus[0].category,
+                            expansion=expansion,
+                            name=name,
+                            condition=condition,
+                            printing=printing,
+                            language=language,
+                            category=category,
                             rarity='unknown',
                             price=upload_price,
                             last_upload_date=date.today(),
                             last_upload_quantity=quantity,
-                            last_sold_date=date(1800, 1, 1),
+                            last_sold_date=date(1111, 1, 1),
                             last_sold_quantity=0,
                             last_sold_price=0,
                             total_quantity_sold=0,
