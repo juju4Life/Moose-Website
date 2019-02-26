@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import date
-from validators.model_validators import must_be_postive
+from validators.model_validators import *
 from django.utils import timezone
 
 
@@ -68,14 +68,8 @@ class ScatterEvent(models.Model):
 
 
 class Inventory(models.Model):
-    choices = (
-        ('none', 'none',),
-        ('remove', 'Remove',),
-        ('upload', 'Upload'),
-    )
 
-    update_item = models.CharField(max_length=100, choices=choices, default='none')
-    update_choice_quantity = models.IntegerField(default=0, validators=[must_be_postive])
+    update_inventory_quantity = models.IntegerField(default=0, validators=[confirm_quantity_sync])
     sku = models.CharField(max_length=255, default='', unique=True)
     quantity = models.IntegerField(default=0)
     expansion = models.CharField(max_length=255, default='')

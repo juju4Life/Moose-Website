@@ -28,3 +28,13 @@ def must_be_postive(value):
         )
 
 
+def confirm_quantity_sync(value):
+    if value < 0:
+        raise ValidationError(
+            _('Number less than 0.')
+        )
+
+    elif value > 0:
+        raise ValidationError(
+            _('Time to Upload.')
+        )
