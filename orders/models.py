@@ -75,7 +75,7 @@ class Inventory(models.Model):
     expansion = models.CharField(max_length=255, default='')
     name = models.CharField(max_length=255, default='')
     condition = models.CharField(max_length=255, default='')
-    printing = models.CharField(max_length=255, default='')
+    printing = models.CharField(max_length=255, default='', verbose_name='Foil')
     language = models.CharField(max_length=255, default='')
     category = models.CharField(max_length=255, default='')
     rarity = models.CharField(max_length=255, default='')
@@ -89,6 +89,9 @@ class Inventory(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = "Inventory"
 
 
 class NewOrders(models.Model):
@@ -107,6 +110,9 @@ class NewOrders(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = "Ordered Singles"
 
 
 

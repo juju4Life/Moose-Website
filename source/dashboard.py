@@ -42,7 +42,13 @@ class CustomIndexDashboard(Dashboard):
                 [_('-'), ''],
                 [_('Preorders'), 'customer/preordersready/'],
                 [_('-'), ''],
+                [_('Inventory'), 'orders/inventory/'],
+                [_('-'), ''],
+                [_('Upload'), 'engine/upload/'],
+                [_('-'), ''],
                 [_('Orders'), 'orders/orders/'],
+                [_('-'), ''],
+                [_('Ordered Items'), 'orders/neworders/'],
             ]
         ))
 

@@ -1,5 +1,8 @@
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from engine.tcgplayer_api import TcgPlayerApi
+
+api = TcgPlayerApi()
 
 
 def validate_name(value):
@@ -30,11 +33,12 @@ def must_be_postive(value):
 
 def confirm_quantity_sync(value):
     if value < 0:
-        raise ValidationError(
-            _('Number less than 0.')
-        )
+        pass
 
     elif value > 0:
         raise ValidationError(
             _('Time to Upload.')
         )
+
+    else:
+        pass

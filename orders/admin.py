@@ -33,7 +33,9 @@ class NewOrdersAdmin(admin.ModelAdmin):
 class InventoryAdmin(ImportExportModelAdmin):
     resource_class = InventoryResource
     search_fields = ['name']
-    list_display = ['category', 'name', 'expansion', 'printing', 'condition', 'language', 'price', 'quantity', 'last_upload_date',
+    list_filter = ['category', 'printing', 'language', 'expansion']
+    ordering = ['-last_upload_date', 'expansion']
+    list_display = ['quantity', 'price',  'category', 'printing', 'name', 'expansion', 'condition', 'last_upload_date',
                     'last_sold_date', 'total_quantity_sold']
 
 

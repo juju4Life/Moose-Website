@@ -155,6 +155,9 @@ class Upload(models.Model):
     def __str__(self):
         return self.sku
 
+    class Meta:
+        verbose_name_plural = "Upload"
+
 
 class MtgDatabase(models.Model):
 

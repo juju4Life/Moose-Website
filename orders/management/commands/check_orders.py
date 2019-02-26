@@ -29,7 +29,7 @@ class Command(BaseCommand):
         to_upload = []
 
         # Search the last 50 orders for any that have not been recorded to the database
-        recent_orders = api.get_recent_orders(offset=0)['results'][0:10]
+        recent_orders = api.get_recent_orders(offset=0)['results'][0:50]
         if recent_orders:
             for recent in recent_orders:
                 if NewOrders.objects.filter(order_number=recent).exists() is False:
@@ -51,7 +51,7 @@ class Command(BaseCommand):
             order_details = api_order_details['results']
             for o in order_details:
                 order_number = o['orderNumber']
-                order_date = o['orderedOn'][0:50]
+                order_date = o['orderedOn'][0:10]
                 cards = api.get_order_items(order_number)['results']
 
                 # Create dictionary of sku, qty, and price. This information is needed to query for product-specific information later
