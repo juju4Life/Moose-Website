@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/engine/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validators/model_validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/validators/model_validators.py" afterDir="false" />
-    </list>
+    <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +36,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/orders/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
+                <state relative-caret-position="255">
                   <caret line="72" column="67" lean-forward="true" selection-start-line="72" selection-start-column="67" selection-end-line="72" selection-end-column="67" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
@@ -119,7 +115,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/validators/model_validators.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="199">
+                <state relative-caret-position="232">
                   <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
                   <folding>
                     <element signature="e#0#50#0" expanded="true" />
@@ -451,9 +447,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.17843866" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11747212" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24981412" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -464,7 +459,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32980132" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49962825" visible="true" weight="0.38410595" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49962825" visible="true" weight="0.4847682" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50037175" side_tool="true" weight="0.3960265" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32980132" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -883,7 +878,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/validators/model_validators.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
+        <state relative-caret-position="232">
           <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
@@ -893,7 +888,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/orders/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
+        <state relative-caret-position="255">
           <caret line="72" column="67" lean-forward="true" selection-start-line="72" selection-start-column="67" selection-end-line="72" selection-end-column="67" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
