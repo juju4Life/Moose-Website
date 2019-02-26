@@ -27,6 +27,8 @@ class ScatterEventAdmin(admin.ModelAdmin):
 @admin.register(NewOrders)
 class NewOrdersAdmin(admin.ModelAdmin):
     ordering = ['-order_date']
+    search_fields = ['order_number']
+    list_display = ['name', 'expansion', 'printing', 'condition', 'language', 'order_number', ]
 
 
 @admin.register(Inventory)

@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orders/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/check_orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/management/commands/check_orders.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/dashboard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validators/model_validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/validators/model_validators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tcg/price_alogrithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/tcg/price_alogrithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tcg/price_and_upload.py" beforeDir="false" afterPath="$PROJECT_DIR$/tcg/price_and_upload.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,14 +14,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.22493681">
+    <splitter split-orientation="horizontal" split-proportion="0.9">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/tcg/price_and_upload.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="357">
-                  <caret line="108" column="16" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
+                <state relative-caret-position="306">
+                  <caret line="102" lean-forward="true" selection-start-line="102" selection-end-line="102" />
                   <folding>
                     <element signature="e#0#30#0" expanded="true" />
                   </folding>
@@ -31,23 +29,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/orders/models.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="420">
-                  <caret line="111" column="24" lean-forward="true" selection-start-line="111" selection-start-column="24" selection-end-line="111" selection-end-column="24" />
-                  <folding>
-                    <element signature="e#0#28#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/tcg/price_alogrithm.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="298">
-                  <caret line="245" selection-start-line="245" selection-end-line="245" />
+                <state relative-caret-position="919">
+                  <caret line="244" column="16" selection-start-line="244" selection-start-column="16" selection-end-line="244" selection-end-column="16" />
                 </state>
               </provider>
             </entry>
@@ -73,11 +59,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/source/dashboard.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="251">
-                  <caret line="47" column="29" lean-forward="true" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
+                <state relative-caret-position="80">
+                  <caret line="47" column="23" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
                 </state>
               </provider>
             </entry>
@@ -119,10 +105,22 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/orders/management/commands/check_orders.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1688">
+                <state relative-caret-position="-136">
                   <caret line="31" column="70" selection-start-line="31" selection-start-column="70" selection-end-line="31" selection-end-column="70" />
                   <folding>
                     <element signature="e#0#51#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/orders/admin.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="51">
+                  <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+                  <folding>
+                    <element signature="e#0#32#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -156,18 +154,6 @@
                   <caret line="35" column="12" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
                   <folding>
                     <element signature="e#0#50#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/orders/admin.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="250">
-                  <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
-                  <folding>
-                    <element signature="e#0#32#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -214,6 +200,7 @@
       <find>BytesIO</find>
       <find>def import_data</find>
       <find>mtg</find>
+      <find>condi</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -254,9 +241,7 @@
         <option value="$PROJECT_DIR$/source/local_settings.py" />
         <option value="$PROJECT_DIR$/source/urls.py" />
         <option value="$PROJECT_DIR$/Pipfile" />
-        <option value="$PROJECT_DIR$/tcg/price_and_upload.py" />
         <option value="$PROJECT_DIR$/engine/tcgplayer_api.py" />
-        <option value="$PROJECT_DIR$/tcg/price_alogrithm.py" />
         <option value="$PROJECT_DIR$/engine/admin.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_16.py" />
         <option value="$PROJECT_DIR$/.env" />
@@ -273,13 +258,15 @@
         <option value="$PROJECT_DIR$/engine/models.py" />
         <option value="$PROJECT_DIR$/source/dashboard.py" />
         <option value="$PROJECT_DIR$/orders/admin.py" />
+        <option value="$PROJECT_DIR$/tcg/price_alogrithm.py" />
+        <option value="$PROJECT_DIR$/tcg/price_and_upload.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
+    <option name="x" value="1358" />
     <option name="width" value="1390" />
-    <option name="height" value="886" />
+    <option name="height" value="1756" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -498,7 +485,7 @@
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11747212" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2394052" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24981412" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -509,7 +496,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32980132" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49962825" visible="true" weight="0.38410595" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49962825" visible="true" weight="0.24900663" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50037175" side_tool="true" weight="0.3960265" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32980132" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -767,16 +754,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tcg/price_and_upload.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="108" column="16" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/tcgplayer_api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -855,29 +832,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tcg/price_alogrithm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="245" selection-start-line="245" selection-end-line="245" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/validators/model_validators.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="35" column="12" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orders/management/commands/check_orders.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1688">
-          <caret line="31" column="70" selection-start-line="31" selection-start-column="70" selection-end-line="31" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -899,13 +859,6 @@
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/dashboard.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="47" column="29" lean-forward="true" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -936,13 +889,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/orders/management/commands/check_orders.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-136">
+          <caret line="31" column="70" selection-start-line="31" selection-start-column="70" selection-end-line="31" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/orders/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+        <state relative-caret-position="51">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/dashboard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="47" column="23" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tcg/price_and_upload.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="102" lean-forward="true" selection-start-line="102" selection-end-line="102" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tcg/price_alogrithm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="919">
+          <caret line="244" column="16" selection-start-line="244" selection-start-column="16" selection-end-line="244" selection-end-column="16" />
         </state>
       </provider>
     </entry>

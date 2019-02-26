@@ -90,12 +90,16 @@ def upload_sku(sku_list, data, cat_id):
 
                 # Sum of all sku upload quantities to be uploaded to inventory
                 quantity = sum([i.upload_quantity for i in all_skus])
+                printing = sku_card_info.foil
+                category = sku_card_info.product_line
 
                 # quantity must be added to current inventory total, and new quantity for sku is set wrather than incremented
                 upload_quantity = quantity + current_quantity
 
                 # Use pricing tool to adjust upload price
-                upload_price = sku_price_algorithm(condition=condition, sku=sku, market=market_price, direct=direct_low_price, low=low_price)
+                upload_price = sku_price_algorithm(
+                    category=category, printing=printing, condition=condition, sku=sku, market=market_price, direct=direct_low_price, low=low_price
+                )
 
                 # Attempt to upload sku
                 uploaded_card = api.upload(sku, price=upload_price, quantity=upload_quantity)
@@ -108,10 +112,8 @@ def upload_sku(sku_list, data, cat_id):
                 elif uploaded_card['success']:
                     # Update item in Upload model to reflect a successful upload
                     # Query relevant database for details on sku
-                    category = sku_card_info.product_line
                     name = sku_card_info.product_name
                     expansion = sku_card_info.set_name
-                    printing = sku_card_info.foil
                     language = sku_card_info.language
 
                     for upload in all_skus:

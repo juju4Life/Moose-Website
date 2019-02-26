@@ -199,7 +199,7 @@ def buylist_algorithm(condition, market, low=None, mid=None, market_buylist=None
     return new_price
 
 
-def sku_price_algorithm(condition, sku, market, direct=None, low=None):
+def sku_price_algorithm(category, printing, condition, sku, market, direct=None, low=None):
 
     new_price = market
     low_price = low
@@ -233,13 +233,30 @@ def sku_price_algorithm(condition, sku, market, direct=None, low=None):
         product_id = api.card_info_by_sku(sku)['results'][0]['productId']
         market_data = api.get_market_price(str(product_id))['results']
 
-        count = 0
-        while True:
-            print(market_data[count]['subTypeName'], condition)
-            if market_data[count]['subTypeName'].lower() in condition.lower():
-                market_data = market_data[count]
-                break
-            count += 1
+        print(category)
+        if category != "Magic":
+            count = 0
+            while True:
+                print(market_data[count]['subTypeName'], condition)
+                if market_data[count]['subTypeName'].lower() in condition.lower():
+                    market_data = market_data[count]
+                    break
+                count += 1
+
+        else:
+            print('Baba')
+            check_foil = {
+                True: 'Foil',
+                False: "Normal",
+            }
+
+            foil = check_foil[printing]
+            if market_data[0]['subTypeName'] == foil:
+                market_data = market_data[0]
+            else:
+                market_data = market_data[1]
+
+            print(printing)
 
         market_price = market_data['marketPrice']
         low_market_price = market_data['lowPrice']
