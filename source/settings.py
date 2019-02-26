@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'engine',
     'engine.apps.EngineConfig',
+    'orders.apps.OrdersConfig',
     'contact',
     'buylist',
     #'facebook_bot',

@@ -1,5 +1,5 @@
 from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.db.models.signals import pre_save
 from import_export.signals import post_import, post_export
 
 # @receiver(post_save, sender='engine.Upload')
@@ -11,5 +11,4 @@ def upload_items(model, **kwarg):
     task_management(model)
 
 # post_save.connect(upload_items, sender=Events)
-
 
