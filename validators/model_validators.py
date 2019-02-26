@@ -21,6 +21,10 @@ def validate_event_choice(choice):
         )
 
 
-
+def must_be_postive(value):
+    if value < 0:
+        raise ValidationError(
+            _('Number must be grater than 0.')
+        )
 
 

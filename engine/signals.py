@@ -12,3 +12,7 @@ def upload_items(model, **kwarg):
 
 # post_save.connect(upload_items, sender=Events)
 
+
+@receiver(pre_save, sender='orders.Inventory')
+def manage_inventory(instance, **kwargs):
+    print(instance.name)
