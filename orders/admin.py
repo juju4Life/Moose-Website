@@ -30,7 +30,7 @@ class NewOrdersAdmin(admin.ModelAdmin):
     ordering = ['-order_date']
     search_fields = ['customer_name']
     list_filter = ['order_delivery_type', 'order_date']
-    list_display = ['name', 'expansion', 'printing', 'condition', 'language', 'order_number', ]
+    list_display = ['order_date', 'customer_name', 'name', 'expansion', 'printing', 'condition', 'language', 'order_number', ]
 
 
 @admin.register(Inventory)
