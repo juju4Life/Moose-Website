@@ -233,18 +233,18 @@ def sku_price_algorithm(category, printing, condition, sku, market, direct=None,
         product_id = api.card_info_by_sku(sku)['results'][0]['productId']
         market_data = api.get_market_price(str(product_id))['results']
 
-        print(category)
         if category != "Magic":
             count = 0
-            while True:
-                print(market_data[count]['subTypeName'], condition)
-                if market_data[count]['subTypeName'].lower() in condition.lower():
-                    market_data = market_data[count]
-                    break
-                count += 1
+            try:
+                while True:
+                    if market_data[count]['subTypeName'].lower() in condition.lower():
+                        market_data = market_data[count]
+                        break
+                    count += 1
+            except IndexError:
+                market_data = []
 
         else:
-            print('Baba')
             check_foil = {
                 True: 'Foil',
                 False: "Normal",
@@ -256,36 +256,35 @@ def sku_price_algorithm(category, printing, condition, sku, market, direct=None,
             else:
                 market_data = market_data[1]
 
-            print(printing)
+        if market_data:
+            market_price = market_data['marketPrice']
+            low_market_price = market_data['lowPrice']
+            direct_market_price = market_data['lowPrice']
 
-        market_price = market_data['marketPrice']
-        low_market_price = market_data['lowPrice']
-        direct_market_price = market_data['lowPrice']
+            if market_price is not None:
+                if low_market_price is not None:
+                    if low_market_price > market_price:
+                        market_price = low_market_price
+                if direct_market_price is not None:
+                    if direct_market_price > market_price:
+                        if direct_market_price > market_price * 1.15:
+                            market_price = market_price * 1.15
+                        else:
+                            market_price = direct_market_price
 
-        if market_price is not None:
-            if low_market_price is not None:
-                if low_market_price > market_price:
-                    market_price = low_market_price
-            if direct_market_price is not None:
-                if direct_market_price > market_price:
-                    if direct_market_price > market_price * 1.15:
-                        market_price = market_price * 1.15
-                    else:
-                        market_price = direct_market_price
+            else:
+                market_price = low_market_price
 
-        else:
-            market_price = low_market_price
+            if market_price is not None:
+                market_price = market_price * condition_price
 
-        if market_price is not None:
-            market_price = market_price * condition_price
+                if market_price < .25:
+                    market_price = .25
 
-            if market_price < .25:
-                market_price = .25
+                if market_price >= 2. and market_price < 2.25:
+                    market_price = 1.99
 
-            if market_price >= 2. and market_price < 2.25:
-                market_price = 1.99
-
-            return market_price
+                return market_price
 
     else:
 

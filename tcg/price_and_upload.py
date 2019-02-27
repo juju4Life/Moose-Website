@@ -25,7 +25,7 @@ def task_management(obj):
         sku_list = list({i.sku for i in data})
         upload_sku(sku_list, data, cat_id)
 
-    # While loop running function for up to 100 skus for each iteration
+    # if list > 100, While loop run function for up to 100 skus for each iteration
     else:
         start = 0
         stop = 100
@@ -56,7 +56,11 @@ def upload_sku(sku_list, data, cat_id):
         2: ygo,
         3: pokemon,
     }
+
     cat = category_map[cat_id]
+
+    # List of Category ids. Used to keep track of check databses when trying to find correct db for sku
+    cat_ids_list = [cat_id]
 
     # Get market data for list of sku
     api_market_data = api.market_prices_by_sku(sku_list)
@@ -85,80 +89,105 @@ def upload_sku(sku_list, data, cat_id):
                 all_skus = data.filter(sku=sku)
 
                 # Card details for give category
-                sku_card_info = cat.get(sku=sku)
-                condition = sku_card_info.condition
-
-                # Sum of all sku upload quantities to be uploaded to inventory
-                quantity = sum([i.upload_quantity for i in all_skus])
-                printing = sku_card_info.foil
-                category = sku_card_info.product_line
-
-                # quantity must be added to current inventory total, and new quantity for sku is set wrather than incremented
-                upload_quantity = quantity + current_quantity
-
-                # Use pricing tool to adjust upload price
-                upload_price = sku_price_algorithm(
-                    category=category, printing=printing, condition=condition, sku=sku, market=market_price, direct=direct_low_price, low=low_price
-                )
-
-                # Attempt to upload sku
-                uploaded_card = api.upload(sku, price=upload_price, quantity=upload_quantity)
-
-                # Report any errors in uploading
-                if uploaded_card['errors']:
-                    errors_list.append(uploaded_card['errors'][0] + f' for sku: {sku}' + '\n')
-                    print(uploaded_card['errors'])
-
-                elif uploaded_card['success']:
-                    # Update item in Upload model to reflect a successful upload
-                    # Query relevant database for details on sku
-                    name = sku_card_info.product_name
-                    expansion = sku_card_info.set_name
-                    language = sku_card_info.language
-
-                    for upload in all_skus:
-                        upload.upload_status = True
-                        upload.upload_date = date.today()
-                        upload.upload_price = upload_price
-                        upload.category = category
-                        upload.name = name
-                        upload.group_name = expansion
-                        upload.condition = condition
-                        upload.printing = printing
-                        upload.language = language
-                        upload.save()
-
-                    # All changes made are reflected in the online inventory
-                    # If sku is not in inventory, create it
+                # If get sku fails, iterate though each category until the correct db is found
+                # Empty list if sku is not found in any database
+                sku_card_info = []
+                try:
+                    sku_card_info = cat.get(sku=sku)
+                except ObjectDoesNotExist:
                     try:
-                        online_stock = inventory.get(sku=sku)
-                        online_stock.quantity = upload_quantity
-                        online_stock.last_upload_date = date.today()
-                        online_stock.last_upload_quantity = quantity
-                        online_stock.save()
-
+                        if 2 not in cat_ids_list:
+                            cat = category_map[2]
+                            sku_card_info = cat.get(sku=sku)
                     except ObjectDoesNotExist:
-                        new = Inventory(
-                            sku=sku,
-                            quantity=upload_quantity,
-                            expansion=expansion,
-                            name=name,
-                            condition=condition,
-                            printing=printing,
-                            language=language,
-                            category=category,
-                            rarity='unknown',
-                            price=upload_price,
-                            last_upload_date=date.today(),
-                            last_upload_quantity=quantity,
-                            last_sold_date=date(1111, 1, 1),
-                            last_sold_quantity=0,
-                            last_sold_price=0,
-                            total_quantity_sold=0,
-                        )
-                        new.save()
+                        cat_ids_list.append(2)
+                        try:
+                            if 3 not in cat_ids_list:
+                                cat = category_map[3]
+                                sku_card_info = cat.get(sku=sku)
+                        except ObjectDoesNotExist:
+                            cat_ids_list.append(3)
+                            try:
+                                if 1 not in cat_ids_list:
+                                    cat = category_map[1]
+                                    sku_card_info = cat.get(sku=sku)
+                            except ObjectDoesNotExist:
+                                pass
 
-                    print('Yass')
+                if sku_card_info:
+                    condition = sku_card_info.condition
+
+                    # Sum of all sku upload quantities to be uploaded to inventory
+                    quantity = sum([i.upload_quantity for i in all_skus])
+                    printing = sku_card_info.foil
+                    category = sku_card_info.product_line
+
+                    # quantity must be added to current inventory total, and new quantity for sku is set wrather than incremented
+                    upload_quantity = quantity + current_quantity
+
+                    # Use pricing tool to adjust upload price
+                    upload_price = sku_price_algorithm(
+                        category=category, printing=printing, condition=condition, sku=sku, market=market_price, direct=direct_low_price, low=low_price
+                    )
+
+                    # Attempt to upload sku
+                    uploaded_card = api.upload(sku, price=upload_price, quantity=upload_quantity)
+
+                    # Report any errors in uploading
+                    if uploaded_card['errors']:
+                        errors_list.append(uploaded_card['errors'][0] + f' for sku: {sku}' + '\n')
+                        print(uploaded_card['errors'])
+
+                    elif uploaded_card['success']:
+                        # Update item in Upload model to reflect a successful upload
+                        # Query relevant database for details on sku
+                        name = sku_card_info.product_name
+                        expansion = sku_card_info.set_name
+                        language = sku_card_info.language
+
+                        for upload in all_skus:
+                            upload.upload_status = True
+                            upload.upload_date = date.today()
+                            upload.upload_price = upload_price
+                            upload.category = category
+                            upload.name = name
+                            upload.group_name = expansion
+                            upload.condition = condition
+                            upload.printing = printing
+                            upload.language = language
+                            upload.save()
+
+                        # All changes made are reflected in the online inventory
+                        # If sku is not in inventory, create it
+                        try:
+                            online_stock = inventory.get(sku=sku)
+                            online_stock.quantity = upload_quantity
+                            online_stock.last_upload_date = date.today()
+                            online_stock.last_upload_quantity = quantity
+                            online_stock.save()
+
+                        except ObjectDoesNotExist:
+                            new = Inventory(
+                                sku=sku,
+                                quantity=upload_quantity,
+                                expansion=expansion,
+                                name=name,
+                                condition=condition,
+                                printing=printing,
+                                language=language,
+                                category=category,
+                                rarity='unknown',
+                                price=upload_price,
+                                last_upload_date=date.today(),
+                                last_upload_quantity=quantity,
+                                last_sold_date=date(1111, 1, 1),
+                                last_sold_quantity=0,
+                                last_sold_price=0,
+                                total_quantity_sold=0,
+                            )
+                            new.save()
+
+                        print('Yass')
 
     else:
         print(api_market_data['errors'])
