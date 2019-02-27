@@ -54,6 +54,8 @@ class Command(BaseCommand):
                     shipping_first_name = o['customer']['shippingAddress']['firstName']
                     shipping_last_name = o['customer']['shippingAddress']['lastName']
                     customer_name = f"{shipping_first_name} {shipping_last_name}"
+                    order_delivery = M.order_delivery_types(o['orderDeliveryTypeId'])
+
                     cards = api.get_order_items(order_number)['results']
 
                     # Create dictionary of sku, qty, and price. This information is needed to query for product-specific information later

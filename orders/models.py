@@ -147,7 +147,7 @@ class Inventory(models.Model):
 
 class NewOrders(models.Model):
     customer_name = models.CharField(max_length=255, default='Unknown')
-    check_order_date = models.DateField(blank=True)
+    order_delivery_type = models.CharField(max_length=255, default='Unknown')
     order_date = models.DateField()
     order_number = models.CharField(max_length=255, default='')
     sku = models.CharField(max_length=255, default='')

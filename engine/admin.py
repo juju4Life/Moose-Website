@@ -150,7 +150,8 @@ class UploadAdmin(ImportExportModelAdmin):
 
     resource_class = UpdateResource
     search_fields = ['name', ]
-    list_display = ['category', 'printing', 'name', 'group_name', 'condition', 'language', 'upload_price', 'upload_quantity', 'upload_date', 'upload_status',]
+    list_display = ['category', 'printing', 'name', 'group_name', 'condition', 'language', 'upload_price', 'upload_quantity', 'upload_date', 'upload_status',
+                    'sku']
 
 # ----------------------------------------------------------------------------------------------------------------------------
 

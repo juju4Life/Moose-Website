@@ -14,7 +14,7 @@ class InventoryResource(resources.ModelResource):
 @admin.register(Orders)
 class OrdersAdmin(admin.ModelAdmin):
     ordering = ['-order_date']
-    list_filter = ['order_delivery_type', 'category']
+    list_filter = ['is_direct', 'order_delivery_type', 'category']
     search_fields = ['order_number']
     list_display = ['order_number', 'order_date', 'category', 'order_delivery_type', 'product_value', 'net', 'is_direct']
     change_list_template = 'admin/orders_change_list.html'
@@ -28,7 +28,8 @@ class ScatterEventAdmin(admin.ModelAdmin):
 @admin.register(NewOrders)
 class NewOrdersAdmin(admin.ModelAdmin):
     ordering = ['-order_date']
-    search_fields = ['order_number']
+    search_fields = ['customer_name']
+    list_filter = ['order_date']
     list_display = ['name', 'expansion', 'printing', 'condition', 'language', 'order_number', ]
 
 
