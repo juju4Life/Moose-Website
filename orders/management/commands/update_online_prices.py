@@ -86,7 +86,7 @@ class Command(BaseCommand):
 
                     # Loop through each item in Inventory, if quantity > 0  and ignore Sealed product
                     for item in inventory:
-                        if item.quantity > 0:
+                        if item.quantity > 0 and item.price == 0:
                             if item.condition != 'Unopened':
 
                                 # API call using each sku for product_id

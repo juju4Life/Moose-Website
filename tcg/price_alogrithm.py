@@ -48,8 +48,9 @@ def price_foils(condition, low, direct=None, mid=None, market=None):
         if price < .25:
             price = .25
 
-        if market > price * 1.5:
-            price = price * 1.20
+        if market is not None:
+            if market > price * 1.5:
+                price = price * 1.20
 
         if price >= 2. and price <= 2.25:
             price = 1.99
