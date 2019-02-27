@@ -7,7 +7,6 @@ from my_customs.decorators import report_error
 from engine.tcg_manifest import Manifest
 from orders.models import NewOrders, Inventory
 from datetime import date
-from collections import Counter
 from decouple import config
 
 api = TcgPlayerApi()
@@ -54,6 +53,7 @@ class Command(BaseCommand):
                     order_date = o['orderedOn'][0:10]
                     shipping_first_name = o['customer']['shippingAddress']['firstName']
                     shipping_last_name = o['customer']['shippingAddress']['lastName']
+                    customer_name = f"{shipping_first_name} {shipping_last_name}"
                     cards = api.get_order_items(order_number)['results']
 
                     # Create dictionary of sku, qty, and price. This information is needed to query for product-specific information later
@@ -123,6 +123,7 @@ class Command(BaseCommand):
 
                             # Create reference for each ordered card
                             items = NewOrders(
+                                customer_name=customer_name,
                                 check_order_date=date.today(),
                                 order_number=order_number,
                                 order_date=order_date,
