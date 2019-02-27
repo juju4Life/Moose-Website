@@ -98,6 +98,7 @@ class Command(BaseCommand):
 
                                 # Run pricing algorithm base on foiling an language
                                 is_foil = foil_map[item.printing]
+                                updated_price = 0
                                 if is_foil == 'Normal':
                                     price_lib = price_lib['Normal']
 
@@ -142,8 +143,9 @@ class Command(BaseCommand):
 
                                 else:
                                     raise Exception(f'Card {item.name} {item.expansion} not labeled foil or non-foil, {item.printing}')
-                                api.update_sku_price(sku, updated_price, _json=True)
-                                item.save()
+                                if updated_price > 0:
+                                    api.update_sku_price(sku, updated_price, _json=True)
+                                    item.save()
 
         stop = time()
 
