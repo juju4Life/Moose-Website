@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/orders/management/commands/update_online_prices.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_group_categries.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/update_group_categries.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/tcgplayer_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tcgplayer_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tcg/price_alogrithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/tcg/price_alogrithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/tcg_credentials.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tcg_credentials.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/tcgplayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tcgplayer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/management/commands/update_online_prices.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/management/commands/update_online_prices.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.15762082">
+    <splitter split-orientation="horizontal" split-proportion="0.13234201">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -33,8 +31,20 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/engine/tcgplayer_api.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1071">
-                  <caret line="127" lean-forward="true" selection-start-line="127" selection-end-line="127" />
+                <state relative-caret-position="46">
+                  <caret line="35" selection-start-line="35" selection-end-line="35" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/engine/tcgplayer.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="238">
+                  <caret line="467" column="27" selection-start-line="467" selection-start-column="27" selection-end-line="467" selection-end-column="27" />
+                  <folding>
+                    <element signature="e#0#27#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -51,10 +61,10 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/tcg/price_alogrithm.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="151">
+                <state relative-caret-position="38">
                   <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
                 </state>
               </provider>
@@ -124,8 +134,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/orders/management/commands/update_online_prices.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="253">
-                  <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
+                <state relative-caret-position="269">
+                  <caret line="147" lean-forward="true" selection-start-line="147" selection-end-line="147" />
                   <folding>
                     <element signature="e#0#51#0" expanded="true" />
                   </folding>
@@ -136,8 +146,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/engine/tcg_credentials.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="141">
-                  <caret line="36" selection-start-line="36" selection-end-line="36" />
+                <state relative-caret-position="99">
+                  <caret line="54" selection-start-line="54" selection-end-line="54" />
                   <folding>
                     <element signature="e#0#34#0" expanded="true" />
                   </folding>
@@ -244,7 +254,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/orders/management/commands/one_time.py" />
         <option value="$PROJECT_DIR$/source/celery.py" />
         <option value="$PROJECT_DIR$/dashboard.py" />
         <option value="$PROJECT_DIR$/engine/templates/base.html" />
@@ -282,7 +291,6 @@
         <option value="$PROJECT_DIR$/engine/apps.py" />
         <option value="$PROJECT_DIR$/orders/forms.py" />
         <option value="$PROJECT_DIR$/validators/model_validators.py" />
-        <option value="$PROJECT_DIR$/engine/tcg_credentials.py" />
         <option value="$PROJECT_DIR$/orders/management/commands/update_orders.py" />
         <option value="$PROJECT_DIR$/engine/admin.py" />
         <option value="$PROJECT_DIR$/engine/models.py" />
@@ -292,8 +300,10 @@
         <option value="$PROJECT_DIR$/source/menu.py" />
         <option value="$PROJECT_DIR$/orders/models.py" />
         <option value="$PROJECT_DIR$/engine/management/commands/update_group_categries.py" />
-        <option value="$PROJECT_DIR$/engine/tcgplayer_api.py" />
         <option value="$PROJECT_DIR$/tcg/price_alogrithm.py" />
+        <option value="$PROJECT_DIR$/engine/tcgplayer_api.py" />
+        <option value="$PROJECT_DIR$/engine/tcgplayer.py" />
+        <option value="$PROJECT_DIR$/engine/tcg_credentials.py" />
         <option value="$PROJECT_DIR$/orders/management/commands/update_online_prices.py" />
       </list>
     </option>
@@ -539,7 +549,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32980132" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49962825" visible="true" weight="0.41986755" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49962825" visible="true" weight="0.40662253" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50037175" side_tool="true" weight="0.3960265" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32980132" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -578,13 +588,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/engine/templates/navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="85" column="50" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orders/templates/admin/orders_change_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -898,16 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/tcg_credentials.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/management/commands/update_group_categries.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
@@ -925,13 +918,6 @@
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/tcgplayer_api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="127" lean-forward="true" selection-start-line="127" selection-end-line="127" />
         </state>
       </provider>
     </entry>
@@ -964,15 +950,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tcg/price_alogrithm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
+        <state relative-caret-position="38">
           <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/tcgplayer_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/tcgplayer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="467" column="27" selection-start-line="467" selection-start-column="27" selection-end-line="467" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/tcg_credentials.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/orders/management/commands/update_online_prices.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
+        <state relative-caret-position="269">
+          <caret line="147" lean-forward="true" selection-start-line="147" selection-end-line="147" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>

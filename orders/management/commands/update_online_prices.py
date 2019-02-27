@@ -15,8 +15,8 @@ class Command(BaseCommand):
         start = time()
         # Cards in database as True or False for printing type
         foil_map = {
-            True: 'Foil',
-            False: 'Normal',
+            'True': 'Foil',
+            'False': 'Normal',
         }
 
         # Maps condition for cards that have other information attached to the condition field
@@ -97,9 +97,10 @@ class Command(BaseCommand):
                                 price_lib = d[product_id]
 
                                 # Run pricing algorithm base on foiling an language
-                                is_foil = foil_map[bool(item.printing)]
+                                is_foil = foil_map[item.printing]
                                 if is_foil == 'Normal':
                                     price_lib = price_lib['Normal']
+
                                     if item.language == 'English':
                                         condition = item.condition
                                         updated_price = price_algorithm(
@@ -141,6 +142,7 @@ class Command(BaseCommand):
 
                                 else:
                                     raise Exception(f'Card {item.name} {item.expansion} not labeled foil or non-foil, {item.printing}')
+                                api.update_sku_price(sku, updated_price, _json=True)
                                 item.save()
 
         stop = time()

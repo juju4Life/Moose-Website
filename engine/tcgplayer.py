@@ -369,7 +369,7 @@ def update_inventory():
             non_foil_prices = {}
             inventory = get_inventory(group_id_list[group_id_count], 100, offset_count)['results']
 
-            # Get Product ID for each card in out inventory (FOil or Non-foil)
+            # Get Product ID for each card in our inventory (FOil or Non-foil)
             product_ids = [str(i['productId']) for i in inventory]
 
             # Format to string with comma to mass get_price for product_Ids
