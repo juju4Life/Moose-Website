@@ -29,7 +29,7 @@ class ScatterEventAdmin(admin.ModelAdmin):
 class NewOrdersAdmin(admin.ModelAdmin):
     ordering = ['-order_date']
     search_fields = ['customer_name']
-    list_filter = ['order_date']
+    list_filter = ['order_delivery_type', 'order_date']
     list_display = ['name', 'expansion', 'printing', 'condition', 'language', 'order_number', ]
 
 

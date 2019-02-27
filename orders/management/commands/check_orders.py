@@ -126,6 +126,7 @@ class Command(BaseCommand):
                             # Create reference for each ordered card
                             items = NewOrders(
                                 customer_name=customer_name,
+                                order_delivery_type=order_delivery,
                                 check_order_date=date.today(),
                                 order_number=order_number,
                                 order_date=order_date,
