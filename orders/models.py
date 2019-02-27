@@ -69,7 +69,7 @@ class ScatterEvent(models.Model):
 
 
 class InventoryAnalytics(models.Model):
-    check_date = models.DateField(default=timezone.now(), verbose_name='Date')
+    check_date = models.DateField(default=timezone.now, verbose_name='Date')
 
     inventory_total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     inventory_quantity = models.IntegerField(default=0)
@@ -86,12 +86,23 @@ class InventoryAnalytics(models.Model):
     total_of_english_mtg_quantity = models.IntegerField(default=0)
     total_of_english_mtg = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
-    total_of_mtg_sealed_product = models.IntegerField(default=0)
-    total_of_mtg_sealed_product = models.IntegerField(default=0)
-    total_of_yugioh = models.IntegerField(default=0)
-    total_of_pokemon = models.IntegerField(default=0)
-    total_of_supplies = models.IntegerField(default=0)
+    total_of_mtg_sealed_product_quantity = models.IntegerField(default=0)
+    total_of_mtg_sealed_product = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
+    total_of_yugioh_quantity = models.IntegerField(default=0)
+    total_of_yugioh = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+
+    total_of_pokemon_quantity = models.IntegerField(default=0)
+    total_of_pokemon = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+
+    total_of_supplies_quantity = models.IntegerField(default=0)
+    total_of_supplies = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+
+    def __str__(self):
+        return self.check_date
+
+    class Meta:
+        verbose_name_plural = 'Inventory Analytics'
 
 class Inventory(models.Model):
 
