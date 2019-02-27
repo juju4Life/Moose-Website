@@ -69,7 +69,7 @@ class ScatterEvent(models.Model):
 
 class Inventory(models.Model):
 
-    update_inventory_quantity = models.IntegerField(default=0, validators=[confirm_quantity_sync])
+    update_inventory_quantity = models.IntegerField(default=0)
     sku = models.CharField(max_length=255, default='', unique=True)
     quantity = models.IntegerField(default=0)
     expansion = models.CharField(max_length=255, default='')
@@ -90,11 +90,63 @@ class Inventory(models.Model):
     def __str__(self):
         return self.name
 
+    def __init__(self, *args, **kwargs):
+        super(Inventory, self).__init__(*args, **kwargs)
+        self.upload_q = self.update_inventory_quantity
+
+    def clean(self):
+        from engine.tcgplayer_api import TcgPlayerApi
+        api = TcgPlayerApi()
+
+        if self.update_inventory_quantity < 0:
+            current_quantity = api.get_sku_quantity(self.sku)
+            if current_quantity['errors']:
+                raise ValidationError(
+                    {'update_inventory_quantity': current_quantity['errors'][0]}
+                )
+            else:
+                if current_quantity['results'][0]['quantity'] + self.update_inventory_quantity < 0:
+
+                    raise ValidationError(
+                        {'update_inventory_quantity': f"Cannot remove more than {current_quantity}"}
+                    )
+                else:
+                    res = api.increment_sku_quantity(self.sku, self.update_inventory_quantity)
+
+                    if res['errors']:
+                        raise ValidationError(
+                            {'update_inventory_quantity': res['errors'][0]}
+                        )
+                    elif res['success']:
+                        self.quantity += self.update_inventory_quantity
+                        self.update_inventory_quantity = 0
+                    else:
+                        raise ValidationError(
+                            {'update_inventory_quantity': 'Unknown Error. Card may not be uploaded.'}
+                        )
+
+        elif self.update_inventory_quantity > 0:
+            res = api.increment_sku_quantity(self.sku, self.update_inventory_quantity)
+
+            if res['errors']:
+                raise ValidationError(
+                    {'update_inventory_quantity': res['errors'][0]}
+                )
+            elif res['success']:
+                self.quantity += self.update_inventory_quantity
+            else:
+                raise ValidationError(
+                    {'update_inventory_quantity': 'Unkown erorr. Card may not have been uploaded.'}
+                )
+        else:
+            pass
+
     class Meta:
         verbose_name_plural = "Inventory"
 
 
 class NewOrders(models.Model):
+    customer_name = models.CharField(max_length=255, default='Unknown')
     check_order_date = models.DateField(blank=True)
     order_date = models.DateField()
     order_number = models.CharField(max_length=255, default='')
@@ -109,7 +161,7 @@ class NewOrders(models.Model):
     quantity = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return self.order_number
 
     class Meta:
         verbose_name_plural = "Ordered Singles"

@@ -103,22 +103,6 @@ class Command(BaseCommand):
                                     conc = f"{category}<>{q}<>{name}<>{expansion}<>{language}<>{condition}<>{printing}<>{price}<>{sku}"
                                     ordered_items.append(conc)
 
-                                    # Create reference for each ordered card
-                                    items = NewOrders(
-                                        check_order_date=date.today(),
-                                        order_number=order_number,
-                                        order_date=order_date,
-                                        sku=sku,
-                                        name=name,
-                                        expansion=expansion,
-                                        category=category,
-                                        condition=condition,
-                                        printing=printing,
-                                        language=language,
-                                        price=price,
-                                        quantity=q,
-                                    )
-                                    items.save()
                             total -= 100
                         db = Orders(
                             category=category,

@@ -111,6 +111,12 @@ class TcgPlayerApi:
     def market_prices_by_sku(self, sku):
         return self.credentials.get_request(f'pricing/sku/{",".join(sku)}')
 
+    def increment_sku_quantity(self, sku, quantity):
+        data = {
+            "quantity": quantity,
+        }
+        return self.credentials.post_request(f'stores/{store_key}/inventory/skus/{sku}/quantity', data=data)
+
 
 
 
