@@ -4,6 +4,7 @@ from my_customs.decorators import report_error
 from engine.tcg_manifest import Manifest
 from orders.models import GroupName, Inventory
 from tcg.price_alogrithm import *
+from time import time
 
 api = TcgPlayerApi()
 M = Manifest()
@@ -11,7 +12,7 @@ M = Manifest()
 
 class Command(BaseCommand):
     def handle(self, **options):
-
+        start = time()
         # Cards in database as True or False for printing type
         foil_map = {
             True: 'Foil',
@@ -142,8 +143,11 @@ class Command(BaseCommand):
                                     raise Exception(f'Card {item.name} {item.expansion} not labeled foil or non-foil, {item.printing}')
                                 item.save()
 
+        stop = time()
 
+        elapsed = stop - start
 
+        print(f"Function finished in {elapsed}")
 
 
 
