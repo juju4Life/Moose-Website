@@ -145,7 +145,7 @@ class Upload(models.Model):
     name = models.CharField(max_length=255, default='')
     group_name = models.CharField(max_length=255, default='')
     condition = models.CharField(max_length=255, default='')
-    printing = models.CharField(max_length=255, default='')
+    printing = models.CharField(max_length=255, default='', verbose_name='Foil')
     language = models.CharField(max_length=255, default='')
     category = models.CharField(max_length=255, default='')
     upload_quantity = models.IntegerField(default=0)
