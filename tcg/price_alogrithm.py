@@ -5,18 +5,19 @@ api = TcgPlayerApi()
 
 def price_foreign(condition, language, low, direct=None, mid=None, market=None):
     condition_map = {
+        'near mint': 1.,
         'lightly played': 1.,
         'moderately played': .85,
         'heavily played': .70,
         'damaged': .60,
     }
 
-    old_sets = ["urza's saga"," urza's legacy" ,"urza's destiny" ,"exodus" ,"stronghold" ,"tempest" ,"mirage" ,"visions",
+    old_sets = ["urza's saga", " urza's legacy" , "urza's destiny" , "exodus" ,"stronghold" ,"tempest" ,"mirage" ,"visions",
 
-                "weatherlight" ,"fifth edition" ,"fourth edition" ,]
+                "weatherlight" , "fifth edition", "fourth edition",]
 
     if low is not None:
-        price = low * condition_map[condition]
+        price = low * condition_map[condition.lower()]
         if language == 'korean' and language in old_sets:
             price = price * 1.25
 
@@ -34,6 +35,7 @@ def price_foreign(condition, language, low, direct=None, mid=None, market=None):
 
 def price_foils(condition, low, direct=None, mid=None, market=None):
     condition_map = {
+        'near mint': 1.,
         'lightly played': 1.,
         'moderately played': .85,
         'heavily played': .70,
@@ -41,7 +43,7 @@ def price_foils(condition, low, direct=None, mid=None, market=None):
     }
 
     if low is not None:
-        price = low * condition_map[condition]
+        price = low * condition_map[condition.lower()]
 
         if price < .25:
             price = .25

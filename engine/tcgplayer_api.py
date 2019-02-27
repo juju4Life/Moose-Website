@@ -117,7 +117,11 @@ class TcgPlayerApi:
         }
         return self.credentials.post_request(f'stores/{store_key}/inventory/skus/{sku}/quantity', data=data)
 
+    def get_group_id_info(self, group_id):
+        return self.credentials.get_request(f"catalog/groups/{group_id}")
 
+    def price_by_group_id(self, group_id):
+        return self.credentials.get_request(f'pricing/group/{group_id}')
 
 
 
