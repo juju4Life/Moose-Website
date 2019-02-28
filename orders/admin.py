@@ -45,7 +45,7 @@ class InventoryAdmin(ImportExportModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                ('update_inventory_quantity',),
+                ('update_inventory_quantity', 'update_inventory_price',),
                 ('printing',),
                 ('price', 'quantity'),
                 ('name', 'expansion',),

@@ -105,7 +105,6 @@ class Command(BaseCommand):
 
                                 # Run pricing algorithm base on foiling an language
 
-                                updated_price = None
                                 if is_foil == 'Normal':
                                     price_lib = price_lib['Normal']
 
@@ -119,6 +118,9 @@ class Command(BaseCommand):
                                             low=price_lib['low'],
                                         )
                                         item.price = updated_price
+                                        if updated_price is not None:
+                                            api.update_sku_price(sku, updated_price, _json=True)
+                                            item.save()
 
                                     else:
                                         condition = condition_map(item.condition)
@@ -131,6 +133,9 @@ class Command(BaseCommand):
                                             low=price_lib['low'],
                                         )
                                         item.price = updated_price
+                                        if updated_price is not None:
+                                            api.update_sku_price(sku, updated_price, _json=True)
+                                            item.save()
 
                                 elif is_foil == 'Foil':
                                     price_lib = price_lib['Foil']
@@ -144,15 +149,20 @@ class Command(BaseCommand):
                                             low=price_lib['low'],
                                         )
                                         item.price = updated_price
+                                        if updated_price is not None:
+                                            api.update_sku_price(sku, updated_price, _json=True)
+                                            item.save()
                                     elif item.language != 'English':
-                                        # Foil Foreign
                                         pass
+
+                                    else:
+                                        print(f"{is_foil} {item.name} {item.expansion} {item.price}")
 
                                 else:
                                     raise Exception(f'Card {item.name} {item.expansion} not labeled foil or non-foil, {item.printing}')
-                                if updated_price is not None:
-                                    api.update_sku_price(sku, updated_price, _json=True)
-                                    item.save()
+
+                            elif item.condition == 'Unopened':
+                                pass
 
         stop = time()
 
