@@ -69,7 +69,7 @@ class ScatterEvent(models.Model):
 
 
 class InventoryAnalytics(models.Model):
-    check_date = models.DateField(default=timezone.now, verbose_name='Date')
+    check_date = models.DateField(verbose_name='Date', auto_now_add=True)
 
     inventory_total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     inventory_quantity = models.IntegerField(default=0)
@@ -104,9 +104,11 @@ class InventoryAnalytics(models.Model):
     class Meta:
         verbose_name_plural = 'Inventory Analytics'
 
+
 class Inventory(models.Model):
 
     update_inventory_quantity = models.IntegerField(default=0)
+    update_inventory_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     sku = models.CharField(max_length=255, default='', unique=True)
     quantity = models.IntegerField(default=0)
     expansion = models.CharField(max_length=255, default='')

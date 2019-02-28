@@ -57,16 +57,16 @@ class Command(BaseCommand):
                     d = {
                         i['productId']: {
                             'Foil': {
-                                'low': 0,
-                                'mid': 0,
-                                'market': 0,
-                                'direct': 0,
+                                'low': None,
+                                'mid': None,
+                                'market': None,
+                                'direct': None,
                             },
                             'Normal': {
-                                'low': 0,
-                                'mid': 0,
-                                'market': 0,
-                                'direct': 0,
+                                'low': None,
+                                'mid': None,
+                                'market': None,
+                                'direct': None,
                             },
                         } for i in pricing_data
                     }
@@ -93,12 +93,19 @@ class Command(BaseCommand):
                                 sku = item.sku
                                 product_id = api.card_info_by_sku(sku)['results'][0]['productId']
 
+                                is_foil = foil_map[item.printing]
                                 # Grab pricing data from dictionary using product id
-                                price_lib = d[product_id]
+                                try:
+                                    price_lib = d[product_id]
+                                except KeyError:
+                                    get_price = api.get_market_price(str(product_id))['results']
+                                    price_lib = get_price[0]
+                                    if price_lib['subTypeName'] != is_foil:
+                                        price_lib = get_price[1]
 
                                 # Run pricing algorithm base on foiling an language
-                                is_foil = foil_map[item.printing]
-                                updated_price = 0
+
+                                updated_price = None
                                 if is_foil == 'Normal':
                                     price_lib = price_lib['Normal']
 
@@ -137,13 +144,13 @@ class Command(BaseCommand):
                                             low=price_lib['low'],
                                         )
                                         item.price = updated_price
-                                    else:
+                                    elif item.language != 'English':
                                         # Foil Foreign
                                         pass
 
                                 else:
                                     raise Exception(f'Card {item.name} {item.expansion} not labeled foil or non-foil, {item.printing}')
-                                if updated_price > 0:
+                                if updated_price is not None:
                                     api.update_sku_price(sku, updated_price, _json=True)
                                     item.save()
 
