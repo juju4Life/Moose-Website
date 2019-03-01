@@ -38,7 +38,7 @@ class InventoryAdmin(ImportExportModelAdmin):
     resource_class = InventoryResource
     save_on_top = True
     search_fields = ['name']
-    list_filter = ['category', 'printing', 'language', 'expansion']
+    list_filter = ['category', 'printing', 'language', 'condition', 'expansion']
     ordering = ['-total_quantity_sold', 'expansion']
     list_display = ['name', 'expansion', 'quantity', 'price',  'category', 'printing', 'condition', 'last_upload_date',
                     'last_sold_date', 'total_quantity_sold']
@@ -68,4 +68,7 @@ class InventoryAdmin(ImportExportModelAdmin):
                        'last_sold_price', 'total_quantity_sold', 'sku',)
 
 
-admin.site.register(GroupName)
+@admin.register(GroupName)
+class GroupNameAdmin(admin.ModelAdmin):
+    ordering = ['category', 'group_name']
+    search_fields = ['group_name']

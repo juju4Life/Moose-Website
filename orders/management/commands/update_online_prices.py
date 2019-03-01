@@ -117,12 +117,13 @@ class Command(BaseCommand):
                                             mid=price_lib['mid'],
                                             low=price_lib['low'],
                                         )
-                                        item.price = updated_price
                                         if updated_price is not None:
+                                            item.price = updated_price
                                             api.update_sku_price(sku, updated_price, _json=True)
+                                            print(f"{is_foil} {item.name} {item.expansion} {item.condition} {item.price} {item.language}")
                                             item.save()
 
-                                    else:
+                                    elif item.language != 'English':
                                         condition = condition_map(item.condition)
                                         updated_price = price_foreign(
                                             language=item.language,
@@ -132,9 +133,11 @@ class Command(BaseCommand):
                                             mid=price_lib['mid'],
                                             low=price_lib['low'],
                                         )
-                                        item.price = updated_price
+
                                         if updated_price is not None:
+                                            item.price = updated_price
                                             api.update_sku_price(sku, updated_price, _json=True)
+                                            print(f"{is_foil} {item.name} {item.expansion} {item.condition} {item.price} {item.language}")
                                             item.save()
 
                                 elif is_foil == 'Foil':
@@ -148,15 +151,16 @@ class Command(BaseCommand):
                                             mid=price_lib['mid'],
                                             low=price_lib['low'],
                                         )
-                                        item.price = updated_price
                                         if updated_price is not None:
+                                            item.price = updated_price
                                             api.update_sku_price(sku, updated_price, _json=True)
+                                            item.price = updated_price
                                             item.save()
                                     elif item.language != 'English':
                                         pass
 
                                     else:
-                                        print(f"{is_foil} {item.name} {item.expansion} {item.price}")
+                                        print(f"Unknown Unknown: {is_foil} {item.name} {item.expansion} {item.price}")
 
                                 else:
                                     raise Exception(f'Card {item.name} {item.expansion} not labeled foil or non-foil, {item.printing}')

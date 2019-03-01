@@ -98,6 +98,9 @@ class InventoryAnalytics(models.Model):
     total_of_supplies_quantity = models.IntegerField(default=0)
     total_of_supplies = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
+    total_of_others_quantity = models.IntegerField(default=0)
+    total_of_others = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+
     def __str__(self):
         return self.check_date
 
@@ -190,13 +193,12 @@ class Inventory(models.Model):
                 {'update_inventory_price': 'Price cannot be less than 0.'}
             )
 
-
-
     class Meta:
         verbose_name_plural = "Inventory"
 
 
 class NewOrders(models.Model):
+    is_direct = models.BooleanField(default=False)
     customer_name = models.CharField(max_length=255, default='Unknown')
     order_delivery_type = models.CharField(max_length=255, default='Unknown')
     order_date = models.DateField()
