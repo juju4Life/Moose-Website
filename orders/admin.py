@@ -16,7 +16,7 @@ class OrdersAdmin(admin.ModelAdmin):
     ordering = ['-order_date']
     list_filter = ['is_direct', 'order_delivery_type', 'category']
     search_fields = ['order_number']
-    list_display = ['order_number', 'order_date', 'category', 'order_delivery_type', 'product_value', 'quantity', 'net', 'is_direct']
+    list_display = ['order_number', 'order_date', 'category', 'order_delivery_type', 'product_value', 'net', 'is_direct']
     change_list_template = 'admin/orders_change_list.html'
 
 
@@ -30,7 +30,7 @@ class NewOrdersAdmin(admin.ModelAdmin):
     ordering = ['-order_date']
     search_fields = ['name']
     list_filter = ['is_direct', 'order_delivery_type', 'order_date', 'printing', 'language']
-    list_display = ['order_date', 'customer_name', 'name', 'expansion', 'printing', 'condition', 'language', 'order_number', 'price', 'is_direct']
+    list_display = ['order_date', 'customer_name', 'name', 'expansion', 'printing', 'condition', 'language', 'order_number', 'price', 'quantity', 'is_direct']
 
 
 @admin.register(Inventory)
