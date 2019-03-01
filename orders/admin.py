@@ -16,7 +16,7 @@ class OrdersAdmin(admin.ModelAdmin):
     ordering = ['-order_date']
     list_filter = ['is_direct', 'order_delivery_type', 'category']
     search_fields = ['order_number']
-    list_display = ['order_number', 'order_date', 'category', 'order_delivery_type', 'product_value', 'net', 'is_direct']
+    list_display = ['order_number', 'order_date', 'category', 'order_delivery_type', 'product_value', 'quantity', 'net', 'is_direct']
     change_list_template = 'admin/orders_change_list.html'
 
 
