@@ -141,6 +141,16 @@ class Inventory(models.Model):
         from decimal import Decimal
         api = TcgPlayerApi()
 
+        if self.update_inventory_price > Decimal(0):
+            api.update_sku_price(self.sku, float(self.update_inventory_price), _json=True)
+            self.price = self.update_inventory_price
+            self.update_inventory_price = 0
+
+        elif self.update_inventory_price < Decimal(0):
+            raise ValidationError(
+                {'update_inventory_price': 'Price cannot be less than 0.'}
+            )
+
         if self.update_inventory_quantity < 0:
             current_quantity = api.get_sku_quantity(self.sku)
             if current_quantity['errors']:
@@ -177,20 +187,16 @@ class Inventory(models.Model):
                 )
             elif res['success']:
                 self.quantity += self.update_inventory_quantity
+                self.last_upload_price = self.price
+                self.last_upload_quantity = self.update_inventory_quantity
+                self.last_upload_date = date.today()
+                self.update_inventory_quantity = 0
             else:
                 raise ValidationError(
                     {'update_inventory_quantity': 'Unkown erorr. Card may not have been uploaded.'}
                 )
 
-        if self.update_inventory_price > Decimal(0):
-            api.update_sku_price(self.sku, float(self.update_inventory_price), _json=True)
-            self.price = self.update_inventory_price
-            self.update_inventory_price = 0
 
-        elif self.update_inventory_price < Decimal(0):
-            raise ValidationError(
-                {'update_inventory_price': 'Price cannot be less than 0.'}
-            )
 
     class Meta:
         verbose_name_plural = "Inventory"
