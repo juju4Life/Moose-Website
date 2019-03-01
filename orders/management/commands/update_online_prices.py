@@ -110,7 +110,7 @@ class Command(BaseCommand):
 
                                     if item.language == 'English':
                                         condition = item.condition
-                                        updated_price = price_algorithm(
+                                        '''updated_price = price_algorithm(
                                             condition=condition,
                                             market=price_lib['market'],
                                             direct=price_lib['direct'],
@@ -121,10 +121,10 @@ class Command(BaseCommand):
                                             item.price = updated_price
                                             api.update_sku_price(sku, updated_price, _json=True)
                                             print(f"{is_foil} {item.name} {item.expansion} {item.condition} {item.price} {item.language}")
-                                            item.save()
+                                            item.save()'''
 
                                     elif item.language != 'English':
-                                        condition = condition_map(item.condition)
+                                        '''condition = condition_map(item.condition)
                                         updated_price = price_foreign(
                                             language=item.language,
                                             condition=condition,
@@ -138,7 +138,7 @@ class Command(BaseCommand):
                                             item.price = updated_price
                                             api.update_sku_price(sku, updated_price, _json=True)
                                             print(f"{is_foil} {item.name} {item.expansion} {item.condition} {item.price} {item.language}")
-                                            item.save()
+                                            item.save()'''
 
                                 elif is_foil == 'Foil':
                                     price_lib = price_lib['Foil']
@@ -152,10 +152,13 @@ class Command(BaseCommand):
                                             low=price_lib['low'],
                                         )
                                         if updated_price is not None:
-                                            item.price = updated_price
-                                            api.update_sku_price(sku, updated_price, _json=True)
-                                            item.price = updated_price
-                                            item.save()
+                                            # item.price = updated_price
+                                            print(f"{condition} {item.printing} {item.name} {item.expansion} {updated_price}")
+                                            # api.update_sku_price(sku, updated_price, _json=True)
+                                            # item.price = updated_price
+                                            # item.save()
+                                        elif updated_price is None:
+                                            print(f"NONE PRICE: {condition} {item.printing} {item.name} {item.expansion} {updated_price}")
                                     elif item.language != 'English':
                                         pass
 

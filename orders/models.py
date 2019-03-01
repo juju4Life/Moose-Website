@@ -161,7 +161,7 @@ class Inventory(models.Model):
                 if current_quantity['results'][0]['quantity'] + self.update_inventory_quantity < 0:
 
                     raise ValidationError(
-                        {'update_inventory_quantity': f"Cannot remove more than {current_quantity}"}
+                        {'update_inventory_quantity': f"Cannot remove more than {current_quantity['results'][0]['quantity']}."}
                     )
                 else:
                     res = api.increment_sku_quantity(self.sku, self.update_inventory_quantity)
@@ -193,7 +193,7 @@ class Inventory(models.Model):
                 self.update_inventory_quantity = 0
             else:
                 raise ValidationError(
-                    {'update_inventory_quantity': 'Unkown erorr. Card may not have been uploaded.'}
+                    {'update_inventory_quantity': 'Unknown error. Card may not have been uploaded.'}
                 )
 
 
