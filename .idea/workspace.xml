@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/orders/management/commands/update_check_orders.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orders/management/commands/update_other_categories.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders/management/commands/inventory_stats.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orders/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/update_online_prices.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/management/commands/update_online_prices.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/management/commands/update_check_orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/management/commands/update_check_orders.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5211896">
+    <splitter split-orientation="horizontal" split-proportion="0.6654275">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -85,14 +84,23 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/orders/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="714">
-                  <caret line="102" lean-forward="true" selection-start-line="102" selection-end-line="102" />
+                <state relative-caret-position="102">
+                  <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/orders/management/commands/inventory_stats.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="136">
+                  <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
                 </state>
               </provider>
             </entry>
@@ -146,7 +154,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/orders/management/commands/update_other_categories.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="204">
@@ -161,8 +169,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/orders/management/commands/update_check_orders.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+                <state relative-caret-position="102">
+                  <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
                   <folding>
                     <element signature="e#0#51#0" expanded="true" />
                   </folding>
@@ -183,22 +191,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/orders/management/commands/update_orders.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="41" column="24" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="89" />
-                  <folding>
-                    <element signature="e#0#51#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/orders/management/commands/check_orders.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-156">
-                  <caret line="111" column="34" selection-start-line="111" selection-start-column="34" selection-end-line="111" selection-end-column="34" />
+                <state relative-caret-position="541">
+                  <caret line="128" column="52" selection-start-line="128" selection-start-column="52" selection-end-line="128" selection-end-column="52" />
                   <folding>
                     <element signature="e#0#51#0" expanded="true" />
                   </folding>
@@ -206,11 +202,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/orders/admin.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="127">
-                  <caret line="40" column="67" selection-start-line="40" selection-start-column="67" selection-end-line="40" selection-end-column="67" />
+                <state relative-caret-position="357">
+                  <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
                   <folding>
                     <element signature="e#0#32#0" expanded="true" />
                   </folding>
@@ -281,7 +277,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/engine/templates/base.html" />
         <option value="$PROJECT_DIR$/orders/urls.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_6.py" />
         <option value="$PROJECT_DIR$/my_customs/decorators.py" />
@@ -319,7 +314,6 @@
         <option value="$PROJECT_DIR$/orders/management/commands/update_orders.py" />
         <option value="$PROJECT_DIR$/engine/admin.py" />
         <option value="$PROJECT_DIR$/engine/models.py" />
-        <option value="$PROJECT_DIR$/orders/management/commands/check_orders.py" />
         <option value="$PROJECT_DIR$/tcg/price_and_upload.py" />
         <option value="$PROJECT_DIR$/source/menu.py" />
         <option value="$PROJECT_DIR$/engine/management/commands/update_group_categries.py" />
@@ -328,10 +322,12 @@
         <option value="$PROJECT_DIR$/engine/tcg_credentials.py" />
         <option value="$PROJECT_DIR$/tcg/price_alogrithm.py" />
         <option value="$PROJECT_DIR$/orders/management/commands/update_online_prices.py" />
-        <option value="$PROJECT_DIR$/orders/admin.py" />
-        <option value="$PROJECT_DIR$/orders/management/commands/update_check_orders.py" />
         <option value="$PROJECT_DIR$/orders/management/commands/update_other_categories.py" />
+        <option value="$PROJECT_DIR$/orders/management/commands/check_orders.py" />
+        <option value="$PROJECT_DIR$/orders/management/commands/update_check_orders.py" />
         <option value="$PROJECT_DIR$/orders/models.py" />
+        <option value="$PROJECT_DIR$/orders/admin.py" />
+        <option value="$PROJECT_DIR$/orders/management/commands/inventory_stats.py" />
       </list>
     </option>
   </component>
@@ -577,7 +573,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32980132" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49962825" visible="true" weight="0.16556291" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49962825" visible="true" weight="0.1602649" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50037175" side_tool="true" weight="0.3960265" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32980132" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -616,16 +612,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/orders/management/commands/get_inventory.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="92" column="3" selection-start-line="92" selection-start-column="3" selection-end-line="92" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/buylist/apps.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -865,26 +851,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_group_categries.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orders/management/commands/check_orders.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-156">
-          <caret line="111" column="34" selection-start-line="111" selection-start-column="34" selection-end-line="111" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files/Python36/Lib/site-packages/django/core/management/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -898,16 +864,6 @@
           <caret line="467" column="27" selection-start-line="467" selection-start-column="27" selection-end-line="467" selection-end-column="27" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/tcg_credentials.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="62" column="31" lean-forward="true" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -928,26 +884,6 @@
           <caret line="927" column="22" selection-start-line="927" selection-start-column="22" selection-end-line="927" selection-end-column="22" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orders/management/commands/update_orders.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="41" column="24" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="89" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orders/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="40" column="67" selection-start-line="40" selection-start-column="67" selection-end-line="40" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -979,30 +915,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orders/management/commands/update_online_prices.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="70" column="46" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tcg/price_alogrithm.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3995">
           <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orders/management/commands/update_check_orders.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1016,13 +932,90 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/orders/management/commands/update_orders.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="41" column="24" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="89" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/tcg_credentials.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="62" column="31" lean-forward="true" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/management/commands/update_check_orders.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/management/commands/update_online_prices.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-136">
+          <caret line="70" column="46" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_group_categries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/management/commands/check_orders.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="128" column="52" selection-start-line="128" selection-start-column="52" selection-end-line="128" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/orders/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="102" lean-forward="true" selection-start-line="102" selection-end-line="102" />
+        <state relative-caret-position="102">
+          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/management/commands/inventory_stats.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
         </state>
       </provider>
     </entry>

@@ -187,7 +187,6 @@ class Inventory(models.Model):
             self.price = self.update_inventory_price
             self.update_inventory_price = 0
 
-
         elif self.update_inventory_price < Decimal(0):
             raise ValidationError(
                 {'update_inventory_price': 'Price cannot be less than 0.'}

@@ -28,9 +28,9 @@ class ScatterEventAdmin(admin.ModelAdmin):
 @admin.register(NewOrders)
 class NewOrdersAdmin(admin.ModelAdmin):
     ordering = ['-order_date']
-    search_fields = ['customer_name']
-    list_filter = ['order_delivery_type', 'order_date', 'printing', 'language']
-    list_display = ['order_date', 'customer_name', 'name', 'expansion', 'printing', 'condition', 'language', 'order_number', 'price' ]
+    search_fields = ['name']
+    list_filter = ['is_direct', 'order_delivery_type', 'order_date', 'printing', 'language']
+    list_display = ['order_date', 'customer_name', 'name', 'expansion', 'printing', 'condition', 'language', 'order_number', 'price', 'is_direct']
 
 
 @admin.register(Inventory)
