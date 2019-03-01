@@ -8,8 +8,12 @@ api = TcgPlayerApi()
 
 class Command(BaseCommand):
     def handle(self, **options):
+        orders = NewOrders.objects.all()
+        for order in orders:
+            order_details = api.get_order_details(order.order_number)
+            is_direct = order_details
 
-        pass
+
 
 
 

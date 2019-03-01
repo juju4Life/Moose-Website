@@ -51,6 +51,7 @@ class Command(BaseCommand):
                 for o in order_details:
                     order_number = o['orderNumber']
                     order_date = o['orderedOn'][0:10]
+                    is_direct = o['isDirect']
                     shipping_first_name = o['customer']['shippingAddress']['firstName']
                     shipping_last_name = o['customer']['shippingAddress']['lastName']
                     customer_name = f"{shipping_first_name} {shipping_last_name}"
@@ -125,6 +126,7 @@ class Command(BaseCommand):
 
                             # Create reference for each ordered card
                             items = NewOrders(
+                                is_direct=is_direct,
                                 customer_name=customer_name,
                                 order_delivery_type=order_delivery,
                                 order_number=order_number,
