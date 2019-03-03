@@ -112,7 +112,7 @@ class InventoryAnalytics(models.Model):
     total_of_others_over2 = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
     def __str__(self):
-        return self.check_date
+        return f"{self.check_date}"
 
     class Meta:
         verbose_name_plural = 'Inventory Analytics'

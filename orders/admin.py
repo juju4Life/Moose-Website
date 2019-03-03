@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Orders, GroupName, ScatterEvent, NewOrders, Inventory
+from .models import Orders, GroupName, ScatterEvent, NewOrders, Inventory, InventoryAnalytics
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from .forms import InventoryForm
@@ -72,3 +72,8 @@ class InventoryAdmin(ImportExportModelAdmin):
 class GroupNameAdmin(admin.ModelAdmin):
     ordering = ['category', 'group_name']
     search_fields = ['group_name']
+
+
+@admin.register(InventoryAnalytics)
+class InventoryAnalyticsAdmin(admin.ModelAdmin):
+    pass
