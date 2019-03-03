@@ -73,33 +73,43 @@ class InventoryAnalytics(models.Model):
 
     inventory_total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     inventory_quantity = models.IntegerField(default=0)
+    inventory_total_over2 = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    inventory_quantity_over2 = models.IntegerField(default=0)
 
     total_of_english_mtg_foils_quantity = models.IntegerField(default=0)
     total_of_english_mtg_foils = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_of_english_mtg_foils_quantity_over2 = models.IntegerField(default=0)
+    total_of_english_mtg_foils_over2 = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
     total_of_foreign_mtg_foils_quantity = models.IntegerField(default=0)
     total_of_foreign_mtg_foils = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_of_foreign_mtg_foils_quantity_over2 = models.IntegerField(default=0)
+    total_of_foreign_mtg_foils_over2 = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
     total_of_foreign_mtg_quantity = models.IntegerField(default=0)
     total_of_foreign_mtg = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_of_foreign_mtg_quantity_over2 = models.IntegerField(default=0)
+    total_of_foreign_mtg_over2 = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
     total_of_english_mtg_quantity = models.IntegerField(default=0)
     total_of_english_mtg = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-
-    total_of_mtg_sealed_product_quantity = models.IntegerField(default=0)
-    total_of_mtg_sealed_product = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_of_english_mtg_quantity_over2 = models.IntegerField(default=0)
+    total_of_english_mtg_over2 = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
     total_of_yugioh_quantity = models.IntegerField(default=0)
     total_of_yugioh = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_of_yugioh_quantity_over2 = models.IntegerField(default=0)
+    total_of_yugioh_over2 = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
     total_of_pokemon_quantity = models.IntegerField(default=0)
     total_of_pokemon = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-
-    total_of_supplies_quantity = models.IntegerField(default=0)
-    total_of_supplies = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_of_pokemon_quantity_over2 = models.IntegerField(default=0)
+    total_of_pokemon_over2 = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
     total_of_others_quantity = models.IntegerField(default=0)
     total_of_others = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_of_others_quantity_over2 = models.IntegerField(default=0)
+    total_of_others_over2 = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
     def __str__(self):
         return self.check_date
@@ -132,20 +142,16 @@ class Inventory(models.Model):
     def __str__(self):
         return self.name
 
-    def __init__(self, *args, **kwargs):
-        super(Inventory, self).__init__(*args, **kwargs)
-        self.upload_q = self.update_inventory_quantity
-
     def clean(self):
         from engine.tcgplayer_api import TcgPlayerApi
         from decimal import Decimal
+        from engine.models import Upload
         api = TcgPlayerApi()
 
         if self.update_inventory_price > Decimal(0):
             api.update_sku_price(self.sku, float(self.update_inventory_price), _json=True)
             self.price = self.update_inventory_price
             self.update_inventory_price = 0
-
         elif self.update_inventory_price < Decimal(0):
             raise ValidationError(
                 {'update_inventory_price': 'Price cannot be less than 0.'}
@@ -190,6 +196,20 @@ class Inventory(models.Model):
                 self.last_upload_price = self.price
                 self.last_upload_quantity = self.update_inventory_quantity
                 self.last_upload_date = date.today()
+                new_upload = Upload(
+                    sku=self.sku,
+                    upload_status=True,
+                    name=self.name,
+                    group_name=self.expansion,
+                    condition=self.condition,
+                    printing=self.printing,
+                    language=self.language,
+                    category=self.category,
+                    upload_quantity=self.update_inventory_quantity,
+                    upload_price=self.price,
+                    upload_date=date.today(),
+                )
+                new_upload.save()
                 self.update_inventory_quantity = 0
             else:
                 raise ValidationError(

@@ -39,7 +39,7 @@ class InventoryAdmin(ImportExportModelAdmin):
     save_on_top = True
     search_fields = ['name']
     list_filter = ['category', 'printing', 'language', 'condition', 'expansion']
-    ordering = ['-total_quantity_sold', 'expansion']
+    ordering = ['-last_sold_date', '-total_quantity_sold', ]
     list_display = ['name', 'expansion', 'quantity', 'price',  'category', 'printing', 'condition', 'last_upload_date',
                     'last_sold_date', 'total_quantity_sold']
     fieldsets = (
