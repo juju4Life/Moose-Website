@@ -41,7 +41,7 @@ class InventoryAdmin(ImportExportModelAdmin):
     list_filter = ['category', 'printing', 'language', 'condition', 'expansion']
     ordering = ['custom_price', '-last_sold_date', '-total_quantity_sold', ]
     list_display = ['name', 'expansion', 'quantity', 'price',  'category', 'printing', 'condition', 'last_upload_date',
-                    'last_sold_date', 'total_quantity_sold']
+                    'last_sold_date', 'total_quantity_sold', 'custom_price', ]
     fieldsets = (
         (None, {
             'fields': (
