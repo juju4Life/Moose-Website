@@ -217,8 +217,6 @@ class Inventory(models.Model):
                     {'update_inventory_quantity': 'Unknown error. Card may not have been uploaded.'}
                 )
 
-
-
     class Meta:
         verbose_name_plural = "Inventory"
 
