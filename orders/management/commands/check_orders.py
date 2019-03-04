@@ -43,7 +43,7 @@ class Command(BaseCommand):
             # Get order details from order_numbers
             api_order_details = api.get_order_details(to_upload)
             if api_order_details['errors']:
-                errors.append(api_order_details['errros'][0] + ' api.get_order_details')
+                errors.append(api_order_details['errors'][0] + ' api.get_order_details')
 
             else:
                 # Create al order_details variables
