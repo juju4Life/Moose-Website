@@ -14,14 +14,15 @@ class Command(BaseCommand):
         current_groups = GroupName.objects
 
         for each in GroupName.objects.all():
-            each.added = True
-            each.save()
+            if each.addded is False:
+                each.added = True
+                each.save()
 
-        for category in category_ids:
+        '''for category in category_ids:
             group_ids = api.get_group_ids(0, category)['results'][0:20]
             for group_id in group_ids:
                 if current_groups.filter():
-                    pass
+                    pass'''
 
 
 
