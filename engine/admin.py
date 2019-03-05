@@ -149,6 +149,7 @@ class UploadAdmin(ImportExportModelAdmin):
                                 context)
 
     resource_class = UpdateResource
+    ordering = ['upload_status', '-upload_date']
     search_fields = ['name', ]
     list_display = ['category', 'printing', 'name', 'group_name', 'condition', 'language', 'upload_price', 'upload_quantity', 'upload_date', 'upload_status',
                     'sku']
