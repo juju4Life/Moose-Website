@@ -140,6 +140,7 @@ class Pokemon(models.Model):
 
 
 class Upload(models.Model):
+    upload_card = models.ForeignKey('MTG', on_delete=models.CASCADE, default='', blank=True)
     sku = models.CharField(max_length=255, default='')
     upload_status = models.BooleanField(default=False)
     name = models.CharField(max_length=255, default='')
