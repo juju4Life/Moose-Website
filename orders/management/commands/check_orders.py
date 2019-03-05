@@ -89,7 +89,6 @@ class Command(BaseCommand):
                             name = item['name']
                             category = M.game(item['categoryId'])
                             expansion = group.get(group_id=str(item['groupId']))
-                            print(f'{category}, {name}, {q}, {sku}')
 
                             # Update Inventory db with recently sold information
                             try:

@@ -8,8 +8,9 @@ from import_export.signals import post_import, post_export
 @receiver(post_import, dispatch_uid='Uploading')
 def upload_items(model, **kwarg):
     from orders.tasks import task_management
-    task_management(model)
-    # task_management.apply_async(que='low_priority', args=(model,))
+    # task_management(model)
+    print('Right before que')
+    task_management.apply_async(que='low_priority', args=(model,))
 
 # post_save.connect(upload_items, sender=Events)
 
