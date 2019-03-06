@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 from tcg.price_alogrithm import *
 from engine.tcgplayer_api import TcgPlayerApi
-from engine.models import MTG, Yugioh, Pokemon
+from engine.models import MTG, Yugioh, Pokemon, Upload
 from my_customs.decorators import report_error
 from django.core.mail import send_mail
 from orders.models import Inventory
@@ -13,8 +13,8 @@ api = TcgPlayerApi()
 
 
 @shared_task(name='orders.tasks.task_upload')
-def task_management(obj):
-    data = obj.objects.filter(upload_status=False)
+def task_management():
+    data = Upload.objects.filter(upload_status=False)
 
     # All cards should be from one category
     # APi for sku productId, which gets us the category ID for the category

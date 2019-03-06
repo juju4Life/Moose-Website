@@ -10,7 +10,7 @@ def upload_items(model, **kwarg):
     from orders.tasks import task_management
     # task_management(model)
     print('Right before que')
-    task_management.apply_async(que='low_priority', args=(model,))
+    task_management.apply_async(que='low_priority')
 
 # post_save.connect(upload_items, sender=Events)
 
