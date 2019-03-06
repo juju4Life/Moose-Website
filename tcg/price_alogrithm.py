@@ -3,7 +3,7 @@ from engine.tcgplayer_api import TcgPlayerApi
 api = TcgPlayerApi()
 
 
-def price_foreign(condition, language, low, direct=None, mid=None, market=None):
+def price_foreign(expansion, condition, language, low, direct=None, mid=None, market=None):
     condition_map = {
         'near mint': 1.,
         'lightly played': 1.,
@@ -12,13 +12,25 @@ def price_foreign(condition, language, low, direct=None, mid=None, market=None):
         'damaged': .60,
     }
 
-    old_sets = ["urza's saga", " urza's legacy" , "urza's destiny" , "exodus" ,"stronghold" ,"tempest" ,"mirage" ,"visions",
+    old_sets = ["urza's saga", " urza's legacy", "urza's destiny", "exodus", "stronghold", "tempest", "mirage", "visions",
 
-                "weatherlight" , "fifth edition", "fourth edition",]
+                "weatherlight", "fifth edition", "fourth edition", ]
 
+    expansion_list = ['beta edition', 'alpha edition', 'legends', 'the dark', 'arabian nights', 'portal second age', 'portal three kingdoms', 'portal',
+                      'unlimited', ]
     if low is not None:
-        price = low * condition_map[condition.lower()]
-        if language == 'korean' and language in old_sets:
+        price = low
+        if market is not None and mid is not None:
+            if expansion.lower() not in expansion_list:
+                average = (market + low + mid) / 3
+                if low < average * .85:
+                    price = average * .85
+        elif market is not None:
+            if market > low * 1.5:
+                price = price * 1.3
+        price = price * condition_map[condition.lower()]
+
+        if language == 'korean' and expansion.lower() in old_sets:
             price = price * 1.25
 
         if price < 2.:
