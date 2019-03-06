@@ -23,8 +23,8 @@ def price_foreign(expansion, condition, language, low, direct=None, mid=None, ma
         if market is not None and mid is not None:
             if expansion.lower() not in expansion_list:
                 average = (market + low + mid) / 3
-                if low < average * .85:
-                    price = average * .85
+                if low < average * .9:
+                    price = average * .9
         elif market is not None:
             if market > low * 1.5:
                 price = price * 1.3
@@ -81,6 +81,11 @@ def price_algorithm(condition, market, direct=None, mid=None, low=None):
 
     # Use Pricing Algorithm to determine updated price to list card at
     if new_price is not None:
+        if mid_price is not None and low_price is not None:
+            average = (new_price + low_price + mid_price) / 3
+            if new_price < average * .9:
+                new_price = average * .9
+
         if new_price > 1.99:
             if low_price is not None:
                 if new_price < low_price:
