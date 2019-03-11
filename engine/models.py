@@ -107,6 +107,22 @@ class MTG(models.Model):
         return self.product_name
 
 
+class MtgForeign(models.Model):
+    product_name = models.CharField(max_length=255, default='', db_index=True, verbose_name='name')
+    product_line = models.CharField(max_length=255, default='')
+    title = models.CharField(max_length=255, default='')
+    rarity = models.CharField(max_length=255, default='')
+    number = models.CharField(max_length=255, default='')
+    set_name = models.CharField(max_length=255, default='', db_index=True)
+    sku = models.CharField(max_length=255, default='')
+    condition = models.CharField(max_length=255, default='', db_index=True)
+    language = models.CharField(max_length=255, default='Unknown', db_index=True)
+    foil = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.product_name
+
+
 class Yugioh(models.Model):
     product_name = models.CharField(max_length=255, default='', db_index=True, verbose_name='name')
     product_line = models.CharField(max_length=255, default='')

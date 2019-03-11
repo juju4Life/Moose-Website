@@ -4,12 +4,6 @@ from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 
 
-class InventoryResource(resources.ModelResource):
-    class Meta:
-        model = Inventory
-        fields = ('sku', 'name',)
-
-
 @admin.register(Orders)
 class OrdersAdmin(admin.ModelAdmin):
     ordering = ['-order_date']
@@ -33,8 +27,7 @@ class NewOrdersAdmin(admin.ModelAdmin):
 
 
 @admin.register(Inventory)
-class InventoryAdmin(ImportExportModelAdmin):
-    resource_class = InventoryResource
+class InventoryAdmin(admin.ModelAdmin):
     save_on_top = True
     search_fields = ['name']
     list_filter = ['category', 'printing', 'language', 'condition', 'expansion']
@@ -76,4 +69,5 @@ class GroupNameAdmin(admin.ModelAdmin):
 
 @admin.register(InventoryAnalytics)
 class InventoryAnalyticsAdmin(admin.ModelAdmin):
-    pass
+    change_list_template = 'admin/inventory_analytics_change_list.html'
+

@@ -44,7 +44,7 @@ class Command(BaseCommand):
 
         # Query through all groups. For each, if a filtered result in the Inventory exisits, prepare var to loop over Inventory filtered list
         for index, group in enumerate(groups):
-            if index >= 132:
+            if index >= 213:
                 inventory = Inventory.objects.filter(expansion=group.group_name)
 
                 # Get pricing data for entire group
@@ -143,26 +143,30 @@ class Command(BaseCommand):
                                                 item.save()
 
                                     elif is_foil == 'Foil':
-                                        price_lib = price_lib['Foil']
-                                        if item.language == 'English':
-                                            condition = condition_map(item.condition)
-                                            updated_price = price_foils(
-                                                condition=condition,
-                                                market=price_lib['market'],
-                                                direct=price_lib['direct'],
-                                                mid=price_lib['mid'],
-                                                low=price_lib['low'],
-                                            )
-                                            if updated_price is not None:
-                                                item.price = updated_price
-                                                api.update_sku_price(sku, updated_price, _json=True)
-                                                item.price = updated_price
-                                                item.save()
-                                        elif item.language != 'English':
-                                            pass
+                                        try:
+                                            price_lib = price_lib['Foil']
+                                        except KeyError:
+                                            price_lib = {}
+                                        if price_lib:
+                                            if item.language == 'English':
+                                                condition = condition_map(item.condition)
+                                                updated_price = price_foils(
+                                                    condition=condition,
+                                                    market=price_lib['market'],
+                                                    direct=price_lib['direct'],
+                                                    mid=price_lib['mid'],
+                                                    low=price_lib['low'],
+                                                )
+                                                if updated_price is not None:
+                                                    item.price = updated_price
+                                                    api.update_sku_price(sku, updated_price, _json=True)
+                                                    item.price = updated_price
+                                                    item.save()
+                                            elif item.language != 'English':
+                                                pass
 
-                                        else:
-                                            print(f"Unknown Unknown: {is_foil} {item.name} {item.expansion} {item.price}")
+                                            else:
+                                                print(f"Unknown Unknown: {is_foil} {item.name} {item.expansion} {item.price}")
 
                                     else:
                                         raise Exception(f'Card {item.name} {item.expansion} not labeled foil or non-foil, {item.printing}')

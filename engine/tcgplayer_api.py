@@ -52,7 +52,10 @@ class TcgPlayerApi:
         return self.credentials.get_request(f"stores/{store_key}/orders/{','.join(order_numbers)}")
 
     def get_order_items(self, order_number):
-        return self.credentials.get_request(f"stores/{store_key}/orders/{order_number}/items")
+        params = {
+            'limit': 100,
+        }
+        return self.credentials.get_request(f"stores/{store_key}/orders/{order_number}/items", params=params)
 
     def get_buylist_cards(self, limit, offset):
         params = {

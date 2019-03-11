@@ -13,7 +13,10 @@ from rest_framework.response import Response
 from .models import Orders, ScatterEvent
 from datetime import date
 from .graph_functions import map_dates, orders_by_category, mtg_card_info, scatter_plot, sales_data
-
+from .models import InventoryAnalytics, NewOrders
+from datetime import date, datetime, timedelta
+from engine.models import Upload
+import math
 
 def graph(request):
     x = arange(0, 2*pi, 0.01)
@@ -46,6 +49,116 @@ def chart_home(request):
     return render(request, template, context)
 
 
+# Charts for Analyzing Inventory ----------------------------------------------------
+
+class ChartDataInventory(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        start = datetime.today() - timedelta(days=30)
+        stop = datetime.today() - timedelta(days=1)
+        inventory = InventoryAnalytics.objects.filter(check_date__range=(start, stop))
+        orders = NewOrders.objects.all()
+        dates = [str(i.check_date)[0:10] for i in inventory]
+        date_object = [datetime.strptime(i, '%Y-%m-%d') for i in dates]
+
+        inventory_quantity = [i.inventory_quantity_over2 for i in inventory if str(i.check_date)[0:10] in dates]
+        uploads = Upload.objects.filter(upload_date__in=date_object).filter(upload_price__range=(2, 9999))
+
+        upload_dates = {i: 0 for i in dates}
+        for upload in uploads:
+            upload_dates[str(upload.upload_date)] += upload.upload_quantity
+
+        upload_dates_values = np.array([i for i in upload_dates.values()])
+        # print(upload_dates_values)
+        # print(inventory_quantity)
+        # upload_spread = round((upload_dates_values / np.array(inventory_quantity) * 100), 2)
+        # x_y = [{'x': k, 'y': i} for i, k in zip(upload_spread, dates)]
+        # print(x_y)
+
+        def create_spread(dates, inventory_obj, order_obj, upload_obj):
+            date_starter = {i: 0 for i in dates}
+            date_starter.update(upload_obj)
+
+            num_orders = Counter(date_starter)
+
+            num_orders.update(order_obj)
+            orders = np.array([i for i in num_orders.values()])
+
+            print(order_obj)
+            #print(dates)
+            #print(orders)
+            #print(inventory_obj)
+            spread = np.round((orders / inventory_obj) * 100, 2)
+            spread_average = round((sum([i for i in order_obj.values()]) / len(dates)), 2)
+
+            return spread, spread_average
+
+        mtg_foils = inventory.values_list('total_of_english_mtg_foils_quantity_over2', flat=True)
+
+        # English Foils
+        online_foils = np.array(inventory.values_list('total_of_english_mtg_foils_quantity_over2', flat=True))
+        foils_in_orders = Counter([str(i.order_date) for i in orders if str(i.order_date) in dates and i.printing == 'Foil' and i.language == 'English' and i.price > 2])
+        foils_in_uploads = Counter([str(i.upload_date) for i in uploads if i.category == 'Magic' and i.printing == 'True' and i.language == 'English' and str(
+            i.upload_date) in dates])
+
+        # English Non-foil
+        online_english = np.array(inventory.values_list('total_of_english_mtg_quantity_over2', flat=True))
+        english_in_orders = Counter([str(i.order_date) for i in orders if str(i.order_date) in dates and i.printing == 'Normal' and i.language == 'English' and i.price > 2])
+        english_in_uploads = Counter([str(i.upload_date) for i in uploads if i.category == 'Magic' and i.printing == 'False' and i.language == 'English' and
+                                      str(
+            i.upload_date) in dates])
+
+        # Foreign Foils
+        online_foreign_foils = np.array(inventory.values_list('total_of_foreign_mtg_foils_quantity_over2', flat=True))
+        foreign_foils_in_orders = Counter([str(i.order_date) for i in orders if str(i.order_date) in dates and i.printing == 'Foil' and i.language !=
+                                           'English' and i.price > 2])
+        foreign_foils_in_uploads = Counter([str(i.upload_date) for i in uploads if i.category == 'Magic' and i.printing == 'True' and i.language != 'English'
+                                           and str(
+            i.upload_date) in dates])
+
+        # Foreign Non-foil
+        online_foreign = np.array(inventory.values_list('total_of_foreign_mtg_quantity', flat=True))
+        foreign_in_orders = Counter([str(i.order_date) for i in orders if str(i.order_date) in dates and i.printing == 'Normal' and i.language !=
+                                           'English'])
+        foreign_in_uploads = Counter([str(i.upload_date) for i in uploads if i.category == 'Magic' and i.printing == 'False' and i.language != 'English'
+                                            and str(
+            i.upload_date) in dates])
+
+        # Foreign Non-foil
+        online_pokemon = np.array(inventory.values_list('total_of_pokemon_quantity', flat=True))
+        pokemon_in_orders = Counter([str(i.order_date) for i in orders if str(i.order_date) in dates and i.category == 'Pokemon'])
+        pokemon_in_uploads = Counter([str(i.upload_date) for i in uploads if i.category == 'Pokemon' and i.printing == 'False' and i.language != 'English'
+                                      and str(
+            i.upload_date) in dates])
+
+        # Create spreads
+        foils_spread = create_spread(dates, online_foils, foils_in_orders, foils_in_uploads)
+        foreign_foils_spread = create_spread(dates, online_foreign_foils, foreign_foils_in_orders, foreign_foils_in_uploads)
+        english_spread = create_spread(dates, online_english, english_in_orders, english_in_uploads)
+        foreign_spread = create_spread(dates, online_foreign, foreign_in_orders, foreign_in_uploads)
+        pokemon_spread = create_spread(dates, online_pokemon, pokemon_in_orders, pokemon_in_uploads)
+
+        data = {
+            'foils_sold': mtg_foils,
+            'dates': dates,
+            'foil_orders': foils_spread[0],
+            'foil_orders_avg': foils_spread[1],
+            'english_orders': english_spread[0],
+            'english_orders_avg': english_spread[1],
+            'foreign_foil_orders': foreign_foils_spread[0],
+            'foreign_foil_orders_avg': foreign_foils_spread[1],
+            'foreign_orders': foreign_spread[0],
+            'foreign_orders_avg': foreign_spread[1],
+            'pokemon_orders': pokemon_spread[0],
+            'pokemon_orders_avg': pokemon_spread[1],
+        }
+
+        return Response(data)
+
+
+# Charts for Analyzing Orders ------------------------------------------------------
 class ChartData(APIView):
     authentication_classes = []
     permission_classes = []
