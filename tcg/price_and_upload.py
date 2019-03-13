@@ -42,8 +42,9 @@ def task_management(obj):
                     stop = len(data)
 
 
-@report_error
+# @report_error
 def upload_sku(sku_list, data, cat_id):
+    print(sku_list, data, cat_id)
     errors_list = []
     inventory = Inventory.objects
     mtg = MTG.objects

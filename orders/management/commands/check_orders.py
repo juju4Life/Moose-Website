@@ -40,6 +40,7 @@ class Command(BaseCommand):
             from_ = 'tcgfirst'
             send_mail(subject, message, from_, to)
         if to_upload:
+            print(len(to_upload))
             # Get order details from order_numbers
             api_order_details = api.get_order_details(to_upload)
             if api_order_details['errors']:

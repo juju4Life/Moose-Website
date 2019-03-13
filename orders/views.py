@@ -157,19 +157,30 @@ class ChartDataInventory(APIView):
         foreign_spread = create_spread(dates, online_foreign, foreign_in_orders, foreign_in_uploads)
         pokemon_spread = create_spread(dates, online_pokemon, pokemon_in_orders, pokemon_in_uploads)
 
+        foils_orders_avg_percentage = [round(sum(foils_spread[0]) / len(foils_spread[0]), 2) for _ in range(len(foils_spread[0]))]
+        foreign_foil_orders_avg_percentage = [round(sum(foreign_foils_spread[0]) / len(foreign_foils_spread[0]), 2) for _ in range(len(foreign_foils_spread[
+                                                                                                                                           0]))]
+        english_orders_avg_percentage = [round(sum(english_spread[0]) / len(english_spread[0]), 2) for _ in range(len(english_spread[0]))]
+        foreign_orders_avg_percentage = [round(sum(foreign_spread[0]) / len(foreign_spread[0]), 2) for _ in range(len(foreign_spread[0]))]
+        pokemon_orders_avg_percentage = [round(sum(pokemon_spread[0]) / len(pokemon_spread[0]), 2) for _ in range(len(pokemon_spread[0]))]
         data = {
             'foils_sold': mtg_foils,
             'dates': dates,
             'foil_orders': foils_spread[0],
+            'foils_orders_avg_percentage': foils_orders_avg_percentage,
             'foil_orders_avg': foils_spread[1],
             'english_orders': english_spread[0],
             'english_orders_avg': english_spread[1],
+            'english_orders_avg_percentage': english_orders_avg_percentage,
             'foreign_foil_orders': foreign_foils_spread[0],
             'foreign_foil_orders_avg': foreign_foils_spread[1],
+            'foreign_foil_orders_avg_percentage': foreign_foil_orders_avg_percentage,
             'foreign_orders': foreign_spread[0],
             'foreign_orders_avg': foreign_spread[1],
+            'foreign_orders_avg_percentage': foreign_orders_avg_percentage,
             'pokemon_orders': pokemon_spread[0],
             'pokemon_orders_avg': pokemon_spread[1],
+            'pokemon_orders_avg_percentage': pokemon_orders_avg_percentage,
             'upload_points': x_y,
         }
 

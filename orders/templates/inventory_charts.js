@@ -7,30 +7,46 @@
 	var dates = []
 	var englishFoils = []
 	var englishFoilsAvg = []
+	var englishFoilsAvgPercentage = []
 	var english = []
 	var englishAvg = []
+	var englishAvgPercentage = []
 	var foreignFoils = []
 	var foreignFoilsAvg = []
+	var foreignFoilsAvgPercentage = []
 	var foreign = []
 	var foreignAvg = []
+	var foreignAvgPercentage = []
 	var pokemon = []
 	var pokemonAvg = []
+	var pokemonAvgPercentage = []
 	var uploadPoints = []
 	$.ajax({
 		method: 'GET',
 		url: endpoint,
 		success: function(data){
 			dates = data.dates;
+
 			englishFoils = data.foil_orders;
 			englishFoilsAvg = data.foil_orders_avg;
+			englishFoilsAvgPercentage = data.foils_orders_avg_percentage;
+
 			english = data.english_orders;
 			englishAvg = data.english_orders_avg;
+			englishAvgPercentage = data.english_orders_avg_percentage;
+
 			foreignFoils = data.foreign_foil_orders;
 			foreignFoilsAvg = data.foreign_foil_orders_avg;
+			foreignFoilsAvgPercentage = data.foreign_foil_orders_avg_percentage;
+
 			foreign = data.foreign_orders;
 			foreignAvg = data.foreign_orders_avg;
+			foreignAvgPercentage = data.foreign_orders_avg_percentage;
+
 			pokemon = data.pokemon_orders;
 			pokemonAvg = data.pokemon_orders_avg;
+			pokemonAvgPercentage = data.pokemon_orders_avg_percentage;
+
 			uploadPoints = data.upload_points;
 			setChart();
 		},
@@ -88,7 +104,7 @@ function setChart(){
 	        },
 
 	        {
-	            label: `English Foils ${englishFoilsAvg} cards per day`,
+	            label: `English Foils ${englishFoilsAvg} cards ${englishFoilsAvgPercentage[0]}% avg`,
 	            data: englishFoils,
 	            backgroundColor: "purple",
 	            borderColor: "purple",
