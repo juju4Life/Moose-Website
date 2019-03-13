@@ -28,7 +28,7 @@ class Command(BaseCommand):
         to_upload = []
 
         # Search the last 50 orders for any that have not been recorded to the database
-        recent_orders = api.get_recent_orders(offset=100)['results']
+        recent_orders = api.get_recent_orders(offset=0)['results']
         if recent_orders:
             for recent in recent_orders:
                 if NewOrders.objects.filter(order_number=recent).exists() is False:
