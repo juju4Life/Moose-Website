@@ -1,6 +1,6 @@
 from .price_alogrithm import *
 from engine.tcgplayer_api import TcgPlayerApi
-from engine.models import MTG, Yugioh, Pokemon
+from engine.models import MTG, Yugioh, Pokemon, MtgForeign
 from my_customs.decorators import report_error
 from django.core.mail import send_mail
 from orders.models import Inventory
@@ -49,12 +49,14 @@ def upload_sku(sku_list, data, cat_id):
     mtg = MTG.objects
     ygo = Yugioh.objects
     pokemon = Pokemon.objects
+    mtg_foreign = MtgForeign.objects
 
     # map category_id of sku to correct database.
     category_map = {
         1: mtg,
         2: ygo,
         3: pokemon,
+        4: mtg_foreign,
     }
 
     cat = category_map[cat_id]
@@ -108,11 +110,16 @@ def upload_sku(sku_list, data, cat_id):
                         except ObjectDoesNotExist:
                             cat_ids_list.append(3)
                             try:
-                                if 1 not in cat_ids_list:
-                                    cat = category_map[1]
+                                if 4 not in cat_ids_list:
+                                    cat = category_map[4]
                                     sku_card_info = cat.get(sku=sku)
                             except ObjectDoesNotExist:
-                                pass
+                                try:
+                                    if 1 not in cat_ids_list:
+                                        cat = category_map[1]
+                                        sku_card_info = cat.get(sku=sku)
+                                except ObjectDoesNotExist:
+                                    pass
 
                 if sku_card_info:
                     condition = sku_card_info.condition
@@ -162,6 +169,7 @@ def upload_sku(sku_list, data, cat_id):
                         try:
                             online_stock = inventory.get(sku=sku)
                             online_stock.quantity = upload_quantity
+                            online_stock.quantity = upload_price
                             online_stock.last_upload_date = date.today()
                             online_stock.last_upload_quantity = quantity
                             online_stock.save()

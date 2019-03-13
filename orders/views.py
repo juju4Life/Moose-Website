@@ -71,11 +71,8 @@ class ChartDataInventory(APIView):
             upload_dates[str(upload.upload_date)] += upload.upload_quantity
 
         upload_dates_values = np.array([i for i in upload_dates.values()])
-        # print(upload_dates_values)
-        # print(inventory_quantity)
-        # upload_spread = round((upload_dates_values / np.array(inventory_quantity) * 100), 2)
-        # x_y = [{'x': k, 'y': i} for i, k in zip(upload_spread, dates)]
-        # print(x_y)
+        upload_spread = (upload_dates_values / np.array(inventory_quantity)) * 100
+        x_y = [{'x': k, 'y': round(i, 2)} for i, k in zip(upload_spread, dates)]
 
         def create_spread(dates, inventory_obj, order_obj, upload_obj):
             date_starter = {i: 0 for i in dates}
@@ -86,10 +83,6 @@ class ChartDataInventory(APIView):
             num_orders.update(order_obj)
             orders = np.array([i for i in num_orders.values()])
 
-            print(order_obj)
-            #print(dates)
-            #print(orders)
-            #print(inventory_obj)
             spread = np.round((orders / inventory_obj) * 100, 2)
             spread_average = round((sum([i for i in order_obj.values()]) / len(dates)), 2)
 
@@ -99,36 +92,60 @@ class ChartDataInventory(APIView):
 
         # English Foils
         online_foils = np.array(inventory.values_list('total_of_english_mtg_foils_quantity_over2', flat=True))
-        foils_in_orders = Counter([str(i.order_date) for i in orders if str(i.order_date) in dates and i.printing == 'Foil' and i.language == 'English' and i.price > 2])
+        foils_in_orders = []
+        for each in orders:
+            if str(each.order_date) in dates and each.printing == 'Foil' and each.language == 'English' and each.price > 2:
+                for _ in range(each.quantity):
+                    foils_in_orders.append(str(each.order_date))
+        foils_in_orders = Counter(foils_in_orders)
+
         foils_in_uploads = Counter([str(i.upload_date) for i in uploads if i.category == 'Magic' and i.printing == 'True' and i.language == 'English' and str(
             i.upload_date) in dates])
 
         # English Non-foil
         online_english = np.array(inventory.values_list('total_of_english_mtg_quantity_over2', flat=True))
-        english_in_orders = Counter([str(i.order_date) for i in orders if str(i.order_date) in dates and i.printing == 'Normal' and i.language == 'English' and i.price > 2])
+        english_in_orders = []
+        for each in orders:
+            if str(each.order_date) in dates and each.printing == 'Normal' and each.language == 'English' and each.price > 2:
+                for _ in range(each.quantity):
+                    english_in_orders.append(str(each.order_date))
+        english_in_orders = Counter(english_in_orders)
         english_in_uploads = Counter([str(i.upload_date) for i in uploads if i.category == 'Magic' and i.printing == 'False' and i.language == 'English' and
                                       str(
             i.upload_date) in dates])
 
         # Foreign Foils
         online_foreign_foils = np.array(inventory.values_list('total_of_foreign_mtg_foils_quantity_over2', flat=True))
-        foreign_foils_in_orders = Counter([str(i.order_date) for i in orders if str(i.order_date) in dates and i.printing == 'Foil' and i.language !=
-                                           'English' and i.price > 2])
+        foreign_foils_in_orders = []
+        for each in orders:
+            if str(each.order_date) in dates and each.printing == 'Foil' and each.language != 'English' and each.price > 2:
+                for _ in range(each.quantity):
+                    foreign_foils_in_orders.append(str(each.order_date))
+        foreign_foils_in_orders = Counter(foreign_foils_in_orders)
         foreign_foils_in_uploads = Counter([str(i.upload_date) for i in uploads if i.category == 'Magic' and i.printing == 'True' and i.language != 'English'
                                            and str(
             i.upload_date) in dates])
 
         # Foreign Non-foil
         online_foreign = np.array(inventory.values_list('total_of_foreign_mtg_quantity', flat=True))
-        foreign_in_orders = Counter([str(i.order_date) for i in orders if str(i.order_date) in dates and i.printing == 'Normal' and i.language !=
-                                           'English'])
+        foreign_in_orders = []
+        for each in orders:
+            if str(each.order_date) in dates and each.printing == 'Normal' and each.language != 'English':
+                for _ in range(each.quantity):
+                    foreign_in_orders.append(str(each.order_date))
+        foreign_in_orders = Counter(foreign_in_orders)
         foreign_in_uploads = Counter([str(i.upload_date) for i in uploads if i.category == 'Magic' and i.printing == 'False' and i.language != 'English'
                                             and str(
             i.upload_date) in dates])
 
         # Foreign Non-foil
         online_pokemon = np.array(inventory.values_list('total_of_pokemon_quantity', flat=True))
-        pokemon_in_orders = Counter([str(i.order_date) for i in orders if str(i.order_date) in dates and i.category == 'Pokemon'])
+        pokemon_in_orders = []
+        for each in orders:
+            if str(each.order_date) in dates and each.category == 'Pokemon':
+                for _ in range(each.quantity):
+                    pokemon_in_orders.append(str(each.order_date))
+        pokemon_in_orders = Counter(pokemon_in_orders)
         pokemon_in_uploads = Counter([str(i.upload_date) for i in uploads if i.category == 'Pokemon' and i.printing == 'False' and i.language != 'English'
                                       and str(
             i.upload_date) in dates])
@@ -153,6 +170,7 @@ class ChartDataInventory(APIView):
             'foreign_orders_avg': foreign_spread[1],
             'pokemon_orders': pokemon_spread[0],
             'pokemon_orders_avg': pokemon_spread[1],
+            'upload_points': x_y,
         }
 
         return Response(data)

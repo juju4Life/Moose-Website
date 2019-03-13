@@ -15,6 +15,7 @@
 	var foreignAvg = []
 	var pokemon = []
 	var pokemonAvg = []
+	var uploadPoints = []
 	$.ajax({
 		method: 'GET',
 		url: endpoint,
@@ -30,6 +31,7 @@
 			foreignAvg = data.foreign_orders_avg;
 			pokemon = data.pokemon_orders;
 			pokemonAvg = data.pokemon_orders_avg;
+			uploadPoints = data.upload_points;
 			setChart();
 		},
 
@@ -67,6 +69,23 @@ function setChart(){
 	    data: {
 	        labels: dates,
 	        datasets: [
+
+	        {
+	            label: `Percentage of Inventory Uploads`,
+	            data: uploadPoints,
+	            backgroundColor: "black",
+	            borderColor: "black",
+	            borderWidth: 1,
+	            fill: false,
+	            showLine: false,
+	            pointBorderColor: "white",
+                pointBorderWidth: 1,
+                pointHoverRadius: 2,
+                pointHoverBackgroundColor: "yellow",
+                pointHoverBorderWidth: 2,
+                pointRadius: 4,
+                pointHitRadius: 10,
+	        },
 
 	        {
 	            label: `English Foils ${englishFoilsAvg} cards per day`,
@@ -161,7 +180,7 @@ function setChart(){
 
 	        title: {
 	            display: true,
-	            text: "Ratio % of cards sold within it's category",
+	            text: "Ratio of cards sold within it's category",
 	            fontSize: 15,
 	        }
 	    }
