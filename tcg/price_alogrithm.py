@@ -4,6 +4,7 @@ api = TcgPlayerApi()
 
 
 def price_foreign(expansion, condition, language, low, direct=None, mid=None, market=None):
+    print(f'Inside price foreign function {low} {mid} {market}')
     condition_map = {
         'near mint': 1.,
         'lightly played': 1.,
@@ -237,7 +238,7 @@ def sku_price_algorithm(language, expansion, category, printing, condition, sku,
     direct_price = direct
 
     if new_price is None and low_price is None or language != 'English':
-
+        print('Card is Foreign')
         condition_dict = {
             'near mint': 1,
             'lightly played': 1,
@@ -292,8 +293,10 @@ def sku_price_algorithm(language, expansion, category, printing, condition, sku,
             low_market_price = market_data['lowPrice']
             direct_market_price = market_data['lowPrice']
             mid_market_price = market_data['midPrice']
+            print(f'Market data for foreign cards{market_price}, {low_market_price}, {mid_market_price}')
 
             if language != 'English':
+                print('Definitely Foreign')
                 upload_price = price_foreign(
                     condition=condition,
                     language=language,
@@ -302,7 +305,7 @@ def sku_price_algorithm(language, expansion, category, printing, condition, sku,
                     mid=mid_market_price,
                     market=market_price,
                 )
-
+                print(upload_price)
                 return upload_price
 
             else:
