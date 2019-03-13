@@ -219,13 +219,13 @@ def buylist_algorithm(condition, market, low=None, mid=None, market_buylist=None
     return new_price
 
 
-def sku_price_algorithm(category, printing, condition, sku, market, direct=None, low=None):
+def sku_price_algorithm(language, expansion, category, printing, condition, sku, market, direct=None, low=None):
 
     new_price = market
     low_price = low
     direct_price = direct
 
-    if new_price is None and low_price is None:
+    if new_price is None and low_price is None or language != 'English':
 
         condition_dict = {
             'near mint': 1,
@@ -253,7 +253,7 @@ def sku_price_algorithm(category, printing, condition, sku, market, direct=None,
         product_id = api.card_info_by_sku(sku)['results'][0]['productId']
         market_data = api.get_market_price(str(product_id))['results']
 
-        if category != "Magic":
+        if category != "Magic" or category != 'Magic the Gathering':
             count = 0
             try:
                 while True:
@@ -280,31 +280,45 @@ def sku_price_algorithm(category, printing, condition, sku, market, direct=None,
             market_price = market_data['marketPrice']
             low_market_price = market_data['lowPrice']
             direct_market_price = market_data['lowPrice']
+            mid_market_price = market_data['midPrice']
 
-            if market_price is not None:
-                if low_market_price is not None:
-                    if low_market_price > market_price:
-                        market_price = low_market_price
-                if direct_market_price is not None:
-                    if direct_market_price > market_price:
-                        if direct_market_price > market_price * 1.15:
-                            market_price = market_price * 1.15
-                        else:
-                            market_price = direct_market_price
+            if language != 'English':
+                upload_price = price_foreign(
+                    condition=condition,
+                    language=language,
+                    expansion=expansion,
+                    low=low_market_price,
+                    mid=mid_market_price,
+                    market=market_price,
+                )
+
+                return upload_price
 
             else:
-                market_price = low_market_price
+                if market_price is not None:
+                    if low_market_price is not None:
+                        if low_market_price > market_price:
+                            market_price = low_market_price
+                    if direct_market_price is not None:
+                        if direct_market_price > market_price:
+                            if direct_market_price > market_price * 1.15:
+                                market_price = market_price * 1.15
+                            else:
+                                market_price = direct_market_price
 
-            if market_price is not None:
-                market_price = market_price * condition_price
+                else:
+                    market_price = low_market_price
 
-                if market_price < .25:
-                    market_price = .25
+                if market_price is not None:
+                    market_price = market_price * condition_price
 
-                if market_price >= 2. and market_price < 2.25:
-                    market_price = 1.99
+                    if market_price < .25:
+                        market_price = .25
 
-                return market_price
+                    if market_price >= 2. and market_price < 2.25:
+                        market_price = 1.99
+
+                    return market_price
 
     else:
 

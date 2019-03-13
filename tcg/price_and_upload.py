@@ -170,7 +170,7 @@ def upload_sku(sku_list, data, cat_id):
                         try:
                             online_stock = inventory.get(sku=sku)
                             online_stock.quantity = upload_quantity
-                            online_stock.quantity = upload_price
+                            online_stock.price = upload_price
                             online_stock.last_upload_date = date.today()
                             online_stock.last_upload_quantity = quantity
                             online_stock.save()
