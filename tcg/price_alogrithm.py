@@ -232,7 +232,7 @@ def buylist_algorithm(condition, market, low=None, mid=None, market_buylist=None
 
 
 def sku_price_algorithm(language, expansion, category, printing, condition, sku, market, direct=None, low=None):
-    condition = condition.replcae('-', '').strip()
+    condition = condition.replace('-', '').strip()
     new_price = market
     low_price = low
     direct_price = direct
