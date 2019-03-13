@@ -232,7 +232,7 @@ def buylist_algorithm(condition, market, low=None, mid=None, market_buylist=None
 
 
 def sku_price_algorithm(language, expansion, category, printing, condition, sku, market, direct=None, low=None):
-
+    condition = condition.replcae('-', '').strip()
     new_price = market
     low_price = low
     direct_price = direct
@@ -265,7 +265,6 @@ def sku_price_algorithm(language, expansion, category, printing, condition, sku,
         market_data = api.get_market_price(str(product_id))['results']
 
         if category != "Magic" and category != 'Magic the Gathering':
-            print(f"Registered as non-magic? {category}")
             count = 0
             try:
                 while True:
