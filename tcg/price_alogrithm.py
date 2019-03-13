@@ -264,8 +264,7 @@ def sku_price_algorithm(language, expansion, category, printing, condition, sku,
         product_id = api.card_info_by_sku(sku)['results'][0]['productId']
         market_data = api.get_market_price(str(product_id))['results']
 
-        print(category)
-        if category != "Magic" or category != 'Magic the Gathering':
+        if category != "Magic" and category != 'Magic the Gathering':
             print(f"Registered as non-magic? {category}")
             count = 0
             try:
