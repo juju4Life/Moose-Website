@@ -56,9 +56,10 @@ def price_foils(condition, low, direct=None, mid=None, market=None):
     }
 
     if low is not None:
-        average = (market + low + mid) / 3
-        if low < average * .85:
-            low = average * .85
+        if market is not None and mid is not None:
+            average = (market + low + mid) / 3
+            if low < average * .85:
+                low = average * .85
         price = low * condition_map[condition.lower()]
 
         if direct is not None:
