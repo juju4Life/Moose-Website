@@ -23,6 +23,7 @@ def test():
     r = requests.get(url, headers=headers)
     print(r.content)
 
+
 def create_item():
     url = 'https://api.sandbox.ebay.com/sell/inventory/v1/inventory_item/GP-Cam-01'
     headers = {

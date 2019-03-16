@@ -112,7 +112,11 @@ class Command(BaseCommand):
                                         sku = item.sku
                                         product_id = api.card_info_by_sku(sku)['results'][0]['productId']
 
-                                        is_foil = foil_map[item.printing]
+                                        try:
+                                            is_foil = foil_map[item.printing]
+                                        except KeyError as e:
+                                            send_mail(subject='Not Properly configured identifier for Foil or Normal', message=f'{item.name} {item.expansion} {item.printing} error: {e}', from_email='tcgfirst', recipient_list=['jermol.jupiter@gmail.com', ])
+                                            is_foil = 'Unknown'
                                         # Grab pricing data from dictionary using product id
                                         try:
                                             price_lib = d[product_id]
@@ -187,7 +191,7 @@ class Command(BaseCommand):
                                                     print(f"Unknown Unknown: {is_foil} {item.name} {item.expansion} {item.price}")
 
                                         else:
-                                            raise Exception(f'Card {item.name} {item.expansion} not labeled foil or non-foil, {item.printing}')
+                                            pass  # raise Exception(f'Card {item.name} {item.expansion} not labeled foil or non-foil, {item.printing}')
 
                                 elif item.condition == 'Unopened':
                                     pass
