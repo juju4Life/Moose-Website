@@ -121,7 +121,7 @@ class InventoryAnalytics(models.Model):
 
 class Inventory(models.Model):
     custom_price = models.BooleanField(default=False)
-    update_inventory_quantity = models.IntegerField(default=0)
+    update_inventory_quantity = models.IntegerField(default=0, verbose_name='Increase or Decrease quantity')
     update_inventory_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     sku = models.CharField(max_length=255, default='', unique=True)
     quantity = models.IntegerField(default=0)

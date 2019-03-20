@@ -30,7 +30,7 @@ class NewOrdersAdmin(admin.ModelAdmin):
 class InventoryAdmin(admin.ModelAdmin):
     save_on_top = True
     search_fields = ['name']
-    list_filter = ['category', 'printing', 'language', 'condition', 'expansion']
+    list_filter = ['ebay', 'category', 'printing', 'language', 'condition', 'expansion']
     ordering = ['custom_price', '-last_sold_date', '-total_quantity_sold', ]
     list_display = ['name', 'expansion', 'quantity', 'price',  'category', 'printing', 'condition', 'last_upload_date',
                     'last_sold_date', 'total_quantity_sold', 'custom_price', ]
@@ -38,6 +38,7 @@ class InventoryAdmin(admin.ModelAdmin):
         (None, {
             'fields': (
                 ('custom_price',),
+                ('ebay',),
                 ('update_inventory_quantity', 'update_inventory_price',),
                 ('printing',),
                 ('price', 'quantity'),

@@ -98,6 +98,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'import_export',
     'tcg',
+    'ebay',
 #  'customer.startup.BotConfig',
 ]
 

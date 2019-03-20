@@ -119,7 +119,8 @@ class Command(BaseCommand):
                                     last_sold_date=order_date,
                                     last_sold_quantity=q,
                                     last_sold_price=price,
-                                    total_quantity_sold=q
+                                    total_quantity_sold=q,
+                                    ebay=False,
 
                                 )
                                 new_item.save()

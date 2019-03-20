@@ -189,6 +189,7 @@ def upload_sku(sku_list, data, cat_id):
                                 last_sold_quantity=0,
                                 last_sold_price=0,
                                 total_quantity_sold=0,
+                                ebay=False,
                             )
                             new.save()
 
