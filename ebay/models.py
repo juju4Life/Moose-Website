@@ -21,4 +21,7 @@ class EbayListing(models.Model):
 
 class EbayAccessToken(models.Model):
     name = models.CharField(max_length=255, default='')
-    token = models.TextField(default='')
+    access_token = models.TextField(default='')
+    refresh_token = models.CharField(max_length=255, default='')
+    user_token = models.CharField(max_length=255, default='')
+
