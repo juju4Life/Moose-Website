@@ -139,6 +139,7 @@ class Inventory(models.Model):
     last_sold_quantity = models.IntegerField(default=0)
     last_sold_price = models.DecimalField(max_digits=12, default=0, decimal_places=2)
     total_quantity_sold = models.IntegerField(default=0, verbose_name='Total Sold')
+    ebay = models.BooleanField(default=False, verbose_name='On eBay')
 
     def __str__(self):
         return self.name
