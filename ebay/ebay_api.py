@@ -5,7 +5,7 @@ from decouple import config
 from .models import EbayAccessToken
 
 
-class EbayCredentials:
+class EbayApi:
     credentials = EbayAccessToken.objects.get(name='')
     base_url = 'https://api.ebay.com/sell/inventory/v1/'
     access_token = credentials.access_token
@@ -69,7 +69,7 @@ class EbayCredentials:
     def migrate_obj(self):
         headers = self.return_headers('Bearer', accept=True)
 
-        url = self.call_url
+        url = ''
         data = {
               "requests": [
                 {
@@ -229,7 +229,7 @@ class EbayCredentials:
         headers = self.return_headers('Basic')
         data = {
             'grant_type': 'authorization_code',
-            'code': unquote(self.client_id),
+            'code': unquote(self.credentials.user_token),
             'redirect_uri': 'Jermol_Jupiter-JermolJu-Search-nnlcpv',
             'scope': self.encoded_scopes,
         }
@@ -256,9 +256,8 @@ class EbayCredentials:
         url = 'https://api.ebay.com/identity/v1/oauth2/token'
         r = requests.post(url, headers=headers, data=data)
         token_data = r.json()
-        print(token_data)
-        with open('token.txt', 'w') as f:
-            f.write(token_data['access_token'])
+        self.credentials.access_token = token_data['access_token']
+        self.credentials.save()
         return token_data
 
 
@@ -267,14 +266,7 @@ class EbayCredentials:
 # print(EbayCredentials().publish_offer('46220752019'))
 # print(EbayCredentials().get_locations())
 
-ebay = EbayCredentials()
 
 
-def list_item(sku):
-    ebay.create_item(sku)
-    offer_id = ebay.create_offer(sku, quantity=5, category_id='38292')['offerId']
-    print(ebay.publish_offer(offer_id))
 
-
-print(ebay.get_inventory())
 

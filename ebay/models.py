@@ -6,6 +6,7 @@ class EbayListing(models.Model):
     sku = models.CharField(max_length=25, default='')
     listing_id = models.CharField(max_length=30, default='', unique=True)
     payment_policy_id = models.CharField(max_length=30, default='')
+    offer_id = models.CharField(max_length=30, default='')
     category_id = models.CharField(max_length=30, default='')
     fulfillment_policy_id = models.CharField(max_length=30, default='')
     return_policy_id = models.CharField(max_length=30, default='')
@@ -24,4 +25,5 @@ class EbayAccessToken(models.Model):
     access_token = models.TextField(default='')
     refresh_token = models.CharField(max_length=255, default='')
     user_token = models.CharField(max_length=255, default='')
+
 
