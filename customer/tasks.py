@@ -94,7 +94,6 @@ def awake():
             client.listen(end_time=10)
 
 
-
 @shared_task(name='customer.tasks.add_buylist_item')
 def add_buylist_item(name):
     results = Product.objects.filter(name=name.strip())

@@ -12,15 +12,11 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 from decouple import config
-import csv
 from celery.schedules import crontab
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 celery_broker_url = config('CELERY_BROKER_URL')
-
-from celery.schedules import crontab
-
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
@@ -32,6 +28,11 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'customer.tasks.update_tcg_key',
         'schedule': crontab(hour=5, minute=0, day_of_week=1),
     },
+    'task-refresh-ebay-token': {
+            'task': 'ebay.tasks.refresh_access_token',
+            'schedule': crontab(hour=1, minute=50),
+        },
+
 }
 
 #EMAIL_BACKEND = 'django.core.email.backends.smtp.EmailBackend'

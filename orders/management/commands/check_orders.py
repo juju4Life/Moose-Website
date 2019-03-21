@@ -147,7 +147,6 @@ class Command(BaseCommand):
                     if is_direct is False:
                         pass
 
-
         if errors:
             subject = "List of errors for function, check_orders"
             message = f"List of errors during execution of function, check_orders\n{errors}"

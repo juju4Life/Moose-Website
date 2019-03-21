@@ -101,7 +101,7 @@ class EbayApi:
         r = requests.get(path, headers=headers)
         return r.json()
 
-    def create_item(self, sku):
+    def create_item(self, sku, title, expansion, image_url, quantity, condition='Near Mint / Lightly Played'):
         url = self.base_url + f'inventory_item/{sku}'
         headers = {
             'Authorization': 'Bearer ' + self.access_token,
@@ -111,26 +111,33 @@ class EbayApi:
         data = {
             "availability": {
                 "shipToLocationAvailability": {
-                    "quantity": 10
+                    "quantity": quantity,
                 }
             },
             "condition": "NEW",
             "product": {
-                "title": "Snapcaster Mage",
-                "description": "SNap Card from the Innistrad expansion set",
+                "title": title,
+                "description": f"<strong>Shipping for this item is Fast and Free</strong>\n\n"
+                f"This auction is for <strong>{quantity}x {title}</strong> from the {expansion} expansion and will be in"
+                f"<strong>{condition}</strong> condition.\n\nThese card(s) will be  inserted into a sleeve, top-loader, team  bag, and padded bubble-mailer "
+                f"envelop to provide the maximum level of protection for your purchase.\n\nWe have many great auctions at affordable prices, "
+                f"and provide combined shipping. Check our our extensive inventory of Magic the Gathering Singles\n\n"
+                f"We pride ourselves in our  first-class service. If there is anything  we can do to provide a better experience,  don't hesitate"
+                " to contact us.\n",
+
                 "aspects": {
                     "Brand": [
                         "Magic the Gathering"
                     ],
                     "Type": [
-                        "Trading Card"
+                        "Trading card"
                     ],
 
                 },
                 "brand": "Wizards of the Coast",
-                "mpn": "WOC",
+                "mpn": "WOtC",
                 "imageUrls": [
-                    "https://img.scryfall.com/cards/large/front/7/e/7e41765e-43fe-461d-baeb-ee30d13d2d93.jpg?1547516526",
+                    image_url,
                 ]
             }
         }
@@ -141,7 +148,6 @@ class EbayApi:
     def create_offer(self, sku, quantity, category_id):
         url = self.base_url + 'offer'
         headers = self.return_headers('Bearer', content_language=True)
-        print(headers)
         data = {
             "sku": sku,
             "marketplaceId": "EBAY_US",
@@ -258,13 +264,6 @@ class EbayApi:
         token_data = r.json()
         self.credentials.access_token = token_data['access_token']
         self.credentials.save()
-        return token_data
-
-
-# call = EbayCredentials().create_offer('mtg-3459022', quantity='3', category_id='38292')
-
-# print(EbayCredentials().publish_offer('46220752019'))
-# print(EbayCredentials().get_locations())
 
 
 
