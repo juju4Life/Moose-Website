@@ -18,13 +18,12 @@ def list_item(sku, title, expansion, image_url, quantity, price, condition='Near
         '33310623022': 0,
     }
     price = math.ceil(price) - 0.01
-    description = f"<strong>Shipping for this item is Fast and Free</strong>\n\n" \
+    description = f"<strong>Shipping for this item is Fast and Free</strong><br>" \
                   f"This auction is for <strong>{quantity}x {title}</strong> from the {expansion} expansion and will be in"\
-                  f"<strong>{condition}</strong> condition.\n\nThese card(s) will be  inserted into a sleeve, top-loader, team  bag, and padded bubble-mailer "\
-                  f"envelop to provide the maximum level of protection for your purchase.\n\nWe have many great auctions at affordable prices, "\
-                  f"and provide combined shipping. Check our our extensive inventory of Magic the Gathering Singles\n\n"\
-                  f"We pride ourselves in our  first-class service. If there is anything  we can do to provide a better experience,  don't hesitate"\
-                  " to contact us.\n"
+                  f"<strong>{condition}</strong> condition.<br>These card(s) will be  inserted into a sleeve, top-loader, team  bag, and padded bubble-mailer "\
+                  f"envelop to provide the maximum level of protection for your purchase.<br>We have many great auctions at affordable prices "\
+                  f"and provide combined shipping.Be sure to check out our full inventory for the hottest deals around!<br>"\
+                  f"If you have any questions or concerns, please let us know. We'll do everything we can to help.<br>"
 
     condition_description = 'The items in this auction are in Near Mint or Lightly Played condition with "No" or "minor" marks / edge-wear'
 
@@ -34,11 +33,9 @@ def list_item(sku, title, expansion, image_url, quantity, price, condition='Near
     offer_id = ebay.create_offer(sku, price=price, quantity=quantity, category_id='38292', fulfillment_id=fulfillment_id, payment_id=payment_id,
                                  return_policy_id=return_policy_id, description=description)
 
-    print(offer_id)
     offer_id = offer_id['offerId']
 
     upload = ebay.publish_offer(offer_id)
-    print(upload)
     try:
         listing_id = upload['listingId']
 
@@ -77,7 +74,3 @@ def list_item(sku, title, expansion, image_url, quantity, price, condition='Near
         return False
 
 
-print(list_item(
-    'mtg56654275', 'Snapcaster Mage', 'Innistrad', 'https://6d4be195623157e28848-7697ece4918e0a73861de0eb37d08968.ssl.cf1.rackcdn.com/52206_200w.jpg',
-    2, 74.47,
-))

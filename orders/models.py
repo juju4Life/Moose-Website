@@ -160,7 +160,7 @@ class Inventory(models.Model):
         print(self.ebay)
 
         if self.old_ebay_value is False and self.ebay is True:
-            manage_ebay.apply_async(que='high_priority', args=(self.sku, ))
+            pass  # manage_ebay.apply_async(que='high_priority', args=(self.sku, ))
 
         if self.update_inventory_price > Decimal(0):
             api.update_sku_price(self.sku, float(self.update_inventory_price), _json=True)
