@@ -13,7 +13,6 @@ class EbayApi:
     client_id = config('ebay_client_id')
     client_secret = config('ebay_client_secret')
 
-    refresh_token = 'v^1.1#i^1#p^3#f^0#r^1#I^3#t^Ul4xMF81OjcwNDYwRTZGODczQzE4QzI4MDhFRTRFMUU4QTkyQkU1XzNfMSNFXjI2MA=='
     encoded_credentials = base64.b64encode(b'%s' % f'{client_id}:{client_secret}'.encode('utf-8')).decode('utf-8')
     user_request_id = credentials.user_token
     scopes = [
@@ -101,7 +100,7 @@ class EbayApi:
         r = requests.get(path, headers=headers)
         return r.json()
 
-    def create_item(self, sku, title, expansion, image_url, quantity, condition='Near Mint / Lightly Played'):
+    def create_item(self, sku, title, image_url, quantity, ebay_condition, description, condition_description):
         url = self.base_url + f'inventory_item/{sku}'
         headers = {
             'Authorization': 'Bearer ' + self.access_token,
@@ -114,16 +113,11 @@ class EbayApi:
                     "quantity": quantity,
                 }
             },
-            "condition": "NEW",
+            "condition": ebay_condition,
+            "conditionDescription": condition_description,
             "product": {
                 "title": title,
-                "description": f"<strong>Shipping for this item is Fast and Free</strong>\n\n"
-                f"This auction is for <strong>{quantity}x {title}</strong> from the {expansion} expansion and will be in"
-                f"<strong>{condition}</strong> condition.\n\nThese card(s) will be  inserted into a sleeve, top-loader, team  bag, and padded bubble-mailer "
-                f"envelop to provide the maximum level of protection for your purchase.\n\nWe have many great auctions at affordable prices, "
-                f"and provide combined shipping. Check our our extensive inventory of Magic the Gathering Singles\n\n"
-                f"We pride ourselves in our  first-class service. If there is anything  we can do to provide a better experience,  don't hesitate"
-                " to contact us.\n",
+                "description": description,
 
                 "aspects": {
                     "Brand": [
@@ -145,7 +139,7 @@ class EbayApi:
         r = requests.put(url, headers=headers, json=data)
         print(r)
 
-    def create_offer(self, sku, quantity, category_id):
+    def create_offer(self, sku, price, quantity, category_id, fulfillment_id, payment_id, return_policy_id, description):
         url = self.base_url + 'offer'
         headers = self.return_headers('Bearer', content_language=True)
         data = {
@@ -155,20 +149,20 @@ class EbayApi:
             "format": "FIXED_PRICE",
             "availableQuantity": quantity,
             "categoryId": category_id,
-            "listingDescription": "1x Arid Mesa from the Zendikar expansion set.",
+            "listingDescription": description,
             "listingPolicies": {
-                "fulfillmentPolicyId": "33310623022",
-                "paymentPolicyId": "24992594022",
-                "returnPolicyId": "153557924022"
+                "fulfillmentPolicyId": fulfillment_id,
+                "paymentPolicyId": payment_id,
+                "returnPolicyId": return_policy_id,
             },
             "pricingSummary": {
                 "price": {
                     "currency": "USD",
-                    "value": "59.99"
+                    "value": price,
                 }
             },
 
-            "quantityLimitPerBuyer": 4
+            "quantityLimitPerBuyer": 100,
         }
 
         r = requests.post(url, headers=headers, json=data)

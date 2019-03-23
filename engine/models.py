@@ -102,6 +102,8 @@ class MTG(models.Model):
     condition = models.CharField(max_length=255, default='', db_index=True)
     language = models.CharField(max_length=255, default='English', db_index=True)
     foil = models.BooleanField(default=False)
+    product_id = models.CharField(max_length=30, default='')
+    image_url = models.CharField(max_length=255, default='')
 
     def __str__(self):
         return self.product_name
@@ -118,6 +120,8 @@ class MtgForeign(models.Model):
     condition = models.CharField(max_length=255, default='', db_index=True)
     language = models.CharField(max_length=255, default='Unknown', db_index=True)
     foil = models.BooleanField(default=False)
+    product_id = models.CharField(max_length=30, default='')
+    image_url = models.CharField(max_length=255, default='')
 
     def __str__(self):
         return self.product_name

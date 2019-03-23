@@ -144,11 +144,23 @@ class Inventory(models.Model):
     def __str__(self):
         return self.name
 
+    def __init__(self, *args, **kwargs):
+        super(Inventory, self).__init__(*args, **kwargs)
+        self.old_ebay_value = self.ebay
+
     def clean(self):
         from engine.tcgplayer_api import TcgPlayerApi
         from decimal import Decimal
         from engine.models import Upload
+        from ebay.tasks import manage_ebay
+
         api = TcgPlayerApi()
+
+        print(self.old_ebay_value)
+        print(self.ebay)
+
+        if self.old_ebay_value is False and self.ebay is True:
+            manage_ebay.apply_async(que='high_priority', args=(self.sku, ))
 
         if self.update_inventory_price > Decimal(0):
             api.update_sku_price(self.sku, float(self.update_inventory_price), _json=True)
