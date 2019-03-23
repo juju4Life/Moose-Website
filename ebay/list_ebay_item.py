@@ -32,7 +32,7 @@ def list_item(sku, title, expansion, image_url, quantity, price, condition='Near
 
     offer_id = ebay.create_offer(sku, price=price, quantity=quantity, category_id='38292', fulfillment_id=fulfillment_id, payment_id=payment_id,
                                  return_policy_id=return_policy_id, description=description)
-
+    print(offer_id)
     offer_id = offer_id['offerId']
 
     upload = ebay.publish_offer(offer_id)
@@ -74,3 +74,9 @@ def list_item(sku, title, expansion, image_url, quantity, price, condition='Near
         return False
 
 
+ebay.refresh()
+
+print(list_item(
+    'mtg522346543225', 'Snapcaster Mage', 'Innistrad', 'https://6d4be195623157e28848-7697ece4918e0a73861de0eb37d08968.ssl.cf1.rackcdn.com/52206_200w.jpg',
+    2, 81.82,
+))
