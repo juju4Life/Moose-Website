@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/scryfall_api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ebay/ebay_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/ebay/ebay_api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ebay/list_ebay_item.py" beforeDir="false" afterPath="$PROJECT_DIR$/ebay/list_ebay_item.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/sku_image.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/sku_image.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ebay/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/ebay/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/management/commands/sku_image.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/sku_image.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,22 +19,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.3449814">
+    <splitter split-orientation="horizontal" split-proportion="0.17204301">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/tcg/price_and_upload.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3026">
-                  <caret line="187" column="43" selection-start-line="187" selection-start-column="43" selection-end-line="187" selection-end-column="43" />
-                  <folding>
-                    <element signature="e#0#30#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/engine/management/commands/get_orders.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="68">
@@ -43,11 +37,20 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ebay/tasks.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="342">
-                  <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+                <state relative-caret-position="147">
+                  <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
                   <folding>
                     <element signature="e#0#56#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scryfall_api.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="136">
+                  <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
                 </state>
               </provider>
             </entry>
@@ -106,18 +109,6 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/ebay/list_ebay_item.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="382">
-                  <caret line="76" column="14" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
-                  <folding>
-                    <element signature="e#0#29#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
         </leaf>
       </split-first>
       <split-second>
@@ -134,11 +125,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/engine/management/commands/sku_image.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="277">
-                  <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+                <state relative-caret-position="251">
+                  <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
                   <folding>
                     <element signature="e#0#51#0" expanded="true" />
                   </folding>
@@ -149,8 +140,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/orders/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="162" column="20" selection-start-line="162" selection-start-column="20" selection-end-line="162" selection-end-column="20" />
+                <state relative-caret-position="238">
+                  <caret line="143" column="60" lean-forward="true" selection-start-line="143" selection-start-column="60" selection-end-line="143" selection-end-column="60" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
@@ -161,8 +152,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/source/settings.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="425">
-                  <caret line="31" column="21" lean-forward="true" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="52" />
+                <state relative-caret-position="119">
+                  <caret line="28" column="17" lean-forward="true" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
                   <folding>
                     <element signature="e#305#314#0" expanded="true" />
                   </folding>
@@ -182,11 +173,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/orders/tasks.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+                <state relative-caret-position="782">
+                  <caret line="174" column="28" selection-start-line="174" selection-start-column="28" selection-end-line="174" selection-end-column="28" />
                   <folding>
                     <element signature="e#0#56#0" expanded="true" />
                   </folding>
@@ -209,8 +200,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ebay/ebay_api.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2040">
-                  <caret line="15" selection-start-line="15" selection-end-line="15" />
+                <state relative-caret-position="79">
+                  <caret line="313" column="22" lean-forward="true" selection-start-line="313" selection-start-column="22" selection-end-line="313" selection-end-column="22" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -223,6 +214,18 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="408">
                   <caret line="24" column="44" lean-forward="true" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/ebay/list_ebay_item.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="317">
+                  <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="81" />
+                  <folding>
+                    <element signature="e#0#29#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -267,9 +270,9 @@
       <find>price_foil</find>
       <find>price_f</find>
       <find>avera</find>
-      <find>print</find>
       <find>fixed</find>
       <find>ebay</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -278,7 +281,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Pipfile" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_16.py" />
         <option value="$PROJECT_DIR$/customer/models.py" />
         <option value="$PROJECT_DIR$/customer/signals.py" />
@@ -312,23 +314,24 @@
         <option value="$PROJECT_DIR$/tcg/price_alogrithm.py" />
         <option value="$PROJECT_DIR$/engine/ebay.py" />
         <option value="$PROJECT_DIR$/orders/management/commands/update_online_prices.py" />
-        <option value="$PROJECT_DIR$/orders/tasks.py" />
         <option value="$PROJECT_DIR$/orders/admin.py" />
         <option value="$PROJECT_DIR$/engine/management/commands/get_orders.py" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/ebay/admin.py" />
         <option value="$PROJECT_DIR$/ebay/models.py" />
         <option value="$PROJECT_DIR$/orders/management/commands/check_orders.py" />
-        <option value="$PROJECT_DIR$/source/settings.py" />
         <option value="$PROJECT_DIR$/source/tasks.py" />
         <option value="$PROJECT_DIR$/customer/tasks.py" />
-        <option value="$PROJECT_DIR$/ebay/tasks.py" />
-        <option value="$PROJECT_DIR$/ebay/ebay_api.py" />
         <option value="$PROJECT_DIR$/engine/models.py" />
-        <option value="$PROJECT_DIR$/orders/models.py" />
         <option value="$PROJECT_DIR$/engine/sku_image.py" />
+        <option value="$PROJECT_DIR$/scryfall_api.py" />
         <option value="$PROJECT_DIR$/engine/management/commands/sku_image.py" />
         <option value="$PROJECT_DIR$/ebay/list_ebay_item.py" />
+        <option value="$PROJECT_DIR$/ebay/ebay_api.py" />
+        <option value="$PROJECT_DIR$/ebay/tasks.py" />
+        <option value="$PROJECT_DIR$/source/settings.py" />
+        <option value="$PROJECT_DIR$/orders/models.py" />
+        <option value="$PROJECT_DIR$/orders/tasks.py" />
       </list>
     </option>
   </component>
@@ -589,9 +592,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1381" height="925" extended-state="6" />
+    <frame x="-6" y="-6" width="1381" height="925" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.2394052" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2394052" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24981412" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -602,7 +606,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32980132" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32980132" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49962825" visible="true" weight="0.22767295" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49962825" visible="true" weight="0.39496854" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50037175" side_tool="true" weight="0.3960265" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32980132" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -633,20 +637,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/menu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/django/core/management/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="380" selection-start-line="380" selection-end-line="380" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orders/management/commands/update_orders.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -837,16 +827,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tcg/price_and_upload.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3026">
-          <caret line="187" column="43" selection-start-line="187" selection-start-column="43" selection-end-line="187" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orders/analyze_inventory.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -884,23 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tcg/price_alogrithm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1768">
-          <caret line="104" column="35" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/management/commands/get_orders.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -931,30 +894,10 @@
     <entry file="file://$PROJECT_DIR$/source/tasks.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="31" column="21" lean-forward="true" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="52" />
-          <folding>
-            <element signature="e#305#314#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ebay/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="24" column="44" lean-forward="true" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orders/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -964,16 +907,6 @@
           <caret line="259" column="22" lean-forward="true" selection-start-line="259" selection-start-column="22" selection-end-line="259" selection-end-column="22" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ebay/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1018,6 +951,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/my_customs/decorators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tcg/price_alogrithm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1768">
+          <caret line="104" column="35" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scryfall_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/sku_image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/orders/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
@@ -1028,42 +992,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orders/models.py">
+    <entry file="file://$PROJECT_DIR$/ebay/list_ebay_item.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="162" column="20" selection-start-line="162" selection-start-column="20" selection-end-line="162" selection-end-column="20" />
+        <state relative-caret-position="317">
+          <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="81" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ebay/ebay_api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2040">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="79">
+          <caret line="313" column="22" lean-forward="true" selection-start-line="313" selection-start-column="22" selection-end-line="313" selection-end-column="22" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/management/commands/sku_image.py">
+    <entry file="file://$PROJECT_DIR$/ebay/tasks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+        <state relative-caret-position="147">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="28" column="17" lean-forward="true" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+          <folding>
+            <element signature="e#305#314#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tcg/price_and_upload.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3026">
+          <caret line="187" column="43" selection-start-line="187" selection-start-column="43" selection-end-line="187" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/get_orders.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ebay/list_ebay_item.py">
+    <entry file="file://$PROJECT_DIR$/orders/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="76" column="14" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
+        <state relative-caret-position="238">
+          <caret line="143" column="60" lean-forward="true" selection-start-line="143" selection-start-column="60" selection-end-line="143" selection-end-column="60" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="174" column="28" selection-start-line="174" selection-start-column="28" selection-end-line="174" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
           </folding>
         </state>
       </provider>

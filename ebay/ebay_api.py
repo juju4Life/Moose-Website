@@ -100,6 +100,44 @@ class EbayApi:
         r = requests.get(path, headers=headers)
         return r.json()
 
+    def delete_ebay_item(self, sku):
+        url = self.base_url + f'inventory_item/{sku}'
+        headers = self.return_headers('Bearer')
+        r = requests.delete(url, headers=headers)
+        return r.text
+
+    def update_price_quantity(self, data):
+        url = self.base_url + 'bulk_update_price_quantity'
+        headers = self.return_headers('Bearer')
+
+        data = {
+            'requests': [
+                {
+                    "offers": [
+                        {
+                            "availableQuantity": i['quantity'],
+                            "offerId": i['offer_id'],
+                            "price": {
+                                "currency": "USD",
+                                "value": i['price']
+                            }
+                        },
+                    ],
+
+                    "shipToLocationAvailability": {
+                        "quantity": i['quantity']
+                    },
+
+                    "sku": i['sku']
+                }
+
+                for i in data
+            ]
+        }
+
+        r = requests.post(url, headers=headers, json=data)
+        return r.text
+
     def create_item(self, sku, title, image_url, quantity, ebay_condition, description, condition_description):
         url = self.base_url + f'inventory_item/{sku}'
         headers = {
@@ -137,7 +175,7 @@ class EbayApi:
         }
 
         r = requests.put(url, headers=headers, json=data)
-        print(r)
+        return r
 
     def create_offer(self, sku, price, quantity, category_id, fulfillment_id, payment_id, return_policy_id, description):
         url = self.base_url + 'offer'
@@ -168,6 +206,34 @@ class EbayApi:
         r = requests.post(url, headers=headers, json=data)
         return r.json()
 
+    def update_offer(self, offer_id, price, quantity, category_id, fulfillment_id, payment_id, return_policy_id, description):
+        url = self.base_url + f'offer/{offer_id}'
+        headers = self.return_headers('Bearer', content_language=True)
+        data = {
+            "marketplaceId": "EBAY_US",
+            "merchantLocationKey": "US_21060",
+            "format": "FIXED_PRICE",
+            "availableQuantity": quantity,
+            "categoryId": category_id,
+            "listingDescription": description,
+            "listingPolicies": {
+                "fulfillmentPolicyId": fulfillment_id,
+                "paymentPolicyId": payment_id,
+                "returnPolicyId": return_policy_id,
+            },
+            "pricingSummary": {
+                "price": {
+                    "currency": "USD",
+                    "value": price,
+                }
+            },
+
+            "quantityLimitPerBuyer": 100,
+        }
+
+        r = requests.put(url, headers=headers, json=data)
+        return r.json()
+
     def get_policies(self, policy):
         url = f'https://api.ebay.com/sell/account/v1/{policy}'
         params = {
@@ -179,7 +245,6 @@ class EbayApi:
 
     def create_fulfillment_policy(self):
         url = 'https://api.ebay.com/sell/account/v1/fulfillment_policy'
-        print(url)
 
         data = {
             "categoryTypes": [
@@ -258,6 +323,7 @@ class EbayApi:
         token_data = r.json()
         self.credentials.access_token = token_data['access_token']
         self.credentials.save()
+        print("REFRESHED")
 
 
 

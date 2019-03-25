@@ -8,6 +8,7 @@ from engine.tcg_manifest import Manifest
 from orders.models import NewOrders, Inventory
 from datetime import date
 from decouple import config
+from scryfall_api import get_image
 
 api = TcgPlayerApi()
 M = Manifest()
@@ -103,6 +104,7 @@ class Command(BaseCommand):
 
                             # If product doesn't exisit in inventory for some reason, create and populate fields
                             except ObjectDoesNotExist:
+                                image_url = get_image(product_id)
                                 new_item = Inventory(
                                     sku=sku,
                                     quantity=0,
@@ -121,6 +123,9 @@ class Command(BaseCommand):
                                     last_sold_price=price,
                                     total_quantity_sold=q,
                                     ebay=False,
+                                    amazon=False,
+                                    product_id=product_id,
+                                    image_url=image_url,
 
                                 )
                                 new_item.save()

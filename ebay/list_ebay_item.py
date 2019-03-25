@@ -18,7 +18,8 @@ def list_item(sku, title, expansion, image_url, quantity, price, condition='Near
         '33310623022': 0,
     }
     price = math.ceil(price) - 0.01
-    description = f"<strong>Shipping for this item is Fast and Free</strong><br>" \
+    title = f"{quantity}x {title} - {expansion} - Magic the Gathering - Fast Shipping"
+    description = f"<strong>Shipping for this item is *Fast and Free*</strong><br><br>" \
                   f"This auction is for <strong>{quantity}x {title}</strong> from the {expansion} expansion and will be in"\
                   f"<strong>{condition}</strong> condition.<br>These card(s) will be  inserted into a sleeve, top-loader, team  bag, and padded bubble-mailer "\
                   f"envelop to provide the maximum level of protection for your purchase.<br>We have many great auctions at affordable prices "\
@@ -48,7 +49,6 @@ def list_item(sku, title, expansion, image_url, quantity, price, condition='Near
         listing_id = {}
 
     if listing_id:
-        print(listing_id)
         new_listing = EbayListing(
             title=title,
             sku=sku,
@@ -74,9 +74,11 @@ def list_item(sku, title, expansion, image_url, quantity, price, condition='Near
         return False
 
 
-ebay.refresh()
+'''print(list_item(
+    'mtg522343', 'Arid Mesa', 'Zendikar', 'https://6d4be195623157e28848-7697ece4918e0a73861de0eb37d08968.ssl.cf1.rackcdn.com/33252_200w.jpg',
+    5, 75.42,
+))'''
 
-print(list_item(
-    'mtg522346543225', 'Snapcaster Mage', 'Innistrad', 'https://6d4be195623157e28848-7697ece4918e0a73861de0eb37d08968.ssl.cf1.rackcdn.com/52206_200w.jpg',
-    2, 81.82,
-))
+
+# new = ebay.delete_ebay_item('mtg522343')
+print(ebay.get_inventory())

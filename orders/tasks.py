@@ -8,6 +8,7 @@ from django.core.mail import send_mail
 from orders.models import Inventory
 from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
+from scryfall_api import get_image
 
 api = TcgPlayerApi()
 
@@ -172,6 +173,8 @@ def upload_sku(sku_list, data, cat_id):
                             online_stock.save()
 
                         except ObjectDoesNotExist:
+                            product_id = api.card_info_by_sku(sku)['results'][0]['product_id']
+                            image_url = get_image(product_id)
                             new = Inventory(
                                 sku=sku,
                                 quantity=upload_quantity,
@@ -190,6 +193,9 @@ def upload_sku(sku_list, data, cat_id):
                                 last_sold_price=0,
                                 total_quantity_sold=0,
                                 ebay=False,
+                                amazon=False,
+                                product_id=product_id,
+                                image_url=image_url,
                             )
                             new.save()
 
