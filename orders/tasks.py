@@ -173,7 +173,7 @@ def upload_sku(sku_list, data, cat_id):
                             online_stock.save()
 
                         except ObjectDoesNotExist:
-                            product_id = api.card_info_by_sku(sku)['results'][0]['product_id']
+                            product_id = api.card_info_by_sku(sku)['results'][0]['productId']
                             image_url = get_image(product_id)
                             new = Inventory(
                                 sku=sku,
