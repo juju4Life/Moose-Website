@@ -30,7 +30,7 @@ CELERY_BEAT_SCHEDULE = {
     },
     'task-refresh-ebay-token': {
             'task': 'ebay.tasks.refresh_access_token',
-            'schedule': crontab(minute=5),
+            'schedule': 300,
         },
 
 }
