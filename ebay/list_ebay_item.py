@@ -79,6 +79,5 @@ def list_item(sku, title, expansion, image_url, quantity, price, condition='Near
     5, 75.42,
 ))'''
 
-if __name__ == "__main__":
-    # new = ebay.delete_ebay_item('mtg522343')
-    print(ebay.get_inventory())
+# new = ebay.delete_ebay_item('mtg522343')
+print(ebay.get_inventory())

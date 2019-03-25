@@ -31,14 +31,14 @@ class InventoryAdmin(admin.ModelAdmin):
     save_on_top = True
     search_fields = ['name']
     list_filter = ['ebay', 'category', 'printing', 'language', 'condition', 'expansion']
-    ordering = ['custom_price', '-last_sold_date', '-total_quantity_sold', ]
+    ordering = ['-custom_price', '-last_sold_date', '-total_quantity_sold', ]
     list_display = ['name', 'expansion', 'quantity', 'price',  'category', 'printing', 'condition', 'last_upload_date',
                     'last_sold_date', 'total_quantity_sold', 'custom_price', ]
     fieldsets = (
         (None, {
             'fields': (
                 ('custom_price',),
-                ('ebay',),
+                ('ebay', 'amazon',),
                 ('update_inventory_quantity', 'update_inventory_price',),
                 ('printing',),
                 ('price', 'quantity'),
@@ -53,13 +53,13 @@ class InventoryAdmin(admin.ModelAdmin):
 
         ('Advanced options', {
             'classes': ('collapse',),
-            'fields': ('sku',),
+            'fields': ('sku', 'product_id', 'image_url'),
         }),
     )
 
     readonly_fields = ('printing', 'price', 'quantity', 'name', 'expansion', 'language', 'condition',
                        'last_upload_date', 'last_upload_quantity', 'last_sold_date', 'last_sold_quantity',
-                       'last_sold_price', 'total_quantity_sold', 'sku',)
+                       'last_sold_price', 'total_quantity_sold', 'sku', 'image_url', 'product_id')
 
 
 @admin.register(GroupName)

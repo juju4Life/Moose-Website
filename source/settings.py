@@ -28,14 +28,15 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'customer.tasks.update_tcg_key',
         'schedule': crontab(hour=5, minute=0, day_of_week=1),
     },
+
     'task-refresh-ebay-token': {
             'task': 'ebay.tasks.refresh_access_token',
-            'schedule': 300,
+            'schedule': 6600,
         },
 
 }
 
-#EMAIL_BACKEND = 'django.core.email.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.email.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'mtgfirst'
 EMAIL_USE_TLS = True
 EMAIL_HOST = config('EMAIL_HOST')
