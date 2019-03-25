@@ -323,7 +323,6 @@ class EbayApi:
         token_data = r.json()
         self.credentials.access_token = token_data['access_token']
         self.credentials.save()
-        print("REFRESHED")
 
 
 

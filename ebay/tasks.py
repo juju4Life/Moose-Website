@@ -13,7 +13,6 @@ ebay = EbayApi()
 
 @shared_task(name='ebay.tasks.refresh_access_token')
 def refresh_access_token():
-    print('Start Refresh')
     ebay.refresh()
 
 
