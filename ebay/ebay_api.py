@@ -175,6 +175,7 @@ class EbayApi:
         }
 
         r = requests.put(url, headers=headers, json=data)
+        print(r)
         return r
 
     def create_offer(self, sku, price, quantity, category_id, fulfillment_id, payment_id, return_policy_id, description):
@@ -204,6 +205,7 @@ class EbayApi:
         }
 
         r = requests.post(url, headers=headers, json=data)
+        print(headers)
         return r.json()
 
     def update_offer(self, offer_id, price, quantity, category_id, fulfillment_id, payment_id, return_policy_id, description):
