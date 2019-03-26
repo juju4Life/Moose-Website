@@ -159,11 +159,10 @@ class Inventory(models.Model):
 
         api = TcgPlayerApi()
 
-        print(self.old_ebay_value)
-        print(self.ebay)
+
 
         if self.old_ebay_value is False and self.ebay is True:
-            pass  # manage_ebay.apply_async(que='high_priority', args=(self.sku, ))
+            manage_ebay.apply_async(que='low_priority', args=(self.sku, 'upload',))
 
         if self.update_inventory_price > Decimal(0):
             api.update_sku_price(self.sku, float(self.update_inventory_price), _json=True)

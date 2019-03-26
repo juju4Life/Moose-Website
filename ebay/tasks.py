@@ -17,13 +17,13 @@ def refresh_access_token():
 
 
 @shared_task(name='ebay.tasks.manage_ebay')
-def manage_ebay(sku, upload=False, remove=False):
+def manage_ebay(sku, status):
     item = Inventory.objects.get(sku=sku)
 
-    if upload is True:
+    if status == 'upload':
         if EbayListing.objects.filter(sku=sku).exists() is False:
             quantity = tcgApi.get_sku_quantity(sku)['results'][0]['quantity']
-            image = tcgApi.get_card_info(tcgApi.card_info_by_sku(sku)['results'][0]['sku'])['results'][0]['imageUrl']
+            image = tcgApi.get_card_info(tcgApi.card_info_by_sku(sku)['results'][0]['productId'])['results'][0]['imageUrl']
             price = math.ceil(item.price) - 0.01
             list_item(
                 sku=sku,
@@ -37,7 +37,7 @@ def manage_ebay(sku, upload=False, remove=False):
 
         else:
             pass
-    elif remove is True:
+    elif status == 'remove':
         ebay.delete_ebay_item(sku)
 
 

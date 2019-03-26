@@ -74,10 +74,4 @@ def list_item(sku, title, expansion, image_url, quantity, price, condition='Near
         return False
 
 
-'''print(list_item(
-    'mtg522343', 'Arid Mesa', 'Zendikar', 'https://6d4be195623157e28848-7697ece4918e0a73861de0eb37d08968.ssl.cf1.rackcdn.com/33252_200w.jpg',
-    5, 75.42,
-))'''
 
-# new = ebay.delete_ebay_item('mtg522343')
-print(ebay.get_inventory())
