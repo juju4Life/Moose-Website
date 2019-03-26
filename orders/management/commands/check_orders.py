@@ -10,6 +10,8 @@ from datetime import date
 from decouple import config
 from scryfall_api import get_image
 from ebay.ebay_api import EbayApi
+import math
+from ebay.models import EbayListing
 
 api = TcgPlayerApi()
 M = Manifest()
@@ -155,7 +157,17 @@ class Command(BaseCommand):
 
                         inventory_item = Inventory.objects.get(sku=sku)
                         if inventory_item.ebay is True:
-                            pass
+                            ebay_quantity = api.get_sku_quantity(sku)['results'][0]['quantity']
+                            ebay_price = math.ceil(inventory_item.price) - 0.01
+                            offer_id = EbayListing.objects.get(sku=sku).offer_id
+                            ebay.update_price_quantity([
+                                {
+                                    'sku': sku,
+                                    'offer_id': offer_id,
+                                    'price': ebay_price,
+                                    'quantity': ebay_quantity
+                                }
+                            ])
 
                     if is_direct is False:
                         pass
