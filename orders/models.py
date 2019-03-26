@@ -157,6 +157,7 @@ class Inventory(models.Model):
         from engine.models import Upload
         from ebay.tasks import manage_ebay
         from ebay.ebay_api import EbayApi
+        from ebay.models import EbayListing
 
         api = TcgPlayerApi()
 
@@ -170,6 +171,8 @@ class Inventory(models.Model):
 
         elif self.old_ebay_value is True and self.ebay is False:
             EbayApi().delete_ebay_item(self.sku)
+            ebay_ref = EbayListing.objects.get(sku=self.sku)
+            ebay_ref.delete()
 
         if self.update_inventory_price > Decimal(0):
             api.update_sku_price(self.sku, float(self.update_inventory_price), _json=True)
