@@ -205,7 +205,6 @@ class EbayApi:
         }
 
         r = requests.post(url, headers=headers, json=data)
-        print(headers)
         return r.json()
 
     def update_offer(self, offer_id, price, quantity, category_id, fulfillment_id, payment_id, return_policy_id, description):

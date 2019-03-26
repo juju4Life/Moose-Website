@@ -13,8 +13,12 @@ class Command(BaseCommand):
 
         for each in db:
             sku = each.sku
-            product_id = tcg.card_info_by_sku(sku)['results'][0]['productId']
-            if each.product_id == '':
+            try:
+                product_id = tcg.card_info_by_sku(sku)['results'][0]['productId']
+            except Exception:
+                product_id = ''
+
+            if each.product_id == '' and product_id != '':
                 try:
 
                     image = get_image(product_id)
