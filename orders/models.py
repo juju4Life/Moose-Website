@@ -165,9 +165,8 @@ class Inventory(models.Model):
         print(self.ebay)
 
         if self.old_ebay_value is False and self.ebay is True:
-            print("Getting ready")
             manage_ebay.apply_async(que='low_priority', args=(self.sku, 'upload',))
-            print('sent to que')
+            self.ebay = False
 
         elif self.old_ebay_value is True and self.ebay is False:
             EbayApi().delete_ebay_item(self.sku)

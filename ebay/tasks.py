@@ -26,7 +26,7 @@ def manage_ebay(sku, status):
             quantity = tcgApi.get_sku_quantity(sku)['results'][0]['quantity']
             image = get_image(tcgApi.card_info_by_sku(sku)['results'][0]['productId'])
             price = math.ceil(item.price) - 0.01
-            list_item(
+            uploaded = list_item(
                 sku=sku,
                 title=item.name,
                 expansion=item.expansion,
@@ -36,6 +36,9 @@ def manage_ebay(sku, status):
                 condition=item.condition,
 
             )
+
+            if uploaded is True:
+                item.ebay = True
 
         else:
             pass
