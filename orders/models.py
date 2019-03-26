@@ -169,9 +169,9 @@ class Inventory(models.Model):
             self.ebay = False
 
         elif self.old_ebay_value is True and self.ebay is False:
-            EbayApi().delete_ebay_item(self.sku)
-            ebay_ref = EbayListing.objects.get(sku=self.sku)
-            ebay_ref.delete()
+            # EbayApi().delete_ebay_item(self.sku)
+            '''ebay_ref = EbayListing.objects.get(sku=self.sku)
+            ebay_ref.delete()'''
 
         if self.update_inventory_price > Decimal(0):
             api.update_sku_price(self.sku, float(self.update_inventory_price), _json=True)
