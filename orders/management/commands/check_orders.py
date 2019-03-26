@@ -9,9 +9,11 @@ from orders.models import NewOrders, Inventory
 from datetime import date
 from decouple import config
 from scryfall_api import get_image
+from ebay.ebay_api import EbayApi
 
 api = TcgPlayerApi()
 M = Manifest()
+ebay = EbayApi()
 
 
 class Command(BaseCommand):
@@ -148,6 +150,12 @@ class Command(BaseCommand):
                                 quantity=q,
                             )
                             items.save()
+
+                        # Check ebay inventory
+
+                        inventory_item = Inventory.objects.get(sku=sku)
+                        if inventory_item.ebay is True:
+                            pass
 
                     if is_direct is False:
                         pass

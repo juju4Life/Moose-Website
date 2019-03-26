@@ -156,13 +156,16 @@ class Inventory(models.Model):
         from decimal import Decimal
         from engine.models import Upload
         from ebay.tasks import manage_ebay
+        from ebay.ebay_api import EbayApi
 
         api = TcgPlayerApi()
 
 
-
         if self.old_ebay_value is False and self.ebay is True:
             manage_ebay.apply_async(que='low_priority', args=(self.sku, 'upload',))
+
+        elif self.old_ebay_value is True and self.ebay is False:
+            EbayApi().delete_ebay_item(self.sku)
 
         if self.update_inventory_price > Decimal(0):
             api.update_sku_price(self.sku, float(self.update_inventory_price), _json=True)

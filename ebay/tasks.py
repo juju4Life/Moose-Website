@@ -32,6 +32,7 @@ def manage_ebay(sku, status):
                 image_url=image,
                 quantity=quantity,
                 price=price,
+                condition=item.condition,
 
             )
 
