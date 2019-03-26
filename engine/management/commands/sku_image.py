@@ -9,25 +9,26 @@ tcg = TcgPlayerApi()
 class Command(BaseCommand):
     def handle(self, **options):
 
-        db = MTG.objects.exclude(condition='Unopened')
+        db = MTG.objects.exclude(condition='Unopened').exclude(product_id='')
 
         for each in db:
             sku = each.sku
             try:
                 product_id = tcg.card_info_by_sku(sku)['results'][0]['productId']
-            except Exception:
+            except Exception as e:
+                print(f'{e, each.product_name, each.set_name}')
                 product_id = ''
 
-            if each.product_id == '' and product_id != '':
+            if product_id != '':
                 try:
 
                     image = get_image(product_id)
                     each.product_id = product_id
                     each.image_url = image
                     each.save()
-                    print(f"uploaded {each.product_title, each.set_name}")
+                    print(f"uploaded {each.product_name, each.set_name}")
                 except Exception as e:
-                    print(e, each.product_title, each.set_name)
+                    print(e, each.product_name, each.set_name)
 
 
 
