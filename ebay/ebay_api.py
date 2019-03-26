@@ -202,6 +202,9 @@ class EbayApi:
             },
 
             "quantityLimitPerBuyer": 100,
+            "storeCategoryNames": [
+                "MTG Individual Cards"
+            ],
         }
 
         r = requests.post(url, headers=headers, json=data)

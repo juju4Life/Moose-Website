@@ -19,10 +19,10 @@ def list_item(sku, title, expansion, image_url, quantity, price, condition='Near
     }
     price = math.ceil(price) - 0.01
     title = f"1x {title} - {expansion} - Magic the Gathering - Fast Shipping"
-    description = f"<strong>Shipping for this item is *Fast and Free*</strong><br><br>" \
-                  f"This auction is for 1x <strong>{title}</strong> from the {expansion} expansion and will be in "\
+    description = f"Shipping for this item is <strong>*Fast and Free*</strong><br><br>" \
+                  f"This auction is for <strong>{title}</strong> from the {expansion} expansion and will be in "\
                   f" {condition} condition.<br>These card(s) will be  inserted into a sleeve, top-loader, team  bag, and padded bubble-mailer "\
-                  f"envelop to provide the maximum level of protection for your purchase.<br>We have many great auctions at affordable prices "\
+                  f"envelop to provide the maximum level of protection for your purchase. We have many great auctions at affordable prices "\
                   f"and provide combined shipping.Be sure to check out our full inventory for the hottest deals around!<br>"\
                   f"If you have any questions or concerns, please let us know. We'll do everything we can to help.<br>"
 
