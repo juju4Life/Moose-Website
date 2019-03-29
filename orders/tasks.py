@@ -70,7 +70,6 @@ def upload_sku(sku_list, data, cat_id):
     api_market_data = api.market_prices_by_sku(sku_list)
 
     if api_market_data['success']:
-        print('is success')
         price_data = api_market_data['results']
 
         for each in price_data:
@@ -99,31 +98,32 @@ def upload_sku(sku_list, data, cat_id):
                 # Empty list if sku is not found in any database
                 sku_card_info = []
                 try:
-                    print('getting info')
                     sku_card_info = cat.get(sku=sku)
-
+                    print(cat)
                 except ObjectDoesNotExist:
                     try:
                         if 2 not in cat_ids_list:
                             cat = category_map[2]
+                            print(cat)
                             sku_card_info = cat.get(sku=sku)
                     except ObjectDoesNotExist:
                         cat_ids_list.append(2)
                         try:
                             if 3 not in cat_ids_list:
                                 cat = category_map[3]
+                                print(cat)
                                 sku_card_info = cat.get(sku=sku)
                         except ObjectDoesNotExist:
                             cat_ids_list.append(3)
                             try:
                                 if 1 not in cat_ids_list:
                                     cat = category_map[1]
+                                    print(cat)
                                     sku_card_info = cat.get(sku=sku)
                             except ObjectDoesNotExist:
                                 pass
 
                 if sku_card_info:
-                    'There is sku info for this card'
                     condition = sku_card_info.condition
 
                     # Sum of all sku upload quantities to be uploaded to inventory
@@ -136,16 +136,16 @@ def upload_sku(sku_list, data, cat_id):
 
                     # quantity must be added to current inventory total, and new quantity for sku is set wrather than incremented
                     upload_quantity = quantity + current_quantity
-                    print('About to price algo')
+
                     # Use pricing tool to adjust upload price
                     upload_price = sku_price_algorithm(
                         category=category, printing=printing, condition=condition, sku=sku, market=market_price, direct=direct_low_price, low=low_price,
                         language=language, expansion=expansion,
                     )
-                    print('Now uploding after pricecheck')
+
                     # Attempt to upload sku
                     uploaded_card = api.upload(sku, price=upload_price, quantity=upload_quantity)
-                    print('Card should be uploaded')
+
                     # Report any errors in uploading
                     if uploaded_card['errors']:
                         errors_list.append(uploaded_card['errors'][0] + f' for sku: {sku}' + '\n')
