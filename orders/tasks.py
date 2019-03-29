@@ -67,7 +67,9 @@ def upload_sku(sku_list, data, cat_id):
     cat_ids_list = [cat_id]
 
     # Get market data for list of sku
+    print('Get market stuff')
     api_market_data = api.market_prices_by_sku(sku_list)
+    print(api_market_data)
     if api_market_data['success']:
         price_data = api_market_data['results']
 
@@ -174,7 +176,9 @@ def upload_sku(sku_list, data, cat_id):
 
                         except ObjectDoesNotExist:
                             product_id = api.card_info_by_sku(sku)['results'][0]['productId']
+                            print(product_id)
                             image_url = get_image(product_id)
+                            print(image_url)
                             new = Inventory(
                                 sku=sku,
                                 quantity=upload_quantity,
