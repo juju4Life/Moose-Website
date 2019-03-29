@@ -252,7 +252,6 @@ class CustomerAdmin(SimpleHistoryAdmin):
         if obj.tournament_results_credit == 'none' and obj.tournament_entry == 'none':
             obj.save()
 
-
         ip, is_routable = get_client_ip(request)
         alert.apply_async(que='low_priority', args=(ip, obj.name, obj.credit, obj.id,))
 

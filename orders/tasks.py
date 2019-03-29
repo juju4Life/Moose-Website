@@ -98,31 +98,32 @@ def upload_sku(sku_list, data, cat_id):
                 # Empty list if sku is not found in any database
                 sku_card_info = []
                 try:
+                    print(f'Whatever it is cat: {sku}, {cat}')
                     sku_card_info = cat.get(sku=sku)
-                    print(cat)
                 except ObjectDoesNotExist:
                     try:
                         if 2 not in cat_ids_list:
                             cat = category_map[2]
-                            print(cat)
+                            print(f'Pokemon Cat: {sku}')
                             sku_card_info = cat.get(sku=sku)
                     except ObjectDoesNotExist:
                         cat_ids_list.append(2)
                         try:
                             if 3 not in cat_ids_list:
                                 cat = category_map[3]
-                                print(cat)
+                                print(f'Yugioh cat: {sku}')
                                 sku_card_info = cat.get(sku=sku)
                         except ObjectDoesNotExist:
                             cat_ids_list.append(3)
                             try:
                                 if 1 not in cat_ids_list:
                                     cat = category_map[1]
-                                    print(cat)
+                                    print(f'mtg cat: {sku}')
                                     sku_card_info = cat.get(sku=sku)
                             except ObjectDoesNotExist:
-                                pass
+                                print(f'Really dont exist {sku}, {cat}')
 
+                print(f'Final Cat: {cat}, {sku}')
                 if sku_card_info:
                     condition = sku_card_info.condition
 
