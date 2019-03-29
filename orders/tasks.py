@@ -124,6 +124,7 @@ def upload_sku(sku_list, data, cat_id):
                                 print(f'Really dont exist {sku}, {cat}')
 
                 print(f'Final Cat: {cat}, {sku}')
+                cat_ids_list = []
                 if sku_card_info:
                     condition = sku_card_info.condition
 
