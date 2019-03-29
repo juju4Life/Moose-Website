@@ -67,10 +67,10 @@ def upload_sku(sku_list, data, cat_id):
     cat_ids_list = [cat_id]
 
     # Get market data for list of sku
-    print('Get market stuff')
     api_market_data = api.market_prices_by_sku(sku_list)
-    print(api_market_data)
+
     if api_market_data['success']:
+        print('is success')
         price_data = api_market_data['results']
 
         for each in price_data:
@@ -82,7 +82,7 @@ def upload_sku(sku_list, data, cat_id):
             # Get current quantity of sku from TCGplayer Inventory
             api_inventory_quantity = api.get_sku_quantity(sku)
             if api_inventory_quantity['errors']:
-                pass
+                print('Inventory errors')
 
             if api_inventory_quantity['success'] or api_inventory_quantity['errors'] == [f'No Sku(s) were found for SkuId ({sku}).']:
 
@@ -99,7 +99,9 @@ def upload_sku(sku_list, data, cat_id):
                 # Empty list if sku is not found in any database
                 sku_card_info = []
                 try:
+                    print('getting info')
                     sku_card_info = cat.get(sku=sku)
+
                 except ObjectDoesNotExist:
                     try:
                         if 2 not in cat_ids_list:
@@ -121,6 +123,7 @@ def upload_sku(sku_list, data, cat_id):
                                 pass
 
                 if sku_card_info:
+                    'There is sku info for this card'
                     condition = sku_card_info.condition
 
                     # Sum of all sku upload quantities to be uploaded to inventory
@@ -133,16 +136,16 @@ def upload_sku(sku_list, data, cat_id):
 
                     # quantity must be added to current inventory total, and new quantity for sku is set wrather than incremented
                     upload_quantity = quantity + current_quantity
-
+                    print('About to price algo')
                     # Use pricing tool to adjust upload price
                     upload_price = sku_price_algorithm(
                         category=category, printing=printing, condition=condition, sku=sku, market=market_price, direct=direct_low_price, low=low_price,
                         language=language, expansion=expansion,
                     )
-
+                    print('Now uploding after pricecheck')
                     # Attempt to upload sku
                     uploaded_card = api.upload(sku, price=upload_price, quantity=upload_quantity)
-
+                    print('Card should be uploaded')
                     # Report any errors in uploading
                     if uploaded_card['errors']:
                         errors_list.append(uploaded_card['errors'][0] + f' for sku: {sku}' + '\n')
