@@ -39,7 +39,10 @@ class Command(BaseCommand):
                     if image == '':
                         image = each['imageUrl']
 
-                    rarity = each['extendedData'][0]['value']
+                    try:
+                        rarity = each['extendedData'][0]['value']
+                    except Exception:
+                        rarity = 'Unknown'
                     try:
                         color = get_card_data(str(product_id))['colors']
                     except KeyError:
@@ -53,12 +56,38 @@ class Command(BaseCommand):
                         else:
                             color = 'Multi-color'
 
+                    try:
+                        price_data = tcg.get_market_price(str(product_id))['results']
+                        if price_data[0]['subTypeName'] == 'Foil':
+                            price_data = price_data[1]
+                        elif price_data[0]['subTypeName'] == 'Normal':
+                            price_data = price_data[0]
+
+                        price = price_data['marketPrice']
+                        low = price_data['lowPrice']
+                        if low is not None:
+                            if low > price:
+                                price = low
+                    except Exception as e:
+                        print(e)
+                        price = 0
+
                     set_name = GroupName.objects.get(group_id=int(group_id))
+                    print(name, color)
+                    new_card = ItemizedPreorder(
+                        name=product_name,
+                        quantity=8,
+                        expansion=set_name,
+                        item_type='Single',
+                        price=price,
+                        custome_price=False,
+                        available=True,
+                        image_url=image,
+                        product_id=product_id,
+                        total_sold=0
+                    )
+                    new_card.save()
 
-                    if ItemizedPreorder.objects.filter(product_id=product_id) is False:
-                        new_preorder = ItemizedPreorder(
-
-                        )
             total -= 100
             offset += 100
 

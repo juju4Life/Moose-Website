@@ -17,6 +17,8 @@ class ItemizedPreorder(models.Model):
     image_url = models.CharField(max_length=255, default='')
     product_id = models.CharField(max_length=50, default='')
     total_sold = models.IntegerField(default=0)
+    color = models.CharField(max_length=255, default='None')
+    rarity = models.CharField(max_length=255, default='Unknown')
 
     def __str__(self):
         return self.name
