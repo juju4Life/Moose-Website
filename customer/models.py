@@ -12,6 +12,7 @@ class ItemizedPreorder(models.Model):
     expansion = models.CharField(max_length=255, default='')
     item_type = models.CharField(max_length=255, default='')
     price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    custom_price = models.BooleanField(default=False)
     available = models.BooleanField(default=True)
     image_url = models.CharField(max_length=255, default='')
     product_id = models.CharField(max_length=50, default='')
