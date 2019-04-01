@@ -109,8 +109,6 @@ class Cart(object):
 
     @property
     def total_price(self):
-        for item in self.cart.values():
-            print(item)
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
 
     @property

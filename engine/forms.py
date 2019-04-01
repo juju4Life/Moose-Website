@@ -8,18 +8,8 @@ class contactForm(forms.Form):
         ('no', 'No')
     )
 
-    contact_choice = (
-        ('email', 'Email'),
-        ('text message', 'Text Message'),
-        ('phone call', ' Phone Call'),
-        ('i am present in-store', ' I am present in-store'),
-    )
-
     name = forms.CharField(required=True, max_length='30')
-    contact_type = forms.MultipleChoiceField(required=True, widget=forms.CheckboxSelectMultiple, choices=contact_choice,
-                                             label='How would you like to be contacted?')
-    email = forms.EmailField(required=False,label='Email - (if Contact by Email selected)')
-    phone_number = forms.CharField(required=False, max_length='15', label='Phone Number - (if Contact by Phone selected)')
+    email = forms.EmailField(required=False,label='Email')
     notes = forms.CharField(required=False, widget=forms.Textarea)
 
 

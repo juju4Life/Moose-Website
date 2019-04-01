@@ -11,3 +11,9 @@ def get_image(product_id):
         print(e)
         return ''
 
+
+def get_card_data(product_id):
+    url = f'https://api.scryfall.com/cards/tcgplayer/{product_id}'
+    r = requests.get(url)
+    return r.json()
+

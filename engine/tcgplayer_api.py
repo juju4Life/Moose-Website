@@ -64,12 +64,12 @@ class TcgPlayerApi:
         }
         return self.credentials.get_request("stores/{}/buylist/skuprices".format(store_key), params=params)
 
-    def get_set_data(self, group_id, limit=100, offset=0, _bool_=False):
+    def get_set_data(self, group_id, limit=100, offset=0):
         params = {
             "groupId": group_id,
             "limit": limit,
             "offset": offset,
-            "getExtendedFields": _bool_,
+            "getExtendedFields": True,
         }
         return self.credentials.get_request("catalog/products".format(store_key), params=params)
 

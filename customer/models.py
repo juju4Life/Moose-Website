@@ -16,6 +16,7 @@ class ItemizedPreorder(models.Model):
     available = models.BooleanField(default=True)
     image_url = models.CharField(max_length=255, default='')
     product_id = models.CharField(max_length=50, default='')
+    total_sold = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
