@@ -59,11 +59,13 @@
 						{% endif %}
 
 						{% if form %}
-						<form method="POST" action="">{% csrf_token %}
+						<div>{{paypal_form.render}}</div>
+						<!--<form method="POST" action="">{% csrf_token %}
 						  <div id="form">{{form|crispy}}</div>
 						  <input type="submit" value="submit form" class ='btn btn-default' />
-						  <div id="paypal-button-container"></div>
-						</form>
+
+							<div id="paypal-button-container"></div>
+						</form> -->
 					</div>
 				</div>
 				<hr>

@@ -13,6 +13,7 @@ from users import views as user_views
 
 
 urlpatterns = [
+    path('paypal/', include('paypal.standard.ipn.urls')),
     path('at/', include('admin_tools.urls')),
     path('sms/', include('sms.urls')),
     path('admin/', admin.site.urls),
