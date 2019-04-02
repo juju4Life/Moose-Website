@@ -6,6 +6,7 @@ from customer.models import ItemizedPreorder
 from engine.models import MTG
 from scryfall_api import get_image, get_card_data
 from orders.models import GroupName
+from math import ceil
 
 manifest = Manifest()
 tcg = TcgPlayerApi()
@@ -66,27 +67,33 @@ class Command(BaseCommand):
                         price = price_data['marketPrice']
                         low = price_data['lowPrice']
                         if low is not None:
-                            if low > price:
+                            if price is not None:
+                                if low > price:
+                                    price = low
+                            else:
                                 price = low
+                        price = ceil(price) - 0.01
                     except Exception as e:
                         print(e)
                         price = 0
 
                     set_name = GroupName.objects.get(group_id=int(group_id))
-                    print(name, color)
-                    new_card = ItemizedPreorder(
-                        name=product_name,
-                        quantity=8,
-                        expansion=set_name,
-                        item_type='Single',
-                        price=price,
-                        custome_price=False,
-                        available=True,
-                        image_url=image,
-                        product_id=product_id,
-                        total_sold=0
-                    )
-                    new_card.save()
+                    if ItemizedPreorder.objects.filter(product_id=product_id).exists() is False:
+                        print(product_name, color)
+                        new_card = ItemizedPreorder(
+                            name=product_name,
+                            quantity=8,
+                            expansion=set_name,
+                            item_type='Single',
+                            price=price,
+                            custom_price=False,
+                            available=True,
+                            image_url=image,
+                            product_id=product_id,
+                            total_sold=0,
+                            rarity=rarity,
+                        )
+                        new_card.save()
 
             total -= 100
             offset += 100

@@ -6,5 +6,6 @@ from .models import ItemizedPreorder
 
 @admin.register(ItemizedPreorder)
 class ItemPreorderAdmin(admin.ModelAdmin):
-    list_display = ['name', 'expansion', 'price', 'quantity', 'available']
+    list_display = ['name', 'expansion', 'price', 'quantity', 'available', 'total_sold']
+    ordering = ['price']
 

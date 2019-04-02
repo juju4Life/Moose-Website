@@ -21,10 +21,8 @@ class KeyNotSet(Exception):
 
 class Cart(object):
 
-
     def __init__(self, request):
         self.session = request.session
-
 
         if not hasattr(settings, 'CART_SESSION_KEY'):
             raise KeyNotSet('Session key identifier is missing in settings')
@@ -61,11 +59,9 @@ class Cart(object):
         self.cart[product_id]['language'] = language
         self.save()
 
-
     def save(self):
         self.session[settings.CART_SESSION_KEY] = self.cart
         self.session.modified = True
-
 
     def remove(self, product):
         product_id = str(product.id)
@@ -78,8 +74,6 @@ class Cart(object):
         for each in self.cart:
             del each
         self.save()
-
-
 
     def __iter__(self):
         product_ids = self.cart.keys()
@@ -106,7 +100,6 @@ class Cart(object):
     def __len__(self):
         return sum(item['quantity'] for item in self.cart.values())
 
-
     @property
     def total_price(self):
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
@@ -114,7 +107,6 @@ class Cart(object):
     @property
     def cart_length(self):
         return sum(item['quantity'] for item in self.cart.values())
-
 
     def clear(self):
         self.cart.clear()

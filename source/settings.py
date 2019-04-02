@@ -101,6 +101,8 @@ INSTALLED_APPS = [
     'import_export',
     'tcg',
     'ebay',
+    'paypal.standard.ipn',
+    'ppal',
 #  'customer.startup.BotConfig',
 ]
 
@@ -119,6 +121,8 @@ MIDDLEWARE = [
 
 
 ROOT_URLCONF = 'source.urls'
+PAYPAL_RECEIVER_EMAIL = 'mtgfirststore-facilitator@gmail.com'
+PAYPAL_TEST = True
 
 PROJECT_DIR = os.path.dirname(__file__)
 
