@@ -16,7 +16,7 @@
 				</tr>
 			</thead>
 
-			{% for card, price in cart %}
+			{% for card in cart %}
 				<form action="{% url 'add_to_cart' card.product.id %}" method="post">
 						{% csrf_token %}
 
@@ -32,7 +32,7 @@
 
 						   <td id="price"><strong>${{card.price|floatformat:2}}</strong></td>
 						   <td><input style="color: black;" id="box" size="3" type="number" name="quantity" min="1" max="8" value="{{card.quantity}}"></td>
-							<td><strong>${{price|floatformat:2}}</strong></td>
+							<td><strong>${{card.total|floatformat:2}}</strong></td>
 						   <td>
 						  <button id="trashButton" type="submit" formaction="{% url 'remove_from_cart' card.product.id %}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
 						   </td>

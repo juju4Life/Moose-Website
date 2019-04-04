@@ -21,6 +21,8 @@ urlpatterns = [
     path('home/', home_views.home, name='home'),
     path('', include('orders.urls')),
     path('ajax/info/', home_views.info, name='info'),
+    path('checkout/paypal-transaction-complete/', home_views.paypal_transaction, name='paypal_complete'),
+    path('payment/', home_views.payment, name='payment'),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html', authentication_form=LoginForm), name='login'),
@@ -62,7 +64,6 @@ urlpatterns = [
     path('snacks-drinks/', home_views.snacks_drinks, name='snacks_drinks'),
     path('preorders/', home_views.preorders, name='preorders'),
     path('supplies/<global_id>', home_views.category, name='supply_category'),
-    path('expansions/<set_name>', home_views.expansion, name='expansion'),
 
 
 

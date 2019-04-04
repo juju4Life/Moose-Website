@@ -4,8 +4,8 @@ import sys
 
 class PayPalClient:
     def __init__(self):
-        self.client_id = "PAYPAL-SANDBOX-CLIENT-ID"
-        self.client_secret = "PAYPAL-SANDBOX-CLIENT-SECRET"
+        self.client_id = "AV34qXNy1vUTzCjKGSX-uCuc-VheuKQmU4f-Et8PQviy93tju5v_1UE4uZiHPZB72d0fV-qx0zJvkScZ"
+        self.client_secret = "EGXQU-Gt2i6_fYqDIUOl0bkuEjsCpQMNezyaCCqTGd5ZD0giuwb3w_CkOx65hyYSGMQleqCncwp8ogwL"
 
         """Set up and return PayPal Python SDK environment with PayPal access credentials.
            This sample uses SandboxEnvironment. In production, use ProductionEnvironment."""

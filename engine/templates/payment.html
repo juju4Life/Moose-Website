@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+<div class="row" style="margin-top: 5%;">
+    <div class="col-12">
+        <center>
+            <div id="paypal-button-container"></div>
+        </center>
+
+    </div>
+</div>
+
+
+<script src="https://www.paypal.com/sdk/js?client-id=AV34qXNy1vUTzCjKGSX-uCuc-VheuKQmU4f-Et8PQviy93tju5v_1UE4uZiHPZB72d0fV-qx0zJvkScZ">
+
+</script>
+
+<script>
+
+	var price = "{{total}}";
+	var token = '{{csrf_token}}';
+
+	paypal.Buttons({
+	createOrder: function(data, actions) {
+
+	  // Set up the transaction
+	  return actions.order.create({
+		purchase_units: [{
+		  amount: {
+			value: price
+		  }
+		}]
+	  });
+	},
+
+	onApprove: function(data, actions) {
+
+      // Capture the funds from the transaction
+      return actions.order.capture().then(function(details) {
+
+        // Show a success message to your buyer
+        alert('Transaction completed by ' + details.payer.name.given_name);
+
+        return fetch('paypal-transaction-complete/', {
+          method: 'post',
+          headers: {
+          	"X-CSRFToken": token,
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({
+            data: data,
+          })
+        });
+      });
+    },
+
+	}).render('#paypal-button-container');
+
+</script>
+{% endblock content %}

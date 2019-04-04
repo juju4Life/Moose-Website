@@ -20,23 +20,26 @@
 					<table style="color: rgb(80,80,80); margin-top: 10%;" class="nav nav-pills nav-stacked table table">
 						<thead class="thead-inverse">
 							<tr class="header">
-							  <th id="n">Card</th>
+							  <th id="">Quantity</th>
+							  <th id="n">Name</th>
+							  <th id="">Product</th>
 							  <th id="p">Total</th>
 							</tr>
 						</thead>
 
 
-						{% for card, price in cart %}
+						{% for card in cart %}
 
 							<form action="{% url 'add_to_cart' card.product.id %}" method="post">
 									{% csrf_token %}
 								<tbody>
 									<tr>
+										<td>{{card.quantity}}</td>
 										<td>
-											{{card.quantity}}x {{card.product.name}}
-											<small>{{card.set_name}})</small>
+											{{card.product.name}}
 										</td>
-										<td id="price">${{price|floatformat:2}}</td>
+										<td>({{card.set_name}})</td>
+										<td id="price">${{card.total|floatformat:2}}</td>
 									</tr>
 
 								</tbody>
@@ -59,13 +62,10 @@
 						{% endif %}
 
 						{% if form %}
-						<div>{{paypal_form.render}}</div>
-						<!--<form method="POST" action="">{% csrf_token %}
+						<form method="POST" action="{% url 'payment' %}">{% csrf_token %}
 						  <div id="form">{{form|crispy}}</div>
-						  <input type="submit" value="submit form" class ='btn btn-default' />
-
-							<div id="paypal-button-container"></div>
-						</form> -->
+						  <input style="margin-bottom: 2%;" type="submit" value="submit form" class ='btn btn-default' />
+						</form>
 					</div>
 				</div>
 				<hr>
@@ -89,44 +89,5 @@
 
 {% endif %}
 
- <script
-	  src="https://www.paypal.com/sdk/js?client-id=AV34qXNy1vUTzCjKGSX-uCuc-VheuKQmU4f-Et8PQviy93tju5v_1UE4uZiHPZB72d0fV-qx0zJvkScZ">
-    </script>
 
-<script>
-	var price = document.getElementById('subTotal').innerHTML;
-	console.log(price)
-
-	paypal.Buttons({
-	createOrder: function(data, actions) {
-	  // Set up the transaction
-	  return actions.order.create({
-		purchase_units: [{
-		  amount: {
-			value: price
-		  }
-		}]
-	  });
-	},
-
-	onApprove: function(data, actions) {
-      // Capture the funds from the transaction
-      return actions.order.capture().then(function(details) {
-        // Show a success message to your buyer
-        alert('Transaction completed by ' + details.payer.name.given_name);
-        return fetch('/paypal-transaction-complete', {
-          method: 'post',
-          headers: {
-            'content-type': 'application/json'
-          },
-          body: JSON.stringify({
-            orderID: data.orderID
-          })
-        });
-      });
-    },
-
-	}).render('#paypal-button-container');
-</script>
-
-{% endblock %} 
+{% endblock %}
