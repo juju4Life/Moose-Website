@@ -63,6 +63,7 @@ class Customer(models.Model):
     email = models.EmailField(max_length=200, default='', blank=True)
     notes = models.TextField(default='', blank=True, null=True)
     medal = models.IntegerField(default=0, blank=True, null=True, verbose_name='Medals')
+    employee_initial = models.CharField(max_length=5, default='')
     history = HistoricalRecords(
         history_change_reason_field=models.TextField(null=True)
     )
@@ -76,11 +77,20 @@ class Customer(models.Model):
 
 class PreordersReady(models.Model):
 
+    type_choice = (
+        ('sealed_product', 'Sealed Product', ),
+        ('single', 'Single', ),
+        ('other', 'Other', ),
+    )
+
     customer_name = models.ForeignKey(Customer, on_delete=models.CASCADE, default=None, verbose_name='Customer Name')
+    email = models.EmailField(max_length=255, default='', blank=True)
     product = models.ForeignKey(Preorder, on_delete=models.CASCADE, default=None)
     price = models.DecimalField(max_digits=8, decimal_places=2, default=None, null=True)
     paid = models.DecimalField(max_digits=8, decimal_places=2, default=None, null=True)
     quantity = models.IntegerField(default=1)
+    preorder_type = models.CharField(max_length=255, default='Sealed Product', choices=type_choice)
+    employee_initials = models.CharField(max_length=5, default='')
     history = HistoricalRecords()
 
 
@@ -89,7 +99,6 @@ class PreordersReady(models.Model):
 
     def name(self):
         return "{}".format(self.customer_name)
-
 
     class Meta:
         verbose_name_plural = "Manage Preorders"
