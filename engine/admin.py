@@ -258,7 +258,6 @@ class CustomerAdmin(SimpleHistoryAdmin):
         ip, is_routable = get_client_ip(request)
         alert.apply_async(que='low_priority', args=(ip, obj.name, obj.credit, obj.id,))
 
-
     save_on_top = True
     history_list_display = ['credit', 'medal', 'employee_initial', 'changeReason', ]
     list_display = ['name', 'credit', 'notes', 'medal', 'email', ]
@@ -290,7 +289,6 @@ class PreordersReadyAdmin(SimpleHistoryAdmin):
     history_list_display = ['name', 'price', 'paid']
     list_display = ['product', 'name', 'price', 'paid', 'quantity']
     list_filter = ['product']
-    autocomplete_fields = ['customer_name', 'product']
 
     def save_model(self, request, obj, form, change):
         obj.employee_initial = ''
