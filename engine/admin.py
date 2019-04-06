@@ -252,6 +252,9 @@ class CustomerAdmin(SimpleHistoryAdmin):
         if obj.tournament_results_credit == 'none' and obj.tournament_entry == 'none':
             obj.save()
 
+        obj.employee_initial = ''
+        obj.save()
+
         ip, is_routable = get_client_ip(request)
         alert.apply_async(que='low_priority', args=(ip, obj.name, obj.credit, obj.id,))
 
@@ -271,28 +274,28 @@ class CustomerAdmin(SimpleHistoryAdmin):
     )
 
 
-
-
 class PreorderAdmin(admin.ModelAdmin):
     save_on_top = True
     model = [Preorder]
     search_fields = ['name']
 
 
-
 class CaseCardsAdmin(admin.ModelAdmin):
-    ordering = ['Update_status' ,'name']
+    ordering = ['Update_status', 'name']
     search_fields = ['name']
     list_display = ['name', 'expansion', 'Update_status', 'price']
-
 
 
 class PreordersReadyAdmin(SimpleHistoryAdmin):
     save_on_top = True
     history_list_display = ['name', 'price', 'paid']
-    list_display = ['product','name' ,'price', 'paid', 'quantity']
+    list_display = ['product', 'name', 'price', 'paid', 'quantity']
     list_filter = ['product']
     autocomplete_fields = ['customer_name', 'product']
+
+    def save_model(self, request, obj, form, change):
+        obj.employee_initial = ''
+        obj.save()
 
 
 class OrderRequestAdmin(admin.ModelAdmin):
@@ -320,7 +323,7 @@ class StoreDatabaseAdmin(admin.ModelAdmin):
     list_filter = ['foil', 'language', 'condition', 'expansion']
     readonly_fields = ('sku', 'product_id', 'condition', 'name', 'expansion', 'image', 'foil', 'language')
     fieldsets = (
-        (None,{
+        (None, {
             'fields': (
                 'foil',
                 ('quantity', 'condition',),
