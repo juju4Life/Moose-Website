@@ -260,8 +260,8 @@ class CustomerAdmin(SimpleHistoryAdmin):
 
 
     save_on_top = True
-    history_list_display = ['credit', 'medal', 'changeReason']
-    list_display = ['name', 'credit','notes', 'medal', 'email',]
+    history_list_display = ['credit', 'medal', 'employee_initial', 'changeReason', ]
+    list_display = ['name', 'credit', 'notes', 'medal', 'email', ]
     search_fields = ['name']
     ordering = ['name']
     fields = (
@@ -277,7 +277,6 @@ class CustomerAdmin(SimpleHistoryAdmin):
 class PreorderAdmin(admin.ModelAdmin):
     save_on_top = True
     model = [Preorder]
-    search_fields = ['name']
 
 
 class CaseCardsAdmin(admin.ModelAdmin):
