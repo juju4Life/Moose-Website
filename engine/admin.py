@@ -262,7 +262,7 @@ class CustomerAdmin(SimpleHistoryAdmin):
     search_fields = ['name']
     ordering = ['name']
     fields = (
-        'credit',
+        ('credit', 'employee_initial', ),
         'name',
         ('tournament_entry', 'tournament_results_credit',),
         'email',
