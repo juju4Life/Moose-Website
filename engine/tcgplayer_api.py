@@ -16,7 +16,10 @@ class TcgPlayerApi:
         return self.credentials.get_request('catalog/skus/{}'.format(sku_id))
 
     def get_card_info(self, product_id):
-        return self.credentials.get_request('catalog/products/{}'.format(product_id))
+        params = {
+            'getExtendedFields': True,
+        }
+        return self.credentials.get_request('catalog/products/{}'.format(product_id), params=params)
 
     def search_inventory(self, product_id):
         return self.credentials.get_request('stores/{}/inventory/products/{}/quantity'.format(store_key, product_id))

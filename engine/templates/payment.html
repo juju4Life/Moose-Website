@@ -44,7 +44,7 @@
         // Show a success message to your buyer
         alert('Transaction completed by ' + details.payer.name.given_name);
 
-        return fetch('paypal-transaction-complete/', {
+        return fetch("{% url 'paypal_complete' name email %}", {
           method: 'post',
           headers: {
           	"X-CSRFToken": token,
