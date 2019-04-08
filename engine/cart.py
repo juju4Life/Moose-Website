@@ -42,23 +42,13 @@ class Cart(object):
 
         self.cart = cart
 
-    def add(self, product, price, set_name, condition, language, total, quantity=1):
-        product_id = str(product.id)
+    def add(self, product, name, price, set_name, condition, language, total, quantity=1):
+        product_id = str(product)
         if product_id not in self.cart:
-            self.cart[product_id] = {'price': str(price), 'set_name': set_name, 'condition': condition, 'language': language, 'quantity': 0, 'total': total}
+            self.cart[product_id] = {'product': product, 'name': name, 'price': str(price), 'set_name': set_name, 'condition': condition, 'language': language,
+                                     'quantity': 0, 'total': total}
 
         self.cart[product_id]['quantity'] = int(quantity)
-        self.save()
-
-        self.cart[product_id]['set_name'] = set_name
-        self.save()
-
-        self.cart[product_id]['condition'] = condition
-        self.save()
-
-        self.cart[product_id]['language'] = language
-        self.save()
-
         self.cart[product_id]['total'] = str(total)
         self.save()
 
@@ -84,7 +74,7 @@ class Cart(object):
         app_label = splitted[0]
         model_name = splitted[1]
 
-        try:
+        '''try:
             model = apps.get_model(app_label, model_name)
         except LookupError:
             message = 'Model {} not found in app  {}'
@@ -92,7 +82,7 @@ class Cart(object):
 
         products = model.objects.filter(id__in=product_ids)
         for product in products:
-            self.cart[str(product.id)]['product'] = product
+            self.cart[str(product.id)]['product'] = product'''
 
         for item in self.cart.values():
             item['total_price'] = item['price'] * item['quantity']

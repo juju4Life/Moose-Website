@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import PaypalAccessToken
 
-# Register your models here.
+
+@admin.register(PaypalAccessToken)
+class PaypalCredentials(admin.ModelAdmin):
+    pass

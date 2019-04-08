@@ -30,13 +30,13 @@
 
 						{% for card in cart %}
 
-							<form action="{% url 'add_to_cart' card.product.id %}" method="post">
+							<form action="{% url 'add_to_cart' card.product %}" method="post">
 									{% csrf_token %}
 								<tbody>
 									<tr>
 										<td>{{card.quantity}}</td>
 										<td>
-											{{card.product.name}}
+											{{card.name}}
 										</td>
 										<td>({{card.set_name}})</td>
 										<td id="price">${{card.total|floatformat:2}}</td>
