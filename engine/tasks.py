@@ -17,7 +17,7 @@ def complete_order(cart, name, email, order_number):
     for each in cart:
         quantity = int(each['quantity'])
         total_price = Decimal(each['price']) * quantity
-        preorder = f"{each['product'].name} ({each['set_name']})"
+        preorder = f"{each['name']} ({each['set_name']})"
         customer = Customer.objects.get_or_create(name=name)[0]
         if customer.email == '':
             customer.email = email
