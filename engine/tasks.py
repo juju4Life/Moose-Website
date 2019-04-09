@@ -37,7 +37,7 @@ def complete_order(cart, name, email, order_number):
         )
         new_preorder.save()
 
-        card = db.get(id=each['product'].id)
+        card = db.get(id=each['product'])
         card.quantity -= quantity
         card.total_sold += quantity
         if card.quantity < 1:
