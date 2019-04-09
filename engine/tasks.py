@@ -10,6 +10,7 @@ from decouple import config
 @report_error
 @shared_task(name='engine.tasks.complete_order')
 def complete_order(cart, name, email, order_number):
+    print(cart, name, email, order_number)
     db = ItemizedPreorder.objects
     ordered_items = ''
     grand_total = sum([i['total'] for i in cart])

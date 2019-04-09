@@ -33,6 +33,10 @@ class PaypalApi:
         params = {
             "grant_type": "client_credentials"
         }
-        r = requests.post(url, headers=headers, data=params, auth=(self.client_id, self.secret_id))
-        return r.json()
+        r = requests.post(url, headers=headers, data=params, auth=(self.client_id, self.secret_id)).json()
+        paypal_credentials = PaypalAccessToken.objects.first()
+        paypal_credentials.access_token = r['access_token']
+        paypal_credentials.app_id = r['app_id']
+        paypal_credentials.nonce = r['nonce']
+        paypal_credentials.save()
 
