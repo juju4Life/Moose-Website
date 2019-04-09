@@ -8,13 +8,15 @@ from decouple import config
 
 
 @shared_task(name='engine.tasks.complete_order')
+@report_error
 def complete_order(cart, name, email, order_number):
     print(cart, name, email, order_number)
     db = ItemizedPreorder.objects
     ordered_items = ''
     grand_total = sum([i['total'] for i in cart])
     for each in cart:
-        total_price = Decimal(each['price']) * each['quantity']
+        quantity = int(each['quantity'])
+        total_price = Decimal(each['price']) * quantity
         preorder = f"{each['product'].name} ({each['set_name']})"
         customer = Customer.objects.get_or_create(name=name)[0]
         if customer.email == '':
@@ -36,8 +38,8 @@ def complete_order(cart, name, email, order_number):
         new_preorder.save()
 
         card = db.get(id=each['product'].id)
-        card.quantity -= each['quantity']
-        card.total_sold += each['quantity']
+        card.quantity -= quantity
+        card.total_sold += quantity
         if card.quantity < 1:
             card.available = False
         card.save()

@@ -4,23 +4,25 @@ from .models import PaypalAccessToken
 
 class PaypalApi:
     base = 'https://api.sandbox.paypal.com/v2'
-    access_token = PaypalAccessToken.objects.first().access_token
 
     secret_id = "EGXQU-Gt2i6_fYqDIUOl0bkuEjsCpQMNezyaCCqTGd5ZD0giuwb3w_CkOx65hyYSGMQleqCncwp8ogwL"
     client_id = "AV34qXNy1vUTzCjKGSX-uCuc-VheuKQmU4f-Et8PQviy93tju5v_1UE4uZiHPZB72d0fV-qx0zJvkScZ"
 
-    auth = f"Bearer {access_token}"
-    headers = {
+    def get_headers(self, access_token):
+        auth = f"Bearer {access_token}"
+        headers = {
 
 
-        "Content-Type": "application/json",
-        "Authorization": auth,
-    }
+            "Content-Type": "application/json",
+            "Authorization": auth,
+        }
+
+        return headers
 
     def get_order(self, order_id):
         url = f'{self.base}/checkout/orders/{order_id}'
-
-        r = requests.get(url, headers=self.headers)
+        access_token = PaypalAccessToken.objects.first().access_token
+        r = requests.get(url, headers=self.get_headers(access_token))
         return r.json()
 
     def get_access_token(self):
