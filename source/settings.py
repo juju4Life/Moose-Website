@@ -59,7 +59,7 @@ DEBUG = config('DEBUG', cast=bool)
 # SECURITY WARNING: don't run with debug turned on in production!
 
 ALLOWED_HOSTS = [
-                'smiling-earth.herokuapp.com', 'localhost', '127.0.0.1','www.tcgfirst.com','4f8880b7.ngrok.io'
+                'smiling-earth.herokuapp.com', 'localhost', '127.0.0.1', 'www.tcgfirst.com','4f8880b7.ngrok.io'
 
 ]
 

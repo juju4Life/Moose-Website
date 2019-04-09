@@ -21,7 +21,6 @@ class PaypalApi:
         url = f'{self.base}/checkout/orders/{order_id}'
 
         r = requests.get(url, headers=self.headers)
-        print(r.json())
         return r.json()
 
     def get_access_token(self):

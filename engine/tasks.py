@@ -7,7 +7,6 @@ from django.core.mail import send_mail
 from decouple import config
 
 
-@report_error
 @shared_task(name='engine.tasks.complete_order')
 def complete_order(cart, name, email, order_number):
     print(cart, name, email, order_number)
