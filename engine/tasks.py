@@ -51,13 +51,13 @@ def complete_order(cart, name, email, order_number):
         'We have received your order. They will be available for pickup on Friday, May 3rd. Your order details are below\n'
         f'Order Number: {order_number}\n'
         f'{ordered_items}\n'
-        f'Grand Total: {grand_total}'
+        f'Grand Total: {grand_total}',
     ]
     subject = f'Order #{order_number} from TCGFirst.com has been received'
     from_mail = 'TCGFirst.com'
     recipient_list = [email, ]
 
-    send_mail(subject=subject, message=message, from_email=from_mail, recipient_list=recipient_list)
+    send_mail(subject=subject, message=message[0], from_email=from_mail, recipient_list=recipient_list)
 
 
 
