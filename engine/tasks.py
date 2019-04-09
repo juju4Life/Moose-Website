@@ -13,7 +13,7 @@ def complete_order(cart, name, email, order_number):
     print(cart, name, email, order_number)
     db = ItemizedPreorder.objects
     ordered_items = ''
-    grand_total = sum([int(i['total']) for i in cart])
+    grand_total = sum([float(i['total']) for i in cart])
     for each in cart:
         quantity = int(each['quantity'])
         total_price = Decimal(each['price']) * quantity
