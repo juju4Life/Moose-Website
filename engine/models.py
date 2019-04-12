@@ -67,7 +67,8 @@ class Events(models.Model):
     description = models.TextField(default='', blank=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    location = models.ForeignKey('Location', on_delete=models.CASCADE, default='')
+    location = models.ForeignKey('Location', on_delete=models.CASCADE, default=1)
+    prize_support = models.TextField(default='Coming Soon')
 
     def __str__(self):
         return self.title
@@ -79,7 +80,7 @@ class Location(models.Model):
     city = models.CharField(max_length=255, default='')
     state = models.CharField(max_length=2, default='')
     zip_code = models.IntegerField(default=0)
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=20, default='')
 
     def __str__(self):
         return self.name
