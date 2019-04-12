@@ -68,6 +68,7 @@ class Events(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     prize_support = models.TextField(default='Coming Soon')
+    location = models.ForeignKey('Location', on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.title
