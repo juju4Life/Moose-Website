@@ -1,0 +1,36 @@
+
+<br>
+<center>
+    <h1>Upcoming Events at the MTG First Game Center</h1>
+</center>
+
+<div class="row">
+
+    <div>
+        {% for event in events %}
+           <div class="col-sm-3" style="background-color: rgba(234, 237, 242, .5); border-radius: 15px; border: 1px solid black;height:200px;margin:2%;">
+               <h4>
+                   {{event.title}}
+               </h4>
+
+               <b>
+                   {{event.start_date}} - {{event.end_date}}
+               </b>
+               <br>
+
+               <b>
+                   Format: {{event.game_format}}
+               </b>
+               <br>
+
+               <b>
+                   Entry Fee: ${{event.entry_fee}}
+               </b>
+               <br>
+
+
+           </div>
+        {% endfor %}
+    </div>
+
+</div>

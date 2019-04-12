@@ -59,6 +59,7 @@ urlpatterns = [
     path('sleeves/', home_views.sleeves, name='sleeves'),
     path('item/<global_id>', home_views.item, name='item'),
     path('booster-packs/', home_views.booster_packs, name='booster_packs'),
+    path('order-confirmation/', home_views.order_confirmation, name='order_confirmation'),
     path('deckboxes/', home_views.deckboxes, name='deckboxes'),
     path('playmats-tubes/', home_views.playmats_tubes, name='playmats_tubes'),
     path('snacks-drinks/', home_views.snacks_drinks, name='snacks_drinks'),

@@ -72,6 +72,16 @@ class Events(models.Model):
         return self.title
 
 
+class Location(models.Model):
+    name = models.CharField(max_length=255, default='')
+    street_address = models.CharField(max_length=255, default='')
+    city = models.CharField(max_length=255, default='')
+    state = models.CharField(max_length=2, default='')
+    zip_code = models.IntegerField(default=0)
+    phone = models.IntegerField()
+
+    def __str__(self):
+        return self.name
 
 class StoreDatabase(models.Model):
 

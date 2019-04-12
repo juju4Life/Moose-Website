@@ -30,6 +30,10 @@ except ImportError:
 api = TcgPlayerApi()
 
 
+@admin.register(Events)
+class EventsAdmin(admin.ModelAdmin):
+    pass
+
 @admin.register(Yugioh)
 class YugiohAdmin(admin.ModelAdmin):
     pass

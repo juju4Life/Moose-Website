@@ -10,7 +10,6 @@ from decouple import config
 @shared_task(name='engine.tasks.complete_order')
 @report_error
 def complete_order(cart, name, email, order_number):
-    print(cart, name, email, order_number)
     db = ItemizedPreorder.objects
     ordered_items = ''
     grand_total = sum([float(i['total']) for i in cart])
@@ -44,14 +43,16 @@ def complete_order(cart, name, email, order_number):
             card.available = False
         card.save()
 
-        ordered_items = ordered_items + f"{each['quantity']} {each['condition']} {each['name']} ({each['set_name']} - ${each['price']} - Total: ${each['total']})\n"
+        ordered_items = ordered_items + f"{each['quantity']} {each['condition']} {each['name']} ({each['set_name']}) - ${each['price']} | "
+        f"Total: ${each['total']}\n"
 
     message = [
         f'Hello {name},\n\n'
-        'We have received your order. They will be available for pickup on Friday, May 3rd. Your order details are below\n'
+        'We have received your order. Preorders will be available for pickup on Friday, May 3rd. Your order details are below.\n'
         f'Order Number: {order_number}\n'
         f'{ordered_items}\n'
-        f'Grand Total: {grand_total}',
+        f'Grand Total: ${grand_total}\n\n'
+        'Thank you for shopping with MTGFirst',
     ]
     subject = f'Order #{order_number} from TCGFirst.com has been received'
     from_mail = 'TCGFirst.com'
