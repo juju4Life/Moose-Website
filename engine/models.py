@@ -67,6 +67,7 @@ class Events(models.Model):
     description = models.TextField(default='', blank=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
+    location = models.ForeignKey('Location', on_delete=models.CASCADE, default='')
 
     def __str__(self):
         return self.title
@@ -82,6 +83,7 @@ class Location(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class StoreDatabase(models.Model):
 
