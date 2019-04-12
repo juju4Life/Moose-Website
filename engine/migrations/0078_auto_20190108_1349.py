@@ -10,19 +10,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='Events',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(default='', max_length=255)),
-                ('game', models.CharField(default='', max_length=255)),
-                ('entry_fee', models.DecimalField(blank=True, decimal_places=2, default=None, max_digits=12)),
-                ('game_format', models.CharField(default='', max_length=255)),
-                ('description', models.TextField(blank=True, default='')),
-                ('start_date', models.DateTimeField()),
-                ('end_date', models.DateTimeField()),
-            ],
-        ),
+
         migrations.AlterField(
             model_name='storedatabase',
             name='condition',

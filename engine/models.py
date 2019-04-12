@@ -59,7 +59,7 @@ class Product(models.Model):
         return self.name
 
 
-'''class Events(models.Model):
+class Events(models.Model):
     title = models.CharField(max_length=255, default='')  
     game = models.CharField(max_length=255, default='')
     entry_fee = models.DecimalField(max_digits=12, decimal_places=2, default=None, blank=True)
@@ -68,10 +68,10 @@ class Product(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     prize_support = models.TextField(default='Coming Soon')
-    location = models.ForeignKey('Location', on_delete=models.CASCADE, default=None)
+    # location = models.ForeignKey('Location', on_delete=models.CASCADE, default=None)
 
     def __str__(self):
-        return self.title'''
+        return self.title
 
 
 class Location(models.Model):
