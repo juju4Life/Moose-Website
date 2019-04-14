@@ -3,10 +3,10 @@ from .models import PaypalAccessToken
 
 
 class PaypalApi:
-    base = 'https://api.sandbox.paypal.com/v2'
+    base = 'https://api.paypal.com/v2'
 
-    secret_id = "EGXQU-Gt2i6_fYqDIUOl0bkuEjsCpQMNezyaCCqTGd5ZD0giuwb3w_CkOx65hyYSGMQleqCncwp8ogwL"
-    client_id = "AV34qXNy1vUTzCjKGSX-uCuc-VheuKQmU4f-Et8PQviy93tju5v_1UE4uZiHPZB72d0fV-qx0zJvkScZ"
+    secret_id = "EHHFfW_-beWG8DqrizqNeed1XZHA4fnNFEaOMzm2e7MMP0OFsvB2bweu4cuKxr5It9PkkT3cPiU3gXJe"
+    client_id = "AeQOEmoEfAZov4p3r2FvIgF3CLCFJ96oMnxGc2nobxX7I8hLQgP67Yl4ULDX74mT_E68Ok1Zk_fQCV6p"
 
     def get_headers(self, access_token):
         auth = f"Bearer {access_token}"
@@ -26,7 +26,7 @@ class PaypalApi:
         return r.json()
 
     def get_access_token(self):
-        url = "https://api.sandbox.paypal.com/v1/oauth2/token"
+        url = "https://api.paypal.com/v1/oauth2/token"
         headers = {
             "Accept": "application/json",
             "Accept-Language": "en_US",

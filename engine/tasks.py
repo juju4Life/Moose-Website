@@ -43,12 +43,13 @@ def complete_order(cart, name, email, order_number):
             card.available = False
         card.save()
 
-        ordered_items = ordered_items + f"{each['quantity']} {each['condition']} {each['name']} ({each['set_name']}) - ${each['price']} | "
-        f"Total: ${each['total']}\n"
+        ordered_items = ordered_items + f"{each['quantity']} {each['condition']} {each['name']} ({each['set_name']}) - ${each['price']} "\
+            f"Total: ${each['total']}\n"
 
     message = [
         f'Hello {name},\n\n'
-        'We have received your order. Preorders will be available for pickup on Friday, May 3rd. Your order details are below.\n'
+        'We have received your order. All preorders will be available for pickup on Friday, May 3rd. If you have any questions or concerns'
+        'please give us a call at (410) 863-5858.Your order details are below.\n\n'
         f'Order Number: {order_number}\n'
         f'{ordered_items}\n'
         f'Grand Total: ${grand_total}\n\n'
