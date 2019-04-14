@@ -9,8 +9,8 @@ class contactForm(forms.Form):
     )
 
     name = forms.CharField(required=True, max_length='30')
-    email = forms.EmailField(required=False,label='Email')
-    notes = forms.CharField(required=False, widget=forms.Textarea)
+    email = forms.EmailField(required=True, label='Email')
+    # notes = forms.CharField(required=False, widget=forms.Textarea)
 
 
 class ConditionSkuForm(forms.Form):

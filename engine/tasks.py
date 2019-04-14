@@ -34,8 +34,8 @@ def complete_order(cart, name, email, order_number):
             preorder_type='Single',
             employee_initials='Web',
         )
-        new_preorder.save()
 
+        new_preorder.save()
         card = db.get(id=each['product'])
         card.quantity -= quantity
         card.total_sold += quantity
