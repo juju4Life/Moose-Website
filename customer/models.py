@@ -20,6 +20,7 @@ class ItemizedPreorder(models.Model):
     color = models.CharField(max_length=255, default='None')
     rarity = models.CharField(max_length=255, default='Unknown')
     card_text = models.TextField(default='')
+    card_type = models.CharField(max_length=255, default='')
 
     def __str__(self):
         return self.name

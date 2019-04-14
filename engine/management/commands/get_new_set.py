@@ -7,6 +7,7 @@ from engine.models import MTG
 from scryfall_api import get_image, get_card_data
 from orders.models import GroupName
 from math import ceil
+from tcg.rarity_algorithm import rarity_round
 
 manifest = Manifest()
 tcg = TcgPlayerApi()
