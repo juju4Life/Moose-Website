@@ -1,12 +1,13 @@
 import requests
 from .models import PaypalAccessToken
+from decouple import config
 
 
 class PaypalApi:
     base = 'https://api.paypal.com/v2'
 
-    secret_id = "EHHFfW_-beWG8DqrizqNeed1XZHA4fnNFEaOMzm2e7MMP0OFsvB2bweu4cuKxr5It9PkkT3cPiU3gXJe"
-    client_id = "AeQOEmoEfAZov4p3r2FvIgF3CLCFJ96oMnxGc2nobxX7I8hLQgP67Yl4ULDX74mT_E68Ok1Zk_fQCV6p"
+    secret_id = config('paypal_secret_id')
+    client_id = config('paypal_client_id')
 
     def get_headers(self, access_token):
         auth = f"Bearer {access_token}"
