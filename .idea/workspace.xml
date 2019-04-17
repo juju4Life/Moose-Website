@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppal/paypal_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/ppal/paypal_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -110,8 +109,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/ppal/paypal_api.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
-                  <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+                <state relative-caret-position="238">
+                  <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -231,8 +230,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/.env">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+                <state relative-caret-position="255">
+                  <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="100" />
                 </state>
               </provider>
             </entry>
@@ -559,7 +558,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32980132" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32955974" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49962825" visible="true" weight="0.36477986" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49962825" visible="true" weight="0.36477986" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50037175" side_tool="true" weight="0.3960265" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32980132" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -928,15 +927,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+        <state relative-caret-position="255">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="100" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ppal/paypal_api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

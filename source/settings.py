@@ -34,7 +34,7 @@ CELERY_BEAT_SCHEDULE = {
             'schedule': 6600,
         },
 
-    'task-udpate-paypap-token': {
+    'task-update-paypal-token': {
             'task': 'ppal.tasks.update_paypal_token',
             'schedule': 600,
         },
