@@ -15,7 +15,7 @@ def price_foreign(expansion, condition, language, low, direct=None, mid=None, ma
 
     old_sets = ["urza's saga", " urza's legacy", "urza's destiny", "exodus", "stronghold", "tempest", "mirage", "visions",
 
-                "weatherlight", "fifth edition", "fourth edition", ]
+                "weatherlight", "fifth edition", "fourth edition",]
 
     expansion_list = ['beta edition', 'alpha edition', 'legends', 'the dark', 'arabian nights', 'portal second age', 'portal three kingdoms', 'portal',
                       'unlimited', ]

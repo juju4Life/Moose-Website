@@ -37,14 +37,34 @@ class Command(BaseCommand):
                     product_name = None
 
                 if product_name is not None:
+                    rarity = ''
+                    card_type = ''
+                    card_text = ''
                     image = get_image(str(product_id))
                     if image == '':
                         image = each['imageUrl']
 
-                    try:
-                        rarity = each['extendedData'][0]['value']
-                    except Exception:
-                        rarity = 'Unknown'
+
+                    for ext in each['extendedData']:
+                        try:
+                            if ext['name'] == 'Rarity':
+                                rarity = ext['value']
+                        except Exception:
+                            rarity = 'Unknown'
+
+                        try:
+                            if ext['name'] == 'SubType':
+                                card_type = ext['value']
+                        except Exception:
+                            card_type = 'Unknown'
+
+                        try:
+                            if ext['name'] == 'OracleText':
+                                card_text = ext['value']
+                        except Exception:
+                            card_text = 'Unknown'
+
+
                     try:
                         color = get_card_data(str(product_id))['colors']
                     except KeyError:
@@ -73,14 +93,15 @@ class Command(BaseCommand):
                                     price = low
                             else:
                                 price = low
-                        price = ceil(price) - 0.01
+
+                        price = rarity_round(rarity, price)
                     except Exception as e:
                         print(e)
                         price = 0
 
                     set_name = GroupName.objects.get(group_id=int(group_id))
                     if ItemizedPreorder.objects.filter(product_id=product_id).exists() is False:
-                        print(product_name, color)
+                        print(product_name, color, card_type, rarity)
                         new_card = ItemizedPreorder(
                             name=product_name,
                             quantity=8,
@@ -93,6 +114,8 @@ class Command(BaseCommand):
                             product_id=product_id,
                             total_sold=0,
                             rarity=rarity,
+                            card_text=card_text,
+                            card_type=card_type,
                         )
                         new_card.save()
 

@@ -1,7 +1,6 @@
 from math import ceil
 
-
-def rarity_round(rarity, price):
+def rarity_round(rarity, price, card_type):
     if rarity == 'C':
         if price < 0.25:
             price = 0.25
@@ -20,6 +19,9 @@ def rarity_round(rarity, price):
 
     else:
         price = ceil(price) - 0.01
+
+    if price < 1 and 'Planeswalker' in card_type:
+        price = .99
 
     return price
 

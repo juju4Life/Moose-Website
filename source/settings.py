@@ -34,6 +34,11 @@ CELERY_BEAT_SCHEDULE = {
             'schedule': 6600,
         },
 
+    'task-udpate-paypap-token': {
+            'task': 'ppal.tasks.update_paypal_token',
+            'schedule': 600,
+        },
+
 }
 
 # EMAIL_BACKEND = 'django.core.email.backends.smtp.EmailBackend'

@@ -30,7 +30,7 @@ class Command(BaseCommand):
                 preorder.available = False
 
             if preorder.available is True:
-                new_price = rarity_round(preorder.rarity, new_price)
+                new_price = rarity_round(preorder.rarity, new_price, preorder.card_type)
                 preorder.price = new_price
 
             preorder.save()
