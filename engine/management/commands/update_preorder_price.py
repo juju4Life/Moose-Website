@@ -8,32 +8,37 @@ api = TcgPlayerApi()
 class Command(BaseCommand):
     def handle(self, *args, **options):
         preorders = ItemizedPreorder.objects.all()
-
         for preorder in preorders:
-            product_id = preorder.product_id
-            price_data = api.get_market_price(product_id)['results']
-            price = price_data[0]
-            if price['subTypeName'] == 'Foil':
-                price = price_data[1]
+            if preorder.custom_price is False:
+                product_id = preorder.product_id
+                price_data = api.get_market_price(product_id)['results']
+                price = price_data[0]
+                if price['subTypeName'] == 'Foil':
+                    price = price_data[1]
 
-            market = price['marketPrice']
-            low = price['lowPrice']
-            new_price = market
+                market = price['marketPrice']
+                low = price['lowPrice']
+                new_price = market
 
-            if low is not None:
-                if market is not None:
-                    if low > market:
+                if low is not None:
+                    if market is not None:
+                        if low > market:
+                            new_price = low
+                    else:
                         new_price = low
                 else:
-                    new_price = low
-            else:
-                preorder.available = False
+                    preorder.available = False
 
-            if preorder.available is True:
-                new_price = rarity_round(preorder.rarity, new_price, preorder.card_type)
-                preorder.price = new_price
+                if new_price is not None:
+                    if new_price <= 0:
+                        preorder.available = False
+                    else:
+                        if new_price > 0:
+                            preorder.available = True
+                            new_price = rarity_round(preorder.rarity, new_price, preorder.card_type)
+                            preorder.price = new_price
 
-            preorder.save()
-            print(preorder.name, preorder.price)
+                preorder.save()
+                print(preorder.name, preorder.price)
 
 
