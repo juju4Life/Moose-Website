@@ -56,7 +56,7 @@ def complete_order(cart, name, email, order_number):
         'Thank you for shopping with MTGFirst',
     ]
     subject = f'Order #{order_number} from TCGFirst.com has been received'
-    from_mail = 'TCGFirst.com'
+    from_mail = 'MTGFirst'
     recipient_list = [email, ]
 
     send_mail(subject=subject, message=message[0], from_email=from_mail, recipient_list=recipient_list)

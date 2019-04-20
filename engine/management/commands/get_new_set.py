@@ -94,7 +94,7 @@ class Command(BaseCommand):
                             else:
                                 price = low
 
-                        price = rarity_round(rarity, price)
+                        price = rarity_round(rarity, price, card_type)
                     except Exception as e:
                         print(e)
                         price = 0

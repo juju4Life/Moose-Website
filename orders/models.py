@@ -161,9 +161,6 @@ class Inventory(models.Model):
 
         api = TcgPlayerApi()
 
-        print(self.old_ebay_value)
-        print(self.ebay)
-
         if self.old_ebay_value is False and self.ebay is True:
             manage_ebay.apply_async(que='low_priority', args=(self.sku, 'upload',))
             self.ebay = False
