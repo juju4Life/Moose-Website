@@ -21,7 +21,7 @@ ebay = EbayApi()
 class Command(BaseCommand):
     @report_error
     def handle(self, **options):
-        off_count = 100
+        off_count = 0
         while True:
 
             # convert group ID to groupname
@@ -182,6 +182,8 @@ class Command(BaseCommand):
                 send_mail(subject, message, from_, to)
 
             off_count += 100
+            if off_count > 20000:
+                break
 
 
 

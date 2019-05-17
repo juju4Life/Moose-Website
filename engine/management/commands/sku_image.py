@@ -26,7 +26,7 @@ class Command(BaseCommand):
                     each.image_url = image
                     each.save()
 
-                    print(f"uploaded {each.product_name, each.set_name}")
+                    print(f"uploaded {each.product_name, each.set_name} {each.product_id}")
                 except Exception as e:
                     print(e, each.product_name, each.set_name)
 
