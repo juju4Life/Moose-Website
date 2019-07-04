@@ -350,10 +350,7 @@ class StoreDatabaseAdmin(admin.ModelAdmin):
     )
 
 
-
-
-
-admin.site.site_header = 'MTGFIRST ADMIN'
+admin.site.site_header = 'MooseFirst'
 admin.site.site_title = ''
 admin.site.index_title = ''
 admin.site.index_title = ''
