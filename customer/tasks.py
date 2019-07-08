@@ -74,7 +74,7 @@ def alert(ip, obj_name, obj_credit, obj_id):
         )
 
         emailFrom = 'DATABASE ALERTS'
-        emailTo = ['jermol@mtgfirst.com', 'jason@mtgfirst.com']
+        emailTo = ['jermol@mtgfirst.com']
         send_mail(subject, message, emailFrom, emailTo, fail_silently=True)
 
 
