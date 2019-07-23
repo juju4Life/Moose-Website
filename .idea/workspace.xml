@@ -2,192 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/engine/templates/gallery_scroll.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/templates/navbar2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/css/bootstrap-theme.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/css/stripe.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/css/theme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/javascript/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/javascript/docs.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/src/alert.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/src/button.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/src/carousel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/src/collapse.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/src/dropdown.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/src/modal.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/src/popover.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/src/scrollspy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/src/tab.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/src/tooltip.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/src/util.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/karma.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/unit/.eslintrc.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/unit/alert.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/unit/button.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/unit/carousel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/unit/collapse.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/unit/dropdown.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/unit/modal.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/unit/popover.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/unit/scrollspy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/unit/tab.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/unit/tooltip.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/unit/util.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/vendor/jquery-1.9.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/vendor/qunit.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/vendor/qunit.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/visual/alert.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/visual/button.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/visual/carousel.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/visual/collapse.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/visual/dropdown.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/visual/modal.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/visual/popover.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/visual/scrollspy.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/visual/tab.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/js/tests/visual/tooltip.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/preorders.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/preorders.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/supply_style.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/supply_style.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/bootstrap-theme.min.40c0cb47a113.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/bootstrap-theme.min.40c0cb47a113.css.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/bootstrap-theme.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/bootstrap-theme.min.css.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/bootstrap.min.5c7070ef655a.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/bootstrap.min.5c7070ef655a.css.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/bootstrap.min.css.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/bootstrap.min.ec3bb52a00e1.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/main.a87acb469bd1.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/main.a87acb469bd1.css.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/main.css.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/stripe.43435a8f2fbf.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/stripe.43435a8f2fbf.css.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/stripe.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/stripe.css.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/theme.648444ba9e74.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/theme.648444ba9e74.css.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/theme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/theme.css.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/README.6be939970624.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/README.6be939970624.md.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/README.md.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/index.acf569ab4924.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/index.acf569ab4924.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/index.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/karma.conf.b00732fbe3d1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/karma.conf.b00732fbe3d1.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/karma.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/karma.conf.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/alert.cb8edefd24e7.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/alert.cb8edefd24e7.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/alert.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/alert.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/button.6328d9c15549.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/button.6328d9c15549.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/button.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/button.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/carousel.daaf671cd9ea.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/carousel.daaf671cd9ea.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/carousel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/carousel.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/collapse.413c45c982e8.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/collapse.413c45c982e8.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/collapse.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/collapse.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/dropdown.b818af708c72.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/dropdown.b818af708c72.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/dropdown.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/dropdown.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/modal.e2bd97c5429d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/modal.e2bd97c5429d.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/modal.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/modal.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/popover.aca0101852b0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/popover.aca0101852b0.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/popover.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/popover.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/scrollspy.6b3c3235806f.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/scrollspy.6b3c3235806f.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/scrollspy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/scrollspy.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/tab.1d8f119702d8.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/tab.1d8f119702d8.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/tab.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/tab.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/tooltip.d62fa4e8009f.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/tooltip.d62fa4e8009f.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/tooltip.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/tooltip.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/util.eb4d2a45d1ba.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/util.eb4d2a45d1ba.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/util.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/unit/util.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/vendor/jquery-1.9.1.min.397754ba49e9.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/vendor/jquery-1.9.1.min.397754ba49e9.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/vendor/jquery-1.9.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/vendor/jquery-1.9.1.min.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/vendor/qunit.30eb5d25787d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/vendor/qunit.30eb5d25787d.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/vendor/qunit.7aac555eab9d.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/vendor/qunit.7aac555eab9d.css.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/vendor/qunit.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/vendor/qunit.css.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/vendor/qunit.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/vendor/qunit.js.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/alert.7083f6bc68f1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/alert.7083f6bc68f1.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/alert.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/alert.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/button.aecd98fce59c.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/button.aecd98fce59c.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/button.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/button.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/carousel.5425aea2cd63.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/carousel.5425aea2cd63.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/carousel.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/carousel.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/collapse.cb4a3a843205.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/collapse.cb4a3a843205.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/collapse.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/collapse.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/dropdown.71b862eced17.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/dropdown.71b862eced17.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/dropdown.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/dropdown.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/modal.d17c388e7a68.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/modal.d17c388e7a68.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/modal.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/modal.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/popover.6a8ceb68d731.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/popover.6a8ceb68d731.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/popover.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/popover.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/scrollspy.fdd7204f1353.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/scrollspy.fdd7204f1353.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/scrollspy.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/scrollspy.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/tab.32247fa2037a.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/tab.32247fa2037a.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/tab.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/tab.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/tooltip.2e07352aa31f.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/tooltip.2e07352aa31f.html.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/tooltip.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/tests/visual/tooltip.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/templates/gallery_scroll.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/gallery_scroll.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -196,30 +12,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.71301115">
+    <splitter split-orientation="horizontal" split-proportion="0.69302326">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/orders/views.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-4848">
-                  <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
-                  <folding>
-                    <element signature="e#0#35#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/buylist/models.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-51">
-                  <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/source/urls.py">
               <provider selected="true" editor-type-id="text-editor">
@@ -265,28 +60,54 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/engine/templates/gallery_scroll.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="17" column="39" lean-forward="true" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+                <state relative-caret-position="204">
+                  <caret line="12" column="88" selection-start-line="12" selection-start-column="88" selection-end-line="12" selection-end-column="88" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/orders/templates/chart.js">
+            <entry file="file://$PROJECT_DIR$/engine/management/commands/update_inventory.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
-                  <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="90" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/engine/models.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2142">
-                  <caret line="126" column="51" lean-forward="true" selection-start-line="126" selection-start-column="51" selection-end-line="126" selection-end-column="51" />
+                <state relative-caret-position="136">
+                  <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
                   <folding>
-                    <element signature="e#0#28#0" expanded="true" />
+                    <element signature="e#0#51#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/engine/tcgplayer.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-152">
+                  <caret line="332" column="15" selection-start-line="332" selection-start-column="4" selection-end-line="332" selection-end-column="15" />
+                  <folding>
+                    <element signature="e#0#27#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/orders/management/commands/update_online_prices.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-153">
+                  <folding>
+                    <element signature="e#0#51#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/orders/management/commands/update_direct.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="136">
+                  <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+                  <folding>
+                    <element signature="e#0#51#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -330,14 +151,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>reverse</find>
       <find>add_to_ca</find>
       <find>Decima</find>
       <find>add_to_c</find>
@@ -367,6 +187,7 @@
       <find>car</find>
       <find>respon</find>
       <find>se</find>
+      <find>update_inve</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -375,8 +196,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/scryfall_api.py" />
-        <option value="$PROJECT_DIR$/customer/admin.py" />
         <option value="C:/Program Files/Python36/Lib/site-packages/paypal/standard/ipn/models.py" />
         <option value="$PROJECT_DIR$/models.py" />
         <option value="$PROJECT_DIR$/paypal_client.py" />
@@ -425,6 +244,8 @@
         <option value="$PROJECT_DIR$/engine/views.py" />
         <option value="$PROJECT_DIR$/engine/templates/supply_style.html" />
         <option value="$PROJECT_DIR$/engine/templates/preorders.html" />
+        <option value="$PROJECT_DIR$/orders/management/commands/credits.py" />
+        <option value="$PROJECT_DIR$/orders/management/commands/update_direct.py" />
         <option value="$PROJECT_DIR$/engine/templates/gallery_scroll.js" />
       </list>
     </option>
@@ -454,37 +275,20 @@
             <path>
               <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
               <item name="Goat" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Goat" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Goat" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="templatetags" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Goat" type="462c0819:PsiDirectoryNode" />
               <item name="orders" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
               <item name="Goat" type="462c0819:PsiDirectoryNode" />
               <item name="orders" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="management" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
               <item name="Goat" type="462c0819:PsiDirectoryNode" />
               <item name="orders" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="management" type="462c0819:PsiDirectoryNode" />
+              <item name="commands" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
@@ -672,7 +476,7 @@
     <frame x="-6" y="-6" width="1381" height="895" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.16728625" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2007435" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info id="Structure" order="2" weight="0.24981412" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -725,50 +529,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/engine/cart.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="40" column="32" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tcg/rarity_algorithm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="21" selection-start-column="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="41" column="15" selection-start-line="41" selection-start-column="15" selection-end-line="41" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ppal/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orders/management/commands/deep_order_check.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/management/commands/update_group_categries.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1069,13 +829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orders/templates/chart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1107,10 +860,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_inventory.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/tcgplayer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-152">
+          <caret line="332" column="15" selection-start-line="332" selection-start-column="4" selection-end-line="332" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/management/commands/credits.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/management/commands/update_online_prices.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/templates/chart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/management/commands/update_direct.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/engine/templates/gallery_scroll.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="39" lean-forward="true" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+        <state relative-caret-position="204">
+          <caret line="12" column="88" selection-start-line="12" selection-start-column="88" selection-end-line="12" selection-end-column="88" />
         </state>
       </provider>
     </entry>
