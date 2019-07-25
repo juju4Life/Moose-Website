@@ -113,7 +113,7 @@ class DirectData(models.Model):
     product_id = models.CharField(max_length=255, default='')
     consecutive_days_non_direct = models.IntegerField(default=0)
     total_days_non_direct = models.IntegerField(default=0)
-    last_add = models.DateField()
+    last_add = models.DateField(verbose_name="Last Non-direct Date")
 
     def __str__(self):
         return self.name

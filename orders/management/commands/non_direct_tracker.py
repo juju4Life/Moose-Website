@@ -5,6 +5,7 @@ from datetime import date, timedelta
 
 api = TcgPlayerApi()
 
+
 class Command(BaseCommand):
     def handle(self, **options):
         listed_cards = api.get_category_skus('magic')
@@ -22,13 +23,14 @@ class Command(BaseCommand):
                     database_entry_check = direct_database.filter(sku=sku).exists()
 
                     if database_entry_check is True:
-                        entry = direct_database.filter(sku=sku)
+                        entry = direct_database.get(sku=sku)
                         entry.total_days_non_direct += 1
 
                         if date.today() - timedelta(days=1) == entry.last_add:
                             entry.consecutive_days_non_direct += 1
 
                         entry.last_add = date.today()
+                        entry.save()
 
                     else:
 
@@ -36,14 +38,14 @@ class Command(BaseCommand):
                             'Foil': True,
                             'Normal': False,
                         }
-                        new_entry = direct_database(
+                        new_entry = DirectData(
                             name=card['productName'],
                             expansion=card['groupName'],
                             condition=card['conditionName'],
                             language=card['languageName'],
                             foil=printing_map[card['printingName']],
                             sku=sku,
-                            product_id=card['product_id'],
+                            product_id=card['productId'],
                             last_add=date.today(),
                             consecutive_days_non_direct=1,
                             total_days_non_direct=1,

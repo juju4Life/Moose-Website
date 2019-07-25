@@ -72,3 +72,4 @@ class GroupNameAdmin(admin.ModelAdmin):
 class InventoryAnalyticsAdmin(admin.ModelAdmin):
     change_list_template = 'admin/inventory_analytics_change_list.html'
 
+

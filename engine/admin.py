@@ -2,7 +2,7 @@ import os
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import Product, Orders, ForeignOrder, TcgCredentials, UpdatedInventory, CaseCards, StoreDatabase, MtgDatabase, MTG, Upload, Events, Yugioh, \
-    Pokemon, Location
+    Pokemon, Location, DirectData
 from simple_history.admin import SimpleHistoryAdmin
 from customer.models import Preorder, Customer, PreordersReady, OrderRequest, ReleasedProducts
 from django.contrib.auth.models import Group
@@ -184,6 +184,13 @@ class MTGResource(resources.ModelResource):
         import_id_fields = ('sku',)
 
 
+@admin.register(DirectData)
+class DirectTrackerAdmin(admin.ModelAdmin):
+    search_fields = ['name']
+    list_display = ['name', 'expansion', 'consecutive_days_non_direct', 'total_days_non_direct', 'condition', 'foil', 'last_add', ]
+    ordering = ['last_add', 'consecutive_days_non_direct']
+
+
 @admin.register(MTG)
 class MTGAdmin(ImportExportModelAdmin):
     resource_class = MTGResource
@@ -351,9 +358,8 @@ class StoreDatabaseAdmin(admin.ModelAdmin):
 
 
 admin.site.site_header = 'MooseFirst'
-admin.site.site_title = ''
-admin.site.index_title = ''
-admin.site.index_title = ''
+admin.site.site_title = 'MooseFirst'
+admin.site.index_title = 'MooseFirst'
 admin.site.register(UpdatedInventory, UpdatedInventoryAdmin)
 admin.site.register(CaseCards, CaseCardsAdmin)
 admin.site.register(StoreDatabase, StoreDatabaseAdmin)
