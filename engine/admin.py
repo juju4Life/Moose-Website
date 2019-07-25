@@ -358,7 +358,7 @@ class StoreDatabaseAdmin(admin.ModelAdmin):
 
 
 admin.site.site_header = 'MooseFirst'
-admin.site.site_title = 'MooseFirst'
+admin.site.site_title = ''
 admin.site.index_title = 'MooseFirst'
 admin.site.register(UpdatedInventory, UpdatedInventoryAdmin)
 admin.site.register(CaseCards, CaseCardsAdmin)
