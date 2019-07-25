@@ -129,6 +129,21 @@ class TcgPlayerApi:
     def price_by_group_id(self, group_id):
         return self.credentials.get_request(f'pricing/group/{group_id}')
 
+    def get_category_skus(self, category):
+
+        # api call dict = {totalItems: 0, success: True, errors: [], results: []}
+        # skuId // sellerId // productId // channel Id // productName // categoryId // categoryName // groupId // groupName // conditionId // conditionName //
+        # rarityId // rarityName // rarityDbValue // languageId // languageName // printingId // printingName // currentPrice // marketPrice //
+        # directLowPrice // lowPrice // lowestListing // shippingPrice // isCustom
+
+        category_map = {
+            "magic": 1,
+            "pokemon": 2,
+            "yugioh": 3,
+        }
+
+        return self.credentials.get_request(f"stores/{store_key}/categories/{category_map[category]}/skus")
+
 
 
 

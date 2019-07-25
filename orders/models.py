@@ -1,7 +1,6 @@
 from django.db import models
 from datetime import date
 from validators.model_validators import *
-from django.utils import timezone
 
 
 class Orders(models.Model):
@@ -120,6 +119,7 @@ class InventoryAnalytics(models.Model):
 
 
 class Inventory(models.Model):
+    tcg_direct = models.BooleanField(default=False)
     custom_price = models.BooleanField(default=False)
     update_inventory_quantity = models.IntegerField(default=0, verbose_name='Increase or Decrease quantity')
     update_inventory_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
