@@ -21,18 +21,24 @@ class Command(BaseCommand):
                     sku = card['skuId']
                     current_price = card['currentPrice']
                     market_price = card['marketPrice']
+                    low_price = card['lowPrice']
                     new_price = ''
 
                     if current_price > direct_low_price:
                         new_price = direct_low_price - .01
+
                         if new_price < market_price * .5:
                             new_price = market_price
+
+                        elif new_price > low_price * 1.3:
+                            new_price = low_price * 1.2
 
                         api.update_sku_price(sku_id=sku, price=new_price, _json=True)
                 else:
                     non_direct += 1
         else:
-            errors = listed_cards['errors']
+            # errors = listed_cards['errors']
+            pass
 
 
 
