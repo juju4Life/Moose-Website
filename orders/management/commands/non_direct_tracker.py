@@ -59,6 +59,8 @@ class Command(BaseCommand):
                             last_add=date.today(),
                             consecutive_days_non_direct=1,
                             total_days_non_direct=1,
+                            last_consecutive_run=1,
+                            days_non_direct=1,
 
                         )
 
