@@ -2,6 +2,21 @@ from django.db import models
 from datetime import date
 
 
+class TcgGroupPrice(models.Model):
+    name = models.CharField(max_length=255, default='')
+    expansion = models.CharField(max_length=255, default='')
+    foil = models.BooleanField(default=False)
+    low_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    mid_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    market_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    high_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    direct_low_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    is_direct = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     site = models.CharField(max_length=255, default='', blank=True, null=True)
     quantity = models.IntegerField(null=True, blank=True, default=100)
