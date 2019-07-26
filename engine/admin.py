@@ -188,7 +188,7 @@ class MTGResource(resources.ModelResource):
 class DirectTrackerAdmin(admin.ModelAdmin):
     search_fields = ['name']
     list_display = ['name', 'expansion', 'consecutive_days_non_direct', 'total_days_non_direct', 'condition', 'foil', 'last_add', ]
-    ordering = ['last_add', 'consecutive_days_non_direct']
+    ordering = ['-last_add', '-consecutive_days_non_direct']
 
 
 @admin.register(MTG)
