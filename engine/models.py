@@ -111,9 +111,11 @@ class DirectData(models.Model):
     foil = models.BooleanField()
     sku = models.CharField(max_length=255, default='')
     product_id = models.CharField(max_length=255, default='')
-    consecutive_days_non_direct = models.IntegerField(default=0)
-    total_days_non_direct = models.IntegerField(default=0)
+    consecutive_days_non_direct = models.IntegerField(default=1)
+    total_days_non_direct = models.IntegerField(default=1)
     last_add = models.DateField(verbose_name="Last Non-direct Date")
+    last_consecutive_run = models.IntegerField(default=1)
+    days_non_direct = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

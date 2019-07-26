@@ -29,6 +29,16 @@ class Command(BaseCommand):
                         if date.today() - timedelta(days=1) == entry.last_add:
                             entry.consecutive_days_non_direct += 1
 
+                        else:
+
+                            # Track how many total consecutive days card was on TcgPlayer Direct
+                            entry.last_consecutive_run = entry.consecutive_days_non_direct
+                            entry.consecutive_days_non_direct = 1
+
+                            # Track how many days since card was not TcgPlayer Direct
+                            delta = date.today() - entry.last_add
+                            entry.days_non_direct = delta.days
+
                         entry.last_add = date.today()
                         entry.save()
 
