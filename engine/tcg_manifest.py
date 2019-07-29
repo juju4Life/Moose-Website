@@ -19,7 +19,6 @@ class Manifest:
 
         return game_dict[ids]
 
-
     def printing(self, ids):
         printing_dict = {
             1: 'Normal',

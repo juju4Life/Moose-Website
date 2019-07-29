@@ -3,6 +3,7 @@ from datetime import date
 
 
 class TcgGroupPrice(models.Model):
+    product_id = models.CharField(max_length=255, default='')
     name = models.CharField(max_length=255, default='')
     expansion = models.CharField(max_length=255, default='')
     foil = models.BooleanField(default=False)

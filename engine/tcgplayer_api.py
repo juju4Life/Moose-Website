@@ -144,6 +144,10 @@ class TcgPlayerApi:
 
         return self.credentials.get_request(f"stores/{store_key}/categories/{category_map[category]}/skus")
 
+    def get_product_sku_list(self, product_id):
+
+        return self.credentials.get_request(f"catalog/products/{product_id}/skus")
+
 
 
 
