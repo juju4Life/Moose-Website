@@ -2,7 +2,7 @@ import os
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import Product, Orders, ForeignOrder, TcgCredentials, UpdatedInventory, CaseCards, StoreDatabase, MtgDatabase, MTG, Upload, Events, Yugioh, \
-    Pokemon, Location, DirectData
+    Pokemon, Location, DirectData, TcgGroupPrice
 from simple_history.admin import SimpleHistoryAdmin
 from customer.models import Preorder, Customer, PreordersReady, OrderRequest, ReleasedProducts
 from django.contrib.auth.models import Group
@@ -182,6 +182,12 @@ class MTGResource(resources.ModelResource):
         model = MTG
         exclude = ('language',)
         import_id_fields = ('sku',)
+
+
+@admin.register(TcgGroupPrice)
+class TcgGroupPriceAdmin(admin.ModelAdmin):
+    search_fields = ['name', ]
+    list_display = ['name', 'expansion', 'direct_low_price', 'market_price', 'low_price', 'mid_price', 'foil', ]
 
 
 @admin.register(DirectData)
