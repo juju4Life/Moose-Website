@@ -2,7 +2,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from engine.tcgplayer_api import TcgPlayerApi
 
-api = TcgPlayerApi()
+api = TcgPlayerApi('first')
 
 
 def validate_name(value):

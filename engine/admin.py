@@ -28,7 +28,7 @@ except ImportError:
     from io import BytesIO
 
 # Api calls to TCGplayer
-api = TcgPlayerApi()
+api = TcgPlayerApi('first')
 
 
 @admin.register(Events)

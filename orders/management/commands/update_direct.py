@@ -2,12 +2,12 @@ from django.core.management.base import BaseCommand
 from engine.tcgplayer_api import TcgPlayerApi
 from tcg.tcg_functions import tcg_condition_map
 
-api = TcgPlayerApi()
+api = TcgPlayerApi('first')
 
 
 class Command(BaseCommand):
     def handle(self, **options):
-        listed_cards = api.get_category_skus('magic')
+        listed_cards = api.get_category_skus('magic', store='first')
 
         success = listed_cards['success']
         if success is True:
@@ -33,7 +33,7 @@ class Command(BaseCommand):
                         if new_price < market_price * tcg_condition_map(condition):
                             new_price = market_price * tcg_condition_map(condition)
 
-                        api.update_sku_price(sku_id=sku, price=new_price, _json=True)
+                        api.update_sku_price(sku_id=sku, price=new_price, _json=True, store='first')
                 else:
                     non_direct += 1
         else:

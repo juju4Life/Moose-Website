@@ -9,7 +9,7 @@ from django.core.mail import send_mail
 from customer.models import OrderRequest
 
 
-tcg = TcgPlayerApi()
+tcg = TcgPlayerApi('first')
 credentials = Credentials()
 
 
@@ -20,7 +20,7 @@ def send_order(cart, name, notes, email, phone_number, contact_type):
     for each in cart:
         text = text + str(each['quantity']) + each['name'].replace(' ', '+').replace("'", '%27').replace(",", '%2C') + "%0D%0A"
     versions = Product.objects.only('set_name', 'name', 'tcg_player_id').filter(name__in=[i['name'] for i in cart])
-    ver = [{'name': v.name, 'set_name': v.set_name, 'qty': tcg.search_inventory(str(v.tcg_player_id))} for v in versions]
+    ver = [{'name': v.name, 'set_name': v.set_name, 'qty': tcg.search_inventory(str(v.tcg_player_id), store='first')} for v in versions]
     new_list = sorted(cart, key=lambda k: k['set_name'])
     shopping_cart = ["{}x {} ({}) | {} | ${} each | {}".format(
         i['quantity'],
@@ -46,6 +46,7 @@ def send_order(cart, name, notes, email, phone_number, contact_type):
     order_requested.save()
     order_id = OrderRequest.objects.get(date=date).id
     cart.clear()
+
     def send():
         from customer.facebook import FacebookBot
         facebook_bot = FacebookBot()
@@ -126,6 +127,7 @@ def add_buylist_item(name):
                             tcg.create_buylist_item(card_sku['productConditionId'], .01, _json=True)
                             print('added')
                             delete = True
+
         if delete == False:
             def send():
                 from customer.facebook import FacebookBot

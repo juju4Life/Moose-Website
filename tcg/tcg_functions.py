@@ -1,7 +1,3 @@
-from engine.tcgplayer_api import TcgPlayerApi
-
-
-api = TcgPlayerApi()
 
 
 def add_shipping_if_lower_than_five(value_dict):
@@ -13,10 +9,15 @@ def add_shipping_if_lower_than_five(value_dict):
 def tcg_condition_map(condition):
     condition_map = {
         'Near Mint': .9,
+        'Near Mint Foil': .9,
         'Lightly Played': .9,
+        'Lightly Played Foil': .9,
         'Moderately Played': .7,
+        'Moderately Played Foil': .7,
         'Heavily Played': .6,
+        'Heavily Played Foil': .6,
         'Damaged': .5,
+        'Damaged Foil': .5,
         'Unopened': .9,
         }
 
@@ -24,16 +25,25 @@ def tcg_condition_map(condition):
 
 
 def moose_price_algorithm(seller_data_list, market_price, condition):
-    seller_prices = add_shipping_if_lower_than_five(seller_data_list)
+    if len(seller_data_list) > 0:
+        seller_prices = add_shipping_if_lower_than_five(seller_data_list)
+        seller_prices = sorted(seller_prices)
+        print(seller_prices)
+        update_price = seller_prices[0] - .01
+        if seller_prices[0] < seller_prices[1] / 1.2:
+            update_price = seller_prices[1] - .01
 
-    update_price = seller_prices[0] - .01
-    if seller_prices[0] < seller_prices[1] / 1.2:
-        update_price = seller_prices[1] - .01
+        if update_price < market_price * tcg_condition_map(condition):
+            update_price = market_price
 
-    if update_price < market_price * tcg_condition_map(condition):
-        update_price = market_price
+        return update_price
 
-    return update_price
+    else:
+        if 'Foil' not in condition:
+            return market_price * tcg_condition_map(condition)
+
+        else:
+            return None
 
 
 
