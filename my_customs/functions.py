@@ -41,3 +41,11 @@ def float_from_string(string):
     else:
         return 0
 
+
+def integers_from_string(string):
+    integers = [i for i in string if i.isdigit()]
+    if len(integers) > 0:
+        return int(''.join(integers))
+    else:
+        return 0
+
