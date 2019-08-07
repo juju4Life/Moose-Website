@@ -7,7 +7,7 @@ from engine.tcgplayer_api import TcgPlayerApi
 from engine.tcg_manifest import Manifest
 from engine.models import MTG
 
-api = TcgPlayerApi()
+api = TcgPlayerApi('first')
 manifest = Manifest()
 
 
@@ -43,7 +43,7 @@ class Command(BaseCommand):
                 else:
                     pass
 
-                sku_list = api.get_product_sku_list(product_id)
+                sku_list = api.get_product_sku_list(product_id, store='first')
 
                 for sku in sku_list['results']:
                     language = manifest.language(sku['languageId'])
