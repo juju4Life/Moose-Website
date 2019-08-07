@@ -27,7 +27,7 @@ class Command(BaseCommand):
                     if current_price > direct_low_price:
                         new_price = direct_low_price - .01
 
-                        if new_price < market_price * .7:
+                        if new_price < market_price * .8:
                             new_price = market_price
 
                         api.update_sku_price(sku_id=sku, price=new_price, _json=True)

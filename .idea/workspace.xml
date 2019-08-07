@@ -5,6 +5,7 @@
       <change afterPath="$PROJECT_DIR$/tcg/tcg_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_customs/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_customs/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/management/commands/update_direct.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/management/commands/update_direct.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orders/management/commands/update_moose_tcg.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/management/commands/update_moose_tcg.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,11 +63,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/orders/management/commands/update_direct.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-119">
-                  <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="53" />
+                <state relative-caret-position="323">
+                  <caret line="34" column="35" lean-forward="true" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
                   <folding>
                     <element signature="e#0#51#0" expanded="true" />
                   </folding>
@@ -74,7 +75,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/orders/management/commands/update_moose_tcg.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="93">
@@ -285,7 +286,6 @@
         <option value="$PROJECT_DIR$/orders/models.py" />
         <option value="$PROJECT_DIR$/source/urls.py" />
         <option value="C:/Program Files/Python36/Lib/socket.py" />
-        <option value="$PROJECT_DIR$/orders/management/commands/update_direct.py" />
         <option value="$PROJECT_DIR$/orders/admin.py" />
         <option value="$PROJECT_DIR$/orders/management/commands/non_direct_tracker.py" />
         <option value="$PROJECT_DIR$/orders/get_group_prices.py" />
@@ -303,6 +303,7 @@
         <option value="$PROJECT_DIR$/tcg/price_moose_tcg_algo.py" />
         <option value="$PROJECT_DIR$/tcg/tcg_functions.py" />
         <option value="$PROJECT_DIR$/orders/management/commands/update_moose_tcg.py" />
+        <option value="$PROJECT_DIR$/orders/management/commands/update_direct.py" />
       </list>
     </option>
   </component>
@@ -534,7 +535,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32980132" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32955974" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49888477" visible="true" weight="0.57124186" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49888477" visible="true" weight="0.33464053" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50111526" side_tool="true" weight="0.3137255" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32980132" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -897,16 +898,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orders/management/commands/update_direct.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-119">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files/Python36/Lib/site-packages/urllib3/contrib/pyopenssl.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1722">
@@ -952,6 +943,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="93">
           <caret line="53" column="118" selection-start-line="53" selection-start-column="118" selection-end-line="53" selection-end-column="118" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/management/commands/update_direct.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="34" column="35" lean-forward="true" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
