@@ -8,9 +8,8 @@ from buylist.models import Buying
 from .tcgplayer_api import TcgPlayerApi
 from.tcg_credentials import Credentials
 
-headers = Credentials.headers
-tcg = TcgPlayerApi()
-store_key = Credentials.store_key
+tcg = TcgPlayerApi('first')
+store_key = Credentials.store_keys
 manifest = Manifest()
 
 
