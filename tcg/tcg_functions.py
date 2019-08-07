@@ -33,14 +33,18 @@ def moose_price_algorithm(seller_data_list, market_price, condition):
             update_price = seller_prices[1] - .01
 
         if update_price < market_price * tcg_condition_map(condition):
-            update_price = market_price
+            if 'Foil' not in condition:
+                update_price = market_price
 
         return update_price
 
     elif len(seller_data_list) == 1:
-
-        if 'Foil' not in condition:
-            return market_price * tcg_condition_map(condition)
+        seller_prices = add_shipping_if_lower_than_five(seller_data_list)
+        update_price = seller_prices[0] - .01
+        if update_price < market_price * tcg_condition_map(condition):
+            if 'Foil' not in condition:
+                update_price = market_price
+                return update_price
 
         else:
             return None
