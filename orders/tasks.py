@@ -83,14 +83,14 @@ def update_moose_tcg():
                             seller_name = d.find('a', {'class': 'seller__name'}).text.strip()
                             seller_condition = d.find('div', {'class': 'product-listing__condition'}).text.strip()
 
-                            if seller_total_sales >= 10000 and seller_name != 'MTGFirst' and condition == seller_condition:
+                            if seller_total_sales >= 10000 and seller_name != 'MTGFirst' and seller_name != 'Moose Loot' and condition == seller_condition:
                                 # seller_feedback = d.find('span', {'class': 'seller__feedback-rating'}).text
 
                                 # function extracts all floating points from string.
                                 price = float_from_string(d.find('span', {'class': 'product-listing__price'}).text)
 
                                 # Fail Safe in the case where html is changed and no real value is extracted
-                                if price is not None or price is not 0:
+                                if price is not None and price is not 0:
                                     shipping = float_from_string(d.find('span', {'class': 'product-listing__shipping'}).text.strip())
 
                                     # Quick fix to account for Direct cards that Free shipping over $25. Float extraction function would return 25. Because no
@@ -127,10 +127,9 @@ def update_moose_tcg():
                     seller_data_list.append({'price': 0, 'default_shipping': False})
 
                 updated_price = moose_price_algorithm(seller_data_list=seller_data_list, market_price=market, condition=condition)
-                print(name, expansion, condition, printing)
-                print(f"Updated Price {updated_price}")
-                print(f"Market {market}")
-                # api.update_sku_price(sku_id=sku, price=updated_price, _json=True, store='moose')
+
+                if updated_price is not None:
+                    api.update_sku_price(sku_id=sku, price=updated_price, _json=True, store='moose')
 
 
 @shared_task(name='orders.tasks.task_upload')

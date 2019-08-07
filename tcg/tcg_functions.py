@@ -25,10 +25,9 @@ def tcg_condition_map(condition):
 
 
 def moose_price_algorithm(seller_data_list, market_price, condition):
-    if len(seller_data_list) > 0:
+    if len(seller_data_list) == 2:
         seller_prices = add_shipping_if_lower_than_five(seller_data_list)
         seller_prices = sorted(seller_prices)
-        print(seller_prices)
         update_price = seller_prices[0] - .01
         if seller_prices[0] < seller_prices[1] / 1.2:
             update_price = seller_prices[1] - .01
@@ -38,12 +37,16 @@ def moose_price_algorithm(seller_data_list, market_price, condition):
 
         return update_price
 
-    else:
+    elif len(seller_data_list) == 1:
+
         if 'Foil' not in condition:
             return market_price * tcg_condition_map(condition)
 
         else:
             return None
+
+    else:
+        return None
 
 
 
