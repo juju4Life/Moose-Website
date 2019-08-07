@@ -8,7 +8,7 @@ from .models import EbayListing
 from scryfall_api import get_image
 import math
 
-tcgApi = TcgPlayerApi()
+tcgApi = TcgPlayerApi('first')
 ebay = EbayApi()
 
 
