@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from engine.tcgplayer_api import TcgPlayerApi
+from tcg.tcg_functions import tcg_condition_map
 
 api = TcgPlayerApi()
 
@@ -27,8 +28,10 @@ class Command(BaseCommand):
                     if current_price > direct_low_price:
                         new_price = direct_low_price - .01
 
-                        if new_price < market_price * .8:
-                            new_price = market_price
+                        condition = card['conditionName'].replace('Foil', '').strip()
+
+                        if new_price < market_price * tcg_condition_map(condition):
+                            new_price = market_price * tcg_condition_map(condition)
 
                         api.update_sku_price(sku_id=sku, price=new_price, _json=True)
                 else:
