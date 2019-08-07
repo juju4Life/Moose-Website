@@ -127,8 +127,10 @@ def update_moose_tcg():
                     seller_data_list.append({'price': 0, 'default_shipping': False})
 
                 updated_price = moose_price_algorithm(seller_data_list=seller_data_list, market_price=market, condition=condition)
-
-                api.update_sku_price(sku_id=sku, price=updated_price, _json=True, store='moose')
+                print(name, expansion, condition, printing)
+                print(f"Updated Price {updated_price}")
+                print(f"Market {market}")
+                # api.update_sku_price(sku_id=sku, price=updated_price, _json=True, store='moose')
 
 
 @shared_task(name='orders.tasks.task_upload')
