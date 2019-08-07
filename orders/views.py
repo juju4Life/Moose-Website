@@ -18,6 +18,7 @@ from datetime import date, datetime, timedelta
 from engine.models import Upload
 import math
 
+
 def graph(request):
     x = arange(0, 2*pi, 0.01)
     y = cos(x) ** 2
