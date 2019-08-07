@@ -78,7 +78,7 @@ class TcgPlayerApi:
             "skuId": sku_id,
             "price": price,
         }
-        self.credentials.put_request('stores/{}/inventory/skus/{}/price'.format(self.self.store_key, sku_id), _data=_data, _json=_json, json=json_params,
+        self.credentials.put_request('stores/{}/inventory/skus/{}/price'.format(self.store_key, sku_id), _data=_data, _json=_json, json=json_params,
                                      store=store)
 
     def get_tcg_public_buylist(self, sku):
