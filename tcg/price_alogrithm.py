@@ -1,6 +1,6 @@
 from engine.tcgplayer_api import TcgPlayerApi
 
-api = TcgPlayerApi()
+api = TcgPlayerApi('first')
 
 
 def price_foreign(expansion, condition, language, low, direct=None, mid=None, market=None):
@@ -262,8 +262,8 @@ def sku_price_algorithm(language, expansion, category, printing, condition, sku,
         elif 'damaged' in condition.lower():
             condition_price = condition_dict['damaged']
 
-        product_id = api.card_info_by_sku(sku)['results'][0]['productId']
-        market_data = api.get_market_price(str(product_id))['results']
+        product_id = api.card_info_by_sku(sku, store='first')['results'][0]['productId']
+        market_data = api.get_market_price(str(product_id), store='first')['results']
 
         if category != "Magic" and category != 'Magic the Gathering':
             count = 0

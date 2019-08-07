@@ -7,7 +7,7 @@ from orders.models import Inventory
 from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
 
-api = TcgPlayerApi()
+api = TcgPlayerApi('first')
 
 
 def task_management(obj):
