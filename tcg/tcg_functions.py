@@ -1,9 +1,9 @@
 
 
 def add_shipping_if_lower_than_five(value_dict):
-    mapped = map(lambda i: i['price'] + .78 if i['price'] < 5 and i['default_shipping'] is True else i, value_dict)
+    mapped = map(lambda i: i['price'] + .78 if i['price'] < 5 and i['default_shipping'] is True else i['price'], value_dict)
 
-    return [i['price'] for i in mapped]
+    return list(mapped)
 
 
 def tcg_condition_map(condition):
