@@ -98,8 +98,8 @@ def update_moose_tcg():
                                     # Quick fix to account for Direct cards that Free shipping over $25. Float extraction function would return 25. Because no
                                     # card will ever have this as a shipping cost, we can check if  there is $25 shipping and change it to the standard direct
                                     # rate of 0.99
-                                    if shipping == 25. and price < 25.:
-                                        shipping = .99
+                                    if shipping == 25.:
+                                        shipping = 0
 
                                     total_price = price + shipping
 
