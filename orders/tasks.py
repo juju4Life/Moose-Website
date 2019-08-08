@@ -42,108 +42,118 @@ def url(product_id, foil, condition, page=1):
 
 @shared_task(name='orders.tasks.update_moose_tcg')
 def update_moose_tcg():
-    start_time = time()
-    # Entire Moose Loot Listed inventory
-    listed_cards = api.get_category_skus('magic', store='moose')
-    if listed_cards['success'] is True:
-        print(f"Updating {listed_cards['totalItems']} for Moose Inventory")
-        for index, card in enumerate(listed_cards['results']):
-            condition = card['conditionName']
-            if condition != 'Unopened':
-                sku = card['skuId']
-                product_id = card['productId']
-                name = card['productName']
-                expansion = card['groupName']
-                printing = card['printingName']
-                market = card['marketPrice']
+    try:
+        start_time = time()
+        # Entire Moose Loot Listed inventory
+        listed_cards = api.get_category_skus('magic', store='moose')
+        if listed_cards['success'] is True:
+            print(f"Updating {listed_cards['totalItems']} for Moose Inventory")
+            for index, card in enumerate(listed_cards['results']):
+                condition = card['conditionName']
+                if condition != 'Unopened':
+                    current_price = card['currentPrice']
+                    low = card['lowPrice']
+                    if current_price != low:
+                        sku = card['skuId']
+                        product_id = card['productId']
+                        name = card['productName']
+                        expansion = card['groupName']
+                        printing = card['printingName']
+                        market = card['marketPrice']
 
-                '''    
-                Here, for each card in the MooseLoot inventory we will make a request to the tcgplayer page containing all seller data for a given product. 
-                We request and scan pages (10 results per page) until we find 2 listings with sellers that have 10,000 sales or more. We break the while loop 
-                once we have found those 2 listings and move on to the next card in Moose inventory. In the case where only 1 or 0 listings are found, 
-                we break the loop and use one price to match against or default to the market price.      
-                '''
-                next_page = True
-                page = 1
-                seller_data_list = []
+                        '''    
+                        Here, for each card in the MooseLoot inventory we will make a request to the tcgplayer page containing all seller data for a given product. 
+                        We request and scan pages (10 results per page) until we find 2 listings with sellers that have 10,000 sales or more. We break the while loop 
+                        once we have found those 2 listings and move on to the next card in Moose inventory. In the case where only 1 or 0 listings are found, 
+                        we break the loop and use one price to match against or default to the market price.      
+                        '''
+                        next_page = True
+                        page = 1
+                        seller_data_list = []
 
-                while next_page is True:
+                        while next_page is True:
 
-                    request_path = url(product_id=product_id, condition=condition, foil=printing, page=page)
-                    r = requests.get(request_path).content
-                    soup = B(r, 'html.parser')
-                    data = soup.find_all('div', {'class': 'product-listing '})
+                            request_path = url(product_id=product_id, condition=condition, foil=printing, page=page)
+                            r = requests.get(request_path).content
+                            soup = B(r, 'html.parser')
+                            data = soup.find_all('div', {'class': 'product-listing '})
 
-                    # Check if there are products in the request. If not that indicates no more listings and thus we break the loop
-                    if not data:
-                        break
-                    # loop over each item on the page and get Seller Info
-                    for d in data:
-                        check = d.find('span', {'class': 'seller__sales'})
-                        if check is not None:
-                            seller_total_sales = integers_from_string(d.find('span', {'class': 'seller__sales'}).text)
-                            seller_name = d.find('a', {'class': 'seller__name'}).text.strip()
-                            seller_condition = d.find('div', {'class': 'product-listing__condition'}).text.strip()
+                            # Check if there are products in the request. If not that indicates no more listings and thus we break the loop
+                            if not data:
+                                break
+                            # loop over each item on the page and get Seller Info
+                            for d in data:
+                                check = d.find('span', {'class': 'seller__sales'})
+                                if check is not None:
+                                    seller_total_sales = integers_from_string(d.find('span', {'class': 'seller__sales'}).text)
+                                    seller_name = d.find('a', {'class': 'seller__name'}).text.strip()
+                                    seller_condition = d.find('div', {'class': 'product-listing__condition'}).text.strip()
 
-                            if seller_total_sales >= 10000 and seller_name != 'MTGFirst' and seller_name != 'Moose Loot' and condition == seller_condition:
-                                # seller_feedback = d.find('span', {'class': 'seller__feedback-rating'}).text
+                                    if seller_total_sales >= 10000 and seller_name != 'MTGFirst' and seller_name != 'Moose Loot' and condition == seller_condition:
+                                        # seller_feedback = d.find('span', {'class': 'seller__feedback-rating'}).text
 
-                                # function extracts all floating points from string.
-                                price = float_from_string(d.find('span', {'class': 'product-listing__price'}).text)
+                                        # function extracts all floating points from string.
+                                        price = float_from_string(d.find('span', {'class': 'product-listing__price'}).text)
 
-                                # Fail Safe in the case where html is changed and no real value is extracted
-                                if price is not None and price is not 0:
-                                    shipping = float_from_string(d.find('span', {'class': 'product-listing__shipping'}).text.strip())
+                                        # Fail Safe in the case where html is changed and no real value is extracted
+                                        if price is not None and price is not 0:
+                                            shipping = float_from_string(d.find('span', {'class': 'product-listing__shipping'}).text.strip())
 
-                                    # Quick fix to account for Direct cards that Free shipping over $25. Float extraction function would return 25. Because no
-                                    # card will ever have this as a shipping cost, we can check if  there is $25 shipping and change it to the standard direct
-                                    # rate of 0.99
-                                    direct_price = False
-                                    if shipping == 25.:
-                                        shipping = 0
-                                        direct_price = True
+                                            # Quick fix to account for Direct cards that Free shipping over $25. Float extraction function would return 25. Because no
+                                            # card will ever have this as a shipping cost, we can check if  there is $25 shipping and change it to the standard direct
+                                            # rate of 0.99
+                                            direct_price = False
+                                            if shipping == 25.:
+                                                shipping = 0
+                                                direct_price = True
 
-                                    total_price = price + shipping
+                                            total_price = price + shipping
 
-                                    # Needed a way to pass price along with default shipping option to the pricing function algorithm
-                                    price_and_default = {
-                                        'price': total_price,
-                                        'default_shipping': True if shipping == 0 and direct_price is False else False
-                                    }
+                                            # Needed a way to pass price along with default shipping option to the pricing function algorithm
+                                            price_and_default = {
+                                                'price': total_price,
+                                                'default_shipping': True if shipping == 0 and direct_price is False else False
+                                            }
 
-                                    # We are appending the two cheapest listings with 10,000 minimum sales and that meets other if requirements.
-                                    # Break once we get 2
-                                    seller_data_list.append(price_and_default)
-                                    if len(seller_data_list) == 2:
-                                        next_page = False
-                                        break
-                    page += 1
+                                            # We are appending the two cheapest listings with 10,000 minimum sales and that meets other if requirements.
+                                            # Break once we get 2
+                                            seller_data_list.append(price_and_default)
+                                            if len(seller_data_list) == 2:
+                                                next_page = False
+                                                break
+                            page += 1
 
-                '''
-                We will check the number of other seller listings.
-                If there were zero listings found we simply make the updated price the market price.
+                        '''
+                        We will check the number of other seller listings.
+                        If there were zero listings found we simply make the updated price the market price.
+        
+                        If just one listing is found, we run the price algorithm which will just add shipping if default and price .01c less.
+        
+                        If there are 2 10,000+ listings, algorithm will compare and take the best/cheapest listings price
+                        '''
+                        if len(seller_data_list) == 1:
+                            seller_data_list.append({'price': 0, 'default_shipping': False})
 
-                If just one listing is found, we run the price algorithm which will just add shipping if default and price .01c less.
+                        updated_price = moose_price_algorithm(seller_data_list=seller_data_list, market_price=market, condition=condition)
 
-                If there are 2 10,000+ listings, algorithm will compare and take the best/cheapest listings price
-                '''
-                if len(seller_data_list) == 1:
-                    seller_data_list.append({'price': 0, 'default_shipping': False})
+                        if updated_price is not None:
+                            api.update_sku_price(sku_id=sku, price=updated_price, _json=True, store='moose')
+                            if index < 100:
+                                print(name, expansion, condition, printing, updated_price)
+        end_time = time()
 
-                updated_price = moose_price_algorithm(seller_data_list=seller_data_list, market_price=market, condition=condition)
-
-                if updated_price is not None:
-                    api.update_sku_price(sku_id=sku, price=updated_price, _json=True, store='moose')
-                    if index < 100:
-                        print(name, expansion, condition, printing, updated_price)
-    end_time = time()
-
-    elapsed = end_time - start_time
-    subject = "Time elapsed for Moose Tcg Auto Price - 1 cycle"
-    message = f"Time auto price completed: {elapsed} seconds"
-    mail_from = 'tcgfirst'
-    mail_to = ['jermol.jupiter@gmai.com', ]
-    send_mail(subject, message, mail_from, mail_to)
+        elapsed = end_time - start_time
+        subject = "Time elapsed for Moose Tcg Auto Price - 1 cycle"
+        message = f"Time auto price completed: {elapsed} seconds"
+        mail_from = 'tcgfirst'
+        mail_to = ['jermol.jupiter@gmai.com', ]
+        send_mail(subject, message, mail_from, mail_to)
+    except Exception as e:
+        subject = "Error on function to update MooseLoot tcg"
+        message = f"Error on function to update MooseLoot tcg: {e}"
+        mail_from = 'tcgfirst'
+        mail_to = ['jermol.jupiter@gmai.com', ]
+        send_mail(subject, message, mail_from, mail_to)
 
 
 @shared_task(name='orders.tasks.task_upload')
