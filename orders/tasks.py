@@ -47,7 +47,7 @@ def update_moose_tcg():
     listed_cards = api.get_category_skus('magic', store='moose')
     if listed_cards['success'] is True:
         print(f"Updating {listed_cards['totalItems']} for Moose Inventory")
-        for card in listed_cards['results']:
+        for index, card in enumerate(listed_cards['results']):
             condition = card['conditionName']
             if condition != 'Unopened':
                 sku = card['skuId']
@@ -132,6 +132,8 @@ def update_moose_tcg():
 
                 if updated_price is not None:
                     api.update_sku_price(sku_id=sku, price=updated_price, _json=True, store='moose')
+                    if index < 100:
+                        print(name, expansion, condition, printing, updated_price)
     end_time = time()
 
     elapsed = end_time - start_time
