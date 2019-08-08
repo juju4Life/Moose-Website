@@ -14,6 +14,7 @@ from bs4 import BeautifulSoup as B
 from my_customs.functions import float_from_string, null_to_zero, check_if_foil, integers_from_string
 from tcg.tcg_functions import moose_price_algorithm
 import requests
+from time import time
 
 api = TcgPlayerApi('moose')
 
@@ -41,6 +42,7 @@ def url(product_id, foil, condition, page=1):
 
 @shared_task(name='orders.tasks.update_moose_tcg')
 def update_moose_tcg():
+    start_time = time()
     # Entire Moose Loot Listed inventory
     listed_cards = api.get_category_skus('magic', store='moose')
     if listed_cards['success'] is True:
@@ -130,6 +132,14 @@ def update_moose_tcg():
 
                 if updated_price is not None:
                     api.update_sku_price(sku_id=sku, price=updated_price, _json=True, store='moose')
+    end_time = time()
+
+    elapsed = end_time - start_time
+    subject = "Time elapsed for Moose Tcg Auto Price - 1 cycle"
+    message = f"Time auto price completed: {elapsed} seconds"
+    mail_from = 'tcgfirst'
+    mail_to = ['jermol.jupiter@gmai.com', ]
+    send_mail(subject, message, mail_from, mail_to)
 
 
 @shared_task(name='orders.tasks.task_upload')
