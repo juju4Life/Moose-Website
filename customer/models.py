@@ -94,7 +94,6 @@ class PreordersReady(models.Model):
     employee_initials = models.CharField(max_length=5, default='')
     history = HistoricalRecords()
 
-
     def __str__(self):
         return "{}".format(self.product)
 

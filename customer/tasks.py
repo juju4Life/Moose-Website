@@ -1,7 +1,6 @@
 from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 from customer.secrets import Secrets
-from engine.models import Product
 from engine.tcgplayer_api import TcgPlayerApi
 from engine.tcg_credentials import Credentials
 from datetime import datetime
@@ -19,7 +18,7 @@ def send_order(cart, name, notes, email, phone_number, contact_type):
     url = 'https://www.tcgfirst.com//order_view/'
     for each in cart:
         text = text + str(each['quantity']) + each['name'].replace(' ', '+').replace("'", '%27').replace(",", '%2C') + "%0D%0A"
-    versions = Product.objects.only('set_name', 'name', 'tcg_player_id').filter(name__in=[i['name'] for i in cart])
+    versions = object.objects.only('set_name', 'name', 'tcg_player_id').filter(name__in=[i['name'] for i in cart])
     ver = [{'name': v.name, 'set_name': v.set_name, 'qty': tcg.search_inventory(str(v.tcg_player_id), store='first')} for v in versions]
     new_list = sorted(cart, key=lambda k: k['set_name'])
     shopping_cart = ["{}x {} ({}) | {} | ${} each | {}".format(
@@ -48,7 +47,7 @@ def send_order(cart, name, notes, email, phone_number, contact_type):
     cart.clear()
 
     def send():
-        from customer.facebook import FacebookBot
+        from facebook_bot.facebook import FacebookBot
         facebook_bot = FacebookBot()
         facebook_bot.send_message(
             "TEST Order Request for {}\n"
@@ -86,7 +85,7 @@ def update_tcg_key():
 
 @shared_task()
 def awake():
-    from customer.facebook_listen import ListenBot
+    from facebook_bot.facebook_listen import ListenBot
     client = ListenBot(Secrets.facebook_email, Secrets.facebook_password)
     while True:
         if not client.onListening():
@@ -97,10 +96,10 @@ def awake():
 
 @shared_task(name='customer.tasks.add_buylist_item')
 def add_buylist_item(name):
-    results = Product.objects.filter(name=name.strip())
+    results = object.objects.filter(name=name.strip())
     if not results.exists():
         def send():
-            from customer.facebook import FacebookBot
+            from facebook_bot.facebook import FacebookBot
             facebook_bot = FacebookBot()
             facebook_bot.send_message(
                 "'{}' Not added to buylist. Please Correct your spelling".format(name)
@@ -130,7 +129,7 @@ def add_buylist_item(name):
 
         if delete == False:
             def send():
-                from customer.facebook import FacebookBot
+                from facebook_bot.facebook import FacebookBot
                 facebook_bot = FacebookBot()
                 facebook_bot.send_message(
                     "There was an error adding {} to buylist".format(name)

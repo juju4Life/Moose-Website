@@ -1,8 +1,7 @@
 import os
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import Product, Orders, ForeignOrder, TcgCredentials, UpdatedInventory, CaseCards, StoreDatabase, MtgDatabase, MTG, Upload, Events, Yugioh, \
-    Pokemon, Location, DirectData, TcgGroupPrice
+from .models import Orders, TcgCredentials, StoreDatabase, MTG, Upload, Yugioh, Pokemon, DirectData, TcgGroupPrice
 from simple_history.admin import SimpleHistoryAdmin
 from customer.models import Preorder, Customer, PreordersReady, OrderRequest, ReleasedProducts
 from django.contrib.auth.models import Group
@@ -31,16 +30,6 @@ except ImportError:
 api = TcgPlayerApi('first')
 
 
-@admin.register(Events)
-class EventsAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(Location)
-class LocationAdmin(admin.ModelAdmin):
-    pass
-
-
 @admin.register(Yugioh)
 class YugiohAdmin(admin.ModelAdmin):
     pass
@@ -49,6 +38,7 @@ class YugiohAdmin(admin.ModelAdmin):
 @admin.register(Pokemon)
 class PokemonAdmin(admin.ModelAdmin):
     pass
+
 
 class UpdateResource(resources.ModelResource):
 
@@ -204,14 +194,6 @@ class MTGAdmin(ImportExportModelAdmin):
     list_display = ['product_name', 'set_name', 'foil', 'condition', 'language']
 
 
-class MasterAdmin(admin.ModelAdmin):
-    model = Product
-   # ordering = ['name']
-    list_display = ('name', 'set_name')
-    search_fields = ['name']
-    list_filter = ['site']
-
-
 class OrdersProcessingAdmin(admin.ModelAdmin):
     model = Orders
     #full_order()
@@ -236,14 +218,6 @@ class OrdersProcessingAdmin(admin.ModelAdmin):
     search_fields = ['order_details']
     list_filter = ('order_status_type',)
     actions = ['order']
-
-
-class ForeignAdmin(admin.ModelAdmin):
-    model = ForeignOrder
-    ordering = ['-order_date']
-    search_fields = ['cards']
-    list_display = ('cards', 'order_date')
-    fields = (('order_number', 'order_date'), 'cards',)
 
 
 class UpdatedInventoryAdmin(admin.ModelAdmin):
@@ -366,17 +340,12 @@ class StoreDatabaseAdmin(admin.ModelAdmin):
 admin.site.site_header = 'MooseFirst'
 admin.site.site_title = ''
 admin.site.index_title = 'MooseFirst'
-admin.site.register(UpdatedInventory, UpdatedInventoryAdmin)
-admin.site.register(CaseCards, CaseCardsAdmin)
 admin.site.register(StoreDatabase, StoreDatabaseAdmin)
 admin.site.register(PreordersReady, PreordersReadyAdmin)
 admin.site.register(Preorder, PreorderAdmin)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Orders, OrdersProcessingAdmin)
-admin.site.register(Product, MasterAdmin)
 admin.site.register(ReleasedProducts, ReleasedProductsAdmin)
-admin.site.register(ForeignOrder, ForeignAdmin)
 admin.site.register(TcgCredentials)
-admin.site.register(MtgDatabase)
 admin.site.register(OrderRequest, OrderRequestAdmin)
 admin.site.unregister(Group)

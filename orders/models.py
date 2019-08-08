@@ -159,7 +159,7 @@ class Inventory(models.Model):
         from ebay.ebay_api import EbayApi
         from ebay.models import EbayListing
 
-        api = TcgPlayerApi()
+        api = TcgPlayerApi('first')
 
         if self.old_ebay_value is False and self.ebay is True:
             manage_ebay.apply_async(que='low_priority', args=(self.sku, 'upload',))
@@ -180,7 +180,7 @@ class Inventory(models.Model):
             )
 
         if self.update_inventory_quantity < 0:
-            current_quantity = api.get_sku_quantity(self.sku)
+            current_quantity = api.get_sku_quantity(self.sku, store='first')
             if current_quantity['errors']:
                 raise ValidationError(
                     {'update_inventory_quantity': current_quantity['errors'][0]}

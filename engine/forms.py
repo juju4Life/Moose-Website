@@ -1,5 +1,4 @@
 from django import forms
-from .models import StoreDatabase, MtgDatabase
 
 class contactForm(forms.Form):
 
@@ -55,7 +54,7 @@ class ConditionSkuForm(forms.Form):
 class ProductForm(forms.ModelForm):
 
     class Meta:
-        model = MtgDatabase
+        model = ''
         exclude = ()
         fields = ['condition_select', 'language_select', 'foil_select']
 

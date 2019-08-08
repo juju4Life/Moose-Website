@@ -19,7 +19,6 @@ urlpatterns = [
     path('', home_views.home_base, name='base'),
     path('home/', home_views.home, name='home'),
     path('', include('orders.urls')),
-    path('ajax/info/', home_views.info, name='info'),
     path('api/gallery/hotlist', home_views.PopularCardsGallery.as_view(), name='hotlist'),
     path('payment/paypal-transaction-complete/<name>/<email>', home_views.paypal_transaction, name='paypal_complete'),
     path('payment/', home_views.payment, name='payment'),
@@ -54,17 +53,7 @@ urlpatterns = [
     path('cart/clear/', home_views.clear, name= 'empty_cart'),
     path('cart/clear-buylist-item/', buylist_views.clear, name= 'empty_cart_buylist'),
     path('product/<product_id>', home_views.product_detail, name='product_detail'),
-    # path('supplies/', home_views.supplies, name='supplies'),
-    # path('binders/', home_views.binders, name='binders'),
-    # path('sleeves/', home_views.sleeves, name='sleeves'),
-    # path('item/<global_id>', home_views.item, name='item'),
-    # path('booster-packs/', home_views.booster_packs, name='booster_packs'),
-    # path('order-confirmation/', home_views.order_confirmation, name='order_confirmation'),
-    # path('deckboxes/', home_views.deckboxes, name='deckboxes'),
-    # path('playmats-tubes/', home_views.playmats_tubes, name='playmats_tubes'),
-    # path('snacks-drinks/', home_views.snacks_drinks, name='snacks_drinks'),
-    # path('preorders/', home_views.preorders, name='preorders'),
-    # path('supplies/<global_id>', home_views.category, name='supply_category'),
+
 
 
 

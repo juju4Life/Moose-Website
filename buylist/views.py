@@ -1,5 +1,4 @@
 from django.shortcuts import render, render_to_response
-from .models import Buying
 from django.shortcuts import get_object_or_404
 from .cart import Cart
 from django.shortcuts import redirect
@@ -9,9 +8,6 @@ from django.db.models import Q
 from .forms import buylistForm
 from django.conf import settings
 from django.core.mail import send_mail
-
-
-
 
 
 def buylist_home(request):
@@ -32,15 +28,16 @@ def buylist_home(request):
 
 
 def buylist_page(request):
-    buylist = Buying.objects.all()
+    buylist = ""
     pages = pagination(request, buylist, 21)
     return render(request, 'buylist-page.html', {'items': pages[0], 'page_range': pages[1]})
+
 
 def search(request):
     template = 'search_result_buylist.html'
     query = request.GET.get('q')
     if query:
-        results = Buying.objects.filter(Q(name__icontains=query))
+        results = object.objects.filter(Q(name__icontains=query))
         pages = pagination(request, results, 20)
         context = {'items': pages[0], 'page_range': pages[1]}
         return render(request, template, context)
@@ -50,7 +47,7 @@ def search(request):
 
 def add_to_cart(request, product_id):
     quantity = request.POST.get('quantity')
-    products = get_object_or_404(Buying, id=product_id)
+    products = get_object_or_404(object, id=product_id)
     cart = Cart(request)
     cart.add(products, products.price, products.set_name, quantity)
     return redirect('buylist_cart')
@@ -64,8 +61,9 @@ def get_cart(request):
     cart_data = zip(cart, total)
     return render(request, 'buylist-cart.html', {'cart':cart_data, 'length':length, 'sub_total':sub_total})
 
+
 def remove_from_cart(request, product_id):
-    products = Buying.objects.get(id=product_id)
+    products = ''
     cart = Cart(request)
     cart.remove(products)
     return redirect('buylist_cart')
@@ -75,6 +73,7 @@ def clear(request):
     cart = Cart(request)
     cart.clear()
     return redirect('buylist_cart')
+
 
 def checkout(request):
     if request.POST:
@@ -129,3 +128,4 @@ def checkout(request):
             cart.clear()
         return render(request, 'buylist-checkout.html', {'cart': cart_data, 'length': length,
                                                  'title': title, 'form': form, 'confirm_message': confirm_message, 'sub_total':sub_total})
+

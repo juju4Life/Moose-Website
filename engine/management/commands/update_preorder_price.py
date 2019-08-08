@@ -2,7 +2,7 @@ from django.core.management import BaseCommand
 from engine.tcgplayer_api import TcgPlayerApi
 from customer.models import ItemizedPreorder
 from tcg.rarity_algorithm import rarity_round
-api = TcgPlayerApi()
+api = TcgPlayerApi('first')
 
 
 class Command(BaseCommand):
@@ -11,7 +11,7 @@ class Command(BaseCommand):
         for preorder in preorders:
             if preorder.custom_price is False:
                 product_id = preorder.product_id
-                price_data = api.get_market_price(product_id)['results']
+                price_data = api.get_market_price(product_id, store='first')['results']
                 price = price_data[0]
                 if price['subTypeName'] == 'Foil':
                     price = price_data[1]

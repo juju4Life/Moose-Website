@@ -3,8 +3,9 @@ from engine.tcg_credentials import Credentials
 
 tcg = Credentials()
 
+
 class Command(BaseCommand):
     def handle(self, **options):
-       tcg.new_bearer_token()
+        tcg.new_bearer_token()
 
 
