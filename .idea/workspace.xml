@@ -3,191 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chromeDriver/chromedriver.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/backup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/facebook.py" beforeDir="false" afterPath="$PROJECT_DIR$/facebook_bot/facebook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/facebook_listen.py" beforeDir="false" afterPath="$PROJECT_DIR$/facebook_bot/facebook_listen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/fix_words.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/management/commands/listen.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/management/commands/new_products.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/products_release_date.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/query.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/startup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/Case Cards.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/ck_buylist.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/data.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/ebay.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/10th_edition.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/3rd_edition.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/4th_edition.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/5th_edition.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/6th_edition.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/7th_edition.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/8th_edition.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/9th_edition.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/aether_revolt.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/alara_reborn.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/alliances.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/amonkhet.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/antiquities.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/apocalypse.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/arabian_nights.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/avacyn_restored.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/battle_for_zendikar.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/betrayers_of_kamigawa.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/born_of_the_gods.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/champions_of_kamigawa.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/coldsnap.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/conflux.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/conspiracy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/conspiracy_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/dark_ascension.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/darksteel.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/dissension.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/dragon_maze.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/dragons_of_tarkir.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/eldritch_moon.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/eternal_masters.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/eventide.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/exodus.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/fallen_empires.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/fate_reforged.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/fifth_dawn.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/future_sight.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/gatecrash.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/guildpact.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/homelands.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/hour_of_devastation.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/ice_age.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/iconic_masters.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/innistrad.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/invasion.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/ixalan.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/journey_into_nyx.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/judgment.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/kaladesh.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/khans_of_tarkir.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/legends.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/legions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/lorwyn.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/m10.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/m11.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/m12.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/m13.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/m14.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/m15.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/magic_origins.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/mercadian_masques.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/mirage.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/mirrodin.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/mirrodin_besieged.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/modern_masters.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/modern_masters_2015.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/modern_masters_2017.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/morningtide.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/nemesis.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/new_phyrexia.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/oath_of_the_gatewatch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/odyssey.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/onslaught.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/planar_chaos.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/planeshift.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/prophecy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/ravnica.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/return_to_ravnica.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/rise_of_the_eldrazi.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/rivals_of_ixalan.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/saviors_of_kamigawa.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/scars_of_mirrodin.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/scourge.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/shadowmoor.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/shadows_over_innistrad.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/shards_of_alara.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/stronghold.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/tempest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/the_dark.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/theros.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/time_spiral.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/timeshifted.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/torment.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/urza_destiny.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/urza_legacy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/urza_saga.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/visions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/weatherlight.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/worldwake.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/expansions/zendikar.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/fb_bot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/Case.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/add.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/buylist.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/get_new_set.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/get_orders.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/s.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/sku_image.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_group_categries.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/update_group_categries.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_inventory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_key.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/update_key.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_preorder_price.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/update_preorder_price.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/setup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/supply_stuff.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/tcgplayer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/tcgplayer_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tcgplayer_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/about.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/binders.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/booster-packs.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/database_search.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/item-type.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/navbar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/order_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/order_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/playmats-tubes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/set_card_list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/sleeve-product.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/sleeves.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/snacks-drinks.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/supplies.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/tracker.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fbchat_custom/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/facebook_bot/fbchat_custom/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fbchat_custom/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/facebook_bot/fbchat_custom/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fbchat_custom/graphql.py" beforeDir="false" afterPath="$PROJECT_DIR$/facebook_bot/fbchat_custom/graphql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fbchat_custom/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/facebook_bot/fbchat_custom/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fbchat_custom/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/facebook_bot/fbchat_custom/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/analyze_inventory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/add_group_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/add_group_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/check_for_new_groups.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/check_for_new_groups.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/check_orders.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/deep_order_check.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/fix_uploads.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/get_group_prices.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/get_group_prices.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/get_inventory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/inventory_stats.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/non_direct_tracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/non_direct_tracker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/once.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/one_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/throw_away.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/update_check_orders.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/update_direct.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/update_direct.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/update_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/update_group.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/update_moose_tcg.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/update_online_prices.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/update_orders.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/update_other_categories.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/update_other_categories.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/management/commands/yesterday_orders.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orders/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paypal_client.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/dashboard.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/menu.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tcg/tcg_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/tcg/tcg_functions.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -196,10 +14,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.82969433">
+    <splitter split-orientation="horizontal" split-proportion="0.12808783">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/engine/management/commands/update_other_categories.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="408">
@@ -212,18 +30,27 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/orders/tasks.py">
+            <entry file="file://$PROJECT_DIR$/tcg/tcg_functions.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="18" column="2" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="2" />
+                <state relative-caret-position="270">
+                  <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="765">
+                  <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
                   <folding>
-                    <element signature="e#0#56#0" expanded="true" />
+                    <element signature="e#0#51#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/engine/admin.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="102">
@@ -278,34 +105,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/engine/management/commands/update_direct.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-                  <folding>
-                    <element signature="e#0#51#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/engine/management/commands/update_group.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="136">
                   <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-                  <folding>
-                    <element signature="e#0#51#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/engine/management/commands/non_direct_tracker.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
                   <folding>
                     <element signature="e#0#51#0" expanded="true" />
                   </folding>
@@ -318,86 +121,10 @@
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/engine/management/commands/add_group_info.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-389">
-                  <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-                  <folding>
-                    <element signature="e#0#51#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/engine/management/commands/update_group_categries.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="14" column="64" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
-                  <folding>
-                    <element signature="e#0#51#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/engine/management/commands/update_key.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-                  <folding>
-                    <element signature="e#0#51#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="34">
-                  <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/engine/templates/order_results.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/engine/templates/profile.html">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/engine/config.py">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/engine/management/commands/update_preorder_price.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="102">
-                  <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-                  <folding>
-                    <element signature="e#0#46#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/engine/tasks.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="102">
-                  <caret line="6" column="17" selection-start-line="6" selection-end-line="7" />
+                <state>
+                  <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
                 </state>
               </provider>
             </entry>
@@ -409,6 +136,18 @@
                   <caret line="5" column="8" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
                   <folding>
                     <element signature="e#0#34#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/orders/tasks.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2024">
+                  <caret line="152" column="51" selection-start-line="152" selection-start-column="51" selection-end-line="152" selection-end-column="51" />
+                  <folding>
+                    <element signature="e#0#56#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -428,8 +167,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ready</find>
-      <find>card.pr</find>
       <find>get_ca</find>
       <find>otal_pr</find>
       <find>card.prod</find>
@@ -449,7 +186,6 @@
       <find>group</find>
       <find>store_</find>
       <find>'''</find>
-      <find>market</find>
       <find>store_key</find>
       <find>alert</find>
       <find>tcg</find>
@@ -458,6 +194,9 @@
       <find>, store</find>
       <find>, store)</find>
       <find>store=store</find>
+      <find>market_pri</find>
+      <find>market</find>
+      <find>low</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -466,7 +205,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/my_customs/decorators.py" />
         <option value="$PROJECT_DIR$/engine/tcg_manifest.py" />
         <option value="C:/Program Files/Python36/Lib/site-packages/MySQLdb/cursors.py" />
         <option value="$PROJECT_DIR$/orders/management/commands/throw_away.py" />
@@ -484,7 +222,6 @@
         <option value="$PROJECT_DIR$/ebay/tasks.py" />
         <option value="$PROJECT_DIR$/orders/management/commands/update_moose_tcg.py" />
         <option value="$PROJECT_DIR$/source/settings.py" />
-        <option value="$PROJECT_DIR$/tcg/tcg_functions.py" />
         <option value="$PROJECT_DIR$/buylist/models.py" />
         <option value="$PROJECT_DIR$/buylist/views.py" />
         <option value="$PROJECT_DIR$/customer/models.py" />
@@ -511,12 +248,14 @@
         <option value="$PROJECT_DIR$/engine/management/commands/update_direct.py" />
         <option value="$PROJECT_DIR$/engine/management/commands/update_group.py" />
         <option value="$PROJECT_DIR$/engine/management/commands/update_group_categries.py" />
-        <option value="$PROJECT_DIR$/orders/tasks.py" />
         <option value="$PROJECT_DIR$/customer/tasks.py" />
         <option value="$PROJECT_DIR$/buylist/admin.py" />
         <option value="$PROJECT_DIR$/engine/forms.py" />
         <option value="$PROJECT_DIR$/engine/models.py" />
         <option value="$PROJECT_DIR$/engine/admin.py" />
+        <option value="$PROJECT_DIR$/tcg/tcg_functions.py" />
+        <option value="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" />
+        <option value="$PROJECT_DIR$/orders/tasks.py" />
       </list>
     </option>
   </component>
@@ -540,7 +279,12 @@
             <path>
               <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
               <item name="Goat" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="orders" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Goat" type="462c0819:PsiDirectoryNode" />
+              <item name="tcg" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -721,8 +465,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="895" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31895912" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1866171" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info id="Structure" order="2" weight="0.24981412" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -733,7 +478,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32980132" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32955974" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49888477" visible="true" weight="0.503268" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49888477" visible="true" weight="0.24705882" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50111526" side_tool="true" weight="0.3137255" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32980132" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -775,15 +520,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/customer/signals.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/facebook_bot/facebook_listen.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -847,20 +583,10 @@
     <entry file="file://$PROJECT_DIR$/engine/templates/gallery_scroll.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/templates/order_results.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/templates/set_card_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-11" />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/templates/profile.html">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/engine/data.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -919,9 +645,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/config.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/source/settings.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1084,76 +807,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_group_categries.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="64" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_key.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/management/commands/update_group.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_preorder_price.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="17" selection-start-line="6" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_other_categories.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orders/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="2" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1185,6 +844,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/engine/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_group_categries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="64" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_key.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/templates/order_results.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/templates/profile.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/config.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_preorder_price.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/engine/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1192,12 +904,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/admin.py">
+    <entry file="file://$PROJECT_DIR$/tcg/tcg_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="270">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_other_categories.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2024">
+          <caret line="152" column="51" selection-start-line="152" selection-start-column="51" selection-end-line="152" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
           </folding>
         </state>
       </provider>

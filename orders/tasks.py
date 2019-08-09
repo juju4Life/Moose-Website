@@ -42,15 +42,16 @@ def url(product_id, foil, condition, page=1):
 
 @shared_task(name='orders.tasks.update_moose_tcg')
 def update_moose_tcg():
-    try:
-        start_time = time()
-        # Entire Moose Loot Listed inventory
-        listed_cards = api.get_category_skus('magic')
-        if listed_cards['success'] is True:
-            print(f"Updating {listed_cards['totalItems']} for Moose Inventory")
-            for index, card in enumerate(listed_cards['results']):
+    start_time = time()
+    # Entire Moose Loot Listed inventory
+    listed_cards = api.get_category_skus('magic')
+    if listed_cards['success'] is True:
+        print(f"Updating {listed_cards['totalItems']} for Moose Inventory")
+        for index, card in enumerate(listed_cards['results']):
+            try:
                 condition = card['conditionName']
-                if condition != 'Unopened':
+                printing = card['printingName']
+                if condition != 'Unopened' and printing != 'Foil':
                     current_price = card['currentPrice']
                     low = card['lowPrice']
                     if current_price != low:
@@ -58,7 +59,6 @@ def update_moose_tcg():
                         product_id = card['productId']
                         name = card['productName']
                         expansion = card['groupName']
-                        printing = card['printingName']
                         market = card['marketPrice']
 
                         '''    
@@ -88,10 +88,9 @@ def update_moose_tcg():
                                     seller_total_sales = integers_from_string(d.find('span', {'class': 'seller__sales'}).text)
                                     seller_name = d.find('a', {'class': 'seller__name'}).text.strip()
                                     seller_condition = d.find('div', {'class': 'product-listing__condition'}).text.strip()
-
                                     if seller_total_sales >= 10000 and seller_name != 'MTGFirst' and seller_name != 'Moose Loot' and condition == seller_condition:
-                                        # seller_feedback = d.find('span', {'class': 'seller__feedback-rating'}).text
 
+                                        # seller_feedback = d.find('span', {'class': 'seller__feedback-rating'}).text
                                         # function extracts all floating points from string.
                                         price = float_from_string(d.find('span', {'class': 'product-listing__price'}).text)
 
@@ -102,22 +101,17 @@ def update_moose_tcg():
                                             # Quick fix to account for Direct cards that Free shipping over $25. Float extraction function would return 25. Because no
                                             # card will ever have this as a shipping cost, we can check if  there is $25 shipping and change it to the standard direct
                                             # rate of 0.99
-                                            direct_price = False
                                             if shipping == 25.:
                                                 shipping = 0
-                                                direct_price = True
 
-                                            total_price = price + shipping
-
-                                            # Needed a way to pass price along with default shipping option to the pricing function algorithm
-                                            price_and_default = {
-                                                'price': total_price,
-                                                'default_shipping': True if shipping == 0 and direct_price is False else False
-                                            }
+                                            if price >= 5:
+                                                total_price = price + shipping
+                                            else:
+                                                total_price = price
 
                                             # We are appending the two cheapest listings with 10,000 minimum sales and that meets other if requirements.
                                             # Break once we get 2
-                                            seller_data_list.append(price_and_default)
+                                            seller_data_list.append(total_price)
                                             if len(seller_data_list) == 2:
                                                 next_page = False
                                                 break
@@ -126,34 +120,36 @@ def update_moose_tcg():
                         '''
                         We will check the number of other seller listings.
                         If there were zero listings found we simply make the updated price the market price.
-        
+
                         If just one listing is found, we run the price algorithm which will just add shipping if default and price .01c less.
-        
+
                         If there are 2 10,000+ listings, algorithm will compare and take the best/cheapest listings price
                         '''
                         if len(seller_data_list) == 1:
-                            seller_data_list.append({'price': 0, 'default_shipping': False})
+                            seller_data_list.append(0)
 
-                        updated_price = moose_price_algorithm(seller_data_list=seller_data_list, market_price=market, condition=condition)
+                        updated_price = moose_price_algorithm(seller_data_list=seller_data_list, market_price=market, low_price=low,
+                                                              condition=condition)
 
                         if updated_price is not None:
-                            api.update_sku_price(sku_id=sku, price=updated_price, _json=True, store='moose')
-                            if index < 100:
-                                print(name, expansion, condition, printing, updated_price)
-        end_time = time()
+                            api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
+                            if index < 10:
+                                print(index, name, expansion, condition, printing, updated_price)
+            except Exception as e:
+                print(e)
+                subject = "Error on function to update MooseLoot tcg"
+                message = f"Error on function to update MooseLoot tcg:\n {card}\n\nSeller Info: {seller_name, seller_total_sales, price, shipping}"
+                mail_from = 'tcgfirst'
+                mail_to = ['jermol.jupiter@gmail.com', ]
+                send_mail(subject, message, mail_from, mail_to)
+    end_time = time()
 
-        elapsed = end_time - start_time
-        subject = "Time elapsed for Moose Tcg Auto Price - 1 cycle"
-        message = f"Time auto price completed: {elapsed} seconds"
-        mail_from = 'tcgfirst'
-        mail_to = ['jermol.jupiter@gmai.com', ]
-        send_mail(subject, message, mail_from, mail_to)
-    except Exception as e:
-        subject = "Error on function to update MooseLoot tcg"
-        message = f"Error on function to update MooseLoot tcg: {e}"
-        mail_from = 'tcgfirst'
-        mail_to = ['jermol.jupiter@gmai.com', ]
-        send_mail(subject, message, mail_from, mail_to)
+    elapsed = end_time - start_time
+    subject = "Time elapsed for Moose Tcg Auto Price - 1 cycle"
+    message = f"Time auto price completed: {elapsed} seconds"
+    mail_from = 'tcgfirst'
+    mail_to = ['jermol.jupiter@gmail.com', ]
+    send_mail(subject, message, mail_from, mail_to)
 
 
 @shared_task(name='orders.tasks.task_upload')

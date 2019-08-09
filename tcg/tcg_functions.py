@@ -7,6 +7,7 @@ def add_shipping_if_lower_than_five(value_dict):
 
 
 def tcg_condition_map(condition):
+    condition = condition_from_string(condition)
     condition_map = {
         'Near Mint': .9,
         'Near Mint Foil': .9,
@@ -24,35 +25,39 @@ def tcg_condition_map(condition):
     return condition_map[condition]
 
 
-def moose_price_algorithm(seller_data_list, market_price, condition):
+def moose_price_algorithm(seller_data_list, market_price, low_price, condition):
     if len(seller_data_list) == 2:
-        seller_prices = add_shipping_if_lower_than_five(seller_data_list)
-        seller_prices = sorted(seller_prices)
+        seller_prices = sorted(seller_data_list)
         update_price = seller_prices[0] - .01
         if seller_prices[0] < seller_prices[1] / 1.2:
             update_price = seller_prices[1] - .01
 
-        if update_price < market_price * tcg_condition_map(condition):
-            if 'Foil' not in condition:
-                update_price = market_price
+        if 'Foil' not in condition:
+            condition = tcg_condition_map(condition)
+            if market_price is not None:
+                if update_price < market_price * condition:
+                    update_price = market_price
+            else:
+                update_price = None
 
         return update_price
 
-    elif len(seller_data_list) == 1:
-        seller_prices = add_shipping_if_lower_than_five(seller_data_list)
-        update_price = seller_prices[0] - .01
-        if update_price < market_price * tcg_condition_map(condition):
-            if 'Foil' not in condition:
-                update_price = market_price
-                return update_price
 
-        else:
-            return None
+def condition_from_string(string):
+    string = string.lower()
+    if 'near mint' in string:
+        return 'Near Mint'
+    elif 'lightly played' in string:
+        return 'Lightly Played'
 
-    else:
-        return None
+    elif 'moderately played' in string:
+        return 'Moderately Played'
 
+    elif 'heavily played' in string:
+        return 'Heavily Played'
 
+    elif 'damaged' in string:
+        return 'Damaged'
 
 
 
