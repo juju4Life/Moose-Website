@@ -64,7 +64,7 @@ def update_moose_tcg():
                         '''    
                         Here, for each card in the MooseLoot inventory we will make a request to the tcgplayer page containing all seller data for a given product. 
                         We request and scan pages (10 results per page) until we find 2 listings with sellers that have 10,000 sales or more. We break the while loop 
-                        once we have found those 2 listings and move on to the next card in Moose inventory. In the case where only 1 or 0 listings are found, 
+                        once we have found those two listings and move on to the next card. In the case where only one or zero listings are found, 
                         we break the loop and use one price to match against or default to the market price.      
                         '''
                         next_page = True
@@ -143,7 +143,6 @@ def update_moose_tcg():
                 mail_to = ['jermol.jupiter@gmail.com', ]
                 send_mail(subject, message, mail_from, mail_to)
     end_time = time()
-
     elapsed = end_time - start_time
     subject = "Time elapsed for Moose Tcg Auto Price - 1 cycle"
     message = f"Time auto price completed: {elapsed} seconds"

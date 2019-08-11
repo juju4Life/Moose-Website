@@ -29,15 +29,23 @@ def moose_price_algorithm(seller_data_list, market_price, low_price, condition):
     if len(seller_data_list) == 2:
         seller_prices = sorted(seller_data_list)
         update_price = seller_prices[0] - .01
-        if seller_prices[0] < seller_prices[1] / 1.2:
-            update_price = seller_prices[1] - .01
 
-        if 'Foil' not in condition:
-            condition = tcg_condition_map(condition)
+        if low_price > 2:
+            if seller_prices[0] < seller_prices[1] / 1.1 + 1:
+                update_price = seller_prices[1] - .01
+        else:
+            if seller_prices[0] < seller_prices[1] / 1.2:
+                update_price = seller_prices[1] - .01
+
+        condition = tcg_condition_map(condition)
+        if update_price is not None:
             if market_price is not None:
                 if update_price < market_price * condition:
                     update_price = market_price
             else:
+                update_price = None
+
+            if update_price < low_price - .02:
                 update_price = None
 
         return update_price
@@ -45,8 +53,10 @@ def moose_price_algorithm(seller_data_list, market_price, low_price, condition):
 
 def condition_from_string(string):
     string = string.lower()
+
     if 'near mint' in string:
         return 'Near Mint'
+
     elif 'lightly played' in string:
         return 'Lightly Played'
 
