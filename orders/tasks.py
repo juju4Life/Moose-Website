@@ -183,9 +183,9 @@ def update_moose_tcg():
                                 seller_1_name=card_data['seller_1_name'],
                                 seller_1_total_sales=card_data['seller_1_total_sales'],
                                 seller_1_total_price=card_data['seller_1_total_price'],
-                                seller_2_name=card_data['seller_1_name'],
-                                seller_2_total_sales=card_data['seller_1_total_sales'],
-                                seller_2_total_price=card_data['seller_1_total_price'],
+                                seller_2_name=card_data['seller_2_name'],
+                                seller_2_total_sales=card_data['seller_2_total_sales'],
+                                seller_2_total_price=card_data['seller_2_total_price'],
                                 updated_price=card_data['updated_price'],
 
                             )
@@ -213,17 +213,6 @@ def update_moose_tcg():
     mail_from = 'tcgfirst'
     mail_to = ['jermol.jupiter@gmail.com', ]
     send_mail(subject, message, mail_from, mail_to)
-
-    '''
-    with open('moose_foils.csv', 'w', newline='') as f:
-        fieldnames = ['card_name', 'card_set', 'card_condition', 'seller_1_name', 'seller_1_total_sales', 'seller_1_total_price',
-                      'seller_2_name', 'seller_2_total_sales', 'seller_2_total_price', 'updated_price', ]
-
-        writer = csv.DictWriter(f=f, fieldnames=fieldnames)
-
-        for d in item_data:
-            writer.writerow(d)
-    '''
 
 
 @shared_task(name='orders.tasks.task_upload')
