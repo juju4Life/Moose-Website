@@ -1,6 +1,22 @@
 from django.db import models
 
 
+class MooseInventory(models.Model):
+    name = models.CharField(max_length=255, default='')
+    expansion = models.CharField(max_length=255, default='')
+    condition = models.CharField(max_length=255, default='')
+    printing = models.CharField(max_length=255, default='')
+    seller_1_name = models.CharField(max_length=255, default='')
+    seller_1_total_sales = models.CharField(max_length=255, default='')
+    seller_1_total_price = models.CharField(max_length=255, default='')
+    seller_2_name = models.CharField(max_length=255, default='')
+    seller_2_total_sales = models.CharField(max_length=255, default='')
+    seller_2_total_price = models.CharField(max_length=255, default='')
+
+    def __str__(self):
+        return self.name
+
+
 class TcgGroupPrice(models.Model):
     product_id = models.CharField(max_length=255, default='')
     name = models.CharField(max_length=255, default='')
