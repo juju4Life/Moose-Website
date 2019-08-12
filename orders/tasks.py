@@ -43,7 +43,7 @@ def url(product_id, foil, condition, page=1):
 
 @shared_task(name='orders.tasks.update_moose_tcg')
 def update_moose_tcg():
-    moose_inventory = MooseInventory.objecst
+    moose_inventory = MooseInventory.objects
     start_time = time()
     # Entire Moose Loot Listed inventory
     listed_cards = api.get_category_skus('magic')
