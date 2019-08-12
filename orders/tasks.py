@@ -177,9 +177,9 @@ def update_moose_tcg():
 
                             new = moose_inventory.create(
                                 name=card_data['card_name'],
-                                expansion=card_data['expansion'],
-                                condition=card_data['condition'],
-                                printing=card_data['printing'],
+                                expansion=card_data['card_set'],
+                                condition=card_data['card_condition'],
+                                printing=printing,
                                 seller_1_name=card_data['seller_1_name'],
                                 seller_1_total_sales=card_data['seller_1_total_sales'],
                                 seller_1_total_price=card_data['seller_1_total_price'],
