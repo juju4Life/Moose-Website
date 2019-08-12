@@ -43,7 +43,6 @@ def url(product_id, foil, condition, page=1):
 
 @shared_task(name='orders.tasks.update_moose_tcg')
 def update_moose_tcg():
-    item_data = []
     moose_inventory = MooseInventory.objecst
     start_time = time()
     # Entire Moose Loot Listed inventory
@@ -175,7 +174,6 @@ def update_moose_tcg():
                             updated_price = moose_price_algorithm(seller_data_list=seller_data_list, market_price=market, low_price=low,
                                                                   condition=condition)
                             card_data['updated_price'] = updated_price
-                            item_data.append(card_data)
 
                             new = moose_inventory.create(
                                 name=card_data['name'],
@@ -183,7 +181,16 @@ def update_moose_tcg():
                                 condition=card_data['condition'],
                                 printing=card_data['printing'],
                                 seller_1_name=card_data['seller_1_name'],
+                                seller_1_total_sales=card_data['seller_1_total_sales'],
+                                seller_1_total_price=card_data['seller_1_total_price'],
+                                seller_2_name=card_data['seller_1_name'],
+                                seller_2_total_sales=card_data['seller_1_total_sales'],
+                                seller_2_total_price=card_data['seller_1_total_price'],
+                                updated_price=card_data['updated_price'],
+
                             )
+
+                            new.save()
 
                             if updated_price is not None:
                                 api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
