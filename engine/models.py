@@ -12,6 +12,7 @@ class MooseInventory(models.Model):
     seller_2_name = models.CharField(max_length=255, default='')
     seller_2_total_sales = models.CharField(max_length=255, default='')
     seller_2_total_price = models.CharField(max_length=255, default='')
+    updated_price = models.CharField(max_length=255, default='')
 
     def __str__(self):
         return self.name

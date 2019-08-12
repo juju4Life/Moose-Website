@@ -15,6 +15,7 @@ from my_customs.functions import float_from_string, null_to_zero, check_if_foil,
 from tcg.tcg_functions import moose_price_algorithm
 import requests
 from time import time
+from engine.models import MooseInventory
 
 api = TcgPlayerApi('moose')
 
@@ -43,6 +44,7 @@ def url(product_id, foil, condition, page=1):
 @shared_task(name='orders.tasks.update_moose_tcg')
 def update_moose_tcg():
     item_data = []
+    moose_inventory = MooseInventory.objecst
     start_time = time()
     # Entire Moose Loot Listed inventory
     listed_cards = api.get_category_skus('magic')
@@ -175,6 +177,14 @@ def update_moose_tcg():
                             card_data['updated_price'] = updated_price
                             item_data.append(card_data)
 
+                            new = moose_inventory.create(
+                                name=card_data['name'],
+                                expansion=card_data['expansion'],
+                                condition=card_data['condition'],
+                                printing=card_data['printing'],
+                                seller_1_name=card_data['seller_1_name'],
+                            )
+
                             if updated_price is not None:
                                 api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
                                 if index < 100:
@@ -207,6 +217,7 @@ def update_moose_tcg():
         for d in item_data:
             writer.writerow(d)
     '''
+
 
 @shared_task(name='orders.tasks.task_upload')
 def task_management():
