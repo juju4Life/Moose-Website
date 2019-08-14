@@ -46,7 +46,7 @@ def moose_price_algorithm(seller_data):
                 updated_price = average_price / 1.15
 
         else:
-            updated_price = seller_data[0] - .01
+            updated_price = seller_data[0]['price'] - .01
 
         for seller in seller_data[1:]:
             if seller['gold'] is True:
@@ -54,8 +54,6 @@ def moose_price_algorithm(seller_data):
                     updated_price = seller['price'] - .01
 
                 break
-
-        print(f'Price in function: {updated_price}')
 
         if updated_price < 5 and updated_price > 4.21 and updated_price + .78 > 4.99:
             updated_price = 5
