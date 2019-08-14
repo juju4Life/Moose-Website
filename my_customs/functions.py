@@ -1,5 +1,10 @@
-from.decorators import offset
 import re
+import math
+import requests
+from.decorators import offset
+from bs4 import BeautifulSoup as b
+import random
+
 
 
 @offset
@@ -48,4 +53,31 @@ def integers_from_string(string):
         return int(''.join(integers))
     else:
         return 0
+
+
+def text_between_two_words(word_1, word_2, string):
+    p = re.compile(r'(?<={}).*?(?={})'.format(word_1, word_2))
+    extracted = re.search(p, string).group()
+    return extracted
+
+
+def convert_to_number_of_pages(number):
+    return math.ceil(number / 10)
+
+
+def request_pages_data(url, tag, attribute, attribute_value):
+
+    r = requests.get(url).content
+    soup = b(r, 'html.parser')
+    data = soup.find_all(tag, {attribute: attribute_value})
+
+    return data, soup
+
+
+
+
+
+
+
+
 
