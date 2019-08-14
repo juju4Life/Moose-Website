@@ -11,12 +11,9 @@ from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
 from scryfall_api import get_image
 import random
-from bs4 import BeautifulSoup as B
 from my_customs.functions import request_pages_data
 from tcg.tcg_functions import moose_price_algorithm, get_product_seller_info
-import requests
 from time import time
-from engine.models import MooseInventory
 
 api = TcgPlayerApi('moose')
 
@@ -175,9 +172,9 @@ def update_moose_tcg():
                 send_mail(subject, message, mail_from, mail_to)
 
     end_time = time()
-    elapsed = end_time - start_time
+    elapsed = (end_time - start_time) / 3600
     subject = "Time elapsed for Moose Tcg Auto Price - 1 cycle"
-    message = f"Time auto price completed: {elapsed} seconds"
+    message = f"Time auto price completed: {elapsed} hours"
     mail_from = 'tcgfirst'
     mail_to = ['jermol.jupiter@gmail.com', ]
     send_mail(subject, message, mail_from, mail_to)
