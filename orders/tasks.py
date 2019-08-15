@@ -83,7 +83,7 @@ def update_moose_tcg():
                                 print('Foreign')
                                 api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
 
-                        else:
+                        elif language == 'English':
 
                             next_page = True
                             page = 1
