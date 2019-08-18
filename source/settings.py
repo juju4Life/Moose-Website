@@ -29,12 +29,12 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(hour=5, minute=0, day_of_week=1),
     },
 
-    '''
+
     'task-update-moose-tcg': {
         'task': 'orders.tasks.update_moose_tcg',
-        'schedule': 32400,
+        'schedule': 28800,
     },  
-    '''
+
 
     'task-refresh-ebay-token': {
             'task': 'ebay.tasks.refresh_access_token',
@@ -115,6 +115,7 @@ INSTALLED_APPS = [
     'ebay',
     'paypal.standard.ipn',
     'ppal',
+    'amazon',
 #  'customer.startup.BotConfig',
 ]
 
