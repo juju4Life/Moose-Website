@@ -1,5 +1,5 @@
 import time
-import mws
+from . import mws
 from decouple import config
 from my_customs.exml import CreateXML
 
@@ -49,20 +49,16 @@ class MWS:
                 except KeyError as e:
                     print(e)
                     time.sleep(15)
-
             print(report_id)
-            report = self.reports.get_report(report_id=report_id).parsed
-
-            return report
+            return report_id
 
     def parse_inventory_report(self, report_id):
         report = self.reports.get_report(report_id=report_id)
-        print(report)
         rep = ''.join(chr(x) for x in report.parsed).split('\n')
-        data = [i.split('\t') for i, in rep[1:]]
+        data = [i.split('\t') for i in rep[1:]]
 
         # 0: sku, 1: asin, 2: price, 3: quantity
-        headers = [i.split('\t') for i in rep[0]]
+        headers = [i.split('\t') for i in rep][0]
 
         sku_and_price = [(i[0], i[2]) for i in data if i[0] != '' and i[3] != '\r' and int(i[3].replace('\r', '')) > 0]
 
