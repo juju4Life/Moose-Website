@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import FeedSubmission
 
-# Register your models here.
+@admin.register(FeedSubmission)
+class FeedsSubmissionAdmin(admin.ModelAdmin):
+    list_display = ['feed_id', 'success', 'feed_created_on', 'feed_succeeded_on', ]
+
+

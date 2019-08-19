@@ -10,6 +10,20 @@ class MWS:
     secret_key = config('MWS_SECRET_KEY')
     marketplace_usa = 'ATVPDKIKX0DER'
 
+    condition_guide = {
+        "1": 'UsedLikeNew',
+        "2": "UsedVeryGood",
+        "3": "UsedGood",
+        "4": "UsedAcceptable",
+        "5": {"full": "CollectibleLikeNew", "short": 'Collectible'},
+        "6": {"full": "CollectibleVeryGood", "short": 'Collectible'},
+        "7": {"full": "CollectibleGood", "short": 'Collectible'},
+        "8": {"full": "CollectibleAcceptable", "short": 'Collectible'},
+        "9": "Used",
+        "10": "Refurbished",
+        "11": {'full': "New", 'short': 'New'},
+    }
+
     reports = mws.Reports(access_key=access_key, account_id=seller_id, secret_key=secret_key, region='US')
     products = mws.Products(access_key=access_key, account_id=seller_id, secret_key=secret_key, region='US')
     feeds = mws.Feeds(access_key=access_key, account_id=seller_id, secret_key=secret_key, region='US')
@@ -61,7 +75,7 @@ class MWS:
                         )
                         report_id = None
                         break
-
+            print(report_id)
             return report_id
 
     def parse_inventory_report(self, report_id):
@@ -76,6 +90,49 @@ class MWS:
 
         return sku_and_price
 
+    def parse_active_listings_report(self, report_id):
+        report = self.reports.get_report(report_id=report_id)
+
+        '''
+        0 item-name
+        1 item-description
+        2 listing-id
+        3 seller-sku
+        4 price
+        5 quantity
+        6 open-date
+        7 image-url
+        8 item-is-marketplace
+        9 product-id-type
+        10 zshop=shipping-fee
+        11 item-note
+        12 item-condition
+        13 zshop category1
+        14 zshop-browse-path
+        15 zshop-storefront-feature
+        16 asin1
+        17 asin2
+        18 asin3
+        19 will-ship-internationally
+        20 expedited-shipping
+        21 zshop-boldface
+        22 product-id
+        23 bid-for-featured-placement
+        24 add-delete
+        25 pending-quantity
+        26 fulfillment-channel
+        27 merchant-shipping-group
+
+        '''
+        rep = ''.join(chr(x) for x in report.parsed).split('\n')
+        data = [i.split('\t') for i in rep[1:]]
+        new_conditions = [{'sku': i[3], 'price': i[4], 'condition': self.condition_guide[i[12]]} for i in data if i[0] != '' and i[5] != '' and i[5] != '\r' and
+                int(i[5].replace('\r', '')) > 0 and self.condition_guide[i[12]]['short'] == 'New']
+
+        collectible_conditions = [{'sku': i[3], 'price': i[4], 'condition': self.condition_guide[i[12]]} for i in data if i[0] != '' and i[5] != '' and i[5] != '\r' and
+                int(i[5].replace('\r', '')) > 0 and self.condition_guide[i[12]]['short'] == 'Collectible']
+        return new_conditions, collectible_conditions
+
     def update_sku_price(self, xml_file):
         updated = self.feeds.submit_feed(feed=xml_file, feed_type='_POST_PRODUCT_PRICING_DATA_').parsed
         return updated
@@ -83,8 +140,18 @@ class MWS:
     def check_feed_submission(self, feed_id):
         return self.feeds.get_feed_submission_result(feedid=feed_id).parsed
 
+    def get_feed_submission_list(self, feed_id):
+        return self.feeds.get_feed_submission_list(feedids=feed_id).parsed
+
     def get_sku_prices(self, skus):
         prices = self.products.get_competitive_pricing_for_sku(marketplaceid=self.marketplace_usa, skus=skus).parsed
         return prices
+
+    def get_sku_lowest_offer(self, skus, condition):
+        return self.products.get_lowest_offer_listings_for_sku(skus=skus, condition=condition, marketplaceid=self.marketplace_usa).parsed
+
+    def get_asin_lowest_offer(self, asin, condition):
+        return self.products.get_lowest_priced_offers_for_asin(asin=asin, condition=condition, marketplaceid=self.marketplace_usa).parsed
+
 
 

@@ -50,7 +50,6 @@ def update_moose_tcg():
             try:
                 condition = card['conditionName']
                 printing = card['printingName']
-                print(index)
                 if condition != 'Unopened':
                     current_price = card['currentPrice']
                     low = card['lowPrice']
@@ -80,7 +79,6 @@ def update_moose_tcg():
                                 updated_price = None
 
                             if updated_price is not None:
-                                print('Foreign')
                                 api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
 
                         elif language == 'English':

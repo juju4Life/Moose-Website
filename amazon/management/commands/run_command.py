@@ -2,13 +2,24 @@ from datetime import datetime
 from django.core.management.base import BaseCommand
 from amazon.models import AmazonLiveInventory
 from amazon.amazon_mws import MWS
+import json
 
 api = MWS()
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        live = AmazonLiveInventory.objects
+        # for each in api.parse_active_listings_report('16237027463018127'):
+
+        # api.request_and_get_inventory_report('active_listings')
+        d = api.get_sku_lowest_offer(['WT-I22S-J83M', 'WR-1M67-09LV'], 'new')
+        for each in d:
+            sku = each['SellerSKU']
+            price = each['Product']['LowestOfferListings']['LowestOfferListing'][0]['Price']['LandedPrice']['Amount']['value']
+            print(sku, price)
+
+        '''
+         live = AmazonLiveInventory.objects
         report_id = api.request_and_get_inventory_report('inventory')
 
         headers, data = api.parse_inventory_report(report_id)
@@ -23,6 +34,7 @@ class Command(BaseCommand):
             )
 
             new_item.save()
+        '''
 
 
 

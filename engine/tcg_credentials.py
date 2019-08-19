@@ -75,7 +75,7 @@ class Credentials:
             if _json is True:
                 r = requests.put(path, headers=headers, json=kwargs['json'])
                 data = r.json()
-                print(f"Success: {data['success']}, Errors: {data['errors']}")
+                # print(f"Success: {data['success']}, Errors: {data['errors']}")
                 return data
             elif _data is True:
                 r = requests.put(path, headers=headers, data=str(kwargs['data']))
