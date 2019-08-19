@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from amazon.models import AmazonLiveInventory
+from amazon.models import AmazonLiveInventory, FeedSubmission
 from amazon.amazon_mws import MWS
 from my_customs.exml import CreateXML
 import json
@@ -10,17 +10,18 @@ x = CreateXML()
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
+        last_feed = FeedSubmission.objects.last()
         update_feeds = []
-        inventory = AmazonLiveInventory.objects.all()
+        inventory = api.parse_inventory_report('inventory')
         num_items = 20  # inventory.count()
         start = 17
         stop = 19
         while num_items > 0:
-            if stop > inventory.count():
-                stop = inventory.count()
+            if stop > len(inventory):
+                stop = len(inventory)
             items = inventory[start:stop]
 
-            skus = [i.sku for i in items]
+            skus = [i['sku'] for i in items]
             prices = api.get_sku_prices(skus)
 
             for i in prices:

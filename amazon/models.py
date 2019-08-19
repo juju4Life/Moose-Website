@@ -15,7 +15,8 @@ class AmazonLiveInventory(models.Model):
 class FeedSubmission(models.Model):
     success = models.BooleanField(default=False)
     feed_id = models.CharField(max_length=255, default='')
-    feed_successful_on = models.DateTimeField(auto_now_add=True)
+    feed_successful_on = models.DateTimeField()
+    feed_created_on = models.DateTimeField(auto_now_add=True)
 
     def __string__(self):
         return f"{self.feed_id} - {self.feed_successful_on}"

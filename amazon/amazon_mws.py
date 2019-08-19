@@ -70,11 +70,11 @@ class MWS:
         data = [i.split('\t') for i in rep[1:]]
 
         # 0: sku, 1: asin, 2: price, 3: quantity
-        headers = [i.split('\t') for i in rep][0]
+        # headers = [i.split('\t') for i in rep][0]
 
-        sku_and_price = [(i[0], i[2]) for i in data if i[0] != '' and i[3] != '\r' and int(i[3].replace('\r', '')) > 0]
+        sku_and_price = [{'sku': i[0], 'price': i[2]} for i in data if i[0] != '' and i[3] != '\r' and int(i[3].replace('\r', '')) > 0]
 
-        return headers, sku_and_price
+        return sku_and_price
 
     def update_sku_price(self, xml_file):
         updated = self.feeds.submit_feed(feed=xml_file, feed_type='_POST_PRODUCT_PRICING_DATA_').parsed
