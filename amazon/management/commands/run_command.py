@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.core.management.base import BaseCommand
 from amazon.models import AmazonLiveInventory
 from amazon.amazon_mws import MWS
@@ -15,9 +16,14 @@ class Command(BaseCommand):
         for d in data:
             new_item = live.create(
                 sku=d[0],
-                price=d[2],
+                old_price=d[1],
+                new_price=0,
+                time_check_delta=datetime.now(),
 
             )
+
+            new_item.save()
+
 
 
 

@@ -11,3 +11,12 @@ class AmazonLiveInventory(models.Model):
     def __str__(self):
         return self.sku
 
+
+class FeedSubmission(models.Model):
+    success = models.BooleanField(default=False)
+    feed_id = models.CharField(max_length=255, default='')
+    feed_successful_on = models.DateTimeField(auto_now_add=True)
+
+    def __string__(self):
+        return f"{self.feed_id} - {self.feed_successful_on}"
+

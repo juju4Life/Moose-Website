@@ -1,7 +1,7 @@
 import time
 from . import mws
 from decouple import config
-from my_customs.exml import CreateXML
+from django.core.mail import send_mail
 
 
 class MWS:
@@ -42,14 +42,26 @@ class MWS:
         else:
             request_report = self.reports.request_report(report_type=request_map[request_type], start_date=start_date, end_date=end_date).parsed
             request_id = request_report['ReportRequestInfo']['ReportRequestId']['value']
+            repeat_count = 0
             while True:
                 try:
                     report_id = self.reports.get_report_list(requestids=request_id).parsed['ReportInfo']['ReportId']['value']
                     break
                 except KeyError as e:
                     print(e)
-                    time.sleep(15)
-            print(report_id)
+                    time.sleep(10)
+                    repeat_count += 1
+                    if repeat_count > 12:
+
+                        send_mail(
+                            message=f'Unable to process request for Amazon. Took longer than 2 minutes.',
+                            subject='Request Inventory Report to MWS Failed',
+                            from_email='TCG First',
+                            recipient_list=['jermol.jupiter@gmail.com'],
+                        )
+                        report_id = None
+                        break
+
             return report_id
 
     def parse_inventory_report(self, report_id):
@@ -64,13 +76,12 @@ class MWS:
 
         return headers, sku_and_price
 
-    def update_sku_price(self, sku, price, message_number):
-        xml_file = CreateXML().generate_mws_price_xml(sku, price, message_number)
+    def update_sku_price(self, xml_file):
         updated = self.feeds.submit_feed(feed=xml_file, feed_type='_POST_PRODUCT_PRICING_DATA_').parsed
         return updated
 
     def check_feed_submission(self, feed_id):
-        return self.feeds.get_feed_submission_result(feedid=feed_id)
+        return self.feeds.get_feed_submission_result(feedid=feed_id).parsed
 
     def get_sku_prices(self, skus):
         prices = self.products.get_competitive_pricing_for_sku(marketplaceid=self.marketplace_usa, skus=skus).parsed
