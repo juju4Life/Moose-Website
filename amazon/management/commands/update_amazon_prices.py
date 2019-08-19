@@ -15,7 +15,7 @@ class Command(BaseCommand):
         # If False, we do nothing and check again when this code block runs again.
 
         last_feed = FeedSubmission.objects.latest('feed_created_on')
-        update_prices = True
+        update_prices = False
         if last_feed.success is False:
             try:
                 # If the check return is False, we request an update from MWS and update the Feed Status accordingly.
@@ -68,43 +68,48 @@ class Command(BaseCommand):
                         # Every once in a while 1 item is not updated. To update in future
 
                         if len(items) > 1:
-                            if count == 0:
-                                prices = api.get_sku_lowest_offer(skus=skus, condition='new')
-                            else:
-                                prices = api.get_sku_lowest_offer(skus=skus, condition='collectible')
+                            try:
+                                if count == 0:
+                                    prices = api.get_sku_lowest_offer(skus=skus, condition='new')
+                                else:
+                                    prices = api.get_sku_lowest_offer(skus=skus, condition='collectible')
+                            except Exception as e:
+                                print(e)
 
-                            for i in prices:
-                                sku = i['SellerSKU']['value']
-                                try:
+                                prices = None
+                            if prices is not None:
+                                for i in prices:
+                                    sku = i['SellerSKU']['value']
                                     try:
-                                        competitive_price = float(i['Product']['LowestOfferListings']['LowestOfferListing'][0]['Price']['LandedPrice']['Amount']['value'])
-                                    except KeyError:
-                                        competitive_price = float(
-                                            i['Product']['LowestOfferListings']['LowestOfferListing']['Price']['LandedPrice']['Amount']['value'])
+                                        try:
+                                            competitive_price = float(i['Product']['LowestOfferListings']['LowestOfferListing'][0]['Price']['LandedPrice']['Amount']['value'])
+                                        except KeyError:
+                                            competitive_price = float(
+                                                i['Product']['LowestOfferListings']['LowestOfferListing']['Price']['LandedPrice']['Amount']['value'])
 
-                                    old_price = [float(i['price']) for i in items if i['sku'] == sku][0]
-                                    condition = [i['condition'] for i in items if i['sku'] == sku][0]
+                                        old_price = [float(i['price']) for i in items if i['sku'] == sku][0]
+                                        condition = [i['condition'] for i in items if i['sku'] == sku][0]
 
-                                    if old_price != competitive_price:
+                                        if old_price != competitive_price:
 
-                                        if 'LikeNew' in condition['full']:
-                                            competitive_price = competitive_price * .9
-                                        else:
-                                            competitive_price = round(competitive_price - .01, 2)
+                                            if 'LikeNew' in condition['full']:
+                                                competitive_price = competitive_price * .9
+                                            else:
+                                                competitive_price = round(competitive_price - .01, 2)
 
-                                        # print(sku, condition['full'], old_price, competitive_price)
+                                            # print(sku, condition['full'], old_price, competitive_price)
 
-                                        update_feeds.append({
-                                            'sku': sku,
-                                            'price': competitive_price,
-                                        })
+                                            update_feeds.append({
+                                                'sku': sku,
+                                                'price': competitive_price,
+                                            })
 
-                                except KeyError as e:
-                                    print(e)
-                                    print(sku)
-                                    for each in prices:
-                                        if each['SellerSKU']['value'] == sku:
-                                            print(each)
+                                    except KeyError as e:
+                                        print(e)
+                                        print(sku)
+                                        for each in prices:
+                                            if each['SellerSKU']['value'] == sku:
+                                                print(each)
 
                         start += 20
                         stop += 20
@@ -112,20 +117,21 @@ class Command(BaseCommand):
                     count += 1
 
                 # Generate the XML file in MWS required format, then submit that file as a feed to MWS
-                feed = x.generate_mws_price_xml(update_feeds)
-                feed_submission = api.update_sku_price(feed)
+                if update_feeds:
+                    feed = x.generate_mws_price_xml(update_feeds)
+                    feed_submission = api.update_sku_price(feed)
 
-                # Store the Feed ID and other associated information for reference. Used to check feed status.
-                feed_id = feed_submission['FeedSubmissionInfo']['FeedSubmissionId']['value']
-                submit_date = feed_submission['FeedSubmissionInfo']['SubmittedDate']['value']
+                    # Store the Feed ID and other associated information for reference. Used to check feed status.
+                    feed_id = feed_submission['FeedSubmissionInfo']['FeedSubmissionId']['value']
+                    submit_date = feed_submission['FeedSubmissionInfo']['SubmittedDate']['value']
 
-                new_feed = FeedSubmission.objects.create(
-                    success=False,
-                    feed_id=feed_id,
-                    feed_successful_on=submit_date,
-                )
+                    new_feed = FeedSubmission.objects.create(
+                        success=False,
+                        feed_id=feed_id,
+                        feed_successful_on=submit_date,
+                    )
 
-                new_feed.save()
+                    new_feed.save()
 
 
 
