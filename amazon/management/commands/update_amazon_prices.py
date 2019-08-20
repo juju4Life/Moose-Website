@@ -3,6 +3,7 @@ from amazon.models import FeedSubmission
 from amazon.amazon_mws import MWS
 from my_customs.exml import CreateXML
 from django.utils import timezone
+import time
 
 api = MWS()
 x = CreateXML()
@@ -25,8 +26,8 @@ class Command(BaseCommand):
                 if check_feed_status['FeedSubmissionInfo']['FeedProcessingStatus']['value'] == '_DONE_':
                     last_feed.feed_successful_on = timezone.now()
                     last_feed.success = True
-                    update_prices = True
                     last_feed.save()
+                    update_prices = True
 
                 else:
                     print(check_feed_status['FeedSubmissionInfo']['FeedProcessingStatus']['value'])
@@ -34,6 +35,8 @@ class Command(BaseCommand):
             except Exception as e:
                 print(e)
                 pass
+        else:
+            update_prices = True
 
         if update_prices is True:
             update_feeds = []
@@ -73,6 +76,8 @@ class Command(BaseCommand):
                                     prices = api.get_sku_lowest_offer(skus=skus, condition='new')
                                 else:
                                     prices = api.get_sku_lowest_offer(skus=skus, condition='collectible')
+                                time.sleep(1)
+
                             except Exception as e:
                                 print(e)
 
@@ -87,22 +92,30 @@ class Command(BaseCommand):
                                             competitive_price = float(
                                                 i['Product']['LowestOfferListings']['LowestOfferListing']['Price']['LandedPrice']['Amount']['value'])
 
-                                        old_price = [float(i['price']) for i in items if i['sku'] == sku][0]
-                                        condition = [i['condition'] for i in items if i['sku'] == sku][0]
+                                        try:
+                                            old_price = [float(i['price']) for i in items if i['sku'] == sku][0]
+                                        except ValueError as e:
+                                            print(e)
+                                            print([i for i in items if i['sku'] == sku[0]])
+                                            old_price = None
 
-                                        if old_price != competitive_price:
+                                        if old_price is not None:
 
-                                            if 'LikeNew' in condition['full']:
-                                                competitive_price = competitive_price * .9
-                                            else:
-                                                competitive_price = round(competitive_price - .01, 2)
+                                            condition = [i['condition'] for i in items if i['sku'] == sku][0]
 
-                                            # print(sku, condition['full'], old_price, competitive_price)
+                                            if old_price != competitive_price:
 
-                                            update_feeds.append({
-                                                'sku': sku,
-                                                'price': competitive_price,
-                                            })
+                                                if 'LikeNew' in condition['full']:
+                                                    competitive_price = round(competitive_price * .9, 2)
+                                                else:
+                                                    competitive_price = round(competitive_price - .01, 2)
+
+                                                # print(sku, condition['full'], old_price, competitive_price)
+
+                                                update_feeds.append({
+                                                    'sku': sku,
+                                                    'price': competitive_price,
+                                                })
 
                                     except KeyError as e:
                                         print(e)

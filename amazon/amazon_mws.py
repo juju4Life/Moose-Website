@@ -124,13 +124,17 @@ class MWS:
         27 merchant-shipping-group
 
         '''
+
         rep = ''.join(chr(x) for x in report.parsed).split('\n')
         data = [i.split('\t') for i in rep[1:]]
         new_conditions = [{'sku': i[3], 'price': i[4], 'condition': self.condition_guide[i[12]]} for i in data if i[0] != '' and i[5] != '' and i[5] != '\r' and
                 int(i[5].replace('\r', '')) > 0 and self.condition_guide[i[12]]['short'] == 'New']
 
+        new_conditions = new_conditions + [{'sku': i[3], 'price': i[4], 'condition': self.condition_guide[i[12]]} for i in data if i[0] != '' and i[5] != '' and i[5] != '\r' and
+                int(i[5].replace('\r', '')) > 0 and self.condition_guide[i[12]]['full'] == 'CollectibleLikeNew']
+
         collectible_conditions = [{'sku': i[3], 'price': i[4], 'condition': self.condition_guide[i[12]]} for i in data if i[0] != '' and i[5] != '' and i[5] != '\r' and
-                int(i[5].replace('\r', '')) > 0 and self.condition_guide[i[12]]['short'] == 'Collectible']
+                int(i[5].replace('\r', '')) > 0 and self.condition_guide[i[12]]['short'] == 'Collectible' and self.condition_guide[i[12]]['full'] != 'CollectibleLikeNew']
         return new_conditions, collectible_conditions
 
     def update_sku_price(self, xml_file):
