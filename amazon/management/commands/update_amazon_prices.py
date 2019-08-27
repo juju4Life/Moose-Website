@@ -13,12 +13,13 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         # We first check to see if the latest feed submission has been successful.
-        # If False, we do nothing and check again when this code block runs again.
+        # If False, we do nothing and check again when this code block runs.
 
         last_feed = FeedSubmission.objects.latest('feed_created_on')
         update_prices = False
         if last_feed.success is False:
             try:
+
                 # If the check return is False, we request an update from MWS and update the Feed Status accordingly.
                 # If it is true we continue to run the script
 
@@ -28,7 +29,6 @@ class Command(BaseCommand):
                     last_feed.success = True
                     last_feed.save()
                     update_prices = True
-
                 else:
                     print(check_feed_status['FeedSubmissionInfo']['FeedProcessingStatus']['value'])
 
@@ -80,8 +80,8 @@ class Command(BaseCommand):
 
                             except Exception as e:
                                 print(e)
-
                                 prices = None
+
                             if prices is not None:
                                 for i in prices:
                                     sku = i['SellerSKU']['value']
@@ -103,19 +103,17 @@ class Command(BaseCommand):
 
                                             condition = [i['condition'] for i in items if i['sku'] == sku][0]
 
-                                            if old_price != competitive_price:
+                                            if 'LikeNew' in condition['full']:
+                                                competitive_price = round(competitive_price * .9, 2)
+                                            else:
+                                                competitive_price = round(competitive_price - .01, 2)
 
-                                                if 'LikeNew' in condition['full']:
-                                                    competitive_price = round(competitive_price * .9, 2)
-                                                else:
-                                                    competitive_price = round(competitive_price - .01, 2)
+                                            # print(sku, condition['full'], old_price, competitive_price)
 
-                                                # print(sku, condition['full'], old_price, competitive_price)
-
-                                                update_feeds.append({
-                                                    'sku': sku,
-                                                    'price': competitive_price,
-                                                })
+                                            update_feeds.append({
+                                                'sku': sku,
+                                                'price': competitive_price,
+                                            })
 
                                     except KeyError as e:
                                         print(e)
