@@ -99,7 +99,7 @@ class Command(BaseCommand):
                                             print([i for i in items if i['sku'] == sku[0]])
                                             old_price = None
 
-                                        if old_price is not None and old_price != competitive_price:
+                                        if old_price is not None:
                                             if sku == '1U-PLK0-3Q09':
                                                 print(sku)
                                                 print(competitive_price)
