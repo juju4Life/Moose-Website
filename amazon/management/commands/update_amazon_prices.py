@@ -101,6 +101,13 @@ class Command(BaseCommand):
 
                                         if old_price is not None and old_price != competitive_price:
 
+                                            if old_price == competitive_price:
+                                                try:
+                                                    competitive_price = float(
+                                                        i['Product']['LowestOfferListings']['LowestOfferListing'][1]['Price']['LandedPrice']['Amount']['value'])
+                                                except KeyError:
+                                                    pass
+
                                             condition = [i['condition'] for i in items if i['sku'] == sku][0]
 
                                             if 'LikeNew' in condition['full']:

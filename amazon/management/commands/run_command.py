@@ -10,10 +10,11 @@ api = MWS()
 class Command(BaseCommand):
     def handle(self, *args, **options):
         # print(api.parse_active_listings_report('16237027463018127'))
-        print(api.check_feed_submission('151729018128'))
+        # print(api.check_feed_submission('151729018128'))
 
         # api.request_and_get_inventory_report('active_listings')
-        # d = api.get_sku_lowest_offer(['WT-I22S-J83M', 'WR-1M67-09LV'], 'new')
+        d = api.get_sku_lowest_offer('1U-PLK0-3Q09', 'new')
+        print()
 
         '''
          live = AmazonLiveInventory.objects
