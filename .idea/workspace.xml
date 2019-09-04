@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/amazon/management/commands/run_command.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/management/commands/run_command.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4">
+    <splitter split-orientation="horizontal" split-proportion="0.17918216">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -81,7 +80,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/amazon/amazon_mws.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1163">
+                <state relative-caret-position="-514">
                   <caret line="60" column="20" lean-forward="true" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
                   <folding>
                     <element signature="e#0#11#0" expanded="true" />
@@ -151,8 +150,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="98" column="65" lean-forward="true" selection-start-line="98" selection-start-column="65" selection-end-line="98" selection-end-column="65" />
+                <state relative-caret-position="112">
+                  <caret line="102" selection-start-line="102" selection-end-line="102" />
                   <folding>
                     <element signature="e#0#51#0" expanded="true" />
                   </folding>
@@ -273,15 +272,16 @@
         <option value="$PROJECT_DIR$/engine/tcg_credentials.py" />
         <option value="$PROJECT_DIR$/amazon/admin.py" />
         <option value="$PROJECT_DIR$/amazon/amazon_mws.py" />
-        <option value="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" />
         <option value="$PROJECT_DIR$/amazon/management/commands/run_command.py" />
+        <option value="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1358" />
-    <option name="width" value="1390" />
-    <option name="height" value="1776" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-12" />
+    <option name="y" value="-12" />
+    <option name="width" value="1850" />
+    <option name="height" value="2702" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -513,8 +513,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1381" height="895" extended-state="6" />
-    <editor active="true" />
+    <frame x="-6" y="-6" width="1381" height="895" extended-state="7" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.38066915" />
       <window_info id="Favorites" order="1" side_tool="true" />
@@ -527,7 +526,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32980132" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32955974" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49888477" visible="true" weight="0.039215688" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49888477" visible="true" weight="0.3150327" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50111526" side_tool="true" weight="0.3137255" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.40784314" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -949,7 +948,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/amazon/amazon_mws.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1163">
+        <state relative-caret-position="-514">
           <caret line="60" column="20" lean-forward="true" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
@@ -969,8 +968,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="98" column="65" lean-forward="true" selection-start-line="98" selection-start-column="65" selection-end-line="98" selection-end-column="65" />
+        <state relative-caret-position="112">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>

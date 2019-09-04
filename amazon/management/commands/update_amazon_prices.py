@@ -113,7 +113,7 @@ class Command(BaseCommand):
                                             if 'LikeNew' in condition['full']:
                                                 competitive_price = round(competitive_price * .9, 2)
                                             else:
-                                                competitive_price = round(competitive_price - .01, 2)
+                                                competitive_price = round(competitive_price, 2)
 
                                             # print(sku, condition['full'], old_price, competitive_price)
 
