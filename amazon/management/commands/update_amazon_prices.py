@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from amazon.models import FeedSubmission
+from amazon.models import FeedSubmission, AmazonPriceExclusions
 from amazon.amazon_mws import MWS
 from my_customs.exml import CreateXML
 from django.utils import timezone
@@ -40,6 +40,8 @@ class Command(BaseCommand):
 
         if update_prices is True:
             update_feeds = []
+            exclude_list = AmazonPriceExclusions.objects.all().values_list('sku', flat=True)
+            print(f'Length of Exclude list {len(exclude_list)}')
 
             report_id = api.request_and_get_inventory_report('all_listings')
             if report_id is not None:
@@ -116,6 +118,12 @@ class Command(BaseCommand):
                                                 competitive_price = round(competitive_price, 2)
 
                                             # print(sku, condition['full'], old_price, competitive_price)
+
+                                            # Set minimum for certain user-specified cards
+                                            if sku in exclude_list:
+                                                min_price = AmazonPriceExclusions.objects.get(sku=sku).price
+                                                if competitive_price < min_price:
+                                                    competitive_price = min_price
 
                                             update_feeds.append({
                                                 'sku': sku,

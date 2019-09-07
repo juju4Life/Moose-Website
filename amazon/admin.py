@@ -1,9 +1,20 @@
 from django.contrib import admin
-from .models import FeedSubmission
+from .models import FeedSubmission, AmazonPriceExclusions
 
 
 @admin.register(FeedSubmission)
 class FeedsSubmissionAdmin(admin.ModelAdmin):
     list_display = ['feed_id', 'success', 'feed_created_on', 'feed_successful_on', ]
+
+
+@admin.register(AmazonPriceExclusions)
+class PricesAdmin(admin.ModelAdmin):
+    search_fields = ['name']
+    list_display = ['sku', 'price', 'name', 'expansion', 'condition', 'is_foil']
+    fields = (
+        ('is_foil', 'condition',),
+        ('sku', 'price',),
+        ('name', 'expansion',),
+    )
 
 

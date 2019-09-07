@@ -27,7 +27,7 @@ class AmazonPriceExclusions(models.Model):
     expansion = models.CharField(max_length=255, default='', blank=True)
     condition = models.CharField(max_length=255, default='', blank=True)
     is_foil = models.BooleanField(default=False, blank=True)
-    sku = models.CharField(max_length=255, default='')
+    sku = models.CharField(max_length=255, default='', unique=True)
     price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
     def __str__(self):
