@@ -21,3 +21,14 @@ class FeedSubmission(models.Model):
     def __string__(self):
         return f"{self.feed_id} - {self.feed_successful_on}"
 
+
+class AmazonPriceExclusions(models.Model):
+    name = models.CharField(max_length=255, default='', blank=True)
+    expansion = models.CharField(max_length=255, default='', blank=True)
+    condition = models.CharField(max_length=255, default='', blank=True)
+    is_foil = models.BooleanField(default=False, blank=True)
+    sku = models.CharField(max_length=255, default='')
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+
+    def __str__(self):
+        return self.sku

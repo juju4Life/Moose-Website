@@ -156,7 +156,13 @@ class MWS:
         return self.products.get_lowest_offer_listings_for_sku(skus=skus, condition=condition, marketplaceid=self.marketplace_usa).parsed
 
     def get_asin_lowest_offer(self, asin, condition):
-        return self.products.get_lowest_priced_offers_for_asin(asin=asin, condition=condition, marketplaceid=self.marketplace_usa).parsed
+        return self.products.get_lowest_offer_listings_for_asin(asins=asin, condition=condition, marketplaceid=self.marketplace_usa).parsed
+
+    def get_sku_lowest_priced_offer(self, skus):
+        return self.products.get_lowest_priced_offers_for_sku(sku=skus, marketplaceid=self.marketplace_usa).parsed
+
+    def get_matching_product(self, product_id, product_type):
+        return self.products.get_matching_product_for_id(type_=product_type, ids=product_id, marketplaceid=self.marketplace_usa).parsed
 
 
 

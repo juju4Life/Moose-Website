@@ -338,6 +338,17 @@ class MWS(object):
         return utils.enumerate_param(param, values)
 
 
+class Subscriptions(MWS):
+    """
+    Amazon Subscriptions API
+    """
+
+    def create_subscriptions(self, subscription_type, marketplace_id, content_type="text/xml"):
+        data = dict(
+            Action='CreateSubscription',
+        )
+
+
 class Feeds(MWS):
     """
     Amazon MWS Feeds API

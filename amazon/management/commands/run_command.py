@@ -10,7 +10,8 @@ api = MWS()
 class Command(BaseCommand):
     def handle(self, *args, **options):
         # a, b = api.parse_active_listings_report('16381982011018137')
-        a = api.get_sku_prices('1U-PLK0-3Q09')
+        # a = api.get_sku_lowest_priced_offer('1U-PLK0-3Q09')
+        a = api.get_asin_lowest_offer(asin='B019CZA9KO', condition='new')
         print(json.dumps(a, indent=4))
         # print(api.check_feed_submission('151729018128'))
 
