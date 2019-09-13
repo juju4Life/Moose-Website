@@ -30,6 +30,8 @@ def moose_price_algorithm(seller_data):
 
     if seller_data:
         updated_price = 0
+
+        # Average price of first 5 listings, excluding First and Moose
         average_price = sum([i['price'] for i in seller_data]) / len(seller_data)
 
         if len(seller_data) >= 2:
@@ -37,23 +39,26 @@ def moose_price_algorithm(seller_data):
 
             while count < len(seller_data):
                 updated_price = seller_data[count]['price'] - .01
-                if updated_price < average_price / 1.15:
+                if updated_price < average_price / 1.10:
                     count += 1
                 else:
                     break
 
             if count == len(seller_data) + 1:
-                updated_price = average_price / 1.15
+                updated_price = average_price / 1.10
 
         else:
             updated_price = seller_data[0]['price'] - .01
 
         for seller in seller_data[1:]:
             if seller['gold'] is True:
-                if updated_price < seller['price'] / 1.15 + 1:
+                if updated_price < seller['price'] / 1.10:
                     updated_price = seller['price'] - .01
 
                 break
+
+        if updated_price < seller_data[0]['price']:
+            updated_price = seller_data[0]['price'] - .01
 
         if updated_price < 5 and updated_price > 4.21 and updated_price + .78 > 4.99:
             updated_price = 5

@@ -45,6 +45,7 @@ __all__ = [
     'Recommendations',
     'Sellers',
     'Finances',
+    'Subscriptions',
 ]
 
 # See https://images-na.ssl-images-amazon.com/images/G/01/mwsportal/doc/en_US/bde/MWSDeveloperGuide._V357736853_.pdf
@@ -221,7 +222,6 @@ class MWS(object):
         # Remove all keys with an empty value because
         # Amazon's MWS does not allow such a thing.
         extra_data = remove_empty(extra_data)
-
         # convert all Python date/time objects to isoformat
         for key, value in extra_data.items():
             if isinstance(value, (datetime.datetime, datetime.date)):
@@ -343,10 +343,43 @@ class Subscriptions(MWS):
     Amazon Subscriptions API
     """
 
-    def create_subscriptions(self, subscription_type, marketplace_id, content_type="text/xml"):
+    def create_subscriptions(self, subscription_type='AnyOfferChanged', marketplace_id='ATVPDKIKX0DER', enable_subscription='true'):
         data = dict(
             Action='CreateSubscription',
+            MarketplaceId=marketplace_id,
         )
+
+        data.update(utils.enumerate_param('Destination.AttributeList.member.1.Key', 'sqsQueueUrl'))
+        data.update(utils.enumerate_param('Destination.AttributeList.member.1.Value', 'https://sqs.us-east-1.amazonaws.com/963180512106/Alert'))
+        data.update(utils.enumerate_param('Destination.DeliveryChannel', 'SQS'))
+        data.update(utils.enumerate_param('Subscription.NotificationType', subscription_type))
+        data.update(utils.enumerate_param('Subscription.IsEnabled', enable_subscription))
+
+        return self.make_request(data, method="POST")
+
+    def register_destination(self, destination, marketplace_id):
+        data = dict(
+            Action='RegisterDestination',
+            MarketplaceId=marketplace_id,
+        )
+
+        data.update(utils.enumerate_param('Destination.AttributeList.member.1.Key', 'sqsQueueUrl'))
+        data.update(utils.enumerate_param('Destination.AttributeList.member.1.Value', 'https://sqs.us-east-1.amazonaws.com/963180512106/Alert'))
+        data.update(utils.enumerate_param('Destination.DeliveryChannel', 'SQS'))
+
+        return self.make_request(data, method="POST", )
+
+    def send_test_notification_to_destination(self, destination, marketplace_id):
+        data = dict(
+            Action='SendTestNotificationToDestination',
+            MarketplaceId=marketplace_id,
+        )
+
+        data.update(utils.enumerate_param('Destination.AttributeList.member.1.Key', 'sqsQueueUrl'))
+        data.update(utils.enumerate_param('Destination.AttributeList.member.1.Value', 'https://sqs.us-east-1.amazonaws.com/963180512106/Alert'))
+        data.update(utils.enumerate_param('Destination.DeliveryChannel', 'SQS'))
+        return self.make_request(data, method="POST",)
+
 
 
 class Feeds(MWS):

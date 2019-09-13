@@ -113,7 +113,12 @@ def update_moose_tcg():
 
                                         price_dict = {
                                             'price': total_price,
-                                            'gold': True if seller_total_sales >= 10000 else False
+                                            'gold': True if seller_total_sales >= 10000 else False,
+                                            'name': name,
+                                            'expansion': expansion,
+                                            'printing': printing,
+                                            'language': language,
+                                            'condition': condition,
                                         }
                                         seller_data_list.append(price_dict)
                                         if len(seller_data_list) == 5:

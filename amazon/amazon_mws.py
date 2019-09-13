@@ -9,6 +9,17 @@ class MWS:
     seller_id = config('MWS_SELLER_ID')
     secret_key = config('MWS_SECRET_KEY')
     marketplace_usa = 'ATVPDKIKX0DER'
+    important_sellers = {
+        "A196LH8Y51V5YV": "Tales of Adventure",
+        "A3I2YLR8TUD023": "Owl Central",
+        "A1T016OEUJ4VUL": "TrollAndToad",
+        "A16FC7FL4EVQKY": "Channel_Fireball",
+        "A1NOA5XM9FHGQD": "Pink Bunny Games",
+        "A139QX3K5TIQJJ": "Ninety Five",
+        "A56F7MCHH0H20": "Strike Zone Online",
+        "A1G1QJKXJJSAN2": "CoolStuffIncgames",
+        "A18UWFFZ54ORCD": "MTG Mint Card Ltd.",
+    }
 
     condition_guide = {
         "1": 'UsedLikeNew',
@@ -33,6 +44,8 @@ class MWS:
     recommendations = mws.Recommendations(access_key=access_key, account_id=seller_id, secret_key=secret_key, region='US')
     sellers = mws.Sellers(access_key=access_key, account_id=seller_id, secret_key=secret_key, region='US')
     finances = mws.Finances(access_key=access_key, account_id=seller_id, secret_key=secret_key, region='US')
+    subscriptions = mws.Subscriptions(access_key=access_key, account_id=seller_id, secret_key=secret_key, region='US',
+                                      uri='/Subscriptions/2013-07-01', version='2013-07-01')
     mws_errors = mws.MWSError()
 
     def request_and_get_inventory_report(self, request_type, start_date=None, end_date=None):
@@ -163,6 +176,9 @@ class MWS:
 
     def get_matching_product(self, product_id, product_type):
         return self.products.get_matching_product_for_id(type_=product_type, ids=product_id, marketplaceid=self.marketplace_usa).parsed
+
+    def get_product_by_asin(self, asins):
+        return self.products.get_my_price_for_asin(asins=asins, marketplaceid=self.marketplace_usa).parsed
 
 
 

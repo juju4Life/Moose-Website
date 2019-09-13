@@ -3,16 +3,94 @@ from django.core.management.base import BaseCommand
 from amazon.models import AmazonLiveInventory
 from amazon.amazon_mws import MWS
 import json
+import boto3
+import xmltodict
 
 api = MWS()
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
+
+        update_feed_list = []
+        client = boto3.client(
+            'sqs',
+            aws_access_key_id='AKIA6AQQIINVOGKGV3EP',
+            aws_secret_access_key='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',
+        )
+
+        while True:
+            messages = client.receive_message(
+                QueueUrl='https://queue.amazonaws.com/963180512106/Alert',
+                AttributeNames=['All'],
+                MaxNumberOfMessages=10,
+            )
+            try:
+                messages = messages['Messages']
+            except KeyError:
+                break
+            if messages:
+                my_seller_id = api.seller_id
+                for message in messages:
+                    data = message['Body']
+                    data = xmltodict.parse(data)['Notification']
+                    asin = data['NotificationPayload']['AnyOfferChangedNotification']['OfferChangeTrigger']['ASIN']
+                    other_item_data = api.get_product_by_asin(asin)
+                    condition = data['NotificationPayload']['AnyOfferChangedNotification']['OfferChangeTrigger']['ItemCondition']
+                    my_sub_condition = other_item_data['Product']['Offers']['Offer']['ItemSubCondition']['value']
+                    sku = other_item_data['Product']['Offers']['Offer']['SellerSKU']['value']
+                    time_of_change = data['NotificationPayload']['AnyOfferChangedNotification']['OfferChangeTrigger']['TimeOfOfferChange']
+                    new_conditions = data['NotificationPayload']['AnyOfferChangedNotification']['Summary']['NumberOfOffers']['OfferCount']
+                    offers = data['NotificationPayload']['AnyOfferChangedNotification']['Offers']['Offer']
+                    for offer in offers:
+                        try:
+                            seller_id = offer['SellerId']
+                            if seller_id == my_seller_id:
+                                pass
+
+                            else:
+                                if seller_id not in [i for i in api.important_sellers]:
+                                    pass
+
+                                else:
+                                    seller_sub_condition = offer['SubCondition']
+                                    if my_sub_condition == seller_sub_condition:
+                                        seller_positive_feedback_rating = offer["SellerFeedbackRating"]["SellerPositiveFeedbackRating"]
+                                        seller_feedback_count = offer["SellerFeedbackRating"]["FeedbackCount"]
+                                        list_price = offer['ListingPrice']["Amount"]
+                                        shipping_price = offer['Shipping']['Amount']
+                                        total_price = float(list_price) + float(shipping_price)
+
+                                        update_feed_list.append({
+                                            'sku': sku,
+                                            'price': total_price,
+                                        })
+                                        break
+
+                        except TypeError as e:
+                            print(e)
+
+                entries = [
+                    {'Id': msg['MessageId'], 'ReceiptHandle': msg['ReceiptHandle']}
+                    for msg in messages['Messages']
+                ]
+
+                resp = client.delete_message_batch(
+                    QueueUrl='https://queue.amazonaws.com/963180512106/Alert', Entries=entries
+                )
+
+                if len(resp['Successful']) != len(entries):
+                    print('Errors')
+            else:
+                break
+
+        # Upload Feed
+
+        # z = api.subscriptions.create_subscriptions()
         # a, b = api.parse_active_listings_report('16381982011018137')
         # a = api.get_sku_lowest_priced_offer('1U-PLK0-3Q09')
-        a = api.get_asin_lowest_offer(asin='B019CZA9KO', condition='new')
-        print(json.dumps(a, indent=4))
+        # a = api.get_asin_lowest_offer(asin='B019CZA9KO', condition='new')
+        # print(json.dumps(a, indent=4))
         # print(api.check_feed_submission('151729018128'))
 
         # api.request_and_get_inventory_report('active_listings')

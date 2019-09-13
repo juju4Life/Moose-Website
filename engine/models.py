@@ -1,6 +1,29 @@
 from django.db import models
 
 
+class MooseAutopriceMetrics(models.Model):
+    name = models.CharField(max_length=255, default='')
+    expansion = models.CharField(max_length=255, default='')
+    condition = models.CharField(max_length=255, default='')
+    printing = models.CharField(max_length=255, default='')
+    language = models.CharField(max_length=255, default='')
+    updated_price = models.CharField(max_length=255, default='')
+    old_price = models.CharField(max_length=255, default='')
+    price_1 = models.CharField(max_length=255, default='')
+    price_1_gold = models.BooleanField(default=False)
+    price_2 = models.CharField(max_length=255, default='')
+    price_2_gold = models.BooleanField(default=False)
+    price_3 = models.CharField(max_length=255, default='')
+    price_3_gold = models.BooleanField(default=False)
+    price_4 = models.CharField(max_length=255, default='')
+    price_4_gold = models.BooleanField(default=False)
+    price_5 = models.CharField(max_length=255, default='')
+    price_5_gold = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.name}({self.expansion})'
+
+
 class MooseInventory(models.Model):
     name = models.CharField(max_length=255, default='')
     expansion = models.CharField(max_length=255, default='')
