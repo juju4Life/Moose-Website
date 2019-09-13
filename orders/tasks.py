@@ -3,7 +3,7 @@ from celery import shared_task
 import traceback
 from tcg.price_alogrithm import *
 from engine.tcgplayer_api import TcgPlayerApi
-from engine.models import MTG, Yugioh, Pokemon, Upload
+from engine.models import MTG, Yugioh, Pokemon, Upload, MooseAutopriceMetrics
 from my_customs.decorators import report_error
 from django.core.mail import send_mail
 from orders.models import Inventory
