@@ -12,6 +12,7 @@ from engine.tcgplayer_api import TcgPlayerApi
 from engine.models import MooseInventory
 from django.core.mail import send_mail
 import csv
+from engine.models import MooseAutopriceMetrics
 
 api = TcgPlayerApi('moose')
 
@@ -41,6 +42,7 @@ class Command(BaseCommand):
     @report_error
     def handle(self, *args, **options):
         update_moose_tcg.apply_async(que='low_priority')
+
 
 
 

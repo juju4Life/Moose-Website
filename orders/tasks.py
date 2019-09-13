@@ -114,12 +114,8 @@ def update_moose_tcg():
                                         price_dict = {
                                             'price': total_price,
                                             'gold': True if seller_total_sales >= 10000 else False,
-                                            'name': name,
-                                            'expansion': expansion,
-                                            'printing': printing,
-                                            'language': language,
-                                            'condition': condition,
                                         }
+
                                         seller_data_list.append(price_dict)
                                         if len(seller_data_list) == 5:
                                             next_page = False
@@ -158,7 +154,7 @@ def update_moose_tcg():
                             '''
 
                             if updated_price is not None and round(updated_price, 2) != current_price:
-                                print(index)
+                                # print(index)
                                 api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
                                 metrics, created = MooseAutopriceMetrics.objects.get_or_create(sku=sku)
                                 metrics.name = name
@@ -190,9 +186,11 @@ def update_moose_tcg():
 
                                 metrics.save()
 
-                                if index < 100:
+                                '''
+                                                                    if index < 100:
                                     print(name, expansion, condition, printing)
                                     print(f"Current: {current_price}, Market: {market}, Low: {low}, Updated: {updated_price}")
+                                '''
 
             except Exception as e:
                 print(e)
