@@ -32,7 +32,13 @@ api = TcgPlayerApi('first')
 
 @admin.register(MooseAutopriceMetrics)
 class MooseMetricsAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ['name']
+    list_display = ['old_Price', 'updated_price', 'name', 'expansion', 'condition',
+                    'price_1', 'price_1_gold',
+                    'price_2', 'price_2_gold',
+                    'price_3', 'price_3_gold',
+                    'price_4', 'price_4_gold',
+                    'price_5', 'price_5_gold', ]
 
 
 @admin.register(MooseInventory)
