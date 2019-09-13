@@ -160,6 +160,35 @@ def update_moose_tcg():
                             if updated_price is not None and round(updated_price, 2) != current_price:
                                 print(index)
                                 api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
+                                metrics, created = MooseAutopriceMetrics.objects.get_or_create(sku=sku)
+                                metrics.name = name
+                                metrics.expansion = expansion
+                                metrics.condition = condition
+                                metrics.printing = printing
+                                metrics.language = language
+                                metrics.old_price = current_price
+                                metrics.updated_price = updated_price
+                                count = 0
+
+                                while count <= len(seller_data_list):
+                                    if count == 0:
+                                        metrics.price_1 = seller_data_list[count]['price']
+                                        metrics.price_1_gold = seller_data_list[count]['gold']
+                                    elif count == 1:
+                                        metrics.price_2 = seller_data_list[count]['price']
+                                        metrics.price_2_gold = seller_data_list[count]['gold']
+                                    elif count == 2:
+                                        metrics.price_3 = seller_data_list[count]['price']
+                                        metrics.price_3_gold = seller_data_list[count]['gold']
+                                    elif count == 3:
+                                        metrics.price_4 = seller_data_list[count]['price']
+                                        metrics.price_4_gold = seller_data_list[count]['gold']
+                                    elif count == 4:
+                                        metrics.price_5 = seller_data_list[count]['price']
+                                        metrics.price_5_gold = seller_data_list[count]['gold']
+                                    count += 1
+
+                                metrics.save()
 
                                 if index < 100:
                                     print(name, expansion, condition, printing)

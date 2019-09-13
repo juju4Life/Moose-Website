@@ -1,7 +1,7 @@
 import os
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import Orders, TcgCredentials, StoreDatabase, MTG, Upload, Yugioh, Pokemon, DirectData, TcgGroupPrice, MooseInventory
+from .models import Orders, TcgCredentials, StoreDatabase, MTG, Upload, Yugioh, Pokemon, DirectData, TcgGroupPrice, MooseInventory, MooseAutopriceMetrics
 from simple_history.admin import SimpleHistoryAdmin
 from customer.models import Preorder, Customer, PreordersReady, OrderRequest, ReleasedProducts
 from django.contrib.auth.models import Group
@@ -30,10 +30,16 @@ except ImportError:
 api = TcgPlayerApi('first')
 
 
+@admin.register(MooseAutopriceMetrics)
+class MooseMetricsAdmin(admin.ModelAdmin):
+    pass
+
+
 @admin.register(MooseInventory)
 class MooseInv(admin.ModelAdmin):
     search_fields = ['name']
     list_display = ['name', 'expansion', 'condition', 'updated_price']
+
 
 @admin.register(Yugioh)
 class YugiohAdmin(admin.ModelAdmin):
