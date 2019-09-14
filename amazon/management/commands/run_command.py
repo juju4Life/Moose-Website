@@ -5,6 +5,7 @@ from amazon.amazon_mws import MWS
 import json
 import boto3
 import xmltodict
+from decouple import config
 
 api = MWS()
 
@@ -15,8 +16,8 @@ class Command(BaseCommand):
         update_feed_list = []
         client = boto3.client(
             'sqs',
-            aws_access_key_id='AKIA6AQQIINVOGKGV3EP',
-            aws_secret_access_key='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',
+            aws_access_key_id=config("AWS_ACCESS_KEY"),
+            aws_secret_access_key=config("AWS_SECRET_KEY"),
         )
 
         while True:

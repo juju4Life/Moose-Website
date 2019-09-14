@@ -9,6 +9,7 @@ class MooseAutopriceMetrics(models.Model):
     language = models.CharField(max_length=255, default='')
     sku = models.CharField(max_length=255, default='')
     updated_price = models.CharField(max_length=255, default='')
+    updated_at = models.DateTimeField(auto_now=True)
     old_price = models.CharField(max_length=255, default='')
     price_1 = models.CharField(max_length=255, default='')
     price_1_gold = models.BooleanField(default=False)
