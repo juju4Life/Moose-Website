@@ -186,7 +186,6 @@ def update_moose_tcg():
 
                                 metrics.save()
 
-
                                 if index < 100:
                                     print(name, expansion, condition, printing)
                                     print(f"Current: {current_price}, Market: {market}, Low: {low}, Updated: {updated_price}")
