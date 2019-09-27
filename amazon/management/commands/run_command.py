@@ -13,6 +13,11 @@ api = MWS()
 class Command(BaseCommand):
     def handle(self, *args, **options):
 
+        # report_id = api.request_and_get_inventory_report('inventory')
+
+        p = api.parse_inactive_inventory('16611745912018153')
+
+        '''
         update_feed_list = []
         client = boto3.client(
             'sqs',
@@ -86,6 +91,8 @@ class Command(BaseCommand):
                 break
 
         # Upload Feed
+        
+        '''
 
         # z = api.subscriptions.create_subscriptions()
         # a, b = api.parse_active_listings_report('16381982011018137')

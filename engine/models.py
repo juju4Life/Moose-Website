@@ -1,6 +1,21 @@
 from django.db import models
 
 
+class CardPriceData(models.Model):
+    name = models.CharField(max_length=255, default='')
+    expansion = models.CharField(max_length=255, default='')
+    tcg_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    tcg_net = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    amazon_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    amazon_net = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    scg_buylist = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    ck_buylist = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    cfb_buylist = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+
+    def __str__(self):
+        return self.name
+
+
 class MooseAutopriceMetrics(models.Model):
     name = models.CharField(max_length=255, default='')
     expansion = models.CharField(max_length=255, default='')

@@ -107,7 +107,6 @@ def update_moose_tcg():
                                 seller_name = d.find('a', {'class': 'seller__name'}).text.strip()
 
                                 if seller_name != 'MTGFirst' and seller_name != 'Moose Loot' and condition == seller_condition:
-
                                     price, total_price, seller_total_sales = get_product_seller_info(d)
 
                                     price_dict = {

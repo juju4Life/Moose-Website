@@ -46,6 +46,7 @@ class MWS:
     finances = mws.Finances(access_key=access_key, account_id=seller_id, secret_key=secret_key, region='US')
     subscriptions = mws.Subscriptions(access_key=access_key, account_id=seller_id, secret_key=secret_key, region='US',
                                       uri='/Subscriptions/2013-07-01', version='2013-07-01')
+
     mws_errors = mws.MWSError()
 
     def request_and_get_inventory_report(self, request_type, start_date=None, end_date=None):
@@ -102,6 +103,25 @@ class MWS:
         sku_and_price = [{'sku': i[0], 'price': i[2]} for i in data if i[0] != '' and i[3] != '\r' and int(i[3].replace('\r', '')) > 0]
 
         return sku_and_price
+
+    def parse_inactive_inventory(self, report_id):
+        report = self.reports.get_report(report_id=report_id)
+        rep = ''.join(chr(x) for x in report.parsed).split('\n')
+        data = [i.split('\t') for i in rep[1:]]
+        # headers = [i.split('\t') for i in rep][0]
+        parsed_data = [
+            {
+                'sku': i[3],
+                'price': i[4],
+                'name': i[0],
+                'quantity': i[5],
+                'condition': i[12],
+            } for i in data if i[0] != '' and 'yugioh' not in i[0].lower() and 'yu-gi-oh' not in i[0].lower() and 'sleeve' not in i[0].lower()
+                               and 'deck box' not in i[0].lower() and 'booster box' not in i[0].lower() and ' lot ' not in i[0].lower()
+                               and 'foil' not in i[0].lower() and 'Magic: the Gathering' not in i[0]
+        ]
+
+        return parsed_data
 
     def parse_active_listings_report(self, report_id):
         report = self.reports.get_report(report_id=report_id)
