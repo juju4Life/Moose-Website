@@ -2,15 +2,16 @@ from django.db import models
 
 
 class CardPriceData(models.Model):
+    sku = models.CharField(max_length=255, default='')
     name = models.CharField(max_length=255, default='')
-    expansion = models.CharField(max_length=255, default='')
-    tcg_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    tcg_net = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    amazon_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    amazon_net = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    scg_buylist = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    ck_buylist = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    cfb_buylist = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    expansion = models.CharField(max_length=255, default='', blank=True)
+    tcg_price = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
+    tcg_net = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
+    amazon_price = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
+    amazon_net = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
+    scg_buylist = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
+    ck_buylist = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
+    cfb_buylist = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
 
     def __str__(self):
         return self.name
