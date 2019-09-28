@@ -1,10 +1,9 @@
 from django.core.management.base import BaseCommand
 from amazon.amazon_mws import MWS
-from engine.models import CardPriceData
+from engine.models import CardPriceData, MTG
 from engine.tcgplayer_api import TcgPlayerApi
 from orders.models import GroupName
 from my_customs.functions import check_direct_status, check_if_foil, null_to_zero
-
 
 mws_api = MWS()
 tcg = TcgPlayerApi('moose')
@@ -21,13 +20,28 @@ class Command(BaseCommand):
             if price_data['success'] is True:
                 for card in price_data['results']:
                     if card['subTypeName'] == 'Normal':
+                        market_price = null_to_zero(card['marketPrice'])
                         if market_price > 3.99:
                             product_id = card['productId']
-                            market_price = null_to_zero(card['marketPrice'])
-                            low_price = null_to_zero(card['lowPrice'])
-                            direct_low_price = null_to_zero(card['directLowPrice'])
-                            is_foil = check_if_foil(card['subTypeName'])
+                            card_info = MTG.objects.filter(product_id=product_id).first()
+                            if card_info is not None:
+                                name = card_info.name
+                                expansion = card_info.expansion
 
+                                low_price = null_to_zero(card['lowPrice'])
+                                direct_low_price = null_to_zero(card['directLowPrice'])
+                                is_foil = check_if_foil(card['subTypeName'])
+                                new_item = cards.create(
+                                    name=name,
+                                    expansion=expansion,
+                                    product_id=product_id
+                                )
+
+                            num_cards += 1
+                            print(num_cards)
+
+
+'''
         # report_id = mws_api.request_and_get_inventory_report('active_listings')
         report_id = '1681571789301816'
         amazon_cards = mws_api.parse_active_listings_report(report_id)[2]
@@ -44,7 +58,7 @@ class Command(BaseCommand):
                 obj.name = item_name
                 obj.amazon_price = price
                 obj.amazon_net = net
-
+'''
 
 
 

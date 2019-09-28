@@ -2,7 +2,7 @@ from django.db import models
 
 
 class CardPriceData(models.Model):
-    sku = models.CharField(max_length=255, default='')
+    sku = models.CharField(max_length=255, default='', blank=True)
     name = models.CharField(max_length=255, default='')
     expansion = models.CharField(max_length=255, default='', blank=True)
     product_id = models.CharField(max_length=255, default='', blank=True)
