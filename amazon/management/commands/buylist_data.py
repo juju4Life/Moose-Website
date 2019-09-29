@@ -16,6 +16,7 @@ class Command(BaseCommand):
         groups = GroupName.objects.filter(category='Magic the Gathering')
         num_cards = 0
         for group in groups:
+            print(group.group_name)
             price_data = tcg.price_by_group_id(group.group_id)
             if price_data['success'] is True:
                 for card in price_data['results']:
@@ -25,8 +26,8 @@ class Command(BaseCommand):
                             product_id = card['productId']
                             card_info = MTG.objects.filter(product_id=product_id).first()
                             if card_info is not None:
-                                name = card_info.name
-                                expansion = card_info.expansion
+                                name = card_info.product_name
+                                expansion = card_info.set_name
 
                                 low_price = null_to_zero(card['lowPrice'])
                                 direct_low_price = null_to_zero(card['directLowPrice'])
@@ -34,11 +35,13 @@ class Command(BaseCommand):
                                 new_item = cards.create(
                                     name=name,
                                     expansion=expansion,
-                                    product_id=product_id
+                                    product_id=product_id,
                                 )
 
-                            num_cards += 1
-                            print(num_cards)
+                                new_item.save()
+
+                                num_cards += 1
+                                print(num_cards)
 
 
 '''
