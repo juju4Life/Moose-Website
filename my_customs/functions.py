@@ -67,7 +67,7 @@ def convert_to_number_of_pages(number):
 
 def request_pages_data(url, tag, attribute, attribute_value):
 
-    r = requests.get(url).content
+    r = requests.get(url, verify=False).content
     soup = b(r, 'html.parser')
     data = soup.find_all(tag, {attribute: attribute_value})
 

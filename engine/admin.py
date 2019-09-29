@@ -33,7 +33,7 @@ api = TcgPlayerApi('first')
 @admin.register(CardPriceData)
 class CardPriceAdmin(admin.ModelAdmin):
     search_fields = ['name']
-    list_display = ['name', 'expansion']
+    list_display = ['name', 'expansion', 'tcg_price', 'tcg_net']
 
 
 @admin.register(MooseAutopriceMetrics)
