@@ -86,13 +86,12 @@ class Command(BaseCommand):
                 shipping_fees = 2.85
                 tracking_fee = .55
 
-                net = (updated_price * (100 - tcg_fee)) - flat_fee - shipping_fees
+                net = (updated_price * ((100 - tcg_fee) / 100)) - flat_fee - shipping_fees
                 if updated_price > 9.99:
                     net = net - tracking_fee
 
                 card.tcg_net = net
                 card.save()
-            print(index)
 
 
 

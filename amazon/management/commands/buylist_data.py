@@ -22,7 +22,7 @@ class Command(BaseCommand):
                 for card in price_data['results']:
                     if card['subTypeName'] == 'Normal':
                         market_price = null_to_zero(card['marketPrice'])
-                        if market_price > 3.99:
+                        if market_price > 2.99:
                             product_id = card['productId']
                             card_info = MTG.objects.filter(product_id=product_id).first()
                             if card_info is not None:
@@ -32,13 +32,12 @@ class Command(BaseCommand):
                                 low_price = null_to_zero(card['lowPrice'])
                                 direct_low_price = null_to_zero(card['directLowPrice'])
                                 is_foil = check_if_foil(card['subTypeName'])
-                                new_item = cards.create(
+
+                                cards.get_or_create(
                                     name=name,
                                     expansion=expansion,
                                     product_id=product_id,
                                 )
-
-                                new_item.save()
 
                                 num_cards += 1
                                 print(num_cards)
