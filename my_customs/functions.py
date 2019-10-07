@@ -3,8 +3,12 @@ import math
 import requests
 from.decorators import offset
 from bs4 import BeautifulSoup as b
-import random
 
+
+def request_soup(url):
+    r = requests.get(url, verify=False).content
+    soup = b(r, "html.parser")
+    return soup
 
 
 @offset

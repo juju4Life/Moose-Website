@@ -114,8 +114,28 @@ def get_product_seller_info(d):
         return price, total_price, seller_total_sales
 
 
+def set_map(expansion):
 
+    mapped = {
+        "Ravnica: City of Guilds": 'Ravnica',
+        "Magic 2010 (2010)": "Magic 2010",
+        "Magic 2011 (2011)": "Magic 2011",
+        "Magic 2012 (2012)": "Magic 2012",
+        "Magic 2013 (2013)": "Magic 2013",
+        "Magic 2014 (2014)": "Magic 2014",
+        "Magic 2015 (2015)": "Magic 2015",
+        "10th Edition": "Tenth Edition",
+        "9th Edition": "Ninth Edition",
+        "8th Edition": "Eighth Edition",
+        "7th Edition": "Seventh Edition",
+        "6th Edition": "Sixth Edition",
+        "5th Edition": "Fifth Edition",
+        "4th Edition": "Fourth Edition",
+        "Revised Edition": "Revised",
+        "Battle Royale Box Set": "Battle Royale",
+        "Conspiracy: Take the Crown": "Conspiracy 2: Take the Crown",
 
+    }
 
 
 

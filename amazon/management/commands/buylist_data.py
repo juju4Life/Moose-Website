@@ -24,6 +24,8 @@ class Command(BaseCommand):
         print(len(amazon_fee_list))
         for index, card in enumerate(amazon_fee_list):
             item_name = card['name']
+            if "39;" in item_name:
+                item_name = item_name.replace("39;", "'")
             if 'foil' not in item_name.lower():
                 sku = card['sku']
                 # net = card['net']
@@ -41,8 +43,9 @@ class Command(BaseCommand):
                         c.save()
                         print(index)
                     else:
-                        print('Not On TcgPlayer')
-                        print(item_name)
+                        pass
+                        # c = card_data.filter(name__in=substrings)
+
                 except Exception as e:
                     print(e)
                     print(card)
