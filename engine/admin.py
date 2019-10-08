@@ -30,10 +30,29 @@ except ImportError:
 api = TcgPlayerApi('first')
 
 
+class CardDataResource(resources.ModelResource):
+
+    name = Field(attribute='name', column_name='Name')
+    expansion = Field(attribute='expansion', column_name='Set')
+    tcg_price = Field(attribute='tcg_price', column_name='Tcg Price')
+    tcg_net = Field(attribute='tcg_net', column_name='Tcg Net')
+    amazon_price = Field(attribute='amazon_price', column_name='Amazon Price')
+    amazon_net = Field(attribute='amazon_net', column_name='Amazon Net')
+    scg_buylist = Field(attribute='scg_buylist', column_name='SCG Buylist')
+    ck_buylist = Field(attribute='ck_buylist', column_name='CK Buylist')
+    cfb_buylist = Field(attribute='cfb_buylist', column_name='CFB Buylist')
+
+    class Meta:
+        model = CardPriceData
+        exclude = ('sku', 'product_id', 'id', )
+
+
 @admin.register(CardPriceData)
 class CardPriceAdmin(ImportExportModelAdmin):
     search_fields = ['name']
-    list_display = ['name', 'expansion', 'tcg_price', 'tcg_net', 'amazon_price', 'amazon_net']
+    list_display = ['name', 'expansion', 'ck_buylist', 'scg_buylist', 'tcg_price', 'tcg_net', 'amazon_price', 'amazon_net']
+    resource_class = CardDataResource
+
 
 
 @admin.register(MooseAutopriceMetrics)

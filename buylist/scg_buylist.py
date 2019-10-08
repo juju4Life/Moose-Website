@@ -35,10 +35,6 @@ def get_buylist(cat_id):
 
     for card_list in results['results']:
         foil = card_list[0]['foil']
-        if foil == 'true':
-            foil = True
-        else:
-            foil = False
 
         name = card_list[0]['name']
         nm_price = 0
