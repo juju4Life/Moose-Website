@@ -31,7 +31,7 @@ api = TcgPlayerApi('first')
 
 
 @admin.register(CardPriceData)
-class CardPriceAdmin(admin.ModelAdmin):
+class CardPriceAdmin(ImportExportModelAdmin):
     search_fields = ['name']
     list_display = ['name', 'expansion', 'tcg_price', 'tcg_net', 'amazon_price', 'amazon_net']
 
