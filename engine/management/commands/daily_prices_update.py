@@ -1,6 +1,6 @@
+import random
 from django.core.management.base import BaseCommand
 from engine.models import CardPriceData
-import random
 from my_customs.functions import request_pages_data
 from tcg.tcg_functions import moose_price_algorithm, get_product_seller_info
 
@@ -12,10 +12,8 @@ def url(product_id, foil, condition, page=1):
         'Normal': f'https://shop.tcgplayer.com/productcatalog/product/changepricetablepage?filterName=Condition&filterValue={condition}&productId={product_id}&'
         f'gameName=magic&page={page}&X-Requested-With=XMLHttpRequest&_={random_string}',
 
-
         'Foil': f'https://shop.tcgplayer.com/productcatalog/product/changepricetablepage?filterName=Printing&filterValue=Foil&productId={product_id}&'
         f'gameName=magic&page={page}&X-Requested-With=XMLHttpRequest&_={random_string}',
-
         }
 
     return url_path[foil]
@@ -26,6 +24,7 @@ class Command(BaseCommand):
         excluded_sets = [
             ''
         ]
+
         cards = CardPriceData.objects.exclude(expansion__in=excluded_sets)
 
         for index, card in enumerate(cards):

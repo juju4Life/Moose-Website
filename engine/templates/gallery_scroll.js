@@ -4,15 +4,23 @@
 <script type='text/javascript'>
 
     var endpoint = "{% url 'hotlist' %}"
+
     $.ajax({
 		method: 'GET',
 		url: endpoint,
 		success: function(data){
 		    // Data set format = [[name, expansion, price, image], [name,...]]
-            document.getElementById('gallery-image-1').setAttribute('src', data.cards[0][3]);
-            document.getElementById('image-expansion').innerHTML = `${data.cards[0][1]}:`;
-            document.getElementById('gallery-image-2').setAttribute('src', data.cards[1][3]);
-            document.getElementById('gallery-image-3').setAttribute('src', data.cards[2][3]);
+		    var imageData = function(position){
+            index = parseInt(position) - 1
+            document.getElementById(`gallery-image-${position}`).setAttribute('src', data.cards[index][3]);
+            document.getElementById(`image-info-${position}`).innerHTML = `${data.cards[index][1]}: ${data.cards[0][0]}`;
+            document.getElementById(`image-price-${position}`).innerHTML = `$${data.cards[index][2]}`;
+    }
+            imageData(1)
+            imageData(2)
+            imageData(3)
+
+
 		},
 
 		error: function(error_message){

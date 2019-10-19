@@ -17,12 +17,12 @@
       	<iframe name="submit-frame" style="display: none"></iframe>
 
 
-      	{% for product, card_price, form in products %}
+      	{% for product in products %}
 		<div style="margin-bottom: 3%;" class="col-sm-2">
         <div class=col-sm-12>
           <form action="{% url 'add_to_cart' product.id %}" method="post" target="submit-frame">{% csrf_token %}
             <div style="" class="row" id=""> 
-              <legend class="border-bottom mb-4">{{product.name}}</legend>
+              <legend class="border-bottom mb-4">{{product.product_name}}</legend>
               <img class="img-responsive center-block" src="https://6d4be195623157e28848-7697ece4918e0a73861de0eb37d08968.ssl.cf1.rackcdn.com/33252_200w.jpg">
             </div>
 

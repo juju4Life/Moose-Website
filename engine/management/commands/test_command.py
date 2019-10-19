@@ -6,7 +6,7 @@ from buylist.scg_buylist import get_scg_buylist
 class Command(BaseCommand):
     def handle(self, *args, **options):
         ck_buylist(get_page_count())
-        # get_scg_buylist()
+        get_scg_buylist()
 
 
 
