@@ -115,6 +115,7 @@ class MTG(models.Model):
     product_name = models.CharField(max_length=255, default='', db_index=True, verbose_name='name')
     product_line = models.CharField(max_length=255, default='')
     price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    stock = models.IntegerField(default=0)
     title = models.CharField(max_length=255, default='')
     rarity = models.CharField(max_length=255, default='')
     number = models.CharField(max_length=255, default='')
