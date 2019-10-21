@@ -2,69 +2,23 @@
 {% load crispy_forms_tags %}
 {% load extended_tags %}
 {% block set_list %}
-{% include 'search_result_style.html' %}
 
-		{% if error != '' %}
-		<center>
-			<div id="errorFrameOutsideFrame">
-				<div id="errorFrame">
-			      	<H3>"<span style="color: red;">{{error}}</span>" not found in our Database</H3>
-			      	<h4>Please check your spelling</h4>
-		        </div>
-	        </div>
-        </center>
-      	{% else %}
-      	<iframe name="submit-frame" style="display: none"></iframe>
+    {% if error != '' %}
 
+        <h1>Error</h1>
 
-      	{% for product in products %}
-		<div style="margin-bottom: 3%;" class="col-sm-2">
-        <div class=col-sm-12>
-          <form action="{% url 'add_to_cart' product.id %}" method="post" target="submit-frame">{% csrf_token %}
-            <div style="" class="row" id=""> 
-              <legend class="border-bottom mb-4">{{product.product_name}}</legend>
-              <img class="img-responsive center-block" src="https://6d4be195623157e28848-7697ece4918e0a73861de0eb37d08968.ssl.cf1.rackcdn.com/33252_200w.jpg">
+    {% else %}
+        {% for item, image in items %}
+            <div style="" class="row">
+                <div class="cold-sm-12">
+                    <img style="max-height:200px;" src="{{image}}">
+                </div>
             </div>
 
-            <div style="" class="row" id=""> 
-            <center>
-            {{form|crispy}}
+        {% endfor %}
 
+    {% endif %}
 
-              <div class="col-sm-12">             
-                <b><span class="price_id" id="price_{{product.product_id}}">${{product.price}} ({{product.quantity}} in stock)</span></b>
-              </div>
-
-              <input id='card_price' type="hidden" name="card_price" min={{card_price}} max={{card_price}} value={{card_price}}>
-              
-
-              <div class="col-sm-12">
-                
-              <input style="color: black;" size="2" id='qtyBox' type="number" name="quantity" min="1" max="8">
-            
-              <button style="margin-top: -2%;" class="btn btn-success" data-toggle="popover" data-animation="true"  data-content="Added to cart"  type="submit" id='button'>+</button>
-            
-              </div>
-
-              <div class="col-sm-2">
-              
-              </div>
-
-              
-              
-            </center>
-          </div>
-          </form>
-        </div>
-                  
-    </div>
-
-
- 
-     	{% endfor %}
-     	{% endif %}
-
-    
     {% block script %}
     <script>
 
@@ -80,7 +34,7 @@
             dataType: 'json',
             success: function (data) {
               alert("D" + data.card);
-              
+
             }
           });
 
