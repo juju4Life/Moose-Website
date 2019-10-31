@@ -3,6 +3,7 @@ import math
 import requests
 from.decorators import offset
 from bs4 import BeautifulSoup as b
+from time import sleep
 
 
 def request_soup(url):
@@ -70,7 +71,7 @@ def convert_to_number_of_pages(number):
 
 
 def request_pages_data(url, tag, attribute, attribute_value):
-
+    sleep(.5)
     r = requests.get(url, verify=False).content
     soup = b(r, 'html.parser')
     data = soup.find_all(tag, {attribute: attribute_value})

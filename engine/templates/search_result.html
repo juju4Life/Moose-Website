@@ -3,16 +3,29 @@
 {% load extended_tags %}
 {% block set_list %}
 
+{% include 'search_result_style.html' %}
+
     {% if error != '' %}
 
         <h1>Error</h1>
 
     {% else %}
         {% for item, image in items %}
-            <div style="" class="row">
-                <div class="cold-sm-12">
-                    <img style="max-height:200px;" src="{{image}}">
+            <div style="padding-top: 1%;" class="row card-info">
+
+                <div style="margin-bottom: 1%; background-color: rgba(222, 222, 222, .5);" class="col-sm-12">
+
+                    <div class="col-sm-3">
+                        <img style="max-height:200px; padding: 3%;"
+                             src="https://img.scryfall.com/cards/large/front/e/5/e52214e1-404a-405a-b08e-20e13c087338.jpg?1559959289">
+                    </div>
+
+                    <div>
+
+                    </div>
+
                 </div>
+
             </div>
 
         {% endfor %}
