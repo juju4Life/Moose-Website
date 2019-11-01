@@ -177,7 +177,7 @@ class MWS:
         collectible_conditions = [{'sku': i[3], 'price': i[4], 'condition': self.condition_guide[i[12]]} for i in data if i[0] != '' and i[5] != '' and i[5] != '\r' and
                 int(i[5].replace('\r', '')) > 0 and self.condition_guide[i[12]]['short'] == 'Collectible' and self.condition_guide[i[12]]['full']
                                   != 'CollectibleLikeNew']
-        return new__like_conditions, collectible_conditions, new_conditions
+        return new__like_conditions, collectible_conditions
 
     def update_sku_price(self, xml_file):
         updated = self.feeds.submit_feed(feed=xml_file, feed_type='_POST_PRODUCT_PRICING_DATA_').parsed
