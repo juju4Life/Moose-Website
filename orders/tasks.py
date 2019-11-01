@@ -44,7 +44,7 @@ def update_moose_tcg():
     start_time = time()
     # Entire Moose Loot Listed inventory
     listed_cards = api.get_category_skus('magic')
-    print(listed_cards)
+    print(listed_cards['success'])
     if listed_cards['success'] is True:
         print(f"Updating {listed_cards['totalItems']} for Moose Inventory")
         for index, card in enumerate(listed_cards['results']):
