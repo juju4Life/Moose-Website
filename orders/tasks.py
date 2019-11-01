@@ -109,6 +109,7 @@ def update_moose_tcg():
 
                         # Check if there are products in the request. If not that indicates no more listings and thus we break the loop
                         if not data:
+                            print('No data')
                             break
 
                         # loop over each item on the page and get Seller Info
@@ -141,7 +142,6 @@ def update_moose_tcg():
                     '''
 
                     updated_price = moose_price_algorithm(seller_data=seller_data_list, )
-
                     '''
                      new = moose_inventory.create(
                         name=card_data['card_name'],
@@ -161,9 +161,12 @@ def update_moose_tcg():
                     new.save()
                     '''
 
+                    print(name, expansion, condition, current_price, updated_price)
+
                     if updated_price is not None and round(updated_price, 2) != current_price:
                         # print(index)
                         api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
+                        '''
                         metrics, created = MooseAutopriceMetrics.objects.get_or_create(sku=sku)
                         metrics.name = name
                         metrics.expansion = expansion
@@ -193,6 +196,7 @@ def update_moose_tcg():
                             count += 1
 
                         metrics.save()
+                        '''
 
                         if index < 100:
                             print(name, expansion, condition, printing)
