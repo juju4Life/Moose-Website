@@ -93,6 +93,17 @@ def update_moose_tcg():
                         if not data:
                             print('No data', page)
                             print(name, expansion, condition, product_id)
+                            path = f'https://shop.tcgplayer.com/productcatalog/product/getpricetable?captureFeaturedSellerData=True&pageSize=10&productId={product_id}' \
+                                f'&gameName=magic&useV2Listings=false&_={random_string}&page={page-1}'
+                            data, page_source = request_pages_data(
+                                url=path,
+                                tag='div',
+                                attribute='class',
+                                attribute_value='product-listing ',
+                            )
+
+                            print(page_source)
+
                             break
 
                         # loop over each item on the page and get Seller Info
