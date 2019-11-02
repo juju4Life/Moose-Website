@@ -91,7 +91,8 @@ def update_moose_tcg():
 
                         # Check if there are products in the request. If not that indicates no more listings and thus we break the loop
                         if not data:
-                            print('No data')
+                            print('No data', page)
+                            print(name, expansion, condition, product_id)
                             break
 
                         # loop over each item on the page and get Seller Info
@@ -181,7 +182,6 @@ def update_moose_tcg():
                         if index < 100:
                             print(name, expansion, condition, printing)
                             print(f"Current: {current_price}, Market: {market}, Low: {low}, Updated: {updated_price}")
-
 
             except Exception as e:
                 print(e)
