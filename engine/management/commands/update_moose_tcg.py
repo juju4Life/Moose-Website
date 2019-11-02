@@ -43,3 +43,5 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         update_moose_tcg.apply_async(que='low_priority')
 
+
+

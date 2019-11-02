@@ -102,7 +102,7 @@ def get_product_seller_info(d):
 
             # 25 would be extracted from shipping text that state "Free shipping over 25". We make this result 0 and
             # handle additional shipping costs using defaults
-            if shipping == 25.:
+            if shipping == 25. or shipping == 35.:
                 shipping = 0
 
             # Default shipping added to cards under five.

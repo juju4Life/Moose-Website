@@ -15,28 +15,8 @@ from my_customs.functions import request_pages_data
 from tcg.tcg_functions import moose_price_algorithm, get_product_seller_info
 from time import time
 
+
 api = TcgPlayerApi('moose')
-
-'''
-Url function generates dynamic url based on differences in card attributes. Random number is generated to provide the 13-digit request number that Tcgplayer 
-expects with each request. Different urls are required for Foil and Normal versions of cards.
-'''
-
-
-def url(product_id, foil, condition, page=1):
-    random_string = str(random.randint(1000000000000, 9999999999999))
-    condition = condition.replace(" ", "")
-    url_path = {
-        'Normal': f'https://shop.tcgplayer.com/productcatalog/product/changepricetablepage?filterName=Condition&filterValue={condition}&productId={product_id}&'
-        f'gameName=magic&page={page}&X-Requested-With=XMLHttpRequest&_={random_string}',
-
-
-        'Foil': f'https://shop.tcgplayer.com/productcatalog/product/changepricetablepage?filterName=Printing&filterValue=Foil&productId={product_id}&'
-        f'gameName=magic&page={page}&X-Requested-With=XMLHttpRequest&_={random_string}',
-
-        }
-
-    return url_path[foil]
 
 
 @shared_task(name='orders.tasks.update_moose_tcg')
@@ -95,13 +75,15 @@ def update_moose_tcg():
                     next_page = True
                     page = 1
                     seller_data_list = []
+                    random_string = str(random.randint(1000000000000, 9999999999999))
 
                     while next_page is True:
 
-                        request_path = url(product_id=product_id, condition=condition, foil=printing, page=page)
+                        path = f'https://shop.tcgplayer.com/productcatalog/product/getpricetable?captureFeaturedSellerData=True&pageSize=10&productId={product_id}' \
+                            f'&gameName=magic&useV2Listings=false&_={random_string}&page={page}'
 
                         data, page_source = request_pages_data(
-                            url=request_path,
+                            url=path,
                             tag='div',
                             attribute='class',
                             attribute_value='product-listing ',
@@ -161,8 +143,6 @@ def update_moose_tcg():
                     new.save()
                     '''
 
-                    print(name, expansion, condition, current_price, updated_price)
-
                     if updated_price is not None and round(updated_price, 2) != current_price:
                         # print(index)
                         api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
@@ -198,9 +178,11 @@ def update_moose_tcg():
                         metrics.save()
                         '''
 
-                        if index < 100:
+                        '''
+                                                    if index < 100:
                             print(name, expansion, condition, printing)
                             print(f"Current: {current_price}, Market: {market}, Low: {low}, Updated: {updated_price}")
+                        '''
 
             except Exception as e:
                 print(e)
