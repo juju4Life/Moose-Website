@@ -12,7 +12,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5457249">
+    <splitter split-orientation="horizontal" split-proportion="0.71449816">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -51,11 +51,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/orders/tasks.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="103">
-                  <caret line="212" column="51" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="212" selection-end-column="51" />
+                <state relative-caret-position="3366">
+                  <caret line="198" column="51" selection-start-line="198" selection-start-column="51" selection-end-line="198" selection-end-column="51" />
                   <folding>
                     <element signature="e#0#56#0" expanded="true" />
                   </folding>
@@ -63,11 +63,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="167" column="85" selection-start-line="167" selection-start-column="85" selection-end-line="167" selection-end-column="85" />
+                <state relative-caret-position="391">
+                  <caret line="23" selection-start-line="23" selection-end-line="23" />
                   <folding>
                     <element signature="e#0#16#0" expanded="true" />
                   </folding>
@@ -285,8 +285,8 @@
         <option value="$PROJECT_DIR$/engine/management/commands/test_command.py" />
         <option value="$PROJECT_DIR$/my_customs/functions.py" />
         <option value="$PROJECT_DIR$/tcg/tcg_functions.py" />
-        <option value="$PROJECT_DIR$/orders/tasks.py" />
         <option value="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" />
+        <option value="$PROJECT_DIR$/orders/tasks.py" />
       </list>
     </option>
   </component>
@@ -533,7 +533,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32980132" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32955974" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49739778" visible="true" weight="0.29411766" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49739778" visible="true" weight="0.503268" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5026022" side_tool="true" weight="0.4013072" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.40784314" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -977,16 +977,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orders/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="212" column="51" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="212" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my_customs/functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
@@ -999,10 +989,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="167" column="85" selection-start-line="167" selection-start-column="85" selection-end-line="167" selection-end-column="85" />
+        <state relative-caret-position="391">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3366">
+          <caret line="198" column="51" selection-start-line="198" selection-start-column="51" selection-end-line="198" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
