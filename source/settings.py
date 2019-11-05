@@ -29,26 +29,25 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(hour=5, minute=0, day_of_week=1),
     },
 
+}
+
 '''
 
     'task-update-moose-tcg': {
         'task': 'orders.tasks.update_moose_tcg',
         'schedule': 86400,
     }, 
-''' 
-
-
-    'task-refresh-ebay-token': {
-            'task': 'ebay.tasks.refresh_access_token',
-            'schedule': 6600,
-        },
-
+    
     'task-update-paypal-token': {
             'task': 'ppal.tasks.update_paypal_token',
             'schedule': 28800,
         },
-
-}
+        
+    'task-refresh-ebay-token': {
+            'task': 'ebay.tasks.refresh_access_token',
+            'schedule': 6600,
+        },
+'''
 
 # EMAIL_BACKEND = 'django.core.email.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'mtgfirst'
@@ -147,6 +146,7 @@ TEMPLATES = [
         'DIRS': ['engine\\templates','customer\\templates', 'users\\templates',
                 'users\\templates\\registration', 'orders\\templates'
         ],
+
         'OPTIONS': {
             'loaders': ['admin_tools.template_loaders.Loader', 'django.template.loaders.app_directories.Loader'],
             'context_processors': [
