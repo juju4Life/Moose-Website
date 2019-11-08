@@ -146,7 +146,6 @@ def update_moose_tcg():
                         # print(index)
                         api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
 
-                        '''
                         metrics, created = MooseAutopriceMetrics.objects.get_or_create(sku=sku)
                         metrics.name = name
                         metrics.expansion = expansion
@@ -176,7 +175,7 @@ def update_moose_tcg():
                             count += 1
 
                         metrics.save()
-                        '''
+
 
                         if index < 100:
                             print(name, expansion, condition, printing)
