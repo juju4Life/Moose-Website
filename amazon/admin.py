@@ -13,6 +13,8 @@ class PricesAdmin(admin.ModelAdmin):
     ordering = ['-exclude']
     list_display = ['sku', 'price', 'exclude', 'price_metrics', 'name', 'expansion', 'condition', 'is_foil']
     fields = (
+        'exclude',
+        'price_metrics',
         ('is_foil', 'condition',),
         ('sku', 'price',),
         ('name', 'expansion',),
