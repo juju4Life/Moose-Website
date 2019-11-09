@@ -4,6 +4,7 @@ from amazon.amazon_mws import MWS
 from my_customs.exml import CreateXML
 from django.utils import timezone
 import time
+import json
 
 api = MWS()
 x = CreateXML()
@@ -15,9 +16,9 @@ class Command(BaseCommand):
         # We first check to see if the latest feed submission has been successful.
         # If False, we do nothing and check again when this code block runs.
 
-        last_feed = FeedSubmission.objects.latest('feed_created_on')
-        update_prices = False
-        if last_feed.success is False:
+        last_feed = True  # FeedSubmission.objects.latest('feed_created_on')
+        update_prices = True
+        if last_feed is False:  # Add success
             try:
 
                 # If the check return is False, we request an update from MWS and update the Feed Status accordingly.
@@ -43,7 +44,7 @@ class Command(BaseCommand):
             exclude_list = AmazonPriceExclusions.objects.all().values_list('sku', flat=True)
             print(f'Length of Exclude list {len(exclude_list)}')
 
-            report_id = api.request_and_get_inventory_report('all_listings')
+            report_id = '17476698068018209'  # api.request_and_get_inventory_report('all_listings')
             if report_id is not None:
 
                 # Inventory is separated in New or Collectible Condition
@@ -87,13 +88,23 @@ class Command(BaseCommand):
                             if prices is not None:
                                 for i in prices:
                                     sku = i['SellerSKU']['value']
+                                    price_list = []
+                                    card_num = 0
                                     try:
-                                        try:
-                                            competitive_price = float(i['Product']['LowestOfferListings']['LowestOfferListing'][0]['Price']['LandedPrice']['Amount']['value'])
-                                        except KeyError:
-                                            competitive_price = float(
-                                                i['Product']['LowestOfferListings']['LowestOfferListing']['Price']['LandedPrice']['Amount']['value'])
+                                        while len(price_list) < 5:
+                                            try:
+                                                competitive_price = float(
+                                                    i['Product']['LowestOfferListings']['LowestOfferListing']['Price']['LandedPrice']['Amount']['value'])
+                                                break
 
+                                            except TypeError:
+                                                try:
+                                                    competitive_price = float(i['Product']['LowestOfferListings']['LowestOfferListing'][card_num]['Price'][
+                                                                                  'LandedPrice']['Amount']['value'])
+                                                    price_list.append(float(competitive_price))
+                                                    card_num += 1
+                                                except IndexError:
+                                                    break
                                         try:
                                             old_price = [float(i['price']) for i in items if i['sku'] == sku][0]
                                         except ValueError as e:
@@ -102,33 +113,48 @@ class Command(BaseCommand):
                                             old_price = None
 
                                         if old_price is not None:
+                                            old_price = float(old_price)
 
-                                            if float(old_price) == competitive_price:
-                                                try:
-                                                    competitive_price = float(
-                                                        i['Product']['LowestOfferListings']['LowestOfferListing'][1]['Price']['LandedPrice']['Amount']['value'])
-                                                except KeyError:
-                                                    pass
+                                            if price_list:
+                                                average_price = sum(price_list) / len(price_list)
+                                                competitive_price = price_list[0]
+                                                avg_count = 1
 
-                                            condition = [i['condition'] for i in items if i['sku'] == sku][0]
+                                                if old_price == competitive_price:
+                                                    competitive_price = price_list[1]
+                                                    avg_count = 2
 
-                                            if 'LikeNew' in condition['full']:
-                                                competitive_price = round(competitive_price * .9, 2)
+                                                while True:
+                                                    if avg_count > len(price_list) - 1:
+                                                        break
+
+                                                    if competitive_price < average_price / 1.2:
+                                                        competitive_price = price_list[avg_count]
+                                                        avg_count += 1
+
+                                                    else:
+                                                        break
+                                                # Set minimum for certain user-specified cards
+                                                if sku in exclude_list:
+                                                    min_price = AmazonPriceExclusions.objects.get(sku=sku).price
+                                                    if competitive_price < min_price:
+                                                        competitive_price = min_price
+                                                else:
+                                                    competitive_price = competitive_price - .01
+
+                                                update_feeds.append({
+                                                    'sku': sku,
+                                                    'price': competitive_price,
+                                                })
+
+                                                print(price_list, old_price)
+                                                print(f'Average Price: {average_price}')
+                                                print(competitive_price, sku)
+
                                             else:
-                                                competitive_price = round(competitive_price - .01, 2)
+                                                pass
 
-                                            # print(sku, condition['full'], old_price, competitive_price)
-
-                                            # Set minimum for certain user-specified cards
-                                            if sku in exclude_list:
-                                                min_price = AmazonPriceExclusions.objects.get(sku=sku).price
-                                                if competitive_price < min_price:
-                                                    competitive_price = min_price
-
-                                            update_feeds.append({
-                                                'sku': sku,
-                                                'price': competitive_price,
-                                            })
+                                                # print(sku, condition['full'], old_price, competitive_price)
 
                                     except KeyError as e:
                                         print(e)
@@ -144,6 +170,9 @@ class Command(BaseCommand):
 
                 # Generate the XML file in MWS required format, then submit that file as a feed to MWS
                 if update_feeds:
+                    pass
+
+                    '''
                     feed = x.generate_mws_price_xml(update_feeds)
                     feed_submission = api.update_sku_price(feed)
 
@@ -158,6 +187,7 @@ class Command(BaseCommand):
                     )
 
                     new_feed.save()
+                    '''
 
 
 
