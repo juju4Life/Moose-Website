@@ -151,6 +151,8 @@ class Command(BaseCommand):
                                                 print(f'Average Price: {average_price}')
                                                 print(competitive_price, sku)
 
+                                                card_metrics = AmazonPriceExclusions.objects.get_or_create()
+
                                             else:
                                                 pass
 

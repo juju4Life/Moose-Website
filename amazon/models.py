@@ -30,6 +30,7 @@ class AmazonPriceExclusions(models.Model):
     sku = models.CharField(max_length=255, default='', unique=True)
     price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     price_metrics = models.CharField(max_length=255, default='', blank=True)
+    exclude = models.BooleanField(default=True)
 
     def __str__(self):
         return self.sku
