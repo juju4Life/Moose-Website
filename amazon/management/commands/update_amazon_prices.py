@@ -136,12 +136,16 @@ class Command(BaseCommand):
                                                         break
                                                 # Set minimum for certain user-specified cards
                                                 if sku in exclude_list:
+                                                    pass
+
+                                                    '''
                                                     min_price = AmazonPriceExclusions.objects.get(sku=sku).price
                                                     if competitive_price < min_price:
                                                         competitive_price = min_price
+                                                    '''
                                                 else:
                                                     competitive_price = competitive_price - .01
-
+                                                competitive_price = competitive_price - .01
                                                 update_feeds.append({
                                                     'sku': sku,
                                                     'price': competitive_price,
@@ -152,10 +156,13 @@ class Command(BaseCommand):
                                                 print(competitive_price, sku)
 
                                                 card_metrics, created = AmazonPriceExclusions.objects.get_or_create(sku=sku)
-                                                card_metrics.price_metrics = price_list
-                                                card_metrics.price = competitive_price
-                                                if created:
+                                                if card_metrics.name == '':
                                                     card_metrics.exclude = False
+                                                    card_metrics.price_metrics = price_list
+                                                    card_metrics.price = competitive_price
+                                                    if created:
+                                                        card_metrics.exclude = False
+                                                card_metrics.save()
 
                                             else:
                                                 pass
