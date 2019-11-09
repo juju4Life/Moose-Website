@@ -16,9 +16,9 @@ class Command(BaseCommand):
         # We first check to see if the latest feed submission has been successful.
         # If False, we do nothing and check again when this code block runs.
 
-        last_feed = True  # FeedSubmission.objects.latest('feed_created_on')
-        update_prices = True
-        if last_feed is False:  # Add success
+        last_feed = FeedSubmission.objects.latest('feed_created_on')
+        update_prices = False
+        if last_feed.success is False:  # Add success
             try:
 
                 # If the check return is False, we request an update from MWS and update the Feed Status accordingly.
@@ -41,7 +41,7 @@ class Command(BaseCommand):
 
         if update_prices is True:
             update_feeds = []
-            exclude_list = AmazonPriceExclusions.objects.all().values_list('sku', flat=True)
+            exclude_list = AmazonPriceExclusions.objects.filter(exclude=True).values_list('sku', flat=True)
             print(f'Length of Exclude list {len(exclude_list)}')
 
             report_id = '17476698068018209'  # api.request_and_get_inventory_report('all_listings')
@@ -151,7 +151,11 @@ class Command(BaseCommand):
                                                 print(f'Average Price: {average_price}')
                                                 print(competitive_price, sku)
 
-                                                card_metrics = AmazonPriceExclusions.objects.get_or_create()
+                                                card_metrics, created = AmazonPriceExclusions.objects.get_or_create(sku=sku)
+                                                card_metrics.price_metrics = price_list
+                                                card_metrics.price = competitive_price
+                                                if created:
+                                                    card_metrics.exclude = False
 
                                             else:
                                                 pass
