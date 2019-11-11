@@ -63,11 +63,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="39">
-                  <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
+                <state relative-caret-position="73">
+                  <caret line="165" column="50" selection-start-line="165" selection-start-column="50" selection-end-line="165" selection-end-column="50" />
                   <folding>
                     <element signature="e#0#11#0" expanded="true" />
                   </folding>
@@ -87,7 +87,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/.env">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="340">
@@ -154,8 +154,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/amazon/mws/mws.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="21">
-                  <caret line="374" column="38" lean-forward="true" selection-start-line="374" selection-start-column="38" selection-end-line="374" selection-end-column="38" />
+                <state relative-caret-position="157">
+                  <caret line="382" lean-forward="true" selection-start-line="382" selection-end-line="382" />
                 </state>
               </provider>
             </entry>
@@ -319,10 +319,10 @@
         <option value="$PROJECT_DIR$/amazon/models.py" />
         <option value="$PROJECT_DIR$/amazon/admin.py" />
         <option value="$PROJECT_DIR$/amazon/amazon_mws.py" />
-        <option value="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/amazon/mws/mws.py" />
         <option value="$PROJECT_DIR$/amazon/management/commands/run_command.py" />
+        <option value="$PROJECT_DIR$/amazon/mws/mws.py" />
+        <option value="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" />
       </list>
     </option>
   </component>
@@ -581,7 +581,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="895" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.38066915" />
       <window_info id="Favorites" order="1" side_tool="true" />
@@ -1029,13 +1028,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/amazon/mws/mws.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="374" column="38" lean-forward="true" selection-start-line="374" selection-start-column="38" selection-end-line="374" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/amazon/management/commands/run_command.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
@@ -1046,20 +1038,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amazon/mws/mws.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="382" lean-forward="true" selection-start-line="382" selection-end-line="382" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="165" column="50" selection-start-line="165" selection-start-column="50" selection-end-line="165" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

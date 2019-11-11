@@ -202,7 +202,7 @@ class Command(BaseCommand):
 
                     new_feed.save()
 
-        send_mail(subject='Amazon Price Alerts', recipient_list=recipient_list, message="\n".join(send_list), from_email='TcgFirst')
+        # send_mail(subject='Amazon Price Alerts', recipient_list=recipient_list, message="\n".join(send_list), from_email='TcgFirst')
 
 
 
