@@ -346,11 +346,11 @@ class Subscriptions(MWS):
     def create_subscriptions(self, subscription_type='AnyOfferChanged', marketplace_id='ATVPDKIKX0DER', enable_subscription='true'):
         data = dict(
             Action='CreateSubscription',
-            MarketplaceId=marketplace_id,
+            MarketplaceId=marketplace_id
         )
 
         data.update(utils.enumerate_param('Destination.AttributeList.member.1.Key', 'sqsQueueUrl'))
-        data.update(utils.enumerate_param('Destination.AttributeList.member.1.Value', 'https://sqs.us-east-1.amazonaws.com/963180512106/Alert'))
+        data.update(utils.enumerate_param('Destination.AttributeList.member.1.Value', 'https://sqs.us-east-2.amazonaws.com/963180512106/PriceAlert'))
         data.update(utils.enumerate_param('Destination.DeliveryChannel', 'SQS'))
         data.update(utils.enumerate_param('Subscription.NotificationType', subscription_type))
         data.update(utils.enumerate_param('Subscription.IsEnabled', enable_subscription))
@@ -364,22 +364,21 @@ class Subscriptions(MWS):
         )
 
         data.update(utils.enumerate_param('Destination.AttributeList.member.1.Key', 'sqsQueueUrl'))
-        data.update(utils.enumerate_param('Destination.AttributeList.member.1.Value', 'https://sqs.us-east-1.amazonaws.com/963180512106/Alert'))
+        data.update(utils.enumerate_param('Destination.AttributeList.member.1.Value', 'https://sqs.us-east-2.amazonaws.com/963180512106/PriceAlert'))
         data.update(utils.enumerate_param('Destination.DeliveryChannel', 'SQS'))
 
         return self.make_request(data, method="POST", )
 
-    def send_test_notification_to_destination(self, destination, marketplace_id):
+    def send_test_notification_to_destination(self, marketplace_id='ATVPDKIKX0DER'):
         data = dict(
             Action='SendTestNotificationToDestination',
             MarketplaceId=marketplace_id,
         )
 
         data.update(utils.enumerate_param('Destination.AttributeList.member.1.Key', 'sqsQueueUrl'))
-        data.update(utils.enumerate_param('Destination.AttributeList.member.1.Value', 'https://sqs.us-east-1.amazonaws.com/963180512106/Alert'))
+        data.update(utils.enumerate_param('Destination.AttributeList.member.1.Value', 'https://sqs.us-east-2.amazonaws.com/963180512106/PriceAlert'))
         data.update(utils.enumerate_param('Destination.DeliveryChannel', 'SQS'))
         return self.make_request(data, method="POST",)
-
 
 
 class Feeds(MWS):

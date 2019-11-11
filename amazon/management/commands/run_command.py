@@ -15,8 +15,7 @@ class Command(BaseCommand):
 
         # report_id = api.request_and_get_inventory_report('inventory')
 
-        p = api.parse_inactive_inventory('16611745912018153')
-
+        # p = api.parse_inactive_inventory('16611745912018153')
         '''
         update_feed_list = []
         client = boto3.client(
@@ -91,12 +90,14 @@ class Command(BaseCommand):
                 break
 
         # Upload Feed
-        
+
         '''
 
-        # z = api.subscriptions.create_subscriptions()
+        z = api.subscriptions.send_test_notification_to_destination()
         # a, b = api.parse_active_listings_report('16381982011018137')
-        # a = api.get_sku_lowest_priced_offer('1U-PLK0-3Q09')
+        # a = api.get_sku_prices('1L-ANJF-19DN')
+
+        # print(json.dumps(a, indent=4))
         # a = api.get_asin_lowest_offer(asin='B019CZA9KO', condition='new')
         # print(json.dumps(a, indent=4))
         # print(api.check_feed_submission('151729018128'))

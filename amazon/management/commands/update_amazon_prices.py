@@ -1,10 +1,11 @@
+import time
 from django.core.management.base import BaseCommand
 from amazon.models import FeedSubmission, AmazonPriceExclusions
 from amazon.amazon_mws import MWS
 from my_customs.exml import CreateXML
 from django.utils import timezone
-import time
-import json
+from django.core.mail import send_mail
+from decouple import config
 
 api = MWS()
 x = CreateXML()
@@ -12,6 +13,9 @@ x = CreateXML()
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
+
+        send_list = []
+        recipient_list = ['jermol.jupiter@gmail.com', ]  # 'Jlkelsey94@gmail.com',
 
         # We first check to see if the latest feed submission has been successful.
         # If False, we do nothing and check again when this code block runs.
@@ -44,7 +48,7 @@ class Command(BaseCommand):
             exclude_list = AmazonPriceExclusions.objects.filter(exclude=True).values_list('sku', flat=True)
             print(f'Length of Exclude list {len(exclude_list)}')
 
-            report_id = '17476698068018209'  # api.request_and_get_inventory_report('all_listings')
+            report_id = api.request_and_get_inventory_report('all_listings')
             if report_id is not None:
 
                 # Inventory is separated in New or Collectible Condition
@@ -118,6 +122,8 @@ class Command(BaseCommand):
                                             if price_list:
                                                 average_price = sum(price_list) / len(price_list)
                                                 competitive_price = price_list[0]
+                                                if competitive_price < average_price / 1.7:
+                                                    send_list.append(f"{sku} - ${round(competitive_price, 2)}")
                                                 avg_count = 1
 
                                                 if old_price == competitive_price:
@@ -128,7 +134,7 @@ class Command(BaseCommand):
                                                     if avg_count > len(price_list) - 1:
                                                         break
 
-                                                    if competitive_price < average_price / 1.2:
+                                                    if competitive_price < average_price / 1.3:
                                                         competitive_price = price_list[avg_count]
                                                         avg_count += 1
 
@@ -145,6 +151,8 @@ class Command(BaseCommand):
                                                     data.save()
 
                                                 else:
+                                                    if competitive_price < 1.99:
+                                                        competitive_price = 1.99
                                                     competitive_price = competitive_price - .01
                                                     card_metrics, created = AmazonPriceExclusions.objects.get_or_create(sku=sku)
                                                     card_metrics.price_metrics = price_list
@@ -156,10 +164,6 @@ class Command(BaseCommand):
                                                     'sku': sku,
                                                     'price': competitive_price,
                                                 })
-
-                                                print(price_list, old_price)
-                                                print(f'Average Price: {average_price}')
-                                                print(competitive_price, sku)
 
                                             else:
                                                 pass
@@ -182,7 +186,7 @@ class Command(BaseCommand):
                 if update_feeds:
                     pass
 
-                    '''
+
                     feed = x.generate_mws_price_xml(update_feeds)
                     feed_submission = api.update_sku_price(feed)
 
@@ -197,8 +201,8 @@ class Command(BaseCommand):
                     )
 
                     new_feed.save()
-                    '''
 
+        send_mail(subject='Amazon Price Alerts', recipient_list=recipient_list, message="\n".join(send_list), from_email='TcgFirst')
 
 
 
