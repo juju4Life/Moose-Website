@@ -93,7 +93,9 @@ class Command(BaseCommand):
 
         '''
 
-        z = api.subscriptions.send_test_notification_to_destination()
+        z = api.subscriptions.create_subscriptions(subscription_type='AnyOfferChanged', marketplace_id='ATVPDKIKX0DER', enable_subscription='true')
+        # z = api.subscriptions.send_test_notification_to_destination()
+        print(z.parsed)
         # a, b = api.parse_active_listings_report('16381982011018137')
         # a = api.get_sku_prices('1L-ANJF-19DN')
 

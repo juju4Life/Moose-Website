@@ -63,8 +63,6 @@ def moose_price_algorithm(seller_data):
         if updated_price < 5 and updated_price > 4.21 and updated_price + .78 > 4.99:
             updated_price = 5
 
-
-
         return updated_price
 
 
@@ -139,6 +137,40 @@ def set_map(expansion):
 
     }
 
+
+def metrics_update(metrics, expansion, name, condition, printing, language, current_price, updated_price, seller_data_list=None, low=None):
+    metrics.name = name
+    metrics.expansion = expansion
+    metrics.condition = condition
+    metrics.printing = printing
+    metrics.language = language
+    metrics.old_price = current_price
+    metrics.updated_price = updated_price
+
+    if seller_data_list is not None:
+        count = 0
+
+        while count < len(seller_data_list):
+            if count == 0:
+                metrics.price_1 = seller_data_list[count]['price']
+                metrics.price_1_gold = seller_data_list[count]['gold']
+            elif count == 1:
+                metrics.price_2 = seller_data_list[count]['price']
+                metrics.price_2_gold = seller_data_list[count]['gold']
+            elif count == 2:
+                metrics.price_3 = seller_data_list[count]['price']
+                metrics.price_3_gold = seller_data_list[count]['gold']
+            elif count == 3:
+                metrics.price_4 = seller_data_list[count]['price']
+                metrics.price_4_gold = seller_data_list[count]['gold']
+            elif count == 4:
+                metrics.price_5 = seller_data_list[count]['price']
+                metrics.price_5_gold = seller_data_list[count]['gold']
+            count += 1
+    else:
+        metrics.price_1 = low
+
+    metrics.save()
 
 
 

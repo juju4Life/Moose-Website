@@ -12,7 +12,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from scryfall_api import get_image
 import random
 from my_customs.functions import request_pages_data
-from tcg.tcg_functions import moose_price_algorithm, get_product_seller_info
+from tcg.tcg_functions import moose_price_algorithm, get_product_seller_info, metrics_update
 from time import time
 
 
@@ -64,11 +64,24 @@ def update_moose_tcg():
                     # catch instances where there is no low price
                     try:
                         updated_price = low - .01
+
                     except TypeError:
                         updated_price = None
 
                     if updated_price is not None:
                         api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
+                        metrics, created = MooseAutopriceMetrics.objects.get_or_create(sku=sku)
+                        metrics_update(
+                            metrics=metrics,
+                            expansion=expansion,
+                            name=name,
+                            condition=condition,
+                            printing=printing,
+                            language=language,
+                            current_price=current_price,
+                            updated_price=updated_price,
+                            low=low,
+                        )
 
                 elif language == 'English' and condition != 'Unopened':
 
@@ -147,35 +160,17 @@ def update_moose_tcg():
                         api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
 
                         metrics, created = MooseAutopriceMetrics.objects.get_or_create(sku=sku)
-                        metrics.name = name
-                        metrics.expansion = expansion
-                        metrics.condition = condition
-                        metrics.printing = printing
-                        metrics.language = language
-                        metrics.old_price = current_price
-                        metrics.updated_price = updated_price
-                        count = 0
-
-                        while count < len(seller_data_list):
-                            if count == 0:
-                                metrics.price_1 = seller_data_list[count]['price']
-                                metrics.price_1_gold = seller_data_list[count]['gold']
-                            elif count == 1:
-                                metrics.price_2 = seller_data_list[count]['price']
-                                metrics.price_2_gold = seller_data_list[count]['gold']
-                            elif count == 2:
-                                metrics.price_3 = seller_data_list[count]['price']
-                                metrics.price_3_gold = seller_data_list[count]['gold']
-                            elif count == 3:
-                                metrics.price_4 = seller_data_list[count]['price']
-                                metrics.price_4_gold = seller_data_list[count]['gold']
-                            elif count == 4:
-                                metrics.price_5 = seller_data_list[count]['price']
-                                metrics.price_5_gold = seller_data_list[count]['gold']
-                            count += 1
-
-                        metrics.save()
-
+                        metrics_update(
+                            metrics=metrics,
+                            seller_data_list=seller_data_list,
+                            expansion=expansion,
+                            name=name,
+                            condition=condition,
+                            printing=printing,
+                            language=language,
+                            current_price=current_price,
+                            updated_price=updated_price
+                        )
 
                         if index < 100:
                             print(name, expansion, condition, printing)

@@ -29,15 +29,15 @@ class MooseAutopriceMetrics(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     old_price = models.CharField(max_length=255, default='')
     price_1 = models.CharField(max_length=255, default='')
-    price_1_gold = models.BooleanField(default=False)
-    price_2 = models.CharField(max_length=255, default='')
-    price_2_gold = models.BooleanField(default=False)
-    price_3 = models.CharField(max_length=255, default='')
+    price_1_gold = models.BooleanField(default=False, blank=True)
+    price_2 = models.CharField(max_length=255, default='', blank=True)
+    price_2_gold = models.BooleanField(default=False, blank=True)
+    price_3 = models.CharField(max_length=255, default='', blank=True)
     price_3_gold = models.BooleanField(default=False)
-    price_4 = models.CharField(max_length=255, default='')
-    price_4_gold = models.BooleanField(default=False)
-    price_5 = models.CharField(max_length=255, default='')
-    price_5_gold = models.BooleanField(default=False)
+    price_4 = models.CharField(max_length=255, default='', blank=True)
+    price_4_gold = models.BooleanField(default=False, blank=True)
+    price_5 = models.CharField(max_length=255, default='', blank=True)
+    price_5_gold = models.BooleanField(default=False, blank=True)
 
     def __str__(self):
         return f'{self.name}({self.expansion})'
