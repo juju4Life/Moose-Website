@@ -62,26 +62,45 @@ def update_moose_tcg():
 
                 if language != 'English' and printing != 'Foil' and condition != 'Unopened':
                     # catch instances where there is no low price
-                    try:
-                        updated_price = low - .01
 
-                    except TypeError:
-                        updated_price = None
+                    good_languages = ['Japanese', 'Korean', 'Russian', 'German']
 
-                    if updated_price is not None:
-                        api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
-                        metrics, created = MooseAutopriceMetrics.objects.get_or_create(sku=sku)
-                        metrics_update(
-                            metrics=metrics,
-                            expansion=expansion,
-                            name=name,
-                            condition=condition,
-                            printing=printing,
-                            language=language,
-                            current_price=current_price,
-                            updated_price=updated_price,
-                            low=low,
-                        )
+                    compare_price = api.get_market_price(product_id)
+                    if compare_price['success']is True:
+                        english_data = compare_price['results'][0]
+                        if english_data['subTypeName'] == 'Foil':
+                            english_data = compare_price['results'][1]
+
+                        english_low = english_data['lowPrice']
+
+                        if current_price != english_low:
+
+                            if language in good_languages:
+                                try:
+                                    updated_price = english_low - .01
+                                except TypeError:
+                                    updated_price = None
+                            else:
+                                try:
+                                    updated_price = english_low * .90
+                                except TypeError:
+                                    updated_price = None
+
+                            if updated_price is not None:
+                                api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
+
+                                metrics, created = MooseAutopriceMetrics.objects.get_or_create(sku=sku)
+                                metrics_update(
+                                    metrics=metrics,
+                                    expansion=expansion,
+                                    name=name,
+                                    condition=condition,
+                                    printing=printing,
+                                    language=language,
+                                    current_price=current_price,
+                                    updated_price=updated_price,
+                                    low=low,
+                                )
 
                 elif language == 'English' and condition != 'Unopened':
 
