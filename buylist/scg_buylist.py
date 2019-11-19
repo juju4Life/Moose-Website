@@ -2,7 +2,8 @@ from time import sleep
 import requests
 from my_customs.standardize_sets import Standardize
 from buylist.models import StarcityBuylist
-
+from other.gather_analytics import analyze
+from other.models import StarCityAnalytics
 
 standardize = Standardize()
 
@@ -36,6 +37,12 @@ def get_buylist(cat_id):
 
     for card_list in results['results']:
         foil = card_list[0]['foil']
+        if foil == True:
+            foil = 'Foil'
+        elif foil == False:
+            foil = 'Normal'
+        else:
+            foil = ''
 
         name = card_list[0]['name']
         nm_price = 0
@@ -55,11 +62,19 @@ def get_buylist(cat_id):
             StarcityBuylist(
                 name=name,
                 expansion=expansion,
-                is_foil=foil,
+                printing=foil,
                 price_nm=nm_price,
                 price_played=played_price,
                 price_hp=hp_price,
             )
+        )
+
+        analyze(
+            store=StarCityAnalytics,
+            name=name,
+            expansion=expansion,
+            printing=foil,
+            buylist_price=nm_price,
         )
     return data_list
 
