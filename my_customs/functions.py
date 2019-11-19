@@ -82,7 +82,7 @@ def request_pages_data(url, tag, attribute, attribute_value):
 def integers_to_percentage(old_num, new_num):
     old_num = float(old_num)
     new_num = float(new_num)
-    return (new_num - old_num) / new_num
+    return (new_num - old_num) / new_num * 100
 
 
 
