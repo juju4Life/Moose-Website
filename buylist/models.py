@@ -17,7 +17,7 @@ class HotList(models.Model):
 class CardKingdomBuylist(models.Model):
     name = models.CharField(max_length=255, default='')
     expansion = models.CharField(max_length=255, default='')
-    is_foil = models.BooleanField(default=False)
+    printing = models.CharField(max_length=255, default='', blank=True)
     price_nm = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     price_ex = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     price_vg = models.DecimalField(max_digits=12, decimal_places=2, default=0)
@@ -29,7 +29,7 @@ class CardKingdomBuylist(models.Model):
 class StarcityBuylist(models.Model):
     name = models.CharField(max_length=255, default='')
     expansion = models.CharField(max_length=255, default='')
-    is_foil = models.BooleanField(default=False)
+    printing = models.CharField(max_length=255, default='', blank=True)
     price_nm = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     price_played = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     price_hp = models.DecimalField(max_digits=12, decimal_places=2, default=0)

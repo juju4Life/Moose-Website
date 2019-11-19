@@ -79,6 +79,11 @@ def request_pages_data(url, tag, attribute, attribute_value):
     return data, soup
 
 
+def integers_to_percentage(old_num, new_num):
+
+    return (new_num - old_num) / new_num
+
+
 
 
 

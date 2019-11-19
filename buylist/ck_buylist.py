@@ -1,6 +1,7 @@
 from my_customs.functions import request_soup
 from my_customs.standardize_sets import Standardize
 from buylist.models import CardKingdomBuylist
+from other.gather_analytics import analyze
 
 
 def ck_buylist(page):
@@ -25,9 +26,9 @@ def ck_buylist(page):
         for card in card_data:
             try:
                 name = standardize.name(card.table.tr.td.span.text.strip())
-                foil = False
+                foil = 'Normal'
                 if "FOIL" in card.table.tr.td.div.text.strip():
-                    foil = True
+                    foil = 'Foil'
 
                 expansion = standardize.expansion(card.table.tr.td.div.text.strip())
                 dollar = card.contents[3].div.find("span", {"class": "sellDollarAmount"}).text.strip()
@@ -53,6 +54,13 @@ def ck_buylist(page):
                         price_ex=ex_price,
                         price_vg=vg_price,
                     )
+                )
+
+                analyze(
+                    name=name,
+                    expansion=expansion,
+                    foil=foil,
+
                 )
 
             except AttributeError:
