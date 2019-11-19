@@ -1,21 +1,22 @@
 {% load staticfiles %}
+{% include 'sidebar_style.html' %}
 
 <div class="col-sm-1"></div>
 <div class="col-sm-3 right-column">
 
 <!-- MTG Hotlist -->
 
-  <div class="list-group" style="text-align:center;">
+  <div class="list-group">
 
-      <h4 id="event-header" class="list-group-item active">Hotlist</h4>
+      <h4 class="side-bar-header list-group-item active" style="text-align:center;">
+          <img style="max-height:75px" src="{% static 'img/hotlist_logo.png' %}">
+      </h4>
 
       {% for card in hotlist %}
 
-          <a href="#" class="list-group-item list-group-item-action">
+          <a href="#" class="list-group-item">
 
-          <img src="{% static 'img/flame.png' %}" alt="..." class="" style="float:left;max-height:20px;">
-          <span>&nbsp;{{card.name}} ${{card.price}}&nbsp;</span>
-          <img src="{% static 'img/flame.png' %}" alt="..." class="" style="float:right;max-height:20px;">
+          <span>&nbsp;{{card.name}} - ${{card.price}}&nbsp;</span>
 
           </a>
 
@@ -27,7 +28,7 @@
 
     <!-- Upcoming Events tab -->
     <div class="list-group" style="margin-top:2%;">
-      <h4 id="event-header" class="list-group-item active">Upcoming Events</h4>
+      <h4 class="side-bar-header list-group-item active">Upcoming Events</h4>
       <a class="list-group-item list-group-item-action">
         <span><strong>Legacy Quest for Power</strong></span><br>
         July, 12, 2019<br>

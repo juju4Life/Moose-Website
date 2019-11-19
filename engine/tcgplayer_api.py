@@ -147,6 +147,10 @@ class TcgPlayerApi:
 
         return self.credentials.get_request(f"catalog/products/{product_id}/skus", store=self.store)
 
+    def get_related_products(self, product_id):
+
+        return self.credentials.get_request(f"catalog/products/{product_id}/productsalsopurchased", store=self.store)
+
 
 
 

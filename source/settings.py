@@ -117,6 +117,7 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'ppal',
     'amazon',
+    'other',
 #  'customer.startup.BotConfig',
 ]
 

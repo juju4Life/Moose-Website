@@ -15,9 +15,27 @@
             <div class="container-fluid" style="min-height:95%;">
                 <div class="row" style="margin-top:1%;">
                     <div class="col-sm-1"></div>
-                    <div id="dataRow" class="col-sm-6" style="">
+                    <div id="row" class="col-sm-6" style="">
 
-                        <div class="">
+                        <div style="" class="">
+                          <h4 class="">Related Products</h4>
+
+                            <div class="">
+                            {% for card in related_products %}
+                                <div class="">
+                                    <form style="float:left;" method="GET" action="{% url 'search' %}">
+                                        <button style="border:none;outline:none;background-color:Transparent;" type="submit">
+                                            <img style="max-height:120px;" src="{{card.image}}">
+                                        </button>
+                                        <input type="hidden" name="q" value="{{card.name}}">
+                                    </form>
+                                </div>
+                            {% endfor %}
+                            </div>
+
+                        </div>
+
+                        <div style="" class="">
                             <table style="color: rgb(80,80,80); margin-top: 5%;" class="nav-pills nav-stacked table table table-hover table-sm">
                                 <thead class="thead-inverse">
                                     <tr class="header">
@@ -35,8 +53,9 @@
 
 									<tr class="">
                                         <td>
-                                            <img style="max-height:75px;"
-                                                 src="https://img.scryfall.com/cards/large/front/e/5/e52214e1-404a-405a-b08e-20e13c087338.jpg?1559959289">
+                                            <img onclick="Large(this)" style="max-height:75px;" src="{{image}}">
+                                            <div id="imgbox"></div>
+
                                         </td>
 
 										<td>
@@ -49,9 +68,18 @@
                                         <td>
                                             <form action="{% url 'add_to_cart' item.id %}" method="post">
                                                 {% csrf_token %}
-                                                ${{1.99|floatformat:2}}
-                                                <input style="max-width:40px;" size="2" type="number" name="quantity" min="1" max="8">
-                                                <button class="btn btn-success" style="max-height:40px;"><i class="material-icons">add</i></button>
+                                                <div class="form-box">
+
+                                                        <span class="mr-1">${{1.99|floatformat:2}}</span>
+
+                                                        <input class="mr-1" style="" size="2" type="number" name="quantity" min="1" max="8">
+
+                                                        <button class="btn btn-success mr-1" style=""><i class="material-icons">add</i></button>
+                                                </div>
+
+
+
+
                                             </form>
                                         </td>
 									</tr>
@@ -74,6 +102,78 @@
 
     {% block script %}
     <script>
+
+        function getElementLeft(elm)
+{
+    var x = 0;
+
+    //set x to elm’s offsetLeft
+    x = elm.offsetLeft;
+
+    //set elm to its offsetParent
+    elm = elm.offsetParent;
+
+    //use while loop to check if elm is null
+    // if not then add current elm’s offsetLeft to x
+    //offsetTop to y and set elm to its offsetParent
+
+    while(elm != null)
+    {
+        x = parseInt(x) + parseInt(elm.offsetLeft);
+        elm = elm.offsetParent;
+    }
+    return x;
+}
+
+function getElementTop(elm)
+{
+    var y = 0;
+
+    //set x to elm’s offsetLeft
+    y = elm.offsetTop;
+
+    //set elm to its offsetParent
+    elm = elm.offsetParent;
+
+    //use while loop to check if elm is null
+    // if not then add current elm’s offsetLeft to x
+    //offsetTop to y and set elm to its offsetParent
+
+    while(elm != null)
+    {
+        y = parseInt(y) + parseInt(elm.offsetTop);
+        elm = elm.offsetParent;
+    }
+
+    return y;
+}
+
+
+function Large(obj)
+{
+    var imgbox=document.getElementById("imgbox");
+    imgbox.style.visibility='visible';
+    var img = document.createElement("img");
+    img.src=obj.src;
+    img.style.width='560px';
+    img.style.height='780px';
+
+    if(img.addEventListener){
+        img.addEventListener('mouseout',Out,false);
+    } else {
+        img.attachEvent('onmouseout',Out);
+    }
+    imgbox.innerHTML='';
+    imgbox.appendChild(img);
+    imgbox.style.left=(getElementLeft(obj)-50) +'px';
+    imgbox.style.top=(getElementTop(obj)-50) + 'px';
+}
+
+function Out()
+{
+    document.getElementById("imgbox").style.visibility='hidden';
+}
+
 
        $(document).on('change','#id_condition_select',function(){
           var product_id = this.dataset.product_id;
