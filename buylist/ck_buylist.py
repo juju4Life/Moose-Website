@@ -1,5 +1,6 @@
 from my_customs.functions import request_soup
 from my_customs.standardize_sets import Standardize
+from other.models import CardKingdomAnalytics
 from buylist.models import CardKingdomBuylist
 from other.gather_analytics import analyze
 
@@ -57,6 +58,7 @@ def ck_buylist(page):
                 )
 
                 analyze(
+                    store=CardKingdomAnalytics,
                     name=name,
                     expansion=expansion,
                     printing=foil,

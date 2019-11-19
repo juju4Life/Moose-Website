@@ -1,11 +1,10 @@
 from datetime import date
-from .models import CardKingdomAnalytics
 from my_customs.functions import integers_to_percentage
 
 
-def analyze(name, expansion, printing, buylist_price):
+def analyze(store, name, expansion, printing, buylist_price):
 
-    obj, created = CardKingdomAnalytics.objects.get_or_create(name=name, expansion=expansion, printing=printing)
+    obj, created = store.objects.get_or_create(name=name, expansion=expansion, printing=printing)
 
     if obj:
         last_price = obj.last_price

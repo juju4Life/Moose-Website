@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup as b
 class Command(BaseCommand):
     def handle(self, *args, **options):
         ck_buylist(get_page_count())
-        # get_scg_buylist()
+        get_scg_buylist()
 
 
 

@@ -3,6 +3,7 @@ import requests
 from my_customs.standardize_sets import Standardize
 from buylist.models import StarcityBuylist
 
+
 standardize = Standardize()
 
 id_list = [
