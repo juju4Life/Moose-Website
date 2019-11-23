@@ -25,11 +25,8 @@ id_list = [
 
 def get_buylist(cat_id):
 
-    path = 'http://www.starcitygames.com/buylist/search?search-type=category&id='
-
-    url = path + cat_id
-
-    results = requests.get(url, verify=False).json()
+    url = f'http://old.starcitygames.com/buylist/search?search-type=category&id={cat_id}'
+    results = requests.get(url).json()
 
     expansion = standardize.expansion(results['search'])
 
