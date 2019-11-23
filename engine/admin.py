@@ -54,7 +54,6 @@ class CardPriceAdmin(ImportExportModelAdmin):
     resource_class = CardDataResource
 
 
-
 @admin.register(MooseAutopriceMetrics)
 class MooseMetricsAdmin(admin.ModelAdmin):
     search_fields = ['name']
@@ -219,7 +218,7 @@ class MTGResource(resources.ModelResource):
 @admin.register(TcgGroupPrice)
 class TcgGroupPriceAdmin(admin.ModelAdmin):
     search_fields = ['name', ]
-    list_display = ['name', 'expansion', 'direct_low_price', 'market_price', 'low_price', 'mid_price', 'foil', ]
+    list_display = ['name', 'expansion', 'direct_low_price', 'market_price', 'low_price', 'mid_price', 'printing', ]
 
 
 @admin.register(DirectData)

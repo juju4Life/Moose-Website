@@ -27,13 +27,13 @@ class Command(BaseCommand):
                 "Duel Decks: Jace vs. Chandra", "Duel Decks: Divine vs. Demonic", "Duel Decks: Garruk vs. Liliana", "Duel Decks: Phyrexia vs. the Coalition",
                 "Duel Decks: Elspeth vs. Tezzeret", "Duel Decks: Knights vs. Dragons", "Duel Decks: Ajani vs. Nicol Bolas", "Duel Decks: Venser vs. Koth",
                 "Duel Decks: Izzet vs. Golgari", "Duel Decks: Sorin vs. Tibalt", "Duel Decks: Heroes vs. Monsters", "Duel Decks: Jace vs. Vraska",
-                "Duel Decks: Speed vs. Cunning"
+                "Duel Decks: Speed vs. Cunning",
             ]
         )[147:]
-
-        for group in groups:
+        TcgGroupPrice.objects.all().delete()
+        for index, group in enumerate(groups):
             cards_over_five = 0
-            print(group)
+            print(index, group)
             price_data = api.price_by_group_id(group.group_id)
             if price_data['success'] is True:
                 for card in price_data['results']:
@@ -45,12 +45,14 @@ class Command(BaseCommand):
                         mid_price = null_to_zero(card['midPrice'])
                         high_price = null_to_zero(card['highPrice'])
                         is_direct = check_direct_status(direct_low_price)
-                        is_foil = check_if_foil(card['subTypeName'])
+                        printing = card['subTypeName']
 
                         card_info = MTG.objects.filter(product_id=product_id).first()
 
+                        history = f'{market_price},{low_price},{mid_price}-'
+
                         if card_info is not None:
-                            if market_price > 5 or low_price > 5:
+                            if market_price > 1.49 or low_price > 1.49:
                                 name = card_info.product_name
                                 expansion = card_info.set_name
 
@@ -58,7 +60,7 @@ class Command(BaseCommand):
                                     product_id=product_id,
                                     name=name,
                                     expansion=expansion,
-                                    foil=is_foil,
+                                    printing=printing,
                                     is_direct=is_direct,
                                     low_price=low_price,
                                     market_price=market_price,
@@ -66,10 +68,12 @@ class Command(BaseCommand):
                                     high_price=high_price,
                                     direct_low_price=direct_low_price,
                                 )
+                                obj.price_history = obj.price_history + history
                                 obj.save()
                                 cards_over_five += 1
                         else:
                             pass
+
             print(cards_over_five)
 
 

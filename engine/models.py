@@ -64,13 +64,14 @@ class TcgGroupPrice(models.Model):
     product_id = models.CharField(max_length=255, default='')
     name = models.CharField(max_length=255, default='')
     expansion = models.CharField(max_length=255, default='')
-    foil = models.BooleanField(default=False)
+    printing = models.CharField(max_length=255, default='')
     low_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     mid_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     market_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     high_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     direct_low_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     is_direct = models.BooleanField(default=False)
+    price_history = models.TextField(default='')
 
     def __str__(self):
         return self.name
