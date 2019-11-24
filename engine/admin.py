@@ -237,9 +237,10 @@ class MTGAdmin(ImportExportModelAdmin):
 
 class OrdersProcessingAdmin(admin.ModelAdmin):
     model = Orders
-    #full_order()
+
+    # full_order()
     fieldsets = (
-        (None,{
+        (None, {
             'fields': (
                 ('shipping_name', 'order_number',),
                 ('order_date', 'order_status_type',),
@@ -255,7 +256,7 @@ class OrdersProcessingAdmin(admin.ModelAdmin):
     )
 
     ordering = ['order_date']
-    list_display = ( 'order_date', 'shipping_name', 'order_number', 'order_status_type',)
+    list_display = ('order_date', 'shipping_name', 'order_number', 'order_status_type',)
     search_fields = ['order_details']
     list_filter = ('order_status_type',)
     actions = ['order']

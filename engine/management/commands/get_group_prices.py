@@ -29,11 +29,11 @@ class Command(BaseCommand):
                 "Duel Decks: Izzet vs. Golgari", "Duel Decks: Sorin vs. Tibalt", "Duel Decks: Heroes vs. Monsters", "Duel Decks: Jace vs. Vraska",
                 "Duel Decks: Speed vs. Cunning",
             ]
-        )[147:]
+        )[0:]
         TcgGroupPrice.objects.all().delete()
         for index, group in enumerate(groups):
             cards_over_five = 0
-            print(index, group)
+            # print(index, group)
             price_data = api.price_by_group_id(group.group_id)
             if price_data['success'] is True:
                 for card in price_data['results']:
@@ -68,13 +68,13 @@ class Command(BaseCommand):
                                     high_price=high_price,
                                     direct_low_price=direct_low_price,
                                 )
+
                                 obj.price_history = obj.price_history + history
                                 obj.save()
                                 cards_over_five += 1
                         else:
                             pass
 
-            print(cards_over_five)
 
 
 
