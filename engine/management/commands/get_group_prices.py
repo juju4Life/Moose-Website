@@ -30,7 +30,6 @@ class Command(BaseCommand):
                 "Duel Decks: Speed vs. Cunning",
             ]
         )[0:]
-        TcgGroupPrice.objects.all().delete()
         for index, group in enumerate(groups):
             cards_over_five = 0
             # print(index, group)

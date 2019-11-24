@@ -265,8 +265,9 @@ class OrdersProcessingAdmin(admin.ModelAdmin):
 class UpdatedInventoryAdmin(admin.ModelAdmin):
     ordering = ['-change_date', 'expansion', 'name']
     search_fields = ['name']
-    list_display = ('name', 'expansion','condition', 'updated_price', 'previous_price', 'direct_price', 'market_price', 'low_price', 'mid_price', 'change_date',)
-    list_filter = ('change_date' ,'expansion')
+    list_display = ('name', 'expansion', 'condition', 'updated_price', 'previous_price', 'direct_price', 'market_price', 'low_price', 'mid_price',
+                    'change_date',)
+    list_filter = ('change_date', 'expansion')
 
 
 class CustomerAdmin(SimpleHistoryAdmin):
