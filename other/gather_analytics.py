@@ -12,7 +12,10 @@ def analyze(store, name, expansion, printing, buylist_price):
         if created:
             diff = 0
         else:
-            diff = integers_to_percentage(old_num=last_price, new_num=buylist_price)
+            if last_price == 0:
+                diff = 0
+            else:
+                diff = integers_to_percentage(old_num=last_price, new_num=buylist_price)
 
             if diff > 0:
                 obj.consecutive_increase += 1
@@ -30,7 +33,6 @@ def analyze(store, name, expansion, printing, buylist_price):
         obj.last_price = obj.current_price
         obj.current_price = buylist_price
         obj.last_percent_change = diff
-        obj.save()
 
 
 
