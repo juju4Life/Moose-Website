@@ -153,7 +153,9 @@ class Command(BaseCommand):
                                                 else:
                                                     if competitive_price < 1.99:
                                                         competitive_price = 1.99
-                                                    competitive_price = competitive_price - .01
+                                                    competitive_price = competitive_price
+                                                    if competitive_price >= 10 and competitive_price <= 11.8:
+                                                        competitive_price = 9.99
                                                     card_metrics, created = AmazonPriceExclusions.objects.get_or_create(sku=sku)
                                                     card_metrics.price_metrics = price_list
                                                     card_metrics.price = competitive_price
@@ -185,7 +187,6 @@ class Command(BaseCommand):
                 # Generate the XML file in MWS required format, then submit that file as a feed to MWS
                 if update_feeds:
                     pass
-
 
                     feed = x.generate_mws_price_xml(update_feeds)
                     feed_submission = api.update_sku_price(feed)
