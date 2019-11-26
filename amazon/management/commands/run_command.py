@@ -93,9 +93,8 @@ class Command(BaseCommand):
 
         '''
 
-        z = api.subscriptions.create_subscriptions(subscription_type='AnyOfferChanged', marketplace_id='ATVPDKIKX0DER', enable_subscription='true')
+        # z = api.subscriptions.create_subscriptions(subscription_type='AnyOfferChanged', marketplace_id='ATVPDKIKX0DER', enable_subscription='true')
         # z = api.subscriptions.send_test_notification_to_destination()
-        print(z.parsed)
         # a, b = api.parse_active_listings_report('16381982011018137')
         # a = api.get_sku_prices('1L-ANJF-19DN')
 
@@ -124,6 +123,12 @@ class Command(BaseCommand):
 
             new_item.save()
         '''
+        live = AmazonLiveInventory.objects
+        # report_id = api.request_and_get_inventory_report('inventory')
+
+        headers, data = api.parse_inventory_report(17746337468018226)
+        print(headers)
+
 
 
 

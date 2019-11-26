@@ -173,6 +173,27 @@ def metrics_update(metrics, expansion, name, condition, printing, language, curr
     metrics.save()
 
 
+def tcg_fee_calc(price):
+    market_place_commission = (9.25 / 100) * price
+    paypal_fee = (2.5 / 100) * price
+    pro_commission = (2.5 / 100) * price
+    paypal_credit_flat_fee = .30
+
+    total_fees = paypal_fee + pro_commission + market_place_commission + paypal_credit_flat_fee
+
+    tracking_fee = 2.85
+    shipping_fee = .55
+
+    if price > 9.99:
+        adjusted_price = (price - total_fees) - (shipping_fee + tracking_fee)
+        total_fees += shipping_fee + tracking_fee
+    else:
+        adjusted_price = (price - total_fees) - shipping_fee
+        total_fees += shipping_fee
+
+    return adjusted_price, total_fees
+
+
 
 
 

@@ -1,8 +1,9 @@
 from my_customs.decorators import report_error
 from my_customs.functions import check_direct_status, check_if_foil, null_to_zero
-from engine.models import TcgGroupPrice, MTG
+from engine.models import TcgGroupPrice, MTG, CardPriceData
 from engine.tcgplayer_api import TcgPlayerApi
 from orders.models import GroupName
+from tcg.tcg_functions import tcg_fee_calc
 
 
 api = TcgPlayerApi('first')
@@ -29,6 +30,7 @@ def get_tcg_prices():
             "Duel Decks: Speed vs. Cunning",
         ]
     )[0:]
+
     for index, group in enumerate(groups):
         cards_over_five = 0
         # print(index, group)
@@ -48,6 +50,7 @@ def get_tcg_prices():
                     card_info = MTG.objects.filter(product_id=product_id).first()
 
                     history = f'{market_price},{low_price},{mid_price}-'
+                    tcg_net, total_fees = tcg_fee_calc(low_price)
 
                     if card_info is not None:
                         if market_price > 1.49 or low_price > 1.49:
@@ -69,6 +72,19 @@ def get_tcg_prices():
 
                             obj.price_history = obj.price_history + history
                             obj.save()
+
+                            buylist_data = CardPriceData.objects.get_or_create(
+                                name=name,
+                                expansion=expansion,
+                                printing=printing,
+                                product_id=product_id,
+                            )
+
+                            buylist_data.tcg_price = low_price
+                            buylist_data.tcg_net = tcg_net
+
+                            buylist_data.objects.save()
+
                             cards_over_five += 1
                     else:
                         pass
