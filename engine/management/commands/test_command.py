@@ -9,8 +9,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         ck_buylist(get_page_count())
         get_scg_buylist()
-        get_tcg_prices()
-        add_buylist_data()
+        # get_tcg_prices()
+        # add_buylist_data()
 
 
 
