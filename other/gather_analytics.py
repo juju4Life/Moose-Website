@@ -33,6 +33,7 @@ def analyze(store, name, expansion, printing, buylist_price):
         obj.last_price = obj.current_price
         obj.current_price = buylist_price
         obj.last_percent_change = diff
+        obj.save()
 
 
 
