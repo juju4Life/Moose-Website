@@ -62,14 +62,14 @@ def get_tcg_prices():
                                 name=name,
                                 expansion=expansion,
                                 printing=printing,
-                                is_direct=is_direct,
-                                low_price=low_price,
-                                market_price=market_price,
-                                mid_price=mid_price,
-                                high_price=high_price,
-                                direct_low_price=direct_low_price,
                             )
 
+                            obj.is_direct = is_direct
+                            obj.low_price = low_price
+                            obj.market_price = market_price
+                            obj.mid_price = mid_price
+                            obj.high_price = high_price
+                            obj.direct_low_price = direct_low_price
                             obj.price_history = obj.price_history + history
                             obj.save()
 
