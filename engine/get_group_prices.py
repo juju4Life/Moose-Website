@@ -73,7 +73,7 @@ def get_tcg_prices():
                             obj.price_history = obj.price_history + history
                             obj.save()
 
-                            buylist_data = CardPriceData.objects.get_or_create(
+                            buylist_data, created = CardPriceData.objects.get_or_create(
                                 name=name,
                                 expansion=expansion,
                                 printing=printing,
@@ -83,7 +83,7 @@ def get_tcg_prices():
                             buylist_data.tcg_price = low_price
                             buylist_data.tcg_net = tcg_net
 
-                            buylist_data.objects.save()
+                            buylist_data.save()
 
                             cards_over_five += 1
                     else:
