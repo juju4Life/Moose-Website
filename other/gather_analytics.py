@@ -7,7 +7,7 @@ def analyze(store, name, expansion, printing, buylist_price):
     obj, created = store.objects.get_or_create(name=name, expansion=expansion, printing=printing)
 
     if obj:
-        last_price = obj.last_price
+        last_price = obj.current_price
 
         if created:
             diff = 0
