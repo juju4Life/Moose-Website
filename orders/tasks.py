@@ -59,6 +59,8 @@ def update_moose_tcg():
 
                         if updated_price is not None:
                             api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
+                            updated_price = updated_price * .95
+                            api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channeId='1')
 
                 if language != 'English' and printing != 'Foil' and condition != 'Unopened':
                     # catch instances where there is no low price
@@ -88,7 +90,6 @@ def update_moose_tcg():
 
                             if updated_price is not None:
                                 api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
-
                                 metrics, created = MooseAutopriceMetrics.objects.get_or_create(sku=sku)
                                 metrics_update(
                                     metrics=metrics,
@@ -101,6 +102,8 @@ def update_moose_tcg():
                                     updated_price=updated_price,
                                     low=low,
                                 )
+                                updated_price = updated_price * .95
+                                api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channelId='1')
 
                 elif language == 'English' and condition != 'Unopened':
 
@@ -190,6 +193,9 @@ def update_moose_tcg():
                             current_price=current_price,
                             updated_price=updated_price
                         )
+
+                        updated_price = updated_price * .95
+                        api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channelId='1')
 
                         if index < 100:
                             print(name, expansion, condition, printing)

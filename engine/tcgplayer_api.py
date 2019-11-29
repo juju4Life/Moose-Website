@@ -74,13 +74,13 @@ class TcgPlayerApi:
         }
         return self.credentials.get_request("catalog/products".format(self.store_key), params=params, store=self.store)
 
-    def update_sku_price(self, sku_id, price, _data=False, _json=False):
+    def update_sku_price(self, sku_id, price, _data=False, _json=False, **kwargs):
         json_params = {
             "skuId": sku_id,
             "price": price,
         }
         self.credentials.put_request('stores/{}/inventory/skus/{}/price'.format(self.store_key, sku_id), _data=_data, _json=_json, json=json_params,
-                                     store=self.store)
+                                     store=self.store, **kwargs)
 
     def get_tcg_public_buylist(self, sku):
         return self.credentials.get_request("pricing/buy/sku/{}".format(sku), store=self.store)
