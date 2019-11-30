@@ -74,10 +74,11 @@ class TcgPlayerApi:
         }
         return self.credentials.get_request("catalog/products".format(self.store_key), params=params, store=self.store)
 
-    def update_sku_price(self, sku_id, price, _data=False, _json=False, **kwargs):
+    def update_sku_price(self, sku_id, price, _data=False, _json=False, channel='0', **kwargs):
         json_params = {
             "skuId": sku_id,
             "price": price,
+            "channelId": channel,
         }
         self.credentials.put_request('stores/{}/inventory/skus/{}/price'.format(self.store_key, sku_id), _data=_data, _json=_json, json=json_params,
                                      store=self.store, **kwargs)

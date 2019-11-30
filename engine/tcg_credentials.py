@@ -51,18 +51,13 @@ class Credentials:
         except requests.exceptions.ConnectionError as e:
             print(e)
 
-    def post_request(self, url, store, data, **kwargs):
+    def post_request(self, url, store, data):
         path = self.url + url
         headers = {
             "Accept": self.content_type,
             "Authorization": "bearer " + self.bearer_tokens[store],
             "Content-Type": self.content_type,
         }
-        print(kwargs)
-        if kwargs.get('channelId'):
-
-            data.update(kwargs)
-            print(data)
 
         try:
             r = requests.post(path, headers=headers, json=data)
@@ -77,6 +72,7 @@ class Credentials:
             "Authorization": "bearer " + self.bearer_tokens[store],
             "Content-Type": self.content_type,
         }
+
         try:
             if _json is True:
                 r = requests.put(path, headers=headers, json=kwargs['json'])
