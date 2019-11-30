@@ -1,10 +1,12 @@
 from my_customs.functions import request_soup
 from my_customs.standardize_sets import Standardize
+from my_customs.decorators import report_error
 from other.models import CardKingdomAnalytics
 from buylist.models import CardKingdomBuylist
 from other.gather_analytics import analyze
 
 
+@report_error
 def ck_buylist(page):
 
     path = "https://www.cardkingdom.com/purchasing/mtg_singles?filter%5Bipp%5D=100&filter%5Bsort%5D=name&filter%5Bsearch%5D=mtg_advanced&filter%5Bname%5D=&filter%5Bcategory_id%5D=0&filter%5Bfoil%5D=1&filter%5Bnonfoil%5D=1&filter%5Bprice_op%5D=&filter%5Bprice%5D=&page="

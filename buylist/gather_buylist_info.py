@@ -1,8 +1,10 @@
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+from my_customs.decorators import report_error
 from buylist.models import StarcityBuylist, CardKingdomBuylist
 from engine.models import CardPriceData
-from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 
 
+@report_error
 def add_buylist_data():
     card_data = CardPriceData.objects.all()
 

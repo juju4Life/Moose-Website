@@ -72,6 +72,7 @@ class TcgPlayerApi:
             "offset": offset,
             "getExtendedFields": True,
         }
+
         return self.credentials.get_request("catalog/products".format(self.store_key), params=params, store=self.store)
 
     def update_sku_price(self, sku_id, price, _data=False, _json=False, channel='0', **kwargs):

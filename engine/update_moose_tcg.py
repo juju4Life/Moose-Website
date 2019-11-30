@@ -183,7 +183,7 @@ def moose_price():
                             printing=printing,
                             language=language,
                             current_price=current_price,
-                            updated_price=updated_price
+                            updated_price=updated_price,
                         )
 
                         updated_price = updated_price * .95
@@ -208,7 +208,6 @@ def moose_price():
     mail_from = 'tcgfirst'
     mail_to = ['jermol.jupiter@gmail.com', ]
     send_mail(subject, message, mail_from, mail_to)
-
 
 
 

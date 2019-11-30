@@ -12,8 +12,7 @@ api = TcgPlayerApi('moose')
 class Command(BaseCommand):
     @report_error
     def handle(self, *args, **options):
-        # update_moose_tcg.apply_async(que='low_priority')
-        moose_price()
+        update_moose_tcg.apply_async(que='low_priority')
 
 
 

@@ -1,6 +1,7 @@
 from time import sleep
 import requests
 from my_customs.standardize_sets import Standardize
+from my_customs.decorators import report_error
 from buylist.models import StarcityBuylist
 from other.gather_analytics import analyze
 from other.models import StarCityAnalytics
@@ -23,6 +24,7 @@ id_list = [
     ]
 
 
+@report_error
 def get_buylist(cat_id):
 
     url = f'http://old.starcitygames.com/buylist/search?search-type=category&id={cat_id}'
