@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/buylist/ck_buylist.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/ck_buylist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/gather_buylist_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/gather_buylist_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/scg_buylist.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/scg_buylist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/test_command.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/test_command.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/management/commands/add_card_info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/tcgplayer_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tcgplayer_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/update_moose_tcg.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/update_moose_tcg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scryfall_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/scryfall_api.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6364312">
+    <splitter split-orientation="horizontal" split-proportion="0.4394052">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -48,8 +44,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/engine/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
-                  <caret line="137" column="30" lean-forward="true" selection-start-line="137" selection-start-column="30" selection-end-line="137" selection-end-column="30" />
+                <state relative-caret-position="225">
+                  <caret line="133" column="9" selection-start-line="133" selection-start-column="9" selection-end-line="133" selection-end-column="9" />
                 </state>
               </provider>
             </entry>
@@ -70,13 +66,43 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/engine/templates/product_detail.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="-420">
                   <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
                   <folding>
                     <element signature="n#style#0;n#b#0;n#center#0;n#form#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scryfall_api.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="340">
+                  <caret line="20" selection-start-line="20" selection-end-line="20" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/engine/management/commands/test_command.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="34">
+                  <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="51" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/engine/management/commands/add_card_info.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="229">
+                  <caret line="49" column="20" lean-forward="true" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
+                  <folding>
+                    <element signature="e#0#11#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -134,8 +160,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Pipfile" />
-        <option value="$PROJECT_DIR$/amazon/mws/utils.py" />
         <option value="$PROJECT_DIR$/my_customs/exml.py" />
         <option value="$PROJECT_DIR$/orders/admin.py" />
         <option value="$PROJECT_DIR$/amazon/management/commands/buylist_data.py" />
@@ -184,7 +208,9 @@
         <option value="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" />
         <option value="$PROJECT_DIR$/buylist/gather_buylist_info.py" />
         <option value="$PROJECT_DIR$/engine/management/commands/test_command.py" />
+        <option value="$PROJECT_DIR$/scryfall_api.py" />
         <option value="$PROJECT_DIR$/engine/models.py" />
+        <option value="$PROJECT_DIR$/engine/management/commands/add_card_info.py" />
       </list>
     </option>
   </component>
@@ -426,7 +452,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32980132" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32955974" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49665427" visible="true" weight="0.06405229" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49665427" visible="true" weight="0.2379085" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5033457" side_tool="true" weight="0.44705883" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.40784314" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -473,13 +499,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/engine/templates/supply_style.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/templates/gallery_scroll.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -503,13 +522,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
           <caret line="50" selection-start-line="50" selection-end-line="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scryfall_api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -828,16 +840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/management/commands/test_command.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/buylist/gather_buylist_info.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -895,10 +897,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scryfall_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/test_command.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/engine/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="137" column="30" lean-forward="true" selection-start-line="137" selection-start-column="30" selection-end-line="137" selection-end-column="30" />
+        <state relative-caret-position="225">
+          <caret line="133" column="9" selection-start-line="133" selection-start-column="9" selection-end-line="133" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/add_card_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="49" column="20" lean-forward="true" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

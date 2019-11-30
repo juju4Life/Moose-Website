@@ -17,3 +17,6 @@ def get_card_data(product_id):
     r = requests.get(url)
     return r.json()
 
+
+
+

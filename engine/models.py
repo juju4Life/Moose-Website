@@ -117,6 +117,7 @@ class DirectData(models.Model):
 class MTG(models.Model):
     product_name = models.CharField(max_length=255, default='', db_index=True, verbose_name='name')
     set_name = models.CharField(max_length=255, default='', db_index=True)
+    set_abbreviation = models.CharField(max_length=255, default='', db_index=True)
     condition = models.CharField(max_length=255, default='', db_index=True)
     language = models.CharField(max_length=255, default='English', db_index=True)
     foil = models.BooleanField(default=False)
@@ -130,6 +131,8 @@ class MTG(models.Model):
     flavor_text = models.TextField(default='', blank=True)
     colors = models.CharField(max_length=255, default='', blank=True)
     color_identity = models.CharField(max_length=255, default='', blank=True)
+    card_type = models.CharField(max_length=255, default='', blank=True)
+    subtypes = models.CharField(max_length=255, default='', blank=True)
     loyalty = models.CharField(max_length=255, default='', blank=True)
     power = models.CharField(max_length=255, default='', blank=True)
     toughness = models.CharField(max_length=255, default='', blank=True)
