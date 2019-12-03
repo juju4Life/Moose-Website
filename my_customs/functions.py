@@ -84,7 +84,7 @@ def integers_to_percentage(old_num, new_num):
     new_num = float(new_num)
 
     try:
-        percent = (new_num - old_num) / new_num * 100
+        percent = (new_num - old_num) / old_num * 100
     except ZeroDivisionError:
         percent = 0
 
