@@ -11,18 +11,27 @@ from engine.get_group_prices import get_tcg_prices
 class Command(BaseCommand):
     def handle(self, *args, **options):
         start = time()
-
         ck_buylist(get_page_count())
-        get_scg_buylist()
-        print('Getting Tcg group prices')
-        get_tcg_prices()
-        print('gathering buylist data')
-        add_buylist_data()
-
         end = time()
         elapsed = (end - start) / 3600
+
+        two_start = time()
+        get_scg_buylist()
+        two_stop = time()
+        two_elapsed = (two_stop - two_start) / 3600
+
+        three_start = time()
+        get_tcg_prices()
+        three_stop = time()
+        three_elapsed = (three_stop - three_start) / 3600
+
+        four_start = time()
+        add_buylist_data()
+        four_stop = time()
+        four_elapsed = (four_stop - four_start) / 3600
+
         send_mail(
-            subject=f'Buylist Hub Time: {elapsed} Hours',
+            subject=f'Buylist Hub Time\nCK: {elapsed} Hours\nSCG: {two_elapsed}\nTCG Prices: {three_elapsed}\ncreate_hub: {four_elapsed}',
             message=f'Buylist hub finished in {elapsed} hours',
             from_email='TCGFirst',
             recipient_list=[config('my_email'), ]
