@@ -1,9 +1,9 @@
 import re
 import math
 import requests
-from.decorators import offset
 from bs4 import BeautifulSoup as b
 from time import sleep
+from.decorators import offset
 
 
 def request_soup(url):

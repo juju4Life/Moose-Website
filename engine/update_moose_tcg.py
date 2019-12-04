@@ -50,8 +50,13 @@ def moose_price():
                             updated_price = None
 
                         if updated_price is not None:
+                            if updated_price < .25:
+                                updated_price = .25
                             api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
+
                             updated_price = updated_price * .95
+                            if updated_price < .25:
+                                updated_price = .25
                             api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channel='1')
 
                 if language != 'English' and printing != 'Foil' and condition != 'Unopened':
@@ -81,6 +86,8 @@ def moose_price():
                                     updated_price = None
 
                             if updated_price is not None:
+                                if updated_price < .25:
+                                    updated_price = .25
                                 api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
                                 metrics, created = MooseAutopriceMetrics.objects.get_or_create(sku=sku)
                                 metrics_update(
@@ -95,6 +102,8 @@ def moose_price():
                                     low=low,
                                 )
                                 updated_price = updated_price * .95
+                                if updated_price < .25:
+                                    updated_price = .25
                                 api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channel='1')
 
                 elif language == 'English' and condition != 'Unopened':
@@ -171,6 +180,10 @@ def moose_price():
                     # print(f'Updated Price for {name}, {expansion}, {current_price}, {updated_price}')
                     if updated_price is not None and round(updated_price, 2) != current_price:
                         # print(index)
+
+                        if updated_price < .25:
+                            updated_price = .25
+
                         api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
 
                         metrics, created = MooseAutopriceMetrics.objects.get_or_create(sku=sku)
@@ -187,6 +200,8 @@ def moose_price():
                         )
 
                         updated_price = updated_price * .95
+                        if updated_price < .25:
+                            updated_price = .25
                         api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channel='1')
 
                         if index < 100:
