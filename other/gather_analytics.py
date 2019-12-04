@@ -28,7 +28,7 @@ def analyze(store, name, expansion, printing, buylist_price):
                     obj.total_days_without_decrease += 1
 
         data = f"{buylist_price}, {diff}, {date.today()}|"
-        buylist_price = round(buylist_price, 2)
+        diff = round(diff, 2)
         obj.price_history = obj.price_history + data
         obj.last_price = obj.current_price
         obj.current_price = buylist_price
