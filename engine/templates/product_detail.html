@@ -4,68 +4,196 @@
 {% load staticfiles %}
 {% include 'product_detail_style.html' %}
 
-    <div class="col-sm-1"></div>
 
-    <div class="col-sm-10">
+	<div class="sub-cat-row"></div>
 
-        <div class="row">
-          <div class="col-sm-1"></div>
-            <div id="box">
-              <iframe name="submit-frame" style="display: none"></iframe>
-              <form action="{% url 'add_to_cart' products.id %}" method="post" target="submit-frame">{% csrf_token %}
-                  <center>
-                    <input size="2" id='qtyBox' type="number" name="quantity" min="1" max="8">
-                    <button class="btn btn-success" data-toggle="popover" data-animation="true"  data-content="Added to cart"  type="submit" id='button'>+</button>
-                    <b style="color: lightgray; font-size:16px;">&nbsp;{% if price != 0 and price != 1000 %}${{price|floatformat:2}}!{% elif price == 0 or price == 1000 %}Price Unavailable{% endif %}</b>
-                  </center>
-              </form>
-            </div>
-        </div>
+        <div class="body  product-body"  data-currency-code="USD">
 
-        <div class="row">
+    <div class="container">
 
-          <div>
-            <div class="col-sm-3" id="productImage"> <img class="img-responsive center-block visible-lg" src="{{products.image_url}}"> </div>
-            <div class="col-sm-1"></div>
-            <div class="col-sm-7">
-                <div id="cardInfo">
-                  <div style="color: lightgray;" id="cardInfoPadding">
-                      <h1>{{products.name}} </h1> <br>
-                      <div id="expansion"><b>{{products.set_name}} {{products.rarity}} - Art by <em>{{products.artist}}</em></b></div>
-                      <h4>Rarity: {{products.rarity}}</h4>
+    <div itemscope itemtype="">
+        <div class="productView">
 
-                      {% if "Land" in products.types %}
-                      <h4> Card Type: {{products.types}}</h4>
-                      {% endif %}
-
-                      {% if "Planeswalker" in products.types %}
-                      <h4> Card Type: {{products.types}} - {{products.subtypes}}</h4>
-                      {% endif %}
-
-                      {% if "Creature" in products.types %}
-                      <h4> Mana Cost: {{products.mana_cost}}</h4>
-                      <h4> Card Type: {{products.types}} - {{products.subtypes}}</h4>
-                      <h4>Power/Toughness: {{products.power}}/{{products.toughness}}</h4><br>
-                      {% endif %}
-
-                      <h4> {{products.text}} </h4>
-                      <hr>
-                      {% if products.flavor != None %}
-                      <h4><em>"{{products.flavor}}"</em></h4>
-                      {% endif %}
-                  </div>
-                </div>
-            </div>
-
-        </div>
+    <h1 class="mobile-product-title" itemprop="name" >{{product.product_name}}</h1>
+    <div class="mobile-subtitle">
+                <span class="productView-info-name productView-subtitle">(Promo Pack)</span>
+        <div class="category-name-title"></div>
+                <span class="productView-info-name productView-subtitle">English</span>
     </div>
-    <hr>
-       <div style="color: lightgray" class="row">
-                <h2>Other versions</h2>
-                    {% for version in versions %}
-                      <h4> <a href="{% url 'product_detail' version.id %}">{{version}}</a> ({{version.set_name}}) </h4>
-                    {% endfor %}
+
+
+    <section class="productView-images" data-image-gallery>
+        <figure class="productView-image" data-image-gallery-main>
+
+            <div class="productView-img-container">
+
+                    <img class="productView-image--default lazyload" data-sizes="auto" src="{{product.image_url}}"
+                        data-src="{{product.image_url}}"
+                        alt="{{product.product_name}}" title="{{product.product_name}}" data-main-image>
+
+
             </div>
+        </figure>
+    </section>
+
+    <div class="main-product-details">
+        <section class="productView-details details-left">
+            <div class="productView-product">
+
+                <dl class="productView-info">
+
+                         <div class="custom_field Card Name" data-field="Card Name">
+                             <dt class="productView-info-name">Card Name</dt>
+                             <dd id="custom-field--Card Name" class="productView-info-value" data-field="Card Name">{{product.product_name}}
+                             </dd>
+                         </div>
+
+                         <div class="custom_field Set" data-field="Set">
+                             <dt class="productView-info-name">Set</dt>
+                             <dd id="custom-field--Set" class="productView-info-value" data-field="Set">{{product.set_name}}
+                             </dd>
+                         </div>
+                         <div class="custom_field Mana Cost" data-field="Mana Cost">
+                             <dt class="productView-info-name">Mana Cost</dt>
+                             <dd id="custom-field--Mana Cost" class="productView-info-value" data-field="Mana Cost">{{product.mana_cost}}
+                             </dd>
+                         </div>
+                         <div class="custom_field Card Type" data-field="Card Type">
+                             <dt class="productView-info-name">Card Type</dt>
+                             <dd id="custom-field--Card Type" class="productView-info-value" data-field="Card Type">{{product.card_type}}
+                             </dd>
+                         </div>
+                         <div class="custom_field Subtype" data-field="Subtype">
+                             <dt class="productView-info-name">Subtype</dt>
+                             <dd id="custom-field--Subtype" class="productView-info-value" data-field="Subtype">{{product.subtypes}}
+                             </dd>
+                         </div>
+                         <div class="custom_field Oracle Text" data-field="Oracle Text">
+                             <dt class="productView-info-name">Oracle Text</dt>
+                             <dd id="custom-field--Oracle Text" class="productView-info-value" data-field="Oracle Text">{{product.oracle_text}}</dd>
+
+                         </div>
+                         <div class="custom_field  " data-field=" ">
+                             <dt class="productView-info-name"> </dt>
+                             <dd id="custom-field-- " class="productView-info-value" data-field=" ">hand.
+                             </dd>
+                         </div>
+                         <div class="custom_field Loyalty" data-field="Loyalty">
+                             <dt class="productView-info-name">Loyalty</dt>
+                             <dd id="custom-field--Loyalty" class="productView-info-value" data-field="Loyalty">5
+                             </dd>
+                         </div>
+                         <div class="custom_field Collector Number" data-field="Collector Number">
+                             <dt class="productView-info-name">Collector Number</dt>
+                             <dd id="custom-field--Collector Number" class="productView-info-value" data-field="Collector Number">{{product.collector_number}}
+                             </dd>
+                         </div>
+                         <div class="custom_field Rarity" data-field="Rarity">
+                             <dt class="productView-info-name">Rarity</dt>
+                             <dd id="custom-field--Rarity" class="productView-info-value" data-field="Rarity">{{product.rarity}}
+                             </dd>
+                         </div>
+                </dl>
+            </div>
+        </section>
+
+
+        <section class="productView-details details-right" style="background-color:white;">
+            <div class="productView-price">
+
+        <div class="price-section price-section--withoutTax" itemprop="offers" itemscope itemtype="">
+
+            <span class="price-now-label" style="display: none;">
+                Price:
+            </span>
+            <span data-product-price-without-tax class="">$24.99</span>
+
+
+        </div>
+            </div>
+            <div data-content-region="product_below_price"></div>
+            <div class="productView-options">
+                <form class="form" method="post" action="#" enctype="multipart/form-data"
+                    data-cart-item-add>
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="product_id" id="product_id" value="" />
+                    <div data-product-option-change style="display:none;">
+                        <div class="form-field" data-product-attribute="set-rectangle">
+                        <label class="form-label form-label--alternate form-label--inlineSmall">
+                            Condition:
+                            <span data-option-value></span>
+                                <small>Required</small>
+                        </label>
+                        <input
+                            class="form-radio"
+                            type="radio"
+                            id="attribute_rectangle__482017_114"
+                            name="attribute[482017]"
+                            value="114"
+                                checked
+                                data-default
+                            required>
+
+</div>
+
+                    </div>
+
+                        <div class="form-field form-field--increments this_section">
+        <label class="form-label form-label--alternate"
+               for="qty[]">Quantity:</label>
+            <div class="form-increment" data-quantity-change>
+
+                <input class="form-input form-input--incrementTotal"
+                       id="qty[]"
+                       name="qty[]"
+                       type="tel"
+                       value="1"
+                       data-quantity-min="0"
+                       data-quantity-max="0"
+                       min="1"
+                       aria-live="polite"
+                       >
+                <button class="btn btn-success mr-1" style=""><i class="material-icons">add</i></button>
+            </div>
+    </div>
+
+
+
+                </form>
+
+
+<form action="/wishlist.php?action=add&amp;product_id=487732" class="form form-wishlist form-action" data-wishlist-add method="post">
+    <a aria-controls="wishlist-dropdown" aria-expanded="false" class="button dropdown-menu-button wishlist-button" data-dropdown="wishlist-dropdown">
+        <span>Add to Wish List</span>
+    </a>
+    <ul aria-hidden="true" class="dropdown-menu" data-dropdown-content id="wishlist-dropdown" tabindex="-1">
+
+        <li>
+            <input class="button" type="submit" value="Add to Wish List">
+        </li>
+        <li>
+            <a data-wishlist class="button" href="/wishlist.php?action=addwishlist&product_id=487732">Create New Wish List</a>
+        </li>
+    </ul>
+</form>
+            </div>
+
+        </section>
+    </div>
+
+
+</div>
+
+
+
+    </div>
+
+    </div>
+
+
+
+</div>
+
 
 
 

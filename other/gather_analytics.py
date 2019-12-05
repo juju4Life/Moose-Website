@@ -20,6 +20,7 @@ def analyze(store, name, expansion, printing, buylist_price):
             if diff > 0:
                 obj.consecutive_increase += 1
                 obj.consecutive_decrease = 0
+
             elif diff < 0:
                 obj.consecutive_decrease += 1
                 obj.consecutive_increase = 0

@@ -58,8 +58,10 @@ class Command(BaseCommand):
                                 subtypes = first_half[1].strip()
 
                             except IndexError:
-                                type_line = type_line.split('—')
-                                card_type = type_line[0].strip()
+                                first = type_line[0].strip()
+                                type_line = type_line[1].split('—')
+
+                                card_type = first + ' // ' + type_line[0].strip()
                                 subtypes = type_line[1].strip()
                         else:
                             card_type = type_line
@@ -101,7 +103,10 @@ class Command(BaseCommand):
                             card_type = split[0].strip()
                             subtypes = split[1].strip()
 
-                        oracle_text = scry['oracle_text']
+                        try:
+                            oracle_text = scry['oracle_text']
+                        except KeyError:
+                            oracle_text = ''
                         artist = scry['artist']
 
                         try:
