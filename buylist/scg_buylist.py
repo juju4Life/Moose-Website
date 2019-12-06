@@ -36,9 +36,9 @@ def get_buylist(cat_id):
 
     for card_list in results['results']:
         foil = card_list[0]['foil']
-        if foil == True:
+        if foil is True:
             foil = 'Foil'
-        elif foil == False:
+        elif foil is False:
             foil = 'Normal'
         else:
             foil = ''

@@ -11,7 +11,7 @@ def add_buylist_data():
     for index, card in enumerate(card_data):
 
         try:
-            scg_card = StarcityBuylist.objects.exclude(is_foil=True).filter(expansion=card.expansion).get(name=card.name)
+            scg_card = StarcityBuylist.objects.exclude(printing='Foil').filter(expansion=card.expansion).get(name=card.name)
             card.scg_buylist = scg_card.price_nm
         except MultipleObjectsReturned as e:
             print(e)
@@ -19,7 +19,7 @@ def add_buylist_data():
             pass
 
         try:
-            ck_card = CardKingdomBuylist.objects.exclude(is_foil=True).filter(expansion=card.expansion).get(name=card.name)
+            ck_card = CardKingdomBuylist.objects.exclude(printing='Foil').filter(expansion=card.expansion).get(name=card.name)
             card.ck_buylist = ck_card.price_nm
         except MultipleObjectsReturned as e:
             print(e)
