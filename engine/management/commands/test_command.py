@@ -10,6 +10,11 @@ from engine.get_group_prices import get_tcg_prices
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
+        three_start = time()
+        get_tcg_prices()
+        three_stop = time()
+        three_elapsed = (three_stop - three_start) / 3600
+
         start = time()
         ck_buylist(get_page_count())
         end = time()
@@ -19,11 +24,6 @@ class Command(BaseCommand):
         get_scg_buylist()
         two_stop = time()
         two_elapsed = (two_stop - two_start) / 3600
-
-        three_start = time()
-        get_tcg_prices()
-        three_stop = time()
-        three_elapsed = (three_stop - three_start) / 3600
 
         four_start = time()
         add_buylist_data()
