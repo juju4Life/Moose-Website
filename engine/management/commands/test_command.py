@@ -1,7 +1,9 @@
 from time import time
+import traceback
 from decouple import config
 from django.core.management.base import BaseCommand
 from django.core.mail import send_mail
+from my_customs.decorators import report_error
 from buylist.ck_buylist import ck_buylist, get_page_count
 from buylist.scg_buylist import get_scg_buylist
 from buylist.gather_buylist_info import add_buylist_data
@@ -9,6 +11,7 @@ from engine.get_group_prices import get_tcg_prices
 
 
 class Command(BaseCommand):
+    @report_error
     def handle(self, *args, **options):
         three_start = time()
         get_tcg_prices()
@@ -36,6 +39,8 @@ class Command(BaseCommand):
             from_email='TCGFirst',
             recipient_list=[config('my_email'), ]
         )
+
+
 
 
 

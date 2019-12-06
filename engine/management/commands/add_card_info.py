@@ -71,7 +71,10 @@ class Command(BaseCommand):
                     elif layout == 'split':
                         card_type = type_line
                         card_faces = scry['card_faces']
-                        artist = card_faces[0]['artist'] + ' // ' + card_faces[1]['artist']
+                        try:
+                            artist = card_faces[0]['artist'] + ' // ' + card_faces[1]['artist']
+                        except KeyError:
+                            artist = scry['artist']
 
                         oracle_text = card_faces[0]['oracle_text'] + '\n\n' + card_faces[1]['oracle_text']
                         power, toughness = parse_scryfall_power_toughness(card_faces)

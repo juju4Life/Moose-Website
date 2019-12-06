@@ -48,12 +48,12 @@
                                 </thead>
                                 <tbody>
 
-                                {% for item, image in items %}
+                                {% for item in items %}
 
 
 									<tr class="">
                                         <td>
-                                            <img onclick="Large(this)" style="max-height:75px;" src="{{image}}">
+                                            <img onclick="Large(this)" style="max-height:75px;" src="{{item.image_url}}">
                                             <div id="imgbox"></div>
 
                                         </td>
