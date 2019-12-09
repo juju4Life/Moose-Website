@@ -142,6 +142,7 @@ class MTG(models.Model):
     mana_cost = models.CharField(max_length=255, default='', blank=True)
     converted_mana_cost = models.DecimalField(max_digits=10, decimal_places=1, default=0, blank=True)
     converted = models.BooleanField(default=False)
+    sku_list = models.CharField(max_length=255, default='')
 
     def __str__(self):
         return self.product_name
