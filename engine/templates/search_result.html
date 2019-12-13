@@ -16,10 +16,8 @@
                 <div class="row" style="margin-top:1%;">
                     <div class="col-sm-1"></div>
                     <div id="row" class="col-sm-6" style="">
-
                         <div style="" class="">
                           <h4 class="">Related Products</h4>
-
                             <div class="">
                             {% for card in related_products %}
                                 <div class="">
@@ -32,35 +30,32 @@
                                 </div>
                             {% endfor %}
                             </div>
-
                         </div>
 
                         <div style="" class="">
                             <table style="color: rgb(80,80,80); margin-top: 5%;" class="nav-pills nav-stacked table table table-hover table-sm">
                                 <thead class="thead-inverse">
                                     <tr class="header">
-                                      <th id=""></th>
-                                      <th id="n">Name</th>
-                                      <th id="">Expansion</th>
+                                      <th></th>
+                                      <th>Name</th>
+                                      <th>Expansion</th>
                                         <th>Condition</th>
-                                      <th id="p">Price</th>
+                                      <th>Price</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                 {% for item in items %}
-
-
-									<tr class="">
+									<tr>
                                         <td>
                                             <img onclick="Large(this)" style="max-height:75px;" src="{{item.image_url}}">
                                             <div id="imgbox"></div>
-
                                         </td>
 
 										<td>
 											<a href="{% url 'product_detail' 126451 %}">{{item.product_name}}</a>
 										</td>
+
 										<td>({{item.set_name}})</td>
 
                                         <td>Near Mint Foil</td>
@@ -76,9 +71,6 @@
 
                                                         <button class="btn btn-success mr-1" style=""><i class="material-icons">add</i></button>
                                                 </div>
-
-
-
 
                                             </form>
                                         </td>
@@ -100,103 +92,25 @@
 
     {% endif %}
 
-    {% block script %}
-    <script>
+{% block script %}
+<script type='text/javascript'>
+  var endpoint = "{% url 'products' %}"
 
-        function getElementLeft(elm)
-{
-    var x = 0;
+  $.ajax({
+    method: 'GET',
+    url: endpoint,
+    success: function(data){
 
-    //set x to elm’s offsetLeft
-    x = elm.offsetLeft;
-
-    //set elm to its offsetParent
-    elm = elm.offsetParent;
-
-    //use while loop to check if elm is null
-    // if not then add current elm’s offsetLeft to x
-    //offsetTop to y and set elm to its offsetParent
-
-    while(elm != null)
-    {
-        x = parseInt(x) + parseInt(elm.offsetLeft);
-        elm = elm.offsetParent;
     }
-    return x;
-}
+    error: function(error_message){
+      console.log('Errors:');
+      console.log(error_message);
+		}
+  })
 
-function getElementTop(elm)
-{
-    var y = 0;
+</script>
 
-    //set x to elm’s offsetLeft
-    y = elm.offsetTop;
-
-    //set elm to its offsetParent
-    elm = elm.offsetParent;
-
-    //use while loop to check if elm is null
-    // if not then add current elm’s offsetLeft to x
-    //offsetTop to y and set elm to its offsetParent
-
-    while(elm != null)
-    {
-        y = parseInt(y) + parseInt(elm.offsetTop);
-        elm = elm.offsetParent;
-    }
-
-    return y;
-}
-
-
-function Large(obj)
-{
-    var imgbox=document.getElementById("imgbox");
-    imgbox.style.visibility='visible';
-    var img = document.createElement("img");
-    img.src=obj.src;
-    img.style.width='560px';
-    img.style.height='780px';
-
-    if(img.addEventListener){
-        img.addEventListener('mouseout',Out,false);
-    } else {
-        img.attachEvent('onmouseout',Out);
-    }
-    imgbox.innerHTML='';
-    imgbox.appendChild(img);
-    imgbox.style.left=(getElementLeft(obj)-50) +'px';
-    imgbox.style.top=(getElementTop(obj)-50) + 'px';
-}
-
-function Out()
-{
-    document.getElementById("imgbox").style.visibility='hidden';
-}
-
-
-       $(document).on('change','#id_condition_select',function(){
-          var product_id = this.dataset.product_id;
-
-           $.ajax({
-            url: '/ajax/info/',
-            data: {
-              'product_id': product_id
-            },
-
-            dataType: 'json',
-            success: function (data) {
-              alert("D" + data.card);
-
-            }
-          });
-
-       });
-       $(document).on('change','#id_language_select',function(){console.log(this.value)});
-       $(document).on('change','#id_foil_select',function(){console.log(this.value)});
-
-  </script>
-{% endblock %}
+{% endblock script %}
 
 
  <!-- <script>

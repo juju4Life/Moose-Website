@@ -72,7 +72,7 @@ DEBUG = config('DEBUG', cast=bool)
 # SECURITY WARNING: don't run with debug turned on in production!
 
 ALLOWED_HOSTS = [
-                'smiling-earth.herokuapp.com', 'localhost', '127.0.0.1', 'www.tcgfirst.com','4f8880b7.ngrok.io'
+                'smiling-earth.herokuapp.com', 'localhost', '127.0.0.1', 'www.tcgfirst.com', '4f8880b7.ngrok.io'
 
 ]
 
@@ -119,9 +119,11 @@ INSTALLED_APPS = [
     'amazon',
     'other',
 #  'customer.startup.BotConfig',
+
 ]
 
 MIDDLEWARE = [
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -132,8 +134,19 @@ MIDDLEWARE = [
     'simple_history.middleware.HistoryRequestMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 604800
+CACHE_MIDDLEWARE_KEY_PREFIX = ''
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': 'my_cache_table',
+    }
+}
 
 ROOT_URLCONF = 'source.urls'
 PAYPAL_RECEIVER_EMAIL = 'mtgfirststore-facilitator@gmail.com'
