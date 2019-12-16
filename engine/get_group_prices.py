@@ -11,6 +11,7 @@ api = TcgPlayerApi('first')
 
 @report_error
 def get_tcg_prices():
+
     groups = GroupName.objects.filter(category='Magic the Gathering').filter(added=True).exclude(
         group_name__in=[
             'World Championship Decks', 'MagicFest Cards', "Collector's Edition", "Legends", "Arabian Nights",
@@ -86,8 +87,10 @@ def get_tcg_prices():
                             buylist_data.save()
 
                             cards_over_five += 1
+
                     else:
                         pass
+        print(index, group, 'Done')
 
 
 

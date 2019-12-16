@@ -94,13 +94,14 @@
 
 {% block script %}
 <script type='text/javascript'>
-  var endpoint = "{% url 'products' %}"
+  var endpoint = "{% url 'card_products' %}"
 
   $.ajax({
     method: 'GET',
     url: endpoint,
     success: function(data){
-
+        name = data.cards['{{query}}']
+        console.log(name)
     }
     error: function(error_message){
       console.log('Errors:');
@@ -118,7 +119,6 @@
   var init_language = 'english';
   var init_foil = false;
   var dict = {{model|safe}};
-  
 
   function conditionChange(obj){
     var condition = obj.value;

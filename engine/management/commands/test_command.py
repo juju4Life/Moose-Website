@@ -13,7 +13,7 @@ from engine.get_group_prices import get_tcg_prices
 class Command(BaseCommand):
     @report_error
     def handle(self, *args, **options):
-
+        '''
         start = time()
         ck_buylist(get_page_count())
         end = time()
@@ -37,10 +37,14 @@ class Command(BaseCommand):
             recipient_list=['jermol.jupiter@gmail.com', ]
         )
 
+        '''
+
         three_start = time()
         get_tcg_prices()
         three_stop = time()
         three_elapsed = (three_stop - three_start) / 3600
+
+        '''
         send_mail(
             subject='TCG PRices for Hub',
             message=f'Done in {three_elapsed} hours',
@@ -59,6 +63,7 @@ class Command(BaseCommand):
             from_email='TCGFirst',
             recipient_list=[config('my_email'), ]
         )
+        '''
 
 
 
