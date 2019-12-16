@@ -44,13 +44,15 @@ class Command(BaseCommand):
         three_stop = time()
         three_elapsed = (three_stop - three_start) / 3600
 
-        '''
         send_mail(
             subject='TCG PRices for Hub',
             message=f'Done in {three_elapsed} hours',
             from_email='TCG FIRST',
             recipient_list=['jermol.jupiter@gmail.com', ]
         )
+
+        '''
+    
 
         four_start = time()
         add_buylist_data()
