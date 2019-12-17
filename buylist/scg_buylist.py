@@ -24,8 +24,7 @@ id_list = [
     ]
 
 
-@report_error
-def get_buylist(cat_id):
+def buylist_data(cat_id):
 
     url = f'http://old.starcitygames.com/buylist/search?search-type=category&id={cat_id}'
     results = requests.get(url).json()
@@ -67,7 +66,6 @@ def get_buylist(cat_id):
                 price_hp=hp_price,
             )
         )
-
         analyze(
             store=StarCityAnalytics,
             name=name,
@@ -78,12 +76,13 @@ def get_buylist(cat_id):
     return data_list
 
 
+@report_error
 def get_scg_buylist():
     StarcityBuylist.objects.all().delete()
     count = 0
     while count < len(id_list):
         sleep(1)
-        data = get_buylist(id_list[count])
+        data = buylist_data(id_list[count])
         StarcityBuylist.objects.bulk_create(data)
         print("{} sets complete".format(count+1))
         count += 1

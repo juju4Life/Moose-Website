@@ -21,6 +21,7 @@ def add_buylist_data():
         try:
             ck_card = CardKingdomBuylist.objects.exclude(printing='Foil').filter(expansion=card.expansion).get(name=card.name)
             card.ck_buylist = ck_card.price_nm
+
         except MultipleObjectsReturned as e:
             print(e)
         except ObjectDoesNotExist:
