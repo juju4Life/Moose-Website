@@ -37,3 +37,13 @@ class StarcityBuylist(models.Model):
     def __str__(self):
         return self.name
 
+
+class StoreCredit(models.Model):
+    total = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.total
+
+
+
+

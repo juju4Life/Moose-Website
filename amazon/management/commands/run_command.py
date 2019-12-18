@@ -6,6 +6,7 @@ import json
 import boto3
 import xmltodict
 from decouple import config
+from engine.models import CardPriceData
 
 api = MWS()
 
@@ -123,11 +124,29 @@ class Command(BaseCommand):
 
             new_item.save()
         '''
-        live = AmazonLiveInventory.objects
-        # report_id = api.request_and_get_inventory_report('inventory')
 
-        headers, data = api.parse_inventory_report(17746337468018226)
-        print(headers)
+        # live = AmazonLiveInventory.objects
+        # report_id = api.request_and_get_inventory_report('active_listings')
+
+        from customs.csv_ import save_csv
+        header = ['Expansion', 'Name', 'Sku']
+        rows = []
+        for c in CardPriceData.objects.all():
+            name = c.name
+            expansion = c.expansion
+            sku = ''
+
+            rows.append(
+                [expansion, name, sku]
+            )
+
+        save_csv(
+            'Card_data', header=header, rows=rows
+        )
+
+
+
+
 
 
 

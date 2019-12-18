@@ -118,7 +118,6 @@ class MWS:
                 'condition': i[12],
             } for i in data if i[0] != '' and 'yugioh' not in i[0].lower() and 'yu-gi-oh' not in i[0].lower() and 'sleeve' not in i[0].lower()
                                and 'deck box' not in i[0].lower() and 'booster box' not in i[0].lower() and ' lot ' not in i[0].lower()
-                               and 'foil' not in i[0].lower() and 'Magic: the Gathering' not in i[0]
         ]
 
         return parsed_data
