@@ -82,7 +82,7 @@ class Customer(models.Model):
             diff = self.credit = self.old_credit
             total = StoreCredit.objects.get(name='Name')
             total.total += int(diff)
-            # total.entries += 1
+            total.entries += 1
             total.save()
 
     class Meta:
