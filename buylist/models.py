@@ -45,6 +45,8 @@ class StoreCredit(models.Model):
     def __str__(self):
         return f'{self.total}'
 
+    verbose_name_plural = 'Total'
+
 
 
 

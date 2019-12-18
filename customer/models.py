@@ -72,6 +72,18 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
+    def __init__(self, *args, **kwargs):
+        super(Customer, self).__init__(*args, **kwargs)
+        self.old_credit = self.credit
+
+    def clean(self):
+        from buylist.models import StoreCredit
+        if self.credit > self.old_credit:
+            diff = self.credit = self.old_credit
+            total = StoreCredit.objects.get(name='Name')
+            total.total += int(diff)
+            total.save()
+
     class Meta:
         verbose_name_plural = "Customer Store Credit"
 

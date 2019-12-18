@@ -273,13 +273,15 @@ class UpdatedInventoryAdmin(admin.ModelAdmin):
 
 
 class CustomerAdmin(SimpleHistoryAdmin):
+    credit = StoreCredit.objects.get(name='Name')
+
     def save_model(self, request, obj, form, change):
 
         obj.employee_initial = ''
         obj.save()
+        # ip, is_routable = get_client_ip(request)
 
-        ip, is_routable = get_client_ip(request)
-        alert.apply_async(que='low_priority', args=(ip, obj.name, obj.credit, obj.id,))
+        # alert.apply_async(que='low_priority', args=(ip, obj.name, obj.credit, obj.id,))
 
     save_on_top = True
     history_list_display = ['credit', 'medal', 'employee_initial', 'changeReason', ]
