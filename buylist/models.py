@@ -41,6 +41,7 @@ class StarcityBuylist(models.Model):
 class StoreCredit(models.Model):
     name = models.CharField(max_length=255, default='')
     total = models.IntegerField(default=0)
+    entries = models.IntegerField(default=0)
 
     def __str__(self):
         return f'{self.total}'
