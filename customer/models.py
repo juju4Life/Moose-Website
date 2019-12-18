@@ -76,14 +76,16 @@ class Customer(models.Model):
         super(Customer, self).__init__(*args, **kwargs)
         self.old_credit = self.credit
 
+    '''
     def clean(self):
         from buylist.models import StoreCredit
         if self.credit > self.old_credit:
-            diff = self.credit = self.old_credit
+            diff = self.credit - self.old_credit
+            print(type(self.credit))
             total = StoreCredit.objects.get(name='Name')
             total.total += int(diff)
-            total.entries += 1
             total.save()
+    '''
 
     class Meta:
         verbose_name_plural = "Customer Store Credit"
