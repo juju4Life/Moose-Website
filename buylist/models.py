@@ -43,7 +43,7 @@ class StoreCredit(models.Model):
     total = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.total
+        return f'{self.total}'
 
 
 
