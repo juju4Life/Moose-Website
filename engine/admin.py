@@ -2,6 +2,7 @@ import os
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import Orders, TcgCredentials, StoreDatabase, MTG, Upload, Yugioh, Pokemon, DirectData, TcgGroupPrice, MooseInventory, MooseAutopriceMetrics, CardPriceData
+from buylist.models import StoreCredit
 from simple_history.admin import SimpleHistoryAdmin
 from customer.models import Preorder, Customer, PreordersReady, OrderRequest, ReleasedProducts
 from django.contrib.auth.models import Group
@@ -273,26 +274,6 @@ class UpdatedInventoryAdmin(admin.ModelAdmin):
 
 class CustomerAdmin(SimpleHistoryAdmin):
     def save_model(self, request, obj, form, change):
-        if obj.tournament_entry == 'mtg locals':
-            obj.credit -= Decimal(10)
-            obj.tournament_entry = 'none'
-            obj.history_change_reason = 'mtg weekly event entry'
-            obj.save()
-
-        elif obj.tournament_entry == 'yugioh locals':
-            obj.credit -= Decimal(5)
-            obj.tournament_entry = 'none'
-            obj.history_change_reason = 'yugioh local entry'
-            obj.save()
-
-        if obj.tournament_results_credit != 'none':
-            obj.credit += Decimal(obj.tournament_results_credit)
-            obj.tournament_results_credit = 'none'
-            obj.history_change_reason = "{} add for tournament".format(obj.tournament_results_credit)
-            obj.save()
-
-        if obj.tournament_results_credit == 'none' and obj.tournament_entry == 'none':
-            obj.save()
 
         obj.employee_initial = ''
         obj.save()

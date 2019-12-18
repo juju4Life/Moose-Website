@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import HotList, CardKingdomBuylist, StarcityBuylist
+from .models import HotList, CardKingdomBuylist, StarcityBuylist, StoreCredit
 
 
 class HotListAdmin(admin.ModelAdmin):
@@ -15,6 +15,11 @@ class CkAdmin(admin.ModelAdmin):
 
 @admin.register(StarcityBuylist)
 class ScgAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(StoreCredit)
+class StoreCreditAdmin(admin.ModelAdmin):
     pass
 
 
