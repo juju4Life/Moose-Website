@@ -274,7 +274,7 @@ class UpdatedInventoryAdmin(admin.ModelAdmin):
 class CustomerAdmin(SimpleHistoryAdmin):
 
     def save_model(self, request, obj, form, change):
-
+        print(obj.credit)
         obj.employee_initial = ''
         obj.save()
         # ip, is_routable = get_client_ip(request)
