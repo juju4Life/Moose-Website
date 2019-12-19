@@ -2,6 +2,7 @@ import os
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import Orders, TcgCredentials, StoreDatabase, MTG, Upload, Yugioh, Pokemon, DirectData, TcgGroupPrice, MooseInventory, MooseAutopriceMetrics, CardPriceData
+from buylist.models import StoreCredit
 from simple_history.admin import SimpleHistoryAdmin
 from customer.models import Preorder, Customer, PreordersReady, OrderRequest, ReleasedProducts
 from django.contrib.auth.models import Group
@@ -274,8 +275,15 @@ class UpdatedInventoryAdmin(admin.ModelAdmin):
 class CustomerAdmin(SimpleHistoryAdmin):
 
     def save_model(self, request, obj, form, change):
-        print(obj.credit)
+
         obj.employee_initial = ''
+        if obj.credit > obj.last_credit:
+            diff = obj.credit - obj.last_credit
+            t = StoreCredit.objects.get(name='Name')
+            t.total += diff
+            t.entries += 1
+            t.save()
+            obj.last_credit = obj.credit
         obj.save()
         # ip, is_routable = get_client_ip(request)
 
