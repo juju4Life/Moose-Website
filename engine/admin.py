@@ -278,13 +278,15 @@ class CustomerAdmin(SimpleHistoryAdmin):
 
         obj.employee_initial = ''
         if obj.credit > obj.last_credit:
-            diff = obj.credit - obj.last_credit
+            diff = obj.credit - Decimal(obj.last_credit)
             t = StoreCredit.objects.get(name='Name')
             t.total += diff
             t.entries += 1
             t.save()
-            obj.last_credit = obj.credit
+
+        obj.last_credit = obj.credit
         obj.save()
+
         # ip, is_routable = get_client_ip(request)
 
         # alert.apply_async(que='low_priority', args=(ip, obj.name, obj.credit, obj.id,))
