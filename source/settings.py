@@ -32,7 +32,6 @@ CELERY_BEAT_SCHEDULE = {
 }
 
 '''
-
     'task-update-moose-tcg': {
         'task': 'orders.tasks.update_moose_tcg',
         'schedule': 86400,
@@ -57,10 +56,8 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = config('EMAIL_PORT')
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 
 SECRET_KEY = config('SECRET_KEY')
@@ -68,16 +65,10 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-
-# SECURITY WARNING: don't run with debug turned on in production!
-
 ALLOWED_HOSTS = [
-                'smiling-earth.herokuapp.com', 'localhost', '127.0.0.1', 'www.tcgfirst.com', '4f8880b7.ngrok.io'
+                'smiling-earth.herokuapp.com', 'localhost', '127.0.0.1', 'www.tcgfirst.com'
 
 ]
-
-
-# Application definition
 
 INSTALLED_APPS = [
     # 'admin_tools',
@@ -138,7 +129,7 @@ MIDDLEWARE = [
 ]
 
 CACHE_MIDDLEWARE_ALIAS = 'default'
-CACHE_MIDDLEWARE_SECONDS = 604800
+CACHE_MIDDLEWARE_SECONDS = 0
 CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
 CACHES = {
@@ -157,9 +148,8 @@ PROJECT_DIR = os.path.dirname(__file__)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['engine\\templates','customer\\templates', 'users\\templates',
-                'users\\templates\\registration', 'orders\\templates'
-        ],
+        'DIRS': ['engine\\templates', 'customer\\templates', 'users\\templates',
+                'users\\templates\\registration', 'orders\\templates'],
 
         'OPTIONS': {
             'loaders': ['admin_tools.template_loaders.Loader', 'django.template.loaders.app_directories.Loader'],

@@ -142,7 +142,6 @@ class Command(BaseCommand):
                                                         break
                                                 # Set minimum for certain user-specified cards
                                                 if sku in exclude_list:
-
                                                     data = AmazonPriceExclusions.objects.get(sku=sku)
                                                     min_price = data.price
                                                     if competitive_price < min_price:

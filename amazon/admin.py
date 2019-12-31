@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FeedSubmission, AmazonPriceExclusions
+from .models import FeedSubmission, AmazonPriceExclusions, AmazonLiveInventory
 
 
 @admin.register(FeedSubmission)
@@ -19,5 +19,10 @@ class PricesAdmin(admin.ModelAdmin):
         ('sku', 'price',),
         ('name', 'expansion',),
     )
+
+
+@admin.register(AmazonLiveInventory)
+class AmazonLiveInventoryAdmin(admin.ModelAdmin):
+    pass
 
 

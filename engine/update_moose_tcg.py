@@ -7,6 +7,8 @@ from engine.models import MooseAutopriceMetrics
 from my_customs.functions import request_pages_data
 from my_customs.decorators import report_error
 from tcg.tcg_functions import moose_price_algorithm, get_product_seller_info, metrics_update
+from datetime import date
+from calendar import day_name
 
 
 api = TcgPlayerApi('moose')
@@ -19,6 +21,7 @@ def moose_price():
     listed_cards = api.get_category_skus('magic')
     if listed_cards['success'] is True:
         print(f"Updating {listed_cards['totalItems']} for Moose Inventory")
+        condition_updated_price = None
         for index, card in enumerate(listed_cards['results']):
             try:
                 condition = card['conditionName']
@@ -108,6 +111,61 @@ def moose_price():
 
                 elif language == 'English' and condition != 'Unopened':
 
+                    day = day_name[date.today().weekday()]
+                    if day == 'Tuesday':
+                        if condition == 'Moderately Played' or condition == 'Lightly Played':
+                            next_page = True
+                            page = 1
+                            seller_data_list = []
+                            random_string = str(random.randint(1000000000000, 9999999999999))
+
+                            while next_page is True:
+
+                                path = f'https://shop.tcgplayer.com/productcatalog/product/getpricetable?captureFeaturedSellerData=True&pageSize=10&productId={product_id}' \
+                                    f'&gameName=magic&useV2Listings=false&_={random_string}&page={page}'
+
+                                data, page_source = request_pages_data(
+                                    url=path,
+                                    tag='div',
+                                    attribute='class',
+                                    attribute_value='product-listing ',
+                                )
+
+                                # Check if there are products in the request. If not that indicates no more listings and thus we break the loop
+                                if not data:
+                                    break
+
+                                # loop over each item on the page and get Seller Info
+                                for d in data:
+                                    seller_condition = d.find('div', {'class': 'product-listing__condition'}).text.strip()
+                                    seller_name = d.find('a', {'class': 'seller__name'}).text.strip()
+
+                                    if seller_name != 'MTGFirst' and seller_name != 'Moose Loot' and seller_condition == 'Lightly Played':
+                                        price, total_price, seller_total_sales = get_product_seller_info(d)
+
+                                        price_dict = {
+                                            'price': total_price,
+                                            'gold': True if seller_total_sales >= 10000 else False,
+                                        }
+
+                                        seller_data_list.append(price_dict)
+                                        if len(seller_data_list) == 5:
+                                            next_page = False
+                                            break
+
+                                page += 1
+
+                            '''
+                            We will check the number of other seller listings.
+                            If there were zero listings found we simply make the updated price the market price.
+    
+                            If just one listing is found, we run the price algorithm which will just add shipping if default and price .01c less.
+    
+                            If there are 2 10,000+ listings, algorithm will compare and take the best/cheapest listings price
+                            '''
+
+                            condition_updated_price = moose_price_algorithm(seller_data=seller_data_list, )
+                    
                     next_page = True
                     page = 1
                     seller_data_list = []
@@ -178,11 +236,20 @@ def moose_price():
                     new.save()
                     '''
                     # print(f'Updated Price for {name}, {expansion}, {current_price}, {updated_price}')
-                    if updated_price is not None and round(updated_price, 2) != current_price:
+                    if updated_price is not None:
                         # print(index)
 
                         if updated_price < .25:
                             updated_price = .25
+
+                        if condition_updated_price:
+                            if condition == 'Moderately Played':
+                                if updated_price >= condition_updated_price * .9:
+                                    updated_price = condition_updated_price * .9
+                            elif condition == 'Heavily Played':
+                                if updated_price >= condition_updated_price * .75:
+                                    updated_price = condition_updated_price * .75
+                            condition_updated_price = None
 
                         api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
 
@@ -203,7 +270,6 @@ def moose_price():
                         if updated_price < .25:
                             updated_price = .25
                         api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channel='1')
-
                         if index < 100:
                             print(name, expansion, condition, printing)
                             print(f"Current: {current_price}, Market: {market}, Low: {low}, Updated: {updated_price}")

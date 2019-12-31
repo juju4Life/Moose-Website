@@ -100,13 +100,14 @@
     method: 'GET',
     url: endpoint,
     success: function(data){
-        name = data.cards['{{query}}']
-        console.log(name)
-    }
+        console.log(data.products[0])
+        name = data;
+    },
+
     error: function(error_message){
       console.log('Errors:');
       console.log(error_message);
-		}
+		},
   })
 
 </script>
