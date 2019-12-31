@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/management/commands/run_command.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/management/commands/run_command.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tcg/tcg_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/tcg/tcg_functions.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,11 +16,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.7732342">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/engine/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="8" column="98" selection-start-line="8" selection-start-column="98" selection-end-line="8" selection-end-column="98" />
+                <state relative-caret-position="272">
+                  <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
                 </state>
               </provider>
             </entry>
@@ -40,23 +40,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/engine/get_group_prices.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="307">
-                  <caret line="87" column="47" lean-forward="true" selection-start-line="87" selection-start-column="47" selection-end-line="87" selection-end-column="47" />
-                  <folding>
-                    <element signature="e#0#46#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/engine/views.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="408">
-                  <caret line="104" column="23" lean-forward="true" selection-start-line="104" selection-start-column="23" selection-end-line="104" selection-end-column="23" />
-                  <folding>
-                    <element signature="e#0#67#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="102">
+                  <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
                 </state>
               </provider>
             </entry>
@@ -74,6 +59,15 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/tcg/tcg_functions.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="328">
+                  <caret line="196" column="8" selection-start-line="196" selection-start-column="8" selection-end-line="196" selection-end-column="8" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="394">
@@ -85,11 +79,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/engine/admin.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="282">
-                  <caret line="54" column="18" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
+                <state relative-caret-position="95">
+                  <caret line="59" column="38" lean-forward="true" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -313,7 +307,6 @@
         <option value="$PROJECT_DIR$/buylist/scg_buylist.py" />
         <option value="$PROJECT_DIR$/buylist/ck_buylist.py" />
         <option value="$PROJECT_DIR$/engine/management/commands/test_command.py" />
-        <option value="$PROJECT_DIR$/tcg/tcg_functions.py" />
         <option value="$PROJECT_DIR$/amazon/amazon_mws.py" />
         <option value="C:/Program Files/Python36/Lib/site-packages/customs/csv_.py" />
         <option value="$PROJECT_DIR$/buylist/admin.py" />
@@ -328,11 +321,12 @@
         <option value="$PROJECT_DIR$/engine/views.py" />
         <option value="$PROJECT_DIR$/engine/update_moose_tcg.py" />
         <option value="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" />
-        <option value="$PROJECT_DIR$/engine/models.py" />
         <option value="$PROJECT_DIR$/buylist/gather_buylist_info.py" />
         <option value="$PROJECT_DIR$/engine/get_group_prices.py" />
         <option value="$PROJECT_DIR$/amazon/management/commands/run_command.py" />
         <option value="$PROJECT_DIR$/engine/admin.py" />
+        <option value="$PROJECT_DIR$/tcg/tcg_functions.py" />
+        <option value="$PROJECT_DIR$/engine/models.py" />
       </list>
     </option>
   </component>
@@ -377,6 +371,11 @@
               <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
               <item name="Goat" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Goat" type="462c0819:PsiDirectoryNode" />
+              <item name="tcg" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -558,6 +557,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="895" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.38066915" />
       <window_info id="Favorites" order="1" side_tool="true" />
@@ -570,7 +570,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4959108" visible="true" weight="0.475817" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4959108" visible="true" weight="0.34117648" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50408924" side_tool="true" weight="0.35686275" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.40784314" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -831,13 +831,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tcg/tcg_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="107" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orders/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -986,13 +979,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="98" selection-start-line="8" selection-start-column="98" selection-end-line="8" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/buylist/gather_buylist_info.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -1005,16 +991,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/engine/LICENSE">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/get_group_prices.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="87" column="47" lean-forward="true" selection-start-line="87" selection-start-column="47" selection-end-line="87" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://C:/Program Files/Python36/Lib/site-packages/django/core/management/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1045,11 +1021,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/engine/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="54" column="18" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
+        <state relative-caret-position="95">
+          <caret line="59" column="38" lean-forward="true" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/get_group_prices.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tcg/tcg_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="196" column="8" selection-start-line="196" selection-start-column="8" selection-end-line="196" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
         </state>
       </provider>
     </entry>

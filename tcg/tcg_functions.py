@@ -193,6 +193,9 @@ def tcg_fee_calc(price):
 
     return adjusted_price, total_fees
 
+def amazon_fee_calc(price):
+    pass
+
 
 
 
