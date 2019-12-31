@@ -173,28 +173,54 @@ def metrics_update(metrics, expansion, name, condition, printing, language, curr
     metrics.save()
 
 
-def tcg_fee_calc(price):
-    market_place_commission = (9.25 / 100) * price
-    paypal_fee = (2.5 / 100) * price
-    pro_commission = (2.5 / 100) * price
-    paypal_credit_flat_fee = .30
+def tcg_fee_calc(price, direct=False):
+    if price > 0:
 
-    total_fees = paypal_fee + pro_commission + market_place_commission + paypal_credit_flat_fee
+        price = float(price)
+        market_place_commission = (9.25 / 100) * price
 
-    tracking_fee = 2.85
-    shipping_fee = .55
+        if direct is True:
+            market_place_commission = (8.25 / 100) * price
 
-    if price > 9.99:
-        adjusted_price = (price - total_fees) - (shipping_fee + tracking_fee)
-        total_fees += shipping_fee + tracking_fee
+        paypal_fee = (2.5 / 100) * price
+        pro_commission = (2.5 / 100) * price
+        paypal_credit_flat_fee = .30
+
+        total_fees = paypal_fee + pro_commission + market_place_commission + paypal_credit_flat_fee
+
+        tracking_fee = 2.85
+        shipping_fee = .55
+
+        if price > 9.99:
+            adjusted_price = (price - total_fees) - (shipping_fee + tracking_fee)
+            total_fees += shipping_fee + tracking_fee
+        else:
+            shipping_fee = .86
+            adjusted_price = (price - total_fees) - shipping_fee
+            total_fees += shipping_fee
+
+        return adjusted_price, total_fees
     else:
-        adjusted_price = (price - total_fees) - shipping_fee
-        total_fees += shipping_fee
+        return 0, 0
 
-    return adjusted_price, total_fees
 
 def amazon_fee_calc(price):
-    pass
+    if price > 0:
+        price = float(price)
+        shipping_fee = .86
+
+        if price > 9.99:
+            shipping_fee = 2.85
+
+        net = (price * .85) - shipping_fee
+
+        return net, 0
+    else:
+        return 0, 0
+
+
+
+
 
 
 
