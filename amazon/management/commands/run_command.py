@@ -7,6 +7,8 @@ import boto3
 import xmltodict
 from decouple import config
 from engine.models import CardPriceData
+from customs.csv_ import open_csv
+from engine.models import CardPriceData
 
 api = MWS()
 
@@ -107,27 +109,28 @@ class Command(BaseCommand):
         # api.request_and_get_inventory_report('active_listings')
         # d = api.get_sku_lowest_offer('1U-PLK0-3Q09', 'new')
 
-        '''
-         live = AmazonLiveInventory.objects
-        report_id = api.request_and_get_inventory_report('inventory')
+        # live = AmazonLiveInventory.objects
+        # report_id = api.request_and_get_inventory_report('inventory')
 
-        headers, data = api.parse_inventory_report(report_id)
+        headers, data = api.parse_inventory_report('18340562229018261')
+
+        dic = {}
 
         for d in data:
-            new_item = live.create(
-                sku=d[0],
-                old_price=d[1],
-                new_price=0,
-                time_check_delta=datetime.now(),
+            dic[d['sku']] = d['price']
 
-            )
+        obj_data = CardPriceData.objects.exclude(sku='')
 
-            new_item.save()
-        '''
+        for obj in obj_data:
+            price = dic.get(obj.sku, None)
+            if price is not None:
+                obj.amazon_price = price
+                obj.save()
 
         # live = AmazonLiveInventory.objects
         # report_id = api.request_and_get_inventory_report('active_listings')
 
+        '''
         from customs.csv_ import save_csv
         header = ['Expansion', 'Name', 'Sku']
         rows = []
@@ -143,6 +146,25 @@ class Command(BaseCommand):
         save_csv(
             'Card_data', header=header, rows=rows
         )
+        '''
+
+
+
+        '''
+        f = open_csv('cd')
+
+        t = 0
+        for each in f[1:]:
+            if each[2]:
+                obj = CardPriceData.objects.filter(expansion=each[0]).get(name=each[1])
+                obj.sku = each[2]
+                obj.save()
+                t += 1
+                print(t)
+        '''
+
+
+
 
 
 

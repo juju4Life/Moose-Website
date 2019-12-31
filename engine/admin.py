@@ -51,8 +51,9 @@ class CardDataResource(resources.ModelResource):
 @admin.register(CardPriceData)
 class CardPriceAdmin(ImportExportModelAdmin):
     search_fields = ['name']
-    list_display = ['name', 'expansion', 'ck_buylist', 'scg_buylist', 'tcg_direct_price', 'tcg_price', 'amazon_price']
-    ordering = ['-ck_buylist']
+    list_display = ['name', 'expansion', 'ck_buylist', 'scg_buylist', 'tcg_direct_price', 'tcg_price', 'amazon_price', 'low_store_stock', ]
+    ordering = ['-low_store_stock', '-amazon_price']
+    fields = ['low_store_stock']
     resource_class = CardDataResource
 
 
