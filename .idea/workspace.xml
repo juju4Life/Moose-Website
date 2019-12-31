@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/engine/hub_distro.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/management/commands/hub_distro.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tcg/tcg_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/tcg/tcg_functions.py" afterDir="false" />
-    </list>
+    <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +9,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7732342">
+    <splitter split-orientation="horizontal" split-proportion="0.7078067">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -81,22 +76,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/engine/admin.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="95">
-                  <caret line="59" column="38" lean-forward="true" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
-                  <folding>
-                    <element signature="e#0#9#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/buylist/gather_buylist_info.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="30" selection-start-line="30" selection-end-line="30" />
+                <state relative-caret-position="408">
+                  <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
                   <folding>
                     <element signature="e#0#78#0" expanded="true" />
                   </folding>
@@ -105,8 +88,15 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/engine/LICENSE">
-              <provider selected="true" editor-type-id="text-editor" />
+            <entry file="file://$PROJECT_DIR$/engine/admin.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="407">
+                  <caret line="63" column="45" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
             </entry>
           </file>
         </leaf>
@@ -137,7 +127,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/engine/templates/search_result.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="81">
+                <state relative-caret-position="47">
                   <caret line="50" column="113" selection-start-line="50" selection-start-column="113" selection-end-line="50" selection-end-column="113" />
                   <folding>
                     <element signature="e#274#297#0" expanded="true" />
@@ -239,7 +229,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>results</find>
       <find>search_res</find>
       <find>return</find>
       <find>get_loe</find>
@@ -269,6 +258,7 @@
       <find>customer</find>
       <find>exclusion</find>
       <find>api</find>
+      <find>card</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -323,11 +313,11 @@
         <option value="$PROJECT_DIR$/buylist/gather_buylist_info.py" />
         <option value="$PROJECT_DIR$/engine/get_group_prices.py" />
         <option value="$PROJECT_DIR$/amazon/management/commands/run_command.py" />
-        <option value="$PROJECT_DIR$/engine/admin.py" />
         <option value="$PROJECT_DIR$/engine/models.py" />
         <option value="$PROJECT_DIR$/engine/hub_distro.py" />
         <option value="$PROJECT_DIR$/engine/management/commands/hub_distro.py" />
         <option value="$PROJECT_DIR$/tcg/tcg_functions.py" />
+        <option value="$PROJECT_DIR$/engine/admin.py" />
       </list>
     </option>
   </component>
@@ -558,7 +548,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="895" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.38066915" />
       <window_info id="Favorites" order="1" side_tool="true" />
@@ -571,7 +560,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4959108" visible="true" weight="0.4888889" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4959108" visible="true" weight="0.275817" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50408924" side_tool="true" weight="0.35686275" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.40784314" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -930,7 +919,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/engine/templates/search_result.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
+        <state relative-caret-position="47">
           <caret line="50" column="113" selection-start-line="50" selection-start-column="113" selection-end-line="50" selection-end-column="113" />
           <folding>
             <element signature="e#274#297#0" expanded="true" />
@@ -966,19 +955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/buylist/gather_buylist_info.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="e#0#78#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/LICENSE">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://C:/Program Files/Python36/Lib/site-packages/django/core/management/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1000,16 +976,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="87">
           <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/amazon/management/commands/run_command.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2210">
-          <caret line="127" column="25" selection-start-line="127" selection-start-column="25" selection-end-line="127" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1040,12 +1006,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/amazon/management/commands/run_command.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2210">
+          <caret line="127" column="25" selection-start-line="127" selection-start-column="25" selection-end-line="127" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/engine/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="59" column="38" lean-forward="true" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
+        <state relative-caret-position="407">
+          <caret line="63" column="45" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/LICENSE">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buylist/gather_buylist_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#78#0" expanded="true" />
           </folding>
         </state>
       </provider>

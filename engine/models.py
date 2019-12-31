@@ -15,6 +15,7 @@ class CardPriceData(models.Model):
     ck_buylist = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
     cfb_buylist = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
     low_store_stock = models.BooleanField(default=False)
+    store_quantity_needed = models.IntegerField(default=0)
     printing = models.CharField(max_length=255, default='')
     sell_to = models.CharField(max_length=255, default='')
 
