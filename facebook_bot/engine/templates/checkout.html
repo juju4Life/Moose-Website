@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block content %}
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+
+{% include 'checkout_style.html' %}
+
+{% if not confirm_message %}
+	<div class="container-fluid" style="min-height:95%;">
+		<div class="row">
+			<div class="col-sm-12"></div>
+
+			<div id="dataRow" class="row">
+				<div class="col-sm-1 col-sm-1"></div>
+				<div id="dataBox" class="inner col-sm-4 col-sm-4">
+					<table style="color: rgb(80,80,80); margin-top: 10%;" class="nav nav-pills nav-stacked table table">
+						<thead class="thead-inverse">
+							<tr class="header">
+							  <th id="">Quantity</th>
+							  <th id="n">Name</th>
+							  <th id="">Product</th>
+							  <th id="p">Total</th>
+							</tr>
+						</thead>
+
+
+						{% for card in cart %}
+
+							<form action="{% url 'add_to_cart' card.product %}" method="post">
+									{% csrf_token %}
+								<tbody>
+									<tr>
+										<td>{{card.quantity}}</td>
+										<td>
+											{{card.name}}
+										</td>
+										<td>({{card.set_name}})</td>
+										<td id="price">${{card.total|floatformat:2}}</td>
+									</tr>
+
+								</tbody>
+
+							</form>
+						{% endfor %}
+					</table>
+
+				<div class="col-sm-3"></div>
+				</div>
+				<div class="col-sm-1"></div>
+
+				<div class="row">
+					<div style="color: rgb(80,80,80,);" id="totalBox" class="col-sm-5">
+
+						<h4>Subtotal: $<span id="subTotal">{{sub_total|floatformat:2}}</span></h4>
+						<h4>Number of Items: {{length}}</h4>
+
+
+						{% endif %}
+
+						{% if form %}
+						<form method="POST" action="{% url 'payment' %}">{% csrf_token %}
+						  <div id="form">{{form|crispy}}</div>
+						  <input style="margin-bottom: 2%;" type="submit" value="submit form" class ='btn btn-default' />
+						</form>
+					</div>
+				</div>
+				<hr>
+			</div>
+		</div>
+
+			</div>
+
+		{% endif %}
+
+	{% if confirm_message %}
+
+	 <center><img src="{% static 'img/youBlue.png' %}"> <img src="{% static 'img/youOrange.png' %}"></center>
+
+	<div id='totalBox'>
+		<h3>
+		  Your order has been received and you will be notified once it is available for pickup.<br>
+		</h3>
+	</div>
+</div>
+
+{% endif %}
+
+
+{% endblock %}

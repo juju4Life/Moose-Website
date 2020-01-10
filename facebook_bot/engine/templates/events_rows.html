@@ -1,0 +1,43 @@
+<br>
+<br>
+<center>
+    <h1>Upcoming MTGFirst Events</h1>
+</center>
+
+<div class="row">
+
+    <div>
+        {% for event in events %}
+           <div class="col-sm-3"
+                style="background-color: rgba(234, 237, 242, .5); border-radius: 15px; border: 1px solid black;height:200px;margin:3%;overflow:scroll">
+               <h4>
+                   {{event.title}}
+               </h4>
+
+               <b>
+                   {{event.start_date}} - {{event.end_date}}
+               </b>
+
+               <p>
+                   <br>
+                    Format: {{event.game_format}}
+                   <br>
+                   Entry Fee: ${{event.entry_fee}}
+                   <br>
+                   {{event.prize_support|safe}}
+
+               </p>
+
+               <p>
+                   {{event.location.name}}<br>
+                   {{event.location.street_address}}<br>
+                   {{event.location.city}}, {{event.location.state}} {{event.location.zip_code}}<br>
+                   Phone: {{event.location.phone}}<br>
+               </p>
+
+
+           </div>
+        {% endfor %}
+    </div>
+
+</div>

@@ -1,0 +1,6 @@
+{% extends 'home.html' %}
+
+{% for product in products %}
+<h1>{{product.product_name}}</h1>
+<h2>{{product.product_line}}</h2>
+{% endfor %}
