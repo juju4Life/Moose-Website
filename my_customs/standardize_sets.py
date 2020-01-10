@@ -115,6 +115,8 @@ class Standardize:
             set_name = 'Commander 2017'
         elif set_name == 'Commander (2018 Edition)':
             set_name = 'Commander 2018'
+        elif set_name == 'Commander (2019 Edition)':
+            set_name = 'Commander 2019'
         elif set_name == 'Conspiracy (2014 Edition)':
             set_name = 'Conspiracy'
         elif set_name == 'Planechase (2009 Edition)' or set_name == "Planechase 2009":

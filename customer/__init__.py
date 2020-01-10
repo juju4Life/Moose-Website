@@ -1,1 +1,13 @@
-#default_app_config = 'customer.startup.BotConfig'
+
+# default_app_config = 'customer.apps.CustomerConfig'
+
+
+
+
+
+
+
+
+
+
+

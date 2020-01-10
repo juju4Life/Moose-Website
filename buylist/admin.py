@@ -20,7 +20,7 @@ class ScgAdmin(admin.ModelAdmin):
 
 @admin.register(StoreCredit)
 class StoreCreditAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name', 'store_credit', 'date_time', 'total', ]
 
 
 admin.site.register(HotList, HotListAdmin)

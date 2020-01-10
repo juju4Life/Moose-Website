@@ -2,25 +2,20 @@ import os
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import Orders, TcgCredentials, StoreDatabase, MTG, Upload, Yugioh, Pokemon, DirectData, TcgGroupPrice, MooseInventory, MooseAutopriceMetrics, CardPriceData
-from buylist.models import StoreCredit
 from simple_history.admin import SimpleHistoryAdmin
 from customer.models import Preorder, Customer, PreordersReady, OrderRequest, ReleasedProducts
 from django.contrib.auth.models import Group
-from customer.tasks import alert
-from ipware import get_client_ip
-from decimal import Decimal
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.template.response import TemplateResponse
 from django.utils.translation import ugettext_lazy as _
-from import_export.admin import ImportExportModelAdmin, ImportExportMixin
+from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from import_export.fields import Field
 from import_export.forms import ConfirmImportForm
 from .tcgplayer_api import TcgPlayerApi
 from django.core.exceptions import PermissionDenied
 from django.utils.encoding import force_text
-from collections import Counter, OrderedDict, defaultdict
-from tablib import Dataset
+from collections import defaultdict
 
 try:
     from StringIO import StringIO
@@ -35,26 +30,26 @@ class CardDataResource(resources.ModelResource):
 
     name = Field(attribute='name', column_name='Name')
     expansion = Field(attribute='expansion', column_name='Set')
-    tcg_price = Field(attribute='tcg_price', column_name='Tcg Price')
     tcg_net = Field(attribute='tcg_net', column_name='Tcg Net')
+    tcg_price = Field(attribute='tcg_price', column_name='Tcg Price')
+    tcg_market = Field(attribute='tcg_market', column_name='Tcg Market')
     amazon_price = Field(attribute='amazon_price', column_name='Amazon Price')
     amazon_net = Field(attribute='amazon_net', column_name='Amazon Net')
     scg_buylist = Field(attribute='scg_buylist', column_name='SCG Buylist')
     ck_buylist = Field(attribute='ck_buylist', column_name='CK Buylist')
-    cfb_buylist = Field(attribute='cfb_buylist', column_name='CFB Buylist')
 
     class Meta:
         model = CardPriceData
-        exclude = ('sku', 'product_id', 'id', )
+        exclude = ('id', 'cfb_buylist', 'direct_net', 'store_quantity_needed', 'printing', 'sell_to', 'best_net',
+                   'sku', 'product_id', 'tcg_direct_price', 'updated', )
 
 
 @admin.register(CardPriceData)
 class CardPriceAdmin(ImportExportModelAdmin):
     search_fields = ['name']
     list_display = ['name', 'expansion', 'ck_buylist', 'scg_buylist', 'tcg_direct_price', 'tcg_price', 'amazon_price', 'low_store_stock',
-                    'store_quantity_needed', 'sell_to', ]
-    ordering = ['-low_store_stock', '-amazon_price', ]
-    fields = ['low_store_stock', 'sku', ]
+                    'store_quantity_needed', 'sell_to', 'updated', ]
+    ordering = ['name']
     resource_class = CardDataResource
 
 
@@ -275,19 +270,6 @@ class UpdatedInventoryAdmin(admin.ModelAdmin):
 
 
 class CustomerAdmin(SimpleHistoryAdmin):
-
-    def save_model(self, request, obj, form, change):
-
-        obj.employee_initial = ''
-        if obj.credit > obj.last_credit:
-            diff = obj.credit - Decimal(obj.last_credit)
-            t = StoreCredit.objects.get(name='Name')
-            t.total += diff
-            t.entries += 1
-            t.save()
-
-        obj.last_credit = obj.credit
-        obj.save()
 
         # ip, is_routable = get_client_ip(request)
 

@@ -1,23 +1,32 @@
 from django.db import models
+from django.utils import timezone
 
 
 class CardPriceData(models.Model):
+    c = (
+        ('yes', 'Yes',),
+        ('no', 'No',),
+    )
     sku = models.CharField(max_length=255, default='', blank=True)
     name = models.CharField(max_length=255, default='')
     expansion = models.CharField(max_length=255, default='', blank=True)
     product_id = models.CharField(max_length=255, default='', blank=True)
     tcg_direct_price = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
+    direct_net = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
     tcg_price = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
+    tcg_market = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
     tcg_net = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
     amazon_price = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
     amazon_net = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
     scg_buylist = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
     ck_buylist = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
     cfb_buylist = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
-    low_store_stock = models.BooleanField(default=False)
+    low_store_stock = models.CharField(max_length=3, default='No', choices=c)
     store_quantity_needed = models.IntegerField(default=0)
     printing = models.CharField(max_length=255, default='')
     sell_to = models.CharField(max_length=255, default='')
+    best_net = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
+    updated = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -118,17 +127,17 @@ class DirectData(models.Model):
 
 
 class MTG(models.Model):
-    product_name = models.CharField(max_length=255, default='', db_index=True, verbose_name='name')
+    product_name = models.CharField(max_length=255, default='', verbose_name='name')
     set_name = models.CharField(max_length=255, default='', db_index=True)
-    set_abbreviation = models.CharField(max_length=255, default='', db_index=True)
-    condition = models.CharField(max_length=255, default='', db_index=True)
-    language = models.CharField(max_length=255, default='English', db_index=True)
+    set_abbreviation = models.CharField(max_length=255, default='')
+    condition = models.CharField(max_length=255, default='')
+    language = models.CharField(max_length=255, default='English')
     foil = models.BooleanField(default=False)
     price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     stock = models.IntegerField(default=0)
     rarity = models.CharField(max_length=255, default='')
     sku = models.CharField(max_length=255, default='')
-    product_id = models.CharField(max_length=30, default='')
+    product_id = models.CharField(max_length=30, default='', db_index=True)
     image_url = models.CharField(max_length=255, default='')
     oracle_text = models.TextField(default='')
     flavor_text = models.TextField(default='', blank=True)

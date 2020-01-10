@@ -109,7 +109,7 @@ INSTALLED_APPS = [
     'ppal',
     'amazon',
     'other',
-#  'customer.startup.BotConfig',
+    # 'customer.startup.BotConfig',
 
 ]
 

@@ -1,6 +1,7 @@
-from django.core.mail import send_mail
 import traceback
 import functools
+import time
+from django.core.mail import send_mail
 
 
 def report_error(func):
@@ -44,6 +45,13 @@ def offset(func):
             return final_list
 
     return wrapper
+
+
+def time_it(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        pass
+
 
 
 

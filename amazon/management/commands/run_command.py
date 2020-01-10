@@ -9,6 +9,7 @@ from decouple import config
 from engine.models import CardPriceData
 from customs.csv_ import open_csv
 from engine.models import CardPriceData
+import ijson
 
 api = MWS()
 
@@ -112,6 +113,7 @@ class Command(BaseCommand):
         # live = AmazonLiveInventory.objects
         # report_id = api.request_and_get_inventory_report('inventory')
 
+
         headers, data = api.parse_inventory_report('18340562229018261')
 
         dic = {}
@@ -129,6 +131,7 @@ class Command(BaseCommand):
 
         # live = AmazonLiveInventory.objects
         # report_id = api.request_and_get_inventory_report('active_listings')
+
 
         '''
         from customs.csv_ import save_csv
@@ -164,6 +167,16 @@ class Command(BaseCommand):
         '''
 
 
+        '''
+        with open('AllPrintings.json', encoding='utf-8') as f:
+
+            file = ijson.items(f, 'all')
+
+            gen = (i for i in file)
+
+            for g in gen:
+                print(g)
+        '''
 
 
 

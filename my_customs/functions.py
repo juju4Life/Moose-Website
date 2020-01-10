@@ -1,8 +1,8 @@
 import re
 import math
 import requests
+from time import sleep, time
 from bs4 import BeautifulSoup as b
-from time import sleep
 from.decorators import offset
 
 
@@ -89,6 +89,16 @@ def integers_to_percentage(old_num, new_num):
         percent = 0
 
     return percent
+
+
+def time_it(start, stop):
+    elapsed = (stop - start)
+
+    minutes = round(elapsed / 60, 2)
+
+    hours = round(elapsed / 3600, 2)
+
+    return f'Seconds: {round(elapsed, 2)}', f'Minutes: {minutes}', f'Hours: {hours}'
 
 
 

@@ -1,6 +1,10 @@
 from django.core.management.base import BaseCommand
 from engine.models import CardPriceData
 from tcg.tcg_functions import tcg_fee_calc, amazon_fee_calc
+from amazon.amazon_mws import MWS
+
+
+api = MWS()
 
 
 class Command(BaseCommand):
@@ -26,8 +30,6 @@ class Command(BaseCommand):
 
             d.sell_to = best_net[0][0]
             d.save()
-            print(d.sell_to)
-            print(index)
 
 
 

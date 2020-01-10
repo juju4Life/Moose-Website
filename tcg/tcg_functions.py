@@ -178,9 +178,12 @@ def tcg_fee_calc(price, direct=False):
 
         price = float(price)
         market_place_commission = (9.25 / 100) * price
+        tracking_fee = 2.85
+        shipping_fee = .55
 
         if direct is True:
-            market_place_commission = (8.25 / 100) * price
+            market_place_commission = (8.95 / 100) * price
+            shipping_fee += .15
 
         paypal_fee = (2.5 / 100) * price
         pro_commission = (2.5 / 100) * price
@@ -188,10 +191,7 @@ def tcg_fee_calc(price, direct=False):
 
         total_fees = paypal_fee + pro_commission + market_place_commission + paypal_credit_flat_fee
 
-        tracking_fee = 2.85
-        shipping_fee = .55
-
-        if price > 9.99:
+        if price > 39.99:
             adjusted_price = (price - total_fees) - (shipping_fee + tracking_fee)
             total_fees += shipping_fee + tracking_fee
         else:
