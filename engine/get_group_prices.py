@@ -84,6 +84,7 @@ def get_tcg_prices():
 
                             buylist_data.tcg_price = low_price
                             buylist_data.tcg_direct_price = direct_low_price
+                            buylist_data.tcg_market = market_price
 
                             buylist_data.save()
 
