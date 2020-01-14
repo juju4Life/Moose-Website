@@ -7,6 +7,7 @@ class CardPriceData(models.Model):
         ('yes', 'Yes',),
         ('no', 'No',),
     )
+
     sku = models.CharField(max_length=255, default='', blank=True)
     name = models.CharField(max_length=255, default='')
     expansion = models.CharField(max_length=255, default='', blank=True)
