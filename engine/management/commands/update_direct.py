@@ -23,7 +23,6 @@ class Command(BaseCommand):
                     current_price = card['currentPrice']
                     market_price = card['marketPrice']
                     low_price = card['lowPrice']
-                    new_price = ''
 
                     if current_price > direct_low_price:
                         new_price = direct_low_price - .01
