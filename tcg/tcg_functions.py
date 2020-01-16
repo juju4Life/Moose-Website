@@ -193,10 +193,17 @@ def tcg_fee_calc(price, direct=False):
 
         total_fees = (paypal_fee + pro_commission + market_place_commission) + paypal_credit_flat_fee + labor
 
-        if price > 39.99:
+        if price > 39.99 and direct is False:
             adjusted_price = (price - total_fees) - (shipping_fee + tracking_fee)
             total_fees += shipping_fee + tracking_fee
+        elif price < 40 and direct is False:
+            adjusted_price = (price - total_fees) - shipping_fee
+            total_fees += shipping_fee
         else:
+            if price >= 20 and price < 250:
+                shipping_fee = 3.14
+            elif price >= 250:
+                shipping_fee = 5.74
             adjusted_price = (price - total_fees) - shipping_fee
             total_fees += shipping_fee
 
