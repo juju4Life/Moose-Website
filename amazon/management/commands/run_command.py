@@ -113,7 +113,7 @@ class Command(BaseCommand):
         # live = AmazonLiveInventory.objects
         # report_id = api.request_and_get_inventory_report('inventory')
 
-
+        '''
         headers, data = api.parse_inventory_report('18340562229018261')
 
         dic = {}
@@ -131,25 +131,29 @@ class Command(BaseCommand):
 
         # live = AmazonLiveInventory.objects
         # report_id = api.request_and_get_inventory_report('active_listings')
-
-
         '''
+
         from customs.csv_ import save_csv
         header = ['Expansion', 'Name', 'Sku']
         rows = []
+        total = 0
         for c in CardPriceData.objects.all():
-            name = c.name
-            expansion = c.expansion
-            sku = ''
+            if c.tcg_market > 1.99 or c.tcg_price > 1.99:
 
-            rows.append(
-                [expansion, name, sku]
-            )
+                name = c.name
+                expansion = c.expansion
+                sku = ''
+
+                rows.append(
+                    [expansion, name, sku]
+                )
+                total += 1
 
         save_csv(
             'Card_data', header=header, rows=rows
         )
-        '''
+        print(total)
+
 
 
 

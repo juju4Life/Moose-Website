@@ -156,8 +156,6 @@ class Command(BaseCommand):
                                                     data.price_metrics = price_list
                                                     data.save()
 
-
-
                                                 else:
                                                     if competitive_price < 1.99:
                                                         competitive_price = 1.99
