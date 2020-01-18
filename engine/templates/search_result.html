@@ -53,7 +53,7 @@
                                         </td>
 
 										<td>
-											<a href="{% url 'product_detail' 126451 %}">{{item.product_name}}</a>
+											<a href="{% url 'product_detail' item.product_id %}">{{item.product_name}}</a>
 										</td>
 
 										<td>({{item.set_name}})</td>
@@ -61,17 +61,14 @@
                                         <td>Near Mint Foil</td>
 
                                         <td>
-                                            <form action="{% url 'add_to_cart' item.id %}" method="post">
+                                            <form action="{% url 'add_to_cart' item.id %}" method="POST">
                                                 {% csrf_token %}
                                                 <div class="form-box">
 
-                                                        <span class="mr-1">${{1.99|floatformat:2}}</span>
-
-                                                        <input class="mr-1" style="" size="2" type="number" name="quantity" min="1" max="8">
-
-                                                        <button class="btn btn-success mr-1" style=""><i class="material-icons">add</i></button>
+                                                    <span class="mr-1">${{1.99|floatformat:2}}</span>
+                                                    <input class="mr-1" style="" size="2" type="number" name="quantity" min="1" max="8">
+                                                    <button type="submit" class="btn btn-success mr-1" style=""><i class="material-icons">add</i></button>
                                                 </div>
-
                                             </form>
                                         </td>
 									</tr>

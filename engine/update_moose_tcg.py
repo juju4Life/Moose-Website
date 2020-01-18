@@ -112,8 +112,8 @@ def moose_price():
                 elif language == 'English' and condition != 'Unopened':
 
                     day = day_name[date.today().weekday()]
-                    if day == 'Tuesday':
-                        if condition == 'Moderately Played' or condition == 'Lightly Played':
+                    if day == 'Saturday':
+                        if condition == 'Moderately Played' or condition == 'Heavily Played':
                             next_page = True
                             page = 1
                             seller_data_list = []
@@ -135,12 +135,14 @@ def moose_price():
                                 if not data:
                                     break
 
+                                seller_condition_list = ['Lightly Played', 'Near Mint']
+
                                 # loop over each item on the page and get Seller Info
                                 for d in data:
                                     seller_condition = d.find('div', {'class': 'product-listing__condition'}).text.strip()
                                     seller_name = d.find('a', {'class': 'seller__name'}).text.strip()
 
-                                    if seller_name != 'MTGFirst' and seller_name != 'Moose Loot' and seller_condition == 'Lightly Played':
+                                    if seller_name != 'MTGFirst' and seller_name != 'Moose Loot' and seller_condition in seller_condition_list:
                                         price, total_price, seller_total_sales = get_product_seller_info(d)
 
                                         price_dict = {
@@ -165,7 +167,7 @@ def moose_price():
                             '''
 
                             condition_updated_price = moose_price_algorithm(seller_data=seller_data_list, )
-                    
+
                     next_page = True
                     page = 1
                     seller_data_list = []
@@ -243,9 +245,10 @@ def moose_price():
                             updated_price = .25
 
                         if condition_updated_price:
+
                             if condition == 'Moderately Played':
-                                if updated_price >= condition_updated_price * .9:
-                                    updated_price = condition_updated_price * .9
+                                if updated_price >= condition_updated_price * .85:
+                                    updated_price = condition_updated_price * .85
                             elif condition == 'Heavily Played':
                                 if updated_price >= condition_updated_price * .75:
                                     updated_price = condition_updated_price * .75
@@ -254,6 +257,7 @@ def moose_price():
                         api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
 
                         metrics, created = MooseAutopriceMetrics.objects.get_or_create(sku=sku)
+
                         metrics_update(
                             metrics=metrics,
                             seller_data_list=seller_data_list,

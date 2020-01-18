@@ -36,6 +36,7 @@
 								   <form action="{% url 'add_to_cart' card.product %}" method="post">
 							{% csrf_token %}
 									   <input style="color: black;" id="box" size="3" type="number" name="quantity" min="1" max="8" value="{{card.quantity}}">
+									   <button style="" type="submit" class="btn btn-success">Update</button>
 								   </form>
 							   </td>
 								<td><strong>${{card.total|floatformat:2}}</strong></td>

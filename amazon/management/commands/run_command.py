@@ -137,7 +137,7 @@ class Command(BaseCommand):
         header = ['Expansion', 'Name', 'Sku']
         rows = []
         total = 0
-        for c in CardPriceData.objects.all():
+        for c in CardPriceData.objects.filter(sku=''):
             if c.tcg_market > 1.99 or c.tcg_price > 1.99:
 
                 name = c.name
@@ -181,6 +181,8 @@ class Command(BaseCommand):
             for g in gen:
                 print(g)
         '''
+
+
 
 
 
