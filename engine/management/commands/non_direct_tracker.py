@@ -77,8 +77,6 @@ class Command(BaseCommand):
                         )
 
                         new_entry.save()
-                print(index)
-
 
 
 

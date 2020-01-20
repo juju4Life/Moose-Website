@@ -15,7 +15,6 @@ first_api = TcgPlayerApi('first')
 def moose_price():
 
     for index, dc in enumerate(DirectData.objects.filter(in_stock=True)):
-        print('Processing Direct')
         process_card(
             api=first_api,
             sku=dc.sku,
