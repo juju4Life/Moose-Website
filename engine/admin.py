@@ -223,7 +223,7 @@ class TcgGroupPriceAdmin(admin.ModelAdmin):
 @admin.register(DirectData)
 class DirectTrackerAdmin(admin.ModelAdmin):
     search_fields = ['name']
-    list_display = ['name', 'expansion', 'consecutive_days_non_direct', 'total_days_non_direct', 'condition', 'foil', 'last_add', ]
+    list_display = ['name', 'expansion', 'consecutive_days_non_direct', 'total_days_non_direct', 'condition', 'foil', 'last_add', 'in_stock',]
     ordering = ['-last_add', '-consecutive_days_non_direct']
 
 

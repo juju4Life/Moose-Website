@@ -13,6 +13,7 @@ class Command(BaseCommand):
         success = listed_cards['success']
         if success is True:
             direct_database = DirectData.objects
+            direct_database.filter(in_stock=True).update(in_stock=False)
             cards = listed_cards['results']
             non_direct = 0
 
@@ -40,6 +41,7 @@ class Command(BaseCommand):
                             entry.days_non_direct = delta.days
 
                         entry.last_add = date.today()
+                        entry.in_stock = True
                         entry.save()
 
                     else:
@@ -61,10 +63,12 @@ class Command(BaseCommand):
                             total_days_non_direct=1,
                             last_consecutive_run=1,
                             days_non_direct=1,
+                            in_stock=True,
 
                         )
 
                         new_entry.save()
+
 
 
 
