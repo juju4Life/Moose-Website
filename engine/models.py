@@ -122,6 +122,7 @@ class DirectData(models.Model):
     last_add = models.DateField(verbose_name="Last Non-direct Date")
     last_consecutive_run = models.IntegerField(default=1)
     days_non_direct = models.IntegerField(default=1)
+    in_stock = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
