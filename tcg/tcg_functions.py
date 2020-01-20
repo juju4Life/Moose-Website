@@ -6,6 +6,20 @@ from engine.models import MooseAutopriceMetrics
 from my_customs.functions import integers_from_string, float_from_string, request_pages_data
 
 
+def convert_foil(value):
+
+    d = {
+        'Normal': False,
+        False: 'Normal',
+        'false': 'Normal',
+        'Foil': True,
+        True: 'Foil',
+        'true': 'Foil',
+    }
+
+    return d.get(value)
+
+
 def add_shipping_if_lower_than_five(value_dict):
     mapped = map(lambda i: i['price'] + .78 if i['price'] < 5 and i['default_shipping'] is True else i['price'], value_dict)
 

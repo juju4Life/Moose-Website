@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from engine.tcgplayer_api import TcgPlayerApi
 from engine.models import MooseAutopriceMetrics, DirectData
 from my_customs.decorators import report_error
-from tcg.tcg_functions import metrics_update, process_card
+from tcg.tcg_functions import metrics_update, process_card, convert_foil
 
 
 api = TcgPlayerApi('moose')
@@ -13,12 +13,29 @@ first_api = TcgPlayerApi('first')
 
 @report_error
 def moose_price():
+
+    for index, dc in enumerate(DirectData.objects.filter(in_stock=True)):
+        print('Processing Direct')
+        process_card(
+            api=first_api,
+            sku=dc.sku,
+            product_id=dc.product_id,
+            condition=dc.condition,
+            printing=convert_foil(dc.foil),
+            language=dc.language,
+            name=dc.name,
+            expansion=dc.expansion,
+            current_price=dc.current_price,
+            market=dc.market,
+            low=dc.low,
+            index=index,
+        )
+
     start_time = time()
     # Entire Moose Loot Listed inventory
     listed_cards = api.get_category_skus('magic')
     if listed_cards['success'] is True:
         print(f"Updating {listed_cards['totalItems']} for Moose Inventory")
-        condition_updated_price = None
         for index, card in enumerate(listed_cards['results']):
             try:
                 condition = card['conditionName']

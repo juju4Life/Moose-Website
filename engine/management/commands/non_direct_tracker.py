@@ -21,6 +21,9 @@ class Command(BaseCommand):
                 if card['directLowPrice'] is None:
                     non_direct += 1
                     sku = card['skuId']
+                    current_price = card['currentPrice']
+                    low = card['lowPrice']
+                    market = card['marketPrice']
                     database_entry_check = direct_database.filter(sku=sku).exists()
 
                     if database_entry_check is True:
@@ -42,6 +45,9 @@ class Command(BaseCommand):
 
                         entry.last_add = date.today()
                         entry.in_stock = True
+                        entry.low = low
+                        entry.market = market
+                        entry.current_price = current_price
                         entry.save()
 
                     else:
@@ -64,6 +70,9 @@ class Command(BaseCommand):
                             last_consecutive_run=1,
                             days_non_direct=1,
                             in_stock=True,
+                            market=market,
+                            low=low,
+                            current_price=current_price
 
                         )
 

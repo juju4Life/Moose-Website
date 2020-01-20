@@ -123,6 +123,9 @@ class DirectData(models.Model):
     last_consecutive_run = models.IntegerField(default=1)
     days_non_direct = models.IntegerField(default=1)
     in_stock = models.BooleanField(default=False)
+    current_price = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
+    market = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
+    low = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
 
     def __str__(self):
         return self.name
