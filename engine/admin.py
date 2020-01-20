@@ -223,15 +223,15 @@ class TcgGroupPriceAdmin(admin.ModelAdmin):
 @admin.register(DirectData)
 class DirectTrackerAdmin(admin.ModelAdmin):
     search_fields = ['name']
-    list_display = ['name', 'expansion', 'consecutive_days_non_direct', 'total_days_non_direct', 'condition', 'foil', 'last_add', 'in_stock',]
-    ordering = ['-last_add', '-consecutive_days_non_direct']
+    list_display = ['name', 'expansion', 'consecutive_days_non_direct', 'total_days_non_direct', 'condition', 'foil', 'last_add', 'in_stock', ]
+    ordering = ['-in_stock', '-last_add', '-consecutive_days_non_direct']
 
 
 @admin.register(MTG)
 class MTGAdmin(ImportExportModelAdmin):
     resource_class = MTGResource
     search_fields = ['product_name']
-    list_display = ['product_name', 'set_name', 'foil', 'condition', 'language']
+    list_display = ['product_name', 'set_name', 'foil', 'condition', 'language', ]
 
 
 class OrdersProcessingAdmin(admin.ModelAdmin):

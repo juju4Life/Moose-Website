@@ -17,7 +17,7 @@ class Command(BaseCommand):
             cards = listed_cards['results']
             non_direct = 0
 
-            for card in cards:
+            for index, card in enumerate(cards):
                 if card['directLowPrice'] is None:
                     non_direct += 1
                     sku = card['skuId']
@@ -68,7 +68,6 @@ class Command(BaseCommand):
                         )
 
                         new_entry.save()
-
 
 
 
