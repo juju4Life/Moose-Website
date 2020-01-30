@@ -67,7 +67,7 @@ class Customer(models.Model):
     notes = models.TextField(default='', blank=True, null=True)
     medal = models.IntegerField(default=0, blank=True, null=True, verbose_name='Medals')
     employee_initial = models.CharField(max_length=5, default='')
-    # user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     address_line_1 = models.CharField(max_length=255, default='', blank=True)
     address_line_2 = models.CharField(max_length=255, default='', blank=True)
     state = models.CharField(max_length=20, default='', blank=True)
@@ -136,7 +136,6 @@ class ReleasedProducts(models.Model):
     link = models.URLField(max_length=5000, default='', blank=True)
     month = models.CharField(max_length=20, default='')
     year = models.CharField(max_length=255, default='')
-    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.product
