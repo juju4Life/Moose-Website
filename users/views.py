@@ -5,6 +5,7 @@ from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm
 from customer.models import Customer
 
+
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -18,7 +19,6 @@ def register(request):
         form = UserRegisterForm()
 
     return render(request, 'users/register.html', {'form':form})
-
 
 
 @login_required
@@ -39,6 +39,9 @@ def profile(request):
 
         else:
             user_form = UserUpdateForm(instance=request.user)
+
+    else:
+        user_form = None
 
     return render(request, 'users/profile.html', {'data': data, 'user_form': user_form})
 

@@ -1,8 +1,68 @@
 {% extends 'home.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
 {% block content %}
-	<div style="">
+{% include 'profile_style.html' %}
 
-		{% include 'users/profile_options.html' %}
+<div style="">
 
+	<div class="row">
+		<div class="col-sm-12">
+			<h2> Hello {{user.username}}</h2>
+		</div>
 	</div>
+
+	<nav>
+
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+			<a class="nav-item nav-link active" id="nav-account-tab" data-toggle="tab" href="#nav-account" role="tab" aria-controls="nav-account"
+			   aria-selected="true">
+				Account</a>
+
+			<a class="nav-item nav-link" id="nav-credit-tab" data-toggle="tab" href="#nav-credit" role="tab" aria-controls="nav-credit" aria-selected="false">
+				Credit</a>
+
+			<a class="nav-item nav-link" id="nav-orders-tab" data-toggle="tab" href="#nav-orders" role="tab" aria-controls="nav-orders" aria-selected="false">
+				Orders</a>
+
+			<a class="nav-item nav-link" id="nav-wishlist-tab" data-toggle="tab" href="#nav-wishlist" role="tab" aria-controls="nav-wishlist" aria-selected="false">
+			Wishlist</a>
+
+			<a class="nav-item nav-link" id="nav-treasures-tab" data-toggle="tab" href="#nav-treasures" role="tab" aria-controls="nav-treasures"
+			   aria-selected="false">
+			Treasures</a>
+
+	     </div>
+
+	</nav>
+
+	<div class="" id="nav-tabContent">
+		<div class="tab-pane fade show active" id="nav-account" role="tabpanel" aria-labelledby="nav-account-tab">
+			<div>
+				<br>
+				<span class="label">Email:</span>&nbsp;&nbsp;{{data.email}} <br>
+				<span class="label">Store Credit:</span>&nbsp;&nbsp;{{data.credit}}
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="instructions">
+              <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
+                {{user_form|crispy}}
+                {{profile_form|crispy}}
+                <input type="submit" value="Update" class ='btn btn-success' />
+
+              </form>
+
+          </div>
+
+		</div>
+		<div class="tab-pane fade" id="nav-credit" role="tabpanel" aria-labelledby="nav-credit-tab">
+		</div>
+		<div class="tab-pane fade" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">Three</div>
+
+		<div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab">Three</div>
+		<div class="tab-pane fade" id="nav-treasures" role="tabpanel" aria-labelledby="nav-treasures-tab">Three</div>
+	</div>
+
+</div>
 {% endblock %}

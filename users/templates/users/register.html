@@ -2,10 +2,21 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+<style>
+
+	.main-form{
+		background-color: rgba(234, 237, 242);
+  		border-radius: 15px;
+  		border: 1px solid gray;
+  		margin-top: 1%;
+	}
+
+</style>
+
 <div class='row'>
-	<div style="background-color:white" class='col-sm-6 col-sm-offset-3'>   
-		<legend class="border-bottom mb-4">Sign up for an account</legend>
-		
+	<div class="col-sm-3"></div>
+	<div class='main-form col-sm-5 col-sm-offset-5'>
+
 		{% if form %}
 		<form style='padding: 1%;' method="POST" action="">{% csrf_token %}
 			{{form|crispy}}
@@ -14,8 +25,6 @@
 				Already have an account? <a class="ml-2" href="{% url 'login' %}">Login</a>
 			</small>
 		</form>
-
-
 
 	</div>
 </div>

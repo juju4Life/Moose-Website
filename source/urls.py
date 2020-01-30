@@ -29,7 +29,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('password-reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html', email_template_name = 'users/password_reset_email.html'), name='password_reset'),
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'), name='password_reset_done'),
-    path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name='password_reset_confirm'),
+    path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'),
+         name='password_reset_confirm'),
     path('password-reset-complete', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name='password_reset_complete'),
     path('contact-us/', contact_views.contact, name='contact'),
     path('ip/', customer_views.get_ip, name='ip'),
@@ -51,7 +52,7 @@ urlpatterns = [
     path('cart/add-buylist-item/<product_id>', buylist_views.add_to_cart, name='add_to_cart_buylist'),
     path('cart/remove/<product_id>', home_views.remove_from_cart, name='remove_from_cart'),
     path('cart/remove-buylist-item/<product_id>', buylist_views.remove_from_cart, name='remove_from_cart_buylist'),
-    path('cart/clear/', home_views.clear, name= 'empty_cart'),
+    path('cart/clear/', home_views.clear, name='empty_cart'),
     path('cart/clear-buylist-item/', buylist_views.clear, name= 'empty_cart_buylist'),
     path('product/<product_id>', home_views.product_detail, name='product_detail'),
 

@@ -65,7 +65,7 @@
                                                 {% csrf_token %}
                                                 <div class="form-box">
 
-                                                    <span class="mr-1">${{1.99|floatformat:2}}</span>
+                                                    <span class="mr-1">${{item.price|floatformat:2}}</span>
                                                     <input class="mr-1" style="" size="2" type="number" name="quantity" min="1" max="8">
                                                     <button type="submit" class="btn btn-success mr-1" style=""><i class="material-icons">add</i></button>
                                                 </div>
