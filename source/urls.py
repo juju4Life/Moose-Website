@@ -12,6 +12,7 @@ from users import views as user_views
 
 
 urlpatterns = [
+    # path('profile/update', user_views.login_required, name='update'),
     path('paypal/', include('paypal.standard.ipn.urls')),
     path('at/', include('admin_tools.urls')),
     path('sms/', include('sms.urls')),

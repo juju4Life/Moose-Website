@@ -4,13 +4,7 @@
 {% block content %}
 {% include 'profile_style.html' %}
 
-<div style="">
-
-	<div class="row">
-		<div class="col-sm-12">
-			<h2> Hello {{user.username}}</h2>
-		</div>
-	</div>
+<div style="margin-top:5%;">
 
 	<nav>
 
@@ -20,8 +14,9 @@
 			   aria-selected="true">
 				Account</a>
 
-			<a class="nav-item nav-link" id="nav-credit-tab" data-toggle="tab" href="#nav-credit" role="tab" aria-controls="nav-credit" aria-selected="false">
-				Credit</a>
+			<a class="nav-item nav-link" id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address"
+			   aria-selected="false">
+				Address</a>
 
 			<a class="nav-item nav-link" id="nav-orders-tab" data-toggle="tab" href="#nav-orders" role="tab" aria-controls="nav-orders" aria-selected="false">
 				Orders</a>
@@ -37,27 +32,142 @@
 
 	</nav>
 
-	<div class="" id="nav-tabContent">
+	<div class="tab-content" id="nav-tabContent">
+
+		<!-- Main Profile Information -->
+
 		<div class="tab-pane fade show active" id="nav-account" role="tabpanel" aria-labelledby="nav-account-tab">
+
 			<div>
-				<br>
-				<span class="label">Email:</span>&nbsp;&nbsp;{{data.email}} <br>
-				<span class="label">Store Credit:</span>&nbsp;&nbsp;{{data.credit}}
+				<table class="info-table">
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+						</tr>
+
+					</thead>
+
+					<tbody>
+
+						<tr>
+							<td class="label">Username:</td>
+							<td class="profile-data">{{user.username}}</td>
+						</tr>
+
+						<tr>
+							<td class="label">Email:</td>
+							<td class="profile-data">{{data.email}}</td>
+						</tr>
+
+						<tr>
+							<td class="label">Store Credit:</td>
+							<td class="profile-data">{{data.credit}}</td>
+						</tr>
+
+						<tr>
+							<td class="label">Birthday:</td>
+							<td class="profile-data">{{data.birth_date}}</td>
+						</tr>
+
+
+					</tbody>
+				</table>
 			</div>
 
-			<div role="tabpanel" class="tab-pane" id="instructions">
-              <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
-                {{user_form|crispy}}
-                {{profile_form|crispy}}
-                <input type="submit" value="Update" class ='btn btn-success' />
+			<div role="tabpanel" class="tab-pane">
 
-              </form>
+				{% if not request.POST %}
 
-          </div>
+					<div style="margin-top:1%;margin-left:1%;">
+						<form method="POST" action="{% url 'profile' %}">
+						{% csrf_token %}
+							<input type="submit" name="update_page" value="Update Info" class="btn btn-success" >
+						</form>
+					</div>
+
+
+				{% elif request.POST.update_page %}
+
+				  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
+					  {{user_form|crispy}}
+					  {{profile_form|crispy}}
+
+					<input type="submit" name="update" value="Update" class ='btn btn-success' />
+
+				  </form>
+
+				{% endif %}
+
+          	</div>
 
 		</div>
-		<div class="tab-pane fade" id="nav-credit" role="tabpanel" aria-labelledby="nav-credit-tab">
+
+		<!-- Address Tab -->
+
+		<div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
+
+			<div>
+				<table class="info-table">
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+						</tr>
+
+					</thead>
+
+					<tbody>
+
+						<tr>
+							<td class="label">Default Address</td>
+							<td class="profile-data">
+								{{data.name}} <br>
+								{{data.address_line_1}} {{address_line_2}} <br>
+								{{data.city}}, {{data.state}} {{data.zip_code}}
+							</td>
+						</tr>
+
+						<tr>
+							<td class="label">Secondary Address:</td>
+							<td class="profile-data"></td>
+						</tr>
+
+
+
+
+					</tbody>
+				</table>
+			</div>
+
+			<div role="tabpanel" class="tab-pane">
+
+				{% if not request.POST %}
+
+					<div style="margin-top:1%;margin-left:1%;">
+						<form method="POST" action="{% url 'profile' %}">
+						{% csrf_token %}
+							<input type="submit" name="update_page" value="Update Info" class="btn btn-success" >
+						</form>
+					</div>
+
+
+				{% elif request.POST.update_page %}
+
+				  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
+					  {{user_form|crispy}}
+					  {{profile_form|crispy}}
+
+					<input type="submit" name="update" value="Update" class ='btn btn-success' />
+
+				  </form>
+
+				{% endif %}
+
+          	</div>
+
 		</div>
+
 		<div class="tab-pane fade" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">Three</div>
 
 		<div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab">Three</div>

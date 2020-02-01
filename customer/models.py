@@ -73,6 +73,11 @@ class Customer(models.Model):
     state = models.CharField(max_length=20, default='', blank=True)
     city = models.CharField(max_length=20, default='', blank=True)
     zip_code = models.CharField(max_length=25, default='', blank=True)
+    second_address_line_1 = models.CharField(max_length=255, default='', blank=True)
+    second_address_line_2 = models.CharField(max_length=255, default='', blank=True)
+    second_state = models.CharField(max_length=20, default='', blank=True)
+    second_city = models.CharField(max_length=20, default='', blank=True)
+    second_zip_code = models.CharField(max_length=25, default='', blank=True)
     birth_date = models.DateField(null=True, blank=True)
     history = HistoricalRecords(
         history_change_reason_field=models.TextField(null=True)
