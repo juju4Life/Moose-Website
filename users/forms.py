@@ -5,15 +5,20 @@ from customer.models import Customer
 
 
 class UserRegisterForm(UserCreationForm):
+	states = (
+		(),
+	)
 	email = forms.EmailField()
 	first_name = forms.CharField()
 	last_name = forms.CharField()
 	address_line_1 = forms.CharField()
 	address_line_2 = forms.CharField(required=False)
 	city = forms.CharField()
-	state = forms.CharField()
+	state = forms.CharField(widget=forms.Select())
 	zip_code = forms.CharField()
-	birth_date = forms.DateField()
+	birth_date = forms.DateField(widget=forms.TextInput(
+		attrs={'class': 'datepicker'}
+	))
 
 	class Meta:
 		model = User
@@ -41,6 +46,7 @@ class LoginForm(AuthenticationForm):
 
 
 class UserUpdateForm(forms.ModelForm):
+	username = forms.CharField(max_length=15)
 
 	class Meta:
 		model = User
@@ -48,15 +54,22 @@ class UserUpdateForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super(UserUpdateForm, self).__init__(*args, **kwargs)
-		address = args[1]
+		# address = args[1]
 		# self.fields['address_line_1'].widget.attrs['placeholder'] = address
 
 
 class CustomerUpdateForm(forms.ModelForm):
+	name = forms.CharField()
 	address_line_1 = forms.CharField()
+	address_line_2 = forms.CharField()
+	city = forms.CharField()
+	state = forms.CharField()
+	zip_code = forms.CharField()
 
 	class Meta:
 		model = Customer
-		fields = ['address_line_1']
+		fields = [
+			'name', 'address_line_1', 'address_line_2', 'city', 'state', 'zip_code'
+		]
 
 

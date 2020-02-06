@@ -14,10 +14,11 @@
 </style>
 
 <div class='row'>
+
 	<div class="col-sm-3"></div>
 	<div class='main-form col-sm-5 col-sm-offset-5'>
-
 		{% if form %}
+
 		<form style='padding: 1%;' method="POST" action="">{% csrf_token %}
 			{{form|crispy}}
 			<input type="submit" value="Sign up now" class ='btn btn-success' />
@@ -26,8 +27,29 @@
 			</small>
 		</form>
 
+
+
 	</div>
 </div>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  var $j = jQuery.noConflict();
+  $j( function() {
+    $j( ".datepicker" ).datepicker({
+    	hangeMonth: true,
+      	changeYear: true,
+    	yearRange: "1900:2020",
+    });
+  } );
+  </script>
+
+
+
+
+
 
 {% endif %}
 {% endblock %}

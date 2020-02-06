@@ -17,6 +17,8 @@ def register(request):
             return redirect('login')
     else:
         form = UserRegisterForm()
+        for f in form:
+            print(f)
 
     return render(request, 'users/register.html', {'form':form})
 
@@ -28,7 +30,7 @@ def profile(request):
 
         if request.method == 'POST':
 
-            if request.POST.get('update') == 'Update':
+            if request.POST.get('update'):
                 user_form = UserUpdateForm(request.POST, data.address_line_1, instance=request.user)
 
                 if user_form.is_valid():
@@ -39,10 +41,14 @@ def profile(request):
                     messages.success(request, 'Your account has been updated successfully')
                 return redirect('profile')
 
-            elif request.POST['update_page']:
+            elif request.POST.get('update_page'):
 
                 user_form = UserUpdateForm(request.POST, data.address_line_1, instance=request.user)
                 return render(request, 'users/profile.html', {'data': data, 'user_form': user_form})
+
+            elif request.POST.get('update_address'):
+                address_form = CustomerUpdateForm(request.POST)
+                return render(request, 'users/profile.html', {'data': data, 'address_form': address_form})
 
         else:
             user_form = UserUpdateForm(request.POST, data.address_line_1, instance=request.user)

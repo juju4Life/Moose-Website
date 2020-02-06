@@ -133,6 +133,8 @@ class Command(BaseCommand):
         # report_id = api.request_and_get_inventory_report('active_listings')
         '''
 
+        '''
+
         from customs.csv_ import save_csv
         header = ['Expansion', 'Name', 'Sku']
         rows = []
@@ -153,6 +155,7 @@ class Command(BaseCommand):
             'Card_data', header=header, rows=rows
         )
         print(total)
+        '''
 
 
 
@@ -181,6 +184,24 @@ class Command(BaseCommand):
             for g in gen:
                 print(g)
         '''
+
+        from orders.models import GroupName
+
+        with open('expansions.json', 'w') as f:
+            expansions = []
+
+            for g in GroupName.objects.filter(category='Magic the Gathering'):
+                expansions.append(
+                    g.group_name,
+                )
+
+            json.dump(expansions, f)
+
+
+
+
+
+
 
 
 

@@ -17,7 +17,6 @@ def create_profile(sender, instance, created, **kwargs):
 			city=instance.city,
 			zip_code=instance.zip_code,
 			birth_date=instance.birth_date,
-
 			)
 
 
