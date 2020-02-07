@@ -73,21 +73,25 @@
 								<td class="profile-data">{{data.birth_date}}</td>
 							</tr>
 
+							{% if not request.POST %}
+								<tr>
+									<td></td>
+									<td>
 
+										<div style="margin-top:1%;justify:right;">
+											<form method="POST" action="{% url 'profile' %}">
+											{% csrf_token %}
+												<input type="submit" name="update_page" value="Update" class="btn btn-success" >
+											</form>
+										</div>
+									</td>
+								</tr>
+							{% endif %}
 						</tbody>
 					</table>
 
-					{% if not request.POST %}
 
-						<div style="margin-top:1%;margin-left:4%;">
-							<form method="POST" action="{% url 'profile' %}">
-							{% csrf_token %}
-								<input type="submit" name="update_page" value="Update" class="btn btn-success" >
-							</form>
-						</div>
-
-
-					{% elif request.POST.update_page %}
+					{% if request.POST.update_page %}
 
 					  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
 						  {{user_form|crispy}}
@@ -119,20 +123,24 @@
 									{{data.city}}, {{data.state}} {{data.zip_code}}
 								</td>
 							</tr>
+
+							{% if not request.POST %}
+							<tr>
+								<td></td>
+								<td>
+									<div style="margin-top:1%;margin-left:4%;">
+										<form method="POST" action="{% url 'profile' %}">
+										{% csrf_token %}
+											<input type="submit" name="update_address" value="Edit" class="btn btn-success" >
+										</form>
+									</div>
+								</td>
+							</tr>
+							{% endif %}
 						</tbody>
 					</table>
 
-					{% if not request.POST %}
-
-						<div style="margin-top:1%;margin-left:4%;">
-							<form method="POST" action="{% url 'profile' %}">
-							{% csrf_token %}
-								<input type="submit" name="update_address" value="Edit" class="btn btn-success" >
-							</form>
-						</div>
-
-
-					{% elif request.POST.update_address %}
+					{% if request.POST.update_address %}
 
 					  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
 						  {{address_form|crispy}}
@@ -158,30 +166,32 @@
 							<td class="label">Address 2</td>
 							<td class="profile-data">
 								{{data.name}} <br>
-								{{data.address_line_1}} {{address_line_2}} <br>
+								{{data.address_line_1}} {{data.second.address_line_2}} <br>
 								{{data.city}}, {{data.state}} {{data.zip_code}}
 							</td>
 						</tr>
+						{% if not request.POST %}
+							<tr>
+								<td></td>
+								<td>
+									<div style="margin-top:1%;margin-left:4%;">
+										<form method="POST" action="{% url 'profile' %}">
+										{% csrf_token %}
+											<input type="submit" name="update_second_address" value="Edit" class="btn btn-success" >
+										</form>
+									</div>
+								</td>
+							</tr>
+						{% endif %}
 					</tbody>
 				</table>
 
-				{% if not request.POST %}
-
-					<div style="margin-top:1%;margin-left:4%;">
-						<form method="POST" action="{% url 'profile' %}">
-						{% csrf_token %}
-							<input type="submit" name="update_address" value="Edit" class="btn btn-success" >
-						</form>
-
-					</div>
-
-
-				{% elif request.POST.update_second_address %}
+				{% if request.POST.update_second_address %}
 
 				  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
 					  {{address_form|crispy}}
 
-					<input type="submit" name="update_address" value="Update" class ='btn btn-success' />
+					<input type="submit" name="update_second_address" value="Update" class ='btn btn-success' />
 
 				  </form>
 

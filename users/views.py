@@ -17,8 +17,6 @@ def register(request):
             return redirect('login')
     else:
         form = UserRegisterForm()
-        for f in form:
-            print(f)
 
     return render(request, 'users/register.html', {'form':form})
 
@@ -37,26 +35,72 @@ def profile(request):
                     user_form.save()
                     # email = request.user.email
                     # data.email = email
-                    # data.save()
+                    data.save()
                     messages.success(request, 'Your account has been updated successfully')
                 return redirect('profile')
 
             elif request.POST.get('update_page'):
 
                 user_form = UserUpdateForm(request.POST, data.address_line_1, instance=request.user)
+
                 return render(request, 'users/profile.html', {'data': data, 'user_form': user_form})
 
             elif request.POST.get('update_address'):
-                address_form = CustomerUpdateForm(request.POST)
-                return render(request, 'users/profile.html', {'data': data, 'address_form': address_form})
+                address_form = CustomerUpdateForm(request.POST, instance=request.user)
+                if address_form.is_valid():
+                    address_form.save()
+                    name = request.POST.get('name')
+                    zip_code = request.POST.get('zip_code')
+                    address_line_1 = request.POST.get('address_line_1')
+                    address_line_2 = request.POST.get('address_line_2')
+                    city = request.POST.get('city')
+                    state = request.POST.get('state')
+                    data.zip_code = zip_code
+                    data.name = name
+                    data.address_line_1 = address_line_1
+                    data.address_line_2 = address_line_2
+                    data.city = city
+                    data.state = state
+                    data.save()
+                    messages.success(request, 'Your account has been updated successfully')
+                    return redirect('profile')
+                else:
+                    return render(request, 'users/profile.html', {'data': data, 'address_form': address_form})
+
+            elif request.POST.get('update_second_address'):
+                address_form = CustomerUpdateForm(request.POST, instance=request.user)
+                if address_form.is_valid():
+                    address_form.save()
+                    name = request.POST.get('name')
+                    zip_code = request.POST.get('zip_code')
+                    address_line_1 = request.POST.get('address_line_1')
+                    address_line_2 = request.POST.get('address_line_2')
+                    city = request.POST.get('city')
+                    state = request.POST.get('state')
+                    data.second_zip_code = zip_code
+                    data.second_name = name
+                    data.second_address_line_1 = address_line_1
+                    data.second_address_line_2 = address_line_2
+                    data.second_city = city
+                    data.second_state = state
+                    data.save()
+                    messages.success(request, 'Your account has been updated successfully')
+                    return redirect('profile')
+                else:
+                    return render(request, 'users/profile.html', {'data': data, 'address_form': address_form})
+            else:
+                user_form = UserUpdateForm(request.POST, data.address_line_1, instance=request.user)
+                profile_form = CustomerUpdateForm(instance=request.user)
 
         else:
             user_form = UserUpdateForm(request.POST, data.address_line_1, instance=request.user)
             profile_form = CustomerUpdateForm(instance=request.user)
 
+        return render(request, 'users/profile.html', {'data': data})
+
     else:
         user_form = None
 
-    return render(request, 'users/profile.html', {'data': data})
+
 
 
