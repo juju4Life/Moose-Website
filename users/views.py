@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm, CustomerUpdateForm
+from django.contrib.auth import authenticate, login
+from .forms import UserRegisterForm, UserUpdateForm, CustomerUpdateForm, UpdateEmailForm, LoginForm
 from customer.models import Customer
 
 
@@ -13,12 +15,33 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
 
-            messages.success(request, f'Account Created for {username}. You are now able to log in')
+            messages.success(request, f'Account Created for {username}. You are now able to log in.')
             return redirect('login')
     else:
         form = UserRegisterForm()
 
-    return render(request, 'users/register.html', {'form':form})
+    return render(request, 'users/register.html', {'form': form})
+
+
+def user_login(request):
+    form = LoginForm(request.POST)
+    context = {'form': form}
+
+    if request.POST.get('user_login'):
+
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(email=email, password=password)
+
+        if user is not None:
+            login(request, user)
+
+            return redirect('profile')
+        else:
+            messages.error(request, 'Email and Password does not match.')
+            return redirect('login')
+
+    return render(request, 'users/login.html', context)
 
 
 @login_required
@@ -88,6 +111,23 @@ def profile(request):
                     return redirect('profile')
                 else:
                     return render(request, 'users/profile.html', {'data': data, 'address_form': address_form})
+
+            elif request.POST.get('update_email'):
+                email_form = UpdateEmailForm(request.POST, instance=request.user)
+
+                if email_form.is_valid():
+                    email_form.save()
+                    email = request.POST.get('new_email')
+                    user = User.objects.get(email=request.user.email)
+                    user.email = email
+                    data.email = email
+                    data.save()
+                    user.save()
+                    messages.success(request, 'Your account has been updated successfully')
+                    return redirect('profile')
+                else:
+                    return render(request, 'users/profile.html', {'data': data, 'email_form': email_form})
+
             else:
                 user_form = UserUpdateForm(request.POST, data.address_line_1, instance=request.user)
                 profile_form = CustomerUpdateForm(instance=request.user)
@@ -100,7 +140,5 @@ def profile(request):
 
     else:
         user_form = None
-
-
 
 

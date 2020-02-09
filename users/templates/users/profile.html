@@ -1,6 +1,7 @@
 {% extends 'home.html' %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
+
 {% block content %}
 {% include 'profile_style.html' %}
 
@@ -78,10 +79,15 @@
 									<td></td>
 									<td>
 
-										<div style="margin-top:1%;justify:right;">
+										<div style="margin-top:1%;">
 											<form method="POST" action="{% url 'profile' %}">
 											{% csrf_token %}
-												<input type="submit" name="update_page" value="Update" class="btn btn-success" >
+												<input type="submit" name="update_page" value="Change Username" class="btn btn-success" >
+											</form>
+
+											<form style="margin-top:1%" method="POST" action="{% url 'profile' %}">
+											{% csrf_token %}
+												<input type="submit" name="update_email" value="Change Email" class="btn btn-success" >
 											</form>
 										</div>
 									</td>
@@ -97,6 +103,17 @@
 						  {{user_form|crispy}}
 
 						<input type="submit" name="update" value="Update" class ='btn btn-success' />
+
+					  </form>
+
+					{% endif %}
+
+					{% if request.POST.update_email %}
+
+					  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
+						  {{email_form|crispy}}
+
+						<input type="submit" name="update_email" value="Update" class ='btn btn-success' />
 
 					  </form>
 
@@ -131,7 +148,7 @@
 									<div style="margin-top:1%;margin-left:4%;">
 										<form method="POST" action="{% url 'profile' %}">
 										{% csrf_token %}
-											<input type="submit" name="update_address" value="Edit" class="btn btn-success" >
+											<input type="submit" name="update_address" value="Change Address" class="btn btn-success" >
 										</form>
 									</div>
 								</td>
@@ -150,7 +167,7 @@
 					  </form>
 
 					{% endif %}
-
+					<hr>
 					<table class="info-table">
 					<thead>
 						<tr>
@@ -165,9 +182,9 @@
 						<tr>
 							<td class="label">Address 2</td>
 							<td class="profile-data">
-								{{data.name}} <br>
-								{{data.address_line_1}} {{data.second.address_line_2}} <br>
-								{{data.city}}, {{data.state}} {{data.zip_code}}
+								{{data.second_name}} <br>
+								{{data.second_address_line_1}} {{data.second_address_line_2}} <br>
+								{{data.second_city}}, {{data.second_state}} {{data.second_zip_code}}
 							</td>
 						</tr>
 						{% if not request.POST %}
@@ -177,7 +194,7 @@
 									<div style="margin-top:1%;margin-left:4%;">
 										<form method="POST" action="{% url 'profile' %}">
 										{% csrf_token %}
-											<input type="submit" name="update_second_address" value="Edit" class="btn btn-success" >
+											<input type="submit" name="update_second_address" value="Change Address" class="btn btn-success" >
 										</form>
 									</div>
 								</td>
@@ -214,7 +231,6 @@
 
 		</div>
 
-		<!-- Address Tab -->
 
 		<div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
 

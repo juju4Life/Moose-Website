@@ -109,6 +109,7 @@ INSTALLED_APPS = [
     'ppal',
     'amazon',
     'other',
+    'captcha',
     # 'customer.startup.BotConfig',
 
 ]

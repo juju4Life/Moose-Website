@@ -9,11 +9,13 @@
 		{% if form %}
 		<form style='padding: 1%;' method="POST" action="">{% csrf_token %}
 			{{form|crispy}}
-			<input type="submit" value="Login" class ='btn btn-success' />
+			<input type="submit" name="user_login" value="Login" class ='btn btn-success' />
 			<small style="font-size: 16px" class="text-muted">&nbsp;
 				Need an account? <a class="ml-2" href="{% url 'register' %}">Sign up here.</a>
 			</small>
 		</form>
+
+		<small><a class="ml-2" href="{% url 'password_reset' %}">Forgot Password</a></small>
 
 
 
