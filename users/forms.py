@@ -4,10 +4,12 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from customer.models import Customer
 from users.models import State
+from captcha.fields import CaptchaField
 
 
 class UserRegisterForm(UserCreationForm):
 	state_list = ((i.abbreviation.lower(), i.abbreviation, ) for i in State.objects.all())
+	captcha = CaptchaField()
 
 	email = forms.EmailField()
 	first_name = forms.CharField()
@@ -23,7 +25,8 @@ class UserRegisterForm(UserCreationForm):
 
 	class Meta:
 		model = User
-		fields = ['first_name', 'last_name', 'birth_date', 'username', 'email', 'address_line_1', 'address_line_2', 'city', 'state', 'zip_code', 'address_line_2', 'password1', 'password2', ]
+		fields = ['first_name', 'last_name', 'birth_date', 'username', 'email', 'address_line_1', 'address_line_2', 'city', 'state', 'zip_code',
+				  'address_line_2', 'password1', 'password2', 'captcha', ]
 
 	def clean(self):
 		cleaned = self.cleaned_data
