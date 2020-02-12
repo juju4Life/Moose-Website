@@ -20,7 +20,60 @@
 		{% if form %}
 
 		<form style='padding: 1%;' method="POST" action="">{% csrf_token %}
-			{{form|crispy}}
+
+
+			<div class="form-row">
+
+				<div class="form-group col-sm-6">
+					{{form.first_name|as_crispy_field}}
+				</div>
+
+				<div class="form-group col-sm-6">
+					{{form.last_name|as_crispy_field}}
+				</div>
+
+			</div>
+
+			<div class="form-row">
+
+				<div class="form-group col-sm-6">
+					{{form.email|as_crispy_field}}
+				</div>
+
+				<div class="form-group col-sm-6">
+					{{form.username|as_crispy_field}}
+				</div>
+
+			</div>
+
+			<div class="form-row">
+
+				<div class="form-group col-sm-4">
+					{{form.month|as_crispy_field}}
+				</div>
+
+				<div class="form-group col-sm-4">
+					{{form.day|as_crispy_field}}
+				</div>
+
+				<div class="form-group col-sm-4">
+					{{form.year|as_crispy_field}}
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-sm-12">
+					{{form.password1|as_crispy_field}}
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-sm-12">
+					{{form.password2|as_crispy_field}}
+				</div>
+			</div>
+
+
 			<input type="submit" value="Sign up now" class ='btn btn-success' />
 			<small style="font-size: 16px" class="text-muted">&nbsp;
 				Already have an account? <a class="ml-2" href="{% url 'login' %}">Login</a>

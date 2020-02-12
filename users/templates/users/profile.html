@@ -61,17 +61,17 @@
 
 							<tr>
 								<td class="label">Email:</td>
-								<td class="profile-data">{{data.email}}</td>
+								<td class="profile-data">{{customer.email}}</td>
 							</tr>
 
 							<tr>
 								<td class="label">Store Credit:</td>
-								<td class="profile-data">{{data.credit}}</td>
+								<td class="profile-data">{{customer.credit}}</td>
 							</tr>
 
 							<tr>
 								<td class="label">Birthday:</td>
-								<td class="profile-data">{{data.birth_date}}</td>
+								<td class="profile-data">{{customer.birth_date}}</td>
 							</tr>
 
 							{% if not request.POST %}
@@ -131,28 +131,45 @@
 						</thead>
 
 						<tbody>
+							{% if customer.address_line_1 %}
+								<tr>
+									<td class="label">Address 1</td>
+									<td class="profile-data">
+										{{customer.name}} <br>
+										{{customer.address_line_1}} {{address_line_2}} <br>
+										{{customer.city}} {{customer.state}} {{customer.zip_code}}
+									</td>
+								</tr>
 
-							<tr>
-								<td class="label">Address 1</td>
-								<td class="profile-data">
-									{{data.name}} <br>
-									{{data.address_line_1}} {{address_line_2}} <br>
-									{{data.city}}, {{data.state}} {{data.zip_code}}
-								</td>
-							</tr>
+								{% if not request.POST %}
+								<tr>
+									<td></td>
+									<td>
+										<div style="margin-top:1%;margin-left:4%;">
+											<form method="POST" action="{% url 'profile' %}">
+											{% csrf_token %}
+												<input type="submit" name="update_address" value="Change Address" class="btn btn-success" >
+											</form>
+										</div>
+									</td>
+								</tr>
+								{% endif %}
 
-							{% if not request.POST %}
-							<tr>
-								<td></td>
-								<td>
-									<div style="margin-top:1%;margin-left:4%;">
-										<form method="POST" action="{% url 'profile' %}">
-										{% csrf_token %}
-											<input type="submit" name="update_address" value="Change Address" class="btn btn-success" >
-										</form>
-									</div>
-								</td>
-							</tr>
+							{% else %}
+
+								{% if not request.POST %}
+									<tr>
+										<td></td>
+										<td>
+											<div style="margin-top:1%;margin-left:4%;">
+												<form method="POST" action="{% url 'profile' %}">
+												{% csrf_token %}
+													<input type="submit" name="update_address" value="Add Address" class="btn btn-success" >
+												</form>
+											</div>
+										</td>
+									</tr>
+								{% endif %}
 							{% endif %}
 						</tbody>
 					</table>
@@ -179,27 +196,49 @@
 
 					<tbody>
 
-						<tr>
-							<td class="label">Address 2</td>
-							<td class="profile-data">
-								{{data.second_name}} <br>
-								{{data.second_address_line_1}} {{data.second_address_line_2}} <br>
-								{{data.second_city}}, {{data.second_state}} {{data.second_zip_code}}
-							</td>
-						</tr>
-						{% if not request.POST %}
-							<tr>
-								<td></td>
-								<td>
-									<div style="margin-top:1%;margin-left:4%;">
-										<form method="POST" action="{% url 'profile' %}">
-										{% csrf_token %}
-											<input type="submit" name="update_second_address" value="Change Address" class="btn btn-success" >
-										</form>
-									</div>
-								</td>
-							</tr>
+						{% if customer.address_line_1 %}
+
+							{% if customer.address_line_2 %}
+
+								<tr>
+									<td class="label">Address 2</td>
+									<td class="profile-data">
+										{{customer.second_name}} <br>
+										{{customer.second_address_line_1}} {{customer.second_address_line_2}} <br>
+										{{customer.second_city}} {{customer.second_state}} {{customer.second_zip_code}}
+									</td>
+								</tr>
+								{% if not request.POST %}
+									<tr>
+										<td></td>
+										<td>
+											<div style="margin-top:1%;margin-left:4%;">
+												<form method="POST" action="{% url 'profile' %}">
+												{% csrf_token %}
+													<input type="submit" name="update_second_address" value="Change Address" class="btn btn-success" >
+												</form>
+											</div>
+										</td>
+									</tr>
+								{% endif %}
+
+							{% else %}
+								{% if not request.POST %}
+									<tr>
+										<td></td>
+										<td>
+											<div style="margin-top:1%;margin-left:4%;">
+												<form method="POST" action="{% url 'profile' %}">
+												{% csrf_token %}
+													<input type="submit" name="update_second_address" value="Add Second Address" class="btn btn-success" >
+												</form>
+											</div>
+										</td>
+									</tr>
+								{% endif %}
+							{% endif %}
 						{% endif %}
+
 					</tbody>
 				</table>
 

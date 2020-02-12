@@ -5,47 +5,84 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from customer.models import Customer
 from users.models import State
 from captcha.fields import CaptchaField
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Row, Column, Fieldset
 
 
 class UserRegisterForm(UserCreationForm):
-	state_list = ((i.abbreviation.lower(), i.abbreviation, ) for i in State.objects.all())
-	captcha = CaptchaField()
+
+	class Meta:
+		model = User
+		fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2', 'month', 'day', 'year', ]
+
+	'''
+	def __init__(self, *args, **kwargs):
+		super(UserRegisterForm).__init__(*args, **kwargs)
+		self.helper = FormHelper()
+		self.helper.render_hidden_fields = True
+		self.helper.layout = Layout(
+
+			Row(
+				Column('first_name', css_class='form-group col-sm-6'),
+				Column('last_name', css_class='form-group col-sm-6'),
+				css_class='form-row'
+			),
+
+			Row(
+				Column('email', css_class='form-group col-sm-6'),
+				Column('username', css_class='form-group col-sm-6'),
+				css_class='form-row'
+			),
+
+			Row(
+				Column('month', css_class='form-group col-sm-4'),
+				Column('day', css_class='form-group col-sm-4'),
+				Column('year', css_class='form-group col-sm-4'),
+				css_class='form-row'
+			),
+
+			'password1',
+			'password2',
+		)
+	'''
+
+	months = (
+		('January', 'January', ),
+		('February', 'February', ),
+		('March', 'March', ),
+		('April', 'April', ),
+		('May', 'May', ),
+		('June', 'June', ),
+		('July', 'July', ),
+		('August', 'August', ),
+		('September', 'September', ),
+		('October', 'October', ),
+		('November', 'November', ),
+		('December', 'December', ),
+	)
+
+	# captcha = CaptchaField()
 
 	email = forms.EmailField()
 	first_name = forms.CharField()
 	last_name = forms.CharField()
-	address_line_1 = forms.CharField()
-	address_line_2 = forms.CharField(required=False)
-	city = forms.CharField()
-	state = forms.CharField(widget=forms.Select(choices=tuple(state_list)))
-	zip_code = forms.CharField(max_length=5)
-	birth_date = forms.DateField(widget=forms.TextInput(
-		attrs={'class': 'datepicker'}
-	))
-
-	class Meta:
-		model = User
-		fields = ['first_name', 'last_name', 'birth_date', 'username', 'email', 'address_line_1', 'address_line_2', 'city', 'state', 'zip_code',
-				  'address_line_2', 'password1', 'password2', 'captcha', ]
+	month = forms.CharField(widget=forms.Select(choices=months))
+	day = forms.CharField(max_length=2)
+	year = forms.CharField(max_length=4)
 
 	def clean(self):
 		cleaned = self.cleaned_data
-		zip_code = cleaned.get('zip_code')
 		first_name = cleaned.get('first_name')
 		last_name = cleaned.get('last_name')
 		email = cleaned.get('email')
 		username = cleaned.get('username')
-		if not zip_code.isnumeric():
-			raise forms.ValidationError(u'Zip Code must contain numeric characters only.')
-
-		if len(zip_code) < 5:
-			raise forms.ValidationError(u'Zip Code must be at least 5 digits.')
 
 		if Customer.objects.filter(name=f'{first_name} {last_name}').exists():
-			raise forms.ValidationError(u'Name Combination already exists')
+			raise forms.ValidationError('Name Combination already exists')
 
 		if User.objects.filter(email=email).exists():
-			raise forms.ValidationError(u'An account with the email "{0}" already exists.'.format(email))
+
+			raise forms.ValidationError('An account with the email "{0}" already exists.'.format(email))
 
 		if User.objects.filter(username=username).exists():
 			raise forms.ValidationError(u'The username "{0}" already exists.'.format(username))
@@ -56,14 +93,10 @@ class UserRegisterForm(UserCreationForm):
 		user = super(UserRegisterForm, self).save(commit=False)
 		user.first_name = self.cleaned_data['first_name']
 		user.last_name = self.cleaned_data['last_name']
-		user.email = self.cleaned_data['email']
 		user.set_password(self.cleaned_data["password1"])
-		user.address_line_1 = self.cleaned_data['address_line_1']
-		user.address_line_2 = self.cleaned_data['address_line_2']
-		user.city = self.cleaned_data['city']
-		user.state = self.cleaned_data['state']
-		user.zip_code = self.cleaned_data['zip_code']
-		user.birth_date = self.cleaned_data['birth_date']
+		user.month = self.cleaned_data['month']
+		user.day = self.cleaned_data['day']
+		user.year = self.cleaned_data['year']
 		if commit:
 			user.save()
 
@@ -107,7 +140,7 @@ class CustomerUpdateForm(forms.ModelForm):
 
 	def clean(self):
 		cleaned = self.cleaned_data
-		zip_code = cleaned.get('zip_code')
+		zip_code = self.instance.zip_code
 
 		if not zip_code.isnumeric():
 			raise forms.ValidationError(u'Zip Code must contain numeric characters only.')
@@ -119,19 +152,19 @@ class CustomerUpdateForm(forms.ModelForm):
 
 
 class UpdateEmailForm(forms.ModelForm):
-	password = forms.CharField(widget=forms.PasswordInput())
+	confirm_password = forms.CharField(widget=forms.PasswordInput())
 	new_email = forms.EmailField()
 
 	class Meta:
 		model = User
-		fields = ['new_email', 'password']
+		fields = ['new_email', 'confirm_password', ]
 
 	def clean(self):
 
 		cleaned_data = self.cleaned_data
-		old_password = cleaned_data.get('password')
+		confirm_password = cleaned_data.get('confirm_password')
 
-		if not check_password(old_password, self.instance.password):
+		if not check_password(confirm_password, self.instance.password):
 			raise forms.ValidationError('Incorrect password. Please try again.')
 
 		return cleaned_data

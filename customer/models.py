@@ -63,7 +63,7 @@ class Customer(models.Model):
     last_credit = models.DecimalField(max_digits=12, decimal_places=2, default=0., blank=True, verbose_name='last_credit')
     tournament_entry = models.CharField(max_length=255, choices=tournament_entry_choices, default='none', verbose_name='Subtract Event Entry')
     tournament_results_credit = models.CharField(max_length=255, choices=tournament_results_choices, default='none', verbose_name='Add Event Credit')
-    email = models.EmailField(max_length=200, default='', blank=True)
+    email = models.EmailField(max_length=200, default='', unique=True)
     notes = models.TextField(default='', blank=True, null=True)
     medal = models.IntegerField(default=0, blank=True, null=True, verbose_name='Medals')
     employee_initial = models.CharField(max_length=5, default='')

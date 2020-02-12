@@ -35,10 +35,20 @@
         <a class="nav-link" href="#">Cart</a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'login' %}">Login</a>
+      {% if not request.user.is_authenticated %}
 
-      </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+
+      {% else %}
+
+        <li>
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+
+      {% endif %}
+
     </ul>
 
   <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search' %}">
