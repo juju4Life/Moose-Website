@@ -58,7 +58,7 @@ class Customer(models.Model):
 
     )
     letters_only = RegexValidator(r'^[a-zA-Z ]*$', _('Only letters are allowed.'))
-    name = models.CharField(validators=[letters_only], max_length=100, default='', unique=True)
+    name = models.CharField(validators=[letters_only], max_length=100, default='')
     credit = models.DecimalField(max_digits=12, decimal_places=2, default=0., blank=True, verbose_name='Credit')
     last_credit = models.DecimalField(max_digits=12, decimal_places=2, default=0., blank=True, verbose_name='last_credit')
     tournament_entry = models.CharField(max_length=255, choices=tournament_entry_choices, default='none', verbose_name='Subtract Event Entry')
