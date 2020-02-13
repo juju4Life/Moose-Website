@@ -81,8 +81,9 @@ def profile(request):
                     address_line_2 = request.POST.get('address_line_2')
                     city = request.POST.get('city')
                     state = request.POST.get('state')
+
                     customer.zip_code = zip_code
-                    customer.name = name
+                    customer.n = name
                     customer.address_line_1 = address_line_1
                     customer.address_line_2 = address_line_2
                     customer.city = city
@@ -130,6 +131,41 @@ def profile(request):
                     return redirect('profile')
                 else:
                     return render(request, 'users/profile.html', {'customer': customer, 'email_form': email_form})
+
+            elif request.POST.get('delete_address'):
+                customer.address_line_1 = ''
+                customer.address_line_2 = ''
+                customer.city = ''
+                customer.state = ''
+                customer.zip_code = ''
+
+                if customer.second_address_line_1:
+                    customer.address_line_1 = customer.second_address_line_1
+                    customer.address_line_2 = customer.second_address_line_2
+                    customer.city = customer.second_city
+                    customer.state = customer.second_state
+                    customer.zip_code = customer.second_zip_code
+
+                    customer.second_name = ''
+                    customer.second_address_line_1 = ''
+                    customer.second_address_line_2 = ''
+                    customer.second_city = ''
+                    customer.second_state = ''
+                    customer.second_zip_code = ''
+                customer.save()
+                messages.success(request, 'Your account has been updated successfully')
+                return redirect('profile')
+
+            elif request.POST.get('delete_second_address'):
+                customer.second_name = ''
+                customer.second_address_line_1 = ''
+                customer.second_address_line_2 = ''
+                customer.second_city = ''
+                customer.second_state = ''
+                customer.second_zip_code = ''
+                customer.save()
+                messages.success(request, 'Your account has been updated successfully')
+                return redirect('profile')
 
             else:
                 user_form = UserUpdateForm(request.POST, customer.address_line_1, instance=request.user)

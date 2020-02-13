@@ -4,6 +4,7 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from customer.models import Customer
 from users.models import State
+from users.validators import validate_zip_code
 from captcha.fields import CaptchaField
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, Fieldset
@@ -130,25 +131,13 @@ class CustomerUpdateForm(forms.ModelForm):
 	address_line_2 = forms.CharField()
 	city = forms.CharField()
 	state = forms.CharField(widget=forms.Select(choices=tuple(state_list)))
-	zip_code = forms.CharField(max_length=5)
+	zip_code = forms.CharField(max_length=5, validators=[validate_zip_code])
 
 	class Meta:
 		model = Customer
 		fields = [
 			'name', 'address_line_1', 'address_line_2', 'city', 'state', 'zip_code',
 		]
-
-	def clean(self):
-		cleaned = self.cleaned_data
-		zip_code = self.instance.zip_code
-
-		if not zip_code.isnumeric():
-			raise forms.ValidationError(u'Zip Code must contain numeric characters only.')
-
-		if len(zip_code) < 5:
-			raise forms.ValidationError(u'Zip Code must be at least 5 digits.')
-
-		return cleaned
 
 
 class UpdateEmailForm(forms.ModelForm):

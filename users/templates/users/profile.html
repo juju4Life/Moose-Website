@@ -60,6 +60,11 @@
 							</tr>
 
 							<tr>
+								<td class="label">Name:</td>
+								<td class="profile-data">{{customer.name}}</td>
+							</tr>
+
+							<tr>
 								<td class="label">Email:</td>
 								<td class="profile-data">{{customer.email}}</td>
 							</tr>
@@ -76,19 +81,20 @@
 
 							{% if not request.POST %}
 								<tr>
-									<td></td>
+									<td>
+										<form style="margin-top:1%" method="POST" action="{% url 'profile' %}">
+											{% csrf_token %}
+												<input type="submit" name="update_password" value="Change Password" class="btn btn-info" >
+											</form>
+									</td>
 									<td>
 
 										<div style="margin-top:1%;">
 											<form method="POST" action="{% url 'profile' %}">
 											{% csrf_token %}
-												<input type="submit" name="update_page" value="Change Username" class="btn btn-success" >
+												<input type="submit" name="update_email" value="Change Email" class="btn btn-info" >
 											</form>
 
-											<form style="margin-top:1%" method="POST" action="{% url 'profile' %}">
-											{% csrf_token %}
-												<input type="submit" name="update_email" value="Change Email" class="btn btn-success" >
-											</form>
 										</div>
 									</td>
 								</tr>
@@ -102,7 +108,7 @@
 					  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
 						  {{user_form|crispy}}
 
-						<input type="submit" name="update" value="Update" class ='btn btn-success' />
+						<input type="submit" name="update" value="Update" class ='btn btn-info' />
 
 					  </form>
 
@@ -113,7 +119,7 @@
 					  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
 						  {{email_form|crispy}}
 
-						<input type="submit" name="update_email" value="Update" class ='btn btn-success' />
+						<input type="submit" name="update_email" value="Update" class ='btn btn-info' />
 
 					  </form>
 
@@ -124,6 +130,7 @@
 					<table class="info-table">
 						<thead>
 							<tr>
+								<th></th>
 								<th></th>
 								<th></th>
 							</tr>
@@ -139,16 +146,26 @@
 										{{customer.address_line_1}} {{address_line_2}} <br>
 										{{customer.city}} {{customer.state}} {{customer.zip_code}}
 									</td>
+									<td></td>
 								</tr>
 
 								{% if not request.POST %}
 								<tr>
 									<td></td>
 									<td>
-										<div style="margin-top:1%;margin-left:4%;">
+										<div style="">
 											<form method="POST" action="{% url 'profile' %}">
 											{% csrf_token %}
-												<input type="submit" name="update_address" value="Change Address" class="btn btn-success" >
+												<input type="submit" name="update_address" value="Change Address" class="btn btn-info" >
+											</form>
+										</div>
+									</td>
+
+									<td>
+										<div style="">
+											<form method="POST" action="{% url 'profile' %}">
+											{% csrf_token %}
+												<input type="submit" name="delete_address" value="Delete" class="btn btn-secondary" >
 											</form>
 										</div>
 									</td>
@@ -164,7 +181,7 @@
 											<div style="margin-top:1%;margin-left:4%;">
 												<form method="POST" action="{% url 'profile' %}">
 												{% csrf_token %}
-													<input type="submit" name="update_address" value="Add Address" class="btn btn-success" >
+													<input type="submit" name="update_address" value="Add Address" class="btn btn-info" >
 												</form>
 											</div>
 										</td>
@@ -179,7 +196,7 @@
 					  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
 						  {{address_form|crispy}}
 
-						<input type="submit" name="update_address" value="Update" class ='btn btn-success' />
+						<input type="submit" name="update_address" value="Update" class ='btn btn-info' />
 
 					  </form>
 
@@ -188,6 +205,7 @@
 					<table class="info-table">
 					<thead>
 						<tr>
+							<th></th>
 							<th></th>
 							<th></th>
 						</tr>
@@ -207,15 +225,24 @@
 										{{customer.second_address_line_1}} {{customer.second_address_line_2}} <br>
 										{{customer.second_city}} {{customer.second_state}} {{customer.second_zip_code}}
 									</td>
+									<td></td>
 								</tr>
 								{% if not request.POST %}
 									<tr>
 										<td></td>
 										<td>
-											<div style="margin-top:1%;margin-left:4%;">
+											<div style="">
 												<form method="POST" action="{% url 'profile' %}">
 												{% csrf_token %}
-													<input type="submit" name="update_second_address" value="Change Address" class="btn btn-success" >
+													<input type="submit" name="update_second_address" value="Change Address" class="btn btn-info" >
+												</form>
+											</div>
+										</td>
+										<td>
+											<div style="">
+												<form method="POST" action="{% url 'profile' %}">
+												{% csrf_token %}
+													<input type="submit" name="delete_second_address" value="Delete" class="btn btn-secondary" >
 												</form>
 											</div>
 										</td>
@@ -230,7 +257,7 @@
 											<div style="margin-top:1%;margin-left:4%;">
 												<form method="POST" action="{% url 'profile' %}">
 												{% csrf_token %}
-													<input type="submit" name="update_second_address" value="Add Second Address" class="btn btn-success" >
+													<input type="submit" name="update_second_address" value="Add Address" class="btn btn-info" >
 												</form>
 											</div>
 										</td>
@@ -247,7 +274,7 @@
 				  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
 					  {{address_form|crispy}}
 
-					<input type="submit" name="update_second_address" value="Update" class ='btn btn-success' />
+					<input type="submit" name="update_second_address" value="Update" class ='btn btn-info' />
 
 				  </form>
 
