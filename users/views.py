@@ -83,7 +83,7 @@ def profile(request):
                     state = request.POST.get('state')
 
                     customer.zip_code = zip_code
-                    customer.n = name
+                    customer.shipping_name = name
                     customer.address_line_1 = address_line_1
                     customer.address_line_2 = address_line_2
                     customer.city = city
@@ -138,8 +138,10 @@ def profile(request):
                 customer.city = ''
                 customer.state = ''
                 customer.zip_code = ''
+                customer.shipping_name = ''
 
                 if customer.second_address_line_1:
+                    customer.shipping_name = customer.second_name
                     customer.address_line_1 = customer.second_address_line_1
                     customer.address_line_2 = customer.second_address_line_2
                     customer.city = customer.second_city
