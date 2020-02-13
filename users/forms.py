@@ -14,7 +14,7 @@ class UserRegisterForm(UserCreationForm):
 
 	class Meta:
 		model = User
-		fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2', 'month', 'day', 'year', ]
+		fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2', 'month', 'day', 'year', 'captcha', ]
 
 	'''
 	def __init__(self, *args, **kwargs):
@@ -62,7 +62,7 @@ class UserRegisterForm(UserCreationForm):
 		('December', 'December', ),
 	)
 
-	# captcha = CaptchaField()
+	captcha = CaptchaField()
 
 	email = forms.EmailField()
 	first_name = forms.CharField()

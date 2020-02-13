@@ -140,7 +140,7 @@
 						<tbody>
 							{% if customer.address_line_1 %}
 								<tr>
-									<td class="label">Address 1</td>
+									<td class="label">Default</td>
 									<td class="profile-data">
 										{{customer.shipping_name}} <br>
 										{{customer.address_line_1}} {{address_line_2}} <br>
@@ -178,7 +178,7 @@
 									<tr>
 										<td></td>
 										<td>
-											<div style="margin-top:1%;margin-left:4%;">
+											<div style="">
 												<form method="POST" action="{% url 'profile' %}">
 												{% csrf_token %}
 													<input type="submit" name="update_address" value="Add Address" class="btn btn-info" >
@@ -203,91 +203,92 @@
 					{% endif %}
 					<hr>
 					<table class="info-table">
-					<thead>
-						<tr>
-							<th></th>
-							<th></th>
-							<th></th>
-						</tr>
+						<thead>
+							<tr>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
 
-					</thead>
+						</thead>
 
-					<tbody>
+						<tbody>
 
-						{% if customer.address_line_1 %}
+							{% if customer.address_line_1 %}
 
-							{% if customer.address_line_2 %}
+								{% if customer.second_address_line_2 %}
 
-								<tr>
-									<td class="label">Address 2</td>
-									<td class="profile-data">
-										{{customer.second_name}} <br>
-										{{customer.second_address_line_1}} {{customer.second_address_line_2}} <br>
-										{{customer.second_city}} {{customer.second_state}} {{customer.second_zip_code}}
-									</td>
-									<td></td>
-								</tr>
-								{% if not request.POST %}
 									<tr>
+										<td class="label">Address 2</td>
+										<td class="profile-data">
+											{{customer.second_name}} <br>
+											{{customer.second_address_line_1}} {{customer.second_address_line_2}} <br>
+											{{customer.second_city}} {{customer.second_state}} {{customer.second_zip_code}}
+										</td>
 										<td></td>
-										<td>
-											<div style="">
-												<form method="POST" action="{% url 'profile' %}">
-												{% csrf_token %}
-													<input type="submit" name="update_second_address" value="Change Address" class="btn btn-info" >
-												</form>
-											</div>
-										</td>
-										<td>
-											<div style="">
-												<form method="POST" action="{% url 'profile' %}">
-												{% csrf_token %}
-													<input type="submit" name="delete_second_address" value="Delete" class="btn btn-secondary" >
-												</form>
-											</div>
-										</td>
 									</tr>
-								{% endif %}
-
-							{% else %}
-								{% if not request.POST %}
-									<tr>
-										<td></td>
-										<td>
-											<div style="margin-top:1%;margin-left:4%;">
-												<form method="POST" action="{% url 'profile' %}">
-												{% csrf_token %}
-													<input type="submit" name="update_second_address" value="Add Address" class="btn btn-info" >
-												</form>
-											</div>
-										</td>
-									</tr>
+									{% if not request.POST %}
+										<tr>
+											<td></td>
+											<td>
+												<div style="">
+													<form method="POST" action="{% url 'profile' %}">
+													{% csrf_token %}
+														<input type="submit" name="update_second_address" value="Change Address" class="btn btn-info" >
+													</form>
+												</div>
+											</td>
+											<td>
+												<div style="">
+													<form method="POST" action="{% url 'profile' %}">
+													{% csrf_token %}
+														<input type="submit" name="delete_second_address" value="Delete" class="btn btn-secondary" >
+													</form>
+												</div>
+											</td>
+										</tr>
+									{% endif %}
+								{% else %}
+									{% if not request.POST %}
+										<tr>
+											<td class="label">Address 2</td>
+											<td>
+												<div style="">
+													<form method="POST" action="{% url 'profile' %}">
+													{% csrf_token %}
+														<input type="submit" name="update_second_address" value="Add Address" class="btn btn-info" >
+													</form>
+												</div>
+											</td>
+											<td></td>
+										</tr>
+									{% endif %}
 								{% endif %}
 							{% endif %}
-						{% endif %}
 
-					</tbody>
-				</table>
+						</tbody>
+					</table>
 
-				{% if request.POST.update_second_address %}
+					{% if request.POST.update_second_address %}
 
-				  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
-					  {{address_form|crispy}}
+					  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
+						  {{address_form|crispy}}
 
-					<input type="submit" name="update_second_address" value="Update" class ='btn btn-info' />
+						<input type="submit" name="update_second_address" value="Update" class ='btn btn-info' />
 
-				  </form>
+					  </form>
 
-				{% endif %}
-
-				</div>
-
-				<div class="col-sm-4">
-
-
+					{% endif %}
 
 				</div>
+
 			</div>
+
+			<div class="row">
+
+			</div>
+
+		</div>
 
 			<div role="tabpanel" class="tab-pane">
 
@@ -298,25 +299,26 @@
 		</div>
 
 
-		<div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
-
-			<div>
-
-			</div>
-
-			<div role="tabpanel" class="tab-pane">
 
 
+	<div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
 
-          	</div>
+		<div>
 
 		</div>
 
-		<div class="tab-pane fade" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">Three</div>
+		<div role="tabpanel" class="tab-pane">
 
-		<div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab">Three</div>
-		<div class="tab-pane fade" id="nav-treasures" role="tabpanel" aria-labelledby="nav-treasures-tab">Three</div>
+
+
+		</div>
+
 	</div>
 
+	<div class="tab-pane fade" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">Three</div>
+
+	<div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab">Three</div>
+	<div class="tab-pane fade" id="nav-treasures" role="tabpanel" aria-labelledby="nav-treasures-tab">Three</div>
 </div>
+
 {% endblock %}
