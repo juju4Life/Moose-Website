@@ -81,6 +81,7 @@ class Customer(models.Model):
     second_zip_code = models.CharField(max_length=25, default='', blank=True)
     birth_date = models.DateField(null=True, blank=True)
     shipping_name = models.CharField(max_length=255, default='', blank=True)
+    email_subscriber = models.BooleanField(default=False)
     history = HistoricalRecords(
         history_change_reason_field=models.TextField(null=True)
     )

@@ -4,10 +4,8 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from customer.models import Customer
 from users.models import State
-from users.validators import validate_zip_code
+from users.validators import validate_zip_code, email_is_unique
 from captcha.fields import CaptchaField
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Row, Column, Fieldset
 
 
 class UserRegisterForm(UserCreationForm):
@@ -15,37 +13,6 @@ class UserRegisterForm(UserCreationForm):
 	class Meta:
 		model = User
 		fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2', 'month', 'day', 'year', 'captcha', ]
-
-	'''
-	def __init__(self, *args, **kwargs):
-		super(UserRegisterForm).__init__(*args, **kwargs)
-		self.helper = FormHelper()
-		self.helper.render_hidden_fields = True
-		self.helper.layout = Layout(
-
-			Row(
-				Column('first_name', css_class='form-group col-sm-6'),
-				Column('last_name', css_class='form-group col-sm-6'),
-				css_class='form-row'
-			),
-
-			Row(
-				Column('email', css_class='form-group col-sm-6'),
-				Column('username', css_class='form-group col-sm-6'),
-				css_class='form-row'
-			),
-
-			Row(
-				Column('month', css_class='form-group col-sm-4'),
-				Column('day', css_class='form-group col-sm-4'),
-				Column('year', css_class='form-group col-sm-4'),
-				css_class='form-row'
-			),
-
-			'password1',
-			'password2',
-		)
-	'''
 
 	months = (
 		('January', 'January', ),
@@ -64,31 +31,12 @@ class UserRegisterForm(UserCreationForm):
 
 	captcha = CaptchaField()
 
-	email = forms.EmailField()
+	email = forms.EmailField(validators=[email_is_unique])
 	first_name = forms.CharField()
 	last_name = forms.CharField()
 	month = forms.CharField(widget=forms.Select(choices=months))
 	day = forms.CharField(max_length=2)
 	year = forms.CharField(max_length=4)
-
-	def clean(self):
-		cleaned = self.cleaned_data
-		first_name = cleaned.get('first_name')
-		last_name = cleaned.get('last_name')
-		email = cleaned.get('email')
-		username = cleaned.get('username')
-
-		if Customer.objects.filter(name=f'{first_name} {last_name}').exists():
-			raise forms.ValidationError('Name Combination already exists')
-
-		if User.objects.filter(email=email).exists():
-
-			raise forms.ValidationError('An account with the email "{0}" already exists.'.format(email))
-
-		if User.objects.filter(username=username).exists():
-			raise forms.ValidationError(u'The username "{0}" already exists.'.format(username))
-
-		return cleaned
 
 	def save(self, commit=True):
 		user = super(UserRegisterForm, self).save(commit=False)

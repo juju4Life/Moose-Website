@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
 
 
 def validate_zip_code(zip_code):
@@ -19,6 +20,13 @@ def validate_zip_code(zip_code):
         raise ValidationError(
             errors
         )
+
+
+def email_is_unique(email):
+
+    if User.objects.filter(email=email).exists():
+
+        raise ValidationError(_('An account with this email already exists.'), code='Invalid')
 
 
 
