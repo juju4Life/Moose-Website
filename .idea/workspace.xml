@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/validators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,21 +11,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.14869888">
+    <splitter split-orientation="horizontal" split-proportion="0.20223048">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/engine/templates/navbar2.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="697">
-                  <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
-                  <folding>
-                    <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/engine/templates/home.html">
               <provider selected="true" editor-type-id="text-editor">
@@ -121,14 +106,23 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/customer/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="455">
-                  <caret line="86" selection-start-line="86" selection-end-line="86" />
+                <state relative-caret-position="196">
+                  <caret line="83" selection-start-line="83" selection-end-line="83" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/customer/migrations/0252_auto_20200214_1334.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1054">
+                  <caret line="35" column="24" lean-forward="true" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
                 </state>
               </provider>
             </entry>
@@ -202,8 +196,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/users/forms.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
-                  <caret line="26" column="33" lean-forward="true" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+                <state relative-caret-position="288">
+                  <caret line="46" column="41" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
                   <folding>
                     <element signature="e#0#24#0" expanded="true" />
                   </folding>
@@ -333,11 +327,11 @@
         <option value="$PROJECT_DIR$/users/view_functions.py" />
         <option value="$PROJECT_DIR$/functions/model_functions.py" />
         <option value="$PROJECT_DIR$/users/views.py" />
-        <option value="$PROJECT_DIR$/customer/models.py" />
         <option value="$PROJECT_DIR$/users/templates/users/profile.html" />
         <option value="$PROJECT_DIR$/users/templates/users/register.html" />
         <option value="$PROJECT_DIR$/users/forms.py" />
         <option value="$PROJECT_DIR$/users/validators.py" />
+        <option value="$PROJECT_DIR$/customer/models.py" />
       </list>
     </option>
   </component>
@@ -363,6 +357,12 @@
               <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
               <item name="Goat" type="462c0819:PsiDirectoryNode" />
               <item name="customer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Goat" type="462c0819:PsiDirectoryNode" />
+              <item name="customer" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
@@ -582,7 +582,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4959108" visible="true" weight="0.24705882" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4959108" visible="true" weight="0.41960785" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50408924" side_tool="true" weight="0.35686275" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.40784314" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -629,15 +629,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/amazon/get_live_amazon_prices.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/buylist/scg_buylist.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
@@ -982,16 +973,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/users/templates/users/profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4913">
@@ -1062,10 +1043,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/customer/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/migrations/0252_auto_20200214_1334.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="35" column="24" lean-forward="true" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/users/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="33" lean-forward="true" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+        <state relative-caret-position="288">
+          <caret line="46" column="41" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
