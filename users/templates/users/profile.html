@@ -284,7 +284,35 @@
 
 			</div>
 
+			<div class="row" style="margin-top:1%;margin-left:1%">
+				<div class=""></div>
+				<div class="col-sm-11">
+					<hr>
+					<h5 class="subscribe-title">
+						Would you like to join our mailing list? Choose all that apply:
+					</h5>
+				</div>
+			</div>
 			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="form-check col-sm-6">
+					<form>
+					{% csrf_token %}
+
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="check-box-1" name="events_check_box">
+							<label class="form-check-label" for="check-box-1">Events</label>
+						</div>
+
+
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="check-box-2" name="">
+							<label class="form-check-label" for="check-box-2">Buylist</label>
+						</div>
+
+						<button style="margin-top:1%;" type="submit" class="btn btn-info">Update Options</button>
+					</form>
+				</div>
 
 			</div>
 

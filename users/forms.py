@@ -76,7 +76,7 @@ class CustomerUpdateForm(forms.ModelForm):
 	state_list = ((i.abbreviation, i.abbreviation,) for i in State.objects.all())
 	name = forms.CharField()
 	address_line_1 = forms.CharField()
-	address_line_2 = forms.CharField()
+	address_line_2 = forms.CharField(required=False)
 	city = forms.CharField()
 	state = forms.CharField(widget=forms.Select(choices=tuple(state_list)))
 	zip_code = forms.CharField(max_length=5, validators=[validate_zip_code])
