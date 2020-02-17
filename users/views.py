@@ -1,10 +1,17 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponse
+from django.contrib.auth import update_session_auth_hash, get_user_model, login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from .forms import UserRegisterForm, UserUpdateForm, CustomerUpdateForm, UpdateEmailForm, LoginForm
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.core.mail import EmailMessage
+from .forms import UserRegisterForm, UserUpdateForm, CustomerUpdateForm, UpdateEmailForm, LoginForm, UpdatePasswordForm
+from .tokens import account_activation_token
 from customer.models import Customer
 
 
@@ -14,10 +21,26 @@ def register(request):
 
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-
-            messages.success(request, f'Account Created for {username}. You are now able to log in.')
-            return redirect('login')
+            email = form.cleaned_data.get('email')
+            user = User.objects.get(email=email)
+            user.is_active = False
+            user.save()
+            mail_subject = 'Activate your account.'
+            current_site = get_current_site(request)
+            message = render_to_string('account_activation.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+            to_email = form.cleaned_data.get('email')
+            email = EmailMessage(
+                mail_subject, message, to=[to_email]
+            )
+            email.send()
+            return HttpResponse('Please confirm your email address to complete the registration')
+            # messages.success(request, f'Account Created for {username}. You are now able to log in.')
+            # return redirect('login')
         else:
             pass  # messages.warning(request, '...')
 
@@ -25,6 +48,22 @@ def register(request):
         form = UserRegisterForm()
 
     return render(request, 'users/register.html', {'form': form})
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        # return redirect('home')
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('Activation link is invalid!')
 
 
 def user_login(request):
@@ -55,14 +94,18 @@ def profile(request):
 
         if request.method == 'POST':
 
-            if request.POST.get('update'):
-                user_form = UserUpdateForm(request.POST, instance=request.user)
+            if request.POST.get('update_password'):
+                password_form = UpdatePasswordForm(request.user, request.POST)
 
-                if user_form.is_valid():
-                    user_form.save()
-                    customer.save()
-                    messages.success(request, 'Your account has been updated successfully')
-                return redirect('profile')
+                if password_form.is_valid():
+                    updated_password = password_form.save()
+                    update_session_auth_hash(request, updated_password)
+                    messages.success(request, 'Your password has been updated successfully')
+                    return redirect('profile')
+                else:
+                    password_form = UpdatePasswordForm(request.user, request.POST)
+
+                return render(request, 'users/profile.html', {'customer': customer, 'password_form': password_form})
 
             elif request.POST.get('update_page'):
 
@@ -92,6 +135,7 @@ def profile(request):
                     messages.success(request, 'Your account has been updated successfully')
                     return redirect('profile')
                 else:
+                    address_form = CustomerUpdateForm(request.POST, instance=customer)
                     return render(request, 'users/profile.html', {'customer': customer, 'address_form': address_form})
 
             elif request.POST.get('update_second_address'):
@@ -114,6 +158,7 @@ def profile(request):
                     messages.success(request, 'Your account has been updated successfully')
                     return redirect('profile')
                 else:
+                    address_form = CustomerUpdateForm(request.POST, instance=customer)
                     return render(request, 'users/profile.html', {'customer': customer, 'address_form': address_form})
 
             elif request.POST.get('update_email'):
@@ -127,9 +172,10 @@ def profile(request):
                     customer.email = email
                     customer.save()
                     user.save()
-                    messages.success(request, 'Your account has been updated successfully')
+                    messages.success(request, 'Your email has been updated successfully')
                     return redirect('profile')
                 else:
+                    email_form = UpdateEmailForm(request.POST, instance=request.user)
                     return render(request, 'users/profile.html', {'customer': customer, 'email_form': email_form})
 
             elif request.POST.get('delete_address'):
@@ -169,6 +215,24 @@ def profile(request):
                 messages.success(request, 'Your account has been updated successfully')
                 return redirect('profile')
 
+            # --- Handle Subscription Status ---
+
+            elif request.POST.get('subscriptions'):
+
+                if request.POST.get('events'):
+                    customer.email_subscriber_events = True
+                else:
+                    customer.email_subscriber_events = False
+
+                if request.POST.get('buylist'):
+                    customer.email_subscriber_buylist = True
+                else:
+                    customer.email_subscriber_buylist = False
+
+                customer.save()
+
+                return redirect('profile')
+
             else:
                 user_form = UserUpdateForm(request.POST, customer.address_line_1, instance=request.user)
                 profile_form = CustomerUpdateForm(instance=request.user)
@@ -181,5 +245,6 @@ def profile(request):
 
     else:
         user_form = None
+
 
 

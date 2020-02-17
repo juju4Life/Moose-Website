@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from customer.models import Customer
 from users.models import State
 from users.validators import validate_zip_code, email_is_unique
@@ -105,5 +105,9 @@ class UpdateEmailForm(forms.ModelForm):
 			raise forms.ValidationError('Incorrect password. Please try again.')
 
 		return cleaned_data
+
+
+class UpdatePasswordForm(PasswordChangeForm):
+	pass
 
 

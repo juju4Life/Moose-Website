@@ -103,12 +103,12 @@
 					</table>
 
 
-					{% if request.POST.update_page %}
+					{% if request.POST.update_password %}
 
 					  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
-						  {{user_form|crispy}}
+						  {{password_form|crispy}}
 
-						<input type="submit" name="update" value="Update" class ='btn btn-info' />
+						<input type="submit" name="update_password" value="Update" class ='btn btn-info' />
 
 					  </form>
 
@@ -289,28 +289,40 @@
 				<div class="col-sm-11">
 					<hr>
 					<h5 class="subscribe-title">
-						Would you like to join our mailing list? Choose all that apply:
+						Would you like to join our mailing list? Choose your subscriptions below
 					</h5>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-1"></div>
 				<div class="form-check col-sm-6">
-					<form>
+					<form method="POST" action="{% url 'profile' %}">
 					{% csrf_token %}
 
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="check-box-1" name="events_check_box">
-							<label class="form-check-label" for="check-box-1">Events</label>
+							{% if customer.email_subscriber_events %}
+								<input type="checkbox" checked="checked" class="form-check-input" id="check-box-1-subscribed" name="events" value="events">
+								<label class="form-check-label" for="check-box-1-subscribed">Events (Subscribed)</label>
+							{% else %}
+								<input type="checkbox" class="form-check-input" id="check-box-1" name="events" value="events">
+								<label class="form-check-label" for="check-box-1">Events</label>
+							{% endif %}
 						</div>
-
 
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="check-box-2" name="">
-							<label class="form-check-label" for="check-box-2">Buylist</label>
+							{% if customer.email_subscriber_buylist %}
+								<input type="checkbox" checked="checked" class="form-check-input" id="check-box-2-subscribed" name="buylist" value="buylist">
+								<label class="form-check-label" for="check-box-1-subscribed">Buylist (Subscribed)</label>
+							{% else %}
+								<input type="checkbox" class="form-check-input" id="check-box-2" name="buylist" value="buylist">
+								<label class="form-check-label" for="check-box-1">Buylist</label>
+							{% endif %}
 						</div>
 
-						<button style="margin-top:1%;" type="submit" class="btn btn-info">Update Options</button>
+
+
+
+						<input style="margin-top:1%;" name="subscriptions" type="submit" class="btn btn-info" value="Update Options">
 					</form>
 				</div>
 
