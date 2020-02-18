@@ -29,6 +29,11 @@ def email_is_unique(email):
         raise ValidationError(_('An account with this email already exists.'), code='Invalid')
 
 
+def month_not_blank(entry):
+    if entry == '':
+        raise ValidationError(_('This field cannot be blank'), code='Invalid selection')
+
+
 
 
 

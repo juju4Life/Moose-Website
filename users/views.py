@@ -38,7 +38,8 @@ def register(request):
                 mail_subject, message, to=[to_email]
             )
             email.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            messages.warning(request, 'Please confirm your email address to complete the registration')
+            return redirect('login')
             # messages.success(request, f'Account Created for {username}. You are now able to log in.')
             # return redirect('login')
         else:
@@ -229,9 +230,9 @@ def profile(request):
                     customer.email_subscriber_buylist = False
 
                 if request.POST.get('new_products'):
-                    customer.email_subscriber_buylist = True
+                    customer.email_subscriber_new_products = True
                 else:
-                    customer.email_subscriber_buylist = False
+                    customer.email_subscriber_new_products = False
 
                 customer.save()
 

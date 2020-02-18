@@ -1,21 +1,28 @@
 {% load staticfiles %}
 
 <style>
-  .mox-thumb-nail{
-    max-height: 75px;
+  .user-account-link{
+    position: fixed;
+    top: 0;
+    right: 0;
   }
+
+  .cart-icon{
+    position: relative;
+    top: 0;
+    right: 0;
+    color: white;
+  }
+
+  .nav-image{
+  }
+
 </style>
 
-<div class="row">
-  <div class="col-sm-3">
-    <img style="max-height:50px;" src="{% static 'img/MooseLogo.png' %}">
-  </div>
 
-  <div class="col-sm-3"></div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 
-</div>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img class="nav-image" style="max-height:50px;" src="{% static 'img/MooseLogo.png' %}">
 
   <!-- <a class="navbar-brand" href="{%url 'home'%}">MooseLoot</a> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,13 +33,31 @@
         {% url 'home' as home %}
 
       <li {% if request.path == home %} class="nav-item active"> {% endif %}
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/admin">Admin</a>
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" href="#">Cart</a>
+        <a class="nav-link" href="#">Sealed Product</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact Us</a>
+      </li>
+
+
+      <li>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search' %}">
+          <input class="form-control mr-sm-2" name="q" value="{{request.GET.q}}" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'profile' %}">My Account</a>
       </li>
 
       {% if not request.user.is_authenticated %}
@@ -43,17 +68,14 @@
 
       {% else %}
 
-        <li>
+        <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Logout</a>
         </li>
 
       {% endif %}
 
     </ul>
+    </div>
 
-  <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search' %}">
-    <input class="form-control mr-sm-2" name="q" value="{{request.GET.q}}" type="text" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
-  </div>
+  <a href="{%url 'cart' %}" class="cart-icon"><i class="material-icons">shopping_cart</i></a>
 </nav>

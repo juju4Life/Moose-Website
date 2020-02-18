@@ -15,6 +15,7 @@ class UserRegisterForm(UserCreationForm):
 		fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2', 'month', 'day', 'year', 'captcha', ]
 
 	months = (
+		('', '', ),
 		('January', 'January', ),
 		('February', 'February', ),
 		('March', 'March', ),
