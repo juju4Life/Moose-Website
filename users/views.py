@@ -59,9 +59,8 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
-        # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        messages.success(request, 'Your account has been verified. You may now login')
+        return redirect('login')
     else:
         return HttpResponse('Activation link is invalid!')
 
@@ -225,6 +224,11 @@ def profile(request):
                     customer.email_subscriber_events = False
 
                 if request.POST.get('buylist'):
+                    customer.email_subscriber_buylist = True
+                else:
+                    customer.email_subscriber_buylist = False
+
+                if request.POST.get('new_products'):
                     customer.email_subscriber_buylist = True
                 else:
                     customer.email_subscriber_buylist = False

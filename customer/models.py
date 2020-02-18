@@ -84,6 +84,7 @@ class Customer(models.Model):
     email_subscriber_all = models.BooleanField(default=False)
     email_subscriber_events = models.BooleanField(default=False)
     email_subscriber_buylist = models.BooleanField(default=False)
+    email_subscriber_new_products = models.BooleanField(default=False)
 
     history = HistoricalRecords(
         history_change_reason_field=models.TextField(null=True)

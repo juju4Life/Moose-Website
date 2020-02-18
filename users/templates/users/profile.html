@@ -319,6 +319,17 @@
 							{% endif %}
 						</div>
 
+						<div class="form-check">
+							{% if customer.email_subscriber_new_products %}
+								<input type="checkbox" checked="checked" class="form-check-input" id="check-box-3-subscribed" name="new_products"
+									   value="new_products">
+								<label class="form-check-label" for="check-box-3-subscribed">New Products (Subscribed)</label>
+							{% else %}
+								<input type="checkbox" class="form-check-input" id="check-box-3" name="new_products" value="new_products">
+								<label class="form-check-label" for="check-box-3">New Products</label>
+							{% endif %}
+						</div>
+
 
 
 
