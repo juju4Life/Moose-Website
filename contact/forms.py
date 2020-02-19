@@ -1,6 +1,20 @@
 from django import forms
 
-class contactForm(forms.Form):
-    name = forms.CharField(required=False, max_length='100', help_text='100 characters max')
+
+class ContactForm(forms.Form):
+    subjects = (
+        ('', '', ),
+        ('Order', 'I have a question about an order', ),
+        ('Product', 'I have a question about a product', ),
+        ('Buylist', 'I have a question about selling an item(s)', ),
+        ('Other', 'I have question about something not listed above', ),
+    )
+    name = forms.CharField(required=True, max_length='100')
     email = forms.EmailField(required=True)
+    subject = forms.CharField(required=True, widget=forms.Select(choices=subjects))
+    order_number = forms.CharField(max_length=15, required=False, help_text='If applicable')
     comment = forms.CharField(required=True, widget=forms.Textarea)
+
+    field_order = ['name', 'email', 'subject', 'order_number', 'comment']
+
+
