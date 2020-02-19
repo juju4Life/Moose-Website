@@ -87,6 +87,7 @@ INSTALLED_APPS = [
     'engine',
     'engine.apps.EngineConfig',
     'contact',
+    'contact.apps.ContactConfig',
     'buylist',
     #'facebook_bot',
     'crispy_forms',

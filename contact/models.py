@@ -9,7 +9,7 @@ class CustomerEmail(models.Model):
     reply = models.TextField(blank=True)
     subject = models.CharField(max_length=50, default='')
     message_created_at = models.DateTimeField(auto_now_add=True)
-    replied_at = models.CharField(max_length=25, default='', blank=True)
+    replied_at = models.DateTimeField(auto_now=True, blank=True)
     uuid = models.CharField(max_length=250, default='')
 
     def __str__(self):

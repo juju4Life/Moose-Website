@@ -7,3 +7,12 @@ class CustomerEmailAdmin(admin.ModelAdmin):
     readonly_fields = ['name', 'message', 'subject', 'message_created_at', 'replied_at', 'order_number', 'email']
     exclude = ['uuid']
 
+    fields = (
+        ('name', 'email', ),
+        ('subject', 'order_number', ),
+        ('message_created_at', 'replied_at', ),
+        'message',
+        'reply',
+
+    )
+

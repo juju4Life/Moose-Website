@@ -6,12 +6,13 @@
 <div class='row'>
 
 	<div class='col-sm-6 col-sm-offset-3' style="margin:auto;">
-		{% if confirm_message %}
-			<h4>
+		{% if confirm_message == 'confirmed' %}
+			<h4 style="margin-top:2%;">
 				Your message has been received. A staff member will review your message shortly.
 			</h4>
 
-			<img src="{% static 'img/moose_main.png' %}" />
+			<img style="max-width:50%;" src="{% static 'img/moose_main.png' %}" />
+
 		{% endif %}
 
 		{% if form %}
