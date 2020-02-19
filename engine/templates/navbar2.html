@@ -32,9 +32,17 @@
     <ul class="navbar-nav">
         {% url 'home' as home %}
 
-      <li {% if request.path == home %} class="nav-item active"> {% endif %}
-        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-      </li>
+      {% if 'home' in request.path %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+      {% else %}
+        <li class="nav-item nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+
+        </li>
+      {% endif %}
+
       <li class="nav-item">
         <a class="nav-link" href="/admin">Admin</a>
       </li>
@@ -42,11 +50,6 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Sealed Product</a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact Us</a>
-      </li>
-
 
       <li>
         <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search' %}">
@@ -56,23 +59,30 @@
       </li>
 
 
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'profile' %}">My Account</a>
-      </li>
-
       {% if not request.user.is_authenticated %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
+        </li>
 
         <li class="nav-item">
           <a class="nav-link" href="{% url 'login' %}">Login</a>
         </li>
 
       {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'profile' %}">My Account</a>
+        </li>
 
         <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Logout</a>
         </li>
 
       {% endif %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+      </li>
 
     </ul>
     </div>

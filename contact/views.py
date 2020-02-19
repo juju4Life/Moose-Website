@@ -21,7 +21,7 @@ def contact(request):
         confirm_message = 'Thanks for the message'
         form = None
 
-    context = {'title': title, 'form':form, 'confirm_message': confirm_message}
+    context = {'title': title, 'form': form, 'confirm_message': confirm_message}
     template = 'contact.html'
     return render(request, template, context)
 
