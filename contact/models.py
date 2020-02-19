@@ -2,7 +2,7 @@ from django.db import models
 
 
 class CustomerEmail(models.Model):
-    email_address = models.EmailField()
+    email = models.EmailField()
     name = models.CharField(max_length=30, default='')
     order_number = models.CharField(max_length=15, default='', blank=True)
     message = models.TextField()
@@ -13,6 +13,6 @@ class CustomerEmail(models.Model):
     uuid = models.CharField(max_length=250, default='')
 
     def __str__(self):
-        return self.email_address
+        return self.email
 
 
