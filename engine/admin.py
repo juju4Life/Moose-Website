@@ -277,16 +277,14 @@ class CustomerAdmin(SimpleHistoryAdmin):
         # alert.apply_async(que='low_priority', args=(ip, obj.name, obj.credit, obj.id,))
 
     save_on_top = True
-    history_list_display = ['credit', 'medal', 'employee_initial', 'changeReason', ]
-    list_display = ['name', 'credit', 'notes', 'medal', 'email', ]
+    history_list_display = ['credit', 'employee_initial', 'changeReason', ]
+    list_display = ['name', 'credit', 'notes', 'email', ]
     search_fields = ['name']
     ordering = ['name']
     fields = (
         ('credit', 'employee_initial', ),
         'name',
-        ('tournament_entry', 'tournament_results_credit',),
         'email',
-        'medal',
         'notes',
     )
 

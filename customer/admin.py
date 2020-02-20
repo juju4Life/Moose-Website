@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ItemizedPreorder
+from .models import ItemizedPreorder, Customer
 
 # Register your models here.
 
@@ -8,4 +8,6 @@ from .models import ItemizedPreorder
 class ItemPreorderAdmin(admin.ModelAdmin):
     list_display = ['name', 'expansion', 'price', 'quantity', 'available', 'total_sold']
     ordering = ['price']
+
+
 

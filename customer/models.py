@@ -38,34 +38,13 @@ class Preorder(models.Model):
 
 
 class Customer(models.Model):
-    tournament_entry_choices = (
-        ('none', 'none',),
-        ('mtg locals', 'mtg locals',),
-        ('yugioh locals', 'yugioh locals',)
 
-    )
-
-    tournament_results_choices = (
-        ('none', 'none',),
-        ('5', '5',),
-        ('10', '10',),
-        ('15', '15',),
-        ('20', '20',),
-        ('25', '25',),
-        ('5', '30',),
-        ('35', '35',),
-        ('40', '40',),
-
-    )
     letters_only = RegexValidator(r'^[a-zA-Z ]*$', _('Only letters are allowed.'))
     name = models.CharField(validators=[letters_only], max_length=100, default='')
     credit = models.DecimalField(max_digits=12, decimal_places=2, default=0., blank=True, verbose_name='Credit')
     last_credit = models.DecimalField(max_digits=12, decimal_places=2, default=0., blank=True, verbose_name='last_credit')
-    tournament_entry = models.CharField(max_length=255, choices=tournament_entry_choices, default='none', verbose_name='Subtract Event Entry')
-    tournament_results_credit = models.CharField(max_length=255, choices=tournament_results_choices, default='none', verbose_name='Add Event Credit')
     email = models.EmailField(max_length=200, default='')
     notes = models.TextField(default='', blank=True, null=True)
-    medal = models.IntegerField(default=0, blank=True, null=True, verbose_name='Medals')
     employee_initial = models.CharField(max_length=5, default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     address_line_1 = models.CharField(max_length=255, default='', blank=True)
@@ -81,6 +60,7 @@ class Customer(models.Model):
     second_zip_code = models.CharField(max_length=25, default='', blank=True)
     birth_date = models.DateField(null=True, blank=True)
     shipping_name = models.CharField(max_length=255, default='', blank=True)
+    login_attempt_counter = models.IntegerField(default=0)
     email_subscriber_all = models.BooleanField(default=False)
     email_subscriber_events = models.BooleanField(default=False)
     email_subscriber_buylist = models.BooleanField(default=False)

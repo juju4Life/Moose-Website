@@ -10,7 +10,7 @@ def customer_email_reply(sender, instance, **kwargs):
     from_mail = settings.EMAIL_HOST_USER
     recipient_list = [instance.email]
     subject = 'Email response to Contact Us Form'
-    message = f'Hello {instance.name}\n\n This email is in response to the following message you sent to us\n\n "{instance.message}"\n\nFrom the ' \
+    message = f'Hello {instance.name}\n\n This email is in response to the following inquiry you sent to us\n\n "{instance.message}"\n\nFrom the ' \
         f'MooseLoot '\
         f'Team:\n {instance.reply}\n\nLet us know if you have any other questions.\n\nThank you,\nMooseLoot Team'
 
