@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import update_session_auth_hash, get_user_model, login
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import PasswordResetConfirmView
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
@@ -71,18 +72,18 @@ def user_login(request):
     context = {'form': form}
 
     if request.POST.get('user_login'):
+        if form.is_valid():
+            email = request.POST.get('email')
+            password = request.POST.get('password')
+            user = authenticate(email=email, password=password)
 
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = authenticate(email=email, password=password)
+            if user is not None:
+                login(request, user)
 
-        if user is not None:
-            login(request, user)
-
-            return redirect('profile')
-        else:
-            messages.warning(request, 'Email and Password does not match.')
-            return redirect('login')
+                return redirect('profile')
+            else:
+                messages.warning(request, 'Email and Password does not match.')
+                return redirect('login')
 
     return render(request, 'users/login.html', context)
 
@@ -251,5 +252,14 @@ def profile(request):
     else:
         user_form = None
 
+
+class PasswordResetConfirm(PasswordResetConfirmView):
+
+    def get(self, request, *args, **kwargs):
+        print(request.user)
+        print(args)
+        print(kwargs)
+
+        return
 
 

@@ -1,4 +1,5 @@
 from django.contrib.auth.signals import user_login_failed, user_logged_in, user_logged_out
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.dispatch import receiver
@@ -20,20 +21,34 @@ def create_profile(sender, instance, created, **kwargs):
 
 @receiver(user_login_failed)
 def login_failed(sender, credentials, **kwargs):
-	print(credentials)
+	email = credentials.get('email')
+	if email is not None:
+		try:
+			user = User.objects.get(email=email)
+		except ObjectDoesNotExist:
+			user = None
+			pass
+
+		if user is not None:
+			customer = Customer.objects.get(email=email)
+			customer.login_attempt_counter += 1
+
+			if customer.login_attempt_counter >= 4:
+				user.set_unusable_password()
+				customer.login_attempt_counter = 0
+				user.save()
+
+			customer.save()
 
 
 @receiver(user_logged_in)
 def login_success(sender, request, user, **kwargs):
-	print('User Just logged in')
-	print(user)
+	pass
 
 
 @receiver(user_logged_out)
 def logout_success(sender, request, user, **kwargs):
-	print('user logged out')
-	print(user)
-
+	pass
 
 '''@receiver(post_save, sender=User)
 def save_Profile(sender, instance, **kwargs):

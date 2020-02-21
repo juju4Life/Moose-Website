@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import Orders, TcgCredentials, StoreDatabase, MTG, Upload, Yugioh, Pokemon, DirectData, TcgGroupPrice, MooseInventory, MooseAutopriceMetrics, CardPriceData
 from simple_history.admin import SimpleHistoryAdmin
-from customer.models import Preorder, Customer, PreordersReady, OrderRequest, ReleasedProducts
+from customer.models import Preorder, PreordersReady, OrderRequest, ReleasedProducts
 from django.contrib.auth.models import Group
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.template.response import TemplateResponse
@@ -270,24 +270,6 @@ class UpdatedInventoryAdmin(admin.ModelAdmin):
     list_filter = ('change_date', 'expansion')
 
 
-class CustomerAdmin(SimpleHistoryAdmin):
-
-        # ip, is_routable = get_client_ip(request)
-
-        # alert.apply_async(que='low_priority', args=(ip, obj.name, obj.credit, obj.id,))
-
-    save_on_top = True
-    history_list_display = ['credit', 'employee_initial', 'changeReason', ]
-    list_display = ['name', 'credit', 'notes', 'email', ]
-    search_fields = ['name']
-    ordering = ['name']
-    fields = (
-        ('credit', 'employee_initial', ),
-        'name',
-        'email',
-        'notes',
-    )
-
 
 class PreorderAdmin(admin.ModelAdmin):
     save_on_top = True
@@ -361,7 +343,6 @@ admin.site.index_title = 'MooseFirst'
 admin.site.register(StoreDatabase, StoreDatabaseAdmin)
 admin.site.register(PreordersReady, PreordersReadyAdmin)
 admin.site.register(Preorder, PreorderAdmin)
-admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Orders, OrdersProcessingAdmin)
 admin.site.register(ReleasedProducts, ReleasedProductsAdmin)
 admin.site.register(TcgCredentials)
