@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% load staticfiles %}
 {% block content %}
+{% include 'defaults/form_wrapper.html' %}
 
 <div class='row'>
 
@@ -16,11 +17,16 @@
 		{% endif %}
 
 		{% if form %}
-			<h1>Contact Us</h1>
-			<form method="POST" action="">{% csrf_token %}
-				{{form|crispy}}
-				<input type="submit" value="submit form" class ='btn btn-success' />
-			</form>
+			<div class="form-wrapper-default">
+				<form style="" method="POST" action="">{% csrf_token %}
+					<fieldset>
+						<legend class="border-bottom mb-4">Contact Us</legend>
+						{{form|crispy}}
+					</fieldset>
+					<input type="submit" value="submit form" class ='btn btn-success' />
+				</form>
+
+			</div>
 
 	</div>
 </div>

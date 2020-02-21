@@ -1,4 +1,5 @@
 from django import forms
+from captcha.fields import CaptchaField
 
 
 class ContactForm(forms.Form):
@@ -15,7 +16,8 @@ class ContactForm(forms.Form):
     subject = forms.CharField(required=True, widget=forms.Select(choices=subjects))
     order_number = forms.CharField(max_length=15, required=False, help_text='If applicable')
     comment = forms.CharField(required=True, widget=forms.Textarea)
+    captcha = CaptchaField()
 
-    field_order = ['subject', 'name', 'email', 'order_number', 'comment']
+    field_order = ['subject', 'name', 'email', 'order_number', 'comment', 'captcha']
 
 

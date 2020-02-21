@@ -1,14 +1,16 @@
 {% extends 'home.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+{% include 'defaults/form_wrapper.html' %}
 
 <div class='row'>
-	<div style="margin:auto;" class='col-sm-6 col-sm-offset-3'>
-		<legend class="border-bottom mb-4">Login into your account</legend>
-		
+	<div class='col-sm-6 col-sm-offset-3 form-wrapper-default'>
 		{% if form %}
 		<form style='padding: 1%;' method="POST" action="">{% csrf_token %}
-			{{form|crispy}}
+			<fieldset>
+				<legend class="border-bottom mb-4">Login into your account</legend>
+				{{form|crispy}}
+			</fieldset>
 			<input type="submit" name="user_login" value="Login" class ='btn btn-success' />
 			<small style="font-size: 16px" class="text-muted">&nbsp;
 				Need an account? <a class="ml-2" href="{% url 'register' %}">Sign up here.</a>
@@ -16,9 +18,6 @@
 		</form>
 
 		<small><a class="ml-2" href="{% url 'password_reset' %}">Forgot Password</a></small>
-
-
-
 	</div>
 </div>
 

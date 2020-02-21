@@ -254,11 +254,4 @@ def profile(request):
 
 
 class PasswordResetConfirm(PasswordResetConfirmView):
-
-    def get(self, request, *args, **kwargs):
-        print(request.user)
-        print(args)
-        print(kwargs)
-
-
-
+    pass

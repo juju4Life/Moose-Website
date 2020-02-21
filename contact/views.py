@@ -52,8 +52,6 @@ contacting MooseLoot.com,\nMooseLoot Team'
         return render(request, template, context)
 
 
-
-
 def policy(request):
     return render(request, 'privacy-policy.html')
 

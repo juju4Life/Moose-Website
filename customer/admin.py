@@ -26,8 +26,7 @@ class CustomerAdmin(SimpleHistoryAdmin):
     ordering = ['name', ]
     fields = (
         ('credit', 'employee_initial',),
-        'name',
-        'email',
+        ('name', 'email', ),
         'notes',
     )
 
