@@ -260,6 +260,5 @@ class PasswordResetConfirm(PasswordResetConfirmView):
         print(args)
         print(kwargs)
 
-        return
 
 
