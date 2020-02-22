@@ -4,6 +4,13 @@
 
 {% block content %}
 {% include 'profile_style.html' %}
+{% include 'defaults/form_wrapper.html' %}
+
+<style>
+	.profile-form{
+		margin-left: 3%;
+	}
+</style>
 
 <div style="margin-top:5%;">
 
@@ -84,8 +91,8 @@
 									<td>
 										<form style="margin-top:1%" method="POST" action="{% url 'profile' %}">
 											{% csrf_token %}
-												<input type="submit" name="update_password" value="Change Password" class="btn btn-info" >
-											</form>
+											<input type="submit" name="update_password" value="Change Password" class="btn btn-info" >
+										</form>
 									</td>
 									<td>
 
@@ -105,23 +112,32 @@
 
 					{% if request.POST.update_password %}
 
-					  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
-						  {{password_form|crispy}}
+						<div class="form-wrapper-default profile-form">
 
-						<input type="submit" name="update_password" value="Update" class ='btn btn-info' />
+							<form method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
+								<fieldset>
+									<legend class="border-bottom mb-4">Change Password</legend>
+									{{password_form|crispy}}
+								</fieldset>
 
-					  </form>
+								<input type="submit" name="update_password" value="Update" class ='btn btn-info' />
+					  		</form>
+						</div>
 
 					{% endif %}
 
 					{% if request.POST.update_email %}
+						<div class="form-wrapper-default profile-form">
+							<form method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
+								<fieldset>
+									<legend>Change Email</legend>
+									{{email_form|crispy}}
+								</fieldset>
+								<input type="submit" name="update_email" value="Update" class ='btn btn-info' />
+					  		</form>
 
-					  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
-						  {{email_form|crispy}}
 
-						<input type="submit" name="update_email" value="Update" class ='btn btn-info' />
-
-					  </form>
+						</div>
 
 					{% endif %}
 				</div>
@@ -192,13 +208,16 @@
 					</table>
 
 					{% if request.POST.update_address %}
+						<div class="form-wrapper-default">
+							<form method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
+								<fieldset>
+									<legend class="border-bottom mb-4">Default Address</legend>
+									{{address_form|crispy}}
+								</fieldset>
+								<input type="submit" name="update_address" value="Update" class ='btn btn-info' />
+					    	</form>
 
-					  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
-						  {{address_form|crispy}}
-
-						<input type="submit" name="update_address" value="Update" class ='btn btn-info' />
-
-					  </form>
+						</div>
 
 					{% endif %}
 					<hr>
@@ -271,13 +290,15 @@
 
 					{% if request.POST.update_second_address %}
 
-					  <form style='padding: 1%;' method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
-						  {{address_form|crispy}}
-
-						<input type="submit" name="update_second_address" value="Update" class ='btn btn-info' />
-
-					  </form>
-
+					 	<div class="form-wrapper-default">
+							<form method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
+								<fieldset>
+									<legend class="border-bottom mb-4">Second Address</legend>
+									{{address_form|crispy}}
+								</fieldset>
+								<input type="submit" name="update_second_address" value="Update" class ='btn btn-info' />
+					    	</form>
+						</div>
 					{% endif %}
 
 				</div>
