@@ -3,7 +3,11 @@ from cloudinary.models import CloudinaryField
 
 
 class HomePageImage(models.Model):
+    name = models.CharField(max_length=255, default='')
     image = CloudinaryField('image')
     text = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
 
 

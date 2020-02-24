@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import HomePageImage
 
-# Register your models here.
+
+@admin.register(HomePageImage)
+class HomePageAdmin(admin.ModelAdmin):
+    pass
