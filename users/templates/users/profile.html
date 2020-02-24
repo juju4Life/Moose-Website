@@ -12,7 +12,7 @@
 	}
 </style>
 
-<div style="margin-top:5%;">
+<div style="margin-top:5%">
 
 	<nav>
 
@@ -60,25 +60,19 @@
 						</thead>
 
 						<tbody>
-
 							<tr>
 								<td class="label">Username:</td>
 								<td class="profile-data">{{user.username}}</td>
 							</tr>
 
 							<tr>
-								<td class="label">Name:</td>
-								<td class="profile-data">{{customer.name}}</td>
+								<td class="label">Store Credit:</td>
+								<td class="profile-data">{{customer.credit}}</td>
 							</tr>
 
 							<tr>
 								<td class="label">Email:</td>
 								<td class="profile-data">{{customer.email}}</td>
-							</tr>
-
-							<tr>
-								<td class="label">Store Credit:</td>
-								<td class="profile-data">{{customer.credit}}</td>
 							</tr>
 
 							<tr>
@@ -368,29 +362,30 @@
 
           	</div>
 
+
+
+
+
+
+		<div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
+
+			<div>
+
+			</div>
+
+			<div role="tabpanel" class="tab-pane">
+
+
+
+			</div>
+
 		</div>
 
+		<div class="tab-pane fade" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">Three</div>
 
-
-
-	<div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
-
-		<div>
-
-		</div>
-
-		<div role="tabpanel" class="tab-pane">
-
-
-
-		</div>
-
+		<div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab">Three</div>
+		<div class="tab-pane fade" id="nav-treasures" role="tabpanel" aria-labelledby="nav-treasures-tab">Three</div>
 	</div>
-
-	<div class="tab-pane fade" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">Three</div>
-
-	<div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab">Three</div>
-	<div class="tab-pane fade" id="nav-treasures" role="tabpanel" aria-labelledby="nav-treasures-tab">Three</div>
 </div>
 
 {% endblock %}

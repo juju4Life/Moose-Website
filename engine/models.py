@@ -132,7 +132,7 @@ class DirectData(models.Model):
 
 
 class MTG(models.Model):
-    product_name = models.CharField(max_length=255, default='', verbose_name='name')
+    product_name = models.CharField(max_length=255, default='', verbose_name='name', db_index=True)
     set_name = models.CharField(max_length=255, default='', db_index=True)
     set_abbreviation = models.CharField(max_length=255, default='')
     condition = models.CharField(max_length=255, default='')
@@ -142,7 +142,7 @@ class MTG(models.Model):
     stock = models.IntegerField(default=0)
     rarity = models.CharField(max_length=255, default='')
     sku = models.CharField(max_length=255, default='')
-    product_id = models.CharField(max_length=30, default='', db_index=True)
+    product_id = models.CharField(max_length=30, default='')
     image_url = models.CharField(max_length=255, default='')
     oracle_text = models.TextField(default='')
     flavor_text = models.TextField(default='', blank=True)
