@@ -16,21 +16,8 @@
                 <div class="row" style="margin-top:1%;">
                     <div class="col-sm-1"></div>
                     <div id="row" class="col-sm-6" style="">
-                        <div style="" class="">
-                          <h4 class="">Related Products</h4>
-                            <div class="">
-                            {% for card in related_products %}
-                                <div class="">
-                                    <form style="float:left;" method="GET" action="{% url 'search' %}">
-                                        <button style="border:none;outline:none;background-color:Transparent;" type="submit">
-                                            <img style="max-height:120px;" src="{{card.image}}">
-                                        </button>
-                                        <input type="hidden" name="q" value="{{card.name}}">
-                                    </form>
-                                </div>
-                            {% endfor %}
-                            </div>
-                        </div>
+
+                    </div>
 
                         <div style="" class="">
                             <table style="color: rgb(80,80,80); margin-top: 5%;" class="nav-pills nav-stacked table table table-hover table-sm">
@@ -44,7 +31,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                 {% for item in items %}
 									<tr>
                                         <td>

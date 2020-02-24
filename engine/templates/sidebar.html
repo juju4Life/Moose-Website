@@ -1,11 +1,17 @@
 {% load staticfiles %}
 {% include 'sidebar_style.html' %}
 
-<div class="col-sm-1"></div>
-<div class="col-sm-3 right-column">
+<style>
+    .sidebar{
+        position: relative;
+        top: 0
+        right: 0
+    }
+</style>
+
 
 <!-- MTG Hotlist -->
-
+<div class="sidebar">
   <div class="list-group">
 
       <h4 class="side-bar-header list-group-item active" style="text-align:center;">
@@ -19,11 +25,8 @@
           <span>&nbsp;{{card.name}} - ${{card.price}}&nbsp;</span>
 
           </a>
-
-
       {% endfor %}
   </div>
-
 
 
     <!-- Upcoming Events tab -->

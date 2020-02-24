@@ -48,8 +48,22 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Sealed Product</a>
+        <a class="nav-link" href="#">Singles</a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">Sealed</a>
+      </li>
+
+
+       <li class="nav-item">
+        <a class="nav-link" href="{% url 'contact' %}">Buylist</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+      </li>
+
 
       <li>
         <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search' %}">
@@ -58,8 +72,7 @@
         </form>
       </li>
 
-
-      {% if not request.user.is_authenticated %}
+       {% if not request.user.is_authenticated %}
 
         <li class="nav-item">
           <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
@@ -79,10 +92,6 @@
         </li>
 
       {% endif %}
-
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
-      </li>
 
     </ul>
     </div>

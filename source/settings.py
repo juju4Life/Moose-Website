@@ -111,6 +111,7 @@ INSTALLED_APPS = [
     'amazon',
     'other',
     'captcha',
+    'layout',
     # 'customer.startup.BotConfig',
 
 ]
