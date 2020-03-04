@@ -1,10 +1,14 @@
-import traceback
 from time import time
+import timeit
+import traceback
+
 from django.core.mail import send_mail
-from engine.tcgplayer_api import TcgPlayerApi
+
 from engine.models import MooseAutopriceMetrics, DirectData
+from engine.tcgplayer_api import TcgPlayerApi
+
 from my_customs.decorators import report_error
-from tcg.tcg_functions import metrics_update, process_card, convert_foil
+from tcg.tcg_functions import metrics_update, process_card, format_tcg_ready_url, convert_foil
 
 
 api = TcgPlayerApi('moose')
@@ -13,12 +17,12 @@ first_api = TcgPlayerApi('first')
 
 @report_error
 def moose_price():
-
+    '''
     for index, dc in enumerate(DirectData.objects.filter(in_stock=True).filter(consecutive_days_non_direct__range=(8, 999999))):
         process_card(
+            url=format_tcg_ready_url(dc.expansion, dc.name),
             api=first_api,
             sku=dc.sku,
-            product_id=dc.product_id,
             condition=dc.condition,
             printing=convert_foil(dc.foil),
             language=dc.language,
@@ -29,9 +33,11 @@ def moose_price():
             low=dc.low,
             index=index,
         )
+    '''
 
     start_time = time()
     # Entire Moose Loot Listed inventory
+    print('get inventory...')
     listed_cards = api.get_category_skus('magic')
     if listed_cards['success'] is True:
         print(f"Updating {listed_cards['totalItems']} for Moose Inventory")
@@ -123,11 +129,14 @@ def moose_price():
                                 api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channel='1')
 
                 elif language == 'English' and condition != 'Unopened':
+                    print('processing english card')
+                    url = format_tcg_ready_url(expansion, name)
 
+                    s = timeit.default_timer()
                     process_card(
+                        url=url,
                         api=api,
                         sku=sku,
-                        product_id=product_id,
                         condition=condition,
                         expansion=expansion,
                         name=name,
@@ -138,6 +147,9 @@ def moose_price():
                         low=low,
                         index=index,
                     )
+
+                    fin = timeit.default_timer() - s
+                    print(f'Processed in {fin}')
 
             except Exception as e:
                 print(e)

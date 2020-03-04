@@ -1,9 +1,14 @@
 from datetime import date
 from calendar import day_name
-import random
-from engine.tcgplayer_api import TcgPlayerApi
+import timeit
+import re
+
 from engine.models import MooseAutopriceMetrics
-from my_customs.functions import integers_from_string, float_from_string, request_pages_data
+
+from my_customs.functions import integers_from_string, float_from_string
+from tcg.tcg_scraper import TcgScraper
+
+scraper = TcgScraper()
 
 
 def convert_foil(value):
@@ -246,116 +251,74 @@ def amazon_fee_calc(price):
         return 0, 0
 
 
-def process_card(api, sku, product_id, condition, expansion, name, printing, language, current_price, market, low, index, condition_updated_price=None):
+def create_condition_string(condition, printing, language):
+
+    if printing == 'Foil' and language == 'English':
+        return f'{condition} {printing}'
+
+    elif printing == 'Foil' and language != 'English':
+        return f'{condition} {printing} - {language}'
+
+    elif printing == 'Normal' and language != 'English':
+        return f'{condition} - {language}'
+
+    else:
+        return condition
+
+
+def format_tcg_ready_url(expansion, name):
+    query_string = f'{expansion}/{name}'.replace('//', '-')
+    iteration_1 = re.sub('[\'"().]', '', query_string).strip()
+    iteration_2 = re.sub("[&|:,\s!?\\\\]", '-', iteration_1)
+    query_string = re.sub(r'(-)+', r'\1', iteration_2)
+
+    url = f'https://shop.tcgplayer.com/magic/{query_string}'
+
+    return url
+
+
+def process_card(api, sku, url, condition, expansion, name, printing, language, current_price, market, low, index,
+                 condition_updated_price=None):
+
+    # Get URL of Single
+    scraper.get_url(url)
+
+    # Clicks the open filter button on web page so that we can create various queries
+    scraper.open_filters()
+
+    # Filter the page for specific queries
+    printing_query = scraper.filter_value(printing)
+    scraper.query(printing_query)
+
+    condition_query = scraper.filter_value(condition)
+    scraper.query(condition_query)
+
+    # Remove default English selection if query for non-english card
+    if language != 'English':
+        language_query = scraper.filter_value('English')
+        scraper.query(language_query)
+    else:
+        # Filter for non-english card
+        language_query = scraper.filter_value(language)
+        scraper.query(language_query)
+
+    '''
+    Returns lists of seller data - list of dictionaries (Max 5). Contains card price and Gold-star status.
+    
+    Func create_condition_string formats condition printing and language in order to ensure that we are using prices from the correct query as it's possible
+    for one of the queries to fail.
+    '''
+    seller_data_list = scraper.get_card_data(create_condition_string(condition, printing, language))
 
     day = day_name[date.today().weekday()]
     if day == 'Saturday':
         if condition == 'Moderately Played' or condition == 'Heavily Played':
-            next_page = True
-            page = 1
-            seller_data_list = []
-            random_string = str(random.randint(1000000000000, 9999999999999))
+            pass
+            # condition_updated_price = moose_price_algorithm(seller_data=seller_data_list)
 
-            while next_page is True:
-
-                path = f'https://shop.tcgplayer.com/productcatalog/product/getpricetable?captureFeaturedSellerData=True&pageSize=10&productId={product_id}' \
-                    f'&gameName=magic&useV2Listings=false&_={random_string}&page={page}'
-
-                data, page_source = request_pages_data(
-                    url=path,
-                    tag='div',
-                    attribute='class',
-                    attribute_value='product-listing ',
-                )
-
-                # Check if there are products in the request. If not that indicates no more listings and thus we break the loop
-                if not data:
-                    break
-
-                seller_condition_list = ['Lightly Played', 'Near Mint']
-
-                # loop over each item on the page and get Seller Info
-                for d in data:
-                    seller_condition = d.find('div', {'class': 'product-listing__condition'}).text.strip()
-                    seller_name = d.find('a', {'class': 'seller__name'}).text.strip()
-
-                    if seller_name != 'MTGFirst' and seller_name != 'Moose Loot' and seller_condition in seller_condition_list:
-                        price, total_price, seller_total_sales = get_product_seller_info(d)
-
-                        price_dict = {
-                            'price': total_price,
-                            'gold': True if seller_total_sales >= 10000 else False,
-                        }
-
-                        seller_data_list.append(price_dict)
-                        if len(seller_data_list) == 5:
-                            next_page = False
-                            break
-
-                page += 1
-
-            '''
-            We will check the number of other seller listings.
-            If there were zero listings found we simply make the updated price the market price.
-
-            If just one listing is found, we run the price algorithm which will just add shipping if default and price .01c less.
-
-            If there are 2 10,000+ listings, algorithm will compare and take the best/cheapest listings price
-            '''
-
-            condition_updated_price = moose_price_algorithm(seller_data=seller_data_list, )
-
-    next_page = True
-    page = 1
-    seller_data_list = []
-    random_string = str(random.randint(1000000000000, 9999999999999))
-
-    while next_page is True:
-
-        path = f'https://shop.tcgplayer.com/productcatalog/product/getpricetable?captureFeaturedSellerData=True&pageSize=10&productId={product_id}' \
-            f'&gameName=magic&useV2Listings=false&_={random_string}&page={page}'
-
-        data, page_source = request_pages_data(
-            url=path,
-            tag='div',
-            attribute='class',
-            attribute_value='product-listing ',
-        )
-
-        # Check if there are products in the request. If not that indicates no more listings and thus we break the loop
-        if not data:
-            break
-
-        # loop over each item on the page and get Seller Info
-        for d in data:
-            seller_condition = d.find('div', {'class': 'product-listing__condition'}).text.strip()
-            seller_name = d.find('a', {'class': 'seller__name'}).text.strip()
-
-            if seller_name != 'MTGFirst' and seller_name != 'Moose Loot' and condition == seller_condition:
-                price, total_price, seller_total_sales = get_product_seller_info(d)
-
-                price_dict = {
-                    'price': total_price,
-                    'gold': True if seller_total_sales >= 10000 else False,
-                }
-
-                seller_data_list.append(price_dict)
-                if len(seller_data_list) == 5:
-                    next_page = False
-                    break
-
-        page += 1
-
-    '''
-    We will check the number of other seller listings.
-    If there were zero listings found we simply make the updated price the market price.
-
-    If just one listing is found, we run the price algorithm which will just add shipping if default and price .01c less.
-
-    If there are 2 10,000+ listings, algorithm will compare and take the best/cheapest listings price
-    '''
-
+    # Pricing algorithm
     updated_price = moose_price_algorithm(seller_data=seller_data_list, )
+
     '''
      new = moose_inventory.create(
         name=card_data['card_name'],
@@ -374,9 +337,8 @@ def process_card(api, sku, product_id, condition, expansion, name, printing, lan
 
     new.save()
     '''
-    # print(f'Updated Price for {name}, {expansion}, {current_price}, {updated_price}')
+
     if updated_price is not None:
-        # print(index)
 
         if updated_price < .25:
             updated_price = .25
@@ -390,7 +352,7 @@ def process_card(api, sku, product_id, condition, expansion, name, printing, lan
                 if updated_price >= condition_updated_price * .75:
                     updated_price = condition_updated_price * .75
 
-        api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
+        # api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
 
         metrics, created = MooseAutopriceMetrics.objects.get_or_create(sku=sku)
 
@@ -409,14 +371,11 @@ def process_card(api, sku, product_id, condition, expansion, name, printing, lan
         updated_price = updated_price * .95
         if updated_price < .25:
             updated_price = .25
-        api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channel='1')
+        # api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channel='1')
 
         if index < 100:
             print(name, expansion, condition, printing)
             print(f"Current: {current_price}, Market: {market}, Low: {low}, Updated: {updated_price}")
-
-
-
 
 
 

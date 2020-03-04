@@ -9,66 +9,64 @@
     {% if error != '' %}
 
         <h1>Error</h1>
-
     {% else %}
 
             <div class="container-fluid" style="min-height:95%;">
-                <div class="row" style="margin-top:1%;">
-                    <div class="col-sm-1"></div>
-                    <div id="row" class="col-sm-6" style="">
+                <div class="row" style="margin:auto; margin-top:1%;">
+                    <div id="row" class="" style="">
 
                     </div>
-
-                        <div style="" class="">
+                        <div class="col-sm-2"></div>
+                        <div style="" class="col-sm-8">
                             <table style="color: rgb(80,80,80); margin-top: 5%;" class="nav-pills nav-stacked table table table-hover table-sm">
                                 <thead class="thead-inverse">
                                     <tr class="header">
                                       <th></th>
                                       <th>Name</th>
                                       <th>Expansion</th>
+                                      <th>Mana Cost</th>
                                         <th>Condition</th>
                                       <th>Price</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {% for item in items %}
-									<tr>
-                                        <td>
-                                            <img onclick="Large(this)" style="max-height:75px;" src="{{item.image_url}}">
-                                            <div id="imgbox"></div>
-                                        </td>
+                                    {% for item in items %}
+                                        <tr>
+                                            <td>
+                                                <img onclick="Large(this)" style="max-height:75px;" src="{{item.image_url}}">
+                                                <div id="imgbox"></div>
+                                            </td>
 
-										<td>
-											<a href="{% url 'product_detail' item.product_id %}">{{item.product_name}}</a>
-										</td>
+                                            <td>
+                                                <a href="{% url 'product_detail' item.product_id %}">{{item.product_name}}</a>
+                                            </td>
 
-										<td>({{item.set_name}})</td>
+                                            <td>({{item.set_name}})</td>
 
-                                        <td>Near Mint Foil</td>
+                                            <td>({{item.mana_cost}})</td>
 
-                                        <td>
-                                            <form action="{% url 'add_to_cart' item.id %}" method="POST">
-                                                {% csrf_token %}
-                                                <div class="form-box">
+                                            <td>Near Mint Foil</td>
 
-                                                    <span class="mr-1">${{item.price|floatformat:2}}</span>
-                                                    <input class="mr-1" style="" size="2" type="number" name="quantity" min="1" max="8">
-                                                    <button type="submit" class="btn btn-success mr-1" style=""><i class="material-icons">add</i></button>
-                                                </div>
-                                            </form>
-                                        </td>
-									</tr>
+                                            <td>
+                                                <form action="{% url 'add_to_cart' item.id %}" method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="form-box">
 
-								</tbody>
+                                                        <span class="mr-1">${{item.price|floatformat:2}}</span>
+                                                        <input class="mr-1" style="" size="2" type="number" name="quantity" min="1" max="8">
+                                                        <button type="submit" class="btn btn-success mr-1" style=""><i class="material-icons">add</i></button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
                                 {% endfor %}
+                            </tbody>
 
-                            </table>
-                        </div>
-
+                        </table>
                     </div>
 
-                    {% include 'sidebar.html' %}
                 </div>
+
             </div>
 
 
