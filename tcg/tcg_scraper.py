@@ -3,13 +3,14 @@ import re
 from time import sleep
 
 from bs4 import BeautifulSoup as B
+from decouple import config
 from selenium import webdriver
 
 
 class TcgScraper:
     def __init__(self):
-        self.GOOGLE_CHROME_BINARY = os.environ.get('/app/.apt/usr/bin/google-chrome')
-        self.CHROMEDRIVER_PATH = os.environ.get('/app/.chromedriver/bin/chromedriver')
+        self.GOOGLE_CHROME_BINARY = os.environ.get(config('GOOGLE_CHROME_BINARY'))
+        self.CHROMEDRIVER_PATH = os.environ.get(config('CHROMEDRIVER_PATH'))
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_argument('--disable-gpu')
         self.chrome_options.add_argument('--no-sandbox')
