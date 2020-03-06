@@ -4,18 +4,19 @@ from time import sleep
 from bs4 import BeautifulSoup as B
 from decouple import config
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 
 class TcgScraper:
     def __init__(self):
         self.GOOGLE_CHROME_BINARY = config('GOOGLE_CHROME_BINARY')
         self.CHROMEDRIVER_PATH = config('CHROMEDRIVER_PATH')
-        self.chrome_options = webdriver.ChromeOptions()
+        self.chrome_options = Options()
         self.chrome_options.add_argument("--disable-dev-shm-usage")
         self.chrome_options.add_argument('--no-sandbox')
         self.chrome_options.binary_location = self.GOOGLE_CHROME_BINARY
         self.chrome_options.add_argument("headless")
-        self.driver = webdriver.Chrome(self.CHROMEDRIVER_PATH, chrome_options=self.chrome_options, service_args=["--verbose", "--log-path=D:\\qc1.log"])
+        self.driver = webdriver.Chrome(self.CHROMEDRIVER_PATH, chrome_options=self.chrome_options)
 
     def quit_driver(self):
         self.driver.quit()
