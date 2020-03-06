@@ -11,12 +11,12 @@ class TcgScraper:
     def __init__(self):
         self.GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
         self.CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-        self.chrome_options = Options()
+        self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_argument('--disable-gpu')
         self.chrome_options.add_argument('--no-sandbox')
         self.chrome_options.binary_location = self.GOOGLE_CHROME_PATH
         self.chrome_options.add_argument("headless")
-        self.driver = webdriver.Chrome(self.CHROMEDRIVER_PATH, self.chrome_options)
+        self.driver = webdriver.Chrome(self.CHROMEDRIVER_PATH, chrome_options=self.chrome_options)
 
     def quit_driver(self):
         self.driver.quit()
