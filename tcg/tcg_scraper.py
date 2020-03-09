@@ -13,8 +13,10 @@ class TcgScraper:
         self.CHROMEDRIVER_PATH = config('CHROMEDRIVER_PATH')
         self.chrome_options = Options()
         self.chrome_options.add_argument("--disable-dev-shm-usage")
+        self.chrome_options.add_argument('--no-sandbox')
         self.chrome_options.binary_location = self.GOOGLE_CHROME_BINARY
-        self.driver = webdriver.Chrome(self.CHROMEDRIVER_PATH, options=self.chrome_options)
+        self.chrome_options.add_argument("headless")
+        self.driver = webdriver.Chrome(executable_path=self.GOOGLE_CHROME_BINARY, options=self.chrome_options)
 
     def quit_driver(self):
         self.driver.quit()

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="" />
+    <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tcg/tcg_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/tcg/tcg_scraper.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -9,7 +12,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.47657993">
+    <splitter split-orientation="horizontal" split-proportion="0.46171004">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -53,8 +56,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/tcg/tcg_scraper.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="83">
-                  <caret line="14" column="48" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
+                <state relative-caret-position="323">
+                  <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-end-line="22" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -199,8 +202,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/.env">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="153">
-                  <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="57" />
+                <state relative-caret-position="343">
+                  <caret line="24" selection-start-line="24" selection-end-line="24" selection-end-column="56" />
                 </state>
               </provider>
             </entry>
@@ -526,6 +529,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="895" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="1" weight="0.2780669" />
@@ -538,7 +542,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4951673" visible="true" weight="0.6862745" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4951673" visible="true" weight="0.34117648" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5048327" side_tool="true" weight="0.40784314" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.40784314" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -968,15 +972,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="57" />
+        <state relative-caret-position="343">
+          <caret line="24" selection-start-line="24" selection-end-line="24" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tcg/tcg_scraper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="14" column="48" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
+        <state relative-caret-position="323">
+          <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-end-line="22" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
