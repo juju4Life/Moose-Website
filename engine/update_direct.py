@@ -37,6 +37,7 @@ def update():
                 non_direct += 1
     else:
         # errors = listed_cards['errors']
+        pass
 
 
 
