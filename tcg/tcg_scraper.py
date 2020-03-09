@@ -9,8 +9,10 @@ from selenium.webdriver.chrome.options import Options
 
 class TcgScraper:
     def __init__(self):
-        self.GOOGLE_CHROME_BINARY = config('GOOGLE_CHROME_BINARY')
-        self.CHROMEDRIVER_PATH = config('CHROMEDRIVER_PATH')
+        # self.GOOGLE_CHROME_BINARY = config('GOOGLE_CHROME_BINARY')
+        self.GOOGLE_CHROME_BINARY = '/smiling-earth/.apt/usr/bin/google-chrome'
+        # self.CHROMEDRIVER_PATH = config('CHROMEDRIVER_PATH')
+        self.CHROMEDRIVER_PATH = "/smiling-earth/.chromedriver/bin/chromedriver"
         self.chrome_options = Options()
         self.chrome_options.add_argument("--disable-dev-shm-usage")
         self.chrome_options.binary_location = self.GOOGLE_CHROME_BINARY
