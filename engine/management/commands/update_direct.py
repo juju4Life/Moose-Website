@@ -8,7 +8,7 @@ api = TcgPlayerApi('first')
 class Command(BaseCommand):
     def handle(self, **options):
         listed_cards = api.get_category_skus('magic')
-
+        print('Getting cards')
         success = listed_cards['success']
         if success is True:
             non_direct = 0
@@ -39,8 +39,7 @@ class Command(BaseCommand):
                     non_direct += 1
         else:
             # errors = listed_cards['errors']
-            pass
-
+            print(listed_cards)
 
 
 
