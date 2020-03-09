@@ -32,7 +32,7 @@ class Command(BaseCommand):
                         if new_price < market_price * tcg_condition_map(condition):
                             new_price = market_price * tcg_condition_map(condition)
 
-                        print(new_price)
+                        print(current_price, new_price)
 
                         api.update_sku_price(sku_id=sku, price=new_price, _json=True)
                 else:
