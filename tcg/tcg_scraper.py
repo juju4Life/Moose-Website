@@ -9,8 +9,8 @@ from selenium.webdriver.chrome.options import Options
 
 class TcgScraper:
     def __init__(self):
-        self.GOOGLE_CHROME_BIN = config('GOOGLE_CHROME_BIN')
-        self.GOOGLE_CHROME_SHIM = config('GOOGLE_CHROME_SHIM')
+        self.GOOGLE_CHROME_BIN = config('GOOGLE_CHROME_SHIM')
+        self.GOOGLE_CHROME_SHIM = config('GOOGLE_CHROME_BIN')
         self.chrome_options = Options()
         self.chrome_options.add_argument("--disable-dev-shm-usage")
         self.chrome_options.add_argument('--no-sandbox')
