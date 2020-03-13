@@ -7,6 +7,7 @@ api = TcgPlayerApi('first')
 def update():
     listed_cards = api.get_category_skus('magic')
     success = listed_cards['success']
+    c = 0
     if success is True:
         non_direct = 0
         # total_listed = listed_cards['totalItems']
@@ -14,6 +15,9 @@ def update():
 
         for card in cards:
             direct_low_price = card['directLowPrice']
+            if direct_low_price is None:
+                print(card['productName'], card['groupName'], card['conditionName'], card['currentPrice'], direct_low_price)
+                c += 1
 
             if direct_low_price is not None:
                 sku = card['skuId']
@@ -35,9 +39,12 @@ def update():
                     api.update_sku_price(sku_id=sku, price=new_price, _json=True)
             else:
                 non_direct += 1
+
     else:
         # errors = listed_cards['errors']
         pass
+
+    print(c)
 
 
 
