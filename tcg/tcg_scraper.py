@@ -75,7 +75,7 @@ class TcgScraper:
     def filter_value(self, query):
 
         q = {
-            'next_page': self.driver.find_element_by_xpath('//*[@id="priceTableContainer"]/div/nav/ul/a[4]'),
+            # 'next_page': self.driver.find_element_by_xpath('//*[@id="priceTableContainer"]/div/nav/ul/a[4]'),
             'Near Mint': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[2]/a'),
             'Lightly Played': self.driver.find_element_by_xpath('//*[''@id="detailsFilters"]/div/div/ul[5]/li[3]/a'),
             'Moderately Played': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[4]/a'),
