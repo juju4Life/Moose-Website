@@ -16,7 +16,7 @@ class TcgScraper:
         self.chrome_options.add_argument('--no-sandbox')
         self.chrome_options.add_argument("headless")
         self.chrome_options.binary_location = self.GOOGLE_CHROME_BIN
-        self.driver = webdriver.Chrome(self.GOOGLE_CHROME_SHIM, options=self.chrome_options)
+        # self.driver = webdriver.Chrome(self.GOOGLE_CHROME_SHIM, options=self.chrome_options)
 
     def quit_driver(self):
         self.driver.quit()
