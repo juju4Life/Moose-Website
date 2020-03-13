@@ -13,8 +13,9 @@ class TcgScraper:
         self.GOOGLE_CHROME_SHIM = config('GOOGLE_CHROME_SHIM')
         self.chrome_options = Options()
         self.chrome_options.add_argument("--disable-dev-shm-usage")
+        self.chrome_options.add_argument('--disable-gpu')
         self.chrome_options.add_argument('--no-sandbox')
-        self.chrome_options.add_argument("headless")
+        self.chrome_options.add_argument("--headless")
         self.chrome_options.binary_location = self.GOOGLE_CHROME_BIN
         self.driver = webdriver.Chrome(executable_path=self.GOOGLE_CHROME_SHIM, options=self.chrome_options)
 
