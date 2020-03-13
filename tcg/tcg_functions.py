@@ -372,6 +372,7 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
         if updated_price < .25:
             updated_price = .25
         # api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channel='1')
+        print(f"Current: {current_price}, Market: {market}, Low: {low}, Updated: {updated_price}")
 
         if index < 100:
             print(name, expansion, condition, printing)
