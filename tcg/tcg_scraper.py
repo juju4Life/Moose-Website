@@ -9,14 +9,14 @@ from selenium.webdriver.chrome.options import Options
 
 class TcgScraper:
     def __init__(self):
-        self.GOOGLE_CHROME_BIN = config('GOOGLE_CHROME_SHIM')
-        self.GOOGLE_CHROME_SHIM = config('GOOGLE_CHROME_BIN')
+        self.GOOGLE_CHROME_BIN = config('GOOGLE_CHROME_BIN')
+        self.GOOGLE_CHROME_SHIM = config('GOOGLE_CHROME_SHIM')
         self.chrome_options = Options()
         self.chrome_options.add_argument("--disable-dev-shm-usage")
         self.chrome_options.add_argument('--no-sandbox')
         self.chrome_options.add_argument("headless")
         self.chrome_options.binary_location = self.GOOGLE_CHROME_BIN
-        self.driver = webdriver.Chrome(self.GOOGLE_CHROME_SHIM, options=self.chrome_options)
+        self.driver = webdriver.Chrome(executable_path=self.GOOGLE_CHROME_SHIM, options=self.chrome_options)
 
     def quit_driver(self):
         self.driver.quit()
