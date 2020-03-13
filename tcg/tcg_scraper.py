@@ -37,35 +37,41 @@ class TcgScraper:
     def get_card_data(self, query_condition):
         sleep(5)
         page_source = self.driver.page_source
+        print('got page source')
         soup = B(page_source, 'html.parser')
         cards = soup.find_all('div', {'class': 'product-listing'})
         seller_data_list = []
         for card in cards:
+            print(card)
             condition = card.find('a', {'class': 'condition'}).text
             if query_condition == condition:
                 seller_name = card.find('a', {'class': 'seller__name'}).text.strip()
                 if seller_name != 'Moose Loot' and seller_name != 'Moose Loot Direct':
-                    total_sales = card.find('span', {'class': 'seller__sales'}).text
-                    total_sales = [i for i in total_sales if i.isnumeric()]
-                    total_sales = int(''.join(total_sales))
-                    price = card.find('span', {'class': 'product-listing__price'}).text.strip('$')
-                    shipping_string = card.find('span', {'class': 'product-listing__shipping'}).text
-                    if 'included' in shipping_string.lower():
-                        shipping = 0
-                    else:
-                        shipping = re.findall(r"[-+]?\d*\.\d+|\d+", shipping_string)
-                        shipping = ''.join(shipping)
+                    try:
+                        total_sales = card.find('span', {'class': 'seller__sales'}).text
+                        total_sales = [i for i in total_sales if i.isnumeric()]
+                        total_sales = int(''.join(total_sales))
+                        price = card.find('span', {'class': 'product-listing__price'}).text.strip('$')
+                        shipping_string = card.find('span', {'class': 'product-listing__shipping'}).text
+                        if 'included' in shipping_string.lower():
+                            shipping = 0
+                        else:
+                            shipping = re.findall(r"[-+]?\d*\.\d+|\d+", shipping_string)
+                            shipping = ''.join(shipping)
 
-                    total_price = float(price) + float(shipping)
+                        total_price = float(price) + float(shipping)
 
-                    seller_data_list.append(
-                        {
-                            'price': total_price,
-                            'gold': True if total_sales >= 10000 else False,
-                        }
-                    )
-                    if len(seller_data_list) == 5:
-                        break
+                        seller_data_list.append(
+                            {
+                                'price': total_price,
+                                'gold': True if total_sales >= 10000 else False,
+                            }
+                        )
+
+                        if len(seller_data_list) == 5:
+                            break
+                    except AttributeError:
+                        continue
                 else:
                     # Filter for query failed for some reason
                     print('Query Failed')

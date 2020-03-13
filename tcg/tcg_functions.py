@@ -317,8 +317,6 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
 
     # Pricing algorithm
     updated_price = moose_price_algorithm(seller_data=seller_data_list, )
-    print(seller_data_list, updated_price)
-    print(name, expansion, condition, printing)
 
     '''
      new = moose_inventory.create(
