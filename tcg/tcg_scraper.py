@@ -2,7 +2,6 @@ import re
 from time import sleep
 
 from bs4 import BeautifulSoup as B
-from chromedriver_py import binary_path
 from decouple import config
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options

@@ -15,7 +15,7 @@ api = TcgPlayerApi('moose')
 first_api = TcgPlayerApi('first')
 
 
-@report_error
+# @report_error
 def moose_price():
     '''
     for index, dc in enumerate(DirectData.objects.filter(in_stock=True).filter(consecutive_days_non_direct__range=(8, 999999))):
