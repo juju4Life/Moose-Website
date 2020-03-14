@@ -2,6 +2,7 @@ import re
 from time import sleep
 
 from bs4 import BeautifulSoup as B
+from chromedriver_py import binary_path
 from decouple import config
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -17,6 +18,7 @@ class TcgScraper:
         self.chrome_options.add_argument('--no-sandbox')
         self.chrome_options.add_argument("--headless")
         self.chrome_options.binary_location = self.GOOGLE_CHROME_SHIM
+
         self.driver = webdriver.Chrome(options=self.chrome_options)
 
     def quit_driver(self):
@@ -32,6 +34,7 @@ class TcgScraper:
         self.driver.get(url)
 
     def open_filters(self):
+        print(self.driver.page_source)
         self.driver.find_element_by_xpath('//*[@id="product-price-table"]/div[1]/button').click()
 
     def get_card_data(self, query_condition):
@@ -44,7 +47,9 @@ class TcgScraper:
         for card in cards:
             condition = card.find('a', {'class': 'condition'}).text
             if query_condition == condition:
+
                 seller_name = card.find('a', {'class': 'seller__name'}).text.strip()
+                print(seller_name)
                 if seller_name != 'Moose Loot' and seller_name != 'Moose Loot Direct':
                     try:
                         total_sales = card.find('span', {'class': 'seller__sales'}).text
