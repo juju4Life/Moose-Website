@@ -281,6 +281,7 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
 
     # Get URL of Single
     scraper.get_url(url)
+    print('got url')
 
     # Clicks the open filter button on web page so that we can create various queries
     scraper.open_filters()

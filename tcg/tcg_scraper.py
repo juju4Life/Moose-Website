@@ -42,7 +42,6 @@ class TcgScraper:
         cards = soup.find_all('div', {'class': 'product-listing'})
         seller_data_list = []
         for card in cards:
-            print(card)
             condition = card.find('a', {'class': 'condition'}).text
             if query_condition == condition:
                 seller_name = card.find('a', {'class': 'seller__name'}).text.strip()
