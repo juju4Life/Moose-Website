@@ -5,6 +5,11 @@ from bs4 import BeautifulSoup as B
 from decouple import config
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import StaleElementReferenceException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions
 
 
 class TcgScraper:
@@ -16,8 +21,8 @@ class TcgScraper:
         self.chrome_options.add_argument('--disable-gpu')
         self.chrome_options.add_argument('--no-sandbox')
         self.chrome_options.add_argument("--headless")
+        self.ignored_exceptions = (NoSuchElementException, StaleElementReferenceException)
         self.chrome_options.binary_location = self.GOOGLE_CHROME_SHIM
-
         self.driver = webdriver.Chrome(options=self.chrome_options)
 
     def quit_driver(self):
@@ -33,7 +38,12 @@ class TcgScraper:
         self.driver.get(url)
 
     def open_filters(self):
-        self.driver.find_element_by_xpath('//*[@id="product-price-table"]/div[1]/button').click()
+        ignored_exceptions = (NoSuchElementException, StaleElementReferenceException,)
+        your_element = WebDriverWait(self.driver, timeout=30, ignored_exceptions=ignored_exceptions).until(expected_conditions.presence_of_element_located((
+            By.XPATH, '//*[@id="product-price-table"]/div[1]/button')))
+        your_element.click()
+
+        # self.driver.find_element_by_xpath('//*[@id="product-price-table"]/div[1]/button').click()
 
     def get_card_data(self, query_condition):
         sleep(5)
