@@ -33,7 +33,6 @@ class TcgScraper:
         self.driver.get(url)
 
     def open_filters(self):
-        print(self.driver.page_source)
         self.driver.find_element_by_xpath('//*[@id="product-price-table"]/div[1]/button').click()
 
     def get_card_data(self, query_condition):
