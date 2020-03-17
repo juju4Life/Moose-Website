@@ -38,10 +38,12 @@ class TcgScraper:
         self.driver.get(url)
 
     def open_filters(self):
+        print('Opening Filters')
         ignored_exceptions = (NoSuchElementException, StaleElementReferenceException,)
         your_element = WebDriverWait(self.driver, timeout=30, ignored_exceptions=ignored_exceptions).until(expected_conditions.presence_of_element_located((
             By.XPATH, '//*[@id="product-price-table"]/div[1]/button')))
         your_element.click()
+        print('Filters opened')
 
         # self.driver.find_element_by_xpath('//*[@id="product-price-table"]/div[1]/button').click()
 
