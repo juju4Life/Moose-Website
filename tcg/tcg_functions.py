@@ -362,7 +362,7 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
                 if updated_price >= condition_updated_price * .75:
                     updated_price = condition_updated_price * .75
 
-        # api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
+        api.update_sku_price(sku_id=sku, price=updated_price, _json=True)
 
         metrics, created = MooseAutopriceMetrics.objects.get_or_create(sku=sku)
 
@@ -381,7 +381,7 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
         updated_price = updated_price * .95
         if updated_price < .25:
             updated_price = .25
-        # api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channel='1')
+        api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channel='1')
         print(f"Current: {current_price}, Market: {market}, Low: {low}, Updated: {updated_price}")
 
 
