@@ -129,9 +129,7 @@ def moose_price():
                                 api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channel='1')
 
                 elif language == 'English' and condition != 'Unopened':
-                    print('processing english card')
                     url = format_tcg_ready_url(expansion, name)
-                    print(url)
 
                     s = timeit.default_timer()
                     process_card(

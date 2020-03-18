@@ -281,7 +281,6 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
                  condition_updated_price=None):
 
     if printing != 'Foil':
-        print(f'condition to be passed {condition}')
 
         # Get URL of Single
         scraper.get_url(url)
@@ -385,9 +384,6 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
         # api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channel='1')
         print(f"Current: {current_price}, Market: {market}, Low: {low}, Updated: {updated_price}")
 
-        if index < 100:
-            print(name, expansion, condition, printing)
-            print(f"Current: {current_price}, Market: {market}, Low: {low}, Updated: {updated_price}")
 
 
 

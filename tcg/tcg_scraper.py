@@ -60,9 +60,6 @@ class TcgScraper:
         seller_data_list = []
         for card in cards:
             condition = card.find('a', {'class': 'condition'}).text
-            price = card.find('span', {'class': 'product-listing__price'}).text.strip('$')
-            print(query_condition, condition)
-            print(price)
 
             if query_condition == condition:
 
@@ -74,7 +71,7 @@ class TcgScraper:
                         total_sales = int(''.join(total_sales))
                         price = card.find('span', {'class': 'product-listing__price'}).text.strip('$')
                         shipping_string = card.find('span', {'class': 'product-listing__shipping'}).text
-                        if 'included' in shipping_string.lower():
+                        if 'included' in shipping_string.lower() or 'free shipping' in shipping_string.lower():
                             shipping = 0
                         else:
                             shipping = re.findall(r"[-+]?\d*\.\d+|\d+", shipping_string)
@@ -88,7 +85,6 @@ class TcgScraper:
                                 'gold': True if total_sales >= 10000 else False,
                             }
                         )
-                        print()
 
                         if len(seller_data_list) == 5:
                             break
@@ -97,7 +93,6 @@ class TcgScraper:
                 else:
                     # Filter for query failed for some reason
                     print('Query Failed')
-        print(seller_data_list)
         return seller_data_list
 
     def filter_value(self, query):
@@ -112,7 +107,6 @@ class TcgScraper:
             pass
         else:
             pass
-        print(query)
         q = {
             # 'next_page': self.driver.find_element_by_xpath('//*[@id="priceTableContainer"]/div/nav/ul/a[4]'),
             'clear': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[1]/a'),
@@ -139,7 +133,6 @@ class TcgScraper:
             'Spanish': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[13]/a'),
         }
 
-        print(q.get(query).get_attribute('onclick'))
         return q.get(query)
 
     def wait(self, path):
