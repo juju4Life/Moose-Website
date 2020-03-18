@@ -159,7 +159,7 @@ def moose_price():
                 message = f"Error on function to update MooseLoot tcg:\n {card}\n\nFull Traceback:\n\n{traceback_str}"
                 mail_from = 'tcgfirst'
                 mail_to = ['jermol.jupiter@gmail.com', ]
-                send_mail(subject, message, mail_from, mail_to)
+                # send_mail(subject, message, mail_from, mail_to)
             print(f"Moose Card #{index}")
     end_time = time()
     elapsed = (end_time - start_time) / 3600
@@ -167,7 +167,7 @@ def moose_price():
     message = f"Time auto price completed: {elapsed} hours"
     mail_from = 'tcgfirst'
     mail_to = ['jermol.jupiter@gmail.com', ]
-    send_mail(subject, message, mail_from, mail_to)
+    # send_mail(subject, message, mail_from, mail_to)
 
 
 

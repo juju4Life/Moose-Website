@@ -21,9 +21,13 @@ class TcgScraper:
         self.chrome_options.add_argument('--disable-gpu')
         self.chrome_options.add_argument('--no-sandbox')
         self.chrome_options.add_argument("--headless")
-        self.ignored_exceptions = (NoSuchElementException, StaleElementReferenceException)
-        self.chrome_options.binary_location = self.GOOGLE_CHROME_SHIM
-        self.driver = webdriver.Chrome(options=self.chrome_options)
+        self.ignored_exceptions = (NoSuchElementException, StaleElementReferenceException,)
+
+        if self.GOOGLE_CHROME_SHIM != 'Local':
+            self.chrome_options.binary_location = self.GOOGLE_CHROME_SHIM
+            self.driver = webdriver.Chrome(options=self.chrome_options)
+        else:
+            self.driver = webdriver.Chrome(executable_path='chromeDriver/chromedriver', options=self.chrome_options)
 
     def quit_driver(self):
         self.driver.quit()
@@ -38,28 +42,31 @@ class TcgScraper:
         self.driver.get(url)
 
     def open_filters(self):
-        print('Opening Filters')
-        ignored_exceptions = (NoSuchElementException, StaleElementReferenceException,)
-        your_element = WebDriverWait(self.driver, timeout=30, ignored_exceptions=ignored_exceptions).until(expected_conditions.presence_of_element_located((
+
+        your_element = WebDriverWait(self.driver, timeout=30, ignored_exceptions=self.ignored_exceptions).until(
+            expected_conditions.presence_of_element_located((
             By.XPATH, '//*[@id="product-price-table"]/div[1]/button')))
         your_element.click()
-        print('Filters opened')
 
         # self.driver.find_element_by_xpath('//*[@id="product-price-table"]/div[1]/button').click()
 
     def get_card_data(self, query_condition):
+        print(f'Searching for this condition {query_condition}')
         sleep(5)
         page_source = self.driver.page_source
-        print('got page source')
+        sleep(5)
         soup = B(page_source, 'html.parser')
         cards = soup.find_all('div', {'class': 'product-listing'})
         seller_data_list = []
         for card in cards:
             condition = card.find('a', {'class': 'condition'}).text
+            price = card.find('span', {'class': 'product-listing__price'}).text.strip('$')
+            print(query_condition, condition)
+            print(price)
+
             if query_condition == condition:
 
                 seller_name = card.find('a', {'class': 'seller__name'}).text.strip()
-                print(seller_name)
                 if seller_name != 'Moose Loot' and seller_name != 'Moose Loot Direct':
                     try:
                         total_sales = card.find('span', {'class': 'seller__sales'}).text
@@ -81,6 +88,7 @@ class TcgScraper:
                                 'gold': True if total_sales >= 10000 else False,
                             }
                         )
+                        print()
 
                         if len(seller_data_list) == 5:
                             break
@@ -89,17 +97,29 @@ class TcgScraper:
                 else:
                     # Filter for query failed for some reason
                     print('Query Failed')
-
+        print(seller_data_list)
         return seller_data_list
 
     def filter_value(self, query):
 
+        condition_list = ['Lightly Played Foil', 'Near Mint Foil', 'Moderately Played Foil',
+                          'Heavily Played Foil', 'Damaged Foil']
+
+        if query != 'Foil' and query in condition_list:
+            query = query.replace('Foil', '').strip()
+
+        elif query != 'Foil' and query not in condition_list:
+            pass
+        else:
+            pass
+        print(query)
         q = {
             # 'next_page': self.driver.find_element_by_xpath('//*[@id="priceTableContainer"]/div/nav/ul/a[4]'),
+            'clear': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[1]/a'),
             'Near Mint': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[2]/a'),
-            'Lightly Played': self.driver.find_element_by_xpath('//*[''@id="detailsFilters"]/div/div/ul[5]/li[3]/a'),
-            'Moderately Played': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[4]/a'),
-            'Heavily Played': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[5]/a'),
+            'Lightly Played': self.wait('//*[''@id="detailsFilters"]/div/div/ul[5]/li[3]/a'),
+            'Moderately Played': self.wait('//*[@id="detailsFilters"]/div/div/ul[5]/li[4]/a'),
+            'Heavily Played': self.wait('//*[@id="detailsFilters"]/div/div/ul[5]/li[5]/a'),
             'Damaged': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[6]/a'),
             'Unopened': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[7]/a'),
             'Normal': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[4]/li[2]/a'),
@@ -119,7 +139,14 @@ class TcgScraper:
             'Spanish': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[13]/a'),
         }
 
+        print(q.get(query).get_attribute('onclick'))
         return q.get(query)
+
+    def wait(self, path):
+        x_element = WebDriverWait(self.driver, timeout=15, ignored_exceptions=self.ignored_exceptions).until(
+            expected_conditions.presence_of_element_located((
+                By.XPATH, path)))
+        return x_element
 
 
 

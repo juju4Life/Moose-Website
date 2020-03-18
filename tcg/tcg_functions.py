@@ -1,6 +1,7 @@
 from datetime import date
 from calendar import day_name
 import re
+from time import sleep
 
 from engine.models import MooseAutopriceMetrics
 
@@ -279,36 +280,46 @@ def format_tcg_ready_url(expansion, name):
 def process_card(api, sku, url, condition, expansion, name, printing, language, current_price, market, low, index,
                  condition_updated_price=None):
 
-    # Get URL of Single
-    scraper.get_url(url)
-    print('got url')
+    if printing != 'Foil':
+        print(f'condition to be passed {condition}')
 
-    # Clicks the open filter button on web page so that we can create various queries
-    scraper.open_filters()
+        # Get URL of Single
+        scraper.get_url(url)
 
-    # Filter the page for specific queries
-    printing_query = scraper.filter_value(printing)
-    scraper.query(printing_query)
+        # Clicks the open filter button on web page so that we can create various queries
+        scraper.open_filters()
 
-    condition_query = scraper.filter_value(condition)
-    scraper.query(condition_query)
+        # Filter the page for specific queries
+        # printing_query = scraper.filter_value(printing)
+        # scraper.query(printing_query)
+        try:
+            clear_query = scraper.filter_value('clear')
+            scraper.query(clear_query)
+        except Exception as e:
+            print(e)
 
-    # Remove default English selection if query for non-english card
-    if language != 'English':
-        language_query = scraper.filter_value('English')
-        scraper.query(language_query)
+        condition_query = scraper.filter_value(condition)
+        scraper.query(condition_query)
+        sleep(5)
+
+        # Remove default English selection if query for non-english card
+        if language != 'English':
+            language_query = scraper.filter_value('English')
+            scraper.query(language_query)
+            language_query = scraper.filter_value(language)
+            scraper.query(language_query)
+        else:
+            pass
+
+        '''
+        Returns lists of seller data - list of dictionaries (Max 5). Contains card price and Gold-star status.
+        
+        Func create_condition_string formats condition printing and language in order to ensure that we are using prices from the correct query as it's possible
+        for one of the queries to fail.
+        '''
+        seller_data_list = scraper.get_card_data(condition)
     else:
-        # Filter for non-english card
-        language_query = scraper.filter_value(language)
-        scraper.query(language_query)
-
-    '''
-    Returns lists of seller data - list of dictionaries (Max 5). Contains card price and Gold-star status.
-    
-    Func create_condition_string formats condition printing and language in order to ensure that we are using prices from the correct query as it's possible
-    for one of the queries to fail.
-    '''
-    seller_data_list = scraper.get_card_data(create_condition_string(condition, printing, language))
+        seller_data_list = []
 
     day = day_name[date.today().weekday()]
     if day == 'Saturday':
