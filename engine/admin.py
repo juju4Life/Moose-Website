@@ -211,7 +211,8 @@ class MTGResource(resources.ModelResource):
 
     class Meta:
         model = MTG
-        exclude = ('language', 'product_line', 'title', 'rarity', '')
+        fields = ('product_name', 'set_name', 'stock')
+        exclude = ('language', )
         import_id_fields = ('sku',)
 
 
