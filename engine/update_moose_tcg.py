@@ -17,6 +17,7 @@ first_api = TcgPlayerApi('first')
 
 # @report_error
 def moose_price():
+
     '''
     for index, dc in enumerate(DirectData.objects.filter(in_stock=True).filter(consecutive_days_non_direct__range=(8, 999999))):
         process_card(
@@ -42,6 +43,7 @@ def moose_price():
     if listed_cards['success'] is True:
         print(f"Updating {listed_cards['totalItems']} for Moose Inventory")
         for index, card in enumerate(listed_cards['results']):
+
             try:
                 condition = card['conditionName']
                 printing = card['printingName']
@@ -57,8 +59,8 @@ def moose_price():
                 '''    
                 If the card is not English it will be priced at the low price minus one cent.
 
-                For each card in the MooseLoot inventory we will make a request to the tcgplayer page containing all seller data for a given 
-                product. 
+                For each card in the MooseLoot inventory we will make a request to the tcg player page containing all seller data for a given 
+                product.
                 We request and scan pages (10 results per page) until we find 2 listings with sellers that have 10,000 sales or more. We break the while loop 
                 once we have found those two listings and move on to the next card. In the case where only one or zero listings are found, 
                 we break the loop and use one price to match against or default to the market price.      
@@ -128,7 +130,7 @@ def moose_price():
                                     updated_price = .25
                                 api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channel='1')
 
-                elif language == 'English' and condition != 'Unopened':
+                elif language == 'English' and condition != 'Unopened' and printing != 'Foil':
                     url = format_tcg_ready_url(expansion, name)
 
                     s = timeit.default_timer()

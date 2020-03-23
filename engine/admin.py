@@ -233,6 +233,7 @@ class MTGAdmin(ImportExportModelAdmin):
     resource_class = MTGResource
     search_fields = ['product_name']
     list_display = ['product_name', 'set_name', 'foil', 'condition', 'language', ]
+    list_filter = ['set_name']
 
 
 class OrdersProcessingAdmin(admin.ModelAdmin):

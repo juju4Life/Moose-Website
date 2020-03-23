@@ -277,8 +277,8 @@ def format_tcg_ready_url(expansion, name):
     return url
 
 
-def process_card(api, sku, url, condition, expansion, name, printing, language, current_price, market, low, index,
-                 condition_updated_price=None):
+def process_card(api, sku, url, condition, expansion, name, printing, language, current_price, market, low, index, price_foil=False,
+    condition_updated_price=None):
 
     if printing != 'Foil':
 
@@ -291,6 +291,7 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
         # Filter the page for specific queries
         # printing_query = scraper.filter_value(printing)
         # scraper.query(printing_query)
+
         try:
             clear_query = scraper.filter_value('clear')
             scraper.query(clear_query)
@@ -316,9 +317,8 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
         Func create_condition_string formats condition printing and language in order to ensure that we are using prices from the correct query as it's possible
         for one of the queries to fail.
         '''
+
         seller_data_list = scraper.get_card_data(condition)
-    else:
-        seller_data_list = []
 
     day = day_name[date.today().weekday()]
     if day == 'Saturday':
