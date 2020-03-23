@@ -8,7 +8,7 @@ from django.contrib.auth.models import Group
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.template.response import TemplateResponse
 from django.utils.translation import ugettext_lazy as _
-from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin, ExportMixin
 from import_export import resources
 from import_export.fields import Field
 from import_export.forms import ConfirmImportForm
@@ -199,6 +199,7 @@ class UploadAdmin(ImportExportModelAdmin):
 
 
 class MTGResource(resources.ModelResource):
+
     product_name = Field(attribute='product_name', column_name='Product Name')
     set_name = Field(attribute='set_name', column_name='Set Name')
     product_line = Field(attribute='product_line', column_name='Product Line')
@@ -210,7 +211,7 @@ class MTGResource(resources.ModelResource):
 
     class Meta:
         model = MTG
-        exclude = ('language',)
+        exclude = ('language', 'product_line', 'title', 'rarity', '')
         import_id_fields = ('sku',)
 
 
