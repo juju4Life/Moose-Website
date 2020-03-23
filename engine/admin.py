@@ -202,16 +202,12 @@ class MTGResource(resources.ModelResource):
 
     product_name = Field(attribute='product_name', column_name='Product Name')
     set_name = Field(attribute='set_name', column_name='Set Name')
-    product_line = Field(attribute='product_line', column_name='Product Line')
-    title = Field(attribute='title', column_name='Title')
-    rarity = Field(attribute='rarity', column_name='Rarity')
-    number = Field(attribute='number', column_name='Number')
     condition = Field(attribute='condition', column_name='Condition')
-    sku = Field(attribute='sku', column_name='TCGplayer Id')
+    sku = Field(attribute='sku', column_name='Id')
 
     class Meta:
         model = MTG
-        fields = ('product_name', 'set_name', 'stock')
+        fields = ('sku', 'product_name', 'set_name', 'stock')
         exclude = ('language', )
         import_id_fields = ('sku',)
 
