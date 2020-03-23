@@ -93,6 +93,7 @@ class TcgScraper:
                 else:
                     # Filter for query failed for some reason
                     print('Query Failed')
+        print(seller_data_list)
         return seller_data_list
 
     def filter_value(self, query):
