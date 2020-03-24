@@ -49,7 +49,6 @@ pandas = "==0.24.1"
 requests = "==2.22.0"
 simplejson = "==3.13.2"
 stripe = "==1.79.0"
-
 asn1crypto = "==0.24.0"
 boto3 = "==1.9.224"
 botocore = "==1.12.224"
