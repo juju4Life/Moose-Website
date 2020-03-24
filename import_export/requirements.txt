@@ -71,7 +71,7 @@ openpyxl==2.6.0
 panda==0.3.1
 pandas==0.24.1
 paypal-checkout-serversdk==1.0.0
-Pillow==5.3.0
+Pillow==6.2.0
 pipenv==2018.11.26
 protobuf==3.8.0
 psycopg2-binary==2.8.4
