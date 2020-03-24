@@ -6,7 +6,7 @@ name = "pypi"
 
 
 [packages]
-amqp = "==2.3.2"
+amqp = "==2.5.2"
 anyjson = "==0.3.3"
 beautifulsoup4 = "==4.6.0"
 billiard = "==3.5.0.5"
