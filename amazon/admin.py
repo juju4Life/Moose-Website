@@ -26,3 +26,4 @@ class AmazonLiveInventoryAdmin(admin.ModelAdmin):
     pass
 
 
+

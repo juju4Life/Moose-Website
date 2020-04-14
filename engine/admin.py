@@ -8,7 +8,7 @@ from django.contrib.auth.models import Group
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.template.response import TemplateResponse
 from django.utils.translation import ugettext_lazy as _
-from import_export.admin import ImportExportModelAdmin, ExportMixin
+from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from import_export.fields import Field
 from import_export.forms import ConfirmImportForm
