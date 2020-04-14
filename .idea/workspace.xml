@@ -2,55 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/import_export/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/django_compat.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/exceptions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/fields.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/formats/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/formats/base_formats.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/instance_loaders.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/ar/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/bg/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/ca/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/cs/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/de/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/es/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/es_AR/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/fr/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/it/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/ja/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/pl/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/pt_BR/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/ru/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/sk/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/locale/zh_Hans/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/mixins.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/resources.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/results.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/signals.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/static/import_export/action_formats.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/static/import_export/import.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/templates/admin/import_export/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/templates/admin/import_export/change_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/templates/admin/import_export/change_list_export.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/templates/admin/import_export/change_list_export_item.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/templates/admin/import_export/change_list_import.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/templates/admin/import_export/change_list_import_export.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/templates/admin/import_export/change_list_import_item.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/templates/admin/import_export/export.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/templates/admin/import_export/import.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/templatetags/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/templatetags/import_export_tags.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/tmp_storages.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import_export/widgets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -116,10 +69,10 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/source/settings.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="145">
+                <state relative-caret-position="394">
                   <caret line="114" column="14" lean-forward="true" selection-start-line="114" selection-start-column="14" selection-end-line="114" selection-end-column="14" />
                   <folding>
                     <element signature="e#305#314#0" expanded="true" />
@@ -129,29 +82,49 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/amazon/admin.py">
+            <entry file="file://$PROJECT_DIR$/engine/management/commands/update_group_categries.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+                <state>
                   <folding>
-                    <element signature="e#0#32#0" expanded="true" />
+                    <element signature="e#0#51#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/amazon/models.py">
+            <entry file="file://$PROJECT_DIR$/engine/management/commands/add_group_info.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="544">
-                  <caret line="32" column="10" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+                <state relative-caret-position="51">
+                  <caret line="27" column="24" lean-forward="true" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+                  <folding>
+                    <element signature="e#0#51#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/engine/models.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="204">
+                  <caret line="146" column="13" selection-start-line="146" selection-start-column="13" selection-end-line="146" selection-end-column="13" />
+                  <folding>
+                    <element signature="e#0#28#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/other/models.py">
-              <provider selected="true" editor-type-id="text-editor" />
+            <entry file="file://$PROJECT_DIR$/engine/management/commands/add_card_info.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <folding>
+                    <element signature="e#0#11#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
             </entry>
           </file>
         </leaf>
@@ -161,7 +134,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/.env">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="73">
+                <state relative-caret-position="39">
                   <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
                 </state>
               </provider>
@@ -263,13 +236,13 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/tcg/tcg_functions.py" />
         <option value="$PROJECT_DIR$/engine/update_moose_tcg.py" />
-        <option value="$PROJECT_DIR$/engine/models.py" />
         <option value="$PROJECT_DIR$/Pipfile" />
         <option value="$PROJECT_DIR$/tcg/tcg_scraper.py" />
         <option value="$PROJECT_DIR$/engine/management/commands/update_key.py" />
         <option value="$PROJECT_DIR$/amazon/admin.py" />
         <option value="$PROJECT_DIR$/buylist/models.py" />
         <option value="$PROJECT_DIR$/engine/admin.py" />
+        <option value="$PROJECT_DIR$/engine/models.py" />
       </list>
     </option>
   </component>
@@ -293,7 +266,20 @@
             <path>
               <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
               <item name="Goat" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Goat" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="management" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Goat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Goat" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="management" type="462c0819:PsiDirectoryNode" />
+              <item name="commands" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -475,9 +461,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="895" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.2780669" />
+      <window_info content_ui="combo" id="Project" order="1" weight="0.2780669" />
       <window_info id="Structure" order="2" weight="0.24981412" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
@@ -487,7 +474,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4951673" visible="true" weight="0.6653595" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4951673" visible="true" weight="0.24575163" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5048327" side_tool="true" weight="0.40784314" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.40784314" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -534,24 +521,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/error.txt" />
-    <entry file="file://$PROJECT_DIR$/csv_.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_direct.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orders/graph_functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -769,16 +738,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18">
-          <caret line="132" selection-start-line="132" selection-end-line="132" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/tcg_credentials.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -854,7 +813,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
+        <state relative-caret-position="39">
           <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
         </state>
       </provider>
@@ -938,10 +897,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
+        <state relative-caret-position="394">
           <caret line="114" column="14" lean-forward="true" selection-start-line="114" selection-start-column="14" selection-end-line="114" selection-end-column="14" />
           <folding>
             <element signature="e#305#314#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/update_group_categries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/add_card_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/add_group_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="27" column="24" lean-forward="true" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="146" column="13" selection-start-line="146" selection-start-column="13" selection-end-line="146" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>

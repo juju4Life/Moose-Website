@@ -197,7 +197,7 @@ class UploadAdmin(ImportExportModelAdmin):
 
 # ----------------------------------------------------------------------------------------------------------------------------
 
-
+'''
 class MTGResource(resources.ModelResource):
 
     product_name = Field(attribute='product_name', column_name='Product Name')
@@ -211,7 +211,7 @@ class MTGResource(resources.ModelResource):
         exclude = ('language', )
         import_id_fields = ('sku',)
 
-
+'''
 @admin.register(TcgGroupPrice)
 class TcgGroupPriceAdmin(admin.ModelAdmin):
     search_fields = ['name', ]
@@ -225,14 +225,14 @@ class DirectTrackerAdmin(admin.ModelAdmin):
                     'current_price', 'low', 'market', ]
     ordering = ['-in_stock', '-last_add', '-consecutive_days_non_direct']
 
-
+'''
 @admin.register(MTG)
 class MTGAdmin(ImportExportModelAdmin):
     resource_class = MTGResource
     search_fields = ['product_name']
     list_display = ['product_name', 'set_name', 'foil', 'condition', 'language', ]
     list_filter = ['set_name']
-
+'''
 
 class OrdersProcessingAdmin(admin.ModelAdmin):
     model = Orders
