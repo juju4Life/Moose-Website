@@ -134,8 +134,10 @@ class DirectData(models.Model):
 class MTG(models.Model):
     name = models.CharField(max_length=255, default='', verbose_name='name', db_index=True)
     expansion = models.CharField(max_length=255, default='', db_index=True)
-    set_abbreviation = models.CharField(max_length=255, default='')
+    product_id = models.CharField(max_length=30, default='')
+    image_url = models.CharField(max_length=255, default='')
     language = models.CharField(max_length=255, default='English')
+
     normal_clean_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     normal_clean_stock = models.IntegerField(default=0)
     normal_played_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
@@ -148,9 +150,9 @@ class MTG(models.Model):
     foil_played_stock = models.IntegerField(default=0)
     foil_heavily_played_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     foil_heavily_played_stock = models.IntegerField(default=0)
-    rarity = models.CharField(max_length=255, default='')
-    product_id = models.CharField(max_length=30, default='')
-    image_url = models.CharField(max_length=255, default='')
+
+    set_abbreviation = models.CharField(max_length=255, default='', blank=True)
+    rarity = models.CharField(max_length=255, default='', blank=True)
     oracle_text = models.TextField(default='', blank=True)
     flavor_text = models.TextField(default='', blank=True)
     colors = models.CharField(max_length=255, default='', blank=True)

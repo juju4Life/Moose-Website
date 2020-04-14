@@ -197,21 +197,19 @@ class UploadAdmin(ImportExportModelAdmin):
 
 # ----------------------------------------------------------------------------------------------------------------------------
 
-'''
+
 class MTGResource(resources.ModelResource):
 
-    product_name = Field(attribute='product_name', column_name='Product Name')
-    set_name = Field(attribute='set_name', column_name='Set Name')
-    condition = Field(attribute='condition', column_name='Condition')
-    sku = Field(attribute='sku', column_name='Id')
+    name = Field(attribute='name', column_name='Name')
+    expansion = Field(attribute='expansion', column_name='Set')
 
     class Meta:
         model = MTG
-        fields = ('sku', 'product_name', 'set_name', 'stock')
+        fields = ('product_id', 'name', 'expansion')
         exclude = ('language', )
-        import_id_fields = ('sku',)
+        import_id_fields = ('product_id',)
 
-'''
+
 @admin.register(TcgGroupPrice)
 class TcgGroupPriceAdmin(admin.ModelAdmin):
     search_fields = ['name', ]
@@ -225,14 +223,14 @@ class DirectTrackerAdmin(admin.ModelAdmin):
                     'current_price', 'low', 'market', ]
     ordering = ['-in_stock', '-last_add', '-consecutive_days_non_direct']
 
-'''
+
 @admin.register(MTG)
 class MTGAdmin(ImportExportModelAdmin):
     resource_class = MTGResource
-    search_fields = ['product_name']
-    list_display = ['product_name', 'set_name', 'foil', 'condition', 'language', ]
-    list_filter = ['set_name']
-'''
+    search_fields = ['name']
+    list_display = ['name', 'expansion', 'language', ]
+    list_filter = ['expansion']
+
 
 class OrdersProcessingAdmin(admin.ModelAdmin):
     model = Orders

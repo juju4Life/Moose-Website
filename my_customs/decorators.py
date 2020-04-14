@@ -1,6 +1,5 @@
 import traceback
 import functools
-import time
 from django.core.mail import send_mail
 
 
@@ -28,10 +27,10 @@ def offset(func):
         api_call = kwargs.get('func')
         unique_identifier = kwargs.get('group_id')
         api_check = api_call(unique_identifier)
-
         final_list = []
 
         success = api_check['success']
+
         if success is True:
             total_items = api_check['totalItems']
 
@@ -41,7 +40,6 @@ def offset(func):
                 final_list += data['results']
                 total_items -= 100
                 offset_num += 100
-
             return final_list
 
     return wrapper
