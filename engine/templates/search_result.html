@@ -2,153 +2,148 @@
 {% load crispy_forms_tags %}
 {% load staticfiles %}
 {% load extended_tags %}
+
 {% block set_list %}
 
 {% include 'search_result_style.html' %}
 
-    {% if error != '' %}
 
-        <h1>Error</h1>
-    {% else %}
+<script>
+    {% include "condition_tab.js" %}
+</script>
 
-            <div class="container-fluid" style="min-height:95%;">
-                <div class="row" style="margin:auto; margin-top:1%;">
-                    <div id="row" class="" style="">
 
-                    </div>
-                        <div class="col-sm-2"></div>
-                        <div style="" class="col-sm-8">
-                            <table style="color: rgb(80,80,80); margin-top: 5%;" class="nav-pills nav-stacked table table table-hover table-sm">
-                                <thead class="thead-inverse">
-                                    <tr class="header">
-                                      <th></th>
-                                      <th>Name</th>
-                                      <th>Expansion</th>
-                                      <th>Mana Cost</th>
-                                        <th>Condition</th>
-                                      <th>Price</th>
+{% if error != '' %}
+
+    <h1>Error</h1>
+{% else %}
+
+        <div class="container-fluid" style="min-height:95%;">
+            <div class="row" style="margin:auto; margin-top:1%;">
+                <div id="row" class="" style="">
+
+                </div>
+                    <div style="" class="col-sm-10">
+                        <table style="color: rgb(80,80,80); margin-top: 5%;" class="nav-tabs nav-stacked table table table-hover table-lg">
+                            <thead class="thead-inverse">
+
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                    <tr>
+                                        <td>
+                                            <img style="max-height:150px;" src="{{item.image_url}}">
+                                            <div id="imgbox"></div>
+                                        </td>
+
+                                        <td>
+                                            <a href="{% url 'product_detail' item.product_id %}">{{item.name}}</a>
+                                        </td>
+
+                                        <td>{{item.mana_cost}}</td>
+
+                                        <td>{{item.card_type}}</td>
+
+                                        <td>{{item.expansion}}</td>
+
+                                        <td>
+                                            <div style="position: relative;">
+
+                                                <ul class="nav nav-tabs mb-3 condition-info" id="{{item.product_id}}" role="tablist"></ul>
+
+                                                <script>
+                                                     conditionTab(
+                                                        "clean", "CL", "{{item.normal_clean_stock}}", "{{item.foil_clean_stock}}", "{{item.product_id}}",
+                                                        "true"
+                                                     );
+
+                                                      conditionTab(
+                                                        "played", "PL", "{{item.normal_played_stock}}", "{{item.foil_played_stock}}", "{{item.product_id}}",
+                                                        "false"
+                                                     );
+
+                                                     conditionTab(
+                                                        "heavily_played", "HP", "{{item.normal_heavily_played_stock}}",
+                                                         "{{item.foil_heavily__played_stock}}", "{{item.product_id}}", "false"
+                                                     );
+                                                </script>
+
+
+                                                <div class="tab-content" id="tabs-tabContent-{{item.product_id}}">
+
+
+
+                                                </div>
+
+                                                <script>
+                                                    populateConditionTable(
+                                                        "true", "clean", "{{item.product_id}}", "{{item.normal_clean_stock}}",
+                                                         "{{item.foil_clean_stock}}", "{{item.normal_clean_price}}", "{{item.foil_clean_price}}"
+                                                    );
+
+                                                    populateConditionTable(
+                                                        "false", "played", "{{item.product_id}}", "{{item.normal_played_stock}}",
+                                                         "{{item.foil_played_stock}}", "{{item.normal_played_price}}", "{{item.foil_played_price}}"
+                                                    );
+
+                                                    populateConditionTable(
+                                                        "false", "heavily_played", "{{item.product_id}}", "{{item.normal_heavily_played_stock}}",
+                                                         "{{item.foil_heavily_played_stock}}", "{{item.normal_heavily_played_price}}",
+                                                         "{{item.foil_heavily_played_price}}"
+                                                    );
+
+                                                </script>
+                                            </div>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {% for item in items %}
-                                        <tr>
-                                            <td>
-                                                <img onclick="Large(this)" style="max-height:75px;" src="{{item.image_url}}">
-                                                <div id="imgbox"></div>
-                                            </td>
+                            {% endfor %}
+                        </tbody>
 
-                                            <td>
-                                                <a href="{% url 'product_detail' item.product_id %}">{{item.product_name}}</a>
-                                            </td>
-
-                                            <td>({{item.set_name}})</td>
-
-                                            <td>({{item.mana_cost}})</td>
-
-                                            <td>Near Mint Foil</td>
-
-                                            <td>
-                                                <form action="{% url 'add_to_cart' item.id %}" method="POST">
-                                                    {% csrf_token %}
-                                                    <div class="form-box">
-
-                                                        <span class="mr-1">${{item.price|floatformat:2}}</span>
-                                                        <input class="mr-1" style="" size="2" type="number" name="quantity" min="1" max="8">
-                                                        <button type="submit" class="btn btn-success mr-1" style=""><i class="material-icons">add</i></button>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                {% endfor %}
-                            </tbody>
-
-                        </table>
-                    </div>
-
+                    </table>
                 </div>
 
             </div>
 
+        </div>
 
 
-    {% endif %}
 
-<!--
-{% block script %}
-<script type='text/javascript'>
-  var endpoint = "{% url 'card_products' %}"
+{% endif %}
 
-  $.ajax({
-    method: 'GET',
-    url: endpoint,
-    success: function(data){
-        console.log(data.products[0])
-        name = data;
-    },
 
-    error: function(error_message){
-      console.log('Errors:');
-      console.log(error_message);
-		},
-  })
+
+<script>
+
+    function setActiveAttribute(obj, n){
+
+        $(function () {
+                $('#' + obj.id + ' li:nth-child(' + n + ') a').tab('show')
+              })
+
+    };
+
+    function chooseActiveElement(obj){
+        var data = obj.getElementsByTagName('li');
+
+        if (data[0].getAttribute('data-normal-stock') > 0 || data[0].getAttribute('data-foil-stock') > 0){
+            setActiveAttribute(obj, 1);
+
+        } else if (data[1].getAttribute('data-normal-stock') > 0 || data[1].getAttribute('data-foil-stock') > 0){
+            setActiveAttribute(obj, 2);
+
+        } else if (data[2].getAttribute('data-normal-stock') > 0 || data[2].getAttribute('data-foil-stock') > 0){
+            setActiveAttribute(obj, 3);
+        }
+
+    };
+
+    var docs = document.getElementsByClassName('condition-info');
+    var i;
+    for (i = 0; i < docs.length; i++){
+        chooseActiveElement(docs[i]);
+    };
 
 </script>
--->
-{% endblock script %}
-
-
- <!-- <script>
-  var init_condition = 'near mint';
-  var init_language = 'english';
-  var init_foil = false;
-  var dict = {{model|safe}};
-
-  function conditionChange(obj){
-    var condition = obj.value;
-    init_condition = condition;
-    var idee = obj.id;
-    var item_condition = dict[idee][init_foil][init_language][condition]['condition'];
-    var item_quantity = dict[idee][init_foil][init_language][condition]['quantity'];
-    var item_price = dict[idee][init_foil][init_language][condition]['price'];
-
-    document.getElementById('price_' + obj.id).innerText = '$' + item_price + " " + "(" + (item_quantity) + " in stock)";
-  }
-
-
-  function languageChange(obj){
-    var language = obj.value;
-    init_language = language;
-    var idee = obj.id;
-    var item_condition = dict[idee][init_foil][language][init_condition]['condition'];
-    var item_price = dict[idee][init_foil][language][init_condition]['price'];
-    var item_quantity = dict[idee][init_foil][language][init_condition]['quantity'];
-    document.getElementById('price_' + obj.id).innerText = '$' + item_price + " " + "(" + (item_quantity) + " in stock)";
-
-  }
-
-
-  function foilChange(obj){
-    var foil = obj.value;
-    init_foil = foil;
-    var idee = obj.id;
-    var item_condition = dict[idee][foil][init_language][init_condition]['condition'];
-    var item_price = dict[idee][foil][init_language][init_condition]['price'];
-    var item_quantity = dict[idee][foil][init_language][init_condition]['quantity'];
-    document.getElementById('price_' + obj.id).innerText = '$' + item_price + " " + "(" + (item_quantity) + " in stock)";
-
-  }
-
-
-
-
-</script>   -->   
-
 
 {% endblock %}
-
-
-
-  
-
-
-
+<!--  -->

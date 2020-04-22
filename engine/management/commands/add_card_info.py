@@ -6,10 +6,11 @@ from engine.models import MTG
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        cards = MTG.objects.filter(condition='Near Mint').filter(converted=False)
+        cards = MTG.objects.filter(converted=False)
         print(cards.count())
 
         def get_it():
+            print('starting')
             for index, card in enumerate(cards):
                 product_id = card.product_id
                 scry = get_card_data(product_id)
@@ -22,12 +23,12 @@ class Command(BaseCommand):
                         image = ''
 
                     try:
-                        mana_cost = scry['mana_cost']
+                        mana_cost = scry['mana_cost'].replace('{', '').replace('}', '').replace('/', '')
                     except KeyError:
                         mana_cost = ''
 
                     try:
-                        colors = scry['colors']
+                        colors = ''.join(scry['colors'])
                     except KeyError:
                         colors = ''
 
@@ -36,7 +37,7 @@ class Command(BaseCommand):
                     set_abreviation = scry['set']
                     number = scry['collector_number']
                     rarity = scry['rarity']
-                    color_indentity = ['color_identity']
+                    color_indentity = ''.join(scry['color_identity'])
 
                     power = ''
                     toughness = ''
@@ -153,14 +154,32 @@ class Command(BaseCommand):
                         print(scry)
                         raise Exception
 
-                    print(f"{card_type}-{subtypes} - {index}")
-                    print(power, toughness)
 
+                    print(set_abreviation)
+                    print(rarity)
+                    print(oracle_text)
+                    print(flavor_text)
+                    print(colors)
+                    print(color_indentity)
+                    print(card_type)
+                    print(subtypes)
+                    print(loyalty)
+                    print(power)
+                    print(toughness)
+                    print(layout)
+                    print(artist)
+                    print(number)
+                    print(mana_cost)
+                    print(cmc)
+                    print('___________________________')
+                else:
+                    print(card.name, card.expansion)
         # s = get_card_data('145370')
         get_it()
         # print(json.dumps(s, indent=4))
         # print(s['type_line'].split('—'))
         # type_line = s['type_line'].split('//')
+
 
 
 
