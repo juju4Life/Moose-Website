@@ -48,18 +48,10 @@ function createConditionTableRow(printing, stock, price, productId){
         var tdPrice = document.createElement("td");
         var tdPriceSpan = document.createElement("span");
         tdPriceSpan.setAttribute("class", "mr-1");
-        var tdPriceSpanText = document.createTextNode("$" + price);
+        var tdPriceSpanText = document.createTextNode(`$${price} ` + '| ' + `qty. ${stock}`);
         tdPriceSpan.appendChild(tdPriceSpanText);
         tdPrice.appendChild(tdPriceSpan);
         row.appendChild(tdPrice);
-
-        var tdStock = document.createElement("td");
-        var tdStockSpan = document.createElement("span");
-        tdStockSpan.setAttribute("class", "mr-1");
-        var tdStockSpanText = document.createTextNode("qty. " + stock);
-        tdStockSpan.appendChild(tdStockSpanText);
-        tdStock.appendChild(tdStockSpan);
-        row.appendChild(tdStock);
 
         // Row Form Data
         var tdForm = document.createElement("td");
@@ -97,7 +89,7 @@ function createConditionTableRow(printing, stock, price, productId){
         row.appendChild(tdForm);
     } else{
         var tdOutOfStock = document.createElement("td");
-        var tdSpan = document.createElement("span");
+        var tdSpan = document.createEleme nt("span");
         // tdSpan.setAttribute("class", "mr-1");
         tdSpanText = document.createTextNode("Out of Stock");
         tdSpan.appendChild(tdSpanText);
@@ -119,6 +111,7 @@ function createConditionTableRow(printing, stock, price, productId){
         buttonIcon1Text = document.createTextNode('email');
         buttonIcon1.appendChild(buttonIcon1Text);
         formButton.appendChild(buttonIcon1);
+
         form.appendChild(formButton);
         tdRestockNotice.appendChild(form);
         row.appendChild(tdRestockNotice);
