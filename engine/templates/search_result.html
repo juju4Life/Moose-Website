@@ -18,93 +18,104 @@
     <h1>Error</h1>
 {% else %}
 
-        <div class="container-fluid" style="min-height:95%;">
-            <div class="row" style="margin:auto; margin-top:1%;">
-                <div id="row" class="" style="">
+    <div class="container-fluid" style="min-height:95%;">
+        <div class="row" style="">
+            <nav class="col-md-2 d-none d-md-block bg-dark sidebar" style="">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <hr style="background-color:white">
+                            <span class="active" style="color: white;">Advanced Search <i class="material-icons">search</i></span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Name</a>
+
+                        </li>
+                    </ul>
 
                 </div>
-                    <div style="" class="col-sm-10">
-                        <table style="color: rgb(80,80,80); margin-top: 5%;" class="nav-tabs nav-stacked table table table-hover table-lg">
-                            <thead class="thead-inverse">
+            </nav>
+            <div style="" class="col-sm-10">
+                <table style="color: rgb(80,80,80);" class="nav-tabs nav-stacked table table table-hover table-lg">
+                    <thead class="thead-inverse">
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td>
+                                    <img style="max-height:150px;" src="{{item.image_url}}">
+                                    <div id="imgbox"></div>
+                                </td>
 
-                            </thead>
-                            <tbody>
-                                {% for item in items %}
-                                    <tr>
-                                        <td>
-                                            <img style="max-height:150px;" src="{{item.image_url}}">
-                                            <div id="imgbox"></div>
-                                        </td>
+                                <td>
+                                    <a href="{% url 'product_detail' item.product_id %}">{{item.name}}</a>
+                                </td>
 
-                                        <td>
-                                            <a href="{% url 'product_detail' item.product_id %}">{{item.name}}</a>
-                                        </td>
+                                <td>{{item.mana_cost}}</td>
 
-                                        <td>{{item.mana_cost}}</td>
+                                <td>{{item.card_type}}</td>
 
-                                        <td>{{item.card_type}}</td>
+                                <td>{{item.expansion}}</td>
 
-                                        <td>{{item.expansion}}</td>
+                                <td>
+                                    <div style="position: relative;">
 
-                                        <td>
-                                            <div style="position: relative;">
+                                        <ul class="nav nav-tabs mb-3 condition-info" id="{{item.product_id}}" role="tablist"></ul>
 
-                                                <ul class="nav nav-tabs mb-3 condition-info" id="{{item.product_id}}" role="tablist"></ul>
+                                        <script>
+                                             conditionTab(
+                                                "clean", "CL", "{{item.normal_clean_stock}}", "{{item.foil_clean_stock}}", "{{item.product_id}}",
+                                                "true"
+                                             );
 
-                                                <script>
-                                                     conditionTab(
-                                                        "clean", "CL", "{{item.normal_clean_stock}}", "{{item.foil_clean_stock}}", "{{item.product_id}}",
-                                                        "true"
-                                                     );
+                                              conditionTab(
+                                                "played", "PL", "{{item.normal_played_stock}}", "{{item.foil_played_stock}}", "{{item.product_id}}",
+                                                "false"
+                                             );
 
-                                                      conditionTab(
-                                                        "played", "PL", "{{item.normal_played_stock}}", "{{item.foil_played_stock}}", "{{item.product_id}}",
-                                                        "false"
-                                                     );
-
-                                                     conditionTab(
-                                                        "heavily_played", "HP", "{{item.normal_heavily_played_stock}}",
-                                                         "{{item.foil_heavily__played_stock}}", "{{item.product_id}}", "false"
-                                                     );
-                                                </script>
-
-
-                                                <div class="tab-content" id="tabs-tabContent-{{item.product_id}}">
+                                             conditionTab(
+                                                "heavily_played", "HP", "{{item.normal_heavily_played_stock}}",
+                                                 "{{item.foil_heavily__played_stock}}", "{{item.product_id}}", "false"
+                                             );
+                                        </script>
 
 
+                                        <div class="tab-content" id="tabs-tabContent-{{item.product_id}}">
 
-                                                </div>
 
-                                                <script>
-                                                    populateConditionTable(
-                                                        "true", "clean", "{{item.product_id}}", "{{item.normal_clean_stock}}",
-                                                         "{{item.foil_clean_stock}}", "{{item.normal_clean_price}}", "{{item.foil_clean_price}}"
-                                                    );
 
-                                                    populateConditionTable(
-                                                        "false", "played", "{{item.product_id}}", "{{item.normal_played_stock}}",
-                                                         "{{item.foil_played_stock}}", "{{item.normal_played_price}}", "{{item.foil_played_price}}"
-                                                    );
+                                        </div>
 
-                                                    populateConditionTable(
-                                                        "false", "heavily_played", "{{item.product_id}}", "{{item.normal_heavily_played_stock}}",
-                                                         "{{item.foil_heavily_played_stock}}", "{{item.normal_heavily_played_price}}",
-                                                         "{{item.foil_heavily_played_price}}"
-                                                    );
+                                        <script>
+                                            populateConditionTable(
+                                                "true", "clean", "{{item.product_id}}", "{{item.normal_clean_stock}}",
+                                                 "{{item.foil_clean_stock}}", "{{item.normal_clean_price}}", "{{item.foil_clean_price}}"
+                                            );
 
-                                                </script>
-                                            </div>
-                                        </td>
-                                    </tr>
-                            {% endfor %}
-                        </tbody>
+                                            populateConditionTable(
+                                                "false", "played", "{{item.product_id}}", "{{item.normal_played_stock}}",
+                                                 "{{item.foil_played_stock}}", "{{item.normal_played_price}}", "{{item.foil_played_price}}"
+                                            );
 
-                    </table>
-                </div>
+                                            populateConditionTable(
+                                                "false", "heavily_played", "{{item.product_id}}", "{{item.normal_heavily_played_stock}}",
+                                                 "{{item.foil_heavily_played_stock}}", "{{item.normal_heavily_played_price}}",
+                                                 "{{item.foil_heavily_played_price}}"
+                                            );
 
+                                        </script>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
             </div>
 
         </div>
+
+    </div>
 
 
 

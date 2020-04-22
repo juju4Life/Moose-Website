@@ -85,13 +85,11 @@ function createConditionTableRow(printing, stock, price, productId){
         buttonIcon1Text = document.createTextNode('add');
         buttonIcon1.appendChild(buttonIcon1Text);
         formButton.appendChild(buttonIcon1);
-        console.log(buttonIcon1);
         var buttonIcon2 = document.createElement("i");
         buttonIcon2.setAttribute("class", "material-icons");
         buttonIcon2Text = document.createTextNode('shopping_cart');
         buttonIcon2.appendChild(buttonIcon2Text);
         formButton.appendChild(buttonIcon2);
-        console.log(buttonIcon2);
         formDiv.appendChild(formButton);
         form.appendChild(formDiv);
         form.appendChild(formDiv);
