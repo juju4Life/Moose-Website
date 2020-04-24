@@ -89,7 +89,7 @@ function createConditionTableRow(printing, stock, price, productId){
         row.appendChild(tdForm);
     } else{
         var tdOutOfStock = document.createElement("td");
-        var tdSpan = document.createEleme nt("span");
+        var tdSpan = document.createElement("span");
         // tdSpan.setAttribute("class", "mr-1");
         tdSpanText = document.createTextNode("Out of Stock");
         tdSpan.appendChild(tdSpanText);

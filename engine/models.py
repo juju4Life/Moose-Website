@@ -131,6 +131,14 @@ class DirectData(models.Model):
         return self.name
 
 
+class MtgCardInfo(models.Model):
+    name = models.CharField(max_length=255, default='')
+    card_identifier = models.CharField(max_length=255, default='')
+
+    def __str__(self):
+        return self.name
+
+
 class MTG(models.Model):
     name = models.CharField(max_length=255, default='', verbose_name='name', db_index=True)
     expansion = models.CharField(max_length=255, default='', db_index=True)
