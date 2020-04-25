@@ -2,40 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/engine/static/custom_css/material_icons.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/static/custom_js/autocomplete.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Goat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Goat.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/get_inventory_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/get_inventory_stats.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/buylist-cart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/buylist-checkout.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/buylist-page.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/buylist-page_style.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/buylist.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/deckboxes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/events_rows.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/home_style.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/home_style.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/navbar2.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/navbar2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/order_complete.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/order_complete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/payment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/preorders.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/preorders.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/product_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/product_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/search_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/search_result.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/search_result_style.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/search_result_style.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/selling_instructions.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/selling_instructions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/tokens.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -149,7 +116,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/engine/templates/base.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="153">
@@ -190,6 +157,18 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/engine/templates/profile_style.html">
               <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/engine/management/commands/get_inventory_stats.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="40">
+                  <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+                  <folding>
+                    <element signature="e#0#51#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
@@ -275,7 +254,6 @@
         <option value="$PROJECT_DIR$/source/urls.py" />
         <option value="$PROJECT_DIR$/engine/static/custom_js/autocomplete.js.py" />
         <option value="$PROJECT_DIR$/engine/static/custom_js/autocomplete.js" />
-        <option value="$PROJECT_DIR$/engine/management/commands/get_inventory_stats.py" />
         <option value="$PROJECT_DIR$/engine/templates/search_result_style.html" />
         <option value="$PROJECT_DIR$/engine/forms.py" />
         <option value="$PROJECT_DIR$/source/celery.py" />
@@ -300,6 +278,7 @@
         <option value="$PROJECT_DIR$/engine/templates/navbar2.html" />
         <option value="$PROJECT_DIR$/engine/static/custom_css/material_icons.css" />
         <option value="$PROJECT_DIR$/engine/templates/base.html" />
+        <option value="$PROJECT_DIR$/engine/management/commands/get_inventory_stats.py" />
       </list>
     </option>
   </component>
@@ -528,7 +507,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4944238" visible="true" weight="0.22222222" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4944238" visible="true" weight="0.8366013" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5055762" side_tool="true" weight="0.40784314" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.40784314" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -823,16 +802,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/management/commands/get_inventory_stats.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/static/custom_css/material_icons.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -854,6 +823,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/management/commands/get_inventory_stats.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
