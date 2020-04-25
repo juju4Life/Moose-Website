@@ -1,18 +1,22 @@
 from django.core.management.base import BaseCommand
 from engine.models import MooseInventory
 from customs.csv_ import save_csv
-from engine.models import MTG
+from engine.models import MTG, MtgCardInfo
+from mtgsdk.subtype import Subtype
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
 
-        sets = list(set(MTG.objects.values_list("expansion", flat=True)))
-        card_types = list(set(MTG.objects.values_list("card_type", flat=True)))
-        sub_types = list(set(MTG.objects.values_list("subtypes", flat=True)))
-        layouts = list(set(MTG.objects.values_list("layout", flat=True)))
-        artists = list(set(MTG.objects.values_list("artist", flat=True)))
+        subs = Subtype.all()
+        print(len(subs))
+        subs = list(
+            map(
+                lambda i: MtgCardInfo(name=i, card_identifier="subtypes"), subs
+            )
+        )
 
+        MtgCardInfo.objects.bulk_create(subs)
 
         '''
         cards = MooseInventory.objects.all()

@@ -1,5 +1,4 @@
 from django.template import RequestContext
-from django.shortcuts import render_to_response
 from django.contrib.admin.views.decorators import staff_member_required
 from ipware import get_client_ip
 from django.http import HttpResponse

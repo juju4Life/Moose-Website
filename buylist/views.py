@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from .cart import Cart
 from django.shortcuts import redirect
@@ -15,7 +15,7 @@ def buylist_home(request):
     template = 'buylist.html'
     context = {}
     cart = Cart(request)
-    response = render_to_response(template, context)
+    response = render(None, template, context)
     visits = int(request.COOKIES.get('visits', '0'))
     if 'last_visit' in request.COOKIES:
         last_visit = request.COOKIES['last_visit']

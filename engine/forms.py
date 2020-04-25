@@ -1,6 +1,16 @@
 from django import forms
 
 
+class AdvancedSearchForm(forms.Form):
+    choices = (
+        ("contains", "contains", ),
+        ("equals", "equals", ),
+    )
+    name = forms.CharField(widget=forms.TextInput(attrs={"class": "advanced-search-form form-control"}))
+    query = forms.CharField(widget=forms.Select(choices=choices))
+    expansion = forms.CharField(widget=forms.TextInput(attrs={"class": "advanced-search-form form-control"}))
+
+
 class contactForm(forms.Form):
 
     yes_no = (

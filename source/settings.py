@@ -35,7 +35,7 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_BEAT_SCHEDULE = {
     'task-update-key': {
         'task': 'customer.tasks.update_tcg_key',
-        'schedule': crontab(hour=5, minute=0, day_of_week=1),
+        'schedule': crontab(hour='5', minute='0', day_of_week='1'),
     },
 
 }
@@ -92,7 +92,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
-    'django.contrib.staticfiles',
+    'django.templatetags.static',
     'engine',
     'engine.apps.EngineConfig',
     'contact',
