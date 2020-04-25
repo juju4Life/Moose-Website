@@ -2,13 +2,13 @@ from django.core.management.base import BaseCommand
 from engine.models import MooseInventory
 from customs.csv_ import save_csv
 from engine.models import MTG, MtgCardInfo
-from mtgsdk.subtype import Subtype
+# from mtgsdk.subtype import Subtype
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
 
-        subs = Subtype.all()
+        subs = list() #  Subtype.all()
         print(len(subs))
         subs = list(
             map(
