@@ -91,23 +91,6 @@ class TcgGroupPrice(models.Model):
         return self.name
 
 
-class StoreDatabase(models.Model):
-    name = models.CharField(max_length=255, default='', db_index=True)
-    expansion = models.CharField(max_length=255, default='', db_index=True)
-    price = models.DecimalField(max_digits=12, decimal_places=2, default=0, null=True, blank=True)
-    sku = models.CharField(max_length=255, default='')
-    product_id = models.CharField(max_length=255, default='')
-    condition = models.CharField(max_length=255, default='', db_index=True)
-    quantity = models.IntegerField(null=True, default=0)
-    foil = models.BooleanField(default=False)
-    image = models.CharField(max_length=255, default='', blank=True, null=True)
-    custom_percentage = models.IntegerField(null=True, default=0)
-    language = models.CharField(max_length=255, default='', db_index=True)
-
-    def __str__(self):
-        return self.name
-
-
 class DirectData(models.Model):
     name = models.CharField(max_length=255, default='')
     expansion = models.CharField(max_length=255, default='')
@@ -179,94 +162,8 @@ class MTG(models.Model):
     def __str__(self):
         return self.name
 
-
-class MtgForeign(models.Model):
-    product_name = models.CharField(max_length=255, default='', db_index=True, verbose_name='name')
-    product_line = models.CharField(max_length=255, default='')
-    title = models.CharField(max_length=255, default='')
-    rarity = models.CharField(max_length=255, default='')
-    number = models.CharField(max_length=255, default='')
-    set_name = models.CharField(max_length=255, default='', db_index=True)
-    sku = models.CharField(max_length=255, default='')
-    condition = models.CharField(max_length=255, default='', db_index=True)
-    language = models.CharField(max_length=255, default='Unknown', db_index=True)
-    foil = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.product_name
-
-
-class Yugioh(models.Model):
-    product_name = models.CharField(max_length=255, default='', db_index=True, verbose_name='name')
-    product_line = models.CharField(max_length=255, default='')
-    title = models.CharField(max_length=255, default='')
-    rarity = models.CharField(max_length=255, default='')
-    number = models.CharField(max_length=255, default='')
-    set_name = models.CharField(max_length=255, default='', db_index=True)
-    sku = models.CharField(max_length=255, default='')
-    condition = models.CharField(max_length=255, default='', db_index=True)
-    language = models.CharField(max_length=255, default='English', db_index=True)
-    foil = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.product_name
-
-
-class Pokemon(models.Model):
-    product_name = models.CharField(max_length=255, default='', db_index=True, verbose_name='name')
-    product_line = models.CharField(max_length=255, default='')
-    title = models.CharField(max_length=255, default='')
-    rarity = models.CharField(max_length=255, default='')
-    number = models.CharField(max_length=255, default='')
-    set_name = models.CharField(max_length=255, default='', db_index=True)
-    sku = models.CharField(max_length=255, default='')
-    condition = models.CharField(max_length=255, default='', db_index=True)
-    language = models.CharField(max_length=255, default='English', db_index=True)
-    foil = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.product_name
-
-
-class Upload(models.Model):
-    sku = models.CharField(max_length=255, default='')
-    upload_status = models.BooleanField(default=False)
-    name = models.CharField(max_length=255, default='')
-    group_name = models.CharField(max_length=255, default='')
-    condition = models.CharField(max_length=255, default='')
-    printing = models.CharField(max_length=255, default='', verbose_name='Foil')
-    language = models.CharField(max_length=255, default='')
-    category = models.CharField(max_length=255, default='')
-    upload_quantity = models.IntegerField(default=0)
-    upload_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    upload_date = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.sku
-
     class Meta:
-        verbose_name_plural = "Upload"
-
-
-class Orders(models.Model):
-    order_status_type = models.CharField(max_length=50, default='', blank=True, null=True, db_index=True, verbose_name='Order Status')
-    order_date = models.CharField(max_length=50, default='', blank=True, null=True, verbose_name='Date Ordered')
-    shipping_name = models.CharField(max_length=100, default='', blank=True, null=True, )
-    order_number = models.CharField(max_length=50, default='', blank=True, null=True)
-    order_details = models.TextField(default='', blank=True, null=True, verbose_name='Items Ordered')
-    shipping_address = models.TextField(default='', blank=True, null=True)
-    order_delivery_type = models.CharField(max_length=50, default='', blank=True, null=True,
-                                           verbose_name='Delivery Type')
-    name = models.CharField(max_length=50, default='', blank=True, null=True)
-    token = models.CharField(max_length=50, default='', blank=True, null=True)
-    net_profit = models.DecimalField(max_digits=12, decimal_places=2, default=None, null=True, blank=True)
-
-    def __str__(self):
-        return self.shipping_name
-
-
-    class Meta:
-        verbose_name_plural = "Orders"
+        verbose_name_plural = "MTG Card Database"
 
 
 class TcgCredentials(models.Model):

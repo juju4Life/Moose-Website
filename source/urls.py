@@ -2,7 +2,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from users.forms import LoginForm
 from django.urls import path, include
 from contact import views as contact_views
 from engine import views as home_views
@@ -44,7 +43,6 @@ urlpatterns = [
     path('facebook_bot/', include('facebook_bot.urls')),
     path('results/', home_views.search, name='search'),
     path('buylist/results/', buylist_views.search, name='search_buylist'),
-    path('list_results/', home_views.search_list, name='search_list'),
     # path('order_view/<product_info>', home_views.orders_view, name='orders'),
     # path('search-result/', home_views.search_result, name='search-result'),
     path('cart/', home_views.get_cart, name='cart'),
@@ -58,9 +56,6 @@ urlpatterns = [
     path('cart/clear/', home_views.clear, name='empty_cart'),
     path('cart/clear-buylist-item/', buylist_views.clear, name= 'empty_cart_buylist'),
     path('product/<product_id>', home_views.product_detail, name='product_detail'),
-
-
-
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT,)
 

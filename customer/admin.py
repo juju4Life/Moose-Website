@@ -1,16 +1,9 @@
 from django.contrib import admin
-from .models import ItemizedPreorder, Customer
+from .models import Customer
 from simple_history.admin import SimpleHistoryAdmin
 
 
 # Register your models here.
-
-
-@admin.register(ItemizedPreorder)
-class ItemPreorderAdmin(admin.ModelAdmin):
-    list_display = ['name', 'expansion', 'price', 'quantity', 'available', 'total_sold']
-    ordering = ['price']
-
 
 @admin.register(Customer)
 class CustomerAdmin(SimpleHistoryAdmin):
