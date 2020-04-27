@@ -1,0 +1,77 @@
+
+
+#productImage{
+float: left;
+max-width: 223px;
+max-height: 310px;
+}
+
+#titleSet {
+position: relative;
+right: 18%;
+margin-top: -1%;
+}
+
+#text {
+position: relative;
+max-width: 75%;
+left: 20%;
+margin-top: 5%;
+}
+
+
+#cardInfo {
+border: 2px solid gray;
+background-color: rgba(234, 237, 242,.2);
+border-radius: 15px;
+}
+
+#qtyBox{
+  width:40px;
+  height: 33px;
+}
+
+#manaCost {
+position: relative;
+left: 40%;
+}
+
+#name{
+font-family: Catull BQ Regular;
+font-size: 30px;
+}
+
+
+#set{
+font-family: Catull BQ Regular;
+font-size: 20px;
+font-weight: bold;
+}
+
+#button{
+width: 40px;
+margin-left: -.3%;
+margin-top: -.2%;
+}
+
+#expansion {
+position: relative;
+margin-top: -5%;
+}
+
+#ability {
+margin-top: -2.5%;
+margin-left: -3%;
+}
+
+#cardInfoPadding {
+padding-left: 3%;
+}
+
+div {
+word-wrap: break-word;
+}
+
+#box {
+padding-bottom: 5px;
+}

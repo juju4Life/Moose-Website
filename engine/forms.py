@@ -2,13 +2,29 @@ from django import forms
 
 
 class AdvancedSearchForm(forms.Form):
-    choices = (
+    name_choices = (
+        ("", "", ),
         ("contains", "contains", ),
         ("equals", "equals", ),
     )
-    name = forms.CharField(widget=forms.TextInput(attrs={"class": "advanced-search-form form-control"}))
-    query = forms.CharField(widget=forms.Select(choices=choices))
+
+    color_choices = (
+        ("", "",),
+        ("colorless", "colorless",),
+        ("black", "black",),
+        ("blue", "blue",),
+        ("green", "green",),
+        ("red", "red",),
+        ("white", "white",),
+    )
+    name = forms.CharField(widget=forms.TextInput(attrs={
+        "class": "advanced-search-form form-control",
+    }), label='')
+    name_query = forms.CharField(widget=forms.Select(choices=name_choices, attrs={"class": "query-drop-down"}), label='')
     expansion = forms.CharField(widget=forms.TextInput(attrs={"class": "advanced-search-form form-control"}))
+
+    color_query = forms.CharField(widget=forms.Select(choices=color_choices, attrs={"class": "query-drop-down"}), label='')
+    color = forms.CharField(widget=forms.TextInput(attrs={"class": "advanced-search-form form-control"}))
 
 
 class contactForm(forms.Form):

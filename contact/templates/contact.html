@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% load staticfiles %}
+{% load static %}
 {% block content %}
-{% include 'defaults/form_wrapper.html' %}
+\
+<link rel="stylesheet" type="text/css" href="{% static 'custom_css/default_form_wrapper.css' %}">
 
 <div class='row'>
 

@@ -3,172 +3,148 @@
 {% load static %}
 {% load cloudinary %}
 
-{% block styles %}
-    {% include 'home_style.html' %}
-{% endblock %}
-
-
-
 {% block content %}
 
-<style>
-	html, body {
-  height: 100%;
-  margin: 0;
-}
-.content {
-  min-height: 100%;
-}
-
-.content-inside {
-  padding: 20px;
-  padding-bottom: 50px;
-}
-
-.footer {
-  height: 50px;
-  margin-top: 5%;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="{% static 'custom_css/home.css' %}">
 
 {% if 'home' in request.path %}
 
 <div class="container">
-
 	
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
 
-    <div class="carousel-item active">
-        {% cloudinary main_slide.image class='slide-image d-block w-100' %}
-        <div class="carousel-caption d-none d-md-block">
-            <h2><a href="#" style="color:rgba(255,255,255,1);">{{main_slide.text}}</a></h2>
+        <div class="carousel-item active">
+            {% cloudinary main_slide.image class='slide-image d-block w-100' %}
+            <div class="carousel-caption d-none d-md-block">
+                <h2><a href="#" style="color:rgba(255,255,255,1);">{{main_slide.text}}</a></h2>
+
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+
+
+    <div class="row" style="margin-top:1%;">
+
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-5">
+           <!-- Upcoming Events tab -->
+        <div class="list-group" style="margin-top:2%;">
+          <h4 class="side-bar-header list-group-item active">Upcoming Events</h4>
+          <a class="list-group-item list-group-item-action">
+            <span><strong>Legacy Quest for Power</strong></span><br>
+            July, 12, 2019<br>
+            Tournament
+          </a>
+          <a class="list-group-item list-group-item-secondary list-group-item-action">Morbi leo risus</a>
+          <a class="list-group-item list-group-item-secondary list-group-item-action">Porta ac consectetur ac</a>
+          <a class="list-group-item list-group-item-secondary list-group-item-action">Vestibulum at eros</a>
+          <a class="list-group-item list-group-item-secondary list-group-item-action">Vestibulum at eros</a>
+          <a class="list-group-item list-group-item-secondary list-group-item-action">Vestibulum at eros</a>
+          <a class="list-group-item list-group-item-secondary list-group-item-action">Vestibulum at eros</a>
+        </div>
+        </div>
+
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-5">
+          <!-- Twitter Follow Button -->
+        <div id="twitter-button" >
+          <a href="https://twitter.com/MtgFirst?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large"
+           data-show-screen-name="false" data-show-count="false">Follow @MtgFirst</a>
+        </div>
+
+        <!-- Twitter Posts Widget -->
+        <a class="twitter-timeline" data-width="400" data-height="400" href="https://twitter.com/MTGFirst?ref_src=twsrc%5Etfw">Tweets by MTGFirst</a>
+        </div>
+    </div>
+
+    <div class="row" style="">
+
+        <div class="col-sm-1"></div>
+
+        <!-- MTG HotList -->
+
+        <div class="col-sm-5">
+            <div class="list-group">
+
+              <h4 class="side-bar-header list-group-item active" style="">
+                  <img style="max-height:75px" src="{% static 'img/hotlist_logo.png' %}">
+              </h4>
+
+              {% for card in hotlist %}
+
+                <a href="#" class="list-group-item">
+                  <span style="">&nbsp;{{card.name}} - ${{card.price}}&nbsp;</span>
+                </a>
+
+              {% endfor %}
+            </div>
+
+        </div>
+
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-5">
+          <h1>BLOCK 4</h1>
 
         </div>
     </div>
-</div>
 
-</div>
+    {% endif %}
 
-</div>
+    {% block set_list %}
+    {% endblock %}
 
 
-<div class="row" style="margin-top:1%;">
 
-    <div class="col-sm-1"></div>
+    <div class="">
+    <footer class="footer">
+        <div class="container home-footer">
 
-    <div class="col-sm-5">
-       <!-- Upcoming Events tab -->
-    <div class="list-group" style="margin-top:2%;">
-      <h4 class="side-bar-header list-group-item active">Upcoming Events</h4>
-      <a class="list-group-item list-group-item-action">
-        <span><strong>Legacy Quest for Power</strong></span><br>
-        July, 12, 2019<br>
-        Tournament
-      </a>
-      <a class="list-group-item list-group-item-secondary list-group-item-action">Morbi leo risus</a>
-      <a class="list-group-item list-group-item-secondary list-group-item-action">Porta ac consectetur ac</a>
-      <a class="list-group-item list-group-item-secondary list-group-item-action">Vestibulum at eros</a>
-      <a class="list-group-item list-group-item-secondary list-group-item-action">Vestibulum at eros</a>
-      <a class="list-group-item list-group-item-secondary list-group-item-action">Vestibulum at eros</a>
-      <a class="list-group-item list-group-item-secondary list-group-item-action">Vestibulum at eros</a>
-    </div>
-    </div>
+      <section id="sec1">
 
-    <div class="col-sm-1"></div>
+        <h2>Section 1</h2>
+        <div class="row">
+          <div class="col-md-3">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Clients</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Clients</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Clients</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
 
-    <div class="col-sm-5">
-      <!-- Twitter Follow Button -->
-    <div id="twitter-button" >
-      <a href="https://twitter.com/MtgFirst?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large"
-       data-show-screen-name="false" data-show-count="false">Follow @MtgFirst</a>
-    </div>
-
-    <!-- Twitter Posts Widget -->
-    <a class="twitter-timeline" data-width="400" data-height="400" href="https://twitter.com/MTGFirst?ref_src=twsrc%5Etfw">Tweets by MTGFirst</a>
-    </div>
-</div>
-
-<div class="row" style="">
-
-    <div class="col-sm-1"></div>
-
-    <!-- MTG HotList -->
-
-    <div class="col-sm-5">
-        <div class="list-group">
-
-          <h4 class="side-bar-header list-group-item active" style="">
-              <img style="max-height:75px" src="{% static 'img/hotlist_logo.png' %}">
-          </h4>
-
-          {% for card in hotlist %}
-
-            <a href="#" class="list-group-item">
-              <span style="">&nbsp;{{card.name}} - ${{card.price}}&nbsp;</span>
-            </a>
-
-          {% endfor %}
+          </div>
         </div>
-
+      </section>
+    </div>
+    </footer>
     </div>
 
-    <div class="col-sm-1"></div>
-
-    <div class="col-sm-5">
-      <h1>BLOCK 4</h1>
-        {% include 'one.svg' %}
-
-    </div>
 </div>
-
-{% endif %}
-
-{% block set_list %}
-{% endblock %}
-
-
-
-<div class="">
-<footer class="footer">
-	<div class="container home-footer">
-
-  <section id="sec1">
-
-    <h2>Section 1</h2>
-    <div class="row">
-      <div class="col-md-3">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Clients</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="col-md-3">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Clients</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="col-md-3">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Clients</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="col-md-3">
-
-      </div>
-    </div>
-  </section>
-</div>
-</footer>
-  </div>
 {% endblock %}
 
 

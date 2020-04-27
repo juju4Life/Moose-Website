@@ -1,0 +1,29 @@
+
+.label{
+    font: 600 12px "Open Sans",sans-serif;
+    color: #898C8E;
+    text-transform: uppercase;
+}
+
+.profile-data{
+    font: 600 12px "Open Sans",sans-serif;
+}
+
+.info-table{
+
+    border-collapse: separate;
+    border-spacing: 60px 10px;
+}
+
+#nav-tabContent{
+    display: inline;
+}
+
+.form-check-label{
+    font: "Open Sans",sans-serif;
+    text-decoration: underline;
+}
+
+.subscribe-title{
+
+}

@@ -4,7 +4,7 @@
 {% block content %}
 
 
-{% include 'checkout_style.html' %}
+<link rel="stylesheet" type="text/css" href="{% static 'custom_css/checkout.css' %}">
 
 {% if not confirm_message %}
 	<div class="container-fluid" style="min-height:95%;">

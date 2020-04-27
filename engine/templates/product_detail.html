@@ -1,13 +1,12 @@
 {% extends "home.html" %}
 {% block set_list %}
 {% load static %}
-{% include 'product_detail_style.html' %}
 
+<link rel="stylesheet" type="text/css" href="{% static 'custom_css/product_detail.css' %}">
 
 	<div class="sub-cat-row"></div>
 
         <div class="body  product-body"  data-currency-code="USD">
-
     <div class="container">
 
     <div itemscope itemtype="">
@@ -192,15 +191,6 @@
 
 
 </div>
-
-
-
-
-
-
-  
-
-   
 
   
 {% endblock %}
