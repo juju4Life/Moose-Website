@@ -202,17 +202,16 @@ class MTGResource(resources.ModelResource):
 
     product_id = Field(attribute='product_id', column_name='Id')
     name = Field(attribute='name', column_name='Name')
-    expansion = Field(attribute='expansion', column_name='Set')
-    normal_clean_stock = Field(attribute='normal_clean_stock', column_name='Normal CL')
-    normal_played_stock = Field(attribute='normal_played_stock', column_name='Normal PL')
-    normal_heavily_played_stock = Field(attribute='normal_heavily_played_stock', column_name='Normal HP')
-    foil_clean_stock = Field(attribute='foil_clean_stock', column_name='Foil CL')
-    foil_played_stock = Field(attribute='foil_played_stock', column_name='Foil PL')
-    foil_heavily_played_stock = Field(attribute='foil_heavily_played_stock', column_name='Foil HP')
+    normal_clean_stock = Field(attribute='normal_clean_stock', column_name='Normal clean')
+    normal_played_stock = Field(attribute='normal_played_stock', column_name='Normal played')
+    normal_heavily_played_stock = Field(attribute='normal_heavily_played_stock', column_name='Normal heavy')
+    foil_clean_stock = Field(attribute='foil_clean_stock', column_name='Foil clean')
+    foil_played_stock = Field(attribute='foil_played_stock', column_name='Foil played')
+    foil_heavily_played_stock = Field(attribute='foil_heavily_played_stock', column_name='Foil heavy')
 
     class Meta:
         model = MTG
-        fields = ('product_id', 'name', 'expansion', 'normal_clean_stock', 'normal_played_stock', 'normal_heavily_played_stock',
+        fields = ('product_id', 'name', 'normal_clean_stock', 'normal_played_stock', 'normal_heavily_played_stock',
                   'foil_clean_stock', 'foil_played_stock', 'foil_heavily_played_stock',)
         exclude = ('language', )
         import_id_fields = ('product_id',)
