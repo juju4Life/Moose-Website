@@ -1,3 +1,4 @@
+from time import localtime, strftime
 import os
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
@@ -202,13 +203,17 @@ class MTGResource(resources.ModelResource):
     product_id = Field(attribute='product_id', column_name='Id')
     name = Field(attribute='name', column_name='Name')
     expansion = Field(attribute='expansion', column_name='Set')
-    normal_clean_stock = Field(attribute='normal_clean_stock', column_name='Normal Clean Stock')
-    normal_played_stock = Field(attribute='normal_played_stock', column_name='Normal Played Stock')
-    normal_heavily_played_stock = Field(attribute='normal_heavily_clean_stock', column_name='Normal Heavily Played Stock')
+    normal_clean_stock = Field(attribute='normal_clean_stock', column_name='Normal CL')
+    normal_played_stock = Field(attribute='normal_played_stock', column_name='Normal PL')
+    normal_heavily_played_stock = Field(attribute='normal_heavily_played_stock', column_name='Normal HP')
+    foil_clean_stock = Field(attribute='foil_clean_stock', column_name='Foil CL')
+    foil_played_stock = Field(attribute='foil_played_stock', column_name='Foil PL')
+    foil_heavily_played_stock = Field(attribute='foil_heavily_played_stock', column_name='Foil HP')
 
     class Meta:
         model = MTG
-        fields = ('product_id', 'name', 'expansion', 'normal_clean_stock', 'normal_played_stock', 'normal_heavily_played_stock')
+        fields = ('product_id', 'name', 'expansion', 'normal_clean_stock', 'normal_played_stock', 'normal_heavily_played_stock',
+                  'foil_clean_stock', 'foil_played_stock', 'foil_heavily_played_stock',)
         exclude = ('language', )
         import_id_fields = ('product_id',)
 
@@ -229,6 +234,12 @@ class DirectTrackerAdmin(admin.ModelAdmin):
 
 @admin.register(MTG)
 class MTGAdmin(ImportExportModelAdmin):
+    def get_export_filename(self, request, queryset, file_format):
+        date_time = strftime("%Y-%m-%d %I_%M%p", localtime())
+        filename = f"{queryset[0].expansion} - {date_time}"
+
+        return filename
+
     resource_class = MTGResource
     search_fields = ['name']
     list_display = ['name', 'expansion', 'language', ]
