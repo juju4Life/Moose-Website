@@ -25,48 +25,35 @@
     <div class="container-fluid" style="min-height:95%;">
         <div class="row">
             <nav class="col-md-2 d-none d-sm-block bg-dark sidebar" style="">
-                <div class="sidebar-sticky" id="accordion">
+                <div class="sidebar-sticky">
                     <span class="active"> Advanced Search <i class="material-icons"></i></span>
                     <div>
                     <form>
                         <div class="input-group input-group-sm mb-3">
 
                          <fieldset>
-                              <div class="form-row">
-                                  {{form.name_query}}
-                                  <div class="input-group input-group-sm mb-3">
+                             <div id="accordion">
 
-                                      <div class="input-group-prepend">
-                                        <span class="input-group-text">Name</span>
-                                      </div>
-                                      {{form.name}}
-                                  </div>
+                                 <span>Name</span>
 
-                                  <div class="form-row">
-
+                                 <div class="form-row">
+                                      {{form.name_query}}
                                       <div class="input-group input-group-sm mb-3">
-
-                                          <div class="input-group-prepend">
-                                            <span class="input-group-text">Set</span>
-                                          </div>
                                           {{form.name}}
                                       </div>
+                                 </div>
 
-                                  </div>
-                              </div>
-                                  <div class="form-row">
-                                      <div class="form-row">
-                                      {{form.color_query}}
-                                      <div class="input-group input-group-sm mb-3">
-                                      <div class="input-group-prepend">
-                                        <span class="input-group-text">Colors</span>
-                                      </div>
-                                      {{form.name}}
-                                  </div>
+                                 <span>Set</span>
 
+                                 <div class="form-row">
+                                    <div class="input-group input-group-sm mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Set</span>
+                                        </div>
+                                      {{form.expansion}}
+                                    </div>
                                   </div>
-                          </div>
-
+                             </div>
                          </fieldset>
 
                         </div>

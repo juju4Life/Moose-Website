@@ -3,7 +3,6 @@ from django import forms
 
 class AdvancedSearchForm(forms.Form):
     name_choices = (
-        ("", "", ),
         ("contains", "contains", ),
         ("equals", "equals", ),
     )
@@ -20,7 +19,7 @@ class AdvancedSearchForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={
         "class": "advanced-search-form form-control",
     }), label='')
-    name_query = forms.CharField(widget=forms.Select(choices=name_choices, attrs={"class": "query-drop-down"}), label='')
+    name_query = forms.CharField(widget=forms.Select(choices=name_choices, attrs={"class": "query-drop-down"}), label='Name')
     expansion = forms.CharField(widget=forms.TextInput(attrs={"class": "advanced-search-form form-control"}))
 
     color_query = forms.CharField(widget=forms.Select(choices=color_choices, attrs={"class": "query-drop-down"}), label='')

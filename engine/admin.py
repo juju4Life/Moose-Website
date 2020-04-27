@@ -22,7 +22,6 @@ try:
 except ImportError:
     from io import BytesIO
 
-# Api calls to TCGplayer
 api = TcgPlayerApi('first')
 
 
@@ -200,12 +199,16 @@ class UploadAdmin(ImportExportModelAdmin):
 
 class MTGResource(resources.ModelResource):
 
+    product_id = Field(attribute='product_id', column_name='Id')
     name = Field(attribute='name', column_name='Name')
     expansion = Field(attribute='expansion', column_name='Set')
+    normal_clean_stock = Field(attribute='normal_clean_stock', column_name='Normal Clean Stock')
+    normal_played_stock = Field(attribute='normal_played_stock', column_name='Normal Played Stock')
+    normal_heavily_played_stock = Field(attribute='normal_heavily_clean_stock', column_name='Normal Heavily Played Stock')
 
     class Meta:
         model = MTG
-        fields = ('product_id', 'name', 'expansion')
+        fields = ('product_id', 'name', 'expansion', 'normal_clean_stock', 'normal_played_stock', 'normal_heavily_played_stock')
         exclude = ('language', )
         import_id_fields = ('product_id',)
 
