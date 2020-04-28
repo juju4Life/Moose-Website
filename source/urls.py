@@ -21,7 +21,6 @@ urlpatterns = [
     path('', home_views.home_base, name='base'),
     path('home/', home_views.home, name='home'),
     path('', include('orders.urls')),
-    path('api/gallery/hotlist', home_views.PopularCardsGallery.as_view(), name='hotlist'),
     path('api/card-info', home_views.CardDatabase.as_view(), name='card_info'),
     path('payment/paypal-transaction-complete/<name>/<email>', home_views.paypal_transaction, name='paypal_complete'),
     path('payment/', home_views.payment, name='payment'),

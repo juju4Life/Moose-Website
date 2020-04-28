@@ -1,5 +1,5 @@
 
-function jqueryAutocomplete(tags, id){
+function jqueryMultiFieldAutocomplete(tags, id){
     $( function() {
     var availableTags = tags
     function split( val ) {
@@ -9,7 +9,7 @@ function jqueryAutocomplete(tags, id){
       return split( term ).pop();
     }
 
-    $( "#" + id )
+    $( id )
       // don't navigate away from the field on tab when selecting an item
       .on( "keydown", function( event ) {
         if ( event.keyCode === $.ui.keyCode.TAB &&

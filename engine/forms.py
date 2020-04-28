@@ -2,28 +2,125 @@ from django import forms
 
 
 class AdvancedSearchForm(forms.Form):
+
+    color_option_choices = (
+        ("include_colorless", " include colorless cards"),
+        ("include_mono_color", " include mono-color cards"),
+        ("include_multi_color", " include all multi-color cards"),
+        (2, " 2-color cards"),
+        (3, " 3-color cards"),
+        (4, " 4-color cards"),
+        (5, " 5-color cards"),
+    )
+
     name_choices = (
-        ("contains", "contains", ),
-        ("equals", "equals", ),
+        ("contains", " contains", ),
+        ("equals", " equal to", ),
     )
 
     color_choices = (
-        ("", "",),
-        ("colorless", "colorless",),
-        ("black", "black",),
-        ("blue", "blue",),
-        ("green", "green",),
-        ("red", "red",),
-        ("white", "white",),
+        ("B", " Black",),
+        ("G", " Green",),
+        ("R", " Red",),
+        ("U", " Blue",),
+        ("W", " White",),
     )
+
+    rarity_choices = (
+        ("M", " Mythic",),
+        ("R", " Rare",),
+        ("U", " Uncommon",),
+        ("C", " Common",),
+    )
+
+    card_type_choices = (
+        ("Artifact", " Artifact", ),
+        ("Creature", " Creature", ),
+        ("Enchantment", " Enchantment", ),
+        ("Instant", " Instant", ),
+        ("Land", "Land", ),
+        ("Legendary", " Legendary", ),
+        ("Planeswalker", " Planeswalker", ),
+        ("Sorcery", " Sorcery", ),
+        ("Tribal", " Tribal", ),
+    )
+
+    oracle_text = forms.CharField(widget=forms.TextInput(attrs={
+        "class": "advanced-search-form form-control",
+    }), label='', required=False)
+
     name = forms.CharField(widget=forms.TextInput(attrs={
         "class": "advanced-search-form form-control",
-    }), label='')
-    name_query = forms.CharField(widget=forms.Select(choices=name_choices, attrs={"class": "query-drop-down"}), label='Name')
-    expansion = forms.CharField(widget=forms.TextInput(attrs={"class": "advanced-search-form form-control"}))
+    }), label='', required=False)
 
-    color_query = forms.CharField(widget=forms.Select(choices=color_choices, attrs={"class": "query-drop-down"}), label='')
-    color = forms.CharField(widget=forms.TextInput(attrs={"class": "advanced-search-form form-control"}))
+    name_query = forms.ChoiceField(
+        widget=forms.RadioSelect,
+        choices=name_choices,
+        label='',
+        required=False,
+    )
+
+    expansion = forms.CharField(widget=forms.TextInput(attrs={"class": "advanced-search-form form-control", "id": "advanced-search-form-expansion"}), label="",
+                                required=False)
+
+    color_options = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        choices=color_option_choices,
+        label='',
+        required=False,
+
+    )
+
+    colors = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple(attrs={"class": "form-check-input", "type": "checkbox"}),
+        choices=color_choices,
+        label='',
+        required=False,
+    )
+
+    color_identity = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        choices=color_choices,
+        label='',
+        required=False,
+    )
+
+    rarity = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        choices=rarity_choices,
+        label='',
+        required=False,
+    )
+
+    card_type = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        choices=card_type_choices,
+        label='',
+        required=False,
+    )
+
+    subtypes = forms.CharField(widget=forms.TextInput(attrs={
+        "class": "advanced-search-form form-control", "id": "advanced-search-form-subtypes"}),
+         label='', required=False
+    )
+
+    power_start = forms.IntegerField(widget=forms.TextInput(attrs={
+        "class": "advanced-search-form form-control"}), label='', required=False)
+
+    power_end = forms.IntegerField(widget=forms.TextInput(attrs={
+        "class": "advanced-search-form form-control"}), label='', required=False)
+
+    toughness_start = forms.IntegerField(widget=forms.TextInput(attrs={
+        "class": "advanced-search-form form-control"}), label='', required=False)
+
+    toughness_end = forms.IntegerField(widget=forms.TextInput(attrs={
+        "class": "advanced-search-form form-control"}), label='', required=False)
+
+    cmc_start = forms.IntegerField(widget=forms.TextInput(attrs={
+        "class": "advanced-search-form form-control"}), label='', required=False)
+
+    cmc_end = forms.IntegerField(widget=forms.TextInput(attrs={
+        "class": "advanced-search-form form-control"}), label="", required=False)
 
 
 class contactForm(forms.Form):

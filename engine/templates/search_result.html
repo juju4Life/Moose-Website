@@ -13,6 +13,7 @@
     $( "#accordion" ).accordion({
       collapsible: true,
       active: false,
+      heightStyle: "content",
     });
   } );
   </script>
@@ -26,41 +27,118 @@
         <div class="row">
             <nav class="col-md-2 d-none d-sm-block bg-dark sidebar" style="">
                 <div class="sidebar-sticky">
-                    <span class="active"> Advanced Search <i class="material-icons"></i></span>
-                    <div>
-                    <form>
-                        <div class="input-group input-group-sm mb-3">
+                    <div style="">
+                        <hr style="background-color: white;">
+                        <h4 style="color: rgba(255, 255, 255, 0.6);" class="active"> Advanced Search <i class="material-icons"></i></h4>
+                        <div>
+                            <form method="GET" action="{% url 'search' %}">
+                                 <fieldset>
+                                     <div id="accordion">
 
-                         <fieldset>
-                             <div id="accordion">
 
-                                 <span>Name</span>
+                                         <label>Name</label>
+                                         <div>
+                                             <div class="form-row">
+                                                  <div class="input-group input-group-sm mb-3">
+                                                      {{form.name_query|as_crispy_field}}
+                                                  </div>
+                                             </div>
+                                             <div class="form-row">
+                                                  <div class="input-group input-group-sm mb-3">
+                                                      {{form.name}}
+                                                  </div>
+                                             </div>
 
-                                 <div class="form-row">
-                                      {{form.name_query}}
-                                      <div class="input-group input-group-sm mb-3">
-                                          {{form.name}}
-                                      </div>
-                                 </div>
+                                         </div>
 
-                                 <span>Set</span>
+                                         <label>Oracle Text</label>
+                                         <div class="form-row">
+                                            <div class="input-group input-group-sm mb-3">
+                                              {{form.oracle_text}}
+                                            </div>
+                                         </div>
 
-                                 <div class="form-row">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Set</span>
-                                        </div>
-                                      {{form.expansion}}
-                                    </div>
-                                  </div>
-                             </div>
-                         </fieldset>
+                                         <label>Set</label>
+                                         <div class="form-row">
+                                            <div class="input-group input-group-sm mb-3">
+                                              {{form.expansion}}
+                                            </div>
+                                         </div>
 
+                                         <label>Colors</label>
+                                         <div>
+
+                                             <div style="" class="form-row">
+                                                 <div class="form-check form-check-inline">
+                                                     {{form.colors|as_crispy_field}}
+                                                 </div>
+                                             </div>
+                                         </div>
+
+                                         <label>Color Identity</label>
+                                         <div style="" class="form-row">
+                                            <div class="input-group input-group-sm mb-3">
+                                              {{form.color_identity|as_crispy_field}}
+                                            </div>
+                                         </div>
+
+                                         <label>CMC
+                                             <i class="material-icons help-bubble" title="converted mana cost">help</i></label>
+                                         <div class="form-row">
+                                            <div style="max-width: 70%;" class="input-group input-group-sm">
+                                                {{form.cmc_start}}&nbsp;<span class="advanced-search-between-inputs">to
+                                            </span>&nbsp;{{form.cmc_end}}
+                                            </div>
+                                         </div>
+
+                                         <label>Rarity</label>
+                                         <div style="" class="form-row">
+                                            <div class="input-group input-group-sm mb-3">
+                                              {{form.rarity|as_crispy_field}}
+                                            </div>
+                                         </div>
+
+                                         <label>Type</label>
+                                         <div style="" class="form-row">
+                                            <div class="input-group input-group-sm mb-3">
+                                              {{form.card_type|as_crispy_field}}
+                                            </div>
+                                         </div>
+
+                                         <label>Subtypes</label>
+                                         <div style="" class="form-row">
+                                            <div class="input-group input-group-sm mb-3">
+                                              {{form.subtypes|as_crispy_field}}
+                                            </div>
+                                         </div>
+
+                                         <label>Power</label>
+                                         <div class="form-row">
+                                            <div style="max-width: 70%;" class="input-group input-group-sm">
+                                                {{form.power_start}}&nbsp;<span class="advanced-search-between-inputs">to
+                                            </span>&nbsp;{{form.power_end}}
+                                            </div>
+                                         </div>
+
+                                         <label>Toughness</label>
+                                         <div class="form-row">
+                                            <div style="max-width: 70%;" class="input-group input-group-sm">
+                                                {{form.toughness_start}}
+                                                &nbsp;<span class="advanced-search-between-inputs">to</span>&nbsp;
+                                                {{form.toughness_end}} <br>
+                                            </div>
+                                         </div>
+
+
+
+                                     </div>
+                                 </fieldset>
+                                <button name="advanced-search-form" value="advanced-query" style="margin-top:1%;" class="btn btn-secondary btn-lg btn-block"
+                                        type="submit">Apply
+                                    Filters</button>
+                            </form>
                         </div>
-
-                    </form>
                     </div>
-
                 </div>
             </nav>
             <div style="" class="col-sm-10">
@@ -83,7 +161,7 @@
 
                                 <td>{{item.card_type}}</td>
 
-                                <td>{{item.expansion}}</td>
+                                <td>{{item.expansion}} ({{item.rarity}})</td>
 
                                 <td>
                                     <div style="position: relative;">
@@ -150,6 +228,25 @@
 {% endif %}
 
 <script src="{% static 'custom_js/select_tab_search_results.js' %}"></script>
+
+<!-- Load autocomplete() function from jquery -->
+<script src="{% static 'custom_js/jquery_autocomplete.js' %}"></script>
+
+<!-- Load jqueryMultiFieldAutocomplete() function from jquery -->
+<script src="{% static 'custom_js/jquery_multi_autocomplete.js' %}"></script>
+
+<script>
+    $.ajax({
+        method: "GET",
+        url: "{% url 'card_info' %}",
+        success: function(data){
+            autocomplete(data.expansions, "#advanced-search-form-expansion");
+            jqueryMultiFieldAutocomplete(data.subtypes, "#advanced-search-form-subtypes");
+            console.log(data.subtypes);
+        },
+    });
+</script>
+
 
 {% endblock %}
 <!--  -->

@@ -48,5 +48,14 @@
 
 }
 
-
+.advanced-search-between-inputs{
+    color: rgba(0, 0, 0, 0.5);
 }
+
+.help-bubble{
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    vertical-align: top;
+}
+
+

@@ -49,9 +49,10 @@
 
       <li>
         <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search' %}">
-          <input class="form-control mr-sm-2" name="q" value="{{request.GET.q}}" type="text" placeholder="Search" aria-label="Search">
+          <input id="main-search-bar" class="form-control mr-sm-2" name="q" value="{{request.GET.q}}" type="text" placeholder="Search" aria-label="Search">
 
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <button id="main-search-button" class="btn btn-outline-light my-2 my-sm-0"
+                  type="submit"><i class="material-icons" id="main-search-icon">search</i></button>
         </form>
       </li>
 
@@ -81,3 +82,16 @@
 
   <a href="{%url 'cart' %}" class="cart-icon"><i class="material-icons">shopping_cart</i></a>
 </nav>
+
+<!-- Load autocomplete() function from jquery -->
+<script src="{% static 'custom_js/jquery_autocomplete.js' %}"></script>
+
+<script>
+    $.ajax({
+        method: "GET",
+        url: "{% url 'card_info' %}",
+        success: function(data){
+            autocomplete(data.names, "#main-search-bar");
+        },
+    });
+</script>
