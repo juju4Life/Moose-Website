@@ -1,32 +1,37 @@
-{% if items.has_other_pages %}
 
 <div class="text-center">
     <div class="col-6 offset-3 text-center pagination-set">
-        <nav aria-label="">
+        <nav aria-label="Pagination">
             <ul class="pagination" style="justify-content: center;">
+
                 {% if items.has_previous %}
-                <li class="page-item"><a class="page-link" style="color: #1e415e; border: #1e415e;"
-                                         href="?page={{ items.previous_page_number }}">&laquo;</a>
-                </li>
+                    <li class="page-item">
+                        <a class="page-link" style="color: #1e415e; border: #1e415e;" href="?{{ parameters }}&page={{ items.previous_page_number }}">&laquo;</a>
+                    </li>
                 {% else %}
-                <li class="page-item disabled"><a class="page-link" style="color: #1e415e; border: #1e415e;;"><span>&laquo;</span></a></li>
+                    <li class="page-item disabled"><a class="page-link" style="color: #1e415e; border: #1e415e;;"><span>&laquo;</span></a></li>
                 {% endif %}
+
                 {% for i in page_range %}
-                {% if items.number == i %}
-                <li class="page-item active"><a class="page-link" style="background-color: #1e415e; border: #1e415e;" href="#">{{ i }} <span
-                        class="sr-only">(current)</span></a></li>
-                {% else %}
-                <li class="page-item"><a class="page-link" style="color: #1e415e; border: #1e415e;" href="?page={{ i }}">{{ i }}</a></li>
-                {% endif %}
+                    {% if items.number == i %}
+                        <li class="page-item active">
+                            <a class="page-link" style="background-color: rgba(52, 58, 64, 1); border: rgba(52, 58, 64, 1);" href="#">{{ i }}
+                                <span class="sr-only">(current)</span></a>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" style="color: #1e415e; border: #1e415e;" href="?{{ parameters }}&page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
                 {% endfor %}
+
                 {% if items.has_next %}
-                <li class="page-item"><a class="page-link" style="color: #1e415e; border: #1e415e;" aria-label="Next"
-                                         href="?page={{ items.next_page_number }}">&raquo;</a></li>
+                    <li class="page-item">
+                        <a class="page-link" style="color: #1e415e; border: #1e415e;" aria-label="Next"
+                           href="?{{ parameters }}&page={{ items.next_page_number }}">&raquo;</a>
+                    </li>
                 {% else %}
-                <li class="page-item disabled"><a class="page-link" style="color: #1e415e; border: #1e415e;"><span>&raquo;</span></a></li>
+                    <li class="page-item disabled"><a class="page-link" style="color: #1e415e; border: #1e415e;"><span>&raquo;</span></a></li>
                 {% endif %}
             </ul>
         </nav>
     </div>
 </div>
-{% endif %}

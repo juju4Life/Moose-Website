@@ -87,6 +87,8 @@ def moose_price_algorithm(seller_data):
         if updated_price < 5 and updated_price > 4.21 and updated_price + .78 > 4.99:
             updated_price = 5
 
+        if updated_price < .49:
+            updated_price = .49
         return updated_price
 
 
@@ -349,9 +351,6 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
     '''
 
     if updated_price is not None:
-
-        if updated_price < .25:
-            updated_price = .25
 
         if condition_updated_price:
 

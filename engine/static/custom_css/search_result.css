@@ -53,9 +53,13 @@
 }
 
 .help-bubble{
-    font-size: 12px;
+    font-size: 18px;
     color: rgba(0, 0, 0, 0.5);
-    vertical-align: top;
+}
+
+#search-sidebar{
+    padding-bottom: 2%;
+    border-radius: 0px 0px 0px 0px;
 }
 
 

@@ -87,11 +87,6 @@
 <script src="{% static 'custom_js/jquery_autocomplete.js' %}"></script>
 
 <script>
-    $.ajax({
-        method: "GET",
-        url: "{% url 'card_info' %}",
-        success: function(data){
-            autocomplete(data.names, "#main-search-bar");
-        },
-    });
+
+
 </script>

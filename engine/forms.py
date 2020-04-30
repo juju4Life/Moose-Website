@@ -63,6 +63,9 @@ class AdvancedSearchForm(forms.Form):
     expansion = forms.CharField(widget=forms.TextInput(attrs={"class": "advanced-search-form form-control", "id": "advanced-search-form-expansion"}), label="",
                                 required=False)
 
+    artist = forms.CharField(widget=forms.TextInput(attrs={"class": "advanced-search-form form-control", "id": "advanced-search-form-card-artist"}), label="",
+                             required=False)
+
     color_options = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple,
         choices=color_option_choices,
@@ -93,7 +96,7 @@ class AdvancedSearchForm(forms.Form):
     )
 
     card_type = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple,
+        widget=forms.CheckboxSelectMultiple(attrs={"id": "advanced-search-form-card-type"}),
         choices=card_type_choices,
         label='',
         required=False,

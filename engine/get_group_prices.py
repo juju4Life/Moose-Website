@@ -33,7 +33,7 @@ def get_tcg_prices():
     for index, group in enumerate(groups):
         cards_over_five = 0
 
-        mtg_obj = MTG.objects.filter(set_name=group.group_name)
+        mtg_obj = MTG.objects.filter(expansion=group.group_name)
 
         # print(index, group)
         price_data = api.price_by_group_id(group.group_id)

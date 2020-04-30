@@ -5,29 +5,25 @@
 
 {% block set_list %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'custom_css/search_result.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'custom_css/search_result.css' %}">
 
-<script src="{% static 'custom_js/search_condition_tab.js' %}"></script>
-<script>
-  $( function() {
-    $( "#accordion" ).accordion({
-      collapsible: true,
-      active: false,
-      heightStyle: "content",
-    });
-  } );
-  </script>
+    <script>
+      $( function() {
+        $( "#accordion" ).accordion({
+          collapsible: true,
+          active: false,
+          heightStyle: "content",
+        });
+      } );
+    </script>
+    <script src="{% static 'custom_js/search_condition_tab.js' %}"></script>
 
-{% if error != '' %}
-
-    <h1>Error</h1>
-{% else %}
 
     <div class="container-fluid" style="min-height:95%;">
         <div class="row">
-            <nav class="col-md-2 d-none d-sm-block bg-dark sidebar" style="">
+            <nav id="search-sidebar" class="col-md-2 d-none d-sm-block bg-dark sidebar">
                 <div class="sidebar-sticky">
-                    <div style="">
+                    <div id="advanced-search-div" style="">
                         <hr style="background-color: white;">
                         <h4 style="color: rgba(255, 255, 255, 0.6);" class="active"> Advanced Search <i class="material-icons"></i></h4>
                         <div>
@@ -65,9 +61,15 @@
                                             </div>
                                          </div>
 
+                                         <label>Artists</label>
+                                         <div class="form-row">
+                                            <div class="input-group input-group-sm mb-3">
+                                              {{form.artist}}
+                                            </div>
+                                         </div>
+
                                          <label>Colors</label>
                                          <div>
-
                                              <div style="" class="form-row">
                                                  <div class="form-check form-check-inline">
                                                      {{form.colors|as_crispy_field}}
@@ -82,13 +84,21 @@
                                             </div>
                                          </div>
 
-                                         <label>CMC
-                                             <i class="material-icons help-bubble" title="converted mana cost">help</i></label>
+                                         <label>CMC</label>
                                          <div class="form-row">
+
                                             <div style="max-width: 70%;" class="input-group input-group-sm">
-                                                {{form.cmc_start}}&nbsp;<span class="advanced-search-between-inputs">to
-                                            </span>&nbsp;{{form.cmc_end}}
+                                                {{form.cmc_start}}&nbsp;
+                                                <span class="advanced-search-between-inputs">to</span>&nbsp;{{form.cmc_end}}
                                             </div>
+
+                                             <div id="cmc-help-text" title="Converted Mana Cost">
+                                                 <p>This is the mana cost exactly as it appears on the top of the card.</p>
+                                             </div>
+                                             <div class="form-row">
+                                                 <button id="cmc-help-button" class="btn btn-outline-light" type="button"><i
+                                                    class="material-icons help-bubble">help</i></button>
+                                             </div>
                                          </div>
 
                                          <label>Rarity</label>
@@ -98,14 +108,14 @@
                                             </div>
                                          </div>
 
-                                         <label>Type</label>
+                                         <label>Card Types</label>
                                          <div style="" class="form-row">
                                             <div class="input-group input-group-sm mb-3">
                                               {{form.card_type|as_crispy_field}}
                                             </div>
                                          </div>
 
-                                         <label>Subtypes</label>
+                                         <label>Subtype(s)</label>
                                          <div style="" class="form-row">
                                             <div class="input-group input-group-sm mb-3">
                                               {{form.subtypes|as_crispy_field}}
@@ -142,111 +152,207 @@
                 </div>
             </nav>
             <div style="" class="col-sm-10">
-                <table style="color: rgb(80,80,80);" class="nav-tabs nav-stacked table table table-hover table-lg">
-                    <thead class="thead-inverse">
-                    </thead>
-                    <tbody>
-                        {% for item in items %}
+
+                {% if advanced_query %}
+                    <br>
+                    <div style="" class="row">
+                        <h4 style="color: rgba(0, 0, 0, 0.7);">Search Filters:</h4>
+                    </div>
+                    <div style="" class="row">
+
+                        <table style="" class="nav-tabs nav-stacked table table-borderless table-sm">
+                            <thead>
                             <tr>
-                                <td>
-                                    <img style="max-height:200px;" src="{{item.image_url}}">
-                                    <div id="imgbox"></div>
-                                </td>
-
-                                <td>
-                                    <a href="{% url 'product_detail' item.product_id %}">{{item.name}}</a>
-                                </td>
-
-                                <td>{{item.mana_cost}}</td>
-
-                                <td>{{item.card_type}}</td>
-
-                                <td>{{item.expansion}} ({{item.rarity}})</td>
-
-                                <td>
-                                    <div style="position: relative;">
-
-                                        <ul class="nav nav-tabs mb-3 condition-info" id="{{item.product_id}}" role="tablist"></ul>
-
-                                        <script>
-                                             conditionTab(
-                                                "clean", "CL", "{{item.normal_clean_stock}}", "{{item.foil_clean_stock}}", "{{item.product_id}}",
-                                                "true"
-                                             );
-
-                                              conditionTab(
-                                                "played", "PL", "{{item.normal_played_stock}}", "{{item.foil_played_stock}}", "{{item.product_id}}",
-                                                "false"
-                                             );
-
-                                             conditionTab(
-                                                "heavily_played", "HP", "{{item.normal_heavily_played_stock}}",
-                                                 "{{item.foil_heavily__played_stock}}", "{{item.product_id}}", "false"
-                                             );
-                                        </script>
-
-
-                                        <div class="tab-content" id="tabs-tabContent-{{item.product_id}}">
-
-
-
-                                        </div>
-
-                                        <script>
-                                            populateConditionTable(
-                                                "true", "clean", "{{item.product_id}}", "{{item.normal_clean_stock}}",
-                                                 "{{item.foil_clean_stock}}", "{{item.normal_clean_price}}", "{{item.foil_clean_price}}"
-                                            );
-
-                                            populateConditionTable(
-                                                "false", "played", "{{item.product_id}}", "{{item.normal_played_stock}}",
-                                                 "{{item.foil_played_stock}}", "{{item.normal_played_price}}", "{{item.foil_played_price}}"
-                                            );
-
-                                            populateConditionTable(
-                                                "false", "heavily_played", "{{item.product_id}}", "{{item.normal_heavily_played_stock}}",
-                                                 "{{item.foil_heavily_played_stock}}", "{{item.normal_heavily_played_price}}",
-                                                 "{{item.foil_heavily_played_price}}"
-                                            );
-
-                                        </script>
-                                    </div>
-                                </td>
+                                {% for query in advanced_query %}
+                                    <td>{{query.col}}</td>
+                                {% endfor %}
                             </tr>
-                        {% endfor %}
-                    </tbody>
+                            </thead>
 
-                </table>
+                            <tbody>
+                            <tr>
+                                {% for query in advanced_query %}
+                                    <td>{{query.value}}</td>
+                                {% endfor %}
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+
+                {% if error == "empty query" %}
+                    <br>
+                    <h4>No matching Results</h4>
+                    <p class="text-justify">We were not able to find any matching results for your search. Please check your spelling or use our
+                        <strong>Advanced
+                        Search</strong>
+                        feature and try again.</p>
+                    <hr>
+                    <hr>
+                    <h4 style="color: rgba(0, 0, 0, 0.5);">Advanced Search Guide</h4>
+
+                {% else %}
+                    <br>
+
+                    <div class="row">
+                        <div style="color: rgba(0, 0, 0, 0.6);" class="col-sm-3">Viewing {{ items.start_index }}-{{ items.end_index }} of
+                            {{ items.paginator.count }} results</div>
+                        <div class="col-sm-5"></div>
+
+                         <div class="col-sm-1">
+                            <div class="dropdown">
+                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false">
+                                    Show
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <button type="button" name="per_page_10" class="btn btn-light dropdown-item">10 cards per page</button>
+                                    <button name="per_page_20" class="btn btn-light dropdown-item">20 cards per page</button>
+                                    <button name="per_page_30" class="btn btn-light dropdown-item">30 cards per page</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-1">
+                            <div class="dropdown">
+                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false">
+                                    Sort By
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <button name="sort_by_name" class="btn btn-light dropdown-item">Name (A-Z)</button>
+                                    <button name="sort_by_name_reverse" class="btn btn-light dropdown-item">Name (Z-A)</button>
+                                    <button name="sort_by_price" class="btn btn-light dropdown-item">Price (Low to High)</button>
+                                    <button name="sort_by_price_reverse" class="btn btn-light dropdown-item">Price (High to Low)</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">{% include 'pagination.html' %}</div>
+                    </div>
+
+                    <table style="color: rgb(80,80,80);" class="nav-tabs nav-stacked table table-hover table-lg">
+                        <thead class="thead-inverse">
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                                <tr>
+                                    <td>
+                                        <img style="max-height:200px;" src="{{item.image_url}}">
+                                        <div id="imgbox"></div>
+                                    </td>
+
+                                    <td>
+                                        <a href="{% url 'product_detail' item.product_id %}">{{item.name}}</a>
+                                    </td>
+
+                                    <td>{{item.mana_cost}}</td>
+
+                                    <td>{{item.card_type}}</td>
+
+                                    <td>{{item.expansion}} ({{item.rarity}})</td>
+
+                                    <td>
+                                        <div style="position: relative;">
+
+                                            <ul class="nav nav-tabs mb-3 condition-info" id="{{item.product_id}}" role="tablist"></ul>
+
+                                            <script>
+                                                 conditionTab(
+                                                    "clean", "CL", "{{item.normal_clean_stock}}", "{{item.foil_clean_stock}}", "{{item.product_id}}",
+                                                    "true"
+                                                 );
+
+                                                  conditionTab(
+                                                    "played", "PL", "{{item.normal_played_stock}}", "{{item.foil_played_stock}}", "{{item.product_id}}",
+                                                    "false"
+                                                 );
+
+                                                 conditionTab(
+                                                    "heavily_played", "HP", "{{item.normal_heavily_played_stock}}",
+                                                     "{{item.foil_heavily__played_stock}}", "{{item.product_id}}", "false"
+                                                 );
+                                            </script>
+
+
+                                            <div class="tab-content" id="tabs-tabContent-{{item.product_id}}">
+
+
+
+                                            </div>
+
+                                            <script>
+                                                populateConditionTable(
+                                                    "true", "clean", "{{item.product_id}}", "{{item.normal_clean_stock}}",
+                                                     "{{item.foil_clean_stock}}", "{{item.normal_clean_price}}", "{{item.foil_clean_price}}"
+                                                );
+
+                                                populateConditionTable(
+                                                    "false", "played", "{{item.product_id}}", "{{item.normal_played_stock}}",
+                                                     "{{item.foil_played_stock}}", "{{item.normal_played_price}}", "{{item.foil_played_price}}"
+                                                );
+
+                                                populateConditionTable(
+                                                    "false", "heavily_played", "{{item.product_id}}", "{{item.normal_heavily_played_stock}}",
+                                                     "{{item.foil_heavily_played_stock}}", "{{item.normal_heavily_played_price}}",
+                                                     "{{item.foil_heavily_played_price}}"
+                                                );
+
+                                            </script>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                <div class="row">
+                    <div style="color: rgba(0, 0, 0, 0.6);" class="col-sm-3">Viewing {{ items.start_index }}-{{ items.end_index }} of
+                        {{ items.paginator.count }} results</div>
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-3">{% include 'pagination.html' %}</div>
+                </div>
             </div>
+
+
 
         </div>
 
     </div>
 
 
+    <script src="{% static 'custom_js/select_tab_search_results.js' %}"></script>
 
-{% endif %}
+    <!-- Load autocomplete() function from jquery -->
+    <script src="{% static 'custom_js/jquery_autocomplete.js' %}"></script>
 
-<script src="{% static 'custom_js/select_tab_search_results.js' %}"></script>
+    <!-- Load jqueryMultiFieldAutocomplete() function from jquery -->
+    <script src="{% static 'custom_js/jquery_multi_autocomplete.js' %}"></script>
 
-<!-- Load autocomplete() function from jquery -->
-<script src="{% static 'custom_js/jquery_autocomplete.js' %}"></script>
+    <!-- Load jquery function for dialog box -->
+    <script>jqueryDialogBox("#cmc-help-text", "#cmc-help-button");</script>
 
-<!-- Load jqueryMultiFieldAutocomplete() function from jquery -->
-<script src="{% static 'custom_js/jquery_multi_autocomplete.js' %}"></script>
+    <!-- Load Card info from api to populate autocomplete fields -->
+    <script>
+        $.ajax({
+            method: "GET",
+            url: "{% url 'card_info' %}",
+            success: function(data){
+                autocomplete(data.expansions, "#advanced-search-form-expansion");
+                jqueryMultiFieldAutocomplete(data.subtypes, "#advanced-search-form-subtypes");
+                jqueryMultiFieldAutocomplete(data.artists, "#advanced-search-form-card-artist");
+            },
+        });
+    </script>
 
-<script>
-    $.ajax({
-        method: "GET",
-        url: "{% url 'card_info' %}",
-        success: function(data){
-            autocomplete(data.expansions, "#advanced-search-form-expansion");
-            jqueryMultiFieldAutocomplete(data.subtypes, "#advanced-search-form-subtypes");
-            console.log(data.subtypes);
-        },
-    });
-</script>
-
+    <!-- Disable Enter Key for Advanced Search Form to prevent accidental form submission -->
+    <script>
+    $("#advanced-search-div").on("keydown", "form", function(event) {
+    return event.key != "Enter";
+  });
+  </script>
 
 {% endblock %}
-<!--  -->

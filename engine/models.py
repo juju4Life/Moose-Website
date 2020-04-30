@@ -150,13 +150,13 @@ class MTG(models.Model):
     card_type = models.CharField(max_length=255, default='', blank=True)
     subtypes = models.CharField(max_length=255, default='', blank=True)
     loyalty = models.CharField(max_length=255, default='', blank=True)
-    power = models.CharField(max_length=255, default='', blank=True)
-    toughness = models.CharField(max_length=255, default='', blank=True)
+    power = models.CharField(max_length=255, null=True, default=None, blank=True)
+    toughness = models.CharField(max_length=255, null=True, default=None, blank=True)
     layout = models.CharField(max_length=255, default='', blank=True)
     artist = models.CharField(max_length=255, default='', blank=True)
     collector_number = models.CharField(max_length=255, default='', blank=True)
     mana_cost = models.CharField(max_length=255, default='', blank=True)
-    converted_mana_cost = models.DecimalField(max_digits=10, decimal_places=1, default=0, blank=True)
+    converted_mana_cost = models.DecimalField(max_digits=10, decimal_places=1, null=True, default=None, blank=True)
     converted = models.BooleanField(default=False)
 
     def __str__(self):
@@ -164,6 +164,7 @@ class MTG(models.Model):
 
     class Meta:
         verbose_name_plural = "MTG Card Database"
+        ordering = ['expansion', 'name']
 
 
 class TcgCredentials(models.Model):
