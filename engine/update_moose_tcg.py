@@ -85,7 +85,8 @@ def moose_price():
 
                 if language != 'English' and printing != 'Foil' and condition != 'Unopened':
                     # catch instances where there is no low price
-
+                    pass
+                    '''
                     good_languages = ['Japanese', 'Korean', 'Russian', 'German']
 
                     compare_price = api.get_market_price(product_id)
@@ -129,6 +130,7 @@ def moose_price():
                                 if updated_price < .25:
                                     updated_price = .25
                                 api.update_sku_price(sku_id=sku, price=updated_price, _json=True, channel='1')
+                    '''
 
                 elif language == 'English' and condition != 'Unopened' and printing != 'Foil':
                     url = format_tcg_ready_url(expansion, name)
