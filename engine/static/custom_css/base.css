@@ -1,0 +1,18 @@
+
+.hidden-dialog{
+    display: none;
+}
+
+.card-info-popup-table{
+    border-collapse: separate;
+    border-spacing: 15px 0px;
+}
+
+.card-info-popup-data-label{
+    color: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

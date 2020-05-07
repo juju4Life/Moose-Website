@@ -95,6 +95,7 @@ class MTGAdmin(ImportExportModelAdmin):
     list_display = ['name', 'expansion', 'language', ]
     list_filter = ['expansion']
     fields = (
+        "svg_mana_cost",
         ("name", "expansion", ),
         ("language", ),
         ("normal_clean_price", "normal_clean_stock", ),
