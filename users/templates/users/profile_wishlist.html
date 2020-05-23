@@ -24,13 +24,22 @@
 
                         <td>
                             <form action="{% url 'search' %}" method="GET">
-                                <button style="color: rgba(52, 58, 64, 1);" type="submit" class="btn btn-outline-light">{{ item.name }}</button>
+                                <button type="submit" class="btn">{{ item.name }}</button>
                                 <input type="hidden" name="q" value="{{ item.name }}">
                             </form>
                         </td>
 
                         <td>
                             {{ item.expansion }}
+                        </td>
+
+                        <td>
+                            <form method="GET" action="{% url 'remove_wishlist_item' %}">
+                                <button class="btn">
+                                    <i class="material-icons main-black">delete_forever</i>
+                                    <input type="hidden" name="remove" value="{{ item.product_id }}">
+                                </button>
+                            </form>
                         </td>
 
                     </tr>

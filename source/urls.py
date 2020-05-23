@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
+
 from contact import views as contact_views
 from engine import views as home_views
 from buylist import views as buylist_views
@@ -14,6 +15,7 @@ urlpatterns = [
     # path('profile/update', user_views.login_required, name='update'),
     path('captcha/', include('captcha.urls')),
     path('paypal/', include('paypal.standard.ipn.urls')),
+    path('user/', include('users.urls')),
     path('at/', include('admin_tools.urls')),
     path('sms/', include('sms.urls')),
     path('admin/', admin.site.urls),

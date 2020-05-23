@@ -95,11 +95,24 @@ def user_login(request):
 
 
 @login_required
+def remove_wishlist_item(request):
+    if request.GET.get("remove"):
+        customer = Customer.objects.get(email=request.user.email)
+        product_id = request.GET.get("remove") + ","
+        customer.wishlist = customer.wishlist.replace(product_id, "")
+        customer.save()
+        return redirect("profile")
+
+
+@login_required
 def profile(request):
     if request.user.is_authenticated:
         customer = Customer.objects.get(email=request.user.email)
         wishlist_items = customer.wishlist.split(",")[:-1]
-        wishlist_items = MTG.objects.filter(product_id__in=wishlist_items)
+        wishlist_items = MTG.objects.filter(product_id__in=wishlist_items).order_by("name")
+
+        for each in customer.restock_list.all():
+            pass
 
         if request.method == 'POST':
 

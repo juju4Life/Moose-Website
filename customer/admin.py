@@ -22,8 +22,6 @@ class CustomerAdmin(SimpleHistoryAdmin):
         'name',
         'email',
         'notes',
-        'wishlist',
-        'restock_notice',
     )
 
 
