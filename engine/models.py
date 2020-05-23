@@ -156,9 +156,11 @@ class MTG(models.Model):
     artist = models.CharField(max_length=255, default='', blank=True)
     collector_number = models.CharField(max_length=255, default='', blank=True)
     mana_cost = models.CharField(max_length=255, default='', blank=True)
-    svg_mana_cost = models.TextField(default='', blank=True)
+    mana_cost_encoded = models.CharField(max_length=255, default='', blank=True)
     converted_mana_cost = models.DecimalField(max_digits=10, decimal_places=1, null=True, default=None, blank=True)
     converted = models.BooleanField(default=False)
+
+    restock_notice = models.ManyToManyField("customer.CustomerRestockNotice")
 
     def __str__(self):
         return self.name

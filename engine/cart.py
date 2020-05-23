@@ -35,18 +35,29 @@ class Cart(object):
         if not cart:
             is_model_set = hasattr(settings, 'USE_CART_MODELS')
             if is_model_set and settings.USE_CART_MODELS:
-                # cart =
                 pass
             else:
                 cart = self.session[settings.CART_SESSION_KEY] = {}
 
         self.cart = cart
 
-    def add(self, product, name, price, set_name, condition, language, total, quantity=1):
-        product_id = str(product)
+    def add(self, product_id, name, expansion, condition, printing, price, language, total, quantity=1):
+        product_id = str(product_id)
+
         if product_id not in self.cart:
-            self.cart[product_id] = {'product': product, 'name': name, 'price': str(price), 'set_name': set_name, 'condition': condition, 'language': language,
-                                     'quantity': 0, 'total': total}
+
+            self.cart[product_id] = {
+                'product': product_id,
+                'name': name,
+                'expansion': expansion,
+                'condition': condition,
+                'printing': printing,
+                'price': str(price),
+                'language': language,
+                'total': total,
+                'quantity': 0,
+
+            }
 
         self.cart[product_id]['quantity'] = int(quantity)
         self.cart[product_id]['total'] = str(total)
@@ -56,10 +67,17 @@ class Cart(object):
         self.session[settings.CART_SESSION_KEY] = self.cart
         self.session.modified = True
 
-    def remove(self, product):
-        product_id = str(product.id)
+    def remove(self, product_id):
         if product_id in self.cart:
             del self.cart[product_id]
+            self.save()
+
+    def update(self, product_id, new_value, price):
+        if product_id in self.cart:
+            quantity = int(new_value)
+            price = Decimal(price)
+            self.cart[product_id]["quantity"] = quantity
+            self.cart[product_id]["total"] = str(quantity * price)
             self.save()
 
     def empty(self):
@@ -74,15 +92,11 @@ class Cart(object):
         app_label = splitted[0]
         model_name = splitted[1]
 
-        '''try:
+        try:
             model = apps.get_model(app_label, model_name)
         except LookupError:
             message = 'Model {} not found in app  {}'
             raise ModelDoesNotExist(message.format(model_name, app_label))
-
-        products = model.objects.filter(id__in=product_ids)
-        for product in products:
-            self.cart[str(product.id)]['product'] = product'''
 
         for item in self.cart.values():
             item['total_price'] = item['price'] * item['quantity']
@@ -101,6 +115,6 @@ class Cart(object):
 
     def clear(self):
         self.cart.clear()
-        #self.session.cart[settings.CART_SESSION_KEY] = {}
+        # self.session.cart[settings.CART_SESSION_KEY] = {}
         self.session.modified = True
 

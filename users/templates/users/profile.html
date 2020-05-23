@@ -1,6 +1,5 @@
 {% extends 'home.html' %}
-{% load staticfiles %}
-{% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
 {% include 'profile_style.html' %}
@@ -12,25 +11,22 @@
 	}
 </style>
 
-<div style="margin-top:5%">
-
+<div style="margin-top: 5%">
 	<nav>
-
 		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-
 			<a class="nav-item nav-link active" id="nav-account-tab" data-toggle="tab" href="#nav-account" role="tab" aria-controls="nav-account"
 			   aria-selected="true">
 				Account</a>
-
-			<a class="nav-item nav-link" id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address"
-			   aria-selected="false">
-				Address</a>
 
 			<a class="nav-item nav-link" id="nav-orders-tab" data-toggle="tab" href="#nav-orders" role="tab" aria-controls="nav-orders" aria-selected="false">
 				Orders</a>
 
 			<a class="nav-item nav-link" id="nav-wishlist-tab" data-toggle="tab" href="#nav-wishlist" role="tab" aria-controls="nav-wishlist" aria-selected="false">
 			Wishlist</a>
+
+			<a class="nav-item nav-link" id="nav-restock-tab" data-toggle="tab" href="#nav-restock" role="tab" aria-controls="nav-restock"
+			   aria-selected="false">
+				Restock Notifications</a>
 
 			<a class="nav-item nav-link" id="nav-treasures-tab" data-toggle="tab" href="#nav-treasures" role="tab" aria-controls="nav-treasures"
 			   aria-selected="false">
@@ -45,346 +41,16 @@
 		<!-- Main Profile Information -->
 
 		<div class="tab-pane fade show active" id="nav-account" role="tabpanel" aria-labelledby="nav-account-tab">
-
-			<div class="row">
-
-				<div class="col-sm-4">
-
-					<table class="info-table">
-						<thead>
-							<tr>
-								<th></th>
-								<th></th>
-							</tr>
-
-						</thead>
-
-						<tbody>
-							<tr>
-								<td class="label">Username:</td>
-								<td class="profile-data">{{user.username}}</td>
-							</tr>
-
-							<tr>
-								<td class="label">Store Credit:</td>
-								<td class="profile-data">{{customer.credit}}</td>
-							</tr>
-
-							<tr>
-								<td class="label">Email:</td>
-								<td class="profile-data">{{customer.email}}</td>
-							</tr>
-
-							<tr>
-								<td class="label">Birthday:</td>
-								<td class="profile-data">{{customer.birth_date}}</td>
-							</tr>
-
-							{% if not request.POST %}
-								<tr>
-									<td>
-										<form style="margin-top:1%" method="POST" action="{% url 'profile' %}">
-											{% csrf_token %}
-											<input type="submit" name="update_password" value="Change Password" class="btn btn-info" >
-										</form>
-									</td>
-									<td>
-
-										<div style="margin-top:1%;">
-											<form method="POST" action="{% url 'profile' %}">
-											{% csrf_token %}
-												<input type="submit" name="update_email" value="Change Email" class="btn btn-info" >
-											</form>
-
-										</div>
-									</td>
-								</tr>
-							{% endif %}
-						</tbody>
-					</table>
-
-
-					{% if request.POST.update_password %}
-
-						<div class="form-wrapper-default profile-form">
-
-							<form method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
-								<fieldset>
-									<legend class="border-bottom mb-4">Change Password</legend>
-									{{password_form|crispy}}
-								</fieldset>
-
-								<input type="submit" name="update_password" value="Update" class ='btn btn-info' />
-					  		</form>
-						</div>
-
-					{% endif %}
-
-					{% if request.POST.update_email %}
-						<div class="form-wrapper-default profile-form">
-							<form method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
-								<fieldset>
-									<legend>Change Email</legend>
-									{{email_form|crispy}}
-								</fieldset>
-								<input type="submit" name="update_email" value="Update" class ='btn btn-info' />
-					  		</form>
-
-
-						</div>
-
-					{% endif %}
-				</div>
-
-				<div class="col-sm-4">
-					<table class="info-table">
-						<thead>
-							<tr>
-								<th></th>
-								<th></th>
-								<th></th>
-							</tr>
-
-						</thead>
-
-						<tbody>
-							{% if customer.address_line_1 %}
-								<tr>
-									<td class="label">Default</td>
-									<td class="profile-data">
-										{{customer.shipping_name}} <br>
-										{{customer.address_line_1}} {{address_line_2}} <br>
-										{{customer.city}} {{customer.state}} {{customer.zip_code}}
-									</td>
-									<td></td>
-								</tr>
-
-								{% if not request.POST %}
-								<tr>
-									<td></td>
-									<td>
-										<div style="">
-											<form method="POST" action="{% url 'profile' %}">
-											{% csrf_token %}
-												<input type="submit" name="update_address" value="Change Address" class="btn btn-info" >
-											</form>
-										</div>
-									</td>
-
-									<td>
-										<div style="">
-											<form method="POST" action="{% url 'profile' %}">
-											{% csrf_token %}
-												<input type="submit" name="delete_address" value="Delete" class="btn btn-secondary" >
-											</form>
-										</div>
-									</td>
-								</tr>
-								{% endif %}
-
-							{% else %}
-
-								{% if not request.POST %}
-									<tr>
-										<td></td>
-										<td>
-											<div style="">
-												<form method="POST" action="{% url 'profile' %}">
-												{% csrf_token %}
-													<input type="submit" name="update_address" value="Add Address" class="btn btn-info" >
-												</form>
-											</div>
-										</td>
-									</tr>
-								{% endif %}
-							{% endif %}
-						</tbody>
-					</table>
-
-					{% if request.POST.update_address %}
-						<div class="form-wrapper-default">
-							<form method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
-								<fieldset>
-									<legend class="border-bottom mb-4">Default Address</legend>
-									{{address_form|crispy}}
-								</fieldset>
-								<input type="submit" name="update_address" value="Update" class ='btn btn-info' />
-					    	</form>
-
-						</div>
-
-					{% endif %}
-					<hr>
-					<table class="info-table">
-						<thead>
-							<tr>
-								<th></th>
-								<th></th>
-								<th></th>
-							</tr>
-
-						</thead>
-
-						<tbody>
-
-							{% if customer.address_line_1 %}
-
-								{% if customer.second_address_line_2 %}
-
-									<tr>
-										<td class="label">Address 2</td>
-										<td class="profile-data">
-											{{customer.second_name}} <br>
-											{{customer.second_address_line_1}} {{customer.second_address_line_2}} <br>
-											{{customer.second_city}} {{customer.second_state}} {{customer.second_zip_code}}
-										</td>
-										<td></td>
-									</tr>
-									{% if not request.POST %}
-										<tr>
-											<td></td>
-											<td>
-												<div style="">
-													<form method="POST" action="{% url 'profile' %}">
-													{% csrf_token %}
-														<input type="submit" name="update_second_address" value="Change Address" class="btn btn-info" >
-													</form>
-												</div>
-											</td>
-											<td>
-												<div style="">
-													<form method="POST" action="{% url 'profile' %}">
-													{% csrf_token %}
-														<input type="submit" name="delete_second_address" value="Delete" class="btn btn-secondary" >
-													</form>
-												</div>
-											</td>
-										</tr>
-									{% endif %}
-								{% else %}
-									{% if not request.POST %}
-										<tr>
-											<td class="label">Address 2</td>
-											<td>
-												<div style="">
-													<form method="POST" action="{% url 'profile' %}">
-													{% csrf_token %}
-														<input type="submit" name="update_second_address" value="Add Address" class="btn btn-info" >
-													</form>
-												</div>
-											</td>
-											<td></td>
-										</tr>
-									{% endif %}
-								{% endif %}
-							{% endif %}
-
-						</tbody>
-					</table>
-
-					{% if request.POST.update_second_address %}
-
-					 	<div class="form-wrapper-default">
-							<form method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
-								<fieldset>
-									<legend class="border-bottom mb-4">Second Address</legend>
-									{{address_form|crispy}}
-								</fieldset>
-								<input type="submit" name="update_second_address" value="Update" class ='btn btn-info' />
-					    	</form>
-						</div>
-					{% endif %}
-
-				</div>
-
-			</div>
-
-			<div class="row" style="margin-top:1%;margin-left:1%">
-				<div class=""></div>
-				<div class="col-sm-11">
-					<hr>
-					<h5 class="subscribe-title">
-						Would you like to join our mailing list? Choose your subscriptions below
-					</h5>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="form-check col-sm-6">
-					<form method="POST" action="{% url 'profile' %}">
-					{% csrf_token %}
-
-						<div class="form-check">
-							{% if customer.email_subscriber_events %}
-								<input type="checkbox" checked="checked" class="form-check-input" id="check-box-1-subscribed" name="events" value="events">
-								<label class="form-check-label" for="check-box-1-subscribed">Events (Subscribed)</label>
-							{% else %}
-								<input type="checkbox" class="form-check-input" id="check-box-1" name="events" value="events">
-								<label class="form-check-label" for="check-box-1">Events</label>
-							{% endif %}
-						</div>
-
-						<div class="form-check">
-							{% if customer.email_subscriber_buylist %}
-								<input type="checkbox" checked="checked" class="form-check-input" id="check-box-2-subscribed" name="buylist" value="buylist">
-								<label class="form-check-label" for="check-box-1-subscribed">Buylist (Subscribed)</label>
-							{% else %}
-								<input type="checkbox" class="form-check-input" id="check-box-2" name="buylist" value="buylist">
-								<label class="form-check-label" for="check-box-1">Buylist</label>
-							{% endif %}
-						</div>
-
-						<div class="form-check">
-							{% if customer.email_subscriber_new_products %}
-								<input type="checkbox" checked="checked" class="form-check-input" id="check-box-3-subscribed" name="new_products"
-									   value="new_products">
-								<label class="form-check-label" for="check-box-3-subscribed">New Products (Subscribed)</label>
-							{% else %}
-								<input type="checkbox" class="form-check-input" id="check-box-3" name="new_products" value="new_products">
-								<label class="form-check-label" for="check-box-3">New Products</label>
-							{% endif %}
-						</div>
-
-
-
-
-						<input style="margin-top:1%;" name="subscriptions" type="submit" class="btn btn-info" value="Update Options">
-					</form>
-				</div>
-
-			</div>
-
+			{% include 'users/profile_account.html' %}
 		</div>
 
-			<div role="tabpanel" class="tab-pane">
+		<div class="tab-pane fade" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab"></div>
 
-
-
-          	</div>
-
-
-
-
-
-
-		<div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
-
-			<div>
-
-			</div>
-
-			<div role="tabpanel" class="tab-pane">
-
-
-
-			</div>
-
+		<div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab">
+			{% include 'users/profile_wishlist.html' %}
 		</div>
-
-		<div class="tab-pane fade" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">Three</div>
-
-		<div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab">Three</div>
-		<div class="tab-pane fade" id="nav-treasures" role="tabpanel" aria-labelledby="nav-treasures-tab">Three</div>
+		<div class="tab-pane fade" id="nav-restock" role="tabpanel" aria-labelledby="nav-restock-tab"></div>
+		<div class="tab-pane fade" id="nav-treasures" role="tabpanel" aria-labelledby="nav-treasures-tab"></div>
 	</div>
 </div>
 

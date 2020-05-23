@@ -1,51 +1,77 @@
 {% extends 'home_base.html' %}
+{% load static %}
+
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'custom_css/cart.css' %}">
 
-<div class="container-fluid" style="min-height:95%;">
+<div id="main-cart-data" class="container-fluid" style="min-height:95%;">
 
 	<div class="row">
-		<div class="col-sm-1 col-sm-1"></div>
-
-		<div class="inner col-sm-6 col-sm-6">
-			<table style="color: rgb(80,80,80); margin-top: 5%;" class="nav-pills nav-stacked table table table-hover table-sm">
+		<div class="col-sm-8 offset-sm-1 table-responsive">
+			<table class="nav-pills nav-stacked table table table-hover table-sm">
 
 				<thead class="thead-inverse">
 					<tr class="header">
-					  <th>Name</th>
-					  <th>Price</th>
-					  <th>Qty.</th>
-					  <th>Total</th>
-					  <th></th>
+
+						<th>printing</th>
+						<th>Condition</th>
+						<th>Name</th>
+						<th>Set</th>
+						<th>Price</th>
+						<th>Qty.</th>
+						<th>Total</th>
+						<th></th>
 					</tr>
 				</thead>
 					<tbody>
 
 						{% for card in cart %}
 
-
 							<tr>
+								<td>
+									{{ card.printing }}
+								</td>
+								<td>
+									{{ card.condition }}
+								</td>
 
-							  <td>
-								  {{card.name}}
-							  </td>
+								<td>
+									<a>{{ card.name }}</a>
+								</td>
 
-							   <td id="price"><strong>${{card.price|floatformat:2}}</strong></td>
+								<td>
+									{{ card.expansion }}
+								</td>
 
 							   <td>
-								   <form action="{% url 'add_to_cart' card.product %}" method="post">
-							{% csrf_token %}
-									   <input style="color: black;" id="box" size="3" type="number" name="quantity" min="1" max="8" value="{{card.quantity}}">
-									   <button style="" type="submit" class="btn btn-success">Update</button>
+								   ${{card.price|floatformat:2}}
+							   </td>
+
+							   <td>
+								   <form action="{% url 'update_cart' card.product %}" method="post">
+										{% csrf_token %}
+									   <input type="hidden" name="price" value="{{ card.price }}" >
+									   <div class="input-group mb-3">
+										   <input size="2" type="number" name="quantity" min="1" max="8" value="{{card.quantity}}" >
+										   <div class="input-group-append">
+											   <button  type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
+										   </div>
+									   </div>
 								   </form>
 							   </td>
-								<td><strong>${{card.total|floatformat:2}}</strong></td>
+
+								<td>
+									${{card.total|floatformat:2}}
+								</td>
 
 							   <td>
-								   <button type="submit" formaction="{% url 'remove_from_cart' card.product %}" id="trashButton" class="btn"
-										   style=""><i
-										   class="material-icons">delete_forever</i></button>
+								   <form method="GET" action="{% url 'remove_from_cart' card.product %}">
+									   <button type="submit" class="btn">
+										   <i class="material-icons main-black">delete_forever</i>
+									   </button>
+
+								   </form>
 
 							   </td>
 							</tr>
@@ -56,24 +82,28 @@
 			</table>
 		</div>
 
-		<div class="col-sm-1 col-sm-1"></div>
+		<div class="row">
+			<div id="totalBox" class="col-sm-12 offset-sm-1">
 
-	<div class="row">
-		<div id="totalBox" class="col-sm-12">
-			<center><h3>Summary</h3></center>
-			<hr>
-			<h4>Subtotal: ${{sub_total|floatformat:2}}</h4>
-			<h4>Number of items: {{length}}</h4>
-			<hr>
-			<center>
-			  <form action="" method="post">{% csrf_token %}
-				  <button name="checkout" value="check" id="checkout" type="submit" formaction="{% url 'checkout' %}">Checkout&nbsp;&nbsp;&nbsp;<span
-						 class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
-				  <button id="checkout" type="submit" formaction="{% url 'empty_cart' %}" style="background-color:gray">Empty Cart&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-			  </form>
-			</center>
+				<div class="p-3">
+					<h4>Subtotal: ${{sub_total|floatformat:2}}</h4>
+				<h4>Number of items: {{length}}</h4>
+				<hr>
+				  <form action="" method="post">{% csrf_token %}
+
+					  <div class="form-row">
+						  <button class="btn btn-success btn-lg w-100 mb-1" name="checkout" value="check" type="submit"
+								  formaction="{% url 'checkout' %}">Checkout
+						  </button>
+					  </div>
+
+					  <div class="form-row">
+						  <button class="btn btn-secondary btn-lg w-100" type="submit" formaction="{% url 'empty_cart' %}">Empty Cart</button>
+					  </div>
+				  </form>
+				</div>
+			</div>
 		</div>
-	</div>
 
 	</div>
 </div>

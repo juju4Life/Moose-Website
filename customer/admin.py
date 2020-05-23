@@ -15,13 +15,15 @@ class CustomerAdmin(SimpleHistoryAdmin):
     save_on_top = True
     history_list_display = ['credit', 'employee_initial', 'changeReason', ]
     list_display = ['name', 'credit', 'email', 'notes', ]
-    search_fields = ['name']
+    search_fields = ['name', ]
     ordering = ['name', ]
     fields = (
         ('credit', 'employee_initial',),
         'name',
         'email',
         'notes',
+        'wishlist',
+        'restock_notice',
     )
 
 

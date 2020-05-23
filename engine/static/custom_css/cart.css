@@ -1,45 +1,4 @@
 
-
-#box{
-  width:50px;
-  text-align: center;
-  height: 30px;
-}
-
-
-#set {
-    margin-top: -3%;
-}
-
-th {
-    font-size: 20px;
-
-}
-
-#price {
-}
-
-#name {
-    font-size: 20px;
-    margin-top: -1%;
-}
-
-#nameHead {
-    color: royalblue;
-}
-
-#title {
-    font-family: Catull BQ Regular;
-    font-size: 50px;
-    margin-bottom: 15%;
-    margin-left: 5%;
-}
-
-
-th {
-    font-family: Catull BQ Regular;
-}
-
 #totalBox {
     position: static;
     color: rgb(80,80,80);
@@ -50,30 +9,8 @@ th {
     background-color: rgba(234, 237, 242,.2);
     border-radius: 15px;
     border: 1px solid lightgray;
-    height: 350px;
 }
 
-#checkout {
-    font-size: 18px;
-    width: 95%;
-    height: 40%;
-    border-radius: 10px;
-    color: white;
-    background-color: #63bc0a;
-    display: inline-block;
-    padding: 10px;
-    margin: 5px;
+#main-cart-data{
+    margin-top: 3%;
 }
-
-h4 {
-    font-weight: bold;
-}
-
-
-#trashButton {
-  color: black;
-}
-
-
-#updateButton {
-  color: black;

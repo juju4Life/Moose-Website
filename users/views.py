@@ -11,9 +11,12 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.core.mail import EmailMessage
+
 from .forms import UserRegisterForm, UserUpdateForm, CustomerUpdateForm, UpdateEmailForm, LoginForm, UpdatePasswordForm
 from .tokens import account_activation_token
+
 from customer.models import Customer
+from engine.models import MTG
 
 
 def register(request):
@@ -80,7 +83,10 @@ def user_login(request):
             if user is not None:
                 login(request, user)
 
-                return redirect('profile')
+                if request.GET.get('redirect-path'):
+                    return redirect(request.GET.get('redirect-path'))
+                else:
+                    return redirect('profile')
             else:
                 messages.warning(request, 'Email and Password does not match.')
                 return redirect('login')
@@ -92,6 +98,8 @@ def user_login(request):
 def profile(request):
     if request.user.is_authenticated:
         customer = Customer.objects.get(email=request.user.email)
+        wishlist_items = customer.wishlist.split(",")[:-1]
+        wishlist_items = MTG.objects.filter(product_id__in=wishlist_items)
 
         if request.method == 'POST':
 
@@ -112,7 +120,7 @@ def profile(request):
 
                 user_form = UserUpdateForm(request.POST, instance=request.user)
 
-                return render(request, 'users/profile.html', {'customer': customer, 'user_form': user_form})
+                return render(request, 'users/profile.html', {'customer': customer, 'user_form': user_form, "wishlist_items": wishlist_items})
 
             elif request.POST.get('update_address'):
                 address_form = CustomerUpdateForm(request.POST, instance=customer)
@@ -137,7 +145,7 @@ def profile(request):
                     return redirect('profile')
                 else:
                     address_form = CustomerUpdateForm(request.POST, instance=customer)
-                    return render(request, 'users/profile.html', {'customer': customer, 'address_form': address_form})
+                    return render(request, 'users/profile.html', {'customer': customer, 'address_form': address_form, "wishlist_items": wishlist_items})
 
             elif request.POST.get('update_second_address'):
                 address_form = CustomerUpdateForm(request.POST, instance=customer)
@@ -160,7 +168,7 @@ def profile(request):
                     return redirect('profile')
                 else:
                     address_form = CustomerUpdateForm(request.POST, instance=customer)
-                    return render(request, 'users/profile.html', {'customer': customer, 'address_form': address_form})
+                    return render(request, 'users/profile.html', {'customer': customer, 'address_form': address_form, "wishlist_items": wishlist_items})
 
             elif request.POST.get('update_email'):
                 email_form = UpdateEmailForm(request.POST, instance=request.user)
@@ -177,7 +185,7 @@ def profile(request):
                     return redirect('profile')
                 else:
                     email_form = UpdateEmailForm(request.POST, instance=request.user)
-                    return render(request, 'users/profile.html', {'customer': customer, 'email_form': email_form})
+                    return render(request, 'users/profile.html', {'customer': customer, 'email_form': email_form, "wishlist_items": wishlist_items})
 
             elif request.POST.get('delete_address'):
                 customer.address_line_1 = ''
@@ -247,7 +255,7 @@ def profile(request):
             user_form = UserUpdateForm(request.POST, instance=request.user)
             profile_form = CustomerUpdateForm(instance=request.user)
 
-        return render(request, 'users/profile.html', {'customer': customer})
+        return render(request, 'users/profile.html', {'customer': customer, "wishlist_items": wishlist_items})
 
     else:
         user_form = None

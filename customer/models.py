@@ -34,6 +34,8 @@ class Customer(models.Model):
     email_subscriber_events = models.BooleanField(default=False)
     email_subscriber_buylist = models.BooleanField(default=False)
     email_subscriber_new_products = models.BooleanField(default=False)
+    wishlist = models.TextField(default='', blank=True)
+    restock_list = models.ManyToManyField("customer.CustomerRestockNotice")
 
     history = HistoricalRecords(
         history_change_reason_field=models.TextField(null=True)
@@ -44,4 +46,20 @@ class Customer(models.Model):
 
     class Meta:
         verbose_name_plural = "Customer Store Credit"
+
+
+class CustomerRestockNotice(models.Model):
+    email = models.CharField(max_length=255, default='')
+    product_id = models.CharField(max_length=255, default='')
+    variation = models.CharField(max_length=255, default='')
+    foil = models.BooleanField(default=False)
+    normal = models.BooleanField(default=False)
+    clean = models.BooleanField(default=False)
+    played = models.BooleanField(default=False)
+    heavily_played = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.email
+
+
 

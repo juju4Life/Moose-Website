@@ -8,6 +8,16 @@
     <link rel="stylesheet" type="text/css" href="{% static 'custom_css/search_result.css' %}">
 
     <script>
+        $(function() {
+            let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+
+            if (isMobile) {
+
+            }
+         });
+    </script>
+
+    <script>
       $( function() {
         $( "#accordion" ).accordion({
           collapsible: true,
@@ -16,22 +26,27 @@
         });
       } );
     </script>
+
     <script src="{% static 'custom_js/search_condition_tab.js' %}"></script>
 
     <div class="container-fluid" style="min-height:95%;">
         <div class="row">
-            <nav id="search-sidebar" class="col-md-2 d-none d-sm-block bg-dark sidebar">
+            <nav id="search-sidebar" class="col-md-2 d-sm-block bg-dark sidebar">
                 <div class="sidebar-sticky">
                     <div id="advanced-search-div" style="">
                         <hr style="background-color: white;">
-                        <h4 style="color: rgba(255, 255, 255, 0.6);" class="active"> Advanced Search <i class="material-icons"></i></h4>
-                        <div>
+                        <h4>
+                            <a href="#advanced-search-container" style="color:rgba(255, 255, 255, 1);" data-toggle="collapse" class="active"> Advanced
+                            Search
+                            </a>
+                        </h4>
+                        <div class="collapse" id="advanced-search-container">
                             <form method="GET" action="{% url 'search' %}">
                                  <fieldset>
                                      <div id="accordion">
 
-                                         <label class="hidden-dialog">Name</label>
-                                         <div class="hidden-dialog">
+                                         <label>Name</label>
+                                         <div>
                                              <div class="form-row">
                                                   <div class="input-group input-group-sm mb-3">
                                                       {{form.name_query|as_crispy_field}}
@@ -44,9 +59,9 @@
                                              </div>
                                          </div>
 
-                                         <label class="hidden-dialog">Oracle Text</label>
-                                         <div class="hidden-dialog">
-                                             <div class="hidden-dialog" id="oracle-text-help-text" title="Oracle Text">
+                                         <label>Oracle Text</label>
+                                         <div>
+                                             <div id="oracle-text-help-text" title="Oracle Text">
                                                  <p>Search the updated rules text of a card for keywords, phrases, or mana
                                                      symbols. Separate each query by a comma. Use the following symbols to match the tap symbol and
                                                      mana symbols:<br>
@@ -68,12 +83,12 @@
                                              </div>
 
                                             <div class="input-group input-group-sm mb-3">
-                                              {{form.oracle_text}}
+                                                {{form.oracle_text}}
                                             </div>
                                          </div>
 
-                                         <label class="hidden-dialog">Set</label>
-                                         <div class="hidden-dialog">
+                                         <label>Set</label>
+                                         <div>
 
                                              <div id="set-help-text" title="Set Name">
                                                  <p>Filter results to be in one or more sets. each set must be separated by a comma.</p>
@@ -90,8 +105,8 @@
 
                                          </div>
 
-                                         <label class="hidden-dialog">Artists</label>
-                                         <div class="hidden-dialog">
+                                         <label>Artists</label>
+                                         <div class="">
 
                                              <div id="artist-help-text" title="Artists">
                                                  <p>Filter results by one or more artists. Each artist must be separated by a comma</p>
@@ -108,8 +123,8 @@
                                             </div>
                                          </div>
 
-                                         <label class="hidden-dialog">Colors</label>
-                                         <div class="hidden-dialog">
+                                         <label class="">Colors</label>
+                                         <div class="">
                                              <div style="" class="form-row">
                                                  <div class="form-check form-check-inline">
                                                      {{form.colors|as_crispy_field}}
@@ -117,15 +132,15 @@
                                              </div>
                                          </div>
 
-                                         <label class="hidden-dialog">Color Identity</label>
-                                         <div class="hidden-dialog">
+                                         <label class="">Color Identity</label>
+                                         <div class="">
                                             <div class="input-group input-group-sm mb-3">
                                               {{form.color_identity|as_crispy_field}}
                                             </div>
                                          </div>
 
-                                         <label class="hidden-dialog">CMC</label>
-                                         <div class="hidden-dialog">
+                                         <label class="">CMC</label>
+                                         <div class="">
 
                                             <div style="max-width: 70%;" class="input-group input-group-sm">
                                                 {{form.cmc_start}}&nbsp;
@@ -141,8 +156,8 @@
                                              </div>
                                          </div>
 
-                                         <label class="hidden-dialog">Rarity</label>
-                                         <div class="hidden-dialog">
+                                         <label class="">Rarity</label>
+                                         <div class="">
 
                                              <div id="rarity-help-text" title="Rarity">
                                                  <p>Filter results for each rarity selected</p>
@@ -157,15 +172,15 @@
                                              </div>
                                          </div>
 
-                                         <label class="hidden-dialog">Card Types</label>
-                                         <div class="hidden-dialog">
+                                         <label class="">Card Types</label>
+                                         <div class="">
                                             <div class="input-group input-group-sm mb-3">
                                               {{form.card_type|as_crispy_field}}
                                             </div>
                                          </div>
 
-                                         <label class="hidden-dialog">Subtypes</label>
-                                         <div class="hidden-dialog">
+                                         <label class="">Subtypes</label>
+                                         <div class="">
                                              <div id="subtypes-help-text" title="Card Subtypes">
                                                  <p>
                                                      Filter results by each subtype a card contains. Each query must be separated by a comma.
@@ -185,16 +200,16 @@
                                              </div>
                                          </div>
 
-                                         <label class="hidden-dialog">Power</label>
-                                         <div class="hidden-dialog">
+                                         <label class="">Power</label>
+                                         <div class="">
                                             <div style="max-width: 70%;" class="input-group input-group-sm">
                                                 {{form.power_start}}&nbsp;<span class="advanced-search-between-inputs">to
                                             </span>&nbsp;{{form.power_end}}
                                             </div>
                                          </div>
 
-                                         <label class="hidden-dialog">Toughness</label>
-                                         <div class="hidden-dialog">
+                                         <label class="">Toughness</label>
+                                         <div class="">
                                             <div style="max-width: 70%;" class="input-group input-group-sm">
                                                 {{form.toughness_start}}
                                                 &nbsp;<span class="advanced-search-between-inputs">to</span>&nbsp;
@@ -216,15 +231,15 @@
                 {% if advanced_query %}
                     <br>
                     <div style="" class="row">
-                        <h4 style="color: rgba(0, 0, 0, 0.7);">Search Filters:</h4>
+                        <h4 style="color: rgba(0, 0, 0, 0.7);">Search Filters</h4>
                     </div>
                     <div style="" class="row">
 
-                        <table style="" class="nav-tabs nav-stacked table table-borderless table-sm">
+                        <table style="" class="nav-tabs nav-stacked table table-borderless table-responsive table-sm">
                             <thead>
                             <tr>
                                 {% for query in advanced_query %}
-                                    <td>{{query.col}}</td>
+                                    <td>{{query.col}}:</td>
                                 {% endfor %}
                             </tr>
                             </thead>
@@ -257,9 +272,9 @@
                     <div class="row">
                         <div style="color: rgba(0, 0, 0, 0.6);" class="col-sm-3">Viewing {{ items.start_index }}-{{ items.end_index }} of
                             {{ items.paginator.count }} results</div>
-                        <div class="col-sm-5"></div>
+                        <div class="col-sm-7"></div>
 
-                         <div class="col-sm-1">
+                         <!--<div class="col-sm-1">
                             <div class="dropdown">
                                 <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown"
                                         aria-haspopup="true"
@@ -284,200 +299,349 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <form method="GET" action="{% url 'search' %}">
-                                        <button name="sort_by_set" value="{{ results_object }}" class="btn btn-light dropdown-item">Set (Z-A)</button>
+                                        <button name="sort_by_set_reverse" value="{{ request.get_full_path }}" class="btn btn-light dropdown-item">Set
+                                            (Z-A)</button>
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-sm-2">{% include 'pagination.html' %}</div>
                     </div>
-
-                    <table style="color: rgb(80,80,80);" class="nav-tabs nav-stacked table table-hover table-lg">
-                        <thead class="thead-inverse">
-                        </thead>
-                        <tbody>
-                            {% for item in items %}
-                                <tr>
-                                    <td>
-                                        <img style="max-height:200px;" src="{{item.image_url}}">
-                                        <div id="imgbox"></div>
-                                    </td>
-
-                                    <td>
-                                        <div class="hidden-dialog" id="card-info-text-{{ item.product_id }}" title="{{ item.name }}">
-                                            <table class="card-info-popup-table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="card-info-popup-data-label">Set:</td>
-                                                        <td>{{ item.expansion }}</td>
-                                                    </tr>
-
-                                                    {% if item.artist %}
-                                                        <tr>
-                                                            <td class="card-info-popup-data-label">Artist:</td>
-                                                            <td>{{ item.artist }}</td>
-                                                        </tr>
-                                                    {% endif %}
-
-                                                    {% if item.power %}
-                                                        <tr>
-                                                            <td class="card-info-popup-data-label">Power / Toughness:</td>
-                                                            <td>{{ item.power }} / {{ item.toughness }}</td>
-                                                        </tr>
-                                                    {% endif %}
-
-                                                    {% if item.loyalty %}
-                                                        <tr>
-                                                            <td class="card-info-popup-data-label">Loyalty:</td>
-                                                            <td>{{ item.loyalty }}</td>
-                                                        </tr>
-                                                    {% endif %}
-
-                                                    {% if item.rarity %}
-                                                        <tr>
-                                                            <td class="card-info-popup-data-label">Rarity:</td>
-                                                            <td>{{ item.rarity }}</td>
-                                                        </tr>
-                                                    {% endif %}
-
-                                                    {% if item.card_type %}
-                                                        <tr>
-                                                            <td class="card-info-popup-data-label">Card Type:</td>
-                                                            <td>{{ item.card_type }}</td>
-                                                        </tr>
-                                                    {% endif %}
-
-                                                    {% if item.subtypes%}
-                                                        <tr>
-                                                            <td class="card-info-popup-data-label">Subtypes:</td>
-                                                            <td>{{ item.subtypes }}</td>
-                                                        </tr>
-                                                    {% endif %}
-
-                                                    {% if item.mana_cost %}
-                                                        <tr>
-                                                            <td class="card-info-popup-data-label">Mana Cost:</td>
-                                                            <td>{{ item.mana_cost }}</td>
-                                                        </tr>
-                                                    {% endif %}
-
-                                                    {% if item.color_identity %}
-                                                        <tr>
-                                                            <td class="card-info-popup-data-label">Color Identity:</td>
-                                                            <td>{{ item.color_identity }}</td>
-                                                        </tr>
-                                                    {% endif %}
-
-                                                </tbody>
-                                            </table>
-
-                                            {% if item.oracle_text %}
-                                                <br>
-                                                <div class="row">
-                                                    <p>
-                                                        "{{ item.oracle_text }}"
-                                                    </p>
-                                                </div>
-                                            {% endif %}
-                                        </div>
-
-                                        <div class="form-row">
-                                            <button id="card-info-button-{{ item.product_id }}" class="btn btn-outline-light">
-                                                <span style="color: rgba(0, 0, 0);border: black;">{{ item.name }}</span>
-                                            </button>
-                                        </div>
-                                        <script>
-                                            var textId = "card-info-text-{{ item.product_id }}";
-                                            var buttonId = "card-info-button-{{ item.product_id }}";
-                                            jqueryDialogBox("#" + textId, "#" + buttonId);
-                                        </script>
-                                    </td>
-
-                                    <td><a href="#"><i style="color:rgba(0, 0, 0, 0.5);" class="material-icons">favorite
-                                    </i></a></td>
-
-                                    {% if item.mana_cost %}
+                    <div class="table-responsive">
+                        <table style="color: rgb(80,80,80);" class="nav-tabs nav-stacked table table-hover table-lg">
+                            <thead class="thead-inverse"></thead>
+                            <tbody>
+                                {% for item in items %}
+                                    <tr>
                                         <td>
-                                            <div class="search-page-mana-cost" data-value="SUU">
+                                            <img class="img-thumbnail" style="max-height:200px;" src="{{item.image_url}}">
+                                            <div id="imgbox"></div>
+                                        </td>
 
-                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="1045px" height="730.002px" viewBox="-945 -210.002 1045 730.002" enable-background="new -945 -210.002 1045 730.002" xml:space="preserve">
-    <g xmlns="http://www.w3.org/2000/svg">
-	<circle fill="#C9C4BE" cx="50.001" cy="50" r="50"/>
-	<g>
-		<polygon fill="#0D0F0F" points="37.843,89.157 40.198,85.077 50.001,98.881 59.803,85.077 62.158,89.157 66.496,89.208     75.001,93.303 75.708,83.891 77.833,80.105 75.479,76.027 92.334,74.439 85.279,59.05 89.99,59.05 92.203,55.318 100,50     92.203,44.681 89.99,40.95 85.279,40.95 92.333,25.559 75.479,23.973 77.833,19.893 75.707,16.111 75,6.699 66.496,10.792     62.158,10.843 59.803,14.922 50,1.118 40.198,14.922 37.843,10.843 33.505,10.792 25,6.699 24.293,16.111 22.168,19.893     24.523,23.973 7.667,25.56 14.722,40.95 10.011,40.95 7.798,44.682 0,50 7.797,55.318 10.011,59.05 14.722,59.05 7.668,74.441     24.523,76.027 22.168,80.105 24.293,83.889 25.001,93.303 33.505,89.209   "/>
-		<polygon fill="#FFFFFF" points="34.895,80.211 50,55.875 65.105,80.211 65.105,84.259 68.609,86.282 72.116,84.258 72.116,80.212     68.609,78.188 55.088,52.938 83.717,52.023 87.223,54.048 90.727,52.025 90.727,47.976 87.223,45.953 83.717,47.976     55.088,47.063 68.611,21.813 72.117,19.789 72.117,15.743 68.611,13.719 65.107,15.742 65.105,19.789 50.001,44.125     34.896,19.789 34.895,15.741 31.392,13.718 27.885,15.743 27.885,19.789 31.391,21.813 44.913,47.063 16.285,47.976     12.778,45.953 9.275,47.975 9.275,52.023 12.778,54.047 16.285,52.023 44.913,52.938 31.39,78.188 27.885,80.211 27.884,84.258     31.39,86.281 34.895,84.258   "/>
-	</g>
-	<polygon fill="#FFFFFF" points="57.051,22.393 50.001,34.681 42.951,22.393 50.001,10.104  "/>
-	<polygon fill="#FFFFFF" points="29.617,30.09 36.734,42.34 22.567,42.301 15.45,30.052  "/>
-	<polygon fill="#FFFFFF" points="22.566,57.697 36.733,57.659 29.616,69.908 15.449,69.947  "/>
-	<polygon fill="#FFFFFF" points="42.949,77.607 50,65.318 57.05,77.607 50,89.896  "/>
-	<polygon fill="#FFFFFF" points="70.384,69.91 63.268,57.66 77.434,57.699 84.551,69.947  "/>
-	<polygon fill="#FFFFFF" points="77.436,42.303 63.268,42.341 70.385,30.092 84.551,30.053  "/>
-</g>
+                                        <td>
+                                            <div class="hidden-dialog" id="card-info-text-{{ item.product_id }}" title="{{ item.name }}">
+                                                <table class="card-info-popup-table table-responsive">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="card-info-popup-data-label">Set:</td>
+                                                            <td>{{ item.expansion }}</td>
+                                                        </tr>
 
-                                                </svg>
+                                                        {% if item.artist %}
+                                                            <tr>
+                                                                <td class="card-info-popup-data-label">Artist:</td>
+                                                                <td>{{ item.artist }}</td>
+                                                            </tr>
+                                                        {% endif %}
+
+                                                        {% if item.power %}
+                                                            <tr>
+                                                                <td class="card-info-popup-data-label">Power / Toughness:</td>
+                                                                <td>{{ item.power }} / {{ item.toughness }}</td>
+                                                            </tr>
+                                                        {% endif %}
+
+                                                        {% if item.loyalty %}
+                                                            <tr>
+                                                                <td class="card-info-popup-data-label">Loyalty:</td>
+                                                                <td>{{ item.loyalty }}</td>
+                                                            </tr>
+                                                        {% endif %}
+
+                                                        {% if item.rarity %}
+                                                            <tr>
+                                                                <td class="card-info-popup-data-label">Rarity:</td>
+                                                                <td>{{ item.rarity }}</td>
+                                                            </tr>
+                                                        {% endif %}
+
+                                                        {% if item.card_type %}
+                                                            <tr>
+                                                                <td class="card-info-popup-data-label">Card Type:</td>
+                                                                <td>{{ item.card_type }}</td>
+                                                            </tr>
+                                                        {% endif %}
+
+                                                        {% if item.subtypes%}
+                                                            <tr>
+                                                                <td class="card-info-popup-data-label">Subtypes:</td>
+                                                                <td>{{ item.subtypes }}</td>
+                                                            </tr>
+                                                        {% endif %}
+
+                                                        {% if item.mana_cost %}
+                                                            <tr>
+                                                                <td class="card-info-popup-data-label">Mana Cost:</td>
+                                                                <td>{{ item.mana_cost }}</td>
+                                                            </tr>
+                                                        {% endif %}
+
+                                                        {% if item.color_identity %}
+                                                            <tr>
+                                                                <td class="card-info-popup-data-label">Color Identity:</td>
+                                                                <td>{{ item.color_identity }}</td>
+                                                            </tr>
+                                                        {% endif %}
+
+                                                    </tbody>
+                                                </table>
+
+                                                {% if item.oracle_text %}
+                                                    <br>
+                                                    <div class="row">
+                                                        <p>
+                                                            "{{ item.oracle_text }}"
+                                                        </p>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+
+                                            <div class="form-row">
+                                                <a href="javascript: void(0)" id="card-info-button-{{ item.product_id }}">
+                                                    <span>{{ item.name }}</span>
+                                                </a>
+                                            </div>
+
+                                            <script>
+                                                var textId = "card-info-text-{{ item.product_id }}";
+                                                var buttonId = "card-info-button-{{ item.product_id }}";
+                                                jqueryDialogBox("#" + textId, "#" + buttonId);
+                                            </script>
+                                        </td>
+
+                                        <td>
+                                            {% if request.user.is_authenticated %}
+
+                                                <div class="form-row">
+                                                    <form  method="GET" class="wishlist-submit-form" data-url="{% url 'wishlist' %}"
+                                                          data-value="{{ item.product_id }}" title="Added to Wishlist">
+                                                        <input type="hidden" name="wishlist-item" value="{{ item.product_id }}">
+                                                        <button type="submit" class="btn btn-outline-light">
+                                                            <i id="wishlist-icon-{{ item.product_id }}" style="color:rgba(0, 0, 0, 0.5);"
+                                                               class="material-icons">favorite
+                                                            </i>
+                                                        </button>
+                                                    </form>
+
+                                                </div>
+
+                                            {% else %}
+
+                                                <div class="" id="wishlist-content-{{ item.product_id }}" title="Wishlist">
+                                                    <h4>You must be logged in to use this feature</h4>
+                                                    <hr>
+                                                    <form method="GET" action="{% url 'login' %}">
+                                                        <button type="submit" class="btn opaque-black-background">Login Now</button>
+                                                        <input name="redirect-path" type="hidden" value="{{ request.get_full_path }}">
+                                                    </form>
+                                                </div>
+
+                                                <div class="form-row">
+                                                    <a id="wishlist-button-{{ item.product_id }}" href="javascript: void(0)">
+                                                        <i class="material-icons opaque-black-text">favorite</i>
+                                                    </a>
+                                                </div>
+
+                                                <script>
+                                                    var textId = "wishlist-content-{{ item.product_id }}";
+                                                    var buttonId = "wishlist-button-{{ item.product_id }}";
+                                                    jqueryDialogBox("#" + textId, "#" + buttonId);
+                                                </script>
+
+                                            {% endif %}
+
+
+                                        </td>
+
+
+
+                                        {% if item.mana_cost %}
+                                            <td>
+                                                <div class="search-page-mana-cost" data-value="{{item.mana_cost_encoded}}"></div>
+                                            </td>
+                                        {% endif %}
+
+                                        <td>{{item.card_type}}</td>
+
+                                        <td>{{item.expansion}} ({{item.rarity}})</td>
+
+                                        <td class="condition-info-tab">
+                                            <div style="position: relative;">
+
+                                                <ul class="nav nav-tabs mb-3 condition-info" id="{{item.product_id}}" role="tablist"></ul>
+
+                                                <script>
+                                                     conditionTab(
+                                                        "clean", "CL", "{{item.normal_clean_stock}}", "{{item.foil_clean_stock}}", "{{item.product_id}}",
+                                                        "true"
+                                                     );
+
+                                                      conditionTab(
+                                                        "played", "PL", "{{item.normal_played_stock}}", "{{item.foil_played_stock}}", "{{item.product_id}}",
+                                                        "false"
+                                                     );
+
+                                                     conditionTab(
+                                                        "heavily_played", "HP", "{{item.normal_heavily_played_stock}}",
+                                                         "{{item.foil_heavily__played_stock}}", "{{item.product_id}}", "false"
+                                                     );
+
+                                                     conditionTab(
+                                                        "restock", "Restock", "0",
+                                                         "0", "{{item.product_id}}", "false"
+                                                     );
+                                                </script>
+
+
+                                                <div class="tab-content" id="tabs-tabContent-{{item.product_id}}"></div>
+
+                                                {% if request.user.is_authenticated %}
+                                                    <div class="" id="restock-content-submit-{{ item.product_id }}" title="Select Restock Variants">
+
+                                                        <form method="GET" class="restock-submit-form" data-url="{% url 'restock_notice' %}"
+                                                              data-value="{{ item.product_id }}" title="Notification list updated!">
+
+                                                            <div class="form-row opaque-black-text">Printing</div>
+
+                                                            <div class="form-check form-check-inline">
+                                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                                                     name="variations" value="normal">
+                                                              <label class="form-check-label" for="inlineCheckbox1">Normal</label>
+                                                            </div>
+
+                                                            <div class="form-check form-check-inline">
+                                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="variations" value="foil">
+                                                              <label class="form-check-label" for="inlineCheckbox2">Foil</label>
+                                                            </div>
+
+                                                            <div class="form-row opaque-black-text">Condition</div>
+
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" name="variations" value="clean" id="defaultCheck3">
+                                                                <label class="form-check-label" for="defaultCheck3">clean</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" name="variations" value="played" id="defaultCheck4">
+                                                                <label class="form-check-label" for="defaultCheck4">played</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" name="variations" value="heavily_played" id="defaultCheck5">
+                                                                <label class="form-check-label" for="defaultCheck5">heavily played</label>
+                                                            </div>
+
+                                                            <hr>
+
+                                                            <div class="form-row">
+                                                                <button id="restock-button-{{ item.product_id }}" type="submit" onclick="pageSpinner()"
+                                                                        class="btn opaque-black-background">Submit</button>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+
+                                                    <script>
+                                                        populateConditionTable(
+                                                            "true", "clean",
+                                                             "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}", "{{item.product_id}}",                                                                 "{{item.normal_clean_stock}}", "{{item.foil_clean_stock}}", "{{item.normal_clean_price}}",
+                                                              "{{item.foil_clean_price}}", true
+                                                        );
+
+                                                        populateConditionTable(
+                                                            "false", "played", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
+                                                             "{{item.product_id}}", "{{item.normal_played_stock}}",
+                                                             "{{item.foil_played_stock}}", "{{item.normal_played_price}}", "{{item.foil_played_price}}",
+                                                              true
+
+                                                        );
+
+                                                        populateConditionTable(
+                                                            "false", "heavily_played", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
+                                                             "{{ item.product_id }}", "{{ item.normal_heavily_played_stock }}",
+                                                             "{{ item.foil_heavily_played_stock }}", "{{ item.normal_heavily_played_price }}",
+                                                              "{{ item.foil_heavily_played_price }}", true
+
+
+                                                        );
+
+                                                        populateConditionTable(
+                                                            "false", "restock", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
+                                                             "{{ item.product_id }}", "0",
+                                                             "0", "0", "0", true
+
+                                                        );
+
+                                                        var textId = "restock-content-submit-{{ item.product_id }}";
+                                                        var buttonId = "restock-button-submit-{{ item.product_id }}";
+
+                                                        jqueryDialogBox("#" + textId, "#" + buttonId);
+
+                                                    </script>
+
+                                                {% else %}
+
+                                                    <div class="" id="restock-content-login-{{ item.product_id }}" title="Restock">
+                                                        <h4>You must be logged in to use this feature</h4>
+                                                        <hr>
+                                                        <form method="GET" action="{% url 'login' %}">
+                                                            <button type="submit" class="btn opaque-black-background">Login Now</button>
+                                                            <input name="redirect-path" type="hidden" value="{{ request.get_full_path }}">
+                                                        </form>
+                                                    </div>
+
+                                                    <script>
+                                                        populateConditionTable(
+                                                            "true", "clean", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
+                                                             "{{ item.product_id}}", "{{item.normal_clean_stock}}",
+                                                             "{{ item.foil_clean_stock }}", "{{ item.normal_clean_price }}",
+                                                              "{{ item.foil_clean_price }}", false
+                                                        );
+
+                                                        populateConditionTable(
+                                                            "false", "played", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
+                                                            "{{item.product_id}}", "{{item.normal_played_stock}}",
+                                                             "{{item.foil_played_stock}}", "{{item.normal_played_price}}",
+                                                              "{{item.foil_played_price}}", false
+                                                        );
+
+                                                        populateConditionTable(
+                                                            "false", "heavily_played", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
+                                                             "{{item.product_id}}", "{{item.normal_heavily_played_stock}}",
+                                                             "{{item.foil_heavily_played_stock}}", "{{item.normal_heavily_played_price}}",
+                                                             "{{item.foil_heavily_played_price}}", false
+                                                        );
+
+                                                        populateConditionTable(
+                                                            "false", "restock", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
+                                                            "{{item.product_id}}", "0", "0", "0", "0", false
+
+                                                        );
+
+                                                        var textId = "restock-content-login-{{ item.product_id }}";
+                                                        var buttonId = "restock-button-login-{{ item.product_id }}";
+
+                                                        jqueryDialogBox("#" + textId, "#" + buttonId);
+
+
+                                                    </script>
+
+
+
+
+                                                {% endif %}
+
 
                                             </div>
                                         </td>
-                                    {% endif %}
-
-                                    <td>{{item.card_type}}</td>
-
-                                    <td>{{item.expansion}} ({{item.rarity}})</td>
-
-                                    <td>
-                                        <div style="position: relative;">
-
-                                            <ul class="nav nav-tabs mb-3 condition-info" id="{{item.product_id}}" role="tablist"></ul>
-
-                                            <script>
-                                                 conditionTab(
-                                                    "clean", "CL", "{{item.normal_clean_stock}}", "{{item.foil_clean_stock}}", "{{item.product_id}}",
-                                                    "true"
-                                                 );
-
-                                                  conditionTab(
-                                                    "played", "PL", "{{item.normal_played_stock}}", "{{item.foil_played_stock}}", "{{item.product_id}}",
-                                                    "false"
-                                                 );
-
-                                                 conditionTab(
-                                                    "heavily_played", "HP", "{{item.normal_heavily_played_stock}}",
-                                                     "{{item.foil_heavily__played_stock}}", "{{item.product_id}}", "false"
-                                                 );
-                                            </script>
-
-
-                                            <div class="tab-content" id="tabs-tabContent-{{item.product_id}}"></div>
-
-                                            <script>
-                                                populateConditionTable(
-                                                    "true", "clean", "{{item.product_id}}", "{{item.normal_clean_stock}}",
-                                                     "{{item.foil_clean_stock}}", "{{item.normal_clean_price}}", "{{item.foil_clean_price}}"
-                                                );
-
-                                                populateConditionTable(
-                                                    "false", "played", "{{item.product_id}}", "{{item.normal_played_stock}}",
-                                                     "{{item.foil_played_stock}}", "{{item.normal_played_price}}", "{{item.foil_played_price}}"
-                                                );
-
-                                                populateConditionTable(
-                                                    "false", "heavily_played", "{{item.product_id}}", "{{item.normal_heavily_played_stock}}",
-                                                     "{{item.foil_heavily_played_stock}}", "{{item.normal_heavily_played_price}}",
-                                                     "{{item.foil_heavily_played_price}}"
-                                                );
-
-                                            </script>
-                                        </div>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 {% endif %}
                 <div class="row">
-                    <div style="color: rgba(0, 0, 0, 0.6);" class="col-sm-3">Viewing {{ items.start_index }}-{{ items.end_index }} of
-                        {{ items.paginator.count }} results</div>
+                    <div style="color: rgba(0, 0, 0, 0.6);" class="col-sm-3">
+                        Viewing {{ items.start_index }}-{{ items.end_index }} of {{ items.paginator.count }} results
+                    </div>
                     <div class="col-sm-7"></div>
                     <div class="col-sm-2">{% include 'pagination.html' %}</div>
                 </div>
@@ -502,7 +666,12 @@
     <script>jqueryDialogBox("#artist-help-text", "#artist-help-button");</script>
     <script>jqueryDialogBox("#rarity-help-text", "#rarity-help-button");</script>
     <script>jqueryDialogBox("#subtypes-help-text", "#subtypes-help-button");</script>
-    <script>$("#advanced-search-submit-button").show()</script>
+
+    <!-- Show hidden elements that were hidden to avoid user seeing elements before javascript changes them during rendered page
+     $("#advanced-search-submit-button").show()</script></script>-->
+    <script>$(".hidden-dialog").show() </script>
+
+
 
     <!-- Load Card info from api to populate autocomplete fields -->
     <script>
@@ -537,5 +706,8 @@
                 tag[k].appendChild(svgImage);
             });
         };
+
+
     </script>
+
 {% endblock %}

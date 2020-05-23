@@ -1,4 +1,12 @@
 
+.main-black{
+    color: rgba(52, 58, 64, 1);
+}
+
+table{
+    font-family: Catull BQ Regular;
+}
+
 .hidden-dialog{
     display: none;
 }
@@ -12,7 +20,31 @@
     color: rgba(0, 0, 0, 0.5);
 }
 
+.ui-autocomplete {
+     z-index: 9999 !important;
+}
+
+.opaque-black-text{
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.opaque-black-background{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.form-popup-tooltip{
+    background-color: rgba(40, 167, 69, 0.9) !important;
+    color: white !important;
+    border-color: white !important;
+    border-radius: 10px !important;
+
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.card-image{
+    max-height: 100px;
 }

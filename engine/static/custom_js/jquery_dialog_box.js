@@ -12,7 +12,6 @@ function jqueryDialogBox(boxId, buttonId){
             effect: "drop",
           }
       });
-
     $( buttonId ).on( "click", function() {
       $( boxId ).dialog( "open" );
     });

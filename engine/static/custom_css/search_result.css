@@ -64,11 +64,19 @@
 
 #advanced-search-submit-button{
     margin-top:1%;
-    display: none;
+
 }
 
 .search-page-mana-cost {
     display: flex;
+
+}
+
+.search-results-name-link{
+    color: blue;
+}
+
+.condition-info-tab{
 
 }
 

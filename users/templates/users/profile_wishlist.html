@@ -1,0 +1,45 @@
+
+<div class="row">
+    <div class="col-sm-6">
+        <table class="nav-tabs nav-stacked table table-hover table-sm">
+
+            <thead>
+
+            </thead>
+
+            <tbody>
+                {% for item in wishlist_items %}
+                    <tr>
+                        <td>
+                            <img class="card-image img-thumbnail" src="{{ item.image_url }}">
+                        </td>
+
+                        {% if item.mana_cost %}
+                            <td>
+                                {{ item.mana_cost }}
+                            </td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+
+                        <td>
+                            <form action="{% url 'search' %}" method="GET">
+                                <button style="color: rgba(52, 58, 64, 1);" type="submit" class="btn btn-outline-light">{{ item.name }}</button>
+                                <input type="hidden" name="q" value="{{ item.name }}">
+                            </form>
+                        </td>
+
+                        <td>
+                            {{ item.expansion }}
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+
