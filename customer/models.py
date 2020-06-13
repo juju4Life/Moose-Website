@@ -51,7 +51,8 @@ class Customer(models.Model):
 class CustomerRestockNotice(models.Model):
     email = models.CharField(max_length=255, default='')
     product_id = models.CharField(max_length=255, default='')
-    variation = models.CharField(max_length=255, default='')
+    name = models.CharField(max_length=255, default='')
+    expansion = models.CharField(max_length=255, default='')
     foil = models.BooleanField(default=False)
     normal = models.BooleanField(default=False)
     clean = models.BooleanField(default=False)
@@ -60,6 +61,4 @@ class CustomerRestockNotice(models.Model):
 
     def __str__(self):
         return self.email
-
-
 

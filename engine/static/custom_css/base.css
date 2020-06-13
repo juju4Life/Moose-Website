@@ -7,6 +7,10 @@ table{
     font-family: Catull BQ Regular;
 }
 
+h4 {
+    color: rgba(0, 0, 0, 0.5) !important;
+}
+
 .hidden-dialog{
     display: none;
 }
@@ -48,3 +52,22 @@ table{
 .card-image{
     max-height: 100px;
 }
+
+.form-wrapper-default{
+    background-color: rgba(230, 230, 230,0.2);
+    border-radius: 15px;
+    border: 1px solid lightgray;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+}
+
+.form-wrapper-default > form{
+    max-width: 95%;
+    margin: auto;
+}
+
+.default-padding-wrapper {
+    padding: 10% !important;
+}
+

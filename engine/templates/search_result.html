@@ -415,7 +415,10 @@
                                                 <div class="form-row">
                                                     <form  method="GET" class="wishlist-submit-form" data-url="{% url 'wishlist' %}"
                                                           data-value="{{ item.product_id }}" title="Added to Wishlist">
-                                                        <input type="hidden" name="wishlist-item" value="{{ item.product_id }}">
+                                                        <input type="hidden" name="product_id" value="{{ item.product_id }}">
+                                                        <input type="hidden" name="name" value="{{ item.name }}">
+                                                        <input type="hidden" name="expansion" value="{{ item.expansion }}">
+                                                        <input type="hidden" name="image_url" value="{{ item.image_url }}">
                                                         <button type="submit" class="btn btn-outline-light">
                                                             <i id="wishlist-icon-{{ item.product_id }}" style="color:rgba(0, 0, 0, 0.5);"
                                                                class="material-icons">favorite
@@ -499,34 +502,42 @@
                                                     <div class="" id="restock-content-submit-{{ item.product_id }}" title="Select Restock Variants">
 
                                                         <form method="GET" class="restock-submit-form" data-url="{% url 'restock_notice' %}"
-                                                              data-value="{{ item.product_id }}" title="Notification list updated!">
+                                                              title="Notification list updated!">
+
+                                                            <input type="hidden" name="product_id" value="{{ item.product_id }}">
+                                                            <input type="hidden" name="name" value="{{ item.name }}">
+                                                            <input type="hidden" name="expansion" value="{{ item.expansion }}">
 
                                                             <div class="form-row opaque-black-text">Printing</div>
 
                                                             <div class="form-check form-check-inline">
-                                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                                                     name="variations" value="normal">
-                                                              <label class="form-check-label" for="inlineCheckbox1">Normal</label>
+                                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1-{{ item.product_id }}"
+                                                                     name="normal" value="normal">
+                                                              <label class="form-check-label" for="inlineCheckbox1-{{ item.product_id }}">Normal</label>
                                                             </div>
 
                                                             <div class="form-check form-check-inline">
-                                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="variations" value="foil">
-                                                              <label class="form-check-label" for="inlineCheckbox2">Foil</label>
+                                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox2-{{ item.product_id }}"
+                                                                     name="foil" value="foil">
+                                                              <label class="form-check-label" for="inlineCheckbox2-{{ item.product_id }}">Foil</label>
                                                             </div>
 
                                                             <div class="form-row opaque-black-text">Condition</div>
 
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="checkbox" name="variations" value="clean" id="defaultCheck3">
-                                                                <label class="form-check-label" for="defaultCheck3">clean</label>
+                                                                <input class="form-check-input" type="checkbox" name="clean" value="clean"
+                                                                       id="defaultCheck3-{{ item.product_id }}">
+                                                                <label class="form-check-label" for="defaultCheck3-{{ item.product_id }}">clean</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="checkbox" name="variations" value="played" id="defaultCheck4">
-                                                                <label class="form-check-label" for="defaultCheck4">played</label>
+                                                                <input class="form-check-input" type="checkbox" name="played" value="played"
+                                                                       id="defaultCheck4-{{ item.product_id }}">
+                                                                <label class="form-check-label" for="defaultCheck4-{{ item.product_id }}">played</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="checkbox" name="variations" value="heavily_played" id="defaultCheck5">
-                                                                <label class="form-check-label" for="defaultCheck5">heavily played</label>
+                                                                <input class="form-check-input" type="checkbox" name="heavily_played" value="heavily_played"
+                                                                       id="defaultCheck5-{{ item.product_id }}">
+                                                                <label class="form-check-label" for="defaultCheck5-{{ item.product_id }}">heavily played</label>
                                                             </div>
 
                                                             <hr>

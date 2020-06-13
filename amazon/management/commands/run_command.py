@@ -157,11 +157,7 @@ class Command(BaseCommand):
         print(total)
         '''
 
-
-
-
-        '''
-        f = open_csv('cd')
+        f = open_csv('a_sku')
 
         t = 0
         for each in f[1:]:
@@ -171,8 +167,6 @@ class Command(BaseCommand):
                 obj.save()
                 t += 1
                 print(t)
-        '''
-
 
         '''
         with open('AllPrintings.json', encoding='utf-8') as f:
@@ -185,6 +179,7 @@ class Command(BaseCommand):
                 print(g)
         '''
 
+        '''
         from orders.models import GroupName
 
         with open('expansions.json', 'w') as f:
@@ -196,6 +191,7 @@ class Command(BaseCommand):
                 )
 
             json.dump(expansions, f)
+            '''
 
 
 

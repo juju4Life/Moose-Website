@@ -1,0 +1,125 @@
+{% extends "home.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3 mt-5">
+            <div class="form-wrapper-default">
+                <form method="POST" action="{% url 'submit_order' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="name" value="{{ customer.name }}">
+                    <input type="hidden" name="email" value="{{ customer.email }}">
+                    <input type="hidden" name="address_line_1" value="{{ customer.address_line_1 }}">
+                    <input type="hidden" name="address_line_2" value="{{ customer.address_line_2 }}">
+                    <input type="hidden" name="city" value="{{ customer.city }}">
+                    <input type="hidden" name="state" value="{{ customer.state }}">
+                    <input type="hidden" name="zip_code" value="{{ customer.zip_code }}">
+                    <input type="hidden" name="shipping_method" value="{{ customer.shipping_method }}">
+                    <input type="hidden" name="shipping_charged" value="{{ customer.shipping_charged }}">
+                    <input type="hidden" name="payment_method" value="{{ customer.payment_method }}">
+                    <input type="hidden" name="final_total" value="{{ customer.final_total }}">
+                    <input type="hidden" name="store_credit" value="{{ customer.store_credit }}">
+                    <input type="hidden" name="tax" value="{{ customer.tax }}">
+
+
+                    <fieldset>
+
+                        <center>
+                            <h4>Confirm Order Details</h4> <hr>
+                        </center>
+                        <p>
+                            To: <br>
+                            {{ customer.name }} <br>
+                            {{ customer.address_line_1 }} <br>
+                            {% if customer.address_line_2 %}
+                                {{ customer.address_line_1 }} <br>
+                            {% endif %}
+                            {{ customer.city }}, {{ customer.state }} {{customer.zip_code }}<br>
+                        </p>
+
+                        <hr>
+
+                        <table class="nav-pills nav-stacked table table-hover table-sm table-borderless">
+                            <tbody>
+
+                                <tr>
+                                    <td>Shipping Method</td>
+                                    <td>{{ customer.shipping_method }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Payment</td>
+                                    <td>Paypal / Credit Card</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Subtotal</td>
+                                    <td>${{ cart.total_price }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Shipping Cost</td>
+                                    <td>${{ customer.shipping_charged }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Tax</td>
+                                    <td>${{ customer.tax }}</td>
+                                </tr>
+
+                                {% if customer.store_credit %}
+                                    <tr>
+                                        <td>Shipping</td>
+                                        <td>-{{ customer.store_credit }}</td>
+                                    </tr>
+                                {% endif %}
+
+                            </tbody>
+                        </table>
+
+                        <p>
+                            <strong>Final: ${{ customer.final_total }}</strong>
+                        </p>
+                        <table class="nav-pills nav-stacked table table table-hover table-sm table-borderless table-responsive">
+                            <tbody>
+                            {% for card in cart %}
+                                <tr>
+                                    <td>{{ card.name }}</td>
+                                    <td>{{ card.expansion }}</td>
+                                    <td>{{ card.printing }}</td>
+                                    <td>{{ card.condition }}</td>
+                                    <td>{{ card.language }}</td>
+                                    <td>{{ card.quantity }}</td>
+                                    <td>${{ card.total }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </fieldset>
+
+                    <div class="row">
+                        <div class="col-sm-12 offset-sm-0">
+                            <div class="form-group">
+                                <label for="checkout-notes">Notes</label>
+                                <textarea class="form-control" id="checkout-notes" rows="4" name="notes" maxlength="200"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4 offset-sm-2">
+                            <button type="submit" name="edit_order" value="edit_order" class="btn btn-secondary btn-lg btn-block">Edit</button>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <button type="submit" name="submit_order" value="submit_order" class="btn btn-success btn-lg btn-block">Submit Order</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}
+
+

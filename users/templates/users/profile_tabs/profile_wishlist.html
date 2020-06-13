@@ -1,0 +1,51 @@
+
+<div class="row">
+    <div class="col-sm-6">
+        {% if not wishlist_items %}
+            <h4 class="opaque-black-text mt-1">You do not currently have any cards on your wishlist</h4>
+        {% else %}
+            <table class="nav-tabs nav-stacked table table-hover table-sm">
+
+                <thead>
+
+                </thead>
+
+                <tbody>
+                    {% for item in wishlist_items %}
+                        <tr>
+                            <td>
+                                <img class="card-image img-thumbnail" src="{{ item.image_url }}">
+                            </td>
+
+                            <td>
+                                <form action="{% url 'search' %}" method="GET">
+                                    <button type="submit" class="btn">{{ item.name }}</button>
+                                    <input type="hidden" name="q" value="{{ item.name }}">
+                                </form>
+                            </td>
+
+                            <td>
+                                {{ item.expansion }}
+                            </td>
+
+                            <td>
+                                <form method="GET" action="{% url 'remove_wishlist_item' %}">
+                                    <button class="btn">
+                                        <i class="material-icons main-black">delete_forever</i>
+                                        <input type="hidden" name="remove"
+                                               value="{{ item.product_id }}<>{{ item.name }}<>{{ item.expansion }}<>{{ item.image_url }}">
+                                    </button>
+                                </form>
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        {% endif %}
+    </div>
+</div>
+
+
+

@@ -12,11 +12,10 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.core.mail import EmailMessage
 
-from .forms import UserRegisterForm, UserUpdateForm, CustomerUpdateForm, UpdateEmailForm, LoginForm, UpdatePasswordForm
+from .forms import UserRegisterForm, UserUpdateForm, AddressForm, UpdateEmailForm, LoginForm, UpdatePasswordForm
 from .tokens import account_activation_token
 
 from customer.models import Customer
-from engine.models import MTG
 
 
 def register(request):
@@ -95,11 +94,59 @@ def user_login(request):
 
 
 @login_required
+def restock_notification_change(request):
+
+    if request.GET.get("restock_notice_change"):
+        email = request.user.email
+        product_id = request.GET.get("restock_notice_change")
+        customer = Customer.objects.get(email=email)
+
+        foil = False
+        normal = False
+        clean = False
+        played = False
+        heavily_played = False
+
+        if request.GET.get("foil"):
+            foil = True
+        if request.GET.get("normal"):
+            normal = True
+        if request.GET.get("clean"):
+            clean = True
+        if request.GET.get("played"):
+            played = True
+        if request.GET.get("heavily_played"):
+            heavily_played = True
+
+        restock_item = customer.restock_list.get(product_id=product_id)
+        restock_item.foil = foil
+        restock_item.normal = normal
+        restock_item.clean = clean
+        restock_item.played = played
+        restock_item.heavily_played = heavily_played
+        restock_item.save()
+
+        return redirect("profile")
+
+    elif request.GET.get("delete_restock_notification"):
+        email = request.user.email
+        product_id = request.GET.get("delete_restock_notification")
+        customer = Customer.objects.get(email=email)
+        restock_item = customer.restock_list.get(product_id=product_id)
+        restock_item.delete()
+
+        return redirect("profile")
+
+    else:
+        return redirect("profile")
+
+
+@login_required
 def remove_wishlist_item(request):
     if request.GET.get("remove"):
         customer = Customer.objects.get(email=request.user.email)
-        product_id = request.GET.get("remove") + ","
-        customer.wishlist = customer.wishlist.replace(product_id, "")
+        product = request.GET.get("remove") + ","
+        customer.wishlist = customer.wishlist.replace(product, "")
         customer.save()
         return redirect("profile")
 
@@ -107,12 +154,28 @@ def remove_wishlist_item(request):
 @login_required
 def profile(request):
     if request.user.is_authenticated:
+        context = {}
         customer = Customer.objects.get(email=request.user.email)
-        wishlist_items = customer.wishlist.split(",")[:-1]
-        wishlist_items = MTG.objects.filter(product_id__in=wishlist_items).order_by("name")
+        wishlist_data = customer.wishlist.split(",")[:-1]
+        wishlist_items = list()
+        for cards in wishlist_data:
+            card_data = cards.split("<>")
+            wishlist_items.append(
+                {"name": card_data[1], "expansion": card_data[2], "image_url": card_data[3]}
+            )
 
-        for each in customer.restock_list.all():
-            pass
+        restock_list = [
+            {
+                "product_id": i.product_id,
+                "name": i.name,
+                "expansion": i.expansion,
+                "foil": i.foil,
+                "normal": i.normal,
+                "clean": i.clean,
+                "played": i.played,
+                "heavily_played": i.heavily_played,
+             }
+            for i in customer.restock_list.all()]
 
         if request.method == 'POST':
 
@@ -127,16 +190,23 @@ def profile(request):
                 else:
                     password_form = UpdatePasswordForm(request.user, request.POST)
 
-                return render(request, 'users/profile.html', {'customer': customer, 'password_form': password_form})
+                context["customer"] = customer
+                context["password_form"] = password_form
+                context["restock_list"] = restock_list
+                return render(request, 'users/profile.html', context)
 
             elif request.POST.get('update_page'):
 
                 user_form = UserUpdateForm(request.POST, instance=request.user)
+                context["customer"] = customer
+                context["user_form"] = user_form
+                context["restock_list"] = restock_list
+                context["wishlist_items"] = wishlist_items
 
-                return render(request, 'users/profile.html', {'customer': customer, 'user_form': user_form, "wishlist_items": wishlist_items})
+                return render(request, 'users/profile.html', context)
 
             elif request.POST.get('update_address'):
-                address_form = CustomerUpdateForm(request.POST, instance=customer)
+                address_form = AddressForm(request.POST, instance=customer)
 
                 if address_form.is_valid():
                     address_form.save()
@@ -157,11 +227,15 @@ def profile(request):
                     messages.success(request, 'Your account has been updated successfully')
                     return redirect('profile')
                 else:
-                    address_form = CustomerUpdateForm(request.POST, instance=customer)
-                    return render(request, 'users/profile.html', {'customer': customer, 'address_form': address_form, "wishlist_items": wishlist_items})
+                    address_form = AddressForm(request.POST, instance=customer)
+                    context["customer"] = customer
+                    context["address_form"] = address_form
+                    context["wishlist_items"] = wishlist_items
+                    context["restock_list"] = restock_list
+                    return render(request, 'users/profile.html', context)
 
             elif request.POST.get('update_second_address'):
-                address_form = CustomerUpdateForm(request.POST, instance=customer)
+                address_form = AddressForm(request.POST, instance=customer)
                 if address_form.is_valid():
                     address_form.save()
                     name = request.POST.get('name')
@@ -180,8 +254,12 @@ def profile(request):
                     messages.success(request, 'Your account has been updated successfully')
                     return redirect('profile')
                 else:
-                    address_form = CustomerUpdateForm(request.POST, instance=customer)
-                    return render(request, 'users/profile.html', {'customer': customer, 'address_form': address_form, "wishlist_items": wishlist_items})
+                    address_form = AddressForm(request.POST, instance=customer)
+                    context["customer"] = customer
+                    context["address_form"] = address_form
+                    context["wishlist_items"] = wishlist_items
+                    context["restock_list"] = restock_list
+                    return render(request, 'users/profile.html', context)
 
             elif request.POST.get('update_email'):
                 email_form = UpdateEmailForm(request.POST, instance=request.user)
@@ -198,7 +276,11 @@ def profile(request):
                     return redirect('profile')
                 else:
                     email_form = UpdateEmailForm(request.POST, instance=request.user)
-                    return render(request, 'users/profile.html', {'customer': customer, 'email_form': email_form, "wishlist_items": wishlist_items})
+                    context["customer"] = customer
+                    context["email_form"] = email_form
+                    context["wishlist_items"] = wishlist_items
+                    context["restock_list"] = restock_list
+                    return render(request, 'users/profile.html', context)
 
             elif request.POST.get('delete_address'):
                 customer.address_line_1 = ''
@@ -262,13 +344,17 @@ def profile(request):
 
             else:
                 user_form = UserUpdateForm(request.POST, customer.address_line_1, instance=request.user)
-                profile_form = CustomerUpdateForm(instance=request.user)
+                profile_form = AddressForm(instance=request.user)
 
         else:
             user_form = UserUpdateForm(request.POST, instance=request.user)
-            profile_form = CustomerUpdateForm(instance=request.user)
+            profile_form = AddressForm(instance=request.user)
 
-        return render(request, 'users/profile.html', {'customer': customer, "wishlist_items": wishlist_items})
+        context["customer"] = customer
+        context["wishlist_items"] = wishlist_items
+        context["restock_list"] = restock_list
+
+        return render(request, 'users/profile.html', context)
 
     else:
         user_form = None

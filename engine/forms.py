@@ -191,3 +191,4 @@ class ProductForm(forms.ModelForm):
         self.fields['condition_select'].widget.attrs['data-product_id'] = instance.product_id
 
 
+

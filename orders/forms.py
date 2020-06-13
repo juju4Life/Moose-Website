@@ -1,12 +1,12 @@
 from django import forms
-from .models import Inventory
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from orders.models import ShippingMethod
 
 
 class InventoryForm(forms.ModelForm):
     class Meta:
-        model = Inventory
+        model = []
         fields = ['name']
 
         def sync_check(self, instance):
@@ -14,7 +14,4 @@ class InventoryForm(forms.ModelForm):
                 raise ValidationError(
                     _('Error!!')
                 )
-
-
-
 

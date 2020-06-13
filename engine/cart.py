@@ -41,7 +41,7 @@ class Cart(object):
 
         self.cart = cart
 
-    def add(self, product_id, name, expansion, condition, printing, price, language, total, quantity=1):
+    def add(self, product_id, name, expansion, condition, printing, price, language, total, max_quantity, quantity=1):
         product_id = str(product_id)
 
         if product_id not in self.cart:
@@ -55,6 +55,7 @@ class Cart(object):
                 'price': str(price),
                 'language': language,
                 'total': total,
+                "max_quantity": max_quantity,
                 'quantity': 0,
 
             }
@@ -72,8 +73,10 @@ class Cart(object):
             del self.cart[product_id]
             self.save()
 
-    def update(self, product_id, new_value, price):
+    def update(self, product_id, new_value, price, max_quantity=None):
         if product_id in self.cart:
+            if max_quantity:
+                self.cart[product_id]["max_quantity"] = max_quantity
             quantity = int(new_value)
             price = Decimal(price)
             self.cart[product_id]["quantity"] = quantity

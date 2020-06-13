@@ -53,9 +53,13 @@
 										{% csrf_token %}
 									   <input type="hidden" name="price" value="{{ card.price }}" >
 									   <div class="input-group mb-3">
-										   <input size="2" type="number" name="quantity" min="1" max="8" value="{{card.quantity}}" >
+										   <input size="2" type="number" name="quantity" min="1" max="{{ card.max_quantity }}" value="{{card.quantity}}" >
 										   <div class="input-group-append">
-											   <button  type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
+											   <button  type="submit" class="btn btn-sm btn-outline-info">Update</button>
+										   </div>
+										   &nbsp;
+										   <div class="input-group-append">
+											   of {{ card.max_quantity }}
 										   </div>
 									   </div>
 								   </form>

@@ -11,6 +11,14 @@ from tcg.tcg_scraper import TcgScraper
 scraper = TcgScraper()
 
 
+def product_sku(printing, condition):
+
+    return {
+        "price": f"{printing}_{condition}_price".lower(),
+        "stock": f"{printing}_{condition}_stock".lower(),
+    }
+
+
 def convert_foil(value):
 
     d = {

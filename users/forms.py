@@ -74,7 +74,7 @@ class UserUpdateForm(forms.ModelForm):
 		# self.fields['address_line_1'].widget.attrs['placeholder'] = address
 
 
-class CustomerUpdateForm(forms.ModelForm):
+class AddressForm(forms.ModelForm):
 	state_list = ((i.abbreviation, i.abbreviation,) for i in State.objects.all())
 	name = forms.CharField()
 	address_line_1 = forms.CharField()
@@ -88,6 +88,17 @@ class CustomerUpdateForm(forms.ModelForm):
 		fields = [
 			'name', 'address_line_1', 'address_line_2', 'city', 'state', 'zip_code',
 		]
+
+
+class GuestCheckoutForm(forms.Form):
+	name = forms.CharField()
+	email = forms.EmailField()
+	state_list = ((i.abbreviation, i.abbreviation,) for i in State.objects.all())
+	address_line_1 = forms.CharField(label="Address")
+	address_line_2 = forms.CharField(required=False, label="Address Continued")
+	city = forms.CharField()
+	state = forms.CharField(widget=forms.Select(choices=tuple(state_list)))
+	zip_code = forms.CharField(max_length=5, validators=[validate_zip_code], label="Zip Code")
 
 
 class UpdateEmailForm(forms.ModelForm):

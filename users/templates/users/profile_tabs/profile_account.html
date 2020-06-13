@@ -10,7 +10,6 @@
                     <th></th>
                     <th></th>
                 </tr>
-
             </thead>
 
             <tbody>
@@ -39,7 +38,7 @@
                         <td>
                             <form style="margin-top:1%" method="POST" action="{% url 'profile' %}">
                                 {% csrf_token %}
-                                <input type="submit" name="update_password" value="Change Password" class="btn btn-info" >
+                                <input type="submit" name="update_password" value="Change Password" class="btn btn-info btn-sm" >
                             </form>
                         </td>
                         <td>
@@ -47,7 +46,7 @@
                             <div style="margin-top:1%;">
                                 <form method="POST" action="{% url 'profile' %}">
                                 {% csrf_token %}
-                                    <input type="submit" name="update_email" value="Change Email" class="btn btn-info" >
+                                    <input type="submit" name="update_email" value="Change Email" class="btn btn-info btn-sm" >
                                 </form>
 
                             </div>
@@ -81,7 +80,7 @@
                         <legend>Change Email</legend>
                         {{email_form|crispy}}
                     </fieldset>
-                    <input type="submit" name="update_email" value="Update" class ='btn btn-info' />
+                    <input type="submit" name="update_email" value="Update" class ='btn btn-info btn-sm' />
                 </form>
 
 
@@ -120,7 +119,7 @@
                             <div style="">
                                 <form method="POST" action="{% url 'profile' %}">
                                 {% csrf_token %}
-                                    <input type="submit" name="update_address" value="Change Address" class="btn btn-info" >
+                                    <input type="submit" name="update_address" value="Change Address" class="btn btn-info btn-sm" >
                                 </form>
                             </div>
                         </td>
@@ -129,7 +128,7 @@
                             <div style="">
                                 <form method="POST" action="{% url 'profile' %}">
                                 {% csrf_token %}
-                                    <input type="submit" name="delete_address" value="Delete" class="btn btn-secondary" >
+                                    <input type="submit" name="delete_address" value="Delete" class="btn btn-secondary btn-sm" >
                                 </form>
                             </div>
                         </td>
@@ -145,7 +144,7 @@
                                 <div style="">
                                     <form method="POST" action="{% url 'profile' %}">
                                     {% csrf_token %}
-                                        <input type="submit" name="update_address" value="Add Address" class="btn btn-info" >
+                                        <input type="submit" name="update_address" value="Add Address" class="btn btn-info btn-sm" >
                                     </form>
                                 </div>
                             </td>
@@ -162,7 +161,7 @@
                         <legend class="border-bottom mb-4">Default Address</legend>
                         {{address_form|crispy}}
                     </fieldset>
-                    <input type="submit" name="update_address" value="Update" class ='btn btn-info' />
+                    <input type="submit" name="update_address" value="Update" class ='btn btn-info btn-sm' />
                 </form>
 
             </div>
@@ -201,7 +200,7 @@
                                     <div style="">
                                         <form method="POST" action="{% url 'profile' %}">
                                         {% csrf_token %}
-                                            <input type="submit" name="update_second_address" value="Change Address" class="btn btn-info" >
+                                            <input type="submit" name="update_second_address" value="Change Address" class="btn btn-info btn-sm" >
                                         </form>
                                     </div>
                                 </td>
@@ -209,7 +208,7 @@
                                     <div style="">
                                         <form method="POST" action="{% url 'profile' %}">
                                         {% csrf_token %}
-                                            <input type="submit" name="delete_second_address" value="Delete" class="btn btn-secondary" >
+                                            <input type="submit" name="delete_second_address" value="Delete" class="btn btn-secondary btn-sm" >
                                         </form>
                                     </div>
                                 </td>
@@ -223,7 +222,7 @@
                                     <div style="">
                                         <form method="POST" action="{% url 'profile' %}">
                                         {% csrf_token %}
-                                            <input type="submit" name="update_second_address" value="Add Address" class="btn btn-info" >
+                                            <input type="submit" name="update_second_address" value="Add Address" class="btn btn-info btn-sm" >
                                         </form>
                                     </div>
                                 </td>
@@ -244,7 +243,7 @@
                         <legend class="border-bottom mb-4">Second Address</legend>
                         {{address_form|crispy}}
                     </fieldset>
-                    <input type="submit" name="update_second_address" value="Update" class ='btn btn-info' />
+                    <input type="submit" name="update_second_address" value="Update" class ='btn btn-info btn-sm' />
                 </form>
             </div>
         {% endif %}
@@ -257,7 +256,7 @@
     <div class=""></div>
     <div class="col-sm-11">
         <hr>
-        <h5 class="subscribe-title">
+        <h5 class="opaque-black-text">
             Would you like to join our mailing list? Choose your subscriptions below
         </h5>
     </div>
@@ -302,7 +301,7 @@
 
 
 
-            <input style="margin-top:1%;" name="subscriptions" type="submit" class="btn btn-info" value="Update Options">
+            <input style="margin-top:1%;" name="subscriptions" type="submit" class="btn btn-info btn-sm" value="Update Options">
         </form>
     </div>
 

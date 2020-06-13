@@ -11,6 +11,8 @@
 	}
 </style>
 
+<link href="{% static 'custom_css/profile.css' %}" rel="stylesheet" type="text/css">
+
 <div style="margin-top: 5%">
 	<nav>
 		<div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -26,7 +28,7 @@
 
 			<a class="nav-item nav-link" id="nav-restock-tab" data-toggle="tab" href="#nav-restock" role="tab" aria-controls="nav-restock"
 			   aria-selected="false">
-				Restock Notifications</a>
+				Restock Alerts</a>
 
 			<a class="nav-item nav-link" id="nav-treasures-tab" data-toggle="tab" href="#nav-treasures" role="tab" aria-controls="nav-treasures"
 			   aria-selected="false">
@@ -41,15 +43,19 @@
 		<!-- Main Profile Information -->
 
 		<div class="tab-pane fade show active" id="nav-account" role="tabpanel" aria-labelledby="nav-account-tab">
-			{% include 'users/profile_account.html' %}
+			{% include 'users/profile_tabs/profile_account.html' %}
 		</div>
 
 		<div class="tab-pane fade" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab"></div>
 
 		<div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab">
-			{% include 'users/profile_wishlist.html' %}
+			{% include 'users/profile_tabs/profile_wishlist.html' %}
 		</div>
-		<div class="tab-pane fade" id="nav-restock" role="tabpanel" aria-labelledby="nav-restock-tab"></div>
+
+		<div class="tab-pane fade" id="nav-restock" role="tabpanel" aria-labelledby="nav-restock-tab">
+			{% include 'users/profile_tabs/profile_restock.html' %}
+		</div>
+
 		<div class="tab-pane fade" id="nav-treasures" role="tabpanel" aria-labelledby="nav-treasures-tab"></div>
 	</div>
 </div>

@@ -1,12 +1,10 @@
 
-.label{
-    font: 600 12px "Open Sans",sans-serif;
-    color: #898C8E;
-    text-transform: uppercase;
+.label {
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .profile-data{
-    font: 600 12px "Open Sans",sans-serif;
+
 }
 
 .info-table{
@@ -20,7 +18,7 @@
 }
 
 .form-check-label{
-    font: "Open Sans",sans-serif;
+
     text-decoration: underline;
 }
 

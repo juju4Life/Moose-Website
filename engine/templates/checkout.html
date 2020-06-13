@@ -1,90 +1,269 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
+
 {% block content %}
-
-
 <link rel="stylesheet" type="text/css" href="{% static 'custom_css/checkout.css' %}">
 
-{% if not confirm_message %}
-	<div class="container-fluid" style="min-height:95%;">
-		<div class="row">
-			<div class="col-sm-12"></div>
-
-			<div id="dataRow" class="row">
-				<div class="col-sm-2 col-sm-2"></div>
-				<div id="dataBox" class="inner col-sm-4 col-sm-4">
-					<table style="color: rgb(80,80,80); margin-top: 10%;" class="nav nav-pills nav-stacked table table">
-						<thead class="thead-inverse">
-							<tr class="header">
-							  <th id="">Quantity</th>
-							  <th id="n">Name</th>
-							  <th id="">Product</th>
-							  <th id="p">Total</th>
-							</tr>
-						</thead>
 
 
-						{% for card in cart %}
 
-							<form action="{% url 'add_to_cart' card.product %}" method="post">
-									{% csrf_token %}
-								<tbody>
-									<tr>
-										<td>{{card.quantity}}</td>
-										<td>
-											{{card.name}}
-										</td>
-										<td>({{card.set_name}})</td>
-										<td id="price">${{card.total|floatformat:2}}</td>
-									</tr>
+{% if checkout_options %}
 
-								</tbody>
+	<div class="row">
+		<div class="col-sm-6 form-group offset-sm-3 mt-5">
+			<div class="form-row form-wrapper-default default-padding-wrapper">
+				<form method="GET" action="{% url 'checkout' %}">
+					<fieldset>
+						<legend class="opaque-black-text">Checkout options</legend>
+						<hr>
+						<button type="submit" name="login" value="login" class="btn btn-info btn-lg">Login</button>
+						<button type="submit" name="guest" value="guest" class="btn btn-secondary btn-lg">Guest</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+
+{% else %}
+
+<div id="change-address-form" title="Change Address">
+
+							<form method="POST" action="{% url 'checkout' %}">
+								{% csrf_token %}
+								<fieldset>
+									<div class="form-group">
+										<div class="form-row">
+											<div class="col">
+												{{ guest_address_form.name|as_crispy_field }}
+											</div>
+
+											<div class="col">
+												{{ guest_address_form.email|as_crispy_field }}
+											</div>
+										</div>
+
+										<div class="form-row">
+											<div class="col">
+												{{ guest_address_form.address_line_1|as_crispy_field }}
+											</div>
+
+											<div class="col">
+												{{ guest_address_form.address_line_2|as_crispy_field }}
+											</div>
+										</div>
+
+
+										<div class="form-row">
+											<div class="col">
+												{{ guest_address_form.city|as_crispy_field }}
+											</div>
+											<div class="col">
+												{{ guest_address_form.state|as_crispy_field }}
+											</div>
+											<div class="col">
+												{{ guest_address_form.zip_code|as_crispy_field }}
+											</div>
+										</div>
+									</div>
+								</fieldset>
+
+								<div>
+									<button type="submit" name="change_address" value="change_address" class="btn btn-success btn-sm">Submit</button>
+								</div>
 
 							</form>
-						{% endfor %}
-					</table>
 
-				<div class="col-sm-3"></div>
-				</div>
-				<div class="col-sm-1"></div>
+						</div>
 
-				<div class="row">
-					<div style="color: rgb(80,80,80,);" id="totalBox" class="col-sm-12">
+<div class="form-wrapper-default col-sm-8 offset-sm-2 mt-5">
+	<form method="POST" action="{% url 'confirm_order_details' %}">
+		{% csrf_token %}
 
-						<h4>Subtotal: $<span id="subTotal">{{sub_total|floatformat:2}}</span></h4>
-						<h4>Number of Items: {{length}}</h4>
+		<div class="row mt-3">
+			<div class="col-sm-4 offset-sm-1">
+				<h4>Order Total</h4>
+			</div>
 
+			<div class="col-sm-6 offset-sm-0">
 
-						{% endif %}
+				Total: ${{ cart.total_price }}<br>
+				Tax: ${{ tax }} <br>
+				<strong>${{ total_with_tax }}</strong>
 
-						{% if form %}
-						<form method="POST" action="{% url 'payment' %}">{% csrf_token %}
-						  <div id="form">{{form|crispy}}</div>
-						  <input style="margin-bottom: 2%;" type="submit" value="submit form" class ='btn btn-default' />
-						</form>
-					</div>
-				</div>
-				<hr>
 			</div>
 		</div>
 
+		<hr>
+
+		<div class="row">
+			<div class="col-sm-4 offset-sm-1">
+				<h4>Shipping Address</h4>
 			</div>
 
-		{% endif %}
+			<div class="col-sm-6 offset-sm-0">
+				{% if user.is_authenticated %}
 
-	{% if confirm_message %}
+					{% if user.customer.address_line_1 %}
+						<div>
+							<p>{{ user.customer.email }}</p>
+							<p>
+								{{ user.customer.name }} <br>
+								{{ user.customer.address_line_1 }} <br>
+								{% if user.customer.address_line_2 %}
+									{{ user.customer.address_line_2 }} <br>
+								{% endif %}
+								{{ user.customer.city }}, {{ user.customer.state }} {{user.customer.zip_code }} <br>
+							</p>
 
-	 <center><img src="{% static 'img/youBlue.png' %}"> <img src="{% static 'img/youOrange.png' %}"></center>
+							<input type="hidden" name="name" value="{{ user.customer.name }}">
+							<input type="hidden" name="email" value="{{ user.customer.email }}">
+							<input type="hidden" name="address_line_1" value="{{ user.customer.address_line_1 }}">
+							<input type="hidden" name="address_line_2" value="{{ user.customer.address_line_2}}">
+							<input type="hidden" name="city" value="{{ user.customer.city }}">
+							<input type="hidden" name="state" value="{{ user.customer.state }}">
+							<input type="hidden" name="zip_code" value="{{ user.customer.zip_code }}">
+						</div>
 
-	<div id='totalBox'>
-		<h3>
-		  Your order has been received and you will be notified once it is available for pickup.<br>
-		</h3>
-	</div>
+
+						<div>
+							<button type="button" id="change-address-button" class="btn btn-secondary btn-sm">Change Address</button>
+						</div>
+
+					{% else %}
+
+					{% endif %}
+
+				{% else %}
+					<div class="form-group">
+							<fieldset>
+								<div class="form-row">
+									<div class="col">
+										{{ guest_address_form.name|as_crispy_field }}
+									</div>
+
+									<div class="col">
+										{{ guest_address_form.email|as_crispy_field }}
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class="col">
+										{{ guest_address_form.address_line_1|as_crispy_field }}
+									</div>
+
+									<div class="col">
+										{{ guest_address_form.address_line_2|as_crispy_field }}
+									</div>
+								</div>
+
+
+								<div class="form-row">
+									<div class="col">
+										{{ guest_address_form.city|as_crispy_field }}
+									</div>
+									<div class="col">
+										{{ guest_address_form.state|as_crispy_field }}
+									</div>
+									<div class="col">
+										{{ guest_address_form.zip_code|as_crispy_field }}
+									</div>
+								</div>
+							</fieldset>
+
+					</div>
+				{% endif %}
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="row">
+			<div class="col-sm-4 offset-sm-1">
+				<h4>Shipping Method</h4>
+			</div>
+			<div class="col-sm-6 offset-sm-0">
+
+				<div class="form-group">
+
+					{% for method in shipping_methods %}
+						<div class="form-check">
+							{% if method.clean_name == "standard" or method.clean_name == "standard_free" %}
+								<input class="form-check-input" type="radio" name="shipping_method" id="{{ method.clean_name }}"
+									   value="{{ method.clean_name }}" checked>
+							{% else %}
+								<input class="form-check-input" type="radio" name="shipping_method" id="{{ method.clean_name }}" value="{{ method.clean_name }}">
+							{% endif %}
+
+							<label class="form-check-label" for="{{ method.clean_name }}">{{ method.full_name }} ${{ method.cost }}</label>
+						</div>
+					{% endfor %}
+
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="row">
+			<div class="col-sm-4 offset-sm-1">
+				<h4>Payment</h4>
+			</div>
+
+			<div class="col-sm-6 offset-sm-0">
+
+				<div class="form-group">
+					<label for="coupon-input">Coupon Code</label>
+					<input class="form-control" name="coupon_code" id="coupon-input">
+				</div>
+
+
+				<div class="form-group">
+					<label for="store-credit-input">
+						{% if  user.is_authenticated %}
+							Use Credit: ${{ user.customer.credit }}
+						{% else %}
+							<span class="opaque-black-text">Store Credit:</span> Must be logged in*
+						{% endif %}
+					</label>
+					<div>
+						<input type="number" max="{{ user.customer.credit }}" class="form-control store-credit-input"
+							   aria-label="Store Credit input with checkbox" name="store_credit" id="store-credit-input">
+					</div>
+
+				</div>
+
+				<div class="form-check ml-5">
+					<input class="form-check-input" type="checkbox" name="payment_method" id="payment" value="cash" checked disabled>
+					<label class="form-check-label" for="payment">Paypal / Credit Card</label>
+				</div>
+
+			</div>
+		</div>
+
+		<br>
+
+		<div class="row">
+			<div class="col-sm-6 offset-sm-3">
+				<button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+			</div>
+		</div>
+
+	</form>
 </div>
+{% endif %}
+
+{% if not user.is_authenticated %}
+	<script>
+		var paymentFields = document.getElementsByClassName("store-credit-input");
+		Array.prototype.forEach.call(paymentFields, function( field ){
+			field.disabled = true;
+		});
+	</script>
 
 {% endif %}
+
+<script>jqueryDialogBox("#change-address-form", "#change-address-button");</script>
 
 
 {% endblock %}

@@ -36,7 +36,7 @@ function populateConditionTable(is_active, condition, name, expansion, language,
     };
 
     var table = document.createElement("table");
-    table.setAttribute("class", "card-search-table table-responsive");
+    table.setAttribute("class", "card-search-table table-responsive table-borderless");
 
     var body = document.createElement("tbody");
 
@@ -108,7 +108,8 @@ function createConditionTableRow(condition, printing, stock, price, productId, n
         var tdForm = document.createElement("td");
         var form = document.createElement("form");
         form.setAttribute("method", "POST");
-        form.setAttribute("action", `cart/add/${productId}`);
+        form.setAttribute("class", "add-to-cart-form");
+        form.setAttribute("data-url", `cart/add/${productId}`);
 
         // Get csrf token
         var csrfToken = getCookie("csrftoken");
@@ -166,9 +167,17 @@ function createConditionTableRow(condition, printing, stock, price, productId, n
         languageInput.setAttribute("value", language);
         form.appendChild(languageInput);
 
+        var maxQuantityInput = document.createElement("input");
+        maxQuantityInput.setAttribute("type", "hidden");
+        maxQuantityInput.setAttribute("name", "max_quantity");
+        maxQuantityInput.setAttribute("value", stock);
+        form.appendChild(maxQuantityInput);
+
         var formButton = document.createElement("button");
         formButton.setAttribute("class", "btn btn-success btn-sm mr-1");
         formButton.setAttribute("type", "submit");
+        formButton.setAttribute("id", `add-to-cart-${printing}-${condition}-${productId}`);
+        formButton.setAttribute("title", "");
         var buttonIcon1 = document.createElement("i");
         buttonIcon1.setAttribute("class", "material-icons");
         buttonIcon1Text = document.createTextNode('add');
