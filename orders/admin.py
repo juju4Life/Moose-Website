@@ -1,5 +1,5 @@
 from django.contrib import admin
-from orders.models import GroupName, Order, ShippingMethod
+from orders.models import GroupName, Order, ShippingMethod, Coupon
 
 
 @admin.register(GroupName)
@@ -10,4 +10,9 @@ class GroupNameAdmin(admin.ModelAdmin):
 
 @admin.register(ShippingMethod)
 class ShippingMethodAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Coupon)
+class CouponAdmin(admin.ModelAdmin):
     pass

@@ -1,41 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/engine/static/custom_js/confirm_modal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/static/custom_js/form_validation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/templates/confirm_order_details.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_restock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/management/commands/run_command.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/management/commands/run_command.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/cart.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cart.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/custom_css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/custom_css/default_form_wrapper.css" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_css/default_form_wrapper.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/custom_css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_css/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/custom_js/jquerySubmitForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_js/jquerySubmitForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/custom_js/search_condition_tab.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_js/search_condition_tab.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/search_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/search_result.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_customs/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_customs/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tcg/tcg_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/tcg/tcg_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/profile_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/profile_wishlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_wishlist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validators/model_validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/validators/model_validators.py" afterDir="false" />
-    </list>
+    <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -604,7 +570,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4936803" visible="true" weight="0.3137255" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4936803" visible="true" weight="0.39084968" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5063197" side_tool="true" weight="0.33202615" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.40784314" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
