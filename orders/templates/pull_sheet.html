@@ -3,7 +3,7 @@
 
 {% block content %}
     <link rel="stylesheet" type="text/css" href="{% static 'custom_css/pull_sheet.css' %}">
-    <div class="col-sm-2">{% include 'pagination.html' %}</div>
+
     <div class="row">
         <div class="col-sm-8 offset-sm-2">
             <h2 class="opaque-black-text">Pull Sheet Generated @ {{ time_created }}</h2>
@@ -15,21 +15,21 @@
         <div class="col-sm-12 ml-1">
             <table class="nav-tabs nav-stacked table table-responsive table-lg">
                 <tbody>
-                    {% for item in items %}
+                    {% for card in cards %}
                         <tr>
-                            <td><strong>{{ item.language }}</strong></td>
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.expansion }}</td>
+                            <td><strong>{{ card.language }}</strong></td>
+                            <td>{{ card.name }}</td>
+                            <td>{{ card.expansion }}</td>
                             <td></td>
-                            <td><span class="lg-font-bold">{{ item.quantity }}</span> {% if item.printing == "FOIL" %}
-                                <span class="lg-font-bold">{{ item.printing }}</span> {% endif %}
-                                {{ item.condition }}</td>
+                            <td><span class="lg-font-bold">{{ card.quantity }}</span> {% if card.printing == "FOIL" %}
+                                <span class="lg-font-bold">{{ card.printing }}</span> {% endif %}
+                                {{ card.condition }}</td>
 
-                            <td><span class="lg-font-bold">{{ item.quantity }}</span></td>
+                            <td><span class="lg-font-bold">{{ card.quantity }}</span></td>
 
                             <td>
-                                {% if item.printing == "FOIL" %}
-                                    <span class="lg-font-bold">{{ item.printing }}</span>
+                                {% if card.printing == "FOIL" %}
+                                    <span class="lg-font-bold">{{ card.printing }}</span>
                                 {% endif %}
                             </td>
 
