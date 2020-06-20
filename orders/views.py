@@ -1,9 +1,9 @@
 from datetime import datetime
 
-
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
 
+from engine.config import pagination
 from orders.models import Order
 
 
@@ -72,11 +72,13 @@ def pull_sheet(request):
         cards[sku]["condition"] = condition
 
     cards = sorted([i for i in cards.values()], key=lambda k: k["name"])
-    context["cards"] = cards
 
     pull_order_created = datetime.now().strftime("%m/%d - %I:%M%p")
     context["time_created"] = pull_order_created
 
+    cards = pagination(request, cards, 2)
+    context['items'] = cards[0]
+    context['page_range'] = cards[1]
     return render(request, template, context)
 
 
