@@ -18,9 +18,15 @@
                             <td>{{ card.name }}</td>
                             <td>{{ card.expansion }}</td>
                             <td></td>
-                            <td><strong>{{ card.condition }}</strong></td>
-                            <td><strong>{{ card.printing }}</strong></td>
-                            <td>{{ card.quantity }}</td>
+                            <td><strong>{{ card.quantity }}</strong> {% if card.printing == "Foil" %} <strong>{{ card.printing }}</strong> {% endif %}{{ card.condition }}</td>
+
+                            <td><strong>{{ card.quantity }}</strong></td>
+
+                            <td>
+                                {% if card.printing == "Foil" %}
+                                    <strong>{{ card.printing }}</strong>
+                                {% endif %}
+                            </td>
 
                         </tr>
                     {% endfor %}
