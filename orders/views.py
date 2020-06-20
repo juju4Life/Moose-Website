@@ -46,15 +46,14 @@ def pull_sheet(request):
     cards_from_active_orders = cards_from_active_orders.split("<card>")[:-1]
     for card in cards_from_active_orders:
         attributes = card.split("<attribute>")
-        print(attributes)
         name = attributes[0]
         expansion = attributes[1]
         printing = attributes[2]
         condition = attributes[3]
         language = attributes[4]
         quantity = attributes[5]
-        price = attributes[6]
-        total = attributes[7]
+        # price = attributes[6]
+        # total = attributes[7]
 
         sku = f"{language}_{printing}_{condition}_{name}_{expansion}"
         if not cards.get(sku):
@@ -69,13 +68,13 @@ def pull_sheet(request):
         cards[sku]["name"] = name
         cards[sku]["expansion"] = expansion
         cards[sku]["language"] = language
-        cards[sku]["printing"] = printing
+        cards[sku]["printing"] = printing.upper()
         cards[sku]["condition"] = condition
 
     cards = sorted([i for i in cards.values()], key=lambda k: k["name"])
     context["cards"] = cards
 
-    pull_order_created = datetime.now().strftime("%m/%d/%y at %I:%M%p")
+    pull_order_created = datetime.now().strftime("%m/%d - %I:%M%p")
     context["time_created"] = pull_order_created
 
     return render(request, template, context)

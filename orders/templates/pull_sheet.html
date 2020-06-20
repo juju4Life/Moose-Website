@@ -1,15 +1,18 @@
 {% extends 'home.html' %}
+{% load static %}
 
 {% block content %}
-    <div class="row mt-5">
-        <div class="col-sm-6 offset-sm-3">
-            <h4>Pull Sheet Generated @ {{ time_created }}</h4>
+    <link rel="stylesheet" type="text/css" href="{% static 'custom_css/pull_sheet.css' %}">
+
+    <div class="row">
+        <div class="col-sm-8 offset-sm-2">
+            <h2 class="opaque-black-text">Pull Sheet Generated @ {{ time_created }}</h2>
         </div>
 
     </div>
 
     <div class="row">
-        <div class="col-sm-12 mt-1 ml-5">
+        <div class="col-sm-12 mt-1 ml-1">
             <table class="nav-tabs nav-stacked table table-responsive table-lg">
                 <tbody>
                     {% for card in cards %}
@@ -18,13 +21,15 @@
                             <td>{{ card.name }}</td>
                             <td>{{ card.expansion }}</td>
                             <td></td>
-                            <td><strong>{{ card.quantity }}</strong> {% if card.printing == "Foil" %} <strong>{{ card.printing }}</strong> {% endif %}{{ card.condition }}</td>
+                            <td><span class="lg-font-bold">{{ card.quantity }}</span> {% if card.printing == "FOIL" %}
+                                <span class="lg-font-bold">{{ card.printing }}</span> {% endif %}
+                                {{ card.condition }}</td>
 
-                            <td><strong>{{ card.quantity }}</strong></td>
+                            <td><span class="lg-font-bold">{{ card.quantity }}</span></td>
 
                             <td>
-                                {% if card.printing == "Foil" %}
-                                    <strong>{{ card.printing }}</strong>
+                                {% if card.printing == "FOIL" %}
+                                    <span class="lg-font-bold">{{ card.printing }}</span>
                                 {% endif %}
                             </td>
 
