@@ -4,7 +4,7 @@ from datetime import datetime
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
 
-from orders.models import Order
+from orders.models import Order, OrdersLayout
 
 
 @staff_member_required
@@ -80,3 +80,48 @@ def pull_sheet(request):
     return render(request, template, context)
 
 
+@staff_member_required
+def packing_slips(request, order_number):
+    context = dict()
+    template = "packing_slips.html"
+    packing_slip_note = OrdersLayout.objects.get(name="packing_slip_note")
+    all_items = list()
+
+    orders = Order.objects.filter(active=True)
+    if order_number.lower() != "all":
+        orders = orders.filter(order_number=order_number)
+
+    for order in orders:
+        items = order.ordered_items.split("<card>")[:-1]
+        ordered_items = list()
+        for item in items:
+            card = item.split("<attribute>")
+            name = card[0]
+            expansion = card[1]
+            printing = card[2]
+            condition = card[3]
+            language = card[4]
+            quantity = card[5]
+            price = card[6]
+            total = card[7]
+
+            ordered_items.append(
+                {
+                    "name": name,
+                    "expansion": expansion,
+                    "printing": printing,
+                    "condition": condition,
+                    "language": language,
+                    "quantity": quantity,
+                    "price": price,
+                    "total": total,
+                }
+            )
+        all_items.append(ordered_items)
+
+    orders = zip(orders, all_items)
+
+    context["orders"] = orders
+    context["note"] = packing_slip_note
+
+    return render(request, template, context)

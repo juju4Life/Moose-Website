@@ -64,7 +64,19 @@ class Order(models.Model):
     ordered_items = models.TextField(default='')
     order_view = models.URLField(default='')
     send_message = models.TextField(default='', blank=True)
+    tracking_number = models.CharField(max_length=255, default='', blank=True)
+    active = models.BooleanField(default=False)
 
     def __str__(self):
         return self.order_number
+
+
+class OrdersLayout(models.Model):
+    label = models.CharField(max_length=255, default='')
+    name = models.CharField(max_length=255, default='')
+    data = models.TextField(default='')
+
+    def __str__(self):
+        return self.label
+
 
