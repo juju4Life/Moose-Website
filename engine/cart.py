@@ -102,7 +102,6 @@ class Cart(object):
             raise ModelDoesNotExist(message.format(model_name, app_label))
 
         for item in self.cart.values():
-            item['total_price'] = item['price'] * item['quantity']
             yield item
 
     def __len__(self):
@@ -110,7 +109,13 @@ class Cart(object):
 
     @property
     def total_price(self):
-        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+        subtotal = Decimal(0)
+        for item in self.cart.values():
+            price = Decimal(item['price'])
+            quantity = item['quantity']
+            subtotal += (price * quantity)
+
+        return subtotal
 
     @property
     def cart_length(self):

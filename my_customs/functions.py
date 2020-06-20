@@ -1,15 +1,14 @@
-import string
-import random
 import re
 import math
 import requests
 from time import sleep
+from uuid import uuid4
 from bs4 import BeautifulSoup as b
 from.decorators import offset
 
 
-def create_random_id(size=8, chars=string.ascii_uppercase + string.digits):
-    return ''.join(random.choice(chars) for _ in range(size))
+def create_random_id(size=6):
+    return uuid4().hex[:size]
 
 
 def request_soup(url):

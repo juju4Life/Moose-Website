@@ -1,0 +1,34 @@
+{% extends 'home.html' %}
+
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-sm-6 offset-sm-3">
+            <h4>Pull Sheet Generated @ {{ time_created }}</h4>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 mt-1 ml-5">
+            <table class="nav-tabs nav-stacked table table-responsive table-lg">
+                <tbody>
+                    {% for card in cards %}
+                        <tr>
+                            <td><strong>{{ card.language }}</strong></td>
+                            <td>{{ card.name }}</td>
+                            <td>{{ card.expansion }}</td>
+                            <td></td>
+                            <td><strong>{{ card.condition }}</strong></td>
+                            <td><strong>{{ card.printing }}</strong></td>
+                            <td>{{ card.quantity }}</td>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+{% endblock content %}

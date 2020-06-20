@@ -23,7 +23,7 @@ urlpatterns = [
     path('', home_views.home_base, name='base'),
     path('home/', home_views.home, name='home'),
     path('checkout/confirm-details', home_views.confirm_info, name='confirm_order_details'),
-    path('', include('orders.urls')),
+    path('orders/', include('orders.urls')),
     path('api/card-info', home_views.CardDatabase.as_view(), name='card_info'),
     path('payment/paypal-transaction-complete/<name>/<email>', home_views.paypal_transaction, name='paypal_complete'),
     path('payment/', home_views.payment, name='payment'),

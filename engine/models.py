@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class CardPriceData(models.Model):
     c = (
         ('yes', 'Yes',),

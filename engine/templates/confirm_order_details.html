@@ -19,6 +19,9 @@
                     <input type="hidden" name="final_total" value="{{ customer.final_total }}">
                     <input type="hidden" name="store_credit" value="{{ customer.store_credit }}">
                     <input type="hidden" name="tax" value="{{ customer.tax }}">
+                    <input type="hidden" name="discount_amount" value="{{ customer.discount_amount }}">
+                    <input type="hidden" name="discount_name" value="{{ customer.discount_name }}">
+
 
 
                     <fieldset>
@@ -56,6 +59,13 @@
                                     <td>${{ cart.total_price }}</td>
                                 </tr>
 
+                                {% if customer.discount_amount %}
+                                    <tr>
+                                        <td>coupon discount</td>
+                                        <td>-${{ customer.discount_amount }}</td>
+                                    </tr>
+
+                                {% endif %}
                                 <tr>
                                     <td>Shipping Cost</td>
                                     <td>${{ customer.shipping_charged }}</td>

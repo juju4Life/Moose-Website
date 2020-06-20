@@ -51,7 +51,9 @@
       {% endfor %}
     {% endif %}
 
-    {% include 'navbar.html' %}
+    {% if 'admin' not in request.path %}
+      {% include 'navbar.html' %}
+    {% endif %}
 
     <div class="loader-icon"></div>
     {% block content %}

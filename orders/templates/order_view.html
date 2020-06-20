@@ -1,0 +1,10 @@
+{% extends 'home.html' %}
+
+
+{% block content %}
+
+    {% for card in cards %}
+        {{ card.name }}
+    {% endfor %}
+
+{% endblock content %}

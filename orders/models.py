@@ -53,7 +53,7 @@ class Order(models.Model):
     city = models.CharField(max_length=255, default='')
     state = models.CharField(max_length=255, default='')
     zip_code = models.CharField(max_length=255, default='')
-    phone = models.CharField(max_length=255, default='', blank=True)
+    phone = models.CharField(max_length=255, default='', null=True)
     total_order_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     store_credit_used = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     tax_charged = models.DecimalField(max_digits=12, decimal_places=2, default=0)
@@ -63,6 +63,7 @@ class Order(models.Model):
     notes = models.TextField(default='')
     ordered_items = models.TextField(default='')
     order_view = models.URLField(default='')
+    send_message = models.TextField(default='', blank=True)
 
     def __str__(self):
         return self.order_number
