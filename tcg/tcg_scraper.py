@@ -21,7 +21,7 @@ class TcgScraper:
         self.chrome_options.add_argument('--disable-gpu')
         self.chrome_options.add_argument('--no-sandbox')
         self.chrome_options.add_argument("--headless")
-        self.ignored_exceptions = (NoSuchElementException, StaleElementReferenceException,)
+        self.ignored_exceptions = (NoSuchElementException, StaleElementReferenceException, )
 
         if self.GOOGLE_CHROME_SHIM != 'Local':
             # self.chrome_options.binary_location = self.GOOGLE_CHROME_SHIM
