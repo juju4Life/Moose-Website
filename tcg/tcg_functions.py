@@ -11,6 +11,32 @@ from tcg.tcg_scraper import TcgScraper
 scraper = TcgScraper()
 
 
+def adjust_product_quantity(obj, condition, printing, product_id, quantity):
+
+    product = obj.objects.get(product_id=product_id)
+
+    if printing == "Normal":
+        if condition == "clean":
+            product.normal_clean_stock += int(quantity)
+
+        elif condition == "played":
+            product.normal_played_stock += int(quantity)
+
+        elif condition == "heavily_played":
+            product.normal_heavily_played_stock += int(quantity)
+
+    elif printing == "Foil":
+        if condition == "clean":
+            product.foil_clean_stock += int(quantity)
+
+        elif condition == "played":
+            product.foil_played_stock += int(quantity)
+
+        elif condition == "heavily_played":
+            product.foil_heavily_played_stock += int(quantity)
+    product.save()
+
+
 def product_sku(printing, condition):
 
     return {

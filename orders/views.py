@@ -2,9 +2,38 @@ from datetime import datetime
 
 
 from django.contrib.admin.views.decorators import staff_member_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from orders.models import Order, OrdersLayout
+from orders.models import Order, OrdersLayout, PullingOrder, ReadyToShipOrder
+from ppal.paypal_setup import PayPal
+
+paypal = PayPal()
+
+
+def confirm_payment(request):
+    context = dict()
+    template = "confirm_payment.html"
+
+    is_paid = False
+
+    order_number = request.GET.get("token")
+    payer_id = request.GET.get("PayerID")
+
+    if order_number and payer_id:
+        paypal_payment = paypal.get_order(order_number)
+        if paypal_payment == "APPROVED":
+            order = Order.objects.get(order_number=order_number)
+            order.paid = True
+            order.payer_id = payer_id
+            order.save()
+            is_paid = True
+        else:
+            pass
+
+    context["is_paid"] = is_paid
+    context["order_number"] = order_number
+
+    return render(request, template, context)
 
 
 @staff_member_required
@@ -42,7 +71,7 @@ def pull_sheet(request):
     template = "pull_sheet.html"
     cards = dict()
 
-    cards_from_active_orders = ''.join([i.ordered_items for i in Order.objects.all()])
+    cards_from_active_orders = ''.join([i.ordered_items for i in PullingOrder.objects.all()])
     cards_from_active_orders = cards_from_active_orders.split("<card>")[:-1]
     for card in cards_from_active_orders:
         attributes = card.split("<attribute>")
@@ -87,7 +116,7 @@ def packing_slips(request, order_number):
     packing_slip_note = OrdersLayout.objects.get(name="packing_slip_note")
     all_items = list()
 
-    orders = Order.objects.filter(active=True)
+    orders = PullingOrder.objects.all()
     if order_number.lower() != "all":
         orders = orders.filter(order_number=order_number)
 
@@ -117,6 +146,7 @@ def packing_slips(request, order_number):
                     "total": total,
                 }
             )
+
         all_items.append(ordered_items)
 
     orders = zip(orders, all_items)
@@ -125,3 +155,53 @@ def packing_slips(request, order_number):
     context["note"] = packing_slip_note
 
     return render(request, template, context)
+
+
+@staff_member_required
+def ready_to_ship(request):
+    if request.GET:
+        order_numbers = [i for i in request.GET.getlist("ready_to_ship")]
+        pulled_orders = PullingOrder.objects.filter(order_number__in=order_numbers)
+        move_list = list()
+
+        for order in pulled_orders:
+            move_list.append(
+                ReadyToShipOrder(
+                    order_number=order.order_number,
+                    order_creation_date=order.order_creation_date,
+                    order_status="",
+                    name=order.name,
+                    email=order.email,
+                    shipping_method=order.shipping_method,
+                    address_line_1=order.address_line_1,
+                    address_line_2=order.address_line_2,
+                    city=order.city,
+                    state=order.state,
+                    zip_code=order.zip_code,
+                    phone=order.phone,
+                    total_order_price=order.total_order_price,
+                    store_credit_used=order.store_credit_used,
+                    tax_charged=order.tax_charged,
+                    shipping_charged=order.shipping_charged,
+                    discounts_applied=order.discounts_applied,
+                    discounts_code_used=order.discounts_code_used,
+                    notes=order.notes,
+                    ordered_items=order.ordered_items,
+                    order_view=order.order_view,
+                    send_message="",
+                    tracking_number=order.tracking_number,
+                    payer_id=order.payer_id,
+                )
+            )
+
+        ReadyToShipOrder.objects.bulk_create(move_list)
+        # pulled_orders.delete()
+
+    return redirect("/admin/orders/readytoshiporder/")
+
+
+@staff_member_required
+def get_shipping(request):
+    pass
+
+

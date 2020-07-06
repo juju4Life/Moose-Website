@@ -17,13 +17,20 @@
                 <tbody>
                     {% for card in cards %}
                         <tr>
-                            <td><strong>{{ card.language }}</strong></td>
+                            {% if card.language != "English" %}
+                                <td><strong>{{ card.language }}</strong></td>
+                            {% endif %}
                             <td>{{ card.name }}</td>
                             <td>{{ card.expansion }}</td>
                             <td></td>
                             <td><span class="lg-font-bold">{{ card.quantity }}</span> {% if card.printing == "FOIL" %}
                                 <span class="lg-font-bold">{{ card.printing }}</span> {% endif %}
-                                {{ card.condition }}</td>
+                                {% if card.condition != "clean" %}
+                                    <i>{{ card.condition }}</i>
+                                {% else %}
+                                    {{ card.condition }}
+                                {% endif %}
+                            </td>
 
                             <td><span class="lg-font-bold">{{ card.quantity }}</span></td>
 
@@ -42,3 +49,4 @@
     </div>
 
 {% endblock content %}
+

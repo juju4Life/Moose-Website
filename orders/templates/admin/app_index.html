@@ -1,0 +1,12 @@
+{% extends "admin/index.html" %}
+
+{% block extrahead %}
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"> -->
+{% endblock %}
+
+{% block content %}
+    <div style="margin-bottom: 1%; font-weight: bold;">
+        <a href="{% url 'packing_slips' 'all' %}">Packing Slips</a> | <a href=" {% url 'orders_pull_sheet' %}">Pull List</a>
+    </div>
+    {{ block.super }}
+{% endblock %}

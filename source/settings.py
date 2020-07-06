@@ -84,7 +84,6 @@ INSTALLED_APPS = [
     # 'admin_tools.theming',
     # 'admin_tools.menu',
     # 'admin_tools.dashboard',
-    'django.contrib.admin',
     'users.apps.UsersConfig',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -93,13 +92,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    # 'django.templatetags.static',
     'engine',
+    'orders',
+    'django.contrib.admin',
     'engine.apps.EngineConfig',
     'contact',
     'contact.apps.ContactConfig',
     'buylist',
-    #'facebook_bot',
     'crispy_forms',
     'allauth',
     'allauth.account',
@@ -111,7 +110,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'customer',
     'sms',
-    'orders',
+    'orders.apps.OrderConfig',
     'rest_framework',
     'import_export',
     'tcg',
@@ -123,8 +122,6 @@ INSTALLED_APPS = [
     'captcha',
     'layout',
     'cloudinary',
-    # 'customer.startup.BotConfig',
-
 ]
 
 MIDDLEWARE = [
@@ -162,8 +159,8 @@ PROJECT_DIR = os.path.dirname(__file__)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['engine\\templates', 'customer\\templates', 'users\\templates',
-                'users\\templates\\registration', 'orders\\templates'],
+        'DIRS': ['engine/templates', 'customer/templates', 'users/templates',
+                'users/templates/registration', 'orders/templates'],
 
         'OPTIONS': {
             'loaders': ['admin_tools.template_loaders.Loader', 'django.template.loaders.app_directories.Loader'],

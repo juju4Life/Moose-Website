@@ -13,7 +13,6 @@ class PaypalApi:
         auth = f"Bearer {access_token}"
         headers = {
 
-
             "Content-Type": "application/json",
             "Authorization": auth,
         }

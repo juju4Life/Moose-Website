@@ -2,9 +2,41 @@
 
 
 {% block content %}
+    <div class="row mt-1">
+        <div class="col-sm-10 offset-sm-1">
+            <h4>Order Number: {{ order.order_number }}</h4>
+            <p>{{ order.name }} - {{ order.shipping_method }}</p>
+            <p>Grand Total: ${{ order.total_order_price }}</p>
+        </div>
+    </div>
 
-    {% for card in cards %}
-        {{ card.name }}
-    {% endfor %}
+    <div class="row">
+        <div class="col-sm-11 offset-sm-1">
+            <table class="nav-tabs nav-stacked table table-responsive table-borderless table-lg">
+                <tbody>
+                    {% for card in cards %}
+                        <tr>
+                            <td>{{ card.name }}</td>
+                            <td>{{ card.expansion }}</td>
+                            <td>{{ card.quantity }}</td>
+                            <td>
+                                {% if card.condition != "clean" %}
+                                    <i>{{ card.condition }}</i>
+                                {% else %}
+                                    {{ card.condition }}
+                                {% endif %}
+                            </td>
+                            {% if card.language != "English" %}
+                                <td><strong>{{ card.language }}</strong></td>
+                            {% endif %}
+                            <td><strong>{{ card.printing }}</strong></td>
+                            <td>${{ card.price }}</td>
+                            <td>${{ card.total }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+    </table>
+        </div>
+    </div>
 
 {% endblock content %}

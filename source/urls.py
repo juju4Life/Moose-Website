@@ -25,7 +25,6 @@ urlpatterns = [
     path('checkout/confirm-details', home_views.confirm_info, name='confirm_order_details'),
     path('orders/', include('orders.urls')),
     path('api/card-info', home_views.CardDatabase.as_view(), name='card_info'),
-    path('payment/paypal-transaction-complete/<name>/<email>', home_views.paypal_transaction, name='paypal_complete'),
     path('payment/', home_views.payment, name='payment'),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),
