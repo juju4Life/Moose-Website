@@ -195,7 +195,7 @@ def ready_to_ship(request):
             )
 
         ReadyToShipOrder.objects.bulk_create(move_list)
-        # pulled_orders.delete()
+        pulled_orders.delete()
 
     return redirect("/admin/orders/readytoshiporder/")
 

@@ -45,6 +45,11 @@ class OrdersAction:
         queryset.delete()
         return redirect("admin/orders")
 
+    def complete_orders(self, modeladmin, request, queryset, obj, order_status, short_description):
+        self.process_action(modeladmin=modeladmin, request=request, queryset=queryset, obj=obj, order_status=order_status, short_description=short_description)
+        queryset.delete()
+        return redirect("admin/orders")
+
     def cancel_orders(self, modeladmin, request, queryset, obj, order_status, short_description):
         self.process_action(modeladmin=modeladmin, request=request, queryset=queryset, obj=obj, order_status=order_status, short_description=short_description)
 

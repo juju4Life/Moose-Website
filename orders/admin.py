@@ -4,6 +4,10 @@ from django.contrib import admin
 from orders.admin_actions import OrdersAction
 from orders.models import GroupName, Order, ShippingMethod, Coupon, OrdersLayout, PendingPaymentOrder, CompletedOrder, PullingOrder, ReadyToShipOrder
 
+from import_export.admin import ImportExportModelAdmin
+from import_export import resources
+from import_export.fields import Field
+
 orders_action = OrdersAction()
 
 
@@ -53,9 +57,33 @@ class OrderAdmin(ModelAdmin):
 #  ORDERS PAID ------------------------------------------------------------------------------------------ END
 
 
+class OrderResource(resources.ModelResource):
+
+    def after_export(self, queryset, data, *args, **kwargs):
+        orders_action.complete_orders(
+            modeladmin=None, request=None, queryset=queryset, obj=CompletedOrder, order_status="Shipped", short_description="Ship Orders",
+        )
+
+    email = Field(attribute="email", column_name="Email")
+    name = Field(attribute="name", column_name="Name")
+    company = Field(attribute="company", column_name="Company")
+    address_line_1 = Field(attribute="address_line_1", column_name="Address Line 1")
+    address_line_2 = Field(attribute="address_line_2", column_name="Address Line 2")
+    city = Field(attribute="city", column_name="City")
+    state = Field(attribute="state", column_name="State")
+    zip_code = Field(attribute="zip_code", column_name="Zip Code")
+    country = Field(attribute="country", column_name="Country")
+    order_number = Field(attribute="order_number", column_name="Order ID")
+
+    class Meta:
+        model = ReadyToShipOrder
+        fields = ("email", "name", "company", "address_line_1", "address_line_2", "city", "state", "zip_code", "country", "order_number", )
+        import_id_fields = ("order_number", )
+
+
 @register(ReadyToShipOrder)
-class ReadyToShipAdmin(ModelAdmin):
-    pass
+class ReadyToShipAdmin(ImportExportModelAdmin):
+    resource_class = OrderResource
 
 
 @register(ShippingMethod)
