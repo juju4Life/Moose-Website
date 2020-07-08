@@ -3,7 +3,7 @@ from engine.models import MTG
 from tcg.tcg_functions import adjust_product_quantity
 
 
-class OrdersAction:
+class OrderAction:
 
     @staticmethod
     def process_action(modeladmin, request, queryset, obj, order_status, short_description):

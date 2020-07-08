@@ -160,48 +160,44 @@ def packing_slips(request, order_number):
 @staff_member_required
 def ready_to_ship(request):
     if request.GET:
-        order_numbers = [i for i in request.GET.getlist("ready_to_ship")]
-        pulled_orders = PullingOrder.objects.filter(order_number__in=order_numbers)
-        move_list = list()
+        if request.GET.get("ready_to_ship"):
+            order_numbers = [i for i in request.GET.getlist("ready_to_ship")]
+            pulled_orders = PullingOrder.objects.filter(order_number__in=order_numbers)
+            move_list = list()
 
-        for order in pulled_orders:
-            move_list.append(
-                ReadyToShipOrder(
-                    order_number=order.order_number,
-                    order_creation_date=order.order_creation_date,
-                    order_status="",
-                    name=order.name,
-                    email=order.email,
-                    shipping_method=order.shipping_method,
-                    address_line_1=order.address_line_1,
-                    address_line_2=order.address_line_2,
-                    city=order.city,
-                    state=order.state,
-                    zip_code=order.zip_code,
-                    phone=order.phone,
-                    total_order_price=order.total_order_price,
-                    store_credit_used=order.store_credit_used,
-                    tax_charged=order.tax_charged,
-                    shipping_charged=order.shipping_charged,
-                    discounts_applied=order.discounts_applied,
-                    discounts_code_used=order.discounts_code_used,
-                    notes=order.notes,
-                    ordered_items=order.ordered_items,
-                    order_view=order.order_view,
-                    send_message="",
-                    tracking_number=order.tracking_number,
-                    payer_id=order.payer_id,
+            for order in pulled_orders:
+                move_list.append(
+                    ReadyToShipOrder(
+                        order_number=order.order_number,
+                        order_creation_date=order.order_creation_date,
+                        order_status="",
+                        name=order.name,
+                        email=order.email,
+                        shipping_method=order.shipping_method,
+                        address_line_1=order.address_line_1,
+                        address_line_2=order.address_line_2,
+                        city=order.city,
+                        state=order.state,
+                        zip_code=order.zip_code,
+                        phone=order.phone,
+                        total_order_price=order.total_order_price,
+                        store_credit_used=order.store_credit_used,
+                        tax_charged=order.tax_charged,
+                        shipping_charged=order.shipping_charged,
+                        discounts_applied=order.discounts_applied,
+                        discounts_code_used=order.discounts_code_used,
+                        notes=order.notes,
+                        ordered_items=order.ordered_items,
+                        order_view=order.order_view,
+                        send_message="",
+                        tracking_number=order.tracking_number,
+                        payer_id=order.payer_id,
+                    )
                 )
-            )
 
-        ReadyToShipOrder.objects.bulk_create(move_list)
-        pulled_orders.delete()
+            ReadyToShipOrder.objects.bulk_create(move_list)
+            pulled_orders.delete()
 
     return redirect("/admin/orders/readytoshiporder/")
-
-
-@staff_member_required
-def get_shipping(request):
-    pass
 
 

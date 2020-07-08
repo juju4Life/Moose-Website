@@ -1,14 +1,14 @@
 from django.contrib.admin import ModelAdmin, register
 from django.contrib import admin
 
-from orders.admin_actions import OrdersAction
+from orders.admin_actions import OrderAction
 from orders.models import GroupName, Order, ShippingMethod, Coupon, OrdersLayout, PendingPaymentOrder, CompletedOrder, PullingOrder, ReadyToShipOrder
 
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from import_export.fields import Field
 
-orders_action = OrdersAction()
+order_action = OrderAction()
 
 
 @register(GroupName)
@@ -19,13 +19,13 @@ class GroupNameAdmin(ModelAdmin):
 
 #  ORDERS PAID ------------------------------------------------------------------------------------------ START
 def cancel_orders(modeladmin, request, queryset):
-    orders_action.cancel_orders(
+    order_action.cancel_orders(
         modeladmin=modeladmin, request=request, queryset=queryset, obj=CompletedOrder, order_status="canceled", short_description="Cancel Orders",
     )
 
 
 def pull_orders(modeladmin, request, queryset):
-    orders_action.pull_orders(
+    order_action.pull_orders(
         modeladmin=modeladmin, request=request, queryset=queryset, obj=PullingOrder, order_status="", short_description="Pulling Orders",
     )
 
@@ -60,7 +60,7 @@ class OrderAdmin(ModelAdmin):
 class OrderResource(resources.ModelResource):
 
     def after_export(self, queryset, data, *args, **kwargs):
-        orders_action.complete_orders(
+        order_action.complete_orders(
             modeladmin=None, request=None, queryset=queryset, obj=CompletedOrder, order_status="Shipped", short_description="Ship Orders",
         )
 
