@@ -26,7 +26,6 @@ class TcgScraper:
         if self.GOOGLE_CHROME_SHIM != 'Local':
             self.chrome_options.binary_location = self.GOOGLE_CHROME_SHIM
             self.driver = webdriver.Chrome(options=self.chrome_options)
-            pass
         else:
             self.driver = webdriver.Chrome(executable_path='chromeDriver/chromedriver', options=self.chrome_options)
 
