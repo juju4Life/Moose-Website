@@ -189,12 +189,10 @@
 					{% for method in shipping_methods %}
 						<div class="form-check">
 							{% if method.clean_name == "standard" or method.clean_name == "standard_free" %}
-								<input class="form-check-input" type="radio" name="shipping_method" id="{{ method.clean_name }}"
-									   value="{{ method.clean_name }}" checked>
+								<input class="form-check-input" type="radio" name="shipping_method" id="{{ method.clean_name }}" value="{{ method.clean_name }}" checked>
 							{% else %}
 								<input class="form-check-input" type="radio" name="shipping_method" id="{{ method.clean_name }}" value="{{ method.clean_name }}">
 							{% endif %}
-
 							<label class="form-check-label" for="{{ method.clean_name }}">{{ method.full_name }} ${{ method.cost }}</label>
 						</div>
 					{% endfor %}

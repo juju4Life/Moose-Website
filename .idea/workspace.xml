@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/orders/admin_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/static/custom_css/packing_slips.css" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_css/packing_slips.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/checkout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orders/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/admin_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/admin_actions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/templates/confirm_payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/orders/templates/confirm_payment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/templates/packing_slips.html" beforeDir="false" afterPath="$PROJECT_DIR$/orders/templates/packing_slips.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,13 +19,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/engine/admin.py">
+        <entry file="file://$PROJECT_DIR$/engine/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="111" column="11" selection-start-line="111" selection-start-column="11" selection-end-line="111" selection-end-column="11" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="340">
+              <caret line="26" column="71" selection-start-line="26" selection-end-line="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/engine/static/custom_css/packing_slips.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -31,11 +39,50 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/orders/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="82" selection-start-line="82" selection-end-line="82" />
+            <state relative-caret-position="542">
+              <caret line="122" selection-end-line="122" />
               <folding>
                 <element signature="e#0#53#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/orders/admin_functions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/orders/templates/packing_slips.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="40" column="52" lean-forward="true" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/engine/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="78">
+              <caret line="438" column="42" lean-forward="true" selection-start-line="438" selection-start-column="42" selection-end-line="438" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/engine/templates/checkout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="196" column="30" lean-forward="true" selection-start-line="196" selection-start-column="30" selection-end-line="196" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -53,26 +100,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/engine/templates/confirm_order_details.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2091">
-              <caret line="123" column="113" selection-start-line="123" selection-start-column="113" selection-end-line="123" selection-end-column="113" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/engine/templates/order_complete.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-65" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/orders/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="194" column="21" lean-forward="true" selection-start-line="194" selection-start-column="21" selection-end-line="194" selection-end-column="21" />
+            <state relative-caret-position="169">
+              <caret line="191" column="40" lean-forward="true" selection-start-line="191" selection-start-column="40" selection-end-line="191" selection-end-column="40" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -89,50 +120,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/orders/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="213" column="70" lean-forward="true" selection-start-line="213" selection-start-column="70" selection-end-line="213" selection-end-column="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/orders/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
-              <folding>
-                <element signature="e#1#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="17" selection-start-line="17" selection-end-line="17" selection-end-column="109" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>print(</find>
-      <find>get_cart</find>
       <find>hr</find>
       <find>artist-help</find>
       <find>pageSpinner</find>
@@ -161,6 +160,8 @@
       <find>force_str</find>
       <find>orders_</find>
       <find>h4</find>
+      <find>inp</find>
+      <find>shipping_me</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -169,7 +170,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/engine/static/custom_js/jquerySubmitForm.js" />
         <option value="$PROJECT_DIR$/engine/static/custom_css/default_form_wrapper.css" />
         <option value="$PROJECT_DIR$/users/views.py" />
         <option value="$PROJECT_DIR$/users/forms.py" />
@@ -181,11 +181,9 @@
         <option value="$PROJECT_DIR$/engine/templates/cart.html" />
         <option value="$PROJECT_DIR$/engine/static/custom_js/search_condition_tab.js" />
         <option value="$PROJECT_DIR$/engine/models.py" />
-        <option value="$PROJECT_DIR$/engine/templates/checkout.html" />
         <option value="$PROJECT_DIR$/my_customs/functions.py" />
         <option value="$PROJECT_DIR$/engine/cart.py" />
         <option value="$PROJECT_DIR$/engine/static/custom_css/pull_sheet.css" />
-        <option value="$PROJECT_DIR$/engine/static/custom_css/packing_slips.css" />
         <option value="$PROJECT_DIR$/ppal/paypal_api.py" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/source/urls.py" />
@@ -197,8 +195,6 @@
         <option value="$PROJECT_DIR$/orders/templates/order_view.html" />
         <option value="$PROJECT_DIR$/orders/signals.py" />
         <option value="$PROJECT_DIR$/orders/apps.py" />
-        <option value="$PROJECT_DIR$/orders/templates/packing_slips.html" />
-        <option value="$PROJECT_DIR$/engine/views.py" />
         <option value="$PROJECT_DIR$/tcg/tcg_functions.py" />
         <option value="$PROJECT_DIR$/engine/templates/admin/engine/base_site.html" />
         <option value="$PROJECT_DIR$/engine/templates/admin/base_site.html" />
@@ -218,8 +214,13 @@
         <option value="$PROJECT_DIR$/orders/models.py" />
         <option value="$PROJECT_DIR$/orders/templates/confirm_payment.html" />
         <option value="$PROJECT_DIR$/orders/admin_actions.py" />
-        <option value="$PROJECT_DIR$/orders/admin.py" />
         <option value="$PROJECT_DIR$/orders/views.py" />
+        <option value="$PROJECT_DIR$/engine/static/custom_css/packing_slips.css" />
+        <option value="$PROJECT_DIR$/orders/templates/packing_slips.html" />
+        <option value="$PROJECT_DIR$/orders/admin_functions.py" />
+        <option value="$PROJECT_DIR$/orders/admin.py" />
+        <option value="$PROJECT_DIR$/engine/templates/checkout.html" />
+        <option value="$PROJECT_DIR$/engine/views.py" />
       </list>
     </option>
   </component>
@@ -523,6 +524,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="895" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="1" weight="0.16951673" />
@@ -535,7 +537,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.34640524" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4929368" visible="true" weight="0.20392157" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4929368" visible="true" weight="0.36862746" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5070632" side_tool="true" weight="0.3124183" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.40784314" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -598,44 +600,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/engine/templates/search_result.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="545" column="148" selection-start-line="545" selection-start-column="141" selection-end-line="545" selection-end-column="148" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#hr#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#h4#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#button#0;n#div#1;n#div#1;n#div#0;n#fieldset#0;n#form#0;n#div#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#button#0;n#div#1;n#div#2;n#div#0;n#fieldset#0;n#form#0;n#div#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#button#0;n#div#1;n#div#3;n#div#0;n#fieldset#0;n#form#0;n#div#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#button#0;n#div#1;n#div#7;n#div#0;n#fieldset#0;n#form#0;n#div#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#button#0;n#div#1;n#div#9;n#div#0;n#fieldset#0;n#form#0;n#div#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#3;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#3;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#button#0;n#form#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#3;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#6;n#tr#0;n#tbody#0;n#table#0;n#div#3;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orders/templates/pull_sheet.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orders/templates/order_view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/signals.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -713,13 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/static/custom_css/packing_slips.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files/Python36/Lib/site-packages/django/contrib/admin/sites.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -759,13 +716,6 @@
             <element signature="e#8649#9673#0" />
             <element signature="e#30086#31241#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orders/templates/packing_slips.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -838,20 +788,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/static/custom_css/base.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="26" column="71" selection-start-line="26" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orders/templates/admin/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -863,16 +799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="786" column="29" selection-start-line="786" selection-start-column="29" selection-end-line="786" selection-end-column="84" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -966,10 +892,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orders/templates/confirm_payment.html">
+    <entry file="file://$PROJECT_DIR$/orders/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="213" column="70" lean-forward="true" selection-start-line="213" selection-start-column="70" selection-end-line="213" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/migrations/0009_auto_20190218_1725.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/static/custom_css/base.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="26" column="71" selection-start-line="26" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/static/custom_css/packing_slips.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/templates/packing_slips.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="40" column="52" lean-forward="true" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orders/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="191" column="40" lean-forward="true" selection-start-line="191" selection-start-column="40" selection-end-line="191" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -983,27 +954,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orders/models.py">
+    <entry file="file://$PROJECT_DIR$/orders/admin_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="213" column="70" lean-forward="true" selection-start-line="213" selection-start-column="70" selection-end-line="213" selection-end-column="70" />
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/orders/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
+        <state relative-caret-position="542">
+          <caret line="122" selection-end-line="122" />
           <folding>
             <element signature="e#0#53#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orders/views.py">
+    <entry file="file://$PROJECT_DIR$/orders/templates/confirm_payment.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="194" column="21" lean-forward="true" selection-start-line="194" selection-start-column="21" selection-end-line="194" selection-end-column="21" />
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/templates/checkout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="196" column="30" lean-forward="true" selection-start-line="196" selection-start-column="30" selection-end-line="196" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="438" column="42" lean-forward="true" selection-start-line="438" selection-start-column="42" selection-end-line="438" selection-end-column="42" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>

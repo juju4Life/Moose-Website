@@ -2,6 +2,7 @@ from django.contrib.admin import ModelAdmin, register
 from django.contrib import admin
 
 from orders.admin_actions import OrderAction
+from orders.admin_functions import show_firm_url
 from orders.models import GroupName, Order, ShippingMethod, Coupon, OrdersLayout, PendingPaymentOrder, CompletedOrder, PullingOrder, ReadyToShipOrder
 
 from import_export.admin import ImportExportModelAdmin
@@ -32,7 +33,8 @@ def pull_orders(modeladmin, request, queryset):
 
 @register(Order)
 class OrderAdmin(ModelAdmin):
-    list_display = ["order_number", "order_creation_date", "order_view", "name", "total_order_price", ]
+    list_display = ["order_number", "order_creation_date", show_firm_url, "name", "total_order_price", ]
+    list_filter = ["shipping_method", ]
     readonly_fields = ["order_view", "order_number", "payer_id", "discounts_code_used", ]
     actions = [pull_orders, cancel_orders, ]
     fields = (
@@ -59,6 +61,11 @@ class OrderAdmin(ModelAdmin):
 
 class OrderResource(resources.ModelResource):
 
+    def before_export(self, queryset, *args, **kwargs):
+        for query in queryset:
+            if query.shipping_method == "Plain White Envelop":
+                query.delete()
+
     def after_export(self, queryset, data, *args, **kwargs):
         order_action.complete_orders(
             modeladmin=None, request=None, queryset=queryset, obj=CompletedOrder, order_status="Shipped", short_description="Ship Orders",
@@ -84,6 +91,8 @@ class OrderResource(resources.ModelResource):
 @register(ReadyToShipOrder)
 class ReadyToShipAdmin(ImportExportModelAdmin):
     resource_class = OrderResource
+    list_display = ["order_number", "name", "order_creation_date", "shipping_method", "total_order_price", ]
+    list_filter = ["shipping_method", ]
 
 
 @register(ShippingMethod)

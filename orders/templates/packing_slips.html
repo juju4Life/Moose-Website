@@ -6,9 +6,16 @@
 <link rel="stylesheet" type="text/css" href="{% static 'custom_css/packing_slips.css' %}">
 
     <div class="packing-slip-container">
+
         <form method="GET" action="{% url 'ready_to_ship'%}">
+            <div class="row mt-5">
+                <div class="col-sm-8 offset-sm-2">
+                    <button type="submit" name="orders_ready_to_ship" class="btn btn-info btn-lg btn-block mb-5">CREATE SHIPPING LABELS</button>
+                </div>
+            </div>
+
             {% for order, items in orders %}
-                <div class="row mb-5 mt-5">
+                <div class="row mb-5">
                     <div class="col-sm-11 offset-sm-1">
                         <p>
                             <span>Ship to:</span> <br>
@@ -30,7 +37,11 @@
                         <h4>Thank you for shopping with MooseLoot.com</h4>
                         <span class="shipping-info">Order #{{ order.order_number }}</span>
                         <br>
-                        <span>Shipped {{ order.shipping_method }}</span>
+                        {% if order.shipping_method == "expedited" %}
+                            <strong><span>{{ order.shipping_method }}</span></strong>
+                        {% else %}
+                            <span>{{ order.shipping_method }}</span>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -42,7 +53,6 @@
                                     <th>Qty</th>
                                     <th>Name</th>
                                     <th>Set</th>
-                                    <th>Language</th>
                                     <th>printing</th>
                                     <th>Condition</th>
                                     <th>Price</th>
@@ -61,13 +71,11 @@
                                         {% else %}
                                             <td></td>
                                         {% endif %}
-
                                         {% if item.printing == "Foil" %}
                                             <td><strong>{{ item.printing }}</strong></td>
                                         {% else %}
                                             <td>{{ item.printing }}</td>
                                         {% endif %}
-
 
                                         <td>{{ item.condition }}</td>
                                         <td>${{ item.price }}</td>
@@ -94,29 +102,24 @@
 
                         <br>
 
-                        <label>Check is out on Facebook and Twitter</label> <br>
+                        <label>Check us out on Facebook and Twitter</label> <br>
                         <strong>Facebook.com/MooseLoot</strong> <br>
                         <strong>Twitter.com/MooseLoot</strong> <br>
                     </div>
                 </div> <br>
 
-                <div class="pagebreak"></div>
+                <div class="pagebreak-after"></div>
 
                 <div class="row">
                     <div class="col-sm-11 offset-sm-1">
                         <div class="form-check">
-                            <input name="ready_to_ship" type="checkbox" id="{{ order.order_number }}" class="form-check-input" value="{{ order.order_number }}">
+                            <input name="ready_to_ship" type="checkbox" id="{{ order.order_number }}" class="form-check-input" value="{{ order.order_number }}" checked>
                             <label class="form-check-label" for="{{ order.order_number }}">Ready to Ship</label>
                         </div>
                     </div>
                 </div>
                 <hr>
             {% endfor %}
-            <div class="row">
-                <div class="col-sm-8 offset-sm-2">
-                    <button type="submit" name="orders_ready_to_ship" class="btn btn-info btn-lg btn-block mb-5">CREATE SHIPPING LABELS</button>
-                </div>
-            </div>
         </form>
     </div>
 
