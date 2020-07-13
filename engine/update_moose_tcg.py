@@ -9,10 +9,12 @@ from engine.tcgplayer_api import TcgPlayerApi
 
 from my_customs.decorators import report_error
 from tcg.tcg_functions import metrics_update, process_card, format_tcg_ready_url, convert_foil
+from tcg.tcg_scraper import TcgScraper
 
 
 api = TcgPlayerApi('moose')
 first_api = TcgPlayerApi('first')
+scraper = TcgScraper()
 
 
 # @report_error
@@ -41,6 +43,7 @@ def moose_price():
     print('get inventory...')
     listed_cards = api.get_category_skus('magic')
     if listed_cards['success'] is True:
+        driver = scraper.get_driver()
         print(f"Updating {listed_cards['totalItems']} for Moose Inventory")
         for index, card in enumerate(listed_cards['results']):
 
@@ -149,6 +152,7 @@ def moose_price():
                         market=market,
                         low=low,
                         index=index,
+                        driver=driver,
                     )
 
                     fin = timeit.default_timer() - s

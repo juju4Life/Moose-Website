@@ -313,11 +313,11 @@ def format_tcg_ready_url(expansion, name):
     return url
 
 
-def process_card(api, sku, url, condition, expansion, name, printing, language, current_price, market, low, index, price_foil=False,
+def process_card(api, sku, url, condition, expansion, name, printing, language, current_price, market, low, index, driver, price_foil=False,
     condition_updated_price=None):
 
     if printing != 'Foil':
-        driver = scraper.get_driver()
+        # driver = scraper.get_driver()
         # Get URL of Single
         scraper.get_url(driver, url)
 
