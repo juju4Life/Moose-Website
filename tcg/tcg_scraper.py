@@ -24,7 +24,7 @@ class TcgScraper:
         self.ignored_exceptions = (NoSuchElementException, StaleElementReferenceException, )
 
         if self.GOOGLE_CHROME_SHIM != 'Local':
-            self.chrome_options.binary_location = self.GOOGLE_CHROME_SHIM
+            self.chrome_options.binary_location = self.GOOGLE_CHROME_BIN
             self.driver = webdriver.Chrome(executable_path=self.GOOGLE_CHROME_SHIM, options=self.chrome_options)
         else:
             self.driver = webdriver.Chrome(executable_path='chromeDriver/chromedriver', options=self.chrome_options)
