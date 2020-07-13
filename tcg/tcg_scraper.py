@@ -144,10 +144,11 @@ class TcgScraper:
         return q.get(query)
 
     def wait(self, driver, path):
-        x_element = WebDriverWait(driver, timeout=15, ignored_exceptions=self.ignored_exceptions).until(
+        x_element = WebDriverWait(driver, timeout=30, ignored_exceptions=self.ignored_exceptions).until(
             expected_conditions.presence_of_element_located((
                 By.XPATH, path)))
         return x_element
+
 
 
 
