@@ -332,6 +332,7 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
             clear_query = scraper.filter_value(driver, 'clear')
             scraper.query(driver, clear_query)
         except Exception as e:
+            print("here is the error")
             print(e)
 
         condition_query = scraper.filter_value(driver, condition)
