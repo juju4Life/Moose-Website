@@ -319,7 +319,7 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
     if printing != 'Foil':
         driver = scraper.get_driver()
         # Get URL of Single
-        scraper.get_url(url, driver)
+        scraper.get_url(driver, url)
 
         # Clicks the open filter button on web page so that we can create various queries
         scraper.open_filters(driver)
@@ -332,7 +332,6 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
             clear_query = scraper.filter_value(driver, 'clear')
             scraper.query(driver, clear_query)
         except Exception as e:
-            print("here is the error")
             print(e)
 
         condition_query = scraper.filter_value(driver, condition)

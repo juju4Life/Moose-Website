@@ -45,6 +45,7 @@ class TcgScraper:
 
     @staticmethod
     def get_url(driver, url):
+
         driver.get(url)
 
     def open_filters(self, driver):
@@ -102,8 +103,7 @@ class TcgScraper:
         print(seller_data_list)
         return seller_data_list
 
-    @staticmethod
-    def filter_value(driver, query):
+    def filter_value(self, driver, query):
 
         condition_list = ['Lightly Played Foil', 'Near Mint Foil', 'Moderately Played Foil',
                           'Heavily Played Foil', 'Damaged Foil']
@@ -119,9 +119,9 @@ class TcgScraper:
             # 'next_page': self.driver.find_element_by_xpath('//*[@id="priceTableContainer"]/div/nav/ul/a[4]'),
             'clear': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[1]/a'),
             'Near Mint': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[2]/a'),
-            'Lightly Played': driver.wait('//*[''@id="detailsFilters"]/div/div/ul[5]/li[3]/a'),
-            'Moderately Played': driver.wait('//*[@id="detailsFilters"]/div/div/ul[5]/li[4]/a'),
-            'Heavily Played': driver.wait('//*[@id="detailsFilters"]/div/div/ul[5]/li[5]/a'),
+            'Lightly Played': self.wait(driver, '//*[''@id="detailsFilters"]/div/div/ul[5]/li[3]/a'),
+            'Moderately Played': self.wait(driver, '//*[@id="detailsFilters"]/div/div/ul[5]/li[4]/a'),
+            'Heavily Played': self.wait(driver, '//*[@id="detailsFilters"]/div/div/ul[5]/li[5]/a'),
             'Damaged': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[6]/a'),
             'Unopened': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[7]/a'),
             'Normal': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[4]/li[2]/a'),

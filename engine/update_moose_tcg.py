@@ -157,6 +157,7 @@ def moose_price():
             except Exception as e:
                 print(e)
                 traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+                print(traceback_str)
                 subject = "Error on function to update MooseLoot tcg"
                 message = f"Error on function to update MooseLoot tcg:\n {card}\n\nFull Traceback:\n\n{traceback_str}"
                 mail_from = 'tcgfirst'
