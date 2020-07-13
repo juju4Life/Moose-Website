@@ -23,37 +23,43 @@ class TcgScraper:
         self.chrome_options.add_argument("--headless")
         self.ignored_exceptions = (NoSuchElementException, StaleElementReferenceException, )
 
+    def get_driver(self):
         if self.GOOGLE_CHROME_SHIM != 'Local':
             self.chrome_options.binary_location = self.GOOGLE_CHROME_BIN
-            self.driver = webdriver.Chrome(executable_path=self.GOOGLE_CHROME_SHIM, options=self.chrome_options)
+            driver = webdriver.Chrome(executable_path=self.GOOGLE_CHROME_SHIM, options=self.chrome_options)
         else:
-            self.driver = webdriver.Chrome(executable_path='chromeDriver/chromedriver', options=self.chrome_options)
+            driver = webdriver.Chrome(executable_path='chromeDriver/chromedriver', options=self.chrome_options)
 
-    def quit_driver(self):
-        self.driver.quit()
+        return driver
 
-    def query(self, value):
+    @staticmethod
+    def quit_driver(driver):
+        driver.quit()
+
+    @staticmethod
+    def query(driver, value):
         if value is not None:
-            self.driver.execute_script("$(arguments[0]).click();", value)
+            driver.execute_script("$(arguments[0]).click();", value)
         else:
             return 'Error in value'
 
-    def get_url(self, url):
-        self.driver.get(url)
+    @staticmethod
+    def get_url(driver, url):
+        driver.get(url)
 
-    def open_filters(self):
+    def open_filters(self, driver):
+        your_element = WebDriverWait(driver, timeout=30, ignored_exceptions=self.ignored_exceptions).until(
+            expected_conditions.presence_of_element_located((By.XPATH, '//*[@id="product-price-table"]/div[1]/button')))
 
-        your_element = WebDriverWait(self.driver, timeout=30, ignored_exceptions=self.ignored_exceptions).until(
-            expected_conditions.presence_of_element_located((
-            By.XPATH, '//*[@id="product-price-table"]/div[1]/button')))
         your_element.click()
 
         # self.driver.find_element_by_xpath('//*[@id="product-price-table"]/div[1]/button').click()
 
-    def get_card_data(self, query_condition):
+    @staticmethod
+    def get_card_data(driver, query_condition):
         print(f'Searching for this condition {query_condition}')
         sleep(5)
-        page_source = self.driver.page_source
+        page_source = driver.page_source
         sleep(5)
         soup = B(page_source, 'html.parser')
         cards = soup.find_all('div', {'class': 'product-listing'})
@@ -96,7 +102,8 @@ class TcgScraper:
         print(seller_data_list)
         return seller_data_list
 
-    def filter_value(self, query):
+    @staticmethod
+    def filter_value(driver, query):
 
         condition_list = ['Lightly Played Foil', 'Near Mint Foil', 'Moderately Played Foil',
                           'Heavily Played Foil', 'Damaged Foil']
@@ -110,34 +117,34 @@ class TcgScraper:
             pass
         q = {
             # 'next_page': self.driver.find_element_by_xpath('//*[@id="priceTableContainer"]/div/nav/ul/a[4]'),
-            'clear': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[1]/a'),
-            'Near Mint': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[2]/a'),
-            'Lightly Played': self.wait('//*[''@id="detailsFilters"]/div/div/ul[5]/li[3]/a'),
-            'Moderately Played': self.wait('//*[@id="detailsFilters"]/div/div/ul[5]/li[4]/a'),
-            'Heavily Played': self.wait('//*[@id="detailsFilters"]/div/div/ul[5]/li[5]/a'),
-            'Damaged': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[6]/a'),
-            'Unopened': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[7]/a'),
-            'Normal': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[4]/li[2]/a'),
-            'Foil':  self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[4]/li[3]/a'),
-            'four_or_more': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[2]/li[2]/a'),
-            'English': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[2]/a'),
-            'Chinese (S)': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[3]/a'),
-            'all_non_english': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[4]/a'),
-            'Chinese (T)': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[5]/a'),
-            'French': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[6]/a'),
-            'German': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[7]/a'),
-            'Italian': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[8]/a'),
-            'Japanese': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[9]/a'),
-            'Korean': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[10]/a'),
-            'Portuguese': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[11]/a'),
-            'Russian': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[12]/a'),
-            'Spanish': self.driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[13]/a'),
+            'clear': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[1]/a'),
+            'Near Mint': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[2]/a'),
+            'Lightly Played': driver.wait('//*[''@id="detailsFilters"]/div/div/ul[5]/li[3]/a'),
+            'Moderately Played': driver.wait('//*[@id="detailsFilters"]/div/div/ul[5]/li[4]/a'),
+            'Heavily Played': driver.wait('//*[@id="detailsFilters"]/div/div/ul[5]/li[5]/a'),
+            'Damaged': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[6]/a'),
+            'Unopened': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[5]/li[7]/a'),
+            'Normal': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[4]/li[2]/a'),
+            'Foil':  driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[4]/li[3]/a'),
+            'four_or_more': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[2]/li[2]/a'),
+            'English': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[2]/a'),
+            'Chinese (S)': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[3]/a'),
+            'all_non_english': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[4]/a'),
+            'Chinese (T)': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[5]/a'),
+            'French': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[6]/a'),
+            'German': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[7]/a'),
+            'Italian': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[8]/a'),
+            'Japanese': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[9]/a'),
+            'Korean': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[10]/a'),
+            'Portuguese': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[11]/a'),
+            'Russian': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[12]/a'),
+            'Spanish': driver.find_element_by_xpath('//*[@id="detailsFilters"]/div/div/ul[6]/li[13]/a'),
         }
 
         return q.get(query)
 
-    def wait(self, path):
-        x_element = WebDriverWait(self.driver, timeout=15, ignored_exceptions=self.ignored_exceptions).until(
+    def wait(self, driver, path):
+        x_element = WebDriverWait(driver, timeout=15, ignored_exceptions=self.ignored_exceptions).until(
             expected_conditions.presence_of_element_located((
                 By.XPATH, path)))
         return x_element

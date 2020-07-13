@@ -317,33 +317,33 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
     condition_updated_price=None):
 
     if printing != 'Foil':
-
+        driver = scraper.get_driver()
         # Get URL of Single
-        scraper.get_url(url)
+        scraper.get_url(url, driver)
 
         # Clicks the open filter button on web page so that we can create various queries
-        scraper.open_filters()
+        scraper.open_filters(driver)
 
         # Filter the page for specific queries
         # printing_query = scraper.filter_value(printing)
         # scraper.query(printing_query)
 
         try:
-            clear_query = scraper.filter_value('clear')
-            scraper.query(clear_query)
+            clear_query = scraper.filter_value(driver, 'clear')
+            scraper.query(driver, clear_query)
         except Exception as e:
             print(e)
 
-        condition_query = scraper.filter_value(condition)
-        scraper.query(condition_query)
+        condition_query = scraper.filter_value(driver, condition)
+        scraper.query(driver, condition_query)
         sleep(5)
 
         # Remove default English selection if query for non-english card
         if language != 'English':
-            language_query = scraper.filter_value('English')
-            scraper.query(language_query)
-            language_query = scraper.filter_value(language)
-            scraper.query(language_query)
+            language_query = scraper.filter_value(driver, 'English')
+            scraper.query(driver, language_query)
+            language_query = scraper.filter_value(driver, language)
+            scraper.query(driver, language_query)
         else:
             pass
 
@@ -354,7 +354,7 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
         for one of the queries to fail.
         '''
 
-        seller_data_list = scraper.get_card_data(condition)
+        seller_data_list = scraper.get_card_data(driver, condition)
 
     day = day_name[date.today().weekday()]
     if day == 'Saturday':
@@ -363,7 +363,7 @@ def process_card(api, sku, url, condition, expansion, name, printing, language, 
             # condition_updated_price = moose_price_algorithm(seller_data=seller_data_list)
 
     # Pricing algorithm
-    updated_price = moose_price_algorithm(seller_data=seller_data_list, )
+    updated_price = moose_price_algorithm(seller_data=seller_data_list)
 
     '''
      new = moose_inventory.create(
