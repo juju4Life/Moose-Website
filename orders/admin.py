@@ -31,13 +31,8 @@ def pull_orders(modeladmin, request, queryset):
     )
 
 
-@register(Order)
-class OrderAdmin(ModelAdmin):
-    list_display = ["order_number", "order_creation_date", show_firm_url, "name", "total_order_price", ]
-    list_filter = ["shipping_method", ]
-    readonly_fields = ["order_view", "order_number", "payer_id", "discounts_code_used", ]
-    actions = [pull_orders, cancel_orders, ]
-    fields = (
+order_fields = (
+        "order_action",
         "order_view",
         ("order_number", "payer_id", ),
         ("name", "email", ),
@@ -55,6 +50,21 @@ class OrderAdmin(ModelAdmin):
         "send_message",
         "tracking_number",
     )
+order_read_only_fields = ["order_view", "order_number", "payer_id", "discounts_code_used", ]
+
+
+@register(Order)
+class OrderAdmin(ModelAdmin):
+    def get_queryset(self, request):
+        return Order.objects.filter(order_paid=True)
+
+    ordering = ["order_creation_date", ]
+    search_fields = ["name", "order_number", ]
+    list_display = ["order_number", "order_creation_date", "order_view", "name", "total_order_price", ]
+    list_filter = ["shipping_method", ]
+    readonly_fields = order_read_only_fields
+    actions = [pull_orders, cancel_orders, ]
+    fields = order_fields
 
 #  ORDERS PAID ------------------------------------------------------------------------------------------ END
 
@@ -91,8 +101,12 @@ class OrderResource(resources.ModelResource):
 @register(ReadyToShipOrder)
 class ReadyToShipAdmin(ImportExportModelAdmin):
     resource_class = OrderResource
-    list_display = ["order_number", "name", "order_creation_date", "shipping_method", "total_order_price", ]
+    ordering = ["order_creation_date", ]
+    search_fields = ["name", "order_number", ]
+    list_display = ["order_number", "order_creation_date", "order_view", "name", "total_order_price", ]
     list_filter = ["shipping_method", ]
+    readonly_fields = order_read_only_fields
+    fields = order_fields
 
 
 @register(ShippingMethod)
@@ -112,11 +126,23 @@ class OrdersLayoutAdmin(ModelAdmin):
 
 @register(PullingOrder)
 class PullingOrdersAdmin(ModelAdmin):
-    pass
+    ordering = ["order_creation_date", ]
+    search_fields = ["name", "order_number", ]
+    list_display = ["order_number", "order_creation_date", "order_view", "name", "total_order_price", ]
+    list_filter = ["shipping_method", ]
+    readonly_fields = order_read_only_fields
+    actions = [cancel_orders, ]
+    fields = order_fields
 
 
 @register(CompletedOrder)
 class CompletedOrdersAdmin(ModelAdmin):
-    pass
+    ordering = ["order_creation_date", ]
+    search_fields = ["name", "order_number", ]
+    list_display = ["order_number", "order_creation_date", "order_view", "name", "total_order_price", ]
+    list_filter = ["shipping_method", ]
+    readonly_fields = order_read_only_fields
+    fields = order_fields
+
 
 

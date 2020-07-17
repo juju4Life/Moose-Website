@@ -80,10 +80,6 @@ ALLOWED_HOSTS = [
 ]
 
 INSTALLED_APPS = [
-    # 'admin_tools',
-    # 'admin_tools.theming',
-    # 'admin_tools.menu',
-    # 'admin_tools.dashboard',
     'users.apps.UsersConfig',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -94,6 +90,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'engine',
     'orders',
+    'orders.apps.OrderConfig',
     'django.contrib.admin',
     'engine.apps.EngineConfig',
     'contact',
@@ -110,7 +107,6 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'customer',
     'sms',
-    'orders.apps.OrderConfig',
     'rest_framework',
     'import_export',
     'tcg',

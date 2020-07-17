@@ -9,6 +9,7 @@ class MWS:
     seller_id = config('MWS_SELLER_ID')
     secret_key = config('MWS_SECRET_KEY')
     marketplace_usa = 'ATVPDKIKX0DER'
+
     important_sellers = {
         "A196LH8Y51V5YV": "Tales of Adventure",
         "A3I2YLR8TUD023": "Owl Central",

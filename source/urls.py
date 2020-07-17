@@ -18,6 +18,7 @@ urlpatterns = [
     path('user/', include('users.urls')),
     path('at/', include('admin_tools.urls')),
     path('sms/', include('sms.urls')),
+    path('layout/', include('layout.urls')),
     path('admin/', admin.site.urls),
     path('activate/<str:uidb64>/<str:token>', user_views.activate, name='activate'),
     path('', home_views.home_base, name='base'),

@@ -6,6 +6,37 @@ from tcg.tcg_functions import adjust_product_quantity
 class OrderAction:
 
     @staticmethod
+    def process_instance(instance, obj, order_status):
+
+        new = obj(
+            order_number=instance.order_number,
+            order_creation_date=instance.order_creation_date,
+            order_status=order_status,
+            name=instance.name,
+            email=instance.email,
+            shipping_method=instance.shipping_method,
+            address_line_1=instance.address_line_1,
+            address_line_2=instance.address_line_2,
+            city=instance.city,
+            state=instance.state,
+            zip_code=instance.zip_code,
+            phone=instance.phone,
+            total_order_price=instance.total_order_price,
+            store_credit_used=instance.store_credit_used,
+            tax_charged=instance.tax_charged,
+            shipping_charged=instance.shipping_charged,
+            discounts_applied=instance.discounts_applied,
+            discounts_code_used=instance.discounts_code_used,
+            notes=instance.notes,
+            ordered_items=instance.ordered_items,
+            order_view=instance.order_view,
+            tracking_number=instance.tracking_number,
+            payer_id=instance.payer_id,
+
+        )
+        new.save()
+
+    @staticmethod
     def process_action(modeladmin, request, queryset, obj, order_status, short_description):
         save_list = list()
         for each in queryset:

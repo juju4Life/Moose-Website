@@ -14,9 +14,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         card_data = CardPriceData.objects
 
-        # report_id = mws_api.request_and_get_inventory_report('active_listings')
-
-        report_id = '16857831116018170'
+        report_id = mws_api.request_and_get_inventory_report('active_listings')
         amazon_cards = mws_api.parse_active_listings_report(report_id)[2]
         amazon_fee = 15
         shipping_fee = 2.85

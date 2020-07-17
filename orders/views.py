@@ -23,7 +23,7 @@ def confirm_payment(request):
         paypal_payment = paypal.get_order(order_number)
         if paypal_payment == "APPROVED":
             order = Order.objects.get(order_number=order_number)
-            order.paid = True
+            order.order_paid = True
             order.payer_id = payer_id
             order.save()
             is_paid = True

@@ -38,14 +38,23 @@ class Order(models.Model):
     order_status_choices = (
         ("", "", ),
         ("shipped", "shipped", ),
-        ("ready for pickup", "ready_for_pickup", ),
+        ("ready_for_pickup", "ready for pickup", ),
         ("cancelled", "cancelled", ),
         ("pulling", "pulling", ),
     )
 
+    order_actions = (
+        ("", "", ),
+        ("cancel", "cancel", ),
+        ("pull", "move to pulling", ),
+        ("ship", "mark as shipped", ),
+    )
+
+    order_paid = models.BooleanField(default=False)
     order_number = models.CharField(max_length=255, default='')
     order_creation_date = models.DateTimeField(auto_now_add=True)
     order_status = models.CharField(max_length=255, default="", choices=order_status_choices)
+    order_action = models.CharField(max_length=255, default="", blank=True, choices=order_actions)
     name = models.CharField(max_length=255, default='')
     email = models.CharField(max_length=255, default='')
     shipping_method = models.CharField(max_length=255, default='free')
@@ -75,10 +84,16 @@ class Order(models.Model):
 
 
 class PendingPaymentOrder(models.Model):
+    order_actions = (
+        ("", "",),
+        ("cancel", "cancel",),
+        ("open_order", "move to open orders",),
+    )
 
     order_number = models.CharField(max_length=255, default='')
     order_creation_date = models.DateTimeField(auto_now_add=True)
     order_status = models.CharField(max_length=255, default='')
+    order_action = models.CharField(max_length=255, default="", blank=True, choices=order_actions)
     name = models.CharField(max_length=255, default='')
     email = models.CharField(max_length=255, default='')
     shipping_method = models.CharField(max_length=255, default='free')
@@ -108,6 +123,10 @@ class PendingPaymentOrder(models.Model):
 
 
 class CompletedOrder(models.Model):
+    order_actions = (
+        ("", "",),
+    )
+
     order_status_choices = (
         ("", "",),
         ("shipped", "shipped",),
@@ -118,6 +137,7 @@ class CompletedOrder(models.Model):
     order_number = models.CharField(max_length=255, default='')
     order_creation_date = models.DateTimeField(auto_now_add=True)
     order_status = models.CharField(max_length=255, default="", choices=order_status_choices)
+    order_action = models.CharField(max_length=255, default="", blank=True, choices=order_actions)
     name = models.CharField(max_length=255, default='')
     email = models.CharField(max_length=255, default='')
     shipping_method = models.CharField(max_length=255, default='free')
@@ -147,6 +167,12 @@ class CompletedOrder(models.Model):
 
 
 class PullingOrder(models.Model):
+    order_actions = (
+        ("", "",),
+        ("cancel", "cancel",),
+        ("ship", "mark as shipped",),
+        ("ready_to_ship", "ready to ship",),
+    )
 
     order_status_choices = (
         ("", "", ),
@@ -156,6 +182,7 @@ class PullingOrder(models.Model):
     order_number = models.CharField(max_length=255, default='')
     order_creation_date = models.DateTimeField(auto_now_add=True)
     order_status = models.CharField(max_length=255, default="", choices=order_status_choices)
+    order_action = models.CharField(max_length=255, default="", blank=True, choices=order_actions)
     name = models.CharField(max_length=255, default='')
     email = models.CharField(max_length=255, default='')
     shipping_method = models.CharField(max_length=255, default='free')
@@ -185,6 +212,11 @@ class PullingOrder(models.Model):
 
 
 class ReadyToShipOrder(models.Model):
+    order_actions = (
+        ("", "", ),
+        ("cancel", "cancel",),
+        ("ship", "Mark as Shipped",),
+    )
 
     order_status_choices = (
         ("", "", ),
@@ -195,6 +227,7 @@ class ReadyToShipOrder(models.Model):
     order_number = models.CharField(max_length=255, default='')
     order_creation_date = models.DateTimeField(auto_now_add=True)
     order_status = models.CharField(max_length=255, default="", choices=order_status_choices)
+    order_action = models.CharField(max_length=255, default="", blank=True, choices=order_actions)
     name = models.CharField(max_length=255, default='')
     email = models.CharField(max_length=255, default='')
     shipping_method = models.CharField(max_length=255, default='free')

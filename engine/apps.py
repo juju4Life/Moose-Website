@@ -7,4 +7,3 @@ class EngineConfig(AppConfig):
     def ready(self):
         from engine import signals
 
-
