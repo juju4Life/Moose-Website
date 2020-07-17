@@ -10,8 +10,8 @@ def daily_mtg_hook(request):
     context = dict()
 
     print(request.GET)
-    challenge = request.GET.get("hub.topic")
-    topic = request.GET.get("hub.challenge")
+    challenge = request.GET.get("hub.challenge")
+    topic = request.GET.get("hub.topic")
     print(topic)
     print(challenge)
 
