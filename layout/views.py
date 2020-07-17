@@ -9,7 +9,8 @@ def daily_mtg_hook(request):
     template = "layout/templates/daily_mtg.html"
     context = dict()
 
-    challenge = request.GET.get("hub.challenge")
+    print(request.GET)
+    challenge = request.GET.get("hub.topic")
     topic = request.GET.get("hub.challenge")
     print(topic)
     print(challenge)
