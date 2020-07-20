@@ -31,6 +31,8 @@ def pull_orders(modeladmin, request, queryset):
     )
 
 
+order_list_displays = ["order_number", "order_creation_date", "order_view", "name", "total_order_price", "shipping_method", ]
+
 order_fields = (
         "order_action",
         "order_view",
@@ -59,8 +61,8 @@ class OrderAdmin(ModelAdmin):
         return Order.objects.filter(order_paid=True)
 
     ordering = ["order_creation_date", ]
-    search_fields = ["name", "order_number", ]
-    list_display = ["order_number", "order_creation_date", "order_view", "name", "total_order_price", ]
+    search_fields = ["name", "order_number", "ordered_items", ]
+    list_display = order_list_displays
     list_filter = ["shipping_method", ]
     readonly_fields = order_read_only_fields
     actions = [pull_orders, cancel_orders, ]
@@ -103,7 +105,7 @@ class ReadyToShipAdmin(ImportExportModelAdmin):
     resource_class = OrderResource
     ordering = ["order_creation_date", ]
     search_fields = ["name", "order_number", ]
-    list_display = ["order_number", "order_creation_date", "order_view", "name", "total_order_price", ]
+    list_display = order_list_displays
     list_filter = ["shipping_method", ]
     readonly_fields = order_read_only_fields
     fields = order_fields
@@ -128,7 +130,7 @@ class OrdersLayoutAdmin(ModelAdmin):
 class PullingOrdersAdmin(ModelAdmin):
     ordering = ["order_creation_date", ]
     search_fields = ["name", "order_number", ]
-    list_display = ["order_number", "order_creation_date", "order_view", "name", "total_order_price", ]
+    list_display = order_list_displays
     list_filter = ["shipping_method", ]
     readonly_fields = order_read_only_fields
     actions = [cancel_orders, ]
@@ -139,7 +141,7 @@ class PullingOrdersAdmin(ModelAdmin):
 class CompletedOrdersAdmin(ModelAdmin):
     ordering = ["order_creation_date", ]
     search_fields = ["name", "order_number", ]
-    list_display = ["order_number", "order_creation_date", "order_view", "name", "total_order_price", ]
+    list_display = order_list_displays
     list_filter = ["shipping_method", ]
     readonly_fields = order_read_only_fields
     fields = order_fields

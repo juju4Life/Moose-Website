@@ -18,7 +18,7 @@ class Credentials:
     token = "39cf2a47-1de8-43ad-b29c-1542a670ccd8"
     public_key = "071BA187-6E51-4A3F-A2AF-C1C27663B543"
     private_key = "DEBC2A03-0DDF-4CDE-8755-91CB1947A16B"
-    url = 'http://api.tcgplayer.com/v1.19.0/'
+    url = 'https://api.tcgplayer.com/v1.19.0/'
     payload = "grant_type=client_credentials&client_id=" + public_key + "&client_secret=" + private_key
 
     def get_request_with_params(self, url, store, **kwargs):
@@ -77,7 +77,6 @@ class Credentials:
             if _json is True:
                 r = requests.put(path, headers=headers, json=kwargs['json'])
                 data = r.json()
-                # print(f"Success: {data['success']}, Errors: {data['errors']}")
                 return data
             elif _data is True:
                 r = requests.put(path, headers=headers, data=str(kwargs['data']))

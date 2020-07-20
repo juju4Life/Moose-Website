@@ -123,6 +123,7 @@ def moose_price_algorithm(seller_data):
 
         if updated_price < .49:
             updated_price = .49
+
         return updated_price
 
 

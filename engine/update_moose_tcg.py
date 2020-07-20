@@ -8,6 +8,7 @@ from engine.models import MooseAutopriceMetrics, DirectData
 from engine.tcgplayer_api import TcgPlayerApi
 
 from my_customs.decorators import report_error
+from selenium.common.exceptions import StaleElementReferenceException
 from tcg.tcg_functions import metrics_update, process_card, format_tcg_ready_url, convert_foil
 from tcg.tcg_scraper import TcgScraper
 
@@ -46,18 +47,18 @@ def moose_price():
         driver = scraper.get_driver()
         print(f"Updating {listed_cards['totalItems']} for Moose Inventory")
         for index, card in enumerate(listed_cards['results']):
+            condition = card['conditionName']
+            printing = card['printingName']
+            current_price = card['currentPrice']
+            low = card['lowPrice']
+            sku = card['skuId']
+            product_id = card['productId']
+            name = card['productName']
+            expansion = card['groupName']
+            market = card['marketPrice']
+            language = card['languageName']
 
             try:
-                condition = card['conditionName']
-                printing = card['printingName']
-                current_price = card['currentPrice']
-                low = card['lowPrice']
-                sku = card['skuId']
-                product_id = card['productId']
-                name = card['productName']
-                expansion = card['groupName']
-                market = card['marketPrice']
-                language = card['languageName']
 
                 '''    
                 If the card is not English it will be priced at the low price minus one cent.
@@ -158,15 +159,20 @@ def moose_price():
                     fin = timeit.default_timer() - s
                     print(f'Processed in {fin}')
 
-            except Exception as e:
+            except StaleElementReferenceException as e:
                 print(e)
                 traceback_str = ''.join(traceback.format_tb(e.__traceback__))
                 print(traceback_str)
-                subject = "Error on function to update MooseLoot tcg"
-                message = f"Error on function to update MooseLoot tcg:\n {card}\n\nFull Traceback:\n\n{traceback_str}"
-                mail_from = 'tcgfirst'
-                mail_to = ['jermol.jupiter@gmail.com', ]
-                # send_mail(subject, message, mail_from, mail_to)
+                new_price = market
+                if market is not None and low is not None:
+                    if new_price < low:
+                        new_price = low
+                    api.update_sku_price(sku_id=sku, price=new_price, _json=True, channel='0')
+                    new_price = new_price * 0.95
+                    api.update_sku_price(sku_id=sku, price=new_price, _json=True, channel='1')
+
+            except Exception as e:
+                print(e)
             print(f"Moose Card #{index}")
     end_time = time()
     elapsed = (end_time - start_time) / 3600
