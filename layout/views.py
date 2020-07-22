@@ -15,9 +15,9 @@ def daily_mtg_hook(request):
     print(request.META)
     print(request.headers)
     print(request.read())
-    print(request.read_line())
     challenge = request.GET.get("hub.challenge")
     topic = request.GET.get("hub.topic")
+    print(topic)
 
     return HttpResponse(challenge)
 
