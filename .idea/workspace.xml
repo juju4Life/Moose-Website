@@ -2,29 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/engine/add_card_info.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/daily_mtg_rss.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/management/commands/daily_mtg_update.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/templates/main_product_data.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/templates/sealed_product.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/templates/singles_by_expansion.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mail/mailgun_api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/the.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/add_card_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/add_card_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/add_group_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/add_group_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/get_inventory_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/get_inventory_stats.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/custom_js/search_condition_tab.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_js/search_condition_tab.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/custom_js/select_tab_search_results.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_js/select_tab_search_results.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/search_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/search_result.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layout/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/layout/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +264,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1548952508579</updated>
-      <workItem from="1595876638001" duration="22309000" />
+      <workItem from="1595876638001" duration="22940000" />
     </task>
     <servers />
   </component>
