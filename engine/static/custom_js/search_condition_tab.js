@@ -1,7 +1,7 @@
 
 // Get CSRF Token
 function getCookie(name) {
-    var cookieValue = null;
+    let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         var cookies = document.cookie.split(';');
         for (var i = 0; i < cookies.length; i++) {
@@ -14,11 +14,12 @@ function getCookie(name) {
         }
     }
     return cookieValue;
-};
+}
 
 
-// Create data table for condition / price select
-function populateConditionTable(is_active, condition, name, expansion, language, productId, normalStock, foilStock, normalPrice, foilPrice, userAuthenticated){
+// Create initial data table for product
+function populateConditionTable( is_active, condition, name, expansion, language, productId, normalStock, foilStock, normalPrice, foilPrice, userAuthenticated, normalOnly, foilOnly ){
+
     var parentId = `tabs-tabContent-${productId}`;
     var parentDiv = document.getElementById(parentId);
 
@@ -29,41 +30,42 @@ function populateConditionTable(is_active, condition, name, expansion, language,
     mainDiv.setAttribute("role", "tabpanel");
     mainDiv.setAttribute("aria-labelledby", itemRef);
 
-    if (is_active == "true"){
+    if ( is_active === "true" ){
         mainDiv.setAttribute("class", "tab-pane fade show active");
     } else{
         mainDiv.setAttribute("class", "tab-pane fade show");
-    };
+    }
 
     var table = document.createElement("table");
     table.setAttribute("class", "card-search-table table-responsive table-borderless");
 
     var body = document.createElement("tbody");
 
-    var normalRow = createConditionTableRow(condition, "Normal", normalStock, normalPrice, productId, name, expansion, language, userAuthenticated);
-    body.appendChild(normalRow);
+    if ( foilOnly !== false ){
+        let normalRow = createConditionTableRow(condition, "Normal", normalStock, normalPrice, productId, name, expansion, language, userAuthenticated);
+        body.appendChild(normalRow);
+    }
 
-    if ( condition != 'restock' ){
-        var foilRow = createConditionTableRow(condition, "Foil", foilStock, foilPrice, productId, name, expansion, language, userAuthenticated);
+    if ( condition !== 'restock' && normalOnly !== true){
+        let foilRow = createConditionTableRow(condition, "Foil", foilStock, foilPrice, productId, name, expansion, language, userAuthenticated);
         body.appendChild(foilRow);
-    };
-
+    }
 
     table.appendChild(body);
 
     mainDiv.appendChild(table);
     parentDiv.appendChild(mainDiv);
-};
+}
 
 // Create row for data variants in condition / price data table
 function createConditionTableRow(condition, printing, stock, price, productId, name, expansion, language, userAuthenticated){
 
     row = document.createElement("tr");
     td = document.createElement("td");
-    if ( condition == "restock" ){
-        var tdRestockNotice = document.createElement("td");
+    if ( condition === "restock" ){
+        const tdRestockNotice = document.createElement("td");
 
-        var formButton = document.createElement("button");
+        const formButton = document.createElement("button");
         formButton.setAttribute("class", "btn btn-info btn-sm mr-1 restock-submit-form");
         formButton.setAttribute("type", "submit");
         if ( userAuthenticated ){
@@ -71,7 +73,7 @@ function createConditionTableRow(condition, printing, stock, price, productId, n
 
         } else {
             formButton.setAttribute("id", `restock-button-login-${productId}`)
-        };
+        }
 
 
         var formButtonText = document.createTextNode("Restock Alert ");
@@ -228,7 +230,7 @@ function createConditionTab(condition, conditionAbbreviation, normalStock, foilS
         a.setAttribute("role", "tab");
         a.setAttribute("aria-selected", "true");
 
-        if (is_active == 'true'){
+        if (is_active === 'true'){
             a.setAttribute("class", "nav-link active");
         } else {
             a.setAttribute("class", "nav-link");
@@ -237,7 +239,7 @@ function createConditionTab(condition, conditionAbbreviation, normalStock, foilS
         var span = document.createElement("span");
         var text = document.createTextNode(conditionAbbreviation);
 
-        if ( normalStock <= 0 && foilStock <= 0 && condition != "restock" ){
+        if ( normalStock <= 0 && foilStock <= 0 && condition !== "restock" ){
             span.setAttribute("style", "color: gray;");
             strikeThrough = document.createElement("strike");
             strikeThrough.appendChild(text);

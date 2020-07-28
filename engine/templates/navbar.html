@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'custom_css/navbar.css' %}">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
   <img class="nav-image" style="max-height:50px;" src="{% static 'img/MooseLogo.png' %}">
 
@@ -30,11 +30,22 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Singles</a>
+        <a class="nav-link dropdown-toggle" href="#" id="expansionDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Singles
+        </a>
+        <div class="dropdown-menu" aria-labelledby="expansionDropdown">
+          <label class="dropdown-item">Sets may be loading...</label>
+          <div class="dropdown-divider"></div>
+          <form method="GET" action="{% url 'expansions' %}" id="expansion-dropdown-items">
+
+          </form>
+        </div>
       </li>
 
+
+
       <li class="nav-item">
-        <a class="nav-link" href="#">Sealed</a>
+        <a class="nav-link" href="{% url 'sealed' %}">Sealed</a>
       </li>
 
 
@@ -93,6 +104,18 @@
         url: "{% url 'card_info' %}",
         success: function(data){
             autocomplete(data.names, "#main-search-bar");
+            const dropdown = document.getElementById("expansion-dropdown-items");
+
+            data.expansions.forEach(function (expansion) {
+              const link = document.createElement("button");
+              link.setAttribute("class", "dropdown-item btn");
+              link.setAttribute("type", "submit");
+              link.setAttribute("value", expansion);
+              link.setAttribute("name", "expansion");
+              link.appendChild(document.createTextNode(expansion));
+              dropdown.appendChild(link);
+              dropdown.setAttribute("style", "overflow-y: scroll; height: 600px;");
+            })
         },
     });
 </script>

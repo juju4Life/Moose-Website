@@ -3,6 +3,7 @@ from my_customs.decorators import report_error
 from my_customs.functions import set_offset
 from scryfall_api import get_image
 from orders.models import GroupName
+from engine.add_card_info import add_info
 from engine.tcgplayer_api import TcgPlayerApi
 from engine.tcg_manifest import Manifest
 from engine.models import MTG
@@ -54,7 +55,8 @@ class Command(BaseCommand):
                 group.added = True
                 group.save()
 
-
+        # Add detailed card attributes
+        add_info()
 
 
 

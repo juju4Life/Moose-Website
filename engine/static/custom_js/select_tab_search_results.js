@@ -4,7 +4,7 @@ function setActiveAttribute( obj, n ){
     $(function () {
             $('#' + obj.id + ' li:nth-child(' + n + ') a').tab('show')
           })
-};
+}
 
 function chooseActiveElement( obj ){
     var data = obj.getElementsByTagName('li');
@@ -19,12 +19,12 @@ function chooseActiveElement( obj ){
         setActiveAttribute(obj, 3);
     } else {
         setActiveAttribute(obj, 4);
-    };
+    }
 
-};
+}
 
 var docs = document.getElementsByClassName('condition-info');
 var i;
 for (i = 0; i < docs.length; i++){
     chooseActiveElement(docs[i]);
-};
+}

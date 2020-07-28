@@ -9,86 +9,76 @@
 
 {% if 'home' in request.path %}
 
-<div class="container">
-	
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
+    <div class="container">
 
-        <div class="carousel-item active">
-            {% cloudinary main_slide.image class='slide-image d-block w-100' %}
-            <div class="carousel-caption d-none d-md-block">
-                <h2><a href="#" style="color:rgba(255,255,255,1);">{{main_slide.text}}</a></h2>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
 
+            <div class="carousel-item active">
+                {% cloudinary main_slide.image class='slide-image d-block w-100' %}
+                <div class="carousel-caption d-none d-md-block">
+                    <h2><a href="#" style="color:rgba(255,255,255,1);">{{main_slide.text}}</a></h2>
+
+                </div>
             </div>
         </div>
-    </div>
 
-    </div>
-
-
-
-
-    <div class="row" style="margin-top:1%;">
-
-
-        <div class="col-sm-5">
-           <!-- Location Tab -->
-            <h3>MTG First Game Center</h3>
-            <p>Check out our physical location in <strong>Glen Burnie, MD</strong>. Largest TCG store in  Maryland with a casual-friendly atmosphere and
-                some of the best tournaments in the area!</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3093.7152165268208!2d-76.61339388460813!3d39.158458479531205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7fce4164bafe1%3A0xcaa5d788744299e8!2sMTGFirst%20Game%20Center!5e0!3m2!1sen!2sus!4v1593470706694!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
         </div>
 
 
-        <div class="col-sm-5 offset-sm-2">
-          <!-- Twitter Follow Button -->
-        <div id="twitter-button" >
-          <a href="https://twitter.com/MtgFirst?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large"
-           data-show-screen-name="false" data-show-count="false">Follow @MtgFirst</a>
-        </div>
 
-        <!-- Twitter Posts Widget -->
-        <a class="twitter-timeline" data-width="400" data-height="400" href="https://twitter.com/MTGFirst?ref_src=twsrc%5Etfw">Tweets by MTGFirst</a>
-        </div>
-    </div>
 
-    <div class="row" style="">
+        <div class="row" style="margin-top:1%;">
 
-        <div class="col-sm-1"></div>
 
-        <!-- MTG HotList -->
-
-        <div class="col-sm-5">
-            <div class="list-group">
-
-              <h4 class="side-bar-header list-group-item active" style="">
-                  <img style="max-height:75px" src="{% static 'img/hotlist_logo.png' %}">
-              </h4>
-
-              {% for card in hotlist %}
-
-                <a href="#" class="list-group-item">
-                  <span style="">&nbsp;{{card.name}} - ${{card.price}}&nbsp;</span>
-                </a>
-
-              {% endfor %}
+            <div class="col-sm-5">
+               <!-- Location Tab -->
+                <h3>MTG First Game Center</h3>
+                <p>Check out our physical location in <strong>Glen Burnie, MD</strong>. Largest TCG store in  Maryland with a casual-friendly atmosphere and
+                    some of the best tournaments in the area!</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3093.7152165268208!2d-76.61339388460813!3d39.158458479531205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7fce4164bafe1%3A0xcaa5d788744299e8!2sMTGFirst%20Game%20Center!5e0!3m2!1sen!2sus!4v1593470706694!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
             </div>
 
+
+            <div class="col-sm-5 offset-sm-2">
+              <!-- Twitter Follow Button -->
+            <div id="twitter-button" >
+              <a href="https://twitter.com/MtgFirst?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large"
+               data-show-screen-name="false" data-show-count="false">Follow @MtgFirst</a>
+            </div>
+
+            <!-- Twitter Posts Widget -->
+            <a class="twitter-timeline" data-width="400" data-height="400" href="https://twitter.com/MTGFirst?ref_src=twsrc%5Etfw">Tweets by MTGFirst</a>
+            </div>
         </div>
 
-        <div class="col-sm-1"></div>
-
-        <div class="col-sm-5">
-          <h1>BLOCK 4</h1>
-
+        <hr>
+        <div class="row">
+            <div style="margin:auto;">
+                <h2>Latest MTG News</h2>
+            </div>
         </div>
+        <hr>
+
+        {% for article in daily_mtg_articles %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>{{ article.title }}</h4>
+                </div>
+
+                <div class="col-sm-12">
+                    <h4>{{ article.published_date }}</h4>
+                </div>
+
+                <div class="col-sm-12">
+                    {{ article.description|safe }}
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+
     </div>
 
-    {% endif %}
-
-    {% block set_list %}
-    {% endblock %}
+{% endif %}
 
 {% endblock %}
-
-

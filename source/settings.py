@@ -38,13 +38,14 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(hour='5', minute='0', day_of_week='1'),
     },
 
-}
-
-'''
     'task-update-moose-tcg': {
         'task': 'orders.tasks.update_moose_tcg',
-        'schedule': 86400,
-    }, 
+        'schedule': crontab(hour='4', minute='0', day_of_week='2')
+    },
+
+}
+
+''' 
     
     'task-update-paypal-token': {
             'task': 'ppal.tasks.update_paypal_token',
@@ -58,12 +59,12 @@ CELERY_BEAT_SCHEDULE = {
 '''
 
 # EMAIL_BACKEND = 'django.core.email.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'mtgfirst'
+DEFAULT_FROM_EMAIL = 'MooseLoot'
 EMAIL_USE_TLS = True
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST = config('MAILGUN_SMTP_SERVER')
+EMAIL_HOST_USER = config('MAILGUN_SMTP_LOGIN')
+EMAIL_HOST_PASSWORD = config('MAILGUN_SMTP_PASSWORD')
+EMAIL_PORT = config('MAILGUN_SMTP_PORT')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -75,7 +76,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = [
-                'smiling-earth.herokuapp.com', 'localhost', '127.0.0.1', 'www.tcgfirst.com'
+                'smiling-earth.herokuapp.com', 'localhost', '127.0.0.1', 'www.tcgfirst.com',
 
 ]
 
@@ -118,6 +119,7 @@ INSTALLED_APPS = [
     'captcha',
     'layout',
     'cloudinary',
+    'mail',
 ]
 
 MIDDLEWARE = [

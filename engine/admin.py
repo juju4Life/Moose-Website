@@ -12,7 +12,7 @@ from django.http import HttpResponse
 from django.utils.encoding import force_str
 from django.utils.translation import gettext_lazy as _
 
-from engine.models import MTG, DirectData, TcgGroupPrice, MooseInventory, MooseAutopriceMetrics, CardPriceData
+from engine.models import MTG, DirectData, TcgGroupPrice, MooseInventory, MooseAutopriceMetrics, CardPriceData, MtgCardInfo
 from engine.tcgplayer_api import TcgPlayerApi
 
 from import_export.admin import ImportExportModelAdmin
@@ -21,6 +21,10 @@ from import_export.fields import Field
 
 api = TcgPlayerApi('first')
 
+
+@admin.register(MtgCardInfo)
+class MTGCardInfo(admin.ModelAdmin):
+    pass
 
 # TcgPlayer Buylist Hub --------------------------------------------------------------------------------------------------------------------
 
@@ -221,16 +225,7 @@ class MTGAdmin(ImportExportModelAdmin):
     search_fields = ['name']
     list_display = ['name', 'expansion', 'language', ]
     list_filter = [AlphabetFilter, ]
-    fields = (
-        ("name", "expansion",),
-        ("language",),
-        ("normal_clean_price", "normal_clean_stock",),
-        ("normal_played_price", "normal_played_stock",),
-        ("normal_heavily_played_price", "normal_heavily_played_stock",),
-        ("foil_clean_price", "foil_clean_stock",),
-        ("foil_played_price", "foil_played_stock",),
-        ("foil_heavily_played_price", "foil_heavily_played_stock",),
-    )
+
 
 
 # Magic the Gathering Card Database ------------------ END

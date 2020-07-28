@@ -23,6 +23,8 @@ urlpatterns = [
     path('activate/<str:uidb64>/<str:token>', user_views.activate, name='activate'),
     path('', home_views.home_base, name='base'),
     path('home/', home_views.home, name='home'),
+    path('singles/', home_views.query_expansion, name='expansions'),
+    path('sealed/', home_views.query_sealed_product, name='sealed'),
     path('checkout/confirm-details', home_views.confirm_info, name='confirm_order_details'),
     path('orders/', include('orders.urls')),
     path('api/card-info', home_views.CardDatabase.as_view(), name='card_info'),

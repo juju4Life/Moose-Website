@@ -1,6 +1,17 @@
 from django.db import models
 
 
+class DailyMtgNews(models.Model):
+    title = models.CharField(max_length=255, default='')
+    link = models.URLField(default='')
+    description = models.TextField(default='')
+    published_date = models.CharField(max_length=255, default='')
+    creator = models.CharField(max_length=255, default='')
+
+    def __str__(self):
+        return self.title
+
+
 class CardPriceData(models.Model):
     c = (
         ('yes', 'Yes',),
@@ -120,6 +131,9 @@ class MtgCardInfo(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ["name", ]
+
 
 class MTG(models.Model):
     name = models.CharField(max_length=255, default='', verbose_name='name', db_index=True)
@@ -158,9 +172,12 @@ class MTG(models.Model):
     mana_cost = models.CharField(max_length=255, default='', blank=True)
     mana_cost_encoded = models.CharField(max_length=255, default='', blank=True)
     converted_mana_cost = models.DecimalField(max_digits=10, decimal_places=1, null=True, default=None, blank=True)
-    converted = models.BooleanField(default=False)
 
-    restock_notice = models.ManyToManyField("customer.CustomerRestockNotice")
+    converted = models.BooleanField(default=False)
+    foil_only = models.BooleanField(default=False)
+    normal_only = models.BooleanField(default=False)
+
+    restock_notice = models.ManyToManyField("customer.CustomerRestockNotice", blank=True)
 
     def __str__(self):
         return self.name
