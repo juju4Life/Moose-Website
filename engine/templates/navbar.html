@@ -4,29 +4,34 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-  <img class="nav-image" style="max-height:50px;" src="{% static 'img/MooseLogo.png' %}">
-
   <!-- <a class="navbar-brand" href="{%url 'home'%}">MooseLoot</a> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
+    <img alt="MooseLoot Logo" class="nav-image" style="max-height:50px;" src="{% static 'img/MooseLogo.png' %}">
+
+    <ul class="nav navbar-nav">
         {% url 'home' as home %}
 
       {% if 'home' in request.path %}
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'home' %}">Home</a>
         </li>
+
       {% else %}
         <li class="nav-item nav-item">
           <a class="nav-link" href="{% url 'home' %}" style="">Home</a>
-
         </li>
       {% endif %}
 
       <li class="nav-item">
-        <a class="nav-link" href="/admin">Admin</a>
+        <a class="nav-link" href="{% url 'sealed' %}">Sealed</a>
+      </li>
+
+      <li class="nav-item">
+         <a class="nav-link" href="{% url 'contact' %}">Buylist</a>
       </li>
 
       <li class="nav-item">
@@ -42,57 +47,58 @@
         </div>
       </li>
 
-
-
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'sealed' %}">Sealed</a>
-      </li>
-
-
-       <li class="nav-item">
-        <a class="nav-link" href="{% url 'contact' %}">Buylist</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
-      </li>
-
-
-      <li>
-        <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search' %}">
-          <input id="main-search-bar" class="form-control mr-sm-2" name="q" value="{{request.GET.q}}" type="text" placeholder="Search"
-                 aria-label="Search">
-
-          <button id="main-search-button" class="btn btn-outline-light my-2 my-sm-0"
-                  type="submit"><i class="material-icons" id="main-search-icon">search</i></button>
-        </form>
-      </li>
-
-       {% if not request.user.is_authenticated %}
-
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">Login</a>
-        </li>
-
-      {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'profile' %}">My Account</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-        </li>
-
-      {% endif %}
-
     </ul>
-    </div>
 
-  <a href="{%url 'cart' %}" class="cart-icon"><i class="material-icons">shopping_cart</i></a>
+      <div class="d-flex flex-grow-1">
+          <form class=" form-inline mr-2 my-auto w-100 d-inline-block order-1" method="GET" action="{% url 'search' %}">
+
+            <div class="input-group">
+              <input id="main-search-bar" class="form-control mr-sm-2" name="q" value="{{ request.GET.q }}" type="text" placeholder="Search"
+                   aria-label="Search">
+
+              <button id="main-search-button" class="btn btn-outline-light my-2 my-sm-0 border" type="submit">
+                <i class="material-icons" id="main-search-icon">search</i>
+              </button>
+            </div>
+
+          </form>
+      </div>
+
+    <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+        </li>
+      {% if not request.user.is_authenticated %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+
+
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile' %}">My Account</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+
+        {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Admin</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{%url 'cart' %}" class="cart-icon nav-link"><i class="material-icons">shopping_cart</i></a>
+          </li>
+    </ul>
+  </div>
+
 </nav>
 
 <!-- Load autocomplete() function from jquery -->

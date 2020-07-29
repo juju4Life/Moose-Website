@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/layout/signals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/static/custom_css/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_css/navbar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/static/custom_js/search_condition_tab.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_js/search_condition_tab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layout/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/layout/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layout/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/layout/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layout/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/layout/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/t.py" beforeDir="false" afterPath="$PROJECT_DIR$/t.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the.py" beforeDir="false" afterPath="$PROJECT_DIR$/the.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -264,7 +274,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1548952508579</updated>
-      <workItem from="1595876638001" duration="22940000" />
+      <workItem from="1595876638001" duration="36504000" />
     </task>
     <servers />
   </component>

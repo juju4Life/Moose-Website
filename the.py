@@ -1,7 +1,8 @@
-from engine.models import MTG
-from scryfall_api import get_card_data
 from django.db.models import Q
 from django.db import transaction
+from engine.models import MTG, MtgCardInfo
+from layout.models import SinglePrintingSet
+from scryfall_api import get_card_data
 
 
 def go():
@@ -67,4 +68,19 @@ def cs():
             q.layout = "Sealed"
             q.save()
 
+
+def add_cards():
+    expansions = MtgCardInfo.objects.filter(card_identifier="expansion")
+    upload = list()
+
+    for expansion in expansions:
+        upload.append(
+            SinglePrintingSet(
+                expansion=expansion.name,
+                foil_only=False,
+                normal_only=False,
+            )
+        )
+
+    SinglePrintingSet.objects.bulk_create(upload)
 

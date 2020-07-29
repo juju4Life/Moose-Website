@@ -118,6 +118,7 @@ INSTALLED_APPS = [
     'other',
     'captcha',
     'layout',
+    'layout.apps.LayoutConfig',
     'cloudinary',
     'mail',
 ]

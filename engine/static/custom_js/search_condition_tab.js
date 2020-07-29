@@ -41,12 +41,13 @@ function populateConditionTable( is_active, condition, name, expansion, language
 
     var body = document.createElement("tbody");
 
-    if ( foilOnly !== false ){
+    if ( foilOnly === "False" ) {
+
         let normalRow = createConditionTableRow(condition, "Normal", normalStock, normalPrice, productId, name, expansion, language, userAuthenticated);
         body.appendChild(normalRow);
     }
 
-    if ( condition !== 'restock' && normalOnly !== true){
+    if ( normalOnly === "False" ){
         let foilRow = createConditionTableRow(condition, "Foil", foilStock, foilPrice, productId, name, expansion, language, userAuthenticated);
         body.appendChild(foilRow);
     }

@@ -7,15 +7,5 @@ right: 0;
 }
 
 .cart-icon{
-    position: relative;
-    top: 0;
-    right: 0;
-    color: white;
-}
-
-#main-search-button{
-}
-
-#main-search-icon{
-
+    color: white !important;
 }
