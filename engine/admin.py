@@ -225,6 +225,7 @@ class MTGAdmin(ImportExportModelAdmin):
     search_fields = ['name']
     list_display = ['name', 'expansion', 'language', ]
     list_filter = [AlphabetFilter, ]
+    ordering = ["name", "expansion", ]
 
 
 

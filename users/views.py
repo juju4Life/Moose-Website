@@ -1,3 +1,4 @@
+from customer.models import Customer
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import update_session_auth_hash
@@ -11,11 +12,8 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.core.mail import EmailMessage
-
-from .forms import UserRegisterForm, UserUpdateForm, AddressForm, UpdateEmailForm, LoginForm, UpdatePasswordForm
-from .tokens import account_activation_token
-
-from customer.models import Customer
+from users.forms import UserRegisterForm, UserUpdateForm, AddressForm, UpdateEmailForm, LoginForm, UpdatePasswordForm
+from users.tokens import account_activation_token
 
 
 def register(request):
@@ -36,6 +34,7 @@ def register(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
+
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(
                 mail_subject, message, to=[to_email]
@@ -75,6 +74,7 @@ def user_login(request):
 
     if request.POST.get('user_login'):
         if form.is_valid():
+
             email = request.POST.get('email')
             password = request.POST.get('password')
             user = authenticate(email=email, password=password)

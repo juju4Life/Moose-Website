@@ -3,6 +3,13 @@ from engine.models import MTG
 
 
 def add_info():
+    rarity_dict = {
+        "mythic": "M",
+        "rare": "R",
+        "uncommon": "U",
+        "common": "C",
+        "special": "S",
+    }
     exclude_list = ["Revised Edition (Foreign White Border)", "Revised Edition (Foreign Black Border)", "Fourth Edition (Foreign White Border)",
                     "Fourth Edition (Foreign Black Border)"]
     cards = MTG.objects.filter(converted=False).exclude(expansion__in=exclude_list)
@@ -35,7 +42,7 @@ def add_info():
             type_line = scry['type_line']
             set_abreviation = scry['set']
             number = scry['collector_number']
-            rarity = scry['rarity']
+            rarity = rarity_dict[scry['rarity']]
             color_indentity = ''.join(scry['color_identity'])
 
             power = ''

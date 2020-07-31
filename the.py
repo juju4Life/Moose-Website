@@ -84,3 +84,25 @@ def add_cards():
 
     SinglePrintingSet.objects.bulk_create(upload)
 
+
+def some():
+    change_list = [
+        "rare", "mythic", "uncommon", "common", "special",
+    ]
+
+    rarity_dict = {
+        "mythic": "M",
+        "rare": "R",
+        "uncommon": "U",
+        "common": "C",
+        "special": "S",
+    }
+
+    cards = MTG.objects.filter(rarity__in=change_list)
+    print(cards.count())
+
+    for card in cards:
+        card.rarity = rarity_dict[card.rarity]
+        card.save()
+
+
