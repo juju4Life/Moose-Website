@@ -1,6 +1,29 @@
 from django.db import models
 
 
+class MTGUpload(models.Model):
+    name = models.CharField(max_length=255, default='', verbose_name='name', db_index=True)
+    expansion = models.CharField(max_length=255, default='', db_index=True)
+    product_id = models.CharField(max_length=30, default='')
+    normal_clean_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    normal_clean_stock = models.IntegerField(default=0)
+    normal_played_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    normal_played_stock = models.IntegerField(default=0)
+    normal_heavily_played_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    normal_heavily_played_stock = models.IntegerField(default=0)
+    foil_clean_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    foil_clean_stock = models.IntegerField(default=0)
+    foil_played_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    foil_played_stock = models.IntegerField(default=0)
+    foil_heavily_played_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    foil_heavily_played_stock = models.IntegerField(default=0)
+    upload_status = models.BooleanField(default=False)
+    date_time_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+
 class DailyMtgNews(models.Model):
     title = models.CharField(max_length=255, default='')
     link = models.URLField(default='')
@@ -184,7 +207,7 @@ class MTG(models.Model):
 
     class Meta:
         verbose_name_plural = "MTG Card Database"
-        ordering = ['expansion', 'name']
+        ordering = ['name', ]
 
 
 class TcgCredentials(models.Model):

@@ -1,0 +1,12 @@
+{% extends "admin/index.html" %}
+
+{% block extrahead %}
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"> -->
+{% endblock %}
+
+{% block content %}
+    <div style="margin-bottom: 1%; font-weight: bold;">
+        <a href="{% url 'upload_cards'%}">Upload Cards</a>
+    {{ block.super }}
+    </div>
+{% endblock %}

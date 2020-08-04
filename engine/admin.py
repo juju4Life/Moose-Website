@@ -12,7 +12,7 @@ from django.http import HttpResponse
 from django.utils.encoding import force_str
 from django.utils.translation import gettext_lazy as _
 
-from engine.models import MTG, DirectData, TcgGroupPrice, MooseInventory, MooseAutopriceMetrics, CardPriceData, MtgCardInfo
+from engine.models import MTG, DirectData, TcgGroupPrice, MooseInventory, MooseAutopriceMetrics, CardPriceData, MtgCardInfo, MTGUpload
 from engine.tcgplayer_api import TcgPlayerApi
 
 from import_export.admin import ImportExportModelAdmin
@@ -20,6 +20,15 @@ from import_export import resources
 from import_export.fields import Field
 
 api = TcgPlayerApi('first')
+
+
+@admin.register(MTGUpload)
+class UploadAdmin(admin.ModelAdmin):
+    search_fields = ["name", ]
+    list_display = ["name", "expansion", "normal_clean_stock", "normal_played_stock", "normal_heavily_played_stock",
+                    "foil_clean_stock", "foil_played_stock", "foil_heavily_played_stock", "date_time_created", "upload_status", ]
+    ordering = ["upload_status", "date_time_created", ]
+    list_filter = ["upload_status", ]
 
 
 @admin.register(MtgCardInfo)

@@ -8,6 +8,28 @@
 
 {% block content %}
 
+<div class="container">
+
+    <div class="row mt-5">
+        <div class="col-sm-4 offset-sm-4 form-group">
+            <form method="POST" action="{% url 'upload_cards' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset>
+                    <input class="form-control-file" type="file" name="file" id="upload-button">
+                    <button type="submit" name="upload" class="btn btn-info">Upload</button>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+<!--
     <div  class="row mt-3">
         <div class="col-sm-12 ml-5">
             <form method="GET" action="{% url 'upload_cards' %}">
@@ -58,6 +80,4 @@
             </fieldset>
         </form>
     </div>
-
-
-{% endblock %}
+-->
