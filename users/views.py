@@ -19,7 +19,6 @@ from users.tokens import account_activation_token
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
-
         if form.is_valid():
             form.save()
             email = form.cleaned_data.get('email')

@@ -1,4 +1,32 @@
 from django import forms
+from engine.models import MTG
+
+
+class MTGUpdateForm(forms.ModelForm):
+
+    name = forms.CharField(max_length=255, label="")
+    normal_clean_stock = forms.IntegerField(label="Clean Stock", required=False)
+    normal_clean_price = forms.IntegerField(label="Clean Price", required=False)
+    foil_clean_stock = forms.IntegerField(label="CFoil Stock", required=False)
+    foil_clean_price = forms.IntegerField(label="CFoil Price", required=False)
+
+    normal_played_stock = forms.IntegerField(label="Played Stock", required=False)
+    normal_played_price = forms.IntegerField(label="Played Price", required=False)
+    foil_played_stock = forms.IntegerField(label="PFoil Stock", required=False)
+    foil_played_price = forms.IntegerField(label="PFoil Price", required=False)
+
+    normal_heavily_played_stock = forms.IntegerField(label="Heavy Stock", required=False)
+    normal_heavily_played_price = forms.IntegerField(label="Heavy Price", required=False)
+    foil_heavily_played_stock = forms.IntegerField(label="HFoil Stock", required=False)
+    foil_heavily_played_price = forms.IntegerField(label="HFoil Price", required=False)
+
+    class Meta:
+        model = MTG
+        fields = ["name", "normal_clean_stock", "normal_played_stock", "normal_heavily_played_stock", "foil_clean_stock", "foil_played_stock",
+                  "foil_heavily_played_stock", "normal_clean_price", "normal_played_price", "normal_heavily_played_price", "foil_clean_price",
+                  "foil_played_price", "foil_heavily_played_price", ]
+
+        exclude = []
 
 
 class AdvancedSearchForm(forms.Form):

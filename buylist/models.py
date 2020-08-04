@@ -46,7 +46,7 @@ class StoreCredit(models.Model):
     date_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.total}'
+        return self.store_credit
 
     verbose_name_plural = 'Total'
 

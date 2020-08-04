@@ -1,0 +1,63 @@
+{% extends "home.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'custom_css/upload_cards.css' %}">
+{% endblock styles %}
+
+{% block content %}
+
+    <div  class="row mt-3">
+        <div class="col-sm-12 ml-5">
+            <form method="GET" action="{% url 'upload_cards' %}">
+                {% for character in characters %}
+                    <button type="submit" name="query" value="{{ character }}" class="btn btn-info border-0">{{ character }}</button>
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+
+    <div class="container mt-1">
+        <form method="POST" action="{% url 'upload_cards' %}">
+            {% csrf_token %}
+
+            <fieldset>
+                {{ forms.management_form }}
+                {% for form in forms %}
+                    {{ form.id }}
+                    <div class="form-row">
+                        {{ form.name|as_crispy_field }}
+                    </div>
+                    <div class="form-row">
+
+                        <div class="form-group upload-input-width">
+                            {{ form.normal_clean_stock|as_crispy_field }}
+                        </div>
+
+                        <div class="form-group upload-input-width">
+                            {{ form.normal_clean_price|as_crispy_field }}
+                        </div>
+
+                        <div class="form-group upload-input-width">
+                            {{ form.foil_clean_stock|as_crispy_field }}
+                        </div>
+
+                        <div class="form-group upload-input-width">
+                            {{ form.foil_clean_price|as_crispy_field }}
+                        </div>
+
+                        {% if forloop.counter == 1 %}
+                            <div class="form-group">
+                                <button style="position: fixed;" class="btn btn-success btn-lg ml-2" type="submit">Upload Cards</button>
+                            </div>
+                        {% endif %}
+
+                    </div>
+                {% endfor %}
+            </fieldset>
+        </form>
+    </div>
+
+
+{% endblock %}

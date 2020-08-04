@@ -24,6 +24,7 @@ urlpatterns = [
     path('', home_views.home_base, name='base'),
     path('home/', home_views.home, name='home'),
     path('singles/', home_views.query_expansion, name='expansions'),
+    path('upload/admin', home_views.upload_cards, name='upload_cards'),
     path('sealed/', home_views.query_sealed_product, name='sealed'),
     path('checkout/confirm-details', home_views.confirm_info, name='confirm_order_details'),
     path('orders/', include('orders.urls')),

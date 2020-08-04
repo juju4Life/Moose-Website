@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/customer/management/commands/store_credit_analytics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/static/custom_css/upload_cards.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/templates/upload_cards.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/add_card_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/add_card_info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/navbar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the.py" beforeDir="false" afterPath="$PROJECT_DIR$/the.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,18 +24,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="CSS File" />
         <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="2762" />
-    <option name="height" value="1790" />
   </component>
   <component name="ProjectId" id="1fHYk7zAlv4Z7eNRA9MIQAZDHRm" />
   <component name="ProjectViewState">
@@ -41,6 +43,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python&#10;Bash" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -269,6 +272,7 @@
       <option name="presentableId" value="Default" />
       <updated>1548952508579</updated>
       <workItem from="1595876638001" duration="43843000" />
+      <workItem from="1596197844506" duration="50647000" />
     </task>
     <servers />
   </component>
@@ -289,10 +293,14 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="347" y="186" width="672" height="678" key="search.everywhere.popup" timestamp="1595894779157">
+    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1596198662696">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state x="347" y="186" width="672" height="678" key="search.everywhere.popup/0.0.1368.882@0.0.1368.882" timestamp="1595894779157" />
+    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1368.882@0.0.1368.882" timestamp="1596198662696" />
+    <state x="349" y="188" width="672" height="678" key="search.everywhere.popup" timestamp="1596466145583">
+      <screen x="0" y="0" width="1368" height="882" />
+    </state>
+    <state x="349" y="188" width="672" height="678" key="search.everywhere.popup/0.0.1368.882@0.0.1368.882" timestamp="1596466145583" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

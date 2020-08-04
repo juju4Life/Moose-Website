@@ -228,7 +228,6 @@ class MTGAdmin(ImportExportModelAdmin):
     ordering = ["name", "expansion", ]
 
 
-
 # Magic the Gathering Card Database ------------------ END
 
 
