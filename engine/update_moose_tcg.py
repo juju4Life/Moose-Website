@@ -167,6 +167,8 @@ def moose_price():
                 if market is not None and low is not None:
                     if new_price < low:
                         new_price = low
+                if new_price < .49:
+                    new_price = .49
                     api.update_sku_price(sku_id=sku, price=new_price, _json=True, channel='0')
                     new_price = new_price * 0.95
                     api.update_sku_price(sku_id=sku, price=new_price, _json=True, channel='1')
