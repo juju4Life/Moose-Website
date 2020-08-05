@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/management/commands/store_credit_analytics.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/management/commands/store_credit_analytics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/upload_cards.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/upload_cards.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/signals.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +34,7 @@
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python&#10;Bash" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/engine/templates" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -49,19 +46,19 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jermo\website\Goat\engine\templates" />
+      <recent name="C:\Users\jermo\website\Goat\ppal" />
+      <recent name="C:\Users\jermo\website\Goat" />
+      <recent name="C:\Users\jermo\website\Goat\other" />
+      <recent name="C:\Users\jermo\Goat\my_customs" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jermo\website\Goat\ppal" />
       <recent name="C:\Users\jermo\website\Goat\users\templates\users\profile_tabs" />
       <recent name="C:\Users\jermo\website\Goat\users\templates\users" />
       <recent name="C:\Users\jermo\website\Goat\engine\templates" />
       <recent name="C:\Users\jermo\Goat\engine\management\commands" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\jermo\website\Goat\ppal" />
-      <recent name="C:\Users\jermo\website\Goat" />
-      <recent name="C:\Users\jermo\website\Goat\other" />
-      <recent name="C:\Users\jermo\website\Goat\engine\templates" />
-      <recent name="C:\Users\jermo\Goat\my_customs" />
     </key>
   </component>
   <component name="RunManager" selected="Python.daily_mtg_rss">
@@ -267,7 +264,7 @@
       <option name="presentableId" value="Default" />
       <updated>1548952508579</updated>
       <workItem from="1595876638001" duration="43843000" />
-      <workItem from="1596197844506" duration="60887000" />
+      <workItem from="1596197844506" duration="70315000" />
     </task>
     <servers />
   </component>
