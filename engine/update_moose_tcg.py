@@ -1,6 +1,5 @@
 from time import time
 import timeit
-import traceback
 
 from django.core.mail import send_mail
 

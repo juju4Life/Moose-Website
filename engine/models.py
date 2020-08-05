@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class MTGUpload(models.Model):
+class BasicCardInfo(models.Model):
     name = models.CharField(max_length=255, default='', verbose_name='name', db_index=True)
     expansion = models.CharField(max_length=255, default='', db_index=True)
     product_id = models.CharField(max_length=30, default='')
@@ -17,6 +17,13 @@ class MTGUpload(models.Model):
     foil_played_stock = models.IntegerField(default=0)
     foil_heavily_played_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     foil_heavily_played_stock = models.IntegerField(default=0)
+
+    class Meta:
+        abstract = True
+
+
+class MTGUpload(BasicCardInfo):
+
     upload_status = models.BooleanField(default=False)
     date_time_created = models.DateTimeField(auto_now_add=True)
 
@@ -158,26 +165,9 @@ class MtgCardInfo(models.Model):
         ordering = ["name", ]
 
 
-class MTG(models.Model):
-    name = models.CharField(max_length=255, default='', verbose_name='name', db_index=True)
-    expansion = models.CharField(max_length=255, default='', db_index=True)
-    product_id = models.CharField(max_length=30, default='')
+class MTG(BasicCardInfo):
     image_url = models.CharField(max_length=255, default='')
     language = models.CharField(max_length=255, default='English')
-
-    normal_clean_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    normal_clean_stock = models.IntegerField(default=0)
-    normal_played_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    normal_played_stock = models.IntegerField(default=0)
-    normal_heavily_played_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    normal_heavily_played_stock = models.IntegerField(default=0)
-    foil_clean_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    foil_clean_stock = models.IntegerField(default=0)
-    foil_played_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    foil_played_stock = models.IntegerField(default=0)
-    foil_heavily_played_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    foil_heavily_played_stock = models.IntegerField(default=0)
-
     set_abbreviation = models.CharField(max_length=255, default='', blank=True)
     rarity = models.CharField(max_length=255, default='', blank=True)
     oracle_text = models.TextField(default='', blank=True)
@@ -195,7 +185,6 @@ class MTG(models.Model):
     mana_cost = models.CharField(max_length=255, default='', blank=True)
     mana_cost_encoded = models.CharField(max_length=255, default='', blank=True)
     converted_mana_cost = models.DecimalField(max_digits=10, decimal_places=1, null=True, default=None, blank=True)
-
     converted = models.BooleanField(default=False)
     foil_only = models.BooleanField(default=False)
     normal_only = models.BooleanField(default=False)

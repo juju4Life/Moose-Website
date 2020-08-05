@@ -1,20 +1,13 @@
+
 import string
-import tablib
 from time import localtime, strftime
 
 from django.contrib import admin
 from django.contrib.admin import SimpleListFilter
 from django.contrib.auth.models import Group
 from django.db.models import Q
-from django.template.response import TemplateResponse
-from django.core.exceptions import PermissionDenied
-from django.http import HttpResponse
-from django.utils.encoding import force_str
-from django.utils.translation import gettext_lazy as _
-
 from engine.models import MTG, DirectData, TcgGroupPrice, MooseInventory, MooseAutopriceMetrics, CardPriceData, MtgCardInfo, MTGUpload
 from engine.tcgplayer_api import TcgPlayerApi
-
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from import_export.fields import Field
@@ -80,8 +73,6 @@ class MooseMetricsAdmin(admin.ModelAdmin):
 
 
 # Moose Tcg Auto Pricer Metrics ----------------- END
-
-
 @admin.register(MooseInventory)
 class MooseInv(admin.ModelAdmin):
     search_fields = ['name']
@@ -89,7 +80,6 @@ class MooseInv(admin.ModelAdmin):
 
 
 # Magic the Gathering Card Database ------------------ START
-
 class AlphabetFilter(SimpleListFilter):
     title = "Staring Character"
     parameter_name = ""
@@ -107,23 +97,23 @@ class AlphabetFilter(SimpleListFilter):
 
 class MTGResource(resources.ModelResource):
 
-    def before_export(self, queryset, *args, **kwargs):
-        pass
+    def after_export(self, queryset, data, *args, **kwargs):
+        print("after")
+        print(data)
 
     product_id = Field(attribute='product_id', column_name='Id')
     name = Field(attribute='name', column_name='Name')
     expansion = Field(attribute='expansion', column_name='Set')
-    normal_clean_stock = Field(attribute='normal_clean_stock', column_name='Normal Clean')
-    normal_played_stock = Field(attribute='normal_played_stock', column_name='Normal Played')
-    normal_heavily_played_stock = Field(attribute='normal_heavily_played_stock', column_name='Normal Heavy')
-    foil_clean_stock = Field(attribute='foil_clean_stock', column_name='Foil Clean')
-    foil_played_stock = Field(attribute='foil_played_stock', column_name='Foil Played')
-    foil_heavily_played_stock = Field(attribute='foil_heavily_played_stock', column_name='Foil Heavy')
+    normal_clean_stock = Field(column_name='Normal Clean', default="0")
+    normal_played_stock = Field(column_name='Normal Played', default=0)
+    normal_heavily_played_stock = Field(column_name='Normal Heavy', default=0)
+    foil_clean_stock = Field(column_name='Foil Clean', default=0)
+    foil_played_stock = Field(column_name='Foil Played', default=0)
+    foil_heavily_played_stock = Field(column_name='Foil Heavy', default=0)
 
     class Meta:
         model = MTG
-        fields = ('product_id', 'name', 'expansion', 'normal_clean_stock', 'normal_played_stock', 'normal_heavily_played_stock',
-                  'foil_clean_stock', 'foil_played_stock', 'foil_heavily_played_stock',)
+        fields = ('product_id', 'name', 'expansion', )
         exclude = ('language',)
         import_id_fields = ('product_id',)
 
@@ -133,8 +123,7 @@ class MTGAdmin(ImportExportModelAdmin):
 
     def get_export_filename(self, request, queryset, file_format):
         date_time = strftime("%Y-%m-%d %I_%M%p", localtime())
-        filename = f"{queryset[0].name[0]} - {date_time}.csv"
-
+        filename = f"{queryset[0].expansion} - {date_time}.csv"
         return filename
 
     resource_class = MTGResource
