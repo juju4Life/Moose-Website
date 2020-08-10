@@ -3,9 +3,22 @@ from django.http import HttpResponse
 
 
 def incoming_mail_hook(request):
-    pass
+    if request.method == 'POST':
+        print(request.POST)
+        sender = request.POST.get('sender')
+        recipient = request.POST.get('recipient')
+        subject = request.POST.get('subject', '')
 
-    return HttpResponse("ok")
+        body_plain = request.POST.get('body-plain', '')
+        body_without_quotes = request.POST.get('stripped-text', '')
+        # note: other MIME headers are also posted here...
+
+        # attachments:
+        if request.FILES:
+            for key in request.FILES:
+                file = request.FILES[key]
+
+    return HttpResponse("200")
 
 
 

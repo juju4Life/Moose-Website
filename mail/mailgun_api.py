@@ -35,15 +35,16 @@ class MailGun:
             f"https://api.mailgun.net/v3/{self.mailgun_domain}/events",
             auth=("api", self.mailgun_api_key), params=params)
 
-    def create_route(self):
+    def create_route(self, description):
         data = {
             "priority": 0,
-            "description": "Sample route",
+            "description": description,
             "expression": f"match_recipient('.*@{self.mailgun_domain}')",
             "action": ["forward('https://www.tcgfirst.com/mail/incoming/')", "stop()"]
         }
 
         r = requests.post("https://api.mailgun.net/v3/routes", auth=("api", self.mailgun_api_key), data=data)
+        print(r.text)
 
         return r
 
