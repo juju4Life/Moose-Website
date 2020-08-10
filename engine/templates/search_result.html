@@ -259,41 +259,11 @@
                     <br>
 
                     <div class="row">
+
                         <div style="color: rgba(0, 0, 0, 0.6);" class="col-sm-3">Viewing {{ items.start_index }}-{{ items.end_index }} of
-                            {{ items.paginator.count }} results</div>
-                        <div class="col-sm-7"></div>
-
-                         <!--<div class="col-sm-1">
-                            <div class="dropdown">
-                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false">
-                                    Show
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <button type="button" name="per_page_10" class="btn btn-light dropdown-item">10 cards per page</button>
-                                    <button name="per_page_20" class="btn btn-light dropdown-item">20 cards per page</button>
-                                    <button name="per_page_30" class="btn btn-light dropdown-item">30 cards per page</button>
-
-                                </div>
-                            </div>
+                            {{ items.paginator.count }} results
                         </div>
 
-                        <div class="col-sm-1">
-                            <div class="dropdown">
-                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false">
-                                    Sort By
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <form method="GET" action="{% url 'search' %}">
-                                        <button name="sort_by_set_reverse" value="{{ request.get_full_path }}" class="btn btn-light dropdown-item">Set
-                                            (Z-A)</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>-->
                     </div>
 
                     {% include 'main_product_data.html' %}

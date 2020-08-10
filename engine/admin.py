@@ -6,7 +6,7 @@ from django.contrib import admin
 from django.contrib.admin import SimpleListFilter
 from django.contrib.auth.models import Group
 from django.db.models import Q
-from engine.models import MTG, DirectData, TcgGroupPrice, MooseInventory, MooseAutopriceMetrics, CardPriceData, MtgCardInfo, MTGUpload
+from engine.models import MTG, DirectData, TcgGroupPrice, MooseInventory, MooseAutopriceMetrics, CardPriceData, MtgCardInfo, MTGUpload, StateInfo
 from engine.tcgplayer_api import TcgPlayerApi
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
@@ -14,6 +14,9 @@ from import_export.fields import Field
 
 api = TcgPlayerApi('first')
 
+@admin.register(StateInfo)
+class StateInfoAdmin(admin.ModelAdmin):
+    pass
 
 @admin.register(MTGUpload)
 class UploadAdmin(admin.ModelAdmin):

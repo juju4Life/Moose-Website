@@ -22,8 +22,17 @@ class BasicCardInfo(models.Model):
         abstract = True
 
 
-class MTGUpload(BasicCardInfo):
+class StateInfo(models.Model):
+    name = models.CharField(max_length=255, default='')
+    abbreviation = models.CharField(max_length=2, default='')
+    state_tax_rate = models.DecimalField(max_digits=12, decimal_places=5, default=0)
+    local_tax_rate = models.DecimalField(max_digits=12, decimal_places=5, default=0)
 
+    def __str__(self):
+        return self.name
+
+
+class MTGUpload(BasicCardInfo):
     upload_status = models.BooleanField(default=False)
     date_time_created = models.DateTimeField(auto_now_add=True)
 

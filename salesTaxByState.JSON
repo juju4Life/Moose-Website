@@ -1,0 +1,463 @@
+[
+  {
+    "State": "Alabama",
+    "Abbreviation": "AL",
+    "State Tax Rate": 0.04,
+    "State Tax Rank": 40,
+    "Local Tax Rate": 0.051,
+    "Combined Tax Rate": 0.091,
+    "Combined Rank": 5
+  },
+  {
+    "State": "Alaska",
+    "Abbreviation": "AK",
+    "State Tax Rate": 0,
+    "State Tax Rank": 46,
+    "Local Tax Rate": 0.0176,
+    "Combined Tax Rate": 0.0176,
+    "Combined Rank": 46
+  },
+
+  {
+    "State": "Arizona",
+    "Abbreviation": "AZ",
+    "State Tax Rate": 0.056,
+    "State Tax Rank": 28,
+    "Local Tax Rate": 0.0273,
+    "Combined Tax Rate": 0.0833,
+    "Combined Rank": 11
+  },
+
+  {
+    "State": "Arkansas",
+    "Abbreviation": "AR",
+    "State Tax Rate": 0.065,
+    "State Tax Rank": 9,
+    "Local Tax Rate": 0.0291,
+    "Combined Tax Rate": 0.0941,
+    "Combined Rank": 3
+  },
+  {
+    "State": "California",
+    "Abbreviation": "CA",
+    "State Tax Rate": 0.0725,
+    "State Tax Rank": 1,
+    "Local Tax Rate": 0.0129,
+    "Combined Tax Rate": 0.0854,
+    "Combined Rank": 9
+  },
+  {
+    "State": "Colorado",
+    "Abbreviation": "CO",
+    "State Tax Rate": 0.029,
+    "State Tax Rank": 45,
+    "Local Tax Rate": 0.0462,
+    "Combined Tax Rate": 0.0752,
+    "Combined Rank": 16
+  },
+  {
+    "State": "Connecticut",
+    "Abbreviation": "CT",
+    "State Tax Rate": 0.0635,
+    "State Tax Rank": 12,
+    "Local Tax Rate": 0,
+    "Combined Tax Rate": 0.0635,
+    "Combined Rank": 33
+  },
+  {
+    "State": "Delaware",
+    "Abbreviation": "DE",
+    "State Tax Rate": 0,
+    "State Tax Rank": 46,
+    "Local Tax Rate": 0,
+    "Combined Tax Rate": 0,
+    "Combined Rank": 47
+  },
+  {
+    "State": "Florida",
+    "Abbreviation": "FL",
+    "State Tax Rate": 0.06,
+    "State Tax Rank": 16,
+    "Local Tax Rate": 0.008,
+    "Combined Tax Rate": 0.068,
+    "Combined Rank": 28
+  },
+  {
+    "State": "Georgia",
+    "Abbreviation": "GA",
+    "State Tax Rate": 0.04,
+    "State Tax Rank": 40,
+    "Local Tax Rate": 0.0315,
+    "Combined Tax Rate": 0.0715,
+    "Combined Rank": 20
+  },
+  {
+    "State": "Hawaii",
+    "Abbreviation": "HI",
+    "State Tax Rate": 0.04,
+    "State Tax Rank": 40,
+    "Local Tax Rate": 0.0035,
+    "Combined Tax Rate": 0.0435,
+    "Combined Rank": 45
+  },
+  {
+    "State": "Idaho",
+    "Abbreviation": "ID",
+    "State Tax Rate": 0.06,
+    "State Tax Rank": 16,
+    "Local Tax Rate": 0.0003,
+    "Combined Tax Rate": 0.0603,
+    "Combined Rank": 37
+  },
+  {
+    "State": "Illinois",
+    "Abbreviation": "IL",
+    "State Tax Rate": 0.0625,
+    "State Tax Rank": 13,
+    "Local Tax Rate": 0.0245,
+    "Combined Tax Rate": 0.087,
+    "Combined Rank": 7
+  },
+  {
+    "State": "Indiana",
+    "Abbreviation": "IN",
+    "State Tax Rate": 0.07,
+    "State Tax Rank": 2,
+    "Local Tax Rate": 0,
+    "Combined Tax Rate": 0.07,
+    "Combined Rank": 22
+  },
+  {
+    "State": "Iowa",
+    "Abbreviation": "IA",
+    "State Tax Rate": 0.06,
+    "State Tax Rank": 16,
+    "Local Tax Rate": 0.008,
+    "Combined Tax Rate": 0.068,
+    "Combined Rank": 27
+  },
+  {
+    "State": "Kansas",
+    "Abbreviation": "KS",
+    "State Tax Rate": 0.065,
+    "State Tax Rank": 9,
+    "Local Tax Rate": 0.0218,
+    "Combined Tax Rate": 0.0868,
+    "Combined Rank": 8
+  },
+  {
+    "State": "Kentucky",
+    "Abbreviation": "KY",
+    "State Tax Rate": 0.06,
+    "State Tax Rank": 16,
+    "Local Tax Rate": 0,
+    "Combined Tax Rate": 0.06,
+    "Combined Rank": 38
+  },
+  {
+    "State": "Louisiana",
+    "Abbreviation": "LA",
+    "State Tax Rate": 0.05,
+    "State Tax Rank": 33,
+    "Local Tax Rate": 0.0502,
+    "Combined Tax Rate": 0.1002,
+    "Combined Rank": 1
+  },
+  {
+    "State": "Maine",
+    "Abbreviation": "ME",
+    "State Tax Rate": 0.055,
+    "State Tax Rank": 29,
+    "Local Tax Rate": 0,
+    "Combined Tax Rate": 0.055,
+    "Combined Rank": 42
+  },
+  {
+    "State": "Maryland",
+    "Abbreviation": "MD",
+    "State Tax Rate": 0.06,
+    "State Tax Rank": 16,
+    "Local Tax Rate": 0,
+    "Combined Tax Rate": 0.06,
+    "Combined Rank": 38
+  },
+  {
+    "State": "Massachusetts",
+    "Abbreviation": "MA",
+    "State Tax Rate": 0.0625,
+    "State Tax Rank": 13,
+    "Local Tax Rate": 0,
+    "Combined Tax Rate": 0.0625,
+    "Combined Rank": 35
+  },
+  {
+    "State": "Michigan",
+    "Abbreviation": "MI",
+    "State Tax Rate": 0.06,
+    "State Tax Rank": 16,
+    "Local Tax Rate": 0,
+    "Combined Tax Rate": 0.06,
+    "Combined Rank": 38
+  },
+  {
+    "State": "Minnesota",
+    "Abbreviation": "MN",
+    "State Tax Rate": 0.06875,
+    "State Tax Rank": 6,
+    "Local Tax Rate": 0.0055,
+    "Combined Tax Rate": 0.0742,
+    "Combined Rank": 17
+  },
+  {
+    "State": "Mississippi",
+    "Abbreviation": "MS",
+    "State Tax Rate": 0.07,
+    "State Tax Rank": 2,
+    "Local Tax Rate": 0.0007,
+    "Combined Tax Rate": 0.0707,
+    "Combined Rank": 21
+  },
+  {
+    "State": "Missouri",
+    "Abbreviation": "MO",
+    "State Tax Rate": 0.04225,
+    "State Tax Rank": 39,
+    "Local Tax Rate": 0.038,
+    "Combined Tax Rate": 0.0803,
+    "Combined Rank": 14
+  },
+  {
+    "State": "Montana",
+    "Abbreviation": "MT",
+    "State Tax Rate": 0,
+    "State Tax Rank": 46,
+    "Local Tax Rate": 0,
+    "Combined Tax Rate": 0,
+    "Combined Rank": 47
+  },
+  {
+    "State": "Nebraska",
+    "Abbreviation": "NE",
+    "State Tax Rate": 0.055,
+    "State Tax Rank": 29,
+    "Local Tax Rate": 0.0139,
+    "Combined Tax Rate": 0.0689,
+    "Combined Rank": 25
+  },
+  {
+    "State": "Nevada",
+    "Abbreviation": "NV",
+    "State Tax Rate": 0.0685,
+    "State Tax Rank": 7,
+    "Local Tax Rate": 0.0129,
+    "Combined Tax Rate": 0.0814,
+    "Combined Rank": 13
+  },
+  {
+    "State": "New Hampshire",
+    "Abbreviation": "NH",
+    "State Tax Rate": 0,
+    "State Tax Rank": 46,
+    "Local Tax Rate": 0,
+    "Combined Tax Rate": 0,
+    "Combined Rank": 47
+  },
+  {
+    "State": "New Jersey",
+    "Abbreviation": "NJ",
+    "State Tax Rate": 0.06625,
+    "State Tax Rank": 8,
+    "Local Tax Rate": -0.0003,
+    "Combined Tax Rate": 0.066,
+    "Combined Rank": 30
+  },
+  {
+    "State": "New Mexico",
+    "Abbreviation": "NM",
+    "State Tax Rate": 0.05125,
+    "State Tax Rank": 32,
+    "Local Tax Rate": 0.0254,
+    "Combined Tax Rate": 0.0766,
+    "Combined Rank": 15
+  },
+  {
+    "State": "New York",
+    "Abbreviation": "NY",
+    "State Tax Rate": 0.04,
+    "State Tax Rank": 40,
+    "Local Tax Rate": 0.0449,
+    "Combined Tax Rate": 0.0849,
+    "Combined Rank": 10
+  },
+  {
+    "State": "North Carolina",
+    "Abbreviation": "NC",
+    "State Tax Rate": 0.0475,
+    "State Tax Rank": 36,
+    "Local Tax Rate": 0.022,
+    "Combined Tax Rate": 0.0695,
+    "Combined Rank": 24
+  },
+  {
+    "State": "North Dakota",
+    "Abbreviation": "ND",
+    "State Tax Rate": 0.05,
+    "State Tax Rank": 33,
+    "Local Tax Rate": 0.018,
+    "Combined Tax Rate": 0.068,
+    "Combined Rank": 26
+  },
+  {
+    "State": "Ohio",
+    "Abbreviation": "OH",
+    "State Tax Rate": 0.0575,
+    "State Tax Rank": 27,
+    "Local Tax Rate": 0.014,
+    "Combined Tax Rate": 0.0715,
+    "Combined Rank": 19
+  },
+  {
+    "State": "Oklahoma",
+    "Abbreviation": "OK",
+    "State Tax Rate": 0.045,
+    "State Tax Rank": 37,
+    "Local Tax Rate": 0.0441,
+    "Combined Tax Rate": 0.0891,
+    "Combined Rank": 6
+  },
+  {
+    "State": "Oregon",
+    "Abbreviation": "OR",
+    "State Tax Rate": 0,
+    "State Tax Rank": 46,
+    "Local Tax Rate": 0,
+    "Combined Tax Rate": 0,
+    "Combined Rank": 47
+  },
+  {
+    "State": "Pennsylvania",
+    "Abbreviation": "PA",
+    "State Tax Rate": 0.06,
+    "State Tax Rank": 16,
+    "Local Tax Rate": 0.0034,
+    "Combined Tax Rate": 0.0634,
+    "Combined Rank": 34
+  },
+  {
+    "State": "Rhode Island",
+    "Abbreviation": "RI",
+    "State Tax Rate": 0.07,
+    "State Tax Rank": 2,
+    "Local Tax Rate": 0,
+    "Combined Tax Rate": 0.07,
+    "Combined Rank": 22
+  },
+  {
+    "State": "South Carolina",
+    "Abbreviation": "SC",
+    "State Tax Rate": 0.06,
+    "State Tax Rank": 16,
+    "Local Tax Rate": 0.0137,
+    "Combined Tax Rate": 0.0737,
+    "Combined Rank": 18
+  },
+  {
+    "State": "South Dakota",
+    "Abbreviation": "SD",
+    "State Tax Rate": 0.045,
+    "State Tax Rank": 37,
+    "Local Tax Rate": 0.019,
+    "Combined Tax Rate": 0.064,
+    "Combined Rank": 31
+  },
+  {
+    "State": "Tennessee",
+    "Abbreviation": "TN",
+    "State Tax Rate": 0.07,
+    "State Tax Rank": 2,
+    "Local Tax Rate": 0.0246,
+    "Combined Tax Rate": 0.0946,
+    "Combined Rank": 2
+  },
+  {
+    "State": "Texas",
+    "Abbreviation": "TX",
+    "State Tax Rate": 0.0625,
+    "State Tax Rank": 13,
+    "Local Tax Rate": 0.0192,
+    "Combined Tax Rate": 0.0817,
+    "Combined Rank": 12
+  },
+  {
+    "State": "Utah",
+    "Abbreviation": "UT",
+    "State Tax Rate": 0.0595,
+    "State Tax Rank": 26,
+    "Local Tax Rate": 0.0082,
+    "Combined Tax Rate": 0.0677,
+    "Combined Rank": 29
+  },
+  {
+    "State": "Vermont",
+    "Abbreviation": "VT",
+    "State Tax Rate": 0.06,
+    "State Tax Rank": 16,
+    "Local Tax Rate": 0.0018,
+    "Combined Tax Rate": 0.0618,
+    "Combined Rank": 36
+  },
+  {
+    "State": "Virginia",
+    "Abbreviation": "VA",
+    "State Tax Rate": 0.053,
+    "State Tax Rank": 31,
+    "Local Tax Rate": 0.0033,
+    "Combined Tax Rate": 0.0563,
+    "Combined Rank": 41
+  },
+  {
+    "State": "Washington",
+    "Abbreviation": "WA",
+    "State Tax Rate": 0.065,
+    "State Tax Rank": 9,
+    "Local Tax Rate": 0.0268,
+    "Combined Tax Rate": 0.0918,
+    "Combined Rank": 4
+  },
+  {
+    "State": "West Virginia",
+    "Abbreviation": "WV",
+    "State Tax Rate": 0.06,
+    "State Tax Rank": 16,
+    "Local Tax Rate": 0.0037,
+    "Combined Tax Rate": 0.0637,
+    "Combined Rank": 32
+  },
+  {
+    "State": "Wisconsin",
+    "Abbreviation": "WI",
+    "State Tax Rate": 0.05,
+    "State Tax Rank": 33,
+    "Local Tax Rate": 0.0042,
+    "Combined Tax Rate": 0.0542,
+    "Combined Rank": 44
+  },
+  {
+    "State": "Wyoming",
+    "Abbreviation": "WY",
+    "State Tax Rate": 0.04,
+    "State Tax Rank": 40,
+    "Local Tax Rate": 0.0146,
+    "Combined Tax Rate": 0.0546,
+    "Combined Rank": 43
+  },
+  {
+    "State": "D.C.",
+    "Abbreviation": "DC",
+    "State Tax Rate": 0.0575,
+    "State Tax Rank": -27,
+    "Local Tax Rate": 0,
+    "Combined Tax Rate": 0.0575,
+    "Combined Rank": -41
+  }
+]

@@ -77,17 +77,19 @@ def user_login(request):
             email = request.POST.get('email')
             password = request.POST.get('password')
             user = authenticate(email=email, password=password)
-
-            if user is not None:
-                login(request, user)
-
-                if request.GET.get('redirect-path'):
-                    return redirect(request.GET.get('redirect-path'))
-                else:
-                    return redirect('profile')
+            if user.is_staff:
+                return redirect("login")
             else:
-                messages.warning(request, 'Email and Password does not match.')
-                return redirect('login')
+                if user is not None:
+                    login(request, user)
+
+                    if request.GET.get('redirect-path'):
+                        return redirect(request.GET.get('redirect-path'))
+                    else:
+                        return redirect('profile')
+                else:
+                    messages.warning(request, 'Email and Password does not match.')
+                    return redirect('login')
 
     return render(request, 'users/login.html', context)
 

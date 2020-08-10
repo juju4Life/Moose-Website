@@ -1,3 +1,11 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+
+def incoming_mail_hook(request):
+    pass
+
+    return HttpResponse("ok")
+
+
+

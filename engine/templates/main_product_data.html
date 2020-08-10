@@ -3,7 +3,47 @@
 <link rel="stylesheet" type="text/css" href="{% static 'custom_css/search_result.css' %}">
 <script src="{% static 'custom_js/search_condition_tab.js' %}"></script>
 
-<div class="col-sm-2 offset-10">{% include 'pagination.html' %}</div>
+<div class="row">
+    <div class="col-sm-1 offset-sm-8">
+        <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                Show
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <form method="GET" action="{% url 'search' %}">
+                    <button name="all" value="{{ query }}" class="btn btn-light dropdown-item">all</button>
+                    <button name="in_stock" value="{{ query }}" class="btn btn-light dropdown-item">in-stock only</button>
+                    <button name="per_page_10" value="{{ query }}" class="btn btn-light dropdown-item">10 cards per page</button>
+                    <button name="per_page_20" value="{{ query }}" class="btn btn-light dropdown-item">20 cards per page</button>
+                    <button name="per_page_50" value="{{ query }}" class="btn btn-light dropdown-item">50 cards per page</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-1">
+        <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                Sort By
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <form method="GET" action="{% url 'search' %}">
+                    <button name="sort_by_set" value="{{ query }}" class="btn btn-light dropdown-item">set (a-z)</button>
+                    <button name="sort_by_set_reverse" value="{{ query }}" class="btn btn-light dropdown-item">set (z-a)</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-2">{% include 'pagination.html' %}</div>
+
+</div>
 
 <div class="table-responsive">
     <table style="color: rgb(80,80,80);" class="nav-tabs nav-stacked table table-hover table-lg">

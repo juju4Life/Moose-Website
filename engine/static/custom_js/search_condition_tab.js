@@ -97,7 +97,7 @@ function createConditionTableRow(condition, printing, stock, price, productId, n
     row.appendChild(td);
 
     // Create form with price and quantity if item quantity > 0
-    if (stock > 0){
+    if ( stock > 0 && price > 0 ){
 
         var tdPrice = document.createElement("td");
         var tdPriceSpan = document.createElement("span");

@@ -106,3 +106,25 @@ def some():
         card.save()
 
 
+def dates():
+    from engine.models import StateInfo
+    import json
+
+    states = StateInfo.objects.all()
+    with open("salesTaxByState.JSON") as f:
+        data = json.load(f)
+
+        for d in data:
+            try:
+                state = states.get(name=d["State"])
+                state.abbreviation = d["Abbreviation"]
+                state.local_tax_rate = d["Local Tax Rate"]
+                state.state_tax_rate = d["State Tax Rate"]
+                state.save()
+            except Exception as e:
+                state = states.get(name="District Of Columbia")
+                state.abbreviation = d["Abbreviation"]
+                state.local_tax_rate = d["Local Tax Rate"]
+                state.state_tax_rate = d["State Tax Rate"]
+                state.save()
+

@@ -7,9 +7,12 @@ function setActiveAttribute( obj, n ){
 }
 
 function chooseActiveElement( obj ){
-    var data = obj.getElementsByTagName('li');
+    let data = obj.getElementsByTagName('li');
 
-    if ( data[0].getAttribute('data-normal-stock') > 0 || data[0].getAttribute('data-foil-stock' ) > 0){
+    /* Make tab active if item as a foil or non-foil stock that is greater than 0. Hierarchy: clean > played > heavily played.
+    Defaults to resotck tab if all variants show 0 for stock */
+
+    if ( data[0].getAttribute('data-normal-stock') > 0  || data[0].getAttribute('data-foil-stock' ) > 0){
         setActiveAttribute(obj, 1);
 
     } else if ( data[1].getAttribute('data-normal-stock') > 0 || data[1].getAttribute('data-foil-stock' ) > 0){
