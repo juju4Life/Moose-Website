@@ -40,7 +40,7 @@ class MailGun:
             "priority": 0,
             "description": "Sample route",
             "expression": f"match_recipient('.*@{self.mailgun_domain}')",
-            "action": ["forward('https://tcgfirst.com/mail/incoming/')", "stop()"]
+            "action": ["forward('https://www.tcgfirst.com/mail/incoming/')", "stop()"]
         }
 
         r = requests.post("https://api.mailgun.net/v3/routes", auth=("api", self.mailgun_api_key), data=data)
