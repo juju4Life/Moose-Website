@@ -35,7 +35,7 @@ class MailGun:
             f"https://api.mailgun.net/v3/{self.mailgun_domain}/events",
             auth=("api", self.mailgun_api_key), params=params)
 
-    def create_rout(self):
+    def create_route(self):
         data = {
             "priority": 0,
             "description": "Sample route",
