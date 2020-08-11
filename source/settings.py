@@ -38,14 +38,13 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(hour='5', minute='0', day_of_week='1'),
     },
 
+}
+
+''' 
     'task-update-moose-tcg': {
         'task': 'orders.tasks.update_moose_tcg',
         'schedule': crontab(hour='4', minute='0', day_of_week='2')
     },
-
-}
-
-''' 
     
     'task-update-paypal-token': {
             'task': 'ppal.tasks.update_paypal_token',
