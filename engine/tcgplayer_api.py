@@ -115,8 +115,8 @@ class TcgPlayerApi:
         }
         return self.credentials.put_request(f'stores/{self.store_key}/inventory/skus/{sku}', json=params, _data=_data, _json=_json, store=self.store)
 
-    def market_prices_by_sku(self, sku):
-        return self.credentials.get_request(f'pricing/sku/{",".join(sku)}', store=self.store)
+    def market_prices_by_sku(self, skus):
+        return self.credentials.get_request(f'pricing/sku/{skus}', store=self.store)
 
     def increment_sku_quantity(self, sku, quantity):
         data = {
@@ -153,6 +153,15 @@ class TcgPlayerApi:
 
         return self.credentials.get_request(f"catalog/products/{product_id}/productsalsopurchased", store=self.store)
 
+    def get_store_inventory(self, offset, limit=100):
+        params = {
+            "offset": offset,
+            "limit": limit,
+        }
+        return self.credentials.get_request(f"stores/{self.store_key}/inventory/products", store=self.store, params=params)
+
+    def batch_update_price(self, payload):
+        return self.credentials.post_data(f"inventory/skus/batch", store=self.store, data=str(payload))
 
 
 

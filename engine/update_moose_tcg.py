@@ -43,6 +43,7 @@ def moose_price():
     # Entire Moose Loot Listed inventory
     print('get inventory...')
     listed_cards = api.get_category_skus('magic')
+    print(listed_cards)
     if listed_cards['success'] is True:
         driver = scraper.get_driver()
         print(f"Updating {listed_cards['totalItems']} for Moose Inventory")

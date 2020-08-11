@@ -18,7 +18,7 @@ class Credentials:
     token = "39cf2a47-1de8-43ad-b29c-1542a670ccd8"
     public_key = "071BA187-6E51-4A3F-A2AF-C1C27663B543"
     private_key = "DEBC2A03-0DDF-4CDE-8755-91CB1947A16B"
-    url = 'https://api.tcgplayer.com/v1.19.0/'
+    url = 'https://api.tcgplayer.com/v1.39.0/'
     payload = "grant_type=client_credentials&client_id=" + public_key + "&client_secret=" + private_key
 
     def get_request_with_params(self, url, store, **kwargs):
@@ -50,6 +50,17 @@ class Credentials:
             return r.json()
         except requests.exceptions.ConnectionError as e:
             print(e)
+
+    def post_data(self, url, store, data):
+        path = self.url + url
+        headers = {
+            "Accept": self.content_type,
+            "Authorization": "bearer " + self.bearer_tokens[store],
+            "Content-Type": self.content_type,
+        }
+        r = requests.post(url=path, headers=headers, data=data)
+
+        return r.json()
 
     def post_request(self, url, store, data):
         path = self.url + url
