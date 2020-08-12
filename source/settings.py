@@ -58,7 +58,7 @@ CELERY_BEAT_SCHEDULE = {
 '''
 
 # EMAIL_BACKEND = 'django.core.email.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'MooseLoot'
+# DEFAULT_FROM_EMAIL = 'MooseLoot'
 EMAIL_USE_TLS = True
 EMAIL_HOST = config('MAILGUN_SMTP_SERVER')
 EMAIL_HOST_USER = config('MAILGUN_SMTP_LOGIN')

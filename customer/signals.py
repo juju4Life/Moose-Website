@@ -1,10 +1,10 @@
 
 from django.db.models import Sum
-from django.db.models.signals import post_save
+from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
 
-@receiver(post_save, sender='customer.Customer', dispatch_uid='tracking')
+@receiver(pre_save, sender='customer.Customer', dispatch_uid='tracking')
 def track_store_credit(instance, **kwarg):
     from decimal import Decimal
     from buylist.models import StoreCredit

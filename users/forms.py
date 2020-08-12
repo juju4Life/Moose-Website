@@ -120,6 +120,10 @@ class UpdateEmailForm(forms.ModelForm):
 		return cleaned_data
 
 
+class EmailForm(forms.Form):
+	email = forms.EmailField()
+
+
 class UpdatePasswordForm(PasswordChangeForm):
 	pass
 

@@ -1,17 +1,20 @@
+
+
 from customer.models import Customer
-from django.shortcuts import render, redirect
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.views import PasswordResetConfirmView
 from django.contrib.sites.shortcuts import get_current_site
+from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from mail.mailgun_api import MailGun
+from users import forms
 from users.forms import UserRegisterForm, UserUpdateForm, AddressForm, UpdateEmailForm, LoginForm, UpdatePasswordForm
 from users.tokens import account_activation_token
 
@@ -38,14 +41,12 @@ def register(request):
             })
 
             to_email = form.cleaned_data.get('email')
-            print(to_email)
-            print(mail_subject)
-            print(message)
             mailgun.send_mail(
                 recipient_list=to_email,
                 subject=mail_subject,
                 message=message
             )
+
             messages.warning(request, 'Please confirm your email address to complete the registration')
             return redirect('login')
             # messages.success(request, f'Account Created for {username}. You are now able to log in.')
@@ -84,12 +85,12 @@ def user_login(request):
             email = request.POST.get('email')
             password = request.POST.get('password')
             user = authenticate(email=email, password=password)
-            get_user = User.objects.get(email="carlcakes99@gmail.com")
+            get_user = User.objects.get(email=email)
             if get_user.is_staff:
                 return redirect("login")
 
             elif get_user.is_active is False:
-                messages.warning(request, "Your account needs to be activated. Please use the accoutn activation link in your email.")
+                messages.warning(request, "Your account needs to be activated. Please use the account activation link in your email.")
                 return redirect("login")
 
             else:
@@ -375,5 +376,36 @@ def profile(request):
         user_form = None
 
 
-class PasswordResetConfirm(PasswordResetConfirmView):
-    pass
+def reset_password(request):
+    context = dict()
+    template_name = "users/password_reset_confirm.html"
+    email_form = forms.EmailForm()
+    context["email_form"] = email_form
+    if request.POST.get("email"):
+        email_form = forms.EmailForm(request.POST)
+        if email_form.is_valid():
+            email = email_form.cleaned_data["email"]
+            try:
+                user = User.objects.get(email=email)
+                mail_subject = 'Reset your password'
+                current_site = get_current_site(request)
+
+                message = render_to_string('account_activation.html', {
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': account_activation_token.make_token(user),
+                })
+
+                id = mailgun.send_mail(
+                    recipient_list=email,
+                    subject=mail_subject,
+                    message=message,
+                )
+                print(id.json())
+                messages.success(request, f'An email with instructions on how to reset your account has been sent to "{email}"')
+            except ObjectDoesNotExist:
+                messages.warning(request, f'There was no account associated with "{email}" ')
+
+    return render(request, template_name=template_name, context=context)
+

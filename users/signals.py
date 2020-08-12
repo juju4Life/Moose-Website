@@ -10,17 +10,18 @@ from datetime import datetime
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
 	if created:
-		try:
-			date = datetime.strptime(f'{instance.month}-{instance.day}-{instance.year}', '%B-%d-%Y')
-		except AttributeError:
-			date = "1700-01-01"
+		if instance.is_staff is False:
+			try:
+				date = datetime.strptime(f'{instance.month}-{instance.day}-{instance.year}', '%B-%d-%Y')
+			except AttributeError:
+				date = "1700-01-01"
 
-		Customer.objects.create(
-			user=instance,
-			email=instance.email,
-			name=f'{instance.first_name} {instance.last_name}',
-			birth_date=date,
-			)
+			Customer.objects.create(
+				user=instance,
+				email=instance.email,
+				name=f'{instance.first_name} {instance.last_name}',
+				birth_date=date,
+				)
 
 
 @receiver(user_login_failed)
