@@ -426,12 +426,23 @@ def reset_password_change_form(request, uidb64, token):
         user = None
 
     if user is not None and account_activation_token.check_token(user, token):
-        print(user.email)
         form = forms.UpdatePasswordForm(user=user)
-
         context["form"] = form
+        context["user_email"] = user.email
 
     return render(request, template_name=template_name, context=context)
+
+
+def make_password_change(request):
+    if request.method == "POST":
+        # user = User.objects.get(email=request.POST.get("user_email"))
+        form = forms.UpdatePasswordForm(request.POST)
+        if form.is_valid():
+            updated_password = form.save()
+            update_session_auth_hash(request, updated_password)
+    messages.success(request, "Your password has been changed successfully")
+    return redirect("login")
+
 
 
 
