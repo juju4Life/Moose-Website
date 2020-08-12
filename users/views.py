@@ -404,8 +404,8 @@ def reset_password(request):
                     subject=mail_subject,
                     message=message,
                 )
-                if success["id"]:
-
+                if success.json()["id"]:
+                    print(success)
                     messages.success(request, f'An email with instructions on how to reset your account has been sent to "{email}"')
                 else:
                     messages.warning(request, 'There was an error with your request. Please try again later.')
@@ -427,6 +427,9 @@ def reset_password_change_form(request, uidb64, token):
 
     if user is not None and account_activation_token.check_token(user, token):
         print(user.email)
+        form = forms.UpdatePasswordForm(user=user)
+
+        context["form"] = form
 
     return render(request, template_name=template_name, context=context)
 

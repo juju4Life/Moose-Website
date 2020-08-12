@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/password_reset_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/password_reset_email.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,9 +13,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="CSS File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -52,10 +52,10 @@
       <recent name="C:\Users\jermo\Goat\my_customs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jermo\website\Goat\users\templates\users" />
       <recent name="C:\Users\jermo\website\Goat" />
       <recent name="C:\Users\jermo\website\Goat\ppal" />
       <recent name="C:\Users\jermo\website\Goat\users\templates\users\profile_tabs" />
-      <recent name="C:\Users\jermo\website\Goat\users\templates\users" />
       <recent name="C:\Users\jermo\website\Goat\engine\templates" />
     </key>
   </component>
@@ -262,7 +262,7 @@
       <option name="presentableId" value="Default" />
       <updated>1548952508579</updated>
       <workItem from="1595876638001" duration="43843000" />
-      <workItem from="1596197844506" duration="143714000" />
+      <workItem from="1596197844506" duration="144471000" />
     </task>
     <servers />
   </component>
