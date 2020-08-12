@@ -11,9 +11,12 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.core.mail import EmailMessage
+from mail.mailgun_api import MailGun
 from users.forms import UserRegisterForm, UserUpdateForm, AddressForm, UpdateEmailForm, LoginForm, UpdatePasswordForm
 from users.tokens import account_activation_token
+
+
+mailgun = MailGun()
 
 
 def register(request):
@@ -35,10 +38,11 @@ def register(request):
             })
 
             to_email = form.cleaned_data.get('email')
-            email = EmailMessage(
-                mail_subject, message, to=[to_email]
+            mailgun.send_mail(
+                recipient_list=to_email,
+                subject=mail_subject,
+                message=message
             )
-            email.send()
             messages.warning(request, 'Please confirm your email address to complete the registration')
             return redirect('login')
             # messages.success(request, f'Account Created for {username}. You are now able to log in.')
@@ -176,7 +180,9 @@ def profile(request):
                 "played": i.played,
                 "heavily_played": i.heavily_played,
              }
-            for i in customer.restock_list.all()]
+
+            for i in customer.restock_list.all()
+        ]
 
         if request.method == 'POST':
 
@@ -208,7 +214,6 @@ def profile(request):
 
             elif request.POST.get('update_address'):
                 address_form = AddressForm(request.POST, instance=customer)
-
                 if address_form.is_valid():
                     address_form.save()
                     name = request.POST.get('name')

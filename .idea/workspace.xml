@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/engine/quick_update_moose_tcg.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/tcg_credentials.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tcg_credentials.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/tcgplayer_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tcgplayer_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/update_moose_tcg.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/update_moose_tcg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/password_reset.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/password_reset.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,7 +263,7 @@
       <option name="presentableId" value="Default" />
       <updated>1548952508579</updated>
       <workItem from="1595876638001" duration="43843000" />
-      <workItem from="1596197844506" duration="121166000" />
+      <workItem from="1596197844506" duration="128306000" />
     </task>
     <servers />
   </component>
@@ -295,10 +292,10 @@
       <screen x="0" y="0" width="1368" height="882" />
     </state>
     <state x="240" y="51" width="1338" height="731" key="dock-window-1/0.0.1368.882@0.0.1368.882" timestamp="1596556185316" />
-    <state x="349" y="188" width="672" height="678" key="search.everywhere.popup" timestamp="1596466145583">
+    <state x="350" y="189" width="672" height="678" key="search.everywhere.popup" timestamp="1597110533465">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state x="349" y="188" width="672" height="678" key="search.everywhere.popup/0.0.1368.882@0.0.1368.882" timestamp="1596466145583" />
+    <state x="350" y="189" width="672" height="678" key="search.everywhere.popup/0.0.1368.882@0.0.1368.882" timestamp="1597110533465" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
