@@ -383,8 +383,10 @@ def reset_password(request):
     context["email_form"] = email_form
     if request.POST.get("email"):
         email_form = forms.EmailForm(request.POST)
+
         if email_form.is_valid():
             email = email_form.cleaned_data["email"]
+
             try:
                 user = User.objects.get(email=email)
                 mail_subject = 'Reset your password'
@@ -397,15 +399,36 @@ def reset_password(request):
                     'token': account_activation_token.make_token(user),
                 })
 
-                id = mailgun.send_mail(
+                success = mailgun.send_mail(
                     recipient_list=email,
                     subject=mail_subject,
                     message=message,
                 )
-                print(id.json())
-                messages.success(request, f'An email with instructions on how to reset your account has been sent to "{email}"')
+                if success["id"]:
+
+                    messages.success(request, f'An email with instructions on how to reset your account has been sent to "{email}"')
+                else:
+                    messages.warning(request, 'There was an error with your request. Please try again later.')
+
             except ObjectDoesNotExist:
                 messages.warning(request, f'There was no account associated with "{email}" ')
 
     return render(request, template_name=template_name, context=context)
+
+
+def reset_password_change_form(request, uidb64, token):
+    context = dict()
+    template_name = "users/password_reset_complete.html"
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+        print(user.email)
+
+    return render(request, template_name=template_name, context=context)
+
+
 
