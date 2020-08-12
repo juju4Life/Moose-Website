@@ -18,7 +18,7 @@ class MailGun:
                 "text": message
             }
         )
-
+        print(info.text)
         return info
 
     def get_logs(self, recipient):

@@ -38,6 +38,9 @@ def register(request):
             })
 
             to_email = form.cleaned_data.get('email')
+            print(to_email)
+            print(mail_subject)
+            print(message)
             mailgun.send_mail(
                 recipient_list=to_email,
                 subject=mail_subject,
