@@ -440,9 +440,11 @@ def make_password_change(request):
         if form.is_valid():
             updated_password = form.save()
             update_session_auth_hash(request, updated_password)
-    messages.success(request, "Your password has been changed successfully")
-    return redirect("login")
-
-
+            messages.success(request, "Your password has been changed successfully")
+            return redirect("login")
+        else:
+            print(form.errors)
+            print(request.POST)
+            return redirect("login")
 
 

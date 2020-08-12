@@ -9,6 +9,7 @@ from datetime import datetime
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
+
 	if created:
 		if instance.is_staff is False:
 			try:
@@ -26,7 +27,7 @@ def create_profile(sender, instance, created, **kwargs):
 
 @receiver(user_login_failed)
 def login_failed(sender, credentials, **kwargs):
-	email = credentials.get('email')
+	'''email = credentials.get('email')
 	if email is not None:
 		try:
 			user = User.objects.get(email=email)
@@ -43,7 +44,7 @@ def login_failed(sender, credentials, **kwargs):
 				customer.login_attempt_counter = 0
 				user.save()
 
-			customer.save()
+			customer.save()'''
 
 
 @receiver(user_logged_in)
@@ -54,6 +55,7 @@ def login_success(sender, request, user, **kwargs):
 @receiver(user_logged_out)
 def logout_success(sender, request, user, **kwargs):
 	pass
+
 
 '''@receiver(post_save, sender=User)
 def save_Profile(sender, instance, **kwargs):
