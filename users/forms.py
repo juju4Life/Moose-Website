@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth.forms import UserCreationForm,  PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm,  PasswordChangeForm, SetPasswordForm
 from customer.models import Customer
 from users.models import State
 from users.validators import validate_zip_code, email_is_unique, password_needs_reset
@@ -125,6 +125,10 @@ class EmailForm(forms.Form):
 
 
 class UpdatePasswordForm(PasswordChangeForm):
+	pass
+
+
+class NewPasswordForm(SetPasswordForm):
 	pass
 
 
