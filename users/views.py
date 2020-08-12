@@ -33,7 +33,7 @@ def register(request):
             user.save()
             mail_subject = 'Activate your account.'
             current_site = get_current_site(request)
-            message = render_to_string('account_activation.html', {
+            message = render_to_string('users/account_activation.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -392,7 +392,7 @@ def reset_password(request):
                 mail_subject = 'Reset your password'
                 current_site = get_current_site(request)
 
-                message = render_to_string('account_activation.html', {
+                message = render_to_string('users/reset_password_message.html', {
                     'user': user,
                     'domain': current_site.domain,
                     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
