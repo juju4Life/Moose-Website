@@ -84,8 +84,14 @@ def user_login(request):
             email = request.POST.get('email')
             password = request.POST.get('password')
             user = authenticate(email=email, password=password)
-            if user.is_staff:
+            get_user = User.objects.get(email="carlcakes99@gmail.com")
+            if get_user.is_staff:
                 return redirect("login")
+
+            elif get_user.is_active is False:
+                messages.warning(request, "Your account needs to be activated. Please use the accoutn activation link in your email.")
+                return redirect("login")
+
             else:
                 if user is not None:
                     login(request, user)
