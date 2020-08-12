@@ -106,6 +106,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'debug_toolbar',
     'customer',
+    'customer.apps.CustomerConfig',
     'sms',
     'rest_framework',
     'import_export',

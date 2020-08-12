@@ -3,10 +3,10 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class CustomerConfig(AppConfig):
-    name = 'customer'
-    verbose_name = _('customer')
+    name = 'customer.signals'
+    label = 'customer.signals'
 
     def ready(self):
-        import customer.signals
+        from customer import signals
 
 
