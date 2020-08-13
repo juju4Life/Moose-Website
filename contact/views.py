@@ -1,10 +1,13 @@
+
 from uuid import uuid1
+
 from django.shortcuts import render
-from django.conf import settings
-from django.core.mail import send_mail
 from django.contrib import messages
+from mail.mailgun_api import MailGun
 from .forms import ContactForm
 from .models import CustomerEmail
+
+mailgun = MailGun()
 
 
 def contact(request):
@@ -39,7 +42,11 @@ def contact(request):
 contacting MooseLoot.com,\nMooseLoot Team'
 
             emailTo = [email, ]
-            send_mail('Message Confirmation', message, from_email=settings.EMAIL_HOST_USER, recipient_list=emailTo, fail_silently=True)
+
+            mailgun.send_mail(
+                recipient_list=emailTo, subject=subject, message=message,
+            )
+
             context['confirm_message'] = 'confirmed'
             context['form'] = None
             return render(request, template, context)
