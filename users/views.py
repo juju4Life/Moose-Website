@@ -435,16 +435,16 @@ def reset_password_change_form(request, uidb64, token):
 
 def make_password_change(request):
     if request.method == "POST":
-        # user = User.objects.get(email=request.POST.get("user_email"))
-        form = forms.SetPasswordForm(request.POST)
-        if form.is_valid():
-            updated_password = form.save()
-            update_session_auth_hash(request, updated_password)
+        user = User.objects.get(email=request.POST.get("user_email"))
+        password1 = request.POST.get("new_password1")
+        # password2 = request.POST.get("new_password2")
+
+        if password1:
+            user.set_password(password1)
             messages.success(request, "Your password has been changed successfully")
             return redirect("login")
         else:
-            print(form.errors)
-            print(request.POST)
+            messages.warning(request, "There was an error processing your request. Please ty again later")
             return redirect("login")
 
 
