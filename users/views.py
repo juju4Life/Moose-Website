@@ -441,6 +441,7 @@ def make_password_change(request):
 
         if password1:
             user.set_password(password1)
+            user.save()
             messages.success(request, "Your password has been changed successfully")
             return redirect("login")
         else:
