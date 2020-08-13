@@ -1,11 +1,12 @@
+
+from captcha.fields import CaptchaField
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.forms import UserCreationForm,  PasswordChangeForm, SetPasswordForm
 from customer.models import Customer
-from users.models import State
+from engine.models import StateInfo
 from users.validators import validate_zip_code, email_is_unique, password_needs_reset
-from captcha.fields import CaptchaField
 
 
 class UserRegisterForm(UserCreationForm):
@@ -75,7 +76,7 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class AddressForm(forms.ModelForm):
-	state_list = ((i.abbreviation, i.abbreviation,) for i in State.objects.all())
+	state_list = ((i.abbreviation, i.abbreviation,) for i in StateInfo.objects.all())
 	name = forms.CharField()
 	address_line_1 = forms.CharField()
 	address_line_2 = forms.CharField(required=False)
@@ -93,7 +94,7 @@ class AddressForm(forms.ModelForm):
 class GuestCheckoutForm(forms.Form):
 	name = forms.CharField()
 	email = forms.EmailField()
-	state_list = ((i.abbreviation, i.abbreviation,) for i in State.objects.all())
+	state_list = ((i.abbreviation, i.abbreviation,) for i in StateInfo.objects.all())
 	address_line_1 = forms.CharField(label="Address")
 	address_line_2 = forms.CharField(required=False, label="Address Continued")
 	city = forms.CharField()

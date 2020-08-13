@@ -197,7 +197,7 @@ class MTG(BasicCardInfo):
     converted = models.BooleanField(default=False)
     foil_only = models.BooleanField(default=False)
     normal_only = models.BooleanField(default=False)
-
+    preorder = models.BooleanField(default=False)
     restock_notice = models.ManyToManyField("customer.CustomerRestockNotice", blank=True)
 
     def __str__(self):

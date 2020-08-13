@@ -1,11 +1,12 @@
 
 from uuid import uuid1
 
+from contact.forms import ContactForm
+from contact.models import CustomerEmail
 from django.shortcuts import render
 from django.contrib import messages
 from mail.mailgun_api import MailGun
-from .forms import ContactForm
-from .models import CustomerEmail
+
 
 mailgun = MailGun()
 

@@ -87,9 +87,8 @@
 
 			<div class="col-sm-6 offset-sm-0">
 
-				Total: ${{ cart.total_price }}<br>
-				Tax: ${{ tax }} <br>
-				<strong>${{ total_with_tax }}</strong>
+				<strong>Total: ${{ cart.total_price }}</strong>
+
 
 			</div>
 		</div>
@@ -119,7 +118,7 @@
 							<input type="hidden" name="name" value="{{ user.customer.name }}">
 							<input type="hidden" name="email" value="{{ user.customer.email }}">
 							<input type="hidden" name="address_line_1" value="{{ user.customer.address_line_1 }}">
-							<input type="hidden" name="address_line_2" value="{{ user.customer.address_line_2}}">
+							<input type="hidden" name="address_line_2" value="{{ user.customer.address_line_2 }}">
 							<input type="hidden" name="city" value="{{ user.customer.city }}">
 							<input type="hidden" name="state" value="{{ user.customer.state }}">
 							<input type="hidden" name="zip_code" value="{{ user.customer.zip_code }}">
@@ -131,6 +130,10 @@
 						</div>
 
 					{% else %}
+
+						<div>
+							<button type="button" id="change-address-button" class="btn btn-secondary btn-sm">Add Address</button>
+						</div>
 
 					{% endif %}
 
