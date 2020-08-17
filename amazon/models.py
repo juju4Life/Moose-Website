@@ -32,9 +32,15 @@ class AmazonPriceExclusions(models.Model):
     max_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     price_metrics = models.CharField(max_length=255, default='', blank=True)
     exclude = models.BooleanField(default=True)
+    date_time_changed = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.sku
+
+
+
+
+
 
 
 

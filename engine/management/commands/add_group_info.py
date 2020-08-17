@@ -15,20 +15,29 @@ manifest = Manifest()
 class Command(BaseCommand):
     @report_error
     def handle(self, *args, **options):
-        groups = GroupName.objects.filter(category='Magic the Gathering').filter(added=False)
+        cats = ["Dragon Shield Card Sleeves", 'KMC Card Sleeves', 'Monster Protectors Card Sleeves', 'BCW Card Sleeves', 'Pirate Lab Card Sleeves',
+                "Player's Choice Card Sleeves", "Ultimate Guard Card Sleeves", "Ultra Pro Card Sleeves", "Dex Protection Card Sleeves", "Legion Premium "
+                                                                                                                                        "Supplies Card "
+                                                                                                                                        "Sleeves",
+                ]  # "Magic the Gathering",
+
+        groups = GroupName.objects.filter(group_name__in=cats, added=False)
 
         for group in groups:
+            category = group.category
             upload_list = list()
             expansion = group.group_name
             print(f"Adding {expansion}")
             count = 0
             cards = set_offset(func=api.get_set_data, group_id=group.group_id)
             if cards is not None:
+
                 for card in cards:
                     product_id = card['productId']
                     name = card['name']
 
                     image = get_image(product_id)
+
                     if image == '':
                         image = card['imageUrl']
                     else:
@@ -36,15 +45,43 @@ class Command(BaseCommand):
 
                     if MTG.objects.filter(product_id=product_id).exists() is False:
 
-                        upload_list.append(
-                            MTG(
-                                name=name,
-                                expansion=expansion,
-                                language='English',
-                                image_url=image,
-                                product_id=product_id,
+                        if category == "Magic the Gathering":
+                            upload_list.append(
+                                MTG(
+                                    name=name,
+                                    expansion=expansion,
+                                    language='English',
+                                    image_url=image,
+                                    product_id=product_id,
+                                )
                             )
-                        )
+
+                        elif category == "Card Sleeves":
+                            upload_list.append(
+                                MTG(
+                                    name=name,
+                                    expansion=expansion,
+                                    language='English',
+                                    image_url=image,
+                                    product_id=product_id,
+                                    layout="supplies",
+                                    card_type="Card Sleeves",
+                                )
+                            )
+
+                        elif category == "Deck Boxes":
+                            upload_list.append(
+                                MTG(
+                                    name=name,
+                                    expansion=expansion,
+                                    language='English',
+                                    image_url=image,
+                                    product_id=product_id,
+                                    layout="supplies",
+                                    card_type="Card Sleeves",
+                                )
+                            )
+
                         count += 1
                         print(count)
 
@@ -56,7 +93,7 @@ class Command(BaseCommand):
                 group.save()
 
         # Add detailed card attributes
-        add_info()
+        # add_info()
 
 
 

@@ -122,9 +122,20 @@ def dates():
                 state.state_tax_rate = d["State Tax Rate"]
                 state.save()
             except Exception as e:
+                print(e)
                 state = states.get(name="District Of Columbia")
                 state.abbreviation = d["Abbreviation"]
                 state.local_tax_rate = d["Local Tax Rate"]
                 state.state_tax_rate = d["State Tax Rate"]
                 state.save()
+
+
+def supply_color():
+    blues = ["Blue", "Turquoise", ]
+    reds = ["Red", ]
+    purples = ["Purple", "", ]
+    greens = ["Green", ]
+    yellows = ["Yellow", ]
+    pinks = ["Pink", ]
+
 

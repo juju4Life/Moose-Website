@@ -39,7 +39,6 @@ class Command(BaseCommand):
 
             except Exception as e:
                 print(e)
-                pass
         else:
             update_prices = True
 
@@ -70,12 +69,12 @@ class Command(BaseCommand):
                     while num_items > 0:
                         if stop > len(inventory[count]):
                             stop = len(inventory[count])
-                        items = inventory[count][start:stop]
 
+                        items = inventory[count][start:stop]
                         skus = [i['sku'] for i in items if items]
 
-                        # For simplicity to only loop over actual lists and avoid error when 1 object would be a string
-                        # Every once in a while 1 item is not updated. To update in future
+                        # For simplicity to only loop over actual lists and avoid error when one object would be a string
+                        # Every once in a while one item is not updated. To update in future
 
                         if len(items) > 1:
                             try:
@@ -92,23 +91,24 @@ class Command(BaseCommand):
                             if prices is not None:
                                 for i in prices:
                                     sku = i['SellerSKU']['value']
-                                    price_list = []
+                                    price_list = list()
                                     card_num = 0
                                     try:
                                         while len(price_list) < 5:
                                             try:
                                                 competitive_price = float(
                                                     i['Product']['LowestOfferListings']['LowestOfferListing']['Price']['LandedPrice']['Amount']['value'])
-                                                break
 
                                             except TypeError:
                                                 try:
                                                     competitive_price = float(i['Product']['LowestOfferListings']['LowestOfferListing'][card_num]['Price'][
                                                                                   'LandedPrice']['Amount']['value'])
-                                                    price_list.append(float(competitive_price))
-                                                    card_num += 1
                                                 except IndexError:
                                                     break
+
+                                            price_list.append(float(competitive_price))
+                                            card_num += 1
+
                                         try:
                                             old_price = [float(i['price']) for i in items if i['sku'] == sku][0]
                                         except ValueError as e:

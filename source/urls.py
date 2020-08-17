@@ -27,6 +27,7 @@ urlpatterns = [
     path('singles/', home_views.query_expansion, name='expansions'),
     path('upload/admin', home_views.upload_cards, name='upload_cards'),
     path('sealed/', home_views.query_sealed_product, name='sealed'),
+    path('supplies/', home_views.query_supplies, name='supplies'),
     path('checkout/confirm-details', home_views.confirm_info, name='confirm_order_details'),
     path('orders/', include('orders.urls')),
     path('api/card-info', home_views.CardDatabase.as_view(), name='card_info'),

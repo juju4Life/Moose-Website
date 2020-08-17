@@ -1,0 +1,23 @@
+{% extends 'home.html' %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-4 offset-sm-1 mt-1 dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">Filter Supplies</button>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <form method="GET" action="{% url 'supplies' %}">
+                  <input type="hidden" name="current_query" value="{{ current_query }}">
+                  {% for filter in filters %}
+                    <button class="btn btn-light dropdown-item" name="query" value="{{ filter }}">{{ filter }}</button>
+                  {% endfor %}
+              </form>
+
+          </div>
+        </div>
+    </div>
+    {% include 'main_product_data.html' %}
+{% endblock %}
+

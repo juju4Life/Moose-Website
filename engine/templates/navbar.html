@@ -26,12 +26,22 @@
         </li>
       {% endif %}
 
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'sealed' %}">Sealed</a>
-      </li>
 
       <li class="nav-item">
          <a class="nav-link" href="{% url 'contact' %}">Buylist</a>
+      </li>
+
+       <li class="nav-item">
+        <a class="nav-link dropdown-toggle" href="#" id="suppliesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Supplies
+        </a>
+        <div class="dropdown-menu" aria-labelledby="suppliesDropdown">
+          <div class="dropdown-divider"></div>
+          <form method="GET" action="{% url 'supplies' %}">
+            <button type="submit" class="dropdown-item btn" name="query" value="all">All Supplies</button>
+            <button type="submit" class="dropdown-item btn" name="query" value="Card Sleeves">Sleeves</button>
+          </form>
+        </div>
       </li>
 
       <li class="nav-item">
@@ -105,13 +115,13 @@
 <script src="{% static 'custom_js/jquery_autocomplete.js' %}"></script>
 
 <script>
+
     $.ajax({
         method: "GET",
         url: "{% url 'card_info' %}",
         success: function(data){
             autocomplete(data.names, "#main-search-bar");
             const dropdown = document.getElementById("expansion-dropdown-items");
-
             data.expansions.forEach(function (expansion) {
               const link = document.createElement("button");
               link.setAttribute("class", "dropdown-item btn");
@@ -124,4 +134,5 @@
             })
         },
     });
+
 </script>

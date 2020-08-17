@@ -3,7 +3,7 @@ from engine.tcgplayer_api import TcgPlayerApi
 from engine.tcg_manifest import Manifest
 from orders.models import GroupName
 
-api = TcgPlayerApi('first')
+api = TcgPlayerApi('moose')
 M = Manifest()
 
 

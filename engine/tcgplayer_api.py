@@ -5,6 +5,7 @@ credentials = Credentials()
 
 
 class TcgPlayerApi:
+
     def __init__(self, store):
         self.credentials = Credentials()
         self.store_key = self.credentials.store_keys[store]
@@ -14,9 +15,11 @@ class TcgPlayerApi:
         return self.credentials.get_request('catalog/skus/{}'.format(sku_id), store=self.store)
 
     def get_card_info(self, product_id):
+
         params = {
             'getExtendedFields': True,
         }
+
         return self.credentials.get_request('catalog/products/{}'.format(product_id), params=params, store=self.store)
 
     def search_inventory(self, product_id):
@@ -29,7 +32,7 @@ class TcgPlayerApi:
         json_params = {
             "skuId": sku_id,
             "price": price,
-            "quantity": 20
+            "quantity": 20,
         }
         self.credentials.put_request('stores/{}/buylist/skus/{}'.format(self.store_key, sku_id), _data=_data, _json=_json, json=json_params, store=self.store)
 
@@ -42,6 +45,7 @@ class TcgPlayerApi:
         self.credentials.put_request("stores/{}/buylist/skus/{}/quantity".format(self.store_key, sku_id), _data=_data, _json=_json, data=data, store=self.store)
 
     def get_orders(self, order_status, limit, offset):
+
         params = {
             "orderStatusIds": order_status,
             "limit": limit,
@@ -76,11 +80,13 @@ class TcgPlayerApi:
         return self.credentials.get_request("catalog/products".format(self.store_key), params=params, store=self.store)
 
     def update_sku_price(self, sku_id, price, _data=False, _json=False, channel='0', **kwargs):
+
         json_params = {
             "skuId": sku_id,
             "price": price,
             "channelId": channel,
         }
+
         self.credentials.put_request('stores/{}/inventory/skus/{}/price'.format(self.store_key, sku_id), _data=_data, _json=_json, json=json_params,
                                      store=self.store, **kwargs)
 
@@ -141,6 +147,8 @@ class TcgPlayerApi:
             "magic": 1,
             "pokemon": 2,
             "yugioh": 3,
+            "supplies": 14,
+            "deckboxes": 32,
         }
 
         return self.credentials.get_request(f"stores/{self.store_key}/categories/{category_map[category]}/skus", store=self.store)

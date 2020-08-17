@@ -10,10 +10,12 @@ def add_info():
         "common": "C",
         "special": "S",
     }
+
     exclude_list = ["Revised Edition (Foreign White Border)", "Revised Edition (Foreign Black Border)", "Fourth Edition (Foreign White Border)",
                     "Fourth Edition (Foreign Black Border)"]
     cards = MTG.objects.filter(converted=False).exclude(expansion__in=exclude_list)
     print('starting')
+
     for index, card in enumerate(cards):
         product_id = card.product_id
         scry = get_card_data(product_id)
