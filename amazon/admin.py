@@ -11,7 +11,7 @@ class FeedsSubmissionAdmin(admin.ModelAdmin):
 class PricesAdmin(admin.ModelAdmin):
     search_fields = ['sku', 'name']
     ordering = ['-exclude']
-    list_display = ['sku', 'min_price', 'max_price', 'exclude', 'price_metrics', 'name', 'expansion', 'condition', 'is_foil', 'date_time_added', ]
+    list_display = ['sku', 'min_price', 'max_price', 'exclude', 'price_metrics', 'name', 'expansion', 'condition', 'is_foil', 'date_time_changed', ]
     fields = (
         'exclude',
         ('sku', 'price_metrics',),
