@@ -14,7 +14,7 @@ x = CreateXML()
 class Command(BaseCommand):
     def handle(self, *args, **options):
 
-        send_list = []
+        send_list = list()
         recipient_list = ['jermol.jupiter@gmail.com', ]  # 'Jlkelsey94@gmail.com',
 
         # We first check to see if the latest feed submission has been successful.
@@ -73,8 +73,10 @@ class Command(BaseCommand):
                         items = inventory[count][start:stop]
                         skus = [i['sku'] for i in items if items]
 
-                        # For simplicity to only loop over actual lists and avoid error when one object would be a string
-                        # Every once in a while one item is not updated. To update in future
+                        '''
+                        For simplicity to only loop over actual lists and avoid error when one object would be a string
+                        Every once in a while one item is not updated. To update in future
+                        '''
 
                         if len(items) > 1:
                             try:
@@ -93,6 +95,12 @@ class Command(BaseCommand):
                                     sku = i['SellerSKU']['value']
                                     price_list = list()
                                     card_num = 0
+
+                                    '''
+                                        Get the five cheapest prices from amazon (buyBox eligible listings only). Appending up to 5 and breaking while 
+                                        loop when wither five prices a re appended to "price_list" or except an indexError when there are less than 
+                                        five prices
+                                    '''
                                     try:
                                         while len(price_list) < 5:
                                             try:
@@ -109,6 +117,8 @@ class Command(BaseCommand):
                                             price_list.append(float(competitive_price))
                                             card_num += 1
 
+                                        '''Match sku of queried Amazon inventory with current lowest listings. WIll always match if amazon price is
+                                        with the 5 cheapest listings. Otherwise the current price will not be sued'''
                                         try:
                                             old_price = [float(i['price']) for i in items if i['sku'] == sku][0]
                                         except ValueError as e:
@@ -119,27 +129,38 @@ class Command(BaseCommand):
                                         if old_price is not None:
                                             old_price = float(old_price)
 
+                                            # Create average price for returned lowest listings and make amazon competitive price the first result in list
                                             if price_list:
                                                 average_price = sum(price_list) / len(price_list)
                                                 competitive_price = price_list[0]
+
+                                                #  Send Item details via email if price is too much lower than the average
                                                 if competitive_price < average_price / 1.7:
                                                     send_list.append(f"{sku} - ${round(competitive_price, 2)}")
+
                                                 avg_count = 1
 
+                                                '''If the old price is equal to the low price, it means that the item belongs to our inventory or is
+                                                matched with the lowest offer. If so, we change the competitive price to the next lowest in list.
+                                                It is possible to make the competitive listing the same as the old_price if the two cheapest listings
+                                                are the same.'''
                                                 if old_price == competitive_price:
                                                     competitive_price = price_list[1]
                                                     avg_count = 2
 
+                                                '''Check to make sure competitive price is not too low. if it is, relative to the average price, then
+                                                make the competitive price the next one in the price_list. repeat until price is found or an index
+                                                error due to there being zero desired prices found. Defaults to cheapest when all are below average'''
                                                 while True:
+                                                    # Break when avg_count would cause an index error
                                                     if avg_count > len(price_list) - 1:
                                                         break
-
                                                     if competitive_price < average_price / 1.3:
                                                         competitive_price = price_list[avg_count]
                                                         avg_count += 1
-
                                                     else:
                                                         break
+
                                                 # Set minimum for certain user-specified cards
                                                 if sku in exclude_list:
                                                     data = AmazonPriceExclusions.objects.get(sku=sku)
@@ -159,7 +180,6 @@ class Command(BaseCommand):
                                                 else:
                                                     if competitive_price < 1.99:
                                                         competitive_price = 1.99
-                                                    competitive_price = competitive_price
                                                     if competitive_price >= 10 and competitive_price <= 12.50:
                                                         competitive_price = 9.99
                                                     card_metrics, created = AmazonPriceExclusions.objects.get_or_create(sku=sku)

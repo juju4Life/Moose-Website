@@ -10,7 +10,7 @@ class FeedsSubmissionAdmin(admin.ModelAdmin):
 @admin.register(AmazonPriceExclusions)
 class PricesAdmin(admin.ModelAdmin):
     search_fields = ['sku', 'name']
-    ordering = ['date_time_changed', ]
+    ordering = ['-date_time_changed', ]
     list_filter = ["exclude", ]
     list_display = ['sku', 'min_price', 'max_price', 'exclude', 'price_metrics', 'name', 'expansion', 'condition', 'is_foil', 'date_time_changed', ]
     fields = (
