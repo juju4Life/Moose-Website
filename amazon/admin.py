@@ -14,7 +14,8 @@ class PricesAdmin(admin.ModelAdmin):
     list_filter = ["exclude", ]
     list_display = ['sku', 'min_price', 'max_price', 'exclude', 'price_metrics', 'name', 'expansion', 'condition', 'is_foil', 'date_time_changed', ]
     fields = (
-        'exclude',
+
+        ('exclude', 'price', ),
         ('sku', 'price_metrics',),
         ('min_price', 'max_price',),
         ('is_foil', 'condition',),
