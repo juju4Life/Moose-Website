@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/engine/management/commands/get_supplies.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/templates/supplies.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/add_card_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/add_card_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/add_group_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/add_group_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/get_inventory_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/get_inventory_stats.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_group_categries.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/update_group_categries.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/custom_css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/tcgplayer_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tcgplayer_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/main_product_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/main_product_data.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the.py" beforeDir="false" afterPath="$PROJECT_DIR$/the.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazon/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/admin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,7 +252,7 @@
       <updated>1548952508579</updated>
       <workItem from="1595876638001" duration="43843000" />
       <workItem from="1596197844506" duration="186134000" />
-      <workItem from="1597685415019" duration="5322000" />
+      <workItem from="1597685415019" duration="5774000" />
     </task>
     <servers />
   </component>
