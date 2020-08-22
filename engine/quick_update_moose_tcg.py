@@ -43,6 +43,7 @@ def update_tcg():
                         "price": upload_price,
                     }
                 )
+
         api.batch_update_price(payload=upload_list)
         offset += 100
 

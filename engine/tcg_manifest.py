@@ -1,4 +1,17 @@
 class Manifest:
+
+    @staticmethod
+    def moose_condition_map(value):
+
+        d = {
+            2: "Clean",
+            3: "Played",
+            4: "Heavily Played",
+            6: "Unopened",
+        }
+
+        return d[value]
+
     def game(self, ids):
         game_dict = {
             1: 'Magic the Gathering',

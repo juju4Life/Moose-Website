@@ -2,9 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/engine/management/commands/update_mtg_skus.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/static/custom_js/preload_image.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/update_mtg_skus.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/management/commands/add_group_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/add_group_info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/quick_update_moose_tcg.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/quick_update_moose_tcg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/static/custom_css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_css/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/tcg_manifest.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tcg_manifest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/tcgplayer_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tcgplayer_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/templates/confirm_order_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/confirm_order_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/templates/search_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/search_result.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/templates/supplies.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/supplies.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the.py" beforeDir="false" afterPath="$PROJECT_DIR$/the.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +36,7 @@
         <option value="CSS File" />
         <option value="Python Script" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -45,13 +65,6 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\jermo\website\Goat\engine\templates" />
-      <recent name="C:\Users\jermo\website\Goat\ppal" />
-      <recent name="C:\Users\jermo\website\Goat" />
-      <recent name="C:\Users\jermo\website\Goat\other" />
-      <recent name="C:\Users\jermo\Goat\my_customs" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jermo\website\Goat\users\templates\users" />
       <recent name="C:\Users\jermo\website\Goat" />
@@ -59,8 +72,15 @@
       <recent name="C:\Users\jermo\website\Goat\users\templates\users\profile_tabs" />
       <recent name="C:\Users\jermo\website\Goat\engine\templates" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jermo\website\Goat\engine\templates" />
+      <recent name="C:\Users\jermo\website\Goat\ppal" />
+      <recent name="C:\Users\jermo\website\Goat" />
+      <recent name="C:\Users\jermo\website\Goat\other" />
+      <recent name="C:\Users\jermo\Goat\my_customs" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.add_group_info">
+  <component name="RunManager" selected="Python.views">
     <configuration name="add_card_info" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Goat" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -170,38 +190,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="tcg_scraper" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Goat" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tcg" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <EXTENSION ID="net.ashald.envfile">
-        <option name="IS_ENABLED" value="false" />
-        <option name="IS_SUBST" value="false" />
-        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
-        <option name="IS_IGNORE_MISSING_FILES" value="false" />
-        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-        <ENTRIES>
-          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
-        </ENTRIES>
-      </EXTENSION>
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tcg/tcg_scraper.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="try" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Goat" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -224,21 +212,43 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Goat" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/engine" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/engine/views.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.manage" />
       <item itemvalue="Python.add_card_info" />
-      <item itemvalue="Python.tcg_scraper" />
       <item itemvalue="Python.try" />
       <item itemvalue="Python.daily_mtg_rss" />
       <item itemvalue="Python.add_group_info" />
+      <item itemvalue="Python.views" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.views" />
         <item itemvalue="Python.add_group_info" />
         <item itemvalue="Python.daily_mtg_rss" />
         <item itemvalue="Python.try" />
         <item itemvalue="Python.add_card_info" />
-        <item itemvalue="Python.tcg_scraper" />
       </list>
     </recent_temporary>
   </component>
@@ -254,7 +264,8 @@
       <updated>1548952508579</updated>
       <workItem from="1595876638001" duration="43843000" />
       <workItem from="1596197844506" duration="186134000" />
-      <workItem from="1597685415019" duration="11832000" />
+      <workItem from="1597685415019" duration="55729000" />
+      <workItem from="1598027995377" duration="16791000" />
     </task>
     <servers />
   </component>
@@ -275,22 +286,38 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1326" height="447" key="GridCell.Tab.0.bottom" timestamp="1597430399665">
+    <state width="1326" height="285" key="GridCell.Tab.0.bottom" timestamp="1597709412361">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state width="1326" height="447" key="GridCell.Tab.0.bottom/0.0.1368.882@0.0.1368.882" timestamp="1597430399665" />
-    <state width="1326" height="447" key="GridCell.Tab.0.center" timestamp="1597430399665">
+    <state width="1326" height="285" key="GridCell.Tab.0.bottom/0.0.1368.882@0.0.1368.882" timestamp="1597709412361" />
+    <state width="1326" height="285" key="GridCell.Tab.0.center" timestamp="1597709412361">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state width="1326" height="447" key="GridCell.Tab.0.center/0.0.1368.882@0.0.1368.882" timestamp="1597430399665" />
-    <state width="1326" height="447" key="GridCell.Tab.0.left" timestamp="1597430399665">
+    <state width="1326" height="285" key="GridCell.Tab.0.center/0.0.1368.882@0.0.1368.882" timestamp="1597709412361" />
+    <state width="1326" height="285" key="GridCell.Tab.0.left" timestamp="1597709412361">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state width="1326" height="447" key="GridCell.Tab.0.left/0.0.1368.882@0.0.1368.882" timestamp="1597430399665" />
-    <state width="1326" height="447" key="GridCell.Tab.0.right" timestamp="1597430399665">
+    <state width="1326" height="285" key="GridCell.Tab.0.left/0.0.1368.882@0.0.1368.882" timestamp="1597709412361" />
+    <state width="1326" height="285" key="GridCell.Tab.0.right" timestamp="1597709412361">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state width="1326" height="447" key="GridCell.Tab.0.right/0.0.1368.882@0.0.1368.882" timestamp="1597430399665" />
+    <state width="1326" height="285" key="GridCell.Tab.0.right/0.0.1368.882@0.0.1368.882" timestamp="1597709412361" />
+    <state width="1326" height="285" key="GridCell.Tab.1.bottom" timestamp="1597709412361">
+      <screen x="0" y="0" width="1368" height="882" />
+    </state>
+    <state width="1326" height="285" key="GridCell.Tab.1.bottom/0.0.1368.882@0.0.1368.882" timestamp="1597709412361" />
+    <state width="1326" height="285" key="GridCell.Tab.1.center" timestamp="1597709412361">
+      <screen x="0" y="0" width="1368" height="882" />
+    </state>
+    <state width="1326" height="285" key="GridCell.Tab.1.center/0.0.1368.882@0.0.1368.882" timestamp="1597709412361" />
+    <state width="1326" height="285" key="GridCell.Tab.1.left" timestamp="1597709412361">
+      <screen x="0" y="0" width="1368" height="882" />
+    </state>
+    <state width="1326" height="285" key="GridCell.Tab.1.left/0.0.1368.882@0.0.1368.882" timestamp="1597709412361" />
+    <state width="1326" height="285" key="GridCell.Tab.1.right" timestamp="1597709412361">
+      <screen x="0" y="0" width="1368" height="882" />
+    </state>
+    <state width="1326" height="285" key="GridCell.Tab.1.right/0.0.1368.882@0.0.1368.882" timestamp="1597709412361" />
     <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1596198662696">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
@@ -299,10 +326,10 @@
       <screen x="0" y="0" width="1368" height="882" />
     </state>
     <state x="240" y="51" width="1338" height="731" key="dock-window-1/0.0.1368.882@0.0.1368.882" timestamp="1596556185316" />
-    <state x="351" y="190" width="672" height="678" key="search.everywhere.popup" timestamp="1597254338429">
+    <state x="352" y="191" width="672" height="678" key="search.everywhere.popup" timestamp="1597863862647">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state x="351" y="190" width="672" height="678" key="search.everywhere.popup/0.0.1368.882@0.0.1368.882" timestamp="1597254338429" />
+    <state x="352" y="191" width="672" height="678" key="search.everywhere.popup/0.0.1368.882@0.0.1368.882" timestamp="1597863862647" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -317,6 +344,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Goat$add_group_info.coverage" NAME="add_group_info Coverage Results" MODIFIED="1597430396719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/engine/management/commands" />
+    <SUITE FILE_PATH="coverage/Goat$views.coverage" NAME="views Coverage Results" MODIFIED="1597709402874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/engine" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">

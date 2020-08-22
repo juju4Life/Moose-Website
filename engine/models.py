@@ -22,6 +22,21 @@ class BasicCardInfo(models.Model):
         abstract = True
 
 
+class MTGDatabase(models.Model):
+    name = models.CharField(max_length=255, default='', db_index=True)
+    expansion = models.CharField(max_length=255, default='', db_index=True)
+    sku = models.CharField(max_length=255, default='', unique=True)
+    product_id = models.CharField(max_length=255, default='')
+    printing = models.CharField(max_length=255, default='')
+    condition = models.CharField(max_length=255, default='')
+    language = models.CharField(max_length=255, default='')
+    stock = models.IntegerField(default=0)
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+
+    def __string__(self):
+        return self.name
+
+
 class StateInfo(models.Model):
     name = models.CharField(max_length=255, default='')
     abbreviation = models.CharField(max_length=2, default='')
@@ -198,6 +213,7 @@ class MTG(BasicCardInfo):
     foil_only = models.BooleanField(default=False)
     normal_only = models.BooleanField(default=False)
     preorder = models.BooleanField(default=False)
+    solid_color = models.CharField(max_length=255, default='')
     restock_notice = models.ManyToManyField("customer.CustomerRestockNotice", blank=True)
 
     def __str__(self):

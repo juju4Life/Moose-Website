@@ -2,6 +2,50 @@ from django import forms
 from engine.models import MTG
 
 
+class SuppliesAdvancedQueryForm(forms.Form):
+    color_choices = (
+        ("", "", ),
+        ("Blue", "Blue", ),
+        ("Black", "Black", ),
+        ("Red", "Red", ),
+        ("Green", "Green", ),
+        ("White", "White", ),
+        ("Purple", "Purple", ),
+        ("Yellow", "Yellow", ),
+        ("Orange", "Orange", ),
+        ("Brown", "Brown", ),
+        ("Gray", "Gray", ),
+        ("Silver", "Silver", ),
+        ("Gold", "Gold", ),
+        ("Turquoise", "Turquoise", ),
+        ("Pink", "Pink", ),
+    )
+
+    supply_choices = (
+        ("", "", ),
+        ("Card Sleeves", "Card Sleeves", ),
+        ("Deck Boxes", "Deck Boxes", ),
+        ("Binders", "Binders", ),
+    )
+
+    brand_choices = (
+        ("", "", ),
+        ("KMC Card Sleeves", "KMC Card Sleeves", ),
+        ("Dragon Shied Card Sleeves", "Dragon Shield Card Sleeves", ),
+        ("Legion Premium Supplies Card Sleeves", "Legion Premium Supplies Card Sleeves", ),
+        ("Ultra Pro Card Sleeves", "Ultra Pro Card Sleeves", ),
+        ("BCW Card Sleeves", "BCW Card Sleeves", ),
+        ("DEX Protection Card Sleeves", "DEX Protection Card Sleeves", ),
+        ("Player's Choice Card Sleeves", "Player's Choice Card Sleeves", ),
+        ("Pirate Lab Card Sleeves", "Pirate Lab Card Sleeves", ),
+        ("Ultimate Guard Card Sleeves", "Ultimate Guard Card Sleeves", ),
+    )
+
+    supply = forms.ChoiceField(choices=supply_choices, required=False)
+    brand = forms.ChoiceField(choices=brand_choices, required=False)
+    color = forms.ChoiceField(choices=color_choices, required=False)
+
+
 class MTGUpdateForm(forms.ModelForm):
 
     name = forms.CharField(max_length=255, label="")

@@ -1,0 +1,9 @@
+{% extends 'home.html' %}
+
+{% block content %}
+    <ul>
+        {% for item in items %}
+            <li>{{ item.name}} {{ item.expansion }} {{item.condition}} {{ item.printing }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

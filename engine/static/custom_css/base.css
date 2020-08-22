@@ -3,12 +3,18 @@
     color: rgba(52, 58, 64, 1);
 }
 
+
+
 table{
     font-family: Catull BQ Regular;
 }
 
 h4 {
     color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.title-font{
+    font-family: trajan-pro-3, serif;
 }
 
 .hidden-dialog{

@@ -131,11 +131,10 @@ def dates():
 
 
 def supply_color():
-    blues = ["Blue", "Turquoise", ]
-    reds = ["Red", ]
-    purples = ["Purple", "", ]
-    greens = ["Green", ]
-    yellows = ["Yellow", ]
-    pinks = ["Pink", ]
+    with transaction.atomic():
+        colors = ["Blue", "Black", "White", "Green", "Purple", "Orange", "Red", "Brown", "Yellow", "Pink", "Gray", "Silver", "Gold", "Turquoise", ]
+        for color in colors:
+            mod = MTG.objects.filter(layout="supplies", name__icontains=color, solid_color='')
+            mod.update(solid_color=color)
 
 

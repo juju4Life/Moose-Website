@@ -21,8 +21,13 @@ class Command(BaseCommand):
                                                                                                                                         "Sleeves",
                 ]  # "Magic the Gathering",
 
-        groups = GroupName.objects.filter(group_name__in=cats, added=False)
+        cats = ["Legion Premium Supplies Deck Box Accessories", "BCW Deck Boxes", "Dex Protection Deck Boxes", "Dragon Shield Deck Boxes",
+                "Pirate Lab Deck Boxes", "Ultimate Guard Deck Boxes", "Ultra Pro Deck Boxes", "Legion Premium Supplies Deck Boxes", "Monster Deck Boxes",
+                ]
 
+        print(len(cats))
+        groups = GroupName.objects.filter(group_name__in=cats, added=False)
+        print(groups.count())
         for group in groups:
             category = group.category
             upload_list = list()
@@ -57,19 +62,6 @@ class Command(BaseCommand):
                             )
 
                         elif category == "Card Sleeves":
-                            upload_list.append(
-                                MTG(
-                                    name=name,
-                                    expansion=expansion,
-                                    language='English',
-                                    image_url=image,
-                                    product_id=product_id,
-                                    layout="supplies",
-                                    card_type="Card Sleeves",
-                                )
-                            )
-
-                        elif category == "Deck Boxes":
                             upload_list.append(
                                 MTG(
                                     name=name,

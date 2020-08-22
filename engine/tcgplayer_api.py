@@ -169,7 +169,17 @@ class TcgPlayerApi:
         return self.credentials.get_request(f"stores/{self.store_key}/inventory/products", store=self.store, params=params)
 
     def batch_update_price(self, payload):
-        return self.credentials.post_data(f"inventory/skus/batch", store=self.store, data=str(payload))
+        return self.credentials.post_data(f"stores/{self.store_key}/inventory/skus/batch", store=self.store, data=str(payload))
+
+    def get_all_products_for_category(self, offset, limit=100, category_id=1):
+        params = {
+            "offset": offset,
+            "limit": limit,
+            "categoryId": category_id,
+            "includeSkus": True,
+        }
+        return self.credentials.get_request_with_params("catalog/products", params=params, store=self.store)
+
 
 
 

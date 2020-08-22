@@ -50,6 +50,7 @@ urlpatterns = [
     path('accounts/', include('allauth.account.urls')),
     path('facebook_bot/', include('facebook_bot.urls')),
     path('results/', home_views.search, name='search'),
+    path('sku-results/', home_views.sku_search, name='sku_search'),
     path('results/wishlist', home_views.wishlist, name='wishlist'),
     path('results/restock', home_views.restock, name='restock_notice'),
     path('buylist/results/', buylist_views.search, name='search_buylist'),

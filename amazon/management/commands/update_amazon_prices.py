@@ -4,8 +4,6 @@ from amazon.models import FeedSubmission, AmazonPriceExclusions
 from amazon.amazon_mws import MWS
 from my_customs.exml import CreateXML
 from django.utils import timezone
-from django.core.mail import send_mail
-from decouple import config
 
 api = MWS()
 x = CreateXML()
@@ -195,7 +193,6 @@ class Command(BaseCommand):
 
                                             else:
                                                 pass
-
                                                 # print(sku, condition['full'], old_price, competitive_price)
 
                                     except KeyError as e:
