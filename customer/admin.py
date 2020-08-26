@@ -22,6 +22,7 @@ class CustomerAdmin(SimpleHistoryAdmin):
         'name',
         'email',
         'notes',
+        'orders',
     )
 
 

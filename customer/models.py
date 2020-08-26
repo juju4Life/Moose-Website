@@ -40,6 +40,7 @@ class Customer(models.Model):
     email_subscriber_new_products = models.BooleanField(default=False)
     wishlist = models.TextField(default='', blank=True)
     restock_list = models.ManyToManyField("customer.CustomerRestockNotice")
+    orders = models.TextField(default='', blank=True)
 
     history = HistoricalRecords(
         history_change_reason_field=models.TextField(null=True)

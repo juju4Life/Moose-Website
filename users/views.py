@@ -14,6 +14,7 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from mail.mailgun_api import MailGun
+from my_customs.functions import text_between_two_words
 from users import forms
 from users.forms import UserRegisterForm, UserUpdateForm, AddressForm, UpdateEmailForm, LoginForm, UpdatePasswordForm
 from users.tokens import account_activation_token
@@ -110,7 +111,6 @@ def user_login(request):
 
 @login_required
 def restock_notification_change(request):
-
     if request.GET.get("restock_notice_change"):
         email = request.user.email
         product_id = request.GET.get("restock_notice_change")
@@ -171,6 +171,43 @@ def profile(request):
     if request.user.is_authenticated:
         context = {}
         customer = Customer.objects.get(email=request.user.email)
+        orders = customer.orders.split("<order>")[:-1]
+        orders_list = list()
+
+        for order in orders:
+            order_status = text_between_two_words("<status_start>", "<status_end>", order)
+            attributes = order.split("<card>")[:-1]
+            order_date = attributes[-3]
+            order_number = attributes[-2]
+            total = attributes[-1]
+
+            order_details = {
+                "order_date": order_date,
+                "order_number": order_number,
+                "order_status": order_status,
+                "total": total,
+                "items": list(),
+            }
+            for each in attributes[0:-3]:
+                attribute = each.split("<attribute>")
+                order_details["items"].append(
+                    {
+                        "name": attribute[0],
+                        "expansion": attribute[1],
+                        "printing": attribute[2],
+                        "condition": attribute[3],
+                        "language": attribute[4],
+                        "quantity": attribute[5],
+                        "price": attribute[6],
+                        "total_price": attribute[7],
+                    }
+                )
+
+            orders_list.append(order_details)
+
+
+        context["orders"] = orders_list
+
         wishlist_data = customer.wishlist.split(",")[:-1]
         wishlist_items = list()
         for cards in wishlist_data:

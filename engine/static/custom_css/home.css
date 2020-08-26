@@ -1,4 +1,5 @@
 
+
 html, body {
   height: 100%;
   margin: 0;
@@ -8,8 +9,8 @@ html, body {
 }
 
 .content-inside {
-  padding: 20px;
-  padding-bottom: 50px;
+	padding: 20px;
+	padding-bottom: 50px;
 }
 
 .footer {

@@ -1,6 +1,39 @@
 from django.db import models
 
 
+class BasicOrder(models.Model):
+    order_paid = models.BooleanField(default=False)
+    order_number = models.CharField(max_length=255, default='')
+    order_creation_date = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=255, default='')
+    email = models.CharField(max_length=255, default='')
+    shipping_method = models.CharField(max_length=255, default='free')
+    company = models.CharField(max_length=255, default='', blank=True)
+    country = models.CharField(max_length=255, default='US', blank=True)
+    address_line_1 = models.CharField(max_length=255, default='')
+    address_line_2 = models.CharField(max_length=255, default='', blank=True)
+    city = models.CharField(max_length=255, default='')
+    state = models.CharField(max_length=255, default='')
+    zip_code = models.CharField(max_length=255, default='')
+    phone = models.CharField(max_length=255, default='', null=True, blank=True)
+    total_order_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    store_credit_used = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    tax_charged = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    shipping_charged = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    discounts_applied = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    discounts_code_used = models.CharField(max_length=255, default='')
+    notes = models.TextField(default='', blank=True)
+    ordered_items = models.TextField(default='')
+    order_view = models.URLField(default='')
+    send_message = models.TextField(default='', blank=True)
+    tracking_number = models.CharField(max_length=255, default='', blank=True)
+    payer_id = models.CharField(max_length=255, default='')
+    missing_cards = models.TextField(default='', blank=True)
+
+    class Meta:
+        abstract = True
+
+
 class Coupon(models.Model):
     name = models.CharField(max_length=255, default='')
     code = models.CharField(max_length=255, default='')
@@ -33,7 +66,7 @@ class GroupName(models.Model):
         return self.group_name
 
 
-class Order(models.Model):
+class Order(BasicOrder):
 
     order_status_choices = (
         ("", "", ),
@@ -50,79 +83,28 @@ class Order(models.Model):
         ("ship", "mark as shipped", ),
     )
 
-    order_paid = models.BooleanField(default=False)
-    order_number = models.CharField(max_length=255, default='')
-    order_creation_date = models.DateTimeField(auto_now_add=True)
     order_status = models.CharField(max_length=255, default="", choices=order_status_choices)
     order_action = models.CharField(max_length=255, default="", blank=True, choices=order_actions)
-    name = models.CharField(max_length=255, default='')
-    email = models.CharField(max_length=255, default='')
-    shipping_method = models.CharField(max_length=255, default='free')
-    company = models.CharField(max_length=255, default='', blank=True)
-    country = models.CharField(max_length=255, default='US', blank=True)
-    address_line_1 = models.CharField(max_length=255, default='')
-    address_line_2 = models.CharField(max_length=255, default='', blank=True)
-    city = models.CharField(max_length=255, default='')
-    state = models.CharField(max_length=255, default='')
-    zip_code = models.CharField(max_length=255, default='')
-    phone = models.CharField(max_length=255, default='', null=True, blank=True)
-    total_order_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    store_credit_used = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    tax_charged = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    shipping_charged = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    discounts_applied = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    discounts_code_used = models.CharField(max_length=255, default='')
-    notes = models.TextField(default='', blank=True)
-    ordered_items = models.TextField(default='')
-    order_view = models.URLField(default='')
-    send_message = models.TextField(default='', blank=True)
-    tracking_number = models.CharField(max_length=255, default='', blank=True)
-    payer_id = models.CharField(max_length=255, default='')
 
     def __str__(self):
         return self.order_number
 
 
-class PendingPaymentOrder(models.Model):
+class PendingPaymentOrder(BasicOrder):
     order_actions = (
         ("", "",),
         ("cancel", "cancel",),
         ("open_order", "move to open orders",),
     )
 
-    order_number = models.CharField(max_length=255, default='')
-    order_creation_date = models.DateTimeField(auto_now_add=True)
     order_status = models.CharField(max_length=255, default='')
     order_action = models.CharField(max_length=255, default="", blank=True, choices=order_actions)
-    name = models.CharField(max_length=255, default='')
-    email = models.CharField(max_length=255, default='')
-    shipping_method = models.CharField(max_length=255, default='free')
-    company = models.CharField(max_length=255, default='', blank=True)
-    country = models.CharField(max_length=255, default='US', blank=True)
-    address_line_1 = models.CharField(max_length=255, default='')
-    address_line_2 = models.CharField(max_length=255, default='')
-    city = models.CharField(max_length=255, default='')
-    state = models.CharField(max_length=255, default='')
-    zip_code = models.CharField(max_length=255, default='')
-    phone = models.CharField(max_length=255, default='', null=True)
-    total_order_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    store_credit_used = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    tax_charged = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    shipping_charged = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    discounts_applied = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    discounts_code_used = models.CharField(max_length=255, default='')
-    notes = models.TextField(default='')
-    ordered_items = models.TextField(default='')
-    order_view = models.URLField(default='')
-    send_message = models.TextField(default='', blank=True)
-    tracking_number = models.CharField(max_length=255, default='', blank=True)
-    payer_id = models.CharField(max_length=255, default='')
 
     def __str__(self):
         return self.order_number
 
 
-class CompletedOrder(models.Model):
+class CompletedOrder(BasicOrder):
     order_actions = (
         ("", "",),
     )
@@ -134,39 +116,14 @@ class CompletedOrder(models.Model):
         ("picked up", "picked_up",),
     )
 
-    order_number = models.CharField(max_length=255, default='')
-    order_creation_date = models.DateTimeField(auto_now_add=True)
     order_status = models.CharField(max_length=255, default="", choices=order_status_choices)
     order_action = models.CharField(max_length=255, default="", blank=True, choices=order_actions)
-    name = models.CharField(max_length=255, default='')
-    email = models.CharField(max_length=255, default='')
-    shipping_method = models.CharField(max_length=255, default='free')
-    company = models.CharField(max_length=255, default='', blank=True)
-    country = models.CharField(max_length=255, default='US', blank=True)
-    address_line_1 = models.CharField(max_length=255, default='')
-    address_line_2 = models.CharField(max_length=255, default='')
-    city = models.CharField(max_length=255, default='')
-    state = models.CharField(max_length=255, default='')
-    zip_code = models.CharField(max_length=255, default='')
-    phone = models.CharField(max_length=255, default='', null=True)
-    total_order_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    store_credit_used = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    tax_charged = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    shipping_charged = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    discounts_applied = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    discounts_code_used = models.CharField(max_length=255, default='')
-    notes = models.TextField(default='')
-    ordered_items = models.TextField(default='')
-    order_view = models.URLField(default='')
-    send_message = models.TextField(default='', blank=True)
-    tracking_number = models.CharField(max_length=255, default='', blank=True)
-    payer_id = models.CharField(max_length=255, default='')
 
     def __str__(self):
         return self.order_number
 
 
-class PullingOrder(models.Model):
+class PullingOrder(BasicOrder):
     order_actions = (
         ("", "",),
         ("cancel", "cancel",),
@@ -179,39 +136,14 @@ class PullingOrder(models.Model):
         ("pulled", "pulled", ),
     )
 
-    order_number = models.CharField(max_length=255, default='')
-    order_creation_date = models.DateTimeField(auto_now_add=True)
     order_status = models.CharField(max_length=255, default="", choices=order_status_choices)
     order_action = models.CharField(max_length=255, default="", blank=True, choices=order_actions)
-    name = models.CharField(max_length=255, default='')
-    email = models.CharField(max_length=255, default='')
-    shipping_method = models.CharField(max_length=255, default='free')
-    company = models.CharField(max_length=255, default='', blank=True)
-    country = models.CharField(max_length=255, default='US', blank=True)
-    address_line_1 = models.CharField(max_length=255, default='')
-    address_line_2 = models.CharField(max_length=255, default='')
-    city = models.CharField(max_length=255, default='')
-    state = models.CharField(max_length=255, default='')
-    zip_code = models.CharField(max_length=255, default='')
-    phone = models.CharField(max_length=255, default='', null=True)
-    total_order_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    store_credit_used = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    tax_charged = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    shipping_charged = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    discounts_applied = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    discounts_code_used = models.CharField(max_length=255, default='')
-    notes = models.TextField(default='')
-    ordered_items = models.TextField(default='')
-    order_view = models.URLField(default='')
-    send_message = models.TextField(default='', blank=True)
-    tracking_number = models.CharField(max_length=255, default='', blank=True)
-    payer_id = models.CharField(max_length=255, default='')
 
     def __str__(self):
         return self.order_number
 
 
-class ReadyToShipOrder(models.Model):
+class ReadyToShipOrder(BasicOrder):
     order_actions = (
         ("", "", ),
         ("cancel", "cancel",),
@@ -224,33 +156,8 @@ class ReadyToShipOrder(models.Model):
         ("cancel", "cancel", ),
     )
 
-    order_number = models.CharField(max_length=255, default='')
-    order_creation_date = models.DateTimeField(auto_now_add=True)
     order_status = models.CharField(max_length=255, default="", choices=order_status_choices)
     order_action = models.CharField(max_length=255, default="", blank=True, choices=order_actions)
-    name = models.CharField(max_length=255, default='')
-    email = models.CharField(max_length=255, default='')
-    shipping_method = models.CharField(max_length=255, default='free')
-    company = models.CharField(max_length=255, default='', blank=True)
-    country = models.CharField(max_length=255, default='US', blank=True)
-    address_line_1 = models.CharField(max_length=255, default='')
-    address_line_2 = models.CharField(max_length=255, default='')
-    city = models.CharField(max_length=255, default='')
-    state = models.CharField(max_length=255, default='')
-    zip_code = models.CharField(max_length=255, default='')
-    phone = models.CharField(max_length=255, default='', null=True)
-    total_order_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    store_credit_used = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    tax_charged = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    shipping_charged = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    discounts_applied = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    discounts_code_used = models.CharField(max_length=255, default='')
-    notes = models.TextField(default='')
-    ordered_items = models.TextField(default='')
-    order_view = models.URLField(default='')
-    send_message = models.TextField(default='', blank=True)
-    tracking_number = models.CharField(max_length=255, default='', blank=True)
-    payer_id = models.CharField(max_length=255, default='')
 
     def __str__(self):
         return self.order_number

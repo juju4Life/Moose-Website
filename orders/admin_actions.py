@@ -1,5 +1,8 @@
+
+from customer.models import Customer
 from django.shortcuts import redirect
 from engine.models import MTG
+from my_customs.functions import replace_text_between_two_words, text_between_two_words
 from tcg.tcg_functions import adjust_product_quantity
 
 
@@ -78,6 +81,9 @@ class OrderAction:
 
     def complete_orders(self, modeladmin, request, queryset, obj, order_status, short_description):
         self.process_action(modeladmin=modeladmin, request=request, queryset=queryset, obj=obj, order_status=order_status, short_description=short_description)
+
+        for order in queryset:
+            self.change_order_status(email=order.email, order_number=order.order_number, order_status=order_status)
         queryset.delete()
         return redirect("admin/orders")
 
@@ -85,6 +91,7 @@ class OrderAction:
         self.process_action(modeladmin=modeladmin, request=request, queryset=queryset, obj=obj, order_status=order_status, short_description=short_description)
 
         for order in queryset:
+            self.change_order_status(email=order.email, order_number=order.order_number, order_status=order_status)
             items = order.ordered_items.split("<card>")[:-1]
             for item in items:
                 card = item.split("<attribute>")
@@ -92,13 +99,31 @@ class OrderAction:
                 condition = card[3]
                 quantity = card[5]
                 product_id = card[8]
+
                 adjust_product_quantity(
                     obj=MTG,
                     printing=printing,
                     condition=condition,
                     quantity=quantity,
-                    product_id=product_id
+                    product_id=product_id,
                 )
+
         queryset.delete()
+
+    @staticmethod
+    def change_order_status(email, order_number, order_status):
+
+        if Customer.objects.filter(email=email).exists():
+            customer = Customer.objects.get(email=email)
+            orders = customer.orders
+            split_orders = orders.split("<order>")[:-1]
+            for each_order in split_orders[::-1]:
+                if order_number in each_order:
+                    print(order_number)
+                    old_status = text_between_two_words("<status_start>", "<status_end>", each_order)
+                    new_status = f"<status_start>{order_status}<status_end>"
+                    customer.orders = customer.orders.replace(f"<status_start>{old_status}<status_end>", new_status)
+                    customer.save()
+                    break
 
 

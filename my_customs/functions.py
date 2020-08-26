@@ -71,6 +71,11 @@ def text_between_two_words(word_1, word_2, string):
     return extracted
 
 
+def replace_text_between_two_words(word1, word2, replacement, string):
+    replacement = re.sub(f'{word1}.*?{word2}', f'{word1}{replacement}{word2}', string, flags=re.DOTALL)
+    return replacement
+
+
 def convert_to_number_of_pages(number):
     return math.ceil(number / 10)
 

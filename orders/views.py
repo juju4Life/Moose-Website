@@ -1,9 +1,9 @@
-from datetime import datetime
 
+from datetime import datetime
 
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, redirect
-
+from my_customs.functions import replace_text_between_two_words
 from orders.models import Order, OrdersLayout, PullingOrder, ReadyToShipOrder
 from ppal.paypal_setup import PayPal
 

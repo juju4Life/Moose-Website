@@ -1,13 +1,12 @@
+
 from django.contrib.admin import ModelAdmin, register
 from django.contrib import admin
-
-from orders.admin_actions import OrderAction
-from orders.admin_functions import show_firm_url
-from orders.models import GroupName, Order, ShippingMethod, Coupon, OrdersLayout, PendingPaymentOrder, CompletedOrder, PullingOrder, ReadyToShipOrder
-
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from import_export.fields import Field
+from orders.admin_actions import OrderAction
+from orders.models import GroupName, Order, ShippingMethod, Coupon, OrdersLayout, PendingPaymentOrder, CompletedOrder, PullingOrder, ReadyToShipOrder
+
 
 order_action = OrderAction()
 
