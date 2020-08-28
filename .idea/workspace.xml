@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_orders.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/custom_css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_customs/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_customs/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orders/admin_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/admin_actions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppal/paypal_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/ppal/paypal_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +218,7 @@
       <workItem from="1596197844506" duration="186134000" />
       <workItem from="1597685415019" duration="55729000" />
       <workItem from="1598027995377" duration="31126000" />
-      <workItem from="1598212718863" duration="56540000" />
+      <workItem from="1598212718863" duration="67024000" />
     </task>
     <servers />
   </component>

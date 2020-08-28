@@ -2,7 +2,7 @@
 from customer.models import Customer
 from django.shortcuts import redirect
 from engine.models import MTG
-from my_customs.functions import replace_text_between_two_words, text_between_two_words
+from my_customs.functions import text_between_two_words
 from tcg.tcg_functions import adjust_product_quantity
 
 
@@ -119,11 +119,12 @@ class OrderAction:
             split_orders = orders.split("<order>")[:-1]
             for each_order in split_orders[::-1]:
                 if order_number in each_order:
-                    print(order_number)
                     old_status = text_between_two_words("<status_start>", "<status_end>", each_order)
                     new_status = f"<status_start>{order_status}<status_end>"
-                    customer.orders = customer.orders.replace(f"<status_start>{old_status}<status_end>", new_status)
+                    updated_order = each_order.replace(f"<status_start>{old_status}<status_end>", new_status)
+                    customer.orders = customer.orders.replace(each_order, updated_order)
                     customer.save()
                     break
+
 
 
