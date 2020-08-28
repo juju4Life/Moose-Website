@@ -4,7 +4,9 @@
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/admin_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/admin_actions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +220,7 @@
       <workItem from="1596197844506" duration="186134000" />
       <workItem from="1597685415019" duration="55729000" />
       <workItem from="1598027995377" duration="31126000" />
-      <workItem from="1598212718863" duration="67024000" />
+      <workItem from="1598212718863" duration="76563000" />
     </task>
     <servers />
   </component>
@@ -279,10 +281,10 @@
       <screen x="0" y="0" width="1368" height="882" />
     </state>
     <state x="240" y="51" width="1338" height="731" key="dock-window-1/0.0.1368.882@0.0.1368.882" timestamp="1596556185316" />
-    <state x="352" y="191" width="672" height="678" key="search.everywhere.popup" timestamp="1597863862647">
+    <state x="353" y="192" width="672" height="678" key="search.everywhere.popup" timestamp="1598637455466">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state x="352" y="191" width="672" height="678" key="search.everywhere.popup/0.0.1368.882@0.0.1368.882" timestamp="1597863862647" />
+    <state x="353" y="192" width="672" height="678" key="search.everywhere.popup/0.0.1368.882@0.0.1368.882" timestamp="1598637455466" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

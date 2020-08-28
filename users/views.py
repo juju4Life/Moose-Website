@@ -57,7 +57,7 @@ def register(request):
 
     else:
         form = UserRegisterForm()
-
+        
     return render(request, 'users/register.html', {'form': form})
 
 
@@ -169,7 +169,7 @@ def remove_wishlist_item(request):
 @login_required
 def profile(request):
     if request.user.is_authenticated:
-        context = {}
+        context = dict()
         customer = Customer.objects.get(email=request.user.email)
         orders = customer.orders.split("<order>")[:-1]
         orders_list = list()

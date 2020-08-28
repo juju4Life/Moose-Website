@@ -13,7 +13,7 @@ from orders.models import Order
 
 
 api = TcgPlayerApi('moose')
-
+mailgun = MailGun()
 
 @shared_task(name='orders.tasks.update_moose_tcg')
 def update_moose_tcg():
@@ -279,6 +279,7 @@ def process_order(request, cart, order_number, store_credit, discounts, ):
     )
 
     try:
+        # If customer has an account, retrieve it and append the ordered items + order details
         date_time_processed = strftime("%Y-%m-%d at %I:%M%p", localtime())
         customer = Customer.objects.get(email=request.POST.get("email"))
         customer.orders = customer.orders + ordered_items + f"{date_time_processed}<card>{order_number}<card>" \
@@ -289,6 +290,25 @@ def process_order(request, cart, order_number, store_credit, discounts, ):
         pass
 
     new_order.save()
+
+    product_string = '\n'.join([f"{i['language']} | {i['name']} | {i['expansion']} | {i['printing']} | "
+                                f"{i['condition']} | qty: {i['quantity']} | price: ${i['price']} | total: ${i['total']}" for i in cart])
+
+    message = f"Your order has be received. We are in the process of pulling your items and once they are packaged, you " \
+              f"will receive an email with the shipping status of your order along with tracking (if applicable). For reference here are your order " \
+              f"details:\n\nOrder Number: {order_number}\n" \
+              f"Ship to:\n{request.POST.get('name')}\n{request.POST.get('address_line_1')} {request.POST.get('address_line_2')}\n" \
+              f"{request.POST.get('city')}, {request.POST.get('state')} {request.POST.get('zip_code')}\n{request.POST.get('shipping_method')}\n\n" \
+              f"{product_string}\nShipping: {request.POST.get('shipping_charged')}\n Tax: {request.POST.get('tax')}\n" \
+              f"Final Total: ${request.POST.get('final_total')}"
+
+    mailgun.send_mail(
+        recipient_list=request.POST.get('email'),
+        subject=f"Order confirmation #{order_number}",
+        message=message,
+    )
+
+
 
 
 

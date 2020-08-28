@@ -90,6 +90,30 @@ class Order(BasicOrder):
         return self.order_number
 
 
+class PreOrder(BasicOrder):
+
+    order_status_choices = (
+        ("", "", ),
+        ("shipped", "shipped", ),
+        ("ready_for_pickup", "ready for pickup", ),
+        ("cancelled", "cancelled", ),
+        ("pulling", "pulling", ),
+    )
+
+    order_actions = (
+        ("", "",),
+        ("cancel", "cancel",),
+        ("pull", "move to pulling", ),
+        ("ship", "mark as shipped", ),
+    )
+
+    order_status = models.CharField(max_length=255, default="", choices=order_status_choices)
+    order_action = models.CharField(max_length=255, default="", blank=True, choices=order_actions)
+
+    def __str__(self):
+        return self.order_number
+
+
 class PendingPaymentOrder(BasicOrder):
     order_actions = (
         ("", "",),
