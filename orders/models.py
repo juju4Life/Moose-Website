@@ -101,7 +101,7 @@ class PreOrder(BasicOrder):
     )
 
     order_actions = (
-        ("", "",),
+        ("", "", ),
         ("cancel", "cancel",),
         ("pull", "move to pulling", ),
         ("ship", "mark as shipped", ),
@@ -116,9 +116,9 @@ class PreOrder(BasicOrder):
 
 class PendingPaymentOrder(BasicOrder):
     order_actions = (
-        ("", "",),
-        ("cancel", "cancel",),
-        ("open_order", "move to open orders",),
+        ("", "", ),
+        ("cancel", "cancel", ),
+        ("open_order", "move to open orders", ),
     )
 
     order_status = models.CharField(max_length=255, default='')
@@ -130,14 +130,14 @@ class PendingPaymentOrder(BasicOrder):
 
 class CompletedOrder(BasicOrder):
     order_actions = (
-        ("", "",),
+        ("", "", ),
     )
 
     order_status_choices = (
-        ("", "",),
-        ("shipped", "shipped",),
-        ("cancelled", "cancelled",),
-        ("picked up", "picked_up",),
+        ("", "", ),
+        ("shipped", "shipped", ),
+        ("cancelled", "cancelled", ),
+        ("picked up", "picked_up", ),
     )
 
     order_status = models.CharField(max_length=255, default="", choices=order_status_choices)

@@ -308,7 +308,3 @@ def process_order(request, cart, order_number, store_credit, discounts, ):
         message=message,
     )
 
-
-
-
-

@@ -11,6 +11,7 @@ paypal = PayPal()
 
 
 def confirm_payment(request):
+
     context = dict()
     template = "confirm_payment.html"
 

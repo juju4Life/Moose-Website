@@ -3,6 +3,10 @@
     color: rgba(52, 58, 64, 1);
 }
 
+.main-title-wrap{
+    background-color: rgba(52, 58, 64, 1);
+    color: white;
+}
 
 
 table{
@@ -60,11 +64,12 @@ h4 {
 }
 
 .form-wrapper-default{
-    background-color: rgba(230, 230, 230,0.2);
+    background-color: rgba(230, 230, 230, 0.1);
     border-radius: 15px;
     border: 1px solid lightgray;
     padding-top: 2%;
     padding-bottom: 2%;
+    margin-top: 2%;
 
 }
 

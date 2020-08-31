@@ -70,11 +70,10 @@ urlpatterns = [
     path('product/<product_id>', home_views.product_detail, name='product_detail'),
     path('submit-order', home_views.submit_order, name='submit_order'),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT,)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, )
 
 if settings.DEBUG:
     import debug_toolbar
-    urlpatterns.append(path('__debug__/', include(debug_toolbar.urls)),)
-
+    urlpatterns.append(path('__debug__/', include(debug_toolbar.urls)), )
 
 

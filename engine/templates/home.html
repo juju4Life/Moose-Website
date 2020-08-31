@@ -9,23 +9,12 @@
 
 {% if 'home' in request.path %}
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                {% cloudinary main_slide.image class='slide-image d-block w-100' %}
-                <div class="carousel-caption d-none d-md-block">
-                    <h2 class="title-font"><a href="#" style="color:rgba(255, 255, 255, 1);">{{ main_slide.text }}</a></h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mt-1">
+    <div class="row mt-3">
         <div class="col-sm-3">
             <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center active">
-                    <div class="glass-container">
-                        <h2 class="title-font">Hotlist</h2>
+                <li class="list-group-item">
+                    <div class="main-title-wrap">
+                        <h2 class="title-font text-center">Hot Buylist</h2>
                     </div>
                 </li>
 
@@ -47,40 +36,52 @@
 
         <div class="col-sm-6">
             <div class="row">
-                <div class="" style="background-color: rgba(52, 58, 64, 1); border-radius: 7px; color: white; padding: 1%;">
+                <div style="background-color: rgba(52, 58, 64, 1); border-radius: 7px; color: white; padding: 1%;">
                 <h2 class="title-font text-center">Announcement Header</h2>
                     <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-
                 </div>
             </div>
 
             <div class="row mt-5">
                 <div class="col-sm-6">
-                     <div class="">
-                         <!-- Twitter Follow Button -->
-                    <div id="twitter-button">
-                      <a href="https://twitter.com/MtgFirst?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large"
-                       data-show-screen-name="false" data-show-count="false">Follow @MtgFirst</a>
-                    </div>
+                    <div>
+                        <div class="main-title-wrap">
+                            <h2 class="title-font text-center">MTG News</h2>
+                        </div>
 
-                    <!-- Twitter Posts Widget -->
-                    <a class="twitter-timeline" data-width="400" data-height="400" href="https://twitter.com/MTGFirst?ref_src=twsrc%5Etfw">Tweets by MTGFirst</a>
+                        {% for article in daily_mtg_articles %}
+                            <div class="col-sm-12">
+                                <a href="magic.wizards.com{{ article.link }}" id="article-{{ article.id }}">{{ article.title }}</a> <br>
+                                <label for="article-{{ article.id }}">{{ article.published_date }}</label>
+                            </div>
+                        {% endfor %}
+
                      </div>
                 </div>
 
                 <div class="col-sm-6">
-                    <h4>
-                        BLOCK 2 > Other Info goes here
-                    </h4>
+                    <div>
+                        <div class="main-title-wrap">
+                            <h2 class="text-center title-font">Preorders</h2>
+                        </div>
+                        <div style="overflow-y: scroll; max-height: 350px;">
+                            {% cloudinary main_slide.image class='img-thumbnail img-fluid' %}
+                            {% cloudinary main_slide.image class='img-thumbnail img-fluid' %}
+                            {% cloudinary main_slide.image class='img-thumbnail img-fluid' %}
+                            {% cloudinary main_slide.image class='img-thumbnail img-fluid' %}
+                            {% cloudinary main_slide.image class='img-thumbnail img-fluid' %}
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
 
         <div class="col-sm-3">
             <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center active">
-                    <h2 class="title-font">Sick Deals</h2>
+                <li class="list-group-item">
+                    <div class="main-title-wrap">
+                        <h2 class="title-font text-center">Sick Deals</h2>
+                    </div>
                 </li>
                 {% for hotlist_card in hotlist %}
                     <li class="list-group-item d-flex justify-content-between align-items-center border-0">
@@ -104,7 +105,7 @@
     <div class="row">
         <div class="col-sm-4">
                      <!-- Location Tab -->
-                    <h3>MTG First Game Center</h3>
+                    <h2>MTG First Game Center</h2>
                     <p>Check out our physical location in <strong>Glen Burnie, MD</strong>. Largest TCG store in  Maryland with a casual-friendly atmosphere and
                         some of the best tournaments in the area!</p>
                     <iframe
@@ -113,16 +114,16 @@
                 </div>
 
         <div class="col-sm-4">
-            <div style="margin:auto;">
-                <h2>Latest MTG News</h2>
-            </div>
 
-            {% for article in daily_mtg_articles %}
-            <div class="col-sm-12">
-                <a href="magic.wizards.com{{ article.link }}" id="article-{{ article.id }}">{{ article.title }}</a> <br>
-                <label for="article-{{ article.id }}">{{ article.published_date }}</label>
-            </div>
-        {% endfor %}
+            <!-- Twitter Follow Button -->
+                        <div id="twitter-button">
+                          <a href="https://twitter.com/MtgFirst?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large"
+                           data-show-screen-name="false" data-show-count="false">Follow @MtgFirst</a>
+                        </div>
+
+                        <!-- Twitter Posts Widget -->
+                        <a class="twitter-timeline" data-width="400" data-height="400" href="https://twitter.com/MTGFirst?ref_src=twsrc%5Etfw">Tweets by MTGFirst</a>
+
         </div>
     </div>
 

@@ -18,6 +18,7 @@ class PayPal:
 
     def create_order(self, product_list, grand_total, subtotal, shipping_cost, shipping_discount, tax, shipping_name, shipping_method, address_line_1,
                      address_line_2, city, state, zip_code, country="US", handling_cost=0, currency="USD"):
+
         order_id = None
         request = OrdersCreateRequest()
 
@@ -27,8 +28,8 @@ class PayPal:
             {
                 "intent": "CAPTURE",
                 "application_context": {
-                    "return_url": "http://127.0.0.1:8000/orders/complete-order",
-                    "cancel_url": "http://127.0.0.1:8000/cart",
+                    "return_url": "https://www.tcgfirst.com/orders/complete-order",
+                    "cancel_url": "https://www.tcgfirst.com/cart/",
                 },
 
                 "purchase_units": [

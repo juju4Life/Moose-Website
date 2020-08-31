@@ -1,10 +1,9 @@
 {% extends 'home.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-{% include 'defaults/form_wrapper.html' %}
 
 <div class='row'>
-	<div class='col-sm-6 col-sm-offset-3 form-wrapper-default'>
+	<div class='col-sm-6 offset-sm-3 form-wrapper-default'>
 		{% if form %}
 		<form style='padding: 1%;' method="POST" action="">{% csrf_token %}
 			<fieldset>
