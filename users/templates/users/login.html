@@ -8,7 +8,7 @@
 		<form style='padding: 1%;' method="POST" action="">{% csrf_token %}
 			<fieldset>
 				<legend class="border-bottom mb-4">Login into your account</legend>
-				{{form|crispy}}
+				{{ form|crispy }}
 			</fieldset>
 			<input type="submit" name="user_login" value="Login" class ='btn btn-success' />
 			<small style="font-size: 16px" class="text-muted">&nbsp;

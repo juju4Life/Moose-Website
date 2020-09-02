@@ -61,6 +61,7 @@ class GroupName(models.Model):
     category = models.CharField(max_length=255, default='Unknown')
     group_name = models.CharField(max_length=255, default=None)
     group_id = models.CharField(max_length=255, default=None, unique=True)
+    release_date = models.DateTimeField()
 
     def __str__(self):
         return self.group_name

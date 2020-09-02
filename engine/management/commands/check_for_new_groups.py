@@ -1,8 +1,11 @@
+from datetime import datetime
+
 from django.core.management.base import BaseCommand
-from engine.tcgplayer_api import TcgPlayerApi
-from orders.models import GroupName
-from my_customs.decorators import report_error
 from engine.tcg_manifest import Manifest
+from engine.tcgplayer_api import TcgPlayerApi
+from my_customs.decorators import report_error
+from orders.models import GroupName
+
 
 api = TcgPlayerApi('first')
 M = Manifest()
@@ -19,16 +22,17 @@ class Command(BaseCommand):
             for group_id in group_ids:
                 group = str(group_id['groupId'])
                 if current_groups.filter(group_id=group).exists() is False:
-
+                    release_date = group_id['publishedOn']
+                    release_date = datetime.strptime(release_date, "%Y-%m-%dT%H:%M:%S")
                     new_group = GroupName(
                         group_id=group,
                         group_name=group_id['name'],
                         category=M.game(category),
+                        release_date=release_date,
                         added=False,
                     )
                     new_group.save()
-                    print(group_id['name'] + ' added')
-
+                    # print(group_id['name'] + ' added')
 
 
 
