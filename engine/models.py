@@ -214,6 +214,11 @@ class MTG(BasicCardInfo):
     normal_only = models.BooleanField(default=False)
     preorder = models.BooleanField(default=False)
     solid_color = models.CharField(max_length=255, default='')
+    sick_deal = models.BooleanField(default=False)
+    sick_deal_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    buylist = models.BooleanField(default=False)
+    buylist_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    buylist_max_quantity = models.IntegerField(default=0)
     restock_notice = models.ManyToManyField("customer.CustomerRestockNotice", blank=True)
 
     def __str__(self):

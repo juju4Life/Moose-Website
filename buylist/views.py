@@ -1,20 +1,18 @@
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
-from .cart import Cart
-from django.shortcuts import redirect
+
 from datetime import datetime
-from engine.config import pagination
-from django.db.models import Q
-from .forms import buylistForm
+
+from buylist.cart import Cart
 from django.conf import settings
 from django.core.mail import send_mail
+from django.db.models import Q
+from django.shortcuts import get_object_or_404, redirect, render
+from engine.config import pagination
+from engine.models import MTG
 
 
 def buylist_home(request):
-    print(request.path, request.get_full_path)
     template = 'buylist.html'
     context = {}
-    cart = Cart(request)
     response = render(None, template, context)
     visits = int(request.COOKIES.get('visits', '0'))
     if 'last_visit' in request.COOKIES:
@@ -28,9 +26,13 @@ def buylist_home(request):
 
 
 def buylist_page(request):
-    buylist = ""
-    pages = pagination(request, buylist, 21)
-    return render(request, 'buylist-page.html', {'items': pages[0], 'page_range': pages[1]})
+    context = dict()
+    template_name = 'buylist.html'
+    results = MTG.objects.filter(buylist=True)
+    pages = pagination(request, results, 20)
+    context["items"] = pages[0]
+    context["page_range"] = pages[1]
+    return render(request, template_name=template_name, context=context)
 
 
 def search(request):
@@ -59,7 +61,7 @@ def get_cart(request):
     sub_total = cart.total_price
     total = [i['quantity'] * i['price'] for i in cart]
     cart_data = zip(cart, total)
-    return render(request, 'buylist-cart.html', {'cart':cart_data, 'length':length, 'sub_total':sub_total})
+    return render(request, 'buylist-cart.html', {'cart': cart_data, 'length': length, 'sub_total': sub_total})
 
 
 def remove_from_cart(request, product_id):
@@ -88,7 +90,7 @@ def checkout(request):
         length = len(sorted_list)
 
         title = ''
-        form = buylistForm(request.POST or None)
+        form = None
         confirm_message = None
 
         if form.is_valid():

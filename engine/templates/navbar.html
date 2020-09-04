@@ -28,21 +28,21 @@
 
 
       <li class="nav-item">
-         <a class="nav-link" href="{% url 'contact' %}">Buylist</a>
+         <a class="nav-link" href="{% url 'buylist' %}">Buylist</a>
       </li>
 
-       <li class="nav-item">
+       <!-- <li class="nav-item">
         <a class="nav-link dropdown-toggle" href="#" id="suppliesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Supplies
         </a>
         <div class="dropdown-menu" aria-labelledby="suppliesDropdown">
           <div class="dropdown-divider"></div>
           <form method="GET" action="{% url 'supplies' %}">
-            <!-- <button type="submit" class="dropdown-item btn" name="query" value="all">All Supplies</button> -->
+            <button type="submit" class="dropdown-item btn" name="query" value="all">All Supplies</button>
             <button type="submit" class="dropdown-item btn" name="query" value="Card Sleeves">Sleeves</button>
           </form>
         </div>
-      </li>
+      </li> -->
 
       <li class="nav-item">
         <a class="nav-link dropdown-toggle" href="#" id="expansionDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,18 +60,32 @@
     </ul>
 
       <div class="d-flex flex-grow-1">
-          <form class=" form-inline mr-2 my-auto w-100 d-inline-block order-1" method="GET" action="{% url 'search' %}">
 
-            <div class="input-group">
-              <input id="main-search-bar" class="form-control mr-sm-2" name="q" value="{{ request.GET.q }}" type="text" placeholder="Search"
-                   aria-label="Search">
+          {% if 'buylist' in request.path %}
+            <form class=" form-inline mr-2 my-auto w-100 d-inline-block order-1" method="GET" action="{% url 'buylist' %}">
+              <div class="input-group">
+                <input id="main-search-bar" class="form-control mr-sm-2" name="q" value="{{ request.GET.q }}" type="text" placeholder="search buylist..."
+                     aria-label="Search">
 
-              <button id="main-search-button" class="btn btn-outline-light my-2 my-sm-0 border" type="submit">
-                <i class="material-icons" id="main-search-icon">search</i>
-              </button>
-            </div>
+                <button id="main-search-button" class="btn btn-outline-light my-2 my-sm-0 border" type="submit">
+                  <i class="material-icons" id="main-search-icon">search</i>
+                </button>
+              </div>
+            </form>
+          {% else %}
+            <form class=" form-inline mr-2 my-auto w-100 d-inline-block order-1" method="GET" action="{% url 'search' %}">
+              <div class="input-group">
+                <input id="main-search-bar" class="form-control mr-sm-2" name="q" value="{{ request.GET.q }}" type="text" placeholder="search store..."
+                     aria-label="Search">
 
-          </form>
+                <button id="main-search-button" class="btn btn-outline-light my-2 my-sm-0 border" type="submit">
+                  <i class="material-icons" id="main-search-icon">search</i>
+                </button>
+              </div>
+            </form>
+          {% endif %}
+
+
       </div>
 
     <ul class="nav navbar-nav">

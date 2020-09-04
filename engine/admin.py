@@ -145,12 +145,14 @@ class MTGAdmin(ImportExportModelAdmin):
     readonly_fields = ["name", "expansion", ]
     fields = (
         ("name", "expansion", ),
+        ("buylist", "buylist_price", ),
+        ("sick_deal", "sick_deal_price", ),
         ("normal_clean_stock", "normal_clean_price", ),
         ("normal_played_stock", "normal_played_price", ),
         ("normal_heavily_played_stock", "normal_heavily_played_price", ),
-        ("foil_clean_stock", "foil_clean_price",),
-        ("foil_played_stock", "foil_played_price",),
-        ("foil_heavily_played_stock", "foil_heavily_played_price",),
+        ("foil_clean_stock", "foil_clean_price", ),
+        ("foil_played_stock", "foil_played_price", ),
+        ("foil_heavily_played_stock", "foil_heavily_played_price", ),
     )
 
 

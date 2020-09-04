@@ -1,0 +1,48 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-8 offset-2">
+            <table class="table table-sm">
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>
+                                <img style="max-height: 200px;" alt="{{ item.name }} image" class="img-thumbnail" src="{{ item.image_url }}">
+                            </td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.expansion }}</td>
+                            <td></td>
+                            <td>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <fieldset>
+                                        <div class="input-group mb-3">
+                                          <input style="max-width: 25%;" type="number" class="form-control" aria-describedby="{{ item.product_id }}">
+                                          <div class="input-group-append">
+                                              <span aria-describedby="k-{{ item.product_id }}" class="input-group-text" id="{{ item.product_id }}">
+                                                  {{ item.buylist_max_quantity }} wanted</span>
+                                              <div class="input-group-append">
+                                                  <span class="input-group-text" id="k-{{ item.product_id }}">
+                                                      <button type="button" class="btn-secondary"><i class="material-icons">add</i></button>
+                                                  </span>
+                                              </div>
+
+                                          </div>
+                                        </div>
+
+
+                                    </fieldset>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
+
+
+

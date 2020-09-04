@@ -1,7 +1,4 @@
-from django.template import RequestContext
-from django.contrib.admin.views.decorators import staff_member_required
 from ipware import get_client_ip
-from django.http import HttpResponse
 
 """def preorder_list(request):
     return render_to_response(
