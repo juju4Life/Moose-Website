@@ -6,7 +6,6 @@ from django.urls import path, include
 
 from contact import views as contact_views
 from engine import views as home_views
-from buylist import views as buylist_views
 from customer import views as customer_views
 from users import views as user_views
 
@@ -45,7 +44,6 @@ urlpatterns = [
         name='password_reset_complete'),
     path('contact-us/', contact_views.contact, name='contact'),
     path('ip/', customer_views.get_ip, name='ip'),
-    path('buylist/buylist-page/', buylist_views.buylist_page, name='buylist_page'),
     path('privacy-policy/', contact_views.policy, name='policy'),
     path('accounts/', include('allauth.account.urls')),
     path('facebook_bot/', include('facebook_bot.urls')),
@@ -53,20 +51,12 @@ urlpatterns = [
     path('sku-results/', home_views.sku_search, name='sku_search'),
     path('results/wishlist', home_views.wishlist, name='wishlist'),
     path('results/restock', home_views.restock, name='restock_notice'),
-    path('buylist/results/', buylist_views.search, name='search_buylist'),
-    # path('order_view/<product_info>', home_views.orders_view, name='orders'),
-    # path('search-result/', home_views.search_result, name='search-result'),
     path('cart/', home_views.get_cart, name='cart'),
-    path('buylist/cart/', buylist_views.get_cart, name='buylist_cart'),
     path('checkout/', home_views.checkout, name='checkout'),
-    path('buylist/checkout/', buylist_views.checkout,  name='buylist_checkout'),
     path('results/cart/add/<product_id>', home_views.add_to_cart, name='add_to_cart'),
-    path('cart/add-buylist-item/<product_id>', buylist_views.add_to_cart, name='add_to_cart_buylist'),
     path('cart/update/<product_id>', home_views.update_cart, name='update_cart'),
     path('cart/remove/<product_id>', home_views.remove_from_cart, name='remove_from_cart'),
-    path('cart/remove-buylist-item/<product_id>', buylist_views.remove_from_cart, name='remove_from_cart_buylist'),
     path('cart/clear/', home_views.clear, name='empty_cart'),
-    path('cart/clear-buylist-item/', buylist_views.clear, name='empty_cart_buylist'),
     path('product/<product_id>', home_views.product_detail, name='product_detail'),
     path('submit-order', home_views.submit_order, name='submit_order'),
 

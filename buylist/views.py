@@ -2,12 +2,13 @@
 from datetime import datetime
 
 from buylist.cart import Cart
-from django.conf import settings
-from django.core.mail import send_mail
+from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from engine.config import pagination
+from engine.forms import AdvancedSearchForm
 from engine.models import MTG
+from users.forms import AddressForm, EmailForm
 
 
 def buylist_home(request):
@@ -28,10 +29,19 @@ def buylist_home(request):
 def buylist_page(request):
     context = dict()
     template_name = 'buylist.html'
-    results = MTG.objects.filter(buylist=True)
-    pages = pagination(request, results, 20)
-    context["items"] = pages[0]
-    context["page_range"] = pages[1]
+    query = request.GET.get('q')
+    form = AdvancedSearchForm()
+    if query:
+        results = MTG.objects.filter(name=query)
+        pages = pagination(request, results, 20)
+        context['items'] = pages[0]
+        context['page_range'] = pages[1]
+    else:
+        results = MTG.objects.filter(buylist=True)
+        pages = pagination(request, results, 20)
+        context["items"] = pages[0]
+        context["page_range"] = pages[1]
+    context['form'] = form
     return render(request, template_name=template_name, context=context)
 
 
@@ -49,25 +59,34 @@ def search(request):
 
 def add_to_cart(request, product_id):
     quantity = request.POST.get('quantity')
-    products = get_object_or_404(object, id=product_id)
+    product = get_object_or_404(MTG, product_id=product_id)
     cart = Cart(request)
-    cart.add(products, products.price, products.set_name, quantity)
+    cart.add(product, product.buylist_price, product.expansion, quantity)
     return redirect('buylist_cart')
+
+
+def update_cart(request, product_id):
+    if request.POST:
+        cart = Cart(request)
+        price = request.POST.get('price')
+        quantity = request.POST.get('quantity')
+        cart.update(product_id=product_id, price=price, new_value=quantity)
+
+    return redirect("buylist_cart")
 
 
 def get_cart(request):
     cart = Cart(request)
+    for c in cart:
+        print(c)
     length = cart.cart_length
     sub_total = cart.total_price
-    total = [i['quantity'] * i['price'] for i in cart]
-    cart_data = zip(cart, total)
-    return render(request, 'buylist-cart.html', {'cart': cart_data, 'length': length, 'sub_total': sub_total})
+    return render(request, 'buylist_cart.html', {'cart': cart, 'length': length, 'sub_total': sub_total})
 
 
 def remove_from_cart(request, product_id):
-    products = ''
     cart = Cart(request)
-    cart.remove(products)
+    cart.remove(product_id)
     return redirect('buylist_cart')
 
 
@@ -77,57 +96,26 @@ def clear(request):
     return redirect('buylist_cart')
 
 
+def confirm_info(request):
+    context = dict()
+    template_name = "buylist_confirm_info.html"
+
+    address_form = AddressForm()
+    email_form = EmailForm()
+    context["address_form"] = address_form
+    context["email_form"] = email_form
+
+    return render(request, template_name=template_name, context=context)
+
+
 def checkout(request):
-    if request.POST:
+    context = dict()
+    template_name = "buylist_checkout.html"
+    if request.user.is_authenticated is False:
+        messages.warning(request, "You must be logged in to submit a buylist order")
+        return redirect("login")
+    else:
         cart = Cart(request)
-        sorted_list = sorted(cart, key=lambda k: k['set_name'])
-        shopping_cart = ["{}x {} | {} for | ${} each".format(i['quantity'], i['product'], i['set_name'], i['price']) for i in sorted_list]
-        total = [i['quantity'] * i['price'] for i in sorted_list]
-        final_price = (format(sum(i['quantity'] * i['price'] for i in cart), '.2f'))
-        sub_total = cart.total_price
-        email_cart = '\n'.join(shopping_cart)
-        cart_data = zip(cart,total)
-        length = len(sorted_list)
-
-        title = ''
-        form = None
-        confirm_message = None
-
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            notes = form.cleaned_data['notes']
-            email = form.cleaned_data['email']
-            phone_number = form.cleaned_data['phone_number']
-            extension = form.cleaned_data['extension']
-            address = form.cleaned_data['address']
-            address_2 = form.cleaned_data['address_2']
-            city = form.cleaned_data['city']
-            state = form.cleaned_data['state']
-            zip_code = form.cleaned_data['zip_code']
-            payment = form.cleaned_data['payment']
-            order_number = 'Q43yd765mtg'
-
-
-            subject = 'Buylist Order'
-            message = 'Name: {0} \nOrder Number: {1}\nEmail: {2}\nPhone Number: {3}, ext:{4}\nPayment Type: {5}\n Address info:\n{6} |' \
-                      '{7}\n{8},{9} {10}\n\nCustomer Note:\n{11}\n\nOrder:\n{12}\n Total Payment: {13} '.format(name, order_number, email,
-                                                                                          phone_number, extension,
-                                                                                          payment, address, address_2,
-                                                                                          city, state, zip_code, notes,
-                                                                                          email_cart, final_price)
-            emailFrom = form.cleaned_data['email']
-            emailTo = [settings.EMAIL_HOST_USER]
-            send_mail(subject, message, emailFrom, emailTo, fail_silently=True)
-            title = 'Your order has been placed\n' \
-                    'Please ensure that your order is sorted exactly as it appears in you confirmation email.\n' \
-                    'MTG First Game Center\n' \
-                    'ATTN: Buyer\n' \
-                    '7602 Baltimore Annapolis Blvd.\n' \
-                    'Glen Burnie, MD 21060' \
-                    'Thank you for shopping with MTG First'
-            confirm_message = 'You will receive an email confirmation shortly'
-            form = None
-            cart.clear()
-        return render(request, 'buylist-checkout.html', {'cart': cart_data, 'length': length,
-                                                 'title': title, 'form': form, 'confirm_message': confirm_message, 'sub_total':sub_total})
+        context["cart"] = cart
+    return render(request, template_name=template_name, context=context)
 

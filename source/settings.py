@@ -296,7 +296,7 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 CART_SESSION_KEY = 'cart_id'
 BUYLIST_CART_SESSION_KEY = 'buylist_cart_id'
 PRODUCT_MODEL = "engine.MTG"
-BUYLIST_MODEL = "buylist.Buying"
+BUYLIST_MODEL = "engine.MTG"
 
 INTERNAL_IPS = ('127.0.0.1', 'www.tcgfirst.com')
 

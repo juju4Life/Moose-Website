@@ -51,5 +51,17 @@ class StoreCredit(models.Model):
     verbose_name_plural = 'Total'
 
 
+class BuylistSubmission(models.Model):
+    language = models.CharField(max_length=255, default='')
+    name = models.CharField(max_length=255, default='')
+    expansion = models.CharField(max_length=255, default='')
+    quantity = models.IntegerField(default=0)
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    buylist_order = models.TextField(default='')
+    buylist_status = models.BooleanField(default=False)
+    payment_type = models.BooleanField(default=False)
+    notes = models.TextField(default='')
+    customer = models.OneToOneField("customer.Customer", on_delete=models.CASCADE)
 
-
+    def __str__(self):
+        return self.name

@@ -57,19 +57,8 @@
     color: rgba(0, 0, 0, 0.5);
 }
 
-#search-sidebar{
-    padding-bottom: 2%;
-    border-radius: 0px 0px 0px 0px;
-}
-
-#advanced-search-submit-button{
-    margin-top:1%;
-
-}
-
 .search-page-mana-cost {
     display: flex;
-
 }
 
 .search-results-name-link{

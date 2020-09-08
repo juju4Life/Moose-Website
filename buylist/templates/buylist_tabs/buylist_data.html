@@ -1,0 +1,37 @@
+<div class="">
+    <table class="table table-sm">
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>
+                        <img style="max-height: 200px;" alt="{{ item.name }} image" class="img-thumbnail" src="{{ item.image_url }}">
+                    </td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.expansion }}</td>
+                    <td>${{ item.buylist_price }}</td>
+                    <td></td>
+                    <td>
+                        <form method="POST" action="{% url 'buylist_add_to_cart' item.product_id %}">
+                            {% csrf_token %}
+                            <fieldset>
+                                <div class="input-group mb-3">
+                                  <input name="quantity" style="max-width: 25%;" type="number" class="form-control" aria-describedby="{{ item.product_id }}">
+                                  <div class="input-group-append">
+                                      <span aria-describedby="k-{{ item.product_id }}" class="input-group-text" id="{{ item.product_id }}">
+                                          {{ item.buylist_max_quantity }} wanted</span>
+                                      <div class="input-group-append">
+                                          <span class="input-group-text" id="k-{{ item.product_id }}">
+                                              <button type="submit" class="btn-secondary"><i class="material-icons">add</i></button>
+                                          </span>
+                                      </div>
+
+                                  </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

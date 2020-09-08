@@ -3,7 +3,6 @@
 <link rel="stylesheet" type="text/css" href="{% static 'custom_css/navbar.css' %}">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-
   <!-- <a class="navbar-brand" href="{%url 'home'%}">MooseLoot</a> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -19,7 +18,6 @@
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'home' %}">Home</a>
         </li>
-
       {% else %}
         <li class="nav-item nav-item">
           <a class="nav-link" href="{% url 'home' %}" style="">Home</a>
@@ -118,25 +116,27 @@
           </li>
 
           <li class="nav-item">
-            <a href="{%url 'cart' %}" class="cart-icon nav-link"><i class="material-icons">shopping_cart</i></a>
+            {% if 'buylist' in request.path %}
+              <a href="{%url 'buylist_cart' %}" class="cart-icon nav-link"><i class="material-icons">shopping_cart</i></a>
+            {% else %}
+              <a href="{%url 'cart' %}" class="cart-icon nav-link"><i class="material-icons">shopping_cart</i></a>
+            {% endif %}
           </li>
     </ul>
   </div>
-
 </nav>
 
 <!-- Load autocomplete() function from jquery -->
 <script src="{% static 'custom_js/jquery_autocomplete.js' %}"></script>
 
 <script>
-
     $.ajax({
         method: "GET",
         url: "{% url 'card_info' %}",
         success: function(data){
             autocomplete(data.names, "#main-search-bar");
             const dropdown = document.getElementById("expansion-dropdown-items");
-            data.expansions.forEach(function (expansion) {
+            data.expansions.forEach(function (expansion){
               const link = document.createElement("button");
               link.setAttribute("class", "dropdown-item btn");
               link.setAttribute("type", "submit");
@@ -148,5 +148,6 @@
             })
         },
     });
-
 </script>
+
+

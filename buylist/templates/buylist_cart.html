@@ -10,12 +10,9 @@
 	<div class="row">
 		<div class="col-sm-8 offset-sm-1 table-responsive">
 			<table class="nav-pills nav-stacked table table table-hover table-sm">
-
 				<thead class="thead-inverse">
 					<tr class="header">
-
-						<th>printing</th>
-						<th>Condition</th>
+						<th>Language</th>
 						<th>Name</th>
 						<th>Set</th>
 						<th>Price</th>
@@ -25,19 +22,14 @@
 					</tr>
 				</thead>
 					<tbody>
-
 						{% for card in cart %}
-
-							<tr>
+                            <tr>
 								<td>
-									{{ card.printing }}
-								</td>
-								<td>
-									{{ card.condition }}
+									English
 								</td>
 
 								<td>
-									<a>{{ card.name }}</a>
+									<a>{{ card.product.name }}</a>
 								</td>
 
 								<td>
@@ -45,71 +37,68 @@
 								</td>
 
 							   <td>
-								   ${{card.price|floatformat:2}}
+								  ${{ card.price }}
 							   </td>
 
 							   <td>
-								   <form action="{% url 'update_cart' card.product %}" method="post">
+								   <form action="{% url 'update_buylist_cart' card.product.id %}" method="post">
+									   {{ card.product_product_id }}
 										{% csrf_token %}
 									   <input type="hidden" name="price" value="{{ card.price }}" >
 									   <div class="input-group mb-3">
-										   <input size="2" type="number" name="quantity" min="1" max="{{ card.max_quantity }}" value="{{card.quantity}}" >
+										   <input style="max-width: 25%" size="2" type="number" name="quantity" min="1" max="{{ card.max_quantity }}"
+												  value="{{card.quantity}}" >
 										   <div class="input-group-append">
 											   <button  type="submit" class="btn btn-sm btn-outline-info">Update</button>
 										   </div>
 										   &nbsp;
 										   <div class="input-group-append">
-											   of {{ card.max_quantity }}
+											   of {{ card.product.buylist_max_quantity }}
 										   </div>
 									   </div>
 								   </form>
 							   </td>
 
 								<td>
-									${{card.total|floatformat:2}}
+									${{ card.total }}
 								</td>
 
 							   <td>
-								   <form method="GET" action="{% url 'remove_from_cart' card.product %}">
+								   <form method="GET" action="{% url 'remove_from_buylist_cart' card.product.id %}">
 									   <button type="submit" class="btn">
 										   <i class="material-icons main-black">delete_forever</i>
 									   </button>
-
 								   </form>
-
 							   </td>
 							</tr>
-
 						{% endfor %}
-
 					</tbody>
 			</table>
 		</div>
 
 		<div class="row">
 			<div id="totalBox" class="col-sm-12 offset-sm-1">
-
 				<div class="p-3">
-					<h4>Subtotal: ${{sub_total|floatformat:2}}</h4>
-				<h4>Number of items: {{length}}</h4>
-				<hr>
-				  <form action="" method="post">{% csrf_token %}
+					<h4>Subtotal: ${{ sub_total|floatformat:2 }}</h4>
+				    <h4>Number of items: {{ length }}</h4>
+				    <hr>
+				    <form method="post" action="{% url 'buylist_confirm_info' %}">{% csrf_token %}
+                        <div class="form-row">
+                            <button class="btn btn-success btn-lg w-100 mb-1" name="checkout" value="check" type="submit">
 
-					  <div class="form-row">
-						  <button class="btn btn-success btn-lg w-100 mb-1" name="checkout" value="check" type="submit"
-								  formaction="{% url 'checkout' %}">Checkout
-						  </button>
-					  </div>
-
-					  <div class="form-row">
-						  <button class="btn btn-secondary btn-lg w-100" type="submit" formaction="{% url 'empty_cart' %}">Empty Cart</button>
-					  </div>
-				  </form>
+                                  Checkout
+                            </button>
+                        </div>
+					</form>
+					<form method="GET" action="{% url 'clear_buylist_cart' %}">
+						<div class="form-row">
+                            <button class="btn btn-secondary btn-lg w-100" type="submit">Empty Cart</button>
+                        </div>
+					</form>
 				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
 
-{% endblock %} 
+{% endblock %}

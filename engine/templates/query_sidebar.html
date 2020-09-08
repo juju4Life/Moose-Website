@@ -1,0 +1,250 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+<script>
+  $( function() {
+    $( "#accordion" ).accordion({
+      collapsible: true,
+      active: false,
+      heightStyle: "content",
+    });
+  } );
+</script>
+
+<nav id="search-sidebar" class="col-md-2 d-sm-block bg-dark sidebar mr-3">
+    <div class="sidebar-sticky">
+        <div id="advanced-search-div" style="">
+            <hr style="background-color: white;">
+            <h4>
+                <a href="#advanced-search-container" style="color:rgba(255, 255, 255, 1);" data-toggle="collapse" class="active"> Advanced
+                Search
+                </a>
+            </h4>
+            <div class="collapse" id="advanced-search-container">
+                <form method="GET" action="{% url 'search' %}">
+                     <fieldset>
+                         <div id="accordion">
+                             <label>Name</label>
+                             <div>
+                                 <div class="form-row">
+                                      <div class="input-group input-group-sm mb-3">
+                                          {{ form.name_query|as_crispy_field }}
+                                      </div>
+                                 </div>
+                                 <div class="form-row">
+                                      <div class="input-group input-group-sm mb-3">
+                                          {{ form.name }}
+                                      </div>
+                                 </div>
+                             </div>
+
+                             <label>Oracle Text</label>
+                             <div>
+                                 <div id="oracle-text-help-text" title="Oracle Text">
+                                     <p>Search the updated rules text of a card for keywords, phrases, or mana
+                                         symbols. Separate each query by a comma. Use the following symbols to match the tap symbol and
+                                         mana symbols:<br>
+                                         {T} = Tap Symbol<br>
+                                         {W} = White<br>
+                                         {U} = Blue<br>
+                                         {B} = Black<br>
+                                         {R} = Red<br>
+                                         {G} = Green<br>
+                                         Example: "{T},destroy target,discard"
+                                     </p>
+                                </div>
+                                 <div class="form-row">
+                                     <button id="oracle-text-help-button" class="btn btn-outline-light" type="button"><span
+                                             style="color: rgba(0, 0, 0, 1);">Text
+                                         Contains</span> <i
+                                        class="material-icons help-bubble">help</i>
+                                     </button>
+                                 </div>
+
+                                <div class="input-group input-group-sm mb-3">
+                                    {{ form.oracle_text }}
+                                </div>
+                             </div>
+
+                             <label>Set</label>
+                             <div>
+
+                                 <div id="set-help-text" title="Set Name">
+                                     <p>Filter results to be in one or more sets. each set must be separated by a comma.</p>
+                                 </div>
+                                 <div class="form-row">
+                                     <button id="set-help-button" class="btn btn-outline-light" type="button">
+                                         <span style="color: rgba(0, 0, 0, 1);">Cards in set</span>
+                                         <i class="material-icons help-bubble">help</i>
+                                     </button>
+                                 </div>
+                                 <div class="input-group input-group-sm mb-3">
+                                     {{ form.expansion }}
+                                 </div>
+
+                             </div>
+
+                             <label>Artists</label>
+                             <div class="">
+
+                                 <div id="artist-help-text" title="Artists">
+                                     <p>Filter results by one or more artists. Each artist must be separated by a comma</p>
+                                 </div>
+                                 <div class="form-row">
+                                     <button id="artist-help-button" class="btn btn-outline-light" type="button">
+                                         <span style="color: rgba(0, 0, 0, 1);">card art by</span>
+                                         <i class="material-icons help-bubble">help</i>
+                                     </button>
+                                 </div>
+
+                                <div class="input-group input-group-sm mb-3">
+                                  {{ form.artist }}
+                                </div>
+                             </div>
+
+                             <label class="">Colors</label>
+                             <div class="">
+                                 <div style="" class="form-row">
+                                     <div class="form-check form-check-inline">
+                                         {{ form.colors|as_crispy_field }}
+                                     </div>
+                                 </div>
+                             </div>
+
+                             <label class="">Color Identity</label>
+                             <div class="">
+                                <div class="input-group input-group-sm mb-3">
+                                  {{ form.color_identity|as_crispy_field }}
+                                </div>
+                             </div>
+
+                             <label class="">CMC</label>
+                             <div class="">
+
+                                <div style="max-width: 70%;" class="input-group input-group-sm">
+                                    {{ form.cmc_start }}&nbsp;
+                                    <span class="advanced-search-between-inputs">to</span>&nbsp;{{ form.cmc_end }}
+                                </div>
+
+                                 <div id="cmc-help-text" title="Converted Mana Cost">
+                                     <p>This is the mana cost exactly as it appears on the top of the card.</p>
+                                 </div>
+                                 <div class="form-row">
+                                     <button id="cmc-help-button" class="btn btn-outline-light" type="button"><i
+                                        class="material-icons help-bubble">help</i></button>
+                                 </div>
+                             </div>
+
+                             <label class="">Rarity</label>
+                             <div class="">
+
+                                 <div id="rarity-help-text" title="Rarity">
+                                     <p>Filter results for each rarity selected</p>
+                                 </div>
+                                 <div class="form-row">
+                                     <button id="rarity-help-button" class="btn btn-outline-light" type="button">
+                                         <span style="color: rgba(0, 0, 0, 1);"></span>
+                                         <i class="material-icons help-bubble">help</i></button>
+                                 </div>
+                                 <div class="input-group input-group-sm mb-3">
+                                     {{ form.rarity|as_crispy_field }}
+                                 </div>
+                             </div>
+
+                             <label class="">Card Types</label>
+                             <div class="">
+                                <div class="input-group input-group-sm mb-3">
+                                  {{ form.card_type|as_crispy_field }}
+                                </div>
+                             </div>
+
+                             <label class="">Subtypes</label>
+                             <div class="">
+                                 <div id="subtypes-help-text" title="Card Subtypes">
+                                     <p>
+                                         Filter results by each subtype a card contains. Each query must be separated by a comma.
+                                         <br>
+                                         Example: "Human,Wizard"
+                                     </p>
+                                 </div>
+                                 <div class="form-row">
+                                     <button id="subtypes-help-button" class="btn btn-outline-light" type="button">
+                                         <span style="color: rgba(0, 0, 0, 1);">Card Subtypes</span>
+                                         <i class="material-icons help-bubble">help</i>
+                                     </button>
+                                 </div>
+
+                                 <div class="input-group input-group-sm mb-3">
+                                     {{ form.subtypes|as_crispy_field }}
+                                 </div>
+                             </div>
+
+                             <label class="">Power</label>
+                             <div class="">
+                                <div style="max-width: 70%;" class="input-group input-group-sm">
+                                    {{ form.power_start }}&nbsp;<span class="advanced-search-between-inputs">to
+                                </span>&nbsp;{{ form.power_end }}
+                                </div>
+                             </div>
+
+                             <label class="">Toughness</label>
+                             <div class="">
+                                <div style="max-width: 70%;" class="input-group input-group-sm">
+                                    {{ form.toughness_start }}
+                                    &nbsp;<span class="advanced-search-between-inputs">to</span>&nbsp;
+                                    {{ form.toughness_end }} <br>
+                                </div>
+                             </div>
+
+                         </div>
+                     </fieldset>
+                    <button  id="advanced-search-submit-button" onclick="pageSpinner()" name="advanced-search-form" value="advanced-query"
+                             class="btn btn-secondary btn-lg btn-block" type="submit">Apply Filters</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+
+<!-- Load autocomplete() function from jquery -->
+<script src="{% static 'custom_js/jquery_autocomplete.js' %}"></script>
+
+<!-- Load jqueryMultiFieldAutocomplete() function from jquery -->
+<script src="{% static 'custom_js/jquery_multi_autocomplete.js' %}"></script>
+
+<!-- Load jquery function for dialog box -->
+<script>jqueryDialogBox("#cmc-help-text", "#cmc-help-button");</script>
+<script>jqueryDialogBox("#oracle-text-help-text", "#oracle-text-help-button");</script>
+<script>jqueryDialogBox("#set-help-text", "#set-help-button");</script>
+<script>jqueryDialogBox("#artist-help-text", "#artist-help-button");</script>
+<script>jqueryDialogBox("#rarity-help-text", "#rarity-help-button");</script>
+<script>jqueryDialogBox("#subtypes-help-text", "#subtypes-help-button");</script>
+
+<!-- Show hidden elements that were hidden to avoid user seeing elements before javascript changes them during rendered page
+ $("#advanced-search-submit-button").show()</script></script>-->
+<script>$(".hidden-dialog").show() </script>
+
+
+
+<!-- Load Card info from api to populate autocomplete fields -->
+<script>
+    $.ajax({
+        method: "GET",
+        url: "{% url 'card_info' %}",
+        success: function(data){
+            jqueryMultiFieldAutocomplete(data.expansions, "#advanced-search-form-expansion");
+            jqueryMultiFieldAutocomplete(data.subtypes, "#advanced-search-form-subtypes");
+            jqueryMultiFieldAutocomplete(data.artists, "#advanced-search-form-card-artist");
+        },
+    });
+</script>
+
+<!-- Disable Enter Key for Advanced Search Form to prevent accidental form submission -->
+<script>
+    $("#advanced-search-div").on("keydown", "form", function(event) {
+        return event.key !== "Enter";
+    });
+</script>

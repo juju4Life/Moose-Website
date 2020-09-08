@@ -1,0 +1,39 @@
+{% extends 'home.html' %}
+
+
+{% block content %}
+    <form method="">
+        <div class="row">
+            <div class="col-sm-8 offset-2">
+                <div class="form-wrapper-default">
+                    <table class="nav-pills nav-stacked table table-hover table-sm table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Language</th>
+                                <th>Name</th>
+                                <th>Set</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for card in cart %}
+                                <tr>
+                                    <td>English</td>
+                                    <td>{{ card.product.name }}</td>
+                                    <td>{{ card.expansion }}</td>
+                                    <td>{{ card.quantity }}</td>
+                                    <td>{{ card.price }}</td>
+                                    <td>{{ card.total }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+

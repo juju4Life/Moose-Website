@@ -57,7 +57,6 @@ class Cart(object):
                 'total': total,
                 "max_quantity": max_quantity,
                 'quantity': 0,
-
             }
 
         self.cart[product_id]['quantity'] = int(quantity)
@@ -89,8 +88,7 @@ class Cart(object):
         self.save()
 
     def __iter__(self):
-        product_ids = self.cart.keys()
-
+        # product_ids = self.cart.keys()
         splitted = settings.PRODUCT_MODEL.split('.')
         app_label = splitted[0]
         model_name = splitted[1]

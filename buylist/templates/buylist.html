@@ -1,45 +1,61 @@
 {% extends 'home.html' %}
 
 {% block content %}
-
     <div class="row">
-        <div class="col-sm-8 offset-2">
-            <table class="table table-sm">
-                <tbody>
-                    {% for item in items %}
-                        <tr>
-                            <td>
-                                <img style="max-height: 200px;" alt="{{ item.name }} image" class="img-thumbnail" src="{{ item.image_url }}">
-                            </td>
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.expansion }}</td>
-                            <td></td>
-                            <td>
-                                <form method="POST">
-                                    {% csrf_token %}
-                                    <fieldset>
-                                        <div class="input-group mb-3">
-                                          <input style="max-width: 25%;" type="number" class="form-control" aria-describedby="{{ item.product_id }}">
-                                          <div class="input-group-append">
-                                              <span aria-describedby="k-{{ item.product_id }}" class="input-group-text" id="{{ item.product_id }}">
-                                                  {{ item.buylist_max_quantity }} wanted</span>
-                                              <div class="input-group-append">
-                                                  <span class="input-group-text" id="k-{{ item.product_id }}">
-                                                      <button type="button" class="btn-secondary"><i class="material-icons">add</i></button>
-                                                  </span>
-                                              </div>
+        {% include 'query_sidebar.html' %}
 
-                                          </div>
-                                        </div>
+        <div class="">
+            <h4 class="title-font mb-3">VIEWING BUYIST</h4>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-buylist-tab" data-toggle="tab" href="#nav-buylist" role="tab" aria-controls="nav-buylist"
+                       aria-selected="true">
+                        Buylist
+                    </a>
 
+                    <a class="nav-item nav-link" id="nav-instructions-tab" data-toggle="tab" href="#nav-instructions" role="tab"
+                       aria-controls="nav-instructions"
+                       aria-selected="false">
+                        Instructions
+                    </a>
 
-                                    </fieldset>
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    <a class="nav-item nav-link" id="nav-wishlist-tab" data-toggle="tab" href="#nav-wishlist" role="tab" aria-controls="nav-wishlist" aria-selected="false">
+                    None</a>
+
+                    <a class="nav-item nav-link" id="nav-restock-tab" data-toggle="tab" href="#nav-restock" role="tab" aria-controls="nav-restock"
+                       aria-selected="false">
+                        None
+                    </a>
+
+                    <a class="nav-item nav-link" id="nav-treasures-tab" data-toggle="tab" href="#nav-treasures" role="tab" aria-controls="nav-treasures"
+                       aria-selected="false">
+                        None
+                    </a>
+                </div>
+            </nav>
+
+            <div class="tab-content" id="nav-tabContent">
+
+                <!-- Main Profile Information -->
+
+                <div class="tab-pane fade show active" id="nav-buylist" role="tabpanel" aria-labelledby="nav-buylist-tab">
+                    {% include 'buylist_tabs/buylist_data.html' %}
+                </div>
+
+                <div class="tab-pane fade" id="nav-instructions" role="tabpanel" aria-labelledby="nav-instructions-tab">
+                    Instructions
+                </div>
+
+                <div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab">
+                    3
+                </div>
+
+                <div class="tab-pane fade" id="nav-restock" role="tabpanel" aria-labelledby="nav-restock-tab">
+                    4
+                </div>
+
+                <div class="tab-pane fade" id="nav-treasures" role="tabpanel" aria-labelledby="nav-treasures-tab"></div>
+            </div>
         </div>
     </div>
 {% endblock content %}
