@@ -1,5 +1,104 @@
 {% extends 'home.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
+    {% if submit %}
+        Thanks
+    {%  else %}
+        <div class="row form-wrapper-default">
+            <div class="col-sm-5 offset-1">
+                <table class="table table-sm table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Language</th>
+                            <th>Name</th>
+                            <th>Set</th>
+                            <th>Quantity</th>
+                            <th>price</th>
+                            <th>total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart %}
+                            <tr>
+                                <td>{{ item.language }}</td>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.expansion }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.price }}</td>
+                                <td>{{ item.total }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
-{% endblock %}
+            <div class="col-sm-6">
+                <div class="">
+                    <form method="POST" action="{% url 'buylist_confirm_info' %}">
+                        {% csrf_token %}
+                       <fieldset>
+                           <legend><u>Shipping and Payment</u></legend>
+
+                           <div class="form-row">
+                               {{ address_form.name|as_crispy_field }}
+                               <label class="">Email: <strong>{{ request.user.email }}</strong></label>
+                           </div>
+
+                           <div class="form-row">
+                               {{ address_form.address_line_1|as_crispy_field }}
+                               {{ address_form.address_line_2|as_crispy_field }}
+                           </div>
+
+                           <div class="form-row">
+                               {{ address_form.city|as_crispy_field }}
+                               {{ address_form.state|as_crispy_field }}
+                               {{ address_form.zip_code|as_crispy_field }}
+                           </div>
+
+                           <div class="form-row">
+                               {{ payment_form.payment_type|as_crispy_field }}
+
+                               <div id="paypal-email" style="display: none;">
+                                   {{ payment_form.paypal_email|as_crispy_field }}
+                               </div>
+                           </div>
+                           <div class="form-row">
+                               <label for="notes">Notes</label>
+                               <textarea name="notes" id="notes" class="form-control" rows="3"></textarea>
+                           </div>
+                           <div class="form-row">
+                               <label>Subtotal: <strong>$<span id="subtotal">{{ cart.total_price }}</span></strong></label>
+                           </div>
+                           <div class="form-row">
+                               <button name="submit_order" value="submit_order" type="submit" class="btn btn-success w-100 mt-1">SUBMIT BUYLIST</button>
+                           </div>
+                       </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}
+
+{% block script %}
+<script>
+    function displayPaypalEmailField() {
+        let tag = document.getElementById("id_payment_type").value;
+        if ( tag === "paypal"){
+            let paypalEmailField = document.getElementById("paypal-email");
+            paypalEmailField.style.display = "block";
+            paypalEmailField.getElementsByTagName("input")[0].required = true;
+            document.getElementById("subtotal").innerText = "{{ cart.total_price }}"
+
+        } else if ( tag === "store_credit" ) {
+            let subtotal = document.getElementById("subtotal");
+            subtotal.innerText = "{{ cart.total_price }}" * 1.3;
+
+        } else{
+            document.getElementById("paypal-email").style.display = "none";
+            document.getElementById("subtotal").innerText = "{{ cart.total_price }}"
+        }
+    }
+</script>
+{% endblock script %}

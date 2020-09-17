@@ -1,4 +1,19 @@
+from customer.models import CustomerInfo
+
+
 from django.db import models
+
+
+class BuylistFields(models.Model):
+    name = models.CharField(max_length=255, default='')
+    expansion = models.CharField(max_length=255, default='')
+    printing = models.CharField(max_length=255, default='', blank=True)
+    price_nm = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    price_ex = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    price_vg = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+
+    class Meta:
+        abstract = True
 
 
 class HotList(models.Model):
@@ -14,25 +29,13 @@ class HotList(models.Model):
         verbose_name_plural = "HotList"
 
 
-class CardKingdomBuylist(models.Model):
-    name = models.CharField(max_length=255, default='')
-    expansion = models.CharField(max_length=255, default='')
-    printing = models.CharField(max_length=255, default='', blank=True)
-    price_nm = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    price_ex = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    price_vg = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+class CardKingdomBuylist(BuylistFields):
 
     def __str__(self):
         return self.name
 
 
-class StarcityBuylist(models.Model):
-    name = models.CharField(max_length=255, default='')
-    expansion = models.CharField(max_length=255, default='')
-    printing = models.CharField(max_length=255, default='', blank=True)
-    price_nm = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    price_played = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    price_hp = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+class StarcityBuylist(BuylistFields):
 
     def __str__(self):
         return self.name
@@ -51,17 +54,25 @@ class StoreCredit(models.Model):
     verbose_name_plural = 'Total'
 
 
-class BuylistSubmission(models.Model):
-    language = models.CharField(max_length=255, default='')
-    name = models.CharField(max_length=255, default='')
-    expansion = models.CharField(max_length=255, default='')
-    quantity = models.IntegerField(default=0)
-    price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+class BuylistSubmission(CustomerInfo):
+    status_choice = (
+        ("not_received", "Not Received", ),
+        ("verifying", "Verifying Contents", ),
+        ("canceled", "canceled", ),
+        ("processed", "Processed", ),
+    )
+
+    change_order_status = models.CharField(max_length=255, default='', choices=status_choice)
     buylist_order = models.TextField(default='')
-    buylist_status = models.BooleanField(default=False)
-    payment_type = models.BooleanField(default=False)
-    notes = models.TextField(default='')
-    customer = models.OneToOneField("customer.Customer", on_delete=models.CASCADE)
+    buylist_number = models.CharField(max_length=255, default='')
+    buylist_status = models.CharField(max_length=255, default="Not Received")
+    payment_type = models.CharField(max_length=255, default="")
+    paypal_email = models.EmailField(default='', blank=True)
+    total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    date_created = models.DateTimeField(auto_now_add=True)
+    order_url = models.URLField(blank=True)
 
     def __str__(self):
-        return self.name
+        return self.buylist_number
+
+

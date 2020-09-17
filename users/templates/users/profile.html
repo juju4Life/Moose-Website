@@ -23,6 +23,11 @@
 			<a class="nav-item nav-link" id="nav-orders-tab" data-toggle="tab" href="#nav-orders" role="tab" aria-controls="nav-orders" aria-selected="false">
 				Orders</a>
 
+			<a class="nav-item nav-link" id="nav-buylist-submissions-tab" data-toggle="tab" href="#nav-buylist-submissions" role="tab"
+			   aria-controls="nav-buylist-submissions" aria-selected="false">
+				Buylist Submissions
+			</a>
+
 			<a class="nav-item nav-link" id="nav-wishlist-tab" data-toggle="tab" href="#nav-wishlist" role="tab" aria-controls="nav-wishlist" aria-selected="false">
 			Wishlist</a>
 
@@ -48,6 +53,10 @@
 
 		<div class="tab-pane fade" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">
 			{% include 'users/profile_tabs/profile_orders.html' %}
+		</div>
+
+		<div class="tab-pane fade" id="nav-buylist-submissions" role="tabpanel" aria-labelledby="nav-buylist-submissions-tab">
+			{% include 'users/profile_tabs/buylist_submissions.html' %}
 		</div>
 
 		<div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab">

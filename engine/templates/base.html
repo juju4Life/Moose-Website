@@ -70,11 +70,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
 
 
-
-
-    {% block script %}
-    {% endblock %}
-
       <!-- jquerry and Popper required for Bootstrap
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
@@ -107,6 +102,9 @@
 
     <!-- Twitter -->
    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  {% block script %}
+    {% endblock %}
 
   </body>
 </html>

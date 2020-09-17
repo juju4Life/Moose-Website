@@ -2,35 +2,70 @@
     <table class="table table-sm">
         <tbody>
             {% for item in items %}
-                <tr>
-                    <td>
-                        <img style="max-height: 200px;" alt="{{ item.name }} image" class="img-thumbnail" src="{{ item.image_url }}">
-                    </td>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.expansion }}</td>
-                    <td>${{ item.buylist_price }}</td>
-                    <td></td>
-                    <td>
-                        <form method="POST" action="{% url 'buylist_add_to_cart' item.product_id %}">
-                            {% csrf_token %}
-                            <fieldset>
-                                <div class="input-group mb-3">
-                                  <input name="quantity" style="max-width: 25%;" type="number" class="form-control" aria-describedby="{{ item.product_id }}">
-                                  <div class="input-group-append">
-                                      <span aria-describedby="k-{{ item.product_id }}" class="input-group-text" id="{{ item.product_id }}">
-                                          {{ item.buylist_max_quantity }} wanted</span>
-                                      <div class="input-group-append">
-                                          <span class="input-group-text" id="k-{{ item.product_id }}">
-                                              <button type="submit" class="btn-secondary"><i class="material-icons">add</i></button>
-                                          </span>
-                                      </div>
+                {% for each in '12' %}
+                    <tr>
+                        <td>
+                            <img style="max-height: 200px;" alt="{{ item.name }} image" class="img-thumbnail" src="{{ item.image_url }}">
+                        </td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.expansion }}</td>
+                        {% if each == '1' %}
+                            <td>
+                                <div class="text-center" style="background-color: yellow;">Foil</div>
+                            </td>
+                            <td>${{ item.foil_buylist_price }}</td>
 
-                                  </div>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </td>
-                </tr>
+                        {% else %}
+                            <td>
+                                Normal
+                            </td>
+                            <td>${{ item.normal_buylist_price }}</td>
+                        {% endif %}
+
+                        <td></td>
+                        <td>
+                            <form method="POST" action="{% url 'buylist_add_to_cart' item.product_id %}">
+                                {% csrf_token %}
+                                <fieldset>
+                                    <div class="input-group mb-3">
+                                        <input type="hidden" name="name" value="{{ item.name }}">
+                                        <input type="hidden" name="expansion" value="{{ item.expansion }}">
+                                        <input type="hidden" name="language" value="{{ item.language }}">
+
+                                        {% if each == '1' %}
+                                            <input name="quantity" style="max-width: 25%;" type="number" class="form-control"
+                                                   aria-describedby="{{ item.product_id }}" max="{{ item.foil_buylist_max_quantity }}">
+                                            <input type="hidden" name="printing" value="Foil">
+                                            <input type="hidden" name="price" value="{{ item.foil_buylist_price }}">
+                                            <input type="hidden" name="max_quantity" value="{{ item.foil_buylist_max_quantity }}">
+                                        {% else %}
+                                            <input name="quantity" style="max-width: 25%;" type="number" class="form-control"
+                                                   aria-describedby="{{ item.product_id }}" max="{{ item.normal_buylist_max_quantity }}">
+                                            <input type="hidden" name="printing" value="Normal">
+                                            <input type="hidden" name="price" value="{{ item.normal_buylist_price }}">
+                                        <input type="hidden" name="max_quantity" value="{{ item.normal_buylist_max_quantity }}">
+                                        {% endif %}
+                                        <div class="input-group-append">
+                                            <span aria-describedby="k-{{ item.product_id }}" class="input-group-text" id="{{ item.product_id }}">
+                                                {% if each == '1' %}
+                                                    {{ item.foil_buylist_max_quantity }} wanted
+                                                {% else %}
+                                                    {{ item.normal_buylist_max_quantity }} wanted
+                                                {% endif %}
+                                            </span>
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="k-{{ item.product_id }}">
+                                                    <button type="submit" class="btn-secondary"><i class="material-icons">add</i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
             {% endfor %}
         </tbody>
     </table>

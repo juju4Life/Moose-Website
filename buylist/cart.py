@@ -28,7 +28,7 @@ class Cart(object):
             raise KeyNotSet('Session key identifier is missing in settings')
 
         if not hasattr(settings, 'BUYLIST_MODEL'):
-            raise KeyNotSet('Buying model is missing in settings')
+            raise KeyNotSet('Buylist model is missing in settings')
 
         cart = self.session.get(settings.BUYLIST_CART_SESSION_KEY)
 
@@ -41,18 +41,32 @@ class Cart(object):
 
         self.cart = cart
 
-    def add(self, product, price, expansion, quantity=1):
-        product_id = str(product.id)
+    def add(self, product_id, name, expansion, condition, printing, price, language, total, max_quantity, quantity=1):
+        pd = product_id
+        product_id = printing[0] + str(product_id)
+
         if product_id not in self.cart:
-            self.cart[product_id] = {'price': str(price), 'expansion': expansion, 'quantity': 0}
+
+            self.cart[product_id] = {
+                'product': product_id,
+                'product_id': pd,
+                'name': name,
+                'expansion': expansion,
+                'condition': condition,
+                'printing': printing,
+                'price': str(price),
+                'language': language,
+                'total': total,
+                "max_quantity": max_quantity,
+                'quantity': 0,
+            }
 
         self.cart[product_id]['quantity'] = int(quantity)
-        self.cart[product_id]['expansion'] = expansion
-        self.cart[product_id]['total'] = str(Decimal(price) * Decimal(quantity))
+        self.cart[product_id]['total'] = str(total)
         self.save()
 
     def save(self):
-        self.session[settings.BUYLIST_CART_SESSION_KEY] = self.cart
+        self.session[settings.CART_SESSION_KEY] = self.cart
         self.session.modified = True
 
     def remove(self, product_id):
@@ -76,8 +90,7 @@ class Cart(object):
         self.save()
 
     def __iter__(self):
-        product_ids = self.cart.keys()
-
+        # product_ids = self.cart.keys()
         splitted = settings.BUYLIST_MODEL.split('.')
         app_label = splitted[0]
         model_name = splitted[1]
@@ -88,13 +101,7 @@ class Cart(object):
             message = 'Model {} not found in app  {}'
             raise ModelDoesNotExist(message.format(model_name, app_label))
 
-        products = model.objects.filter(id__in=product_ids)
-        for product in products:
-            self.cart[str(product.id)]['product'] = product
-
         for item in self.cart.values():
-            item['price'] = Decimal(item['price'])
-            item['total_price'] = item['price'] * item['quantity']
             yield item
 
     def __len__(self):
@@ -102,7 +109,13 @@ class Cart(object):
 
     @property
     def total_price(self):
-        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+        subtotal = Decimal(0)
+        for item in self.cart.values():
+            price = Decimal(item['price'])
+            quantity = item['quantity']
+            subtotal += (price * quantity)
+
+        return subtotal
 
     @property
     def cart_length(self):
@@ -112,6 +125,4 @@ class Cart(object):
         self.cart.clear()
         # self.session.cart[settings.CART_SESSION_KEY] = {}
         self.session.modified = True
-
-
 

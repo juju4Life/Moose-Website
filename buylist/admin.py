@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import HotList, CardKingdomBuylist, StarcityBuylist, StoreCredit
+from .models import HotList, CardKingdomBuylist, StarcityBuylist, StoreCredit, BuylistSubmission
 
 
 class HotListAdmin(admin.ModelAdmin):
@@ -21,6 +21,12 @@ class ScgAdmin(admin.ModelAdmin):
 @admin.register(StoreCredit)
 class StoreCreditAdmin(admin.ModelAdmin):
     list_display = ['name', 'store_credit', 'date_time', 'total', ]
+
+
+@admin.register(BuylistSubmission)
+class BuylistSubmissionAdmin(admin.ModelAdmin):
+    search_fields = ['name', ]
+    list_display = ["buylist_number", "date_created", "order_url", "payment_type", "paypal_email", "total", "name", ]
 
 
 admin.site.register(HotList, HotListAdmin)

@@ -1,3 +1,4 @@
+
 from django.db import models
 
 
@@ -216,9 +217,12 @@ class MTG(BasicCardInfo):
     solid_color = models.CharField(max_length=255, default='')
     sick_deal = models.BooleanField(default=False)
     sick_deal_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    buylist = models.BooleanField(default=False)
-    buylist_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    buylist_max_quantity = models.IntegerField(default=0)
+    normal_buylist = models.BooleanField(default=False)
+    normal_buylist_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    normal_buylist_max_quantity = models.IntegerField(default=0)
+    foil_buylist = models.BooleanField(default=False)
+    foil_buylist_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    foil_buylist_max_quantity = models.IntegerField(default=0)
     restock_notice = models.ManyToManyField("customer.CustomerRestockNotice", blank=True)
 
     def __str__(self):
@@ -232,8 +236,5 @@ class MTG(BasicCardInfo):
 class TcgCredentials(models.Model):
     name = models.CharField(max_length=20, default='', blank=True)
     token = models.TextField(default='')
-
-
-
 
 

@@ -18,11 +18,12 @@ class CustomerAdmin(SimpleHistoryAdmin):
     search_fields = ['name', ]
     ordering = ['name', ]
     fields = (
-        ('credit', 'employee_initial',),
+        ('credit', 'employee_initial', ),
         'name',
         'email',
         'notes',
         'orders',
+        'buylist_submissions',
     )
 
 

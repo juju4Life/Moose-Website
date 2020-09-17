@@ -2,26 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/buylist/templates/buylist_cart.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buylist/templates/buylist_checkout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buylist/templates/buylist_confirm_info.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buylist/templates/buylist_tabs/buylist_data.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/templates/query_sidebar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buylist/grade_price_buylist_card.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buylist/templates/check_buylist_order.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mail/email_cart_template.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mail/mail_templates.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/templates/users/profile_tabs/buylist_submissions.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buylist/cart.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/cart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buylist/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/templates/buylist.html" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/templates/buylist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/templates/buylist_cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/templates/buylist_cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/templates/buylist_confirm_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/templates/buylist_confirm_info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/templates/buylist_tabs/buylist_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/templates/buylist_tabs/buylist_data.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buylist/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buylist/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/cart.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cart.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/custom_css/search_result.css" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_css/search_result.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/confirm_order_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/confirm_order_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/signals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/templates/main_product_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/main_product_data.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/search_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/search_result.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_customs/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_customs/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +41,8 @@
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -60,7 +68,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -236,7 +244,8 @@
       <workItem from="1597685415019" duration="55729000" />
       <workItem from="1598027995377" duration="31126000" />
       <workItem from="1598212718863" duration="86772000" />
-      <workItem from="1598892404760" duration="110153000" />
+      <workItem from="1598892404760" duration="168443000" />
+      <workItem from="1599870020175" duration="62997000" />
     </task>
     <servers />
   </component>
@@ -289,18 +298,26 @@
       <screen x="0" y="0" width="1368" height="882" />
     </state>
     <state width="1326" height="285" key="GridCell.Tab.1.right/0.0.1368.882@0.0.1368.882" timestamp="1597709412361" />
-    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599086348818">
+    <state x="186" y="86" key="SettingsEditor" timestamp="1599693031977">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1368.882@0.0.1368.882" timestamp="1599086348818" />
+    <state x="186" y="86" key="SettingsEditor/0.0.1368.882@0.0.1368.882" timestamp="1599693031977" />
+    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599701704171">
+      <screen x="0" y="0" width="1368" height="882" />
+    </state>
+    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1368.882@0.0.1368.882" timestamp="1599701704171" />
     <state x="240" y="51" width="1338" height="731" key="dock-window-1" timestamp="1596556185316">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
     <state x="240" y="51" width="1338" height="731" key="dock-window-1/0.0.1368.882@0.0.1368.882" timestamp="1596556185316" />
-    <state x="354" y="193" width="672" height="678" key="search.everywhere.popup" timestamp="1599063404507">
+    <state x="500" y="285" key="git4idea.ui.GitTagDialog" timestamp="1599693056359">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state x="354" y="193" width="672" height="678" key="search.everywhere.popup/0.0.1368.882@0.0.1368.882" timestamp="1599063404507" />
+    <state x="500" y="285" key="git4idea.ui.GitTagDialog/0.0.1368.882@0.0.1368.882" timestamp="1599693056359" />
+    <state x="356" y="195" width="672" height="678" key="search.everywhere.popup" timestamp="1599693050514">
+      <screen x="0" y="0" width="1368" height="882" />
+    </state>
+    <state x="356" y="195" width="672" height="678" key="search.everywhere.popup/0.0.1368.882@0.0.1368.882" timestamp="1599693050514" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

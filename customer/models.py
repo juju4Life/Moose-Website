@@ -6,6 +6,23 @@ from django.contrib.auth.models import User
 from simple_history.models import HistoricalRecords
 
 
+class CustomerInfo(models.Model):
+    name = models.CharField(max_length=255, default='')
+    email = models.EmailField(max_length=200, default='')
+    company = models.CharField(max_length=255, default='', blank=True)
+    country = models.CharField(max_length=255, default='US', blank=True)
+    address_line_1 = models.CharField(max_length=255, default='', blank=True)
+    address_line_2 = models.CharField(max_length=255, default='', blank=True)
+    state = models.CharField(max_length=20, default='', blank=True)
+    city = models.CharField(max_length=20, default='', blank=True)
+    zip_code = models.CharField(max_length=25, default='', blank=True)
+    phone = models.CharField(max_length=25, default='', blank=True)
+    notes = models.TextField(default='', blank=True)
+
+    class Meta:
+        abstract = True
+
+
 class Customer(models.Model):
 
     letters_only = RegexValidator(r'^[a-zA-Z ]*$', _('Only letters are allowed.'))
@@ -41,6 +58,7 @@ class Customer(models.Model):
     wishlist = models.TextField(default='', blank=True)
     restock_list = models.ManyToManyField("customer.CustomerRestockNotice")
     orders = models.TextField(default='', blank=True)
+    buylist_submissions = models.TextField(default='', blank=True)
 
     history = HistoricalRecords(
         history_change_reason_field=models.TextField(null=True)

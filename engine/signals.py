@@ -7,7 +7,7 @@ from django.db.models.signals import post_save, pre_save
 
 @receiver(pre_save, sender='engine.MTG')
 def manage_pages(instance, **kwargs):
-    if instance.buylist:
+    if instance.normal_buylist:
         pass
 
     if instance.sick_deal:

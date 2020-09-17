@@ -1,0 +1,101 @@
+{% extends 'home.html' %}
+
+
+{% block content %}
+<div class="mt-1 ml-3">
+    <div class="row">
+        <p>
+            Buylist {{ order.buylist_number }} <br>
+            <strong>{{ order.date_created }}</strong> <br>
+            {{ order.email }} <br>
+            {{ order.name }} <br>
+            {{ order.address_line_1 }} {{ order.address_line_2 }} <br>
+            {{ order.city }}, {{ order.state }} {{ order.zip_code }} <br>
+            Payment Type: <strong>{{ order.payment_type }}</strong> {% if order.payment_type == 'paypal' %} {{ order.paypal_email }} {% endif %} <br>
+            Buylist Status: <strong>{{ order.buylist_status }}</strong> <br>
+            {% if order.notes %}
+            <br> Seller Notes: <br>
+            "{{ order.notes }}"
+            {% endif %}
+        </p>
+    </div>
+
+    <div class="row">
+        <form method="POST" action="{% url 'check_buylist_order' order.buylist_number %}">
+            {% csrf_token %}
+            <div class="form-inline mb-1">
+                <button type="submit" name="cancel_buylist" value="cancel" class="btn btn-danger btn-sm mr-1">Cancel</button>
+                <button type="submit" name="submit_buylist" value="submit" class="btn btn-success btn-sm mr-1">Submit</button>
+                <button type="submit" name="mark_as_received" value="received" class="btn btn-info btn-sm mr-1">Mark as Received</button>
+                <button type="submit" name="mark_as_received" value="received" class="btn btn-info btn-sm">Awaiting Email Reply</button>
+            </div>
+
+            <table class="table table-sm table-borderless">
+                <tbody>
+                {% for item in items %}
+                <tr>
+                    {% if item.language != 'English' %}
+                        <td><strong>{{ item.language }}</strong></td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+
+                    {% if item.printing == 'Foil' %}
+                        <td><strong>{{ item.printing }}</strong></td>
+                    {% else %}
+                        <td></td>
+                    {% endif%}
+                    <td>
+                        <input type="hidden" name="product_id" value="{{ item.product_id }}">
+                        <input type="hidden" name="name" value="{{ item.name }}">
+                        <input type="hidden" name="expansion" value="{{ item.expansion }}">
+                        <input type="hidden" name="printing" value="{{ item.printing }}">
+                        <input type="hidden" name="price" value="{{ item.price }}">
+                        <input type="hidden" name="language" value="{{ item.language }}">
+                        <input type="hidden" name="total" value="{{ item.total_price }}">
+                        {{ item.expansion }}
+                    </td>
+                    <td>{{ item.name }}</td>
+                    <td>${{ item.price }}</td>
+                    <td>
+                        <div class="form-row">
+
+                            <div class="form-inline">
+                                <input type="number" class="form-control input-sm" name="clean" value="{{ item.quantity }}"
+                                       id="clean-{{ item.printing }}-{{ items.product_id }}" max="{{ item.quantity }}">
+                                <div class="input-group-append">
+                                    <label class="input-group-text" for="clean-{{ item.printing }}-{{ items.product_id }}">clean</label>
+                                </div>
+
+                                <input type="number" class="form-control input-sm" name="played" value=0
+                                       id="played-{{ item.printing }}-{{ items.product_id }}" max="{{ item.quantity }}">
+                                <div class="input-group-append">
+                                    <label class="input-group-text" for="played-{{ item.printing }}-{{ items.product_id }}">played</label>
+                                </div>
+
+                                <input type="number" class="form-control input-sm" name="heavily_played" value=0
+                                       id="heavily-played-{{ item.printing }}-{{ items.product_id }}" max="{{ item.quantity }}">
+                                <div class="input-group-append">
+                                    <label class="input-group-text" for="heavily-played-{{ item.printing }}-{{ items.product_id }}">hp</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="form-inline mt-1">
+                <button type="submit" name="cancel_buylist" value="cancel" class="btn btn-danger btn-sm mr-1">Cancel</button>
+                <button type="submit" name="submit_buylist" value="submit" class="btn btn-success btn-sm mr-1">Submit</button>
+                <button type="submit" name="mark_as_received" value="received" class="btn btn-info btn-sm mr-1">Mark as Received</button>
+                <button type="submit" name="mark_as_received" value="received" class="btn btn-info btn-sm">Awaiting Email Reply</button>
+            </div>
+
+        </form>
+    </div>
+</div>l
+{% endblock content %}

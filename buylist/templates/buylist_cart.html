@@ -29,7 +29,7 @@
 								</td>
 
 								<td>
-									<a>{{ card.product.name }}</a>
+									<a>{{ card.name }}</a>
 								</td>
 
 								<td>
@@ -41,8 +41,7 @@
 							   </td>
 
 							   <td>
-								   <form action="{% url 'update_buylist_cart' card.product.id %}" method="post">
-									   {{ card.product_product_id }}
+								   <form action="{% url 'update_buylist_cart' card.product %}" method="post">
 										{% csrf_token %}
 									   <input type="hidden" name="price" value="{{ card.price }}" >
 									   <div class="input-group mb-3">
@@ -53,9 +52,10 @@
 										   </div>
 										   &nbsp;
 										   <div class="input-group-append">
-											   of {{ card.product.buylist_max_quantity }}
+											   of {{ card.max_quantity }}
 										   </div>
 									   </div>
+								   </form>
 								   </form>
 							   </td>
 
@@ -64,7 +64,7 @@
 								</td>
 
 							   <td>
-								   <form method="GET" action="{% url 'remove_from_buylist_cart' card.product.id %}">
+								   <form method="GET" action="{% url 'remove_from_buylist_cart' card.product %}">
 									   <button type="submit" class="btn">
 										   <i class="material-icons main-black">delete_forever</i>
 									   </button>

@@ -185,8 +185,8 @@
                             </div>
 
                             <script>
-                                var textId = "wishlist-content-{{ item.product_id }}";
-                                var buttonId = "wishlist-button-{{ item.product_id }}";
+                                let textId = "wishlist-content-{{ item.product_id }}";
+                                let buttonId = "wishlist-button-{{ item.product_id }}";
                                 jqueryDialogBox("#" + textId, "#" + buttonId);
                             </script>
 
@@ -214,28 +214,28 @@
 
                             <script>
                                  conditionTab(
-                                    "clean", "CL", "{{item.normal_clean_stock}}", "{{item.foil_clean_stock}}", "{{item.product_id}}",
+                                    "clean", "CL", "{{item.normal_clean_stock }}", "{{ item.foil_clean_stock }}", "{{ item.product_id }}",
                                     "true"
                                  );
 
                                   conditionTab(
-                                    "played", "PL", "{{item.normal_played_stock}}", "{{item.foil_played_stock}}", "{{item.product_id}}",
+                                    "played", "PL", "{{ item.normal_played_stock }}", "{{ item.foil_played_stock }}", "{{ item.product_id }}",
                                     "false"
                                  );
 
                                  conditionTab(
-                                    "heavily_played", "HP", "{{item.normal_heavily_played_stock}}",
-                                     "{{item.foil_heavily__played_stock}}", "{{item.product_id}}", "false"
+                                    "heavily_played", "HP", "{{ item.normal_heavily_played_stock }}",
+                                     "{{ item.foil_heavily__played_stock }}", "{{ item.product_id }}", "false"
                                  );
 
                                  conditionTab(
                                     "restock", "Restock", "0",
-                                     "0", "{{item.product_id}}", "false"
+                                     "0", "{{ item.product_id }}", "false"
                                  );
                             </script>
 
 
-                            <div class="tab-content" id="tabs-tabContent-{{item.product_id}}"></div>
+                            <div class="tab-content" id="tabs-tabContent-{{ item.product_id }}"></div>
 
                             {% if request.user.is_authenticated %}
                                 <div class="" id="restock-content-submit-{{ item.product_id }}" title="Select Restock Variants">

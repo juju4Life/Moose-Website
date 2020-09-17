@@ -1,10 +1,83 @@
 import re
 import math
 import requests
-from time import sleep
+from time import sleep, strftime, localtime
 from uuid import uuid4
 from bs4 import BeautifulSoup as b
 from.decorators import offset
+
+
+def change_order_status(string, order_status):
+    new_status = replace_text_between_two_words("<status_start>", "<status_end>", replacement=order_status, string=string)
+    return new_status
+
+
+def format_cart_for_text_field_storage(cart, order_number, payment_type, paypal_email, total_price, store_credit_total=None, order_status='Not Received'):
+    master = ""
+    date_time_processed = strftime("%Y-%m-%d at %I:%M%p", localtime())
+
+    for each in cart:
+        master = master + f"{each['name']}<attribute>{each['expansion']}<attribute>{each['printing']}<attribute>{each['condition']}" \
+                          f"<attribute>{each['language']}<attribute>" \
+                          f"{each['quantity']}<attribute>{each['price']}<attribute>{each['total']}<attribute>{each['product_id']}<card>"
+
+    if store_credit_total:
+        total = store_credit_total
+    else:
+        total = total_price
+
+    order_info = f"{date_time_processed}<card>{order_number}<card>{total}<card><status_start>{order_status}<status_end><payment_type_start>" \
+                 f"{payment_type}<payment_type_end><paypal_email_start>{paypal_email}<paypal_email_end><order>"
+    master = master + order_info
+
+    return master
+
+
+def split_text_field_string_for_orders(string):
+    if string:
+        orders = string.split("<order>")[:-1]
+        orders_list = list()
+
+        for order in orders:
+            order_status = text_between_two_words("<status_start>", "<status_end>", order)
+            payment_type = text_between_two_words("<payment_type_start>", "<payment_type_end>", order)
+            paypal_email = text_between_two_words("<paypal_email_start>", "<paypal_email_end>", order)
+            attributes = order.split("<card>")[:-1]
+            order_date = attributes[-3]
+            order_number = attributes[-2]
+            total = attributes[-1]
+
+            order_details = {
+                "order_date": order_date,
+                "order_number": order_number,
+                "order_status": order_status,
+                "payment_type": payment_type,
+                "paypal_email": paypal_email,
+                "total": total,
+                "items": list(),
+            }
+
+            for each in attributes[0:-3]:
+                attribute = each.split("<attribute>")
+                order_details["items"].append(
+                    {
+                        "name": attribute[0],
+                        "expansion": attribute[1],
+                        "printing": attribute[2],
+                        "condition": attribute[3],
+                        "language": attribute[4],
+                        "quantity": attribute[5],
+                        "price": attribute[6],
+                        "total_price": attribute[7],
+                        "product_id": attribute[8],
+                    }
+                )
+
+            orders_list.append(order_details)
+    else:
+        orders_list = list()
+
+    return orders_list
 
 
 def create_random_id(size=6):

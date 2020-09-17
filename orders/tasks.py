@@ -15,6 +15,7 @@ from orders.models import Order
 api = TcgPlayerApi('moose')
 mailgun = MailGun()
 
+
 @shared_task(name='orders.tasks.update_moose_tcg')
 def update_moose_tcg():
     moose_price()
