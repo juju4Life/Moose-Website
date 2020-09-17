@@ -244,6 +244,7 @@ def check_buylist_order(request, buylist_number):
         order.save()
 
     def create_new_cart_item(card_condition, quantity):
+
         condition = card_condition
         graded_price = grade(condition=condition, printing=printing, price=price)
         total = graded_price * quantity
@@ -266,6 +267,42 @@ def check_buylist_order(request, buylist_number):
 
     elif request.POST.get("cancel_buylist"):
         make_status_change("canceled")
+
+    elif request.post.get('await_customer_reply'):
+        post_data = request.POST
+        resubmitted_list = list()
+        for i in range(len(post_data.getlist('name'))):
+            name = post_data.getlist('name')[i]
+            expansion = post_data.getlist('expansion')[i]
+            price = float(post_data.getlist('price')[i])
+            product_id = post_data.getlist('product_id')[i]
+            language = post_data.getlist('language')[i]
+            printing = post_data.getlist('printing')[i]
+            clean = int(post_data.getlist('clean')[i])
+            played = int(post_data.getlist('played')[i])
+            heavily_played = int(post_data.getlist('heavily_played')[i])
+
+            if clean > 0:
+                create_new_cart_item("clean", clean)
+
+            if played > 0:
+                create_new_cart_item("played", played)
+
+            if heavily_played > 0:
+                create_new_cart_item("heavily_played", heavily_played)
+
+        total_price = sum([i['total'] for i in resubmitted_list])
+        total_price = total_price * 1.3 if order.payment_type == 'store_credit' else total_price
+        total_price = round(total_price, 2)
+
+        formatted_ordered_items = ordered_items_template(cart=resubmitted_list, total=total_price)
+        mailgun.send_mail(
+            subject=f'Update for Buylist {buylist_number}',
+            recipient_list=order.email,
+            message='Your buylist submission has been graded. Please approve or deny any changes. Once we receive your '
+                    f'reply your buylist will be processed.\n\n{formatted_ordered_items}'
+        )
+        make_status_change("Awaiting Email Reply")
 
     elif request.POST.get("submit_buylist"):
         upload_list = list()
@@ -335,14 +372,24 @@ def check_buylist_order(request, buylist_number):
         order.buylist_order = string
         order.save()
         # MTGUpload.objects.bulk_create(upload_list)
-
+        message = ''
         if payment_type == 'store_credit':
+            message = f'{total_price} has been credited to your account.'
             customer = Customer.objects.get(email=order.email)
             customer.credit += total_price
             customer.save()
+        elif payment_type == 'check':
+            message = f'Your check will be mailed to you within 1-3 business days.'
+        elif payment_type == 'paypal':
+            message = f'{total_price} will be sent to {paypal_email} within 1-3 business days.'
 
+        mailgun.send_mail(
+            subject=f'Update for Buylist {buylist_number}',
+            recipient_list=order.email,
+            message=f'Your buylist submission has been completed. {message}'
+        )
         make_status_change("completed")
-        messages.SUCCESS(request, f'Buylist has been processed. Payment Type: {payment_type} ${total_price}')
+        messages.SUCCESS(request, f'Your buylist submission has been processed. {payment_type} ${total_price}.')
     else:
         pass
 
