@@ -170,9 +170,9 @@ def moose_price():
                         new_price = low
                 if new_price < .49:
                     new_price = .49
-                    api.update_sku_price(sku_id=sku, price=new_price, _json=True, channel='0')
-                    new_price = new_price * 0.95
-                    api.update_sku_price(sku_id=sku, price=new_price, _json=True, channel='1')
+                api.update_sku_price(sku_id=sku, price=new_price, _json=True, channel='0')
+                new_price = new_price * 0.95
+                api.update_sku_price(sku_id=sku, price=new_price, _json=True, channel='1')
 
             except Exception as e:
                 print(e)
@@ -184,7 +184,6 @@ def moose_price():
     mail_from = 'tcgfirst'
     mail_to = ['jermol.jupiter@gmail.com', ]
     # send_mail(subject, message, mail_from, mail_to)
-
 
 
 
