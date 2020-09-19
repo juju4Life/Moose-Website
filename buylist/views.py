@@ -171,6 +171,8 @@ def confirm_info(request):
                 order_string = format_cart_for_text_field_storage(cart=cart, order_number=buylist_number, payment_type=payment_type,
                                                                   paypal_email=paypal_email, total_price=cart.total_price, store_credit_total=total)
 
+                seller_review_grading = True if request.POST.get('seller_verify') else False
+
                 new_buylist_sub = BuylistSubmission(
                     buylist_order=order_string,
                     buylist_number=buylist_number,
@@ -186,7 +188,9 @@ def confirm_info(request):
                     zip_code=zip_code,
                     total=total,
                     notes=notes,
-                    order_url=f"{request.get_host()}/buylist/admin/order/{buylist_number}/"
+                    order_url=f"{request.get_host()}/buylist/admin/order/{buylist_number}/",
+                    seller_review_grading=seller_review_grading,
+
 
                 )
                 new_buylist_sub.save()
@@ -268,7 +272,7 @@ def check_buylist_order(request, buylist_number):
     elif request.POST.get("cancel_buylist"):
         make_status_change("canceled")
 
-    elif request.post.get('await_customer_reply'):
+    elif request.POST.get('await_customer_reply'):
         post_data = request.POST
         resubmitted_list = list()
         for i in range(len(post_data.getlist('name'))):

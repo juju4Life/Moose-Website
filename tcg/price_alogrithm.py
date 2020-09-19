@@ -1,10 +1,26 @@
+
+from decimal import Decimal
+
 from engine.tcgplayer_api import TcgPlayerApi
 
 api = TcgPlayerApi('first')
 
 
+def tcg_low_market(low, market):
+    if market:
+        price = market
+        if price < low:
+            price = market
+
+        if price < .49:
+            price = .49
+    else:
+        price = low
+
+    return Decimal(price), Decimal(price * .8), Decimal(price * .6)
+
+
 def price_foreign(expansion, condition, language, low, direct=None, mid=None, market=None):
-    print(f'Inside price foreign function {low} {mid} {market}')
     condition_map = {
         'near mint': 1.,
         'lightly played': 1.,
@@ -15,7 +31,7 @@ def price_foreign(expansion, condition, language, low, direct=None, mid=None, ma
 
     old_sets = ["urza's saga", " urza's legacy", "urza's destiny", "exodus", "stronghold", "tempest", "mirage", "visions",
 
-                "weatherlight", "fifth edition", "fourth edition",]
+                "weatherlight", "fifth edition", "fourth edition", ]
 
     expansion_list = ['beta edition', 'alpha edition', 'legends', 'the dark', 'arabian nights', 'portal second age', 'portal three kingdoms', 'portal',
                       'unlimited', ]

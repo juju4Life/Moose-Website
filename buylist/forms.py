@@ -20,7 +20,13 @@ class BuylistPaymentType(forms.Form):
         ("paypal", "Paypal", ),
     )
 
+    verify_choices = (
+        ('', ''),
+        ('seller_verify', 'Verify Grading before your buylist is processed.'),
+    )
+
     payment_type = forms.CharField(widget=forms.Select(choices=choices, attrs={"onchange": "displayPaypalEmailField()"}), )
     paypal_email = forms.EmailField(required=False)
+    seller_verify = forms.CharField(widget=forms.Select(choices=verify_choices))
 
 

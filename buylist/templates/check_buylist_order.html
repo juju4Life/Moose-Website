@@ -27,7 +27,9 @@
                 <button type="submit" name="cancel_buylist" value="cancel" class="btn btn-danger btn-sm mr-1">Cancel</button>
                 <button type="submit" name="submit_buylist" value="submit" class="btn btn-success btn-sm mr-1">Submit</button>
                 <button type="submit" name="mark_as_received" value="received" class="btn btn-info btn-sm mr-1">Mark as Received</button>
-                <button type="submit" name="mark_as_received" value="received" class="btn btn-info btn-sm">Awaiting Email Reply</button>
+                {% if order.seller_review_grading %}
+                    <button type="submit" name="mark_as_received" value="received" class="btn btn-info btn-sm">Awaiting Email Reply</button>
+                {% endif %}
             </div>
 
             <table class="table table-sm table-borderless">
@@ -62,21 +64,21 @@
 
                             <div class="form-inline">
                                 <input type="number" class="form-control input-sm" name="clean" value="{{ item.quantity }}"
-                                       id="clean-{{ item.printing }}-{{ items.product_id }}" max="{{ item.quantity }}">
+                                       id="clean-{{ item.printing }}-{{ item.product_id }}" max="{{ item.quantity }}">
                                 <div class="input-group-append">
-                                    <label class="input-group-text" for="clean-{{ item.printing }}-{{ items.product_id }}">clean</label>
+                                    <label class="input-group-text" for="clean-{{ item.printing }}-{{ item.product_id }}">clean</label>
                                 </div>
 
                                 <input type="number" class="form-control input-sm" name="played" value=0
-                                       id="played-{{ item.printing }}-{{ items.product_id }}" max="{{ item.quantity }}">
+                                       id="played-{{ item.printing }}-{{ item.product_id }}" max="{{ item.quantity }}">
                                 <div class="input-group-append">
-                                    <label class="input-group-text" for="played-{{ item.printing }}-{{ items.product_id }}">played</label>
+                                    <label class="input-group-text" for="played-{{ item.printing }}-{{ item.product_id }}">played</label>
                                 </div>
-
+                                
                                 <input type="number" class="form-control input-sm" name="heavily_played" value=0
-                                       id="heavily-played-{{ item.printing }}-{{ items.product_id }}" max="{{ item.quantity }}">
+                                       id="heavily-played-{{ item.printing }}-{{ item.product_id }}" max="{{ item.quantity }}">
                                 <div class="input-group-append">
-                                    <label class="input-group-text" for="heavily-played-{{ item.printing }}-{{ items.product_id }}">hp</label>
+                                    <label class="input-group-text" for="heavily-played-{{ item.printing }}-{{ item.product_id }}">hp</label>
                                 </div>
                             </div>
 
@@ -89,13 +91,37 @@
             </table>
 
             <div class="form-inline mt-1">
-                <button type="submit" name="cancel_buylist" value="cancel" class="btn btn-danger btn-sm mr-1">Cancel</button>
+                <button id="dialog-confirm" type="submit" name="cancel_buylist" value="cancel" class="btn btn-danger btn-sm mr-1">Cancel</button>
                 <button type="submit" name="submit_buylist" value="submit" class="btn btn-success btn-sm mr-1">Submit</button>
                 <button type="submit" name="mark_as_received" value="received" class="btn btn-info btn-sm mr-1">Mark as Received</button>
-                <button type="submit" name="mark_as_received" value="received" class="btn btn-info btn-sm">Awaiting Email Reply</button>
+                {% if order.seller_review_grading %}
+                    <button type="submit" name="mark_as_received" value="received" class="btn btn-info btn-sm">Awaiting Email Reply</button>
+                {% endif %}
             </div>
 
         </form>
     </div>
-</div>l
+</div>
 {% endblock content %}
+
+{% block script %}
+    <script>
+        $( function() {
+    $( "#dialog-confirm" ).dialog({
+        autoOpen: false,
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+      buttons: {
+        "Delete all items": function() {
+          $( this ).dialog( "close" );
+        },
+        Cancel: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+  } );
+    </script>
+{% endblock script %}

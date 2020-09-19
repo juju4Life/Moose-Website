@@ -7,11 +7,3 @@ class Command(BaseCommand):
         Inventory().update_store_inventory()
 
 
-
-
-
-
-
-
-
-

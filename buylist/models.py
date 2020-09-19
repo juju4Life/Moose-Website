@@ -71,6 +71,7 @@ class BuylistSubmission(CustomerInfo):
     total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     date_created = models.DateTimeField(auto_now_add=True)
     order_url = models.URLField(blank=True)
+    seller_review_grading = models.BooleanField(default=False)
 
     def __str__(self):
         return self.buylist_number
