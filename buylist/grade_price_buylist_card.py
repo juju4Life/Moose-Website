@@ -14,5 +14,5 @@ def grade(condition, printing, price):
         }
     }
 
-    return price * grade_value[printing][condition]
+    return round(price * grade_value[printing][condition], 2)
 

@@ -148,6 +148,8 @@ class MTGAdmin(ImportExportModelAdmin):
         ("normal_buylist", "normal_buylist_price", "normal_buylist_max_quantity", ),
         ("foil_buylist", "foil_buylist_price", "foil_buylist_max_quantity", ),
         ("sick_deal", "sick_deal_price", ),
+        ("normal_hotlist", "normal_hotlist_price", ),
+        ("foil_hotlist", "foil_hotlist_price", ),
         ("normal_clean_stock", "normal_clean_price", ),
         ("normal_played_stock", "normal_played_price", ),
         ("normal_heavily_played_stock", "normal_heavily_played_price", ),
@@ -155,7 +157,6 @@ class MTGAdmin(ImportExportModelAdmin):
         ("foil_played_stock", "foil_played_price", ),
         ("foil_heavily_played_stock", "foil_heavily_played_price", ),
     )
-
 
 # Magic the Gathering Card Database ------------------ END
 

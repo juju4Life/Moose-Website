@@ -225,7 +225,6 @@ def confirm_info(request):
                 )
                 cart.empty()
                 context["submit"] = True
-
         else:
             address_form = AddressForm()
             payment_form = BuylistPaymentType()
@@ -248,9 +247,7 @@ def check_buylist_order(request, buylist_number):
         order.save()
 
     def create_new_cart_item(card_condition, quantity):
-
-        condition = card_condition
-        graded_price = grade(condition=condition, printing=printing, price=price)
+        graded_price = grade(condition=card_condition, printing=printing, price=price)
         total = graded_price * quantity
         resubmitted_list.append(
             {
@@ -258,7 +255,7 @@ def check_buylist_order(request, buylist_number):
                 'name': name,
                 'expansion': expansion,
                 'printing': printing,
-                'condition': condition,
+                'condition': card_condition,
                 'language': language,
                 'quantity': quantity,
                 'price': graded_price,
@@ -275,6 +272,7 @@ def check_buylist_order(request, buylist_number):
     elif request.POST.get('await_customer_reply'):
         post_data = request.POST
         resubmitted_list = list()
+
         for i in range(len(post_data.getlist('name'))):
             name = post_data.getlist('name')[i]
             expansion = post_data.getlist('expansion')[i]
@@ -300,12 +298,12 @@ def check_buylist_order(request, buylist_number):
         total_price = round(total_price, 2)
 
         formatted_ordered_items = ordered_items_template(cart=resubmitted_list, total=total_price)
-        mailgun.send_mail(
+        '''mailgun.send_mail(
             subject=f'Update for Buylist {buylist_number}',
             recipient_list=order.email,
             message='Your buylist submission has been graded. Please approve or deny any changes. Once we receive your '
                     f'reply your buylist will be processed.\n\n{formatted_ordered_items}'
-        )
+        )'''
         make_status_change("Awaiting Email Reply")
 
     elif request.POST.get("submit_buylist"):
@@ -373,9 +371,10 @@ def check_buylist_order(request, buylist_number):
         string = format_cart_for_text_field_storage(
             cart=resubmitted_list, order_number=buylist_number, payment_type=payment_type, paypal_email=paypal_email, total_price=total_price,
         )
+
         order.buylist_order = string
         order.save()
-        # MTGUpload.objects.bulk_create(upload_list)
+        MTGUpload.objects.bulk_create(upload_list)
         message = ''
         if payment_type == 'store_credit':
             message = f'{total_price} has been credited to your account.'
@@ -393,13 +392,47 @@ def check_buylist_order(request, buylist_number):
             message=f'Your buylist submission has been completed. {message}'
         )
         make_status_change("completed")
-        messages.SUCCESS(request, f'Your buylist submission has been processed. {payment_type} ${total_price}.')
+
+        messages.success(request, f'Your buylist submission has been processed. {payment_type} ${total_price}.')
     else:
         pass
 
     context['order'] = order
     items = split_text_field_string_for_orders(string=order.buylist_order)
-    context['items'] = items[0]['items']
+
+    # Reformat orders dictionary so that each product's 'Foil' and 'Normal' printing appear on their respective row along with each condition and their
+    # quantities instead of each condition variant being on it's own row.
+    d = dict()
+    for item in items[0]['items']:
+        quantity = int(item['quantity'])
+
+        # Create sku based on printing and product_id in order to create no more than two rows per product
+        sku = item['printing'][0] + item['product_id']
+
+        # Check if sku already in dictionary, if not create it
+        if d.get(sku):
+            d[sku][item['condition']]['quantity'] += quantity
+            d[sku][item['condition']]['price'] = item['price']
+        else:
+            cl, pl, hp = 0, 0, 0
+            cl_price, pl_price, hp_price = 0, 0, 0
+            if item['condition'] == 'clean':
+                cl += quantity
+                cl_price = item['price']
+            elif item['condition'] == 'played':
+                pl += quantity
+                pl_price = item['price']
+            else:
+                hp += quantity
+                hp_price = item['price']
+
+            d[sku] = {
+                      "clean": {'quantity': cl, "price": cl_price},
+                      "played": {'quantity': pl, "price": pl_price},
+                      "heavily_played": {'quantity': hp, "price": hp_price},
+                      "data": item,
+            }
+
+    context['items'] = d.values()
 
     return render(request, template_name=template_name, context=context)
-

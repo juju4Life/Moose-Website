@@ -1,9 +1,12 @@
 {% extends 'home.html' %}
+{% load static %}
+
+{% block styles %}
+    <link type="text/css" rel="stylesheet" href="{% static 'custom_css/buylist_page.css' %}">
+{% endblock styles %}
 
 {% block content %}
-    <div class="row">
-        {% include 'query_sidebar.html' %}
-
+    <div class="col-sm-12">
         <div class="">
             <h4 class="title-font mb-3">VIEWING BUYIST</h4>
             <nav>
@@ -13,14 +16,15 @@
                         Buylist
                     </a>
 
+                    <a class="nav-item nav-link" id="nav-wishlist-tab" data-toggle="tab" href="#nav-wishlist" role="tab" aria-controls="nav-wishlist" aria-selected="false">
+                        Grading Guide
+                    </a>
+
                     <a class="nav-item nav-link" id="nav-instructions-tab" data-toggle="tab" href="#nav-instructions" role="tab"
                        aria-controls="nav-instructions"
                        aria-selected="false">
                         Instructions
                     </a>
-
-                    <a class="nav-item nav-link" id="nav-wishlist-tab" data-toggle="tab" href="#nav-wishlist" role="tab" aria-controls="nav-wishlist" aria-selected="false">
-                    None</a>
 
                     <a class="nav-item nav-link" id="nav-restock-tab" data-toggle="tab" href="#nav-restock" role="tab" aria-controls="nav-restock"
                        aria-selected="false">
@@ -37,17 +41,16 @@
             <div class="tab-content" id="nav-tabContent">
 
                 <!-- Main Profile Information -->
-
                 <div class="tab-pane fade show active" id="nav-buylist" role="tabpanel" aria-labelledby="nav-buylist-tab">
                     {% include 'buylist_tabs/buylist_data.html' %}
                 </div>
 
-                <div class="tab-pane fade" id="nav-instructions" role="tabpanel" aria-labelledby="nav-instructions-tab">
-                    Instructions
+                <div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab">
+                    {% include 'buylist_tabs/grading_guide.html' %}
                 </div>
 
-                <div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab">
-                    3
+                <div class="tab-pane fade" id="nav-instructions" role="tabpanel" aria-labelledby="nav-instructions-tab">
+                    {% include 'buylist_tabs/buylist_instructions.html' %}
                 </div>
 
                 <div class="tab-pane fade" id="nav-restock" role="tabpanel" aria-labelledby="nav-restock-tab">

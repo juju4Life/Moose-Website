@@ -2,16 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/engine/store_inventory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/tcg_reports.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buylist/templates/buylist_tabs/buylist_instructions.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buylist/templates/buylist_tabs/grading_guide.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/static/custom_css/buylist_page.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/grade_price_buylist_card.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/grade_price_buylist_card.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buylist/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/templates/buylist_confirm_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/templates/buylist_confirm_info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/templates/buylist.html" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/templates/buylist.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buylist/templates/check_buylist_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/templates/check_buylist_order.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buylist/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/sql_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/sql_query.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tcg/price_alogrithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/tcg/price_alogrithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/signals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/static/custom_js/get_cookie.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_js/get_cookie.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,29 +24,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="2762" />
-    <option name="height" value="1790" />
-  </component>
   <component name="ProjectId" id="1fHYk7zAlv4Z7eNRA9MIQAZDHRm" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -239,7 +230,8 @@
       <workItem from="1598212718863" duration="86772000" />
       <workItem from="1598892404760" duration="168443000" />
       <workItem from="1599870020175" duration="64400000" />
-      <workItem from="1600473093147" duration="2545000" />
+      <workItem from="1600473093147" duration="52411000" />
+      <workItem from="1601050956852" duration="26343000" />
     </task>
     <servers />
   </component>
