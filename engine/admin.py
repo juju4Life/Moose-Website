@@ -147,7 +147,7 @@ class MTGAdmin(ImportExportModelAdmin):
         ("name", "expansion", ),
         ("normal_buylist", "normal_buylist_price", "normal_buylist_max_quantity", ),
         ("foil_buylist", "foil_buylist_price", "foil_buylist_max_quantity", ),
-        ("sick_deal", "sick_deal_price", ),
+        ("sick_deal", "sick_deal_percentage", ),
         ("normal_hotlist", "normal_hotlist_price", ),
         ("foil_hotlist", "foil_hotlist_price", ),
         ("normal_clean_stock", "normal_clean_price", ),

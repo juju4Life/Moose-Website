@@ -1,5 +1,9 @@
-
+from customer.models import BasicProductInfo
 from django.db import models
+
+
+class SickDeal(BasicProductInfo):
+    price = models.IntegerField(default=0, verbose_name='Percentage Off')
 
 
 class BasicCardInfo(models.Model):
@@ -216,7 +220,7 @@ class MTG(BasicCardInfo):
     preorder = models.BooleanField(default=False)
     solid_color = models.CharField(max_length=255, default='')
     sick_deal = models.BooleanField(default=False)
-    sick_deal_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    sick_deal_percentage = models.IntegerField(default=0)
     normal_hotlist = models.BooleanField(default=False)
     normal_hotlist_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     foil_hotlist = models.BooleanField(default=False)

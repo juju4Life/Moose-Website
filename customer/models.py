@@ -6,6 +6,18 @@ from django.contrib.auth.models import User
 from simple_history.models import HistoricalRecords
 
 
+class BasicProductInfo(models.Model):
+    product_id = models.CharField(max_length=255, default='')
+    name = models.CharField(max_length=255, default='')
+    expansion = models.CharField(max_length=255, default='')
+    printing = models.CharField(max_length=255, default='')
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=None, null=True, blank=True)
+    image = models.CharField(max_length=255, default='no_image.png')
+
+    class Meta:
+        abstract = True
+
+
 class CustomerInfo(models.Model):
     name = models.CharField(max_length=255, default='')
     email = models.EmailField(max_length=200, default='')
