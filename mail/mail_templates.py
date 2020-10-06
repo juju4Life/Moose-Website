@@ -1,5 +1,4 @@
 
-
 def ordered_items_template(cart, total):
     items = [
         f"{i['printing']} | {i['language']} | {i['name']} | {i['expansion']} | Qty. {i['quantity']} | Price: ${i['price']} | Total: ${i['total']}"

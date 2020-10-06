@@ -2,11 +2,12 @@
 $(document).ready( function() {
     var $myForm = $(".add-to-cart-form");
     $myForm.submit( function( event ){
+
         event.preventDefault();
-        var $formData = $myForm.serialize();
-        var $thisURL = this.getAttribute("data-url") || window.location.href;
-        var inputList = $(this).serializeArray();
-        var data = {};
+        // var $formData = $myForm.serialize();
+        let $thisURL = this.getAttribute("data-url") || window.location.href;
+        let inputList = $(this).serializeArray();
+        let data = {};
 
         inputList.forEach( function( input ) {
             data[input.name] = input.value;
@@ -14,7 +15,7 @@ $(document).ready( function() {
         $.ajax({
             method: this.getAttribute("method"),
             url: $thisURL,
-            data: data,
+            data: JSON.stringify(data),
             success: handleSuccess,
             error: handleError,
         });
@@ -53,10 +54,10 @@ $(document).ready( function(){
     $myForm.submit( function( event ){
         event.preventDefault();
 
-        var $formData = $myForm.serialize();
-        var $thisURL = this.getAttribute("data-url") || window.location.href;
-        var inputList = $(this).serializeArray();
-        var data = {};
+        let $formData = $myForm.serialize();
+        let $thisURL = this.getAttribute("data-url") || window.location.href;
+        let inputList = $(this).serializeArray();
+        let data = {};
 
         inputList.forEach( function( input ) {
             data[input.name] = input.value;
@@ -119,10 +120,9 @@ $(document).ready( function(){
 
         function handleSuccess( data ){
             $('.loader-icon').fadeOut();
-            var id = "#" + data.id;
-            console.log(data);
+            let id = "#" + data.id;
              $( function() {
-                var tooltips = $( id ).tooltip({
+                const tooltips = $( id ).tooltip({
                   position: {
                     my: "right top",
                     at: "left+5 top-5",
@@ -136,11 +136,11 @@ $(document).ready( function(){
 
           } );
 
-        };
+        }
 
         function handleError( err ){
             console.log(err);
-        };
+        }
 
     });
 });

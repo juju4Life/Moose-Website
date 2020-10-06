@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core.management.base import BaseCommand
 from my_customs.decorators import report_error
 from my_customs.functions import set_offset
@@ -15,19 +17,16 @@ manifest = Manifest()
 class Command(BaseCommand):
     @report_error
     def handle(self, *args, **options):
+        cats = ["Magic the Gathering", ]
+        '''
         cats = ["Dragon Shield Card Sleeves", 'KMC Card Sleeves', 'Monster Protectors Card Sleeves', 'BCW Card Sleeves', 'Pirate Lab Card Sleeves',
                 "Player's Choice Card Sleeves", "Ultimate Guard Card Sleeves", "Ultra Pro Card Sleeves", "Dex Protection Card Sleeves", "Legion Premium "
                                                                                                                                         "Supplies Card "
                                                                                                                                         "Sleeves",
-                ]  # "Magic the Gathering",
+                ] 
+                '''
 
-        cats = ["Legion Premium Supplies Deck Box Accessories", "BCW Deck Boxes", "Dex Protection Deck Boxes", "Dragon Shield Deck Boxes",
-                "Pirate Lab Deck Boxes", "Ultimate Guard Deck Boxes", "Ultra Pro Deck Boxes", "Legion Premium Supplies Deck Boxes", "Monster Deck Boxes",
-                ]
-
-        print(len(cats))
         groups = GroupName.objects.filter(group_name__in=cats, added=False)
-        print(groups.count())
         for group in groups:
             category = group.category
             upload_list = list()
@@ -49,8 +48,10 @@ class Command(BaseCommand):
                         pass
 
                     if MTG.objects.filter(product_id=product_id).exists() is False:
+                        preorder = True if group.release_date < datetime.now() else False
 
                         if category == "Magic the Gathering":
+
                             upload_list.append(
                                 MTG(
                                     name=name,
@@ -58,6 +59,7 @@ class Command(BaseCommand):
                                     language='English',
                                     image_url=image,
                                     product_id=product_id,
+                                    preorder=preorder,
                                 )
                             )
 
@@ -75,17 +77,18 @@ class Command(BaseCommand):
                             )
 
                         count += 1
-                        print(count)
 
             # group_add_input = input('Changed Group Added to True?\n')
             # if group_add_input.lower() == 'yes':
+            '''
             if len(upload_list) > 0:
                 MTG.objects.bulk_create(upload_list)
                 group.added = True
                 group.save()
 
         # Add detailed card attributes
-        # add_info()
+        add_info()
+        '''
 
 
 

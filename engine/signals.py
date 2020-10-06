@@ -9,7 +9,7 @@ def manage_pages(instance, **kwargs):
     if instance.normal_buylist:
         pass
 
-    if instance.sick_deal and instance.sick_deal_price > 0:
+    if instance.sick_deal and instance.sick_deal_percentage> 0:
         item, created = SickDeal.objects.get_or_create(
             product_id=instance.product_id,
             name=instance.name,
@@ -17,7 +17,8 @@ def manage_pages(instance, **kwargs):
             printing='',
         )
 
-        item.price = instance.sick_deal_price
+        item.price = instance.sick_deal_percentage
+        item.save()
 
     # Non-foil Hotlist card
     if instance.normal_hotlist and instance.normal_hotlist_price > 0:

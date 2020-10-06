@@ -21,8 +21,13 @@ class Command(BaseCommand):
             for group_id in group_ids:
                 group = str(group_id['groupId'])
                 if current_groups.filter(group_id=group).exists() is False:
+
                     release_date = group_id['publishedOn']
-                    release_date = datetime.strptime(release_date, "%Y-%m-%dT%H:%M:%S")
+                    try:
+                        release_date = datetime.strptime(release_date, "%Y-%m-%dT%H:%M:%S")
+                    except ValueError:
+                        release_date = datetime.today()
+
                     new_group = GroupName(
                         group_id=group,
                         group_name=group_id['name'],

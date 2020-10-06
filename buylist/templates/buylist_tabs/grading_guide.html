@@ -1,37 +1,33 @@
 
 <div class="row">
     <p>
-       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis a enim nec elementum. Vivamus pellentesque placerat justo, sed dignissim augue rutrum in. Maecenas a quam at nulla egestas maximus eu in sem. Nullam sodales dolor id pulvinar egestas. Aenean cursus, ante at blandit hendrerit, diam justo porttitor neque, at efficitur massa mi et diam.
+       {{ grading_guide_instructions }}
     </p>
 </div>
 
 <div class="row">
+
     <div class="col-sm-3">
         <div class="main-title-wrap">
             <h2 class="title-font text-center">Clean</h2>
         </div>
-        <span>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis a enim nec elementum. Vivamus pellentesque placerat justo, sed
-            dignissim augue rutrum in.
-        </span>
+        <span>{{ buylist_clean_condition_text }}</span>
     </div>
 
     <div class="col-sm-3">
         <div class="main-title-wrap">
             <h2 class="title-font text-center">Played</h2>
         </div>
-        <span>orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis a enim nec elementum. Vivamus pellentesque placerat justo, sed
-            dignissim augue rutrum in.</span>
+        <span>{{ buylist_played_condition_text }}</span>
     </div>
 
-     <div class="col-sm-3">
+    <div class="col-sm-3">
         <div class="main-title-wrap">
             <h2 class="title-font text-center">Heavily Played</h2>
         </div>
-
-        <span>orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis a enim nec elementum. Vivamus pellentesque placerat justo, sed
-            dignissim augue rutrum in.</span>
+        <span>{{ buylist_heavily_played_condition_text }}</span>
     </div>
+
 </div>
 
 <hr>

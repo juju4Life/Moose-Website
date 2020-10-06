@@ -1,7 +1,7 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-
+<!--
 <script>
   $( function() {
     $( "#accordion" ).accordion({
@@ -208,12 +208,12 @@
     </div>
 </nav>
 
+-->
 
-<!-- Load autocomplete() function from jquery -->
-<script src="{% static 'custom_js/jquery_autocomplete.js' %}"></script>
 
-<!-- Load jqueryMultiFieldAutocomplete() function from jquery -->
-<script src="{% static 'custom_js/jquery_multi_autocomplete.js' %}"></script>
+<script src="{% static 'custom_js/jquery_autocomplete.js' %}">// Load autocomplete() function from jquery</script>
+
+<script src="{% static 'custom_js/jquery_multi_autocomplete.js' %}">// Load jqueryMultiFieldAutocomplete() function from jquery</script>
 
 <!-- Load jquery function for dialog box -->
 <script>jqueryDialogBox("#cmc-help-text", "#cmc-help-button");</script>

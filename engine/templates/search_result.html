@@ -5,15 +5,17 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'custom_css/search_result.css' %}">
 {% block content %}
+    <!--
     <div class="row">
             {% include 'query_sidebar.html' %}
-        <div>
+        <div> -->
 
             {% if advanced_query %}
                 <br>
                 <div style="" class="row">
                     <h4 style="color: rgba(0, 0, 0, 0.7);">Search Filters</h4>
-                </div>;
+                </div>
+
                 <div style="" class="row">
 
                     <table style="" class="nav-tabs nav-stacked table table-borderless table-responsive table-sm">
@@ -34,6 +36,7 @@
                         </tbody>
                     </table>
                 </div>
+
             {% endif %}
 
             {% if error == "empty query" %}

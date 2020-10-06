@@ -1,3 +1,5 @@
+{% load static %}
+
 <div class="">
     <table class="table table-sm">
         <tbody>
@@ -16,16 +18,17 @@
                             <td>${{ item.foil_buylist_price }}</td>
 
                         {% else %}
-                            <td>
-                                Normal
-                            </td>
+                            <td>Normal</td>
                             <td>${{ item.normal_buylist_price }}</td>
                         {% endif %}
 
                         <td></td>
                         <td>
-                            <form method="POST" action="{% url 'buylist_add_to_cart' item.product_id %}">
-                                {% csrf_token %}
+                            {% if each == '1' %}
+                                <form id="formToSubmit-{{ item.product_id }}-foil">
+                            {% else %}
+                                <form id="formToSubmit-{{ item.product_id }}-normal">
+                            {% endif %}
                                 <fieldset>
                                     <div class="input-group mb-3">
                                         <input type="hidden" name="name" value="{{ item.name }}">
@@ -33,13 +36,13 @@
                                         <input type="hidden" name="language" value="{{ item.language }}">
 
                                         {% if each == '1' %}
-                                            <input name="quantity" style="max-width: 25%;" type="number" class="form-control"
+                                            <input name="quantity" style="max-width: 25%;" type="number" class="form-control" value=0
                                                    aria-describedby="{{ item.product_id }}" max="{{ item.foil_buylist_max_quantity }}">
                                             <input type="hidden" name="printing" value="Foil">
                                             <input type="hidden" name="price" value="{{ item.foil_buylist_price }}">
                                             <input type="hidden" name="max_quantity" value="{{ item.foil_buylist_max_quantity }}">
                                         {% else %}
-                                            <input name="quantity" style="max-width: 25%;" type="number" class="form-control"
+                                            <input name="quantity" style="max-width: 25%;" type="number" class="form-control" value=0
                                                    aria-describedby="{{ item.product_id }}" max="{{ item.normal_buylist_max_quantity }}">
                                             <input type="hidden" name="printing" value="Normal">
                                             <input type="hidden" name="price" value="{{ item.normal_buylist_price }}">
@@ -56,7 +59,18 @@
 
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="k-{{ item.product_id }}">
-                                                    <button type="submit" class="btn-secondary"><i class="material-icons">add</i></button>
+
+                                                    {% if each == '1' %}
+                                                        <button type="submit" class="btn-secondary submit-button" value="{{ item.product_id }}"
+                                                                data-printing="foil" id="button-{{ item.product_id }}-Foil">
+                                                            <i class="material-icons">add</i>
+                                                        </button>
+                                                    {% else %}
+                                                        <button type="submit" class="btn-secondary submit-button" value="{{ item.product_id }}"
+                                                                data-printing="normal" id="button-{{ item.product_id }}-Normal">
+                                                            <i class="material-icons">add</i>
+                                                        </button>
+                                                    {% endif %}
                                                 </span>
                                             </div>
                                         </div>
@@ -70,3 +84,37 @@
         </tbody>
     </table>
 </div>
+
+{% block script %}
+<script src="{% static 'custom_js/get_cookie.js' %}"></script>
+<script>
+    $('.submit-button').click(function (event) {
+        event.preventDefault();
+        let cookie = getCookie('csrftoken')
+        let productId = this.value;
+        let printing = this.getAttribute('data-printing');
+        let formData = $(`#formToSubmit-${productId}-${printing}`).serializeArray();
+        let data = {};
+
+        formData.forEach( function (input) {
+            data[input.name] = input.value;
+        })
+        window.alert('Added to cart');
+        $.ajax({
+            url: `http://127.0.0.1:8000/buylist/add/${productId}/`,
+            type: 'POST',
+
+            headers: {
+                'X-CSRFTOKEN': cookie,
+            },
+
+            data: data,
+
+            success: function(data) {
+                console.log(data.id);
+                let id = "#" + data.id;
+            },
+        });
+    })
+</script>
+{% endblock script %}

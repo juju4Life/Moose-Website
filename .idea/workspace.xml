@@ -3,13 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/signals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layout/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/layout/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layout/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/layout/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mail/mail_templates.py" beforeDir="false" afterPath="$PROJECT_DIR$/mail/mail_templates.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,10 +20,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Python Script" />
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -226,7 +227,7 @@
       <workItem from="1598892404760" duration="168443000" />
       <workItem from="1599870020175" duration="64400000" />
       <workItem from="1600473093147" duration="52411000" />
-      <workItem from="1601050956852" duration="38499000" />
+      <workItem from="1601050956852" duration="125117000" />
     </task>
     <servers />
   </component>
@@ -283,10 +284,10 @@
       <screen x="0" y="0" width="1368" height="882" />
     </state>
     <state x="186" y="86" key="SettingsEditor/0.0.1368.882@0.0.1368.882" timestamp="1599693031977" />
-    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599701704171">
+    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1601329926558">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1368.882@0.0.1368.882" timestamp="1599701704171" />
+    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1368.882@0.0.1368.882" timestamp="1601329926558" />
     <state x="240" y="51" width="1338" height="731" key="dock-window-1" timestamp="1596556185316">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
@@ -295,10 +296,10 @@
       <screen x="0" y="0" width="1368" height="882" />
     </state>
     <state x="500" y="285" key="git4idea.ui.GitTagDialog/0.0.1368.882@0.0.1368.882" timestamp="1599693056359" />
-    <state x="356" y="195" width="672" height="678" key="search.everywhere.popup" timestamp="1599693050514">
+    <state x="357" y="196" width="672" height="678" key="search.everywhere.popup" timestamp="1601660991751">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state x="356" y="195" width="672" height="678" key="search.everywhere.popup/0.0.1368.882@0.0.1368.882" timestamp="1599693050514" />
+    <state x="357" y="196" width="672" height="678" key="search.everywhere.popup/0.0.1368.882@0.0.1368.882" timestamp="1601660991751" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

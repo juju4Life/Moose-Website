@@ -15,6 +15,8 @@ order_action = OrderAction()
 class GroupNameAdmin(ModelAdmin):
     ordering = ['category', 'group_name', ]
     search_fields = ['group_name', ]
+    list_display = ['group_name', 'category', 'release_date', ]
+    list_filter = ['category', ]
 
 
 #  ORDERS PAID ------------------------------------------------------------------------------------------ START
