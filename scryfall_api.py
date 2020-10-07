@@ -15,7 +15,10 @@ def get_image(product_id):
 def get_card_data(product_id):
     url = f'https://api.scryfall.com/cards/tcgplayer/{product_id}'
     r = requests.get(url)
-    return r.json()
+    try:
+        return r.json()
+    except ValueError:
+        return dict()
 
 
 def parse_scryfall_power_toughness(card_faces):

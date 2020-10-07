@@ -19,7 +19,7 @@ def add_info():
     for index, card in enumerate(cards):
         product_id = card.product_id
         scry = get_card_data(product_id)
-        if scry['object'] != 'error':
+        if scry and scry['object'] != 'error':
             layout = scry['layout']
 
             try:
@@ -172,7 +172,7 @@ def add_info():
                 raise Exception
 
         else:
-            print(card.name, card.expansion)
+            pass
 
 
 

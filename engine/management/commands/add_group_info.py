@@ -93,11 +93,3 @@ class Command(BaseCommand):
         add_info()
 
 
-
-
-
-
-
-
-
-
