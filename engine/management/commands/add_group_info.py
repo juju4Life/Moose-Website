@@ -1,4 +1,5 @@
 from datetime import datetime
+from pytz import timezone
 
 from django.core.management.base import BaseCommand
 from my_customs.decorators import report_error
@@ -15,9 +16,8 @@ manifest = Manifest()
 
 
 class Command(BaseCommand):
-    @report_error
+    # @report_error
     def handle(self, *args, **options):
-        cats = ["Magic the Gathering", ]
         '''
         cats = ["Dragon Shield Card Sleeves", 'KMC Card Sleeves', 'Monster Protectors Card Sleeves', 'BCW Card Sleeves', 'Pirate Lab Card Sleeves',
                 "Player's Choice Card Sleeves", "Ultimate Guard Card Sleeves", "Ultra Pro Card Sleeves", "Dex Protection Card Sleeves", "Legion Premium "
@@ -26,7 +26,8 @@ class Command(BaseCommand):
                 ] 
                 '''
 
-        groups = GroupName.objects.filter(group_name__in=cats, added=False)
+        groups = GroupName.objects.filter(category="Magic the Gathering", added=False)
+        print(groups.count())
         for group in groups:
             category = group.category
             upload_list = list()
@@ -48,7 +49,8 @@ class Command(BaseCommand):
                         pass
 
                     if MTG.objects.filter(product_id=product_id).exists() is False:
-                        preorder = True if group.release_date < datetime.now() else False
+
+                        preorder = True if group.release_date < datetime.now(timezone('EST')) else False
 
                         if category == "Magic the Gathering":
 
@@ -80,15 +82,16 @@ class Command(BaseCommand):
 
             # group_add_input = input('Changed Group Added to True?\n')
             # if group_add_input.lower() == 'yes':
-            '''
+
             if len(upload_list) > 0:
                 MTG.objects.bulk_create(upload_list)
-                group.added = True
-                group.save()
+                if group.release_date >= datetime.now(timezone('EST')):
+                    group.added = True
+                    group.save()
 
         # Add detailed card attributes
         add_info()
-        '''
+
 
 
 
