@@ -24,44 +24,6 @@ from users.tokens import account_activation_token
 mailgun = MailGun()
 
 
-def register(request):
-    if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            email = form.cleaned_data.get('email')
-            user = User.objects.get(email=email)
-            user.is_active = False
-            user.save()
-            mail_subject = 'Activate your account.'
-            current_site = get_current_site(request)
-            message = render_to_string('users/account_activation.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-
-            to_email = form.cleaned_data.get('email')
-            mailgun.send_mail(
-                recipient_list=to_email,
-                subject=mail_subject,
-                message=message
-            )
-
-            messages.warning(request, 'Please confirm your email address to complete the registration')
-            return redirect('login')
-            # messages.success(request, f'Account Created for {username}. You are now able to log in.')
-            # return redirect('login')
-        else:
-            pass  # messages.warning(request, '...')
-
-    else:
-        form = UserRegisterForm()
-        
-    return render(request, 'users/register.html', {'form': form})
-
-
 def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
@@ -77,94 +39,20 @@ def activate(request, uidb64, token):
         return HttpResponse('Activation link is invalid!')
 
 
-def user_login(request):
-    form = LoginForm(request.POST)
-    context = {'form': form}
+def make_password_change(request):
+    if request.method == "POST":
+        user = User.objects.get(email=request.POST.get("user_email"))
+        password1 = request.POST.get("new_password1")
+        # password2 = request.POST.get("new_password2")
 
-    if request.POST.get('user_login'):
-        if form.is_valid():
-
-            email = request.POST.get('email')
-            password = request.POST.get('password')
-            user = authenticate(email=email, password=password)
-            get_user = User.objects.get(email=email)
-            if get_user.is_staff:
-                return redirect("login")
-
-            elif get_user.is_active is False:
-                messages.warning(request, "Your account needs to be activated. Please use the account activation link in your email.")
-                return redirect("login")
-
-            else:
-                if user is not None:
-                    login(request, user)
-
-                    if request.GET.get('redirect-path'):
-                        return redirect(request.GET.get('redirect-path'))
-                    else:
-                        return redirect('profile')
-                else:
-                    messages.warning(request, 'Email and Password does not match.')
-                    return redirect('login')
-
-    return render(request, 'users/login.html', context)
-
-
-@login_required
-def restock_notification_change(request):
-    if request.GET.get("restock_notice_change"):
-        email = request.user.email
-        product_id = request.GET.get("restock_notice_change")
-        customer = Customer.objects.get(email=email)
-
-        foil = False
-        normal = False
-        clean = False
-        played = False
-        heavily_played = False
-
-        if request.GET.get("foil"):
-            foil = True
-        if request.GET.get("normal"):
-            normal = True
-        if request.GET.get("clean"):
-            clean = True
-        if request.GET.get("played"):
-            played = True
-        if request.GET.get("heavily_played"):
-            heavily_played = True
-
-        restock_item = customer.restock_list.get(product_id=product_id)
-        restock_item.foil = foil
-        restock_item.normal = normal
-        restock_item.clean = clean
-        restock_item.played = played
-        restock_item.heavily_played = heavily_played
-        restock_item.save()
-
-        return redirect("profile")
-
-    elif request.GET.get("delete_restock_notification"):
-        email = request.user.email
-        product_id = request.GET.get("delete_restock_notification")
-        customer = Customer.objects.get(email=email)
-        restock_item = customer.restock_list.get(product_id=product_id)
-        restock_item.delete()
-
-        return redirect("profile")
-
-    else:
-        return redirect("profile")
-
-
-@login_required
-def remove_wishlist_item(request):
-    if request.GET.get("remove"):
-        customer = Customer.objects.get(email=request.user.email)
-        product = request.GET.get("remove") + ","
-        customer.wishlist = customer.wishlist.replace(product, "")
-        customer.save()
-        return redirect("profile")
+        if password1:
+            user.set_password(password1)
+            user.save()
+            messages.success(request, "Your password has been changed successfully")
+            return redirect("login")
+        else:
+            messages.warning(request, "There was an error processing your request. Please ty again later")
+            return redirect("login")
 
 
 @login_required
@@ -384,6 +272,54 @@ def profile(request):
         user_form = None
 
 
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data.get('email')
+            user = User.objects.get(email=email)
+            user.is_active = False
+            user.save()
+            mail_subject = 'Activate your account.'
+            current_site = get_current_site(request)
+            message = render_to_string('users/account_activation.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+
+            to_email = form.cleaned_data.get('email')
+            mailgun.send_mail(
+                recipient_list=to_email,
+                subject=mail_subject,
+                message=message
+            )
+
+            messages.warning(request, 'Please confirm your email address to complete the registration')
+            return redirect('login')
+            # messages.success(request, f'Account Created for {username}. You are now able to log in.')
+            # return redirect('login')
+        else:
+            pass  # messages.warning(request, '...')
+
+    else:
+        form = UserRegisterForm()
+        
+    return render(request, 'users/register.html', {'form': form})
+
+
+@login_required
+def remove_wishlist_item(request):
+    if request.GET.get("remove"):
+        customer = Customer.objects.get(email=request.user.email)
+        product = request.GET.get("remove") + ","
+        customer.wishlist = customer.wishlist.replace(product, "")
+        customer.save()
+        return redirect("profile")
+
+
 def reset_password(request):
     context = dict()
     template_name = "users/password_reset_confirm.html"
@@ -441,19 +377,84 @@ def reset_password_change_form(request, uidb64, token):
     return render(request, template_name=template_name, context=context)
 
 
-def make_password_change(request):
-    if request.method == "POST":
-        user = User.objects.get(email=request.POST.get("user_email"))
-        password1 = request.POST.get("new_password1")
-        # password2 = request.POST.get("new_password2")
+@login_required
+def restock_notification_change(request):
+    if request.GET.get("restock_notice_change"):
+        email = request.user.email
+        product_id = request.GET.get("restock_notice_change")
+        customer = Customer.objects.get(email=email)
 
-        if password1:
-            user.set_password(password1)
-            user.save()
-            messages.success(request, "Your password has been changed successfully")
-            return redirect("login")
-        else:
-            messages.warning(request, "There was an error processing your request. Please ty again later")
-            return redirect("login")
+        foil = False
+        normal = False
+        clean = False
+        played = False
+        heavily_played = False
+
+        if request.GET.get("foil"):
+            foil = True
+        if request.GET.get("normal"):
+            normal = True
+        if request.GET.get("clean"):
+            clean = True
+        if request.GET.get("played"):
+            played = True
+        if request.GET.get("heavily_played"):
+            heavily_played = True
+
+        restock_item = customer.restock_list.get(product_id=product_id)
+        restock_item.foil = foil
+        restock_item.normal = normal
+        restock_item.clean = clean
+        restock_item.played = played
+        restock_item.heavily_played = heavily_played
+        restock_item.save()
+
+        return redirect("profile")
+
+    elif request.GET.get("delete_restock_notification"):
+        email = request.user.email
+        product_id = request.GET.get("delete_restock_notification")
+        customer = Customer.objects.get(email=email)
+        restock_item = customer.restock_list.get(product_id=product_id)
+        restock_item.delete()
+
+        return redirect("profile")
+
+    else:
+        return redirect("profile")
+
+
+def user_login(request):
+    form = LoginForm(request.POST)
+    context = {'form': form}
+
+    if request.POST.get('user_login'):
+        if form.is_valid():
+
+            email = request.POST.get('email')
+            password = request.POST.get('password')
+            user = authenticate(email=email, password=password)
+            get_user = User.objects.get(email=email)
+            if get_user.is_staff:
+                return redirect("login")
+
+            elif get_user.is_active is False:
+                messages.warning(request, "Your account needs to be activated. Please use the account activation link in your email.")
+                return redirect("login")
+
+            else:
+                if user is not None:
+                    login(request, user)
+
+                    if request.GET.get('redirect-path'):
+                        return redirect(request.GET.get('redirect-path'))
+                    else:
+                        return redirect('profile')
+                else:
+                    messages.warning(request, 'Email and Password does not match.')
+                    return redirect('login')
+
+    return render(request, 'users/login.html', context)
+
 
 

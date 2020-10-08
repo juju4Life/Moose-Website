@@ -28,10 +28,10 @@ class MTGDatabaseAdmin(admin.ModelAdmin):
 @admin.register(MTGUpload)
 class UploadAdmin(admin.ModelAdmin):
     search_fields = ["name", ]
-    list_display = ["name", "expansion", "normal_clean_stock", "normal_played_stock", "normal_heavily_played_stock",
-                    "foil_clean_stock", "foil_played_stock", "foil_heavily_played_stock", "date_time_created", "upload_status", ]
+    list_display = ["name", "expansion", "date_time_created", "upload_status", "normal_clean_stock", "normal_played_stock", "normal_heavily_played_stock",
+                    "foil_clean_stock", "foil_played_stock", "foil_heavily_played_stock", ]
     ordering = ["upload_status", "date_time_created", ]
-    list_filter = ["upload_status", ]
+    list_filter = ["upload_status", "date_time_created", ]
 
 
 @admin.register(MtgCardInfo)
@@ -140,7 +140,7 @@ class MTGAdmin(ImportExportModelAdmin):
     search_fields = ['name']
     list_display = ['name', 'expansion', 'language', "normal_clean_stock", "normal_clean_price", "normal_played_stock", "normal_played_price",
                     "normal_heavily_played_stock", "normal_heavily_played_price", ]
-    list_filter = ["expansion", ]
+    list_filter = ["preorder", "expansion", ]
     ordering = ["expansion", "name", ]
     readonly_fields = ["name", "expansion", ]
     fields = (

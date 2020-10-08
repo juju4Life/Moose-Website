@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from engine.models import MTG
 
 
 def validate_name(value):
@@ -39,3 +40,14 @@ def confirm_quantity_sync(value):
 
     else:
         pass
+
+
+def correct_expansion_spelling(expansion):
+    if MTG.objects.filter(expansion=expansion).exists():
+        pass
+    else:
+        raise ValidationError(
+            _('Name must be spelled exactly as it appears on tcgplayer.com'),
+        )
+
+

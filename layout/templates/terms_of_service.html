@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+<div class="col-sm-12">
+    <h4>{{ policy.title }}</h4>
+</div>
+
+<div class="col-sm-12">
+    <p>
+        {{ policy.overview }}
+    </p>
+</div>
+
+{% for block in policy_blocks %}
+    <div class="col-sm-12">
+        <h4>{{ block.header }}</h4>
+        <p>{{ block.paragraph }}</p>
+    </div>
+{% endfor %}
+
+<hr>
+
+<br>
+<div class="col-sm-12"><small>Document updated {{ policy.effective_date }}</small></div>
+
+{% endblock content %}

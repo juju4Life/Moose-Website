@@ -46,17 +46,19 @@
 </div>
 
 <div class="table-responsive">
-    <table style="color: rgb(80,80,80);" class="nav-tabs nav-stacked table table-hover table-sm">
+    <table style="color: rgb(80,80,80);" class="nav-tabs nav-stacked table table-hover table-sm w-100">
         <thead class="thead-inverse"></thead>
         <tbody>
-
             {% for item in items %}
                 <tr>
                     <td>
-                        <img class="img-thumbnail" style="max-height:200px;" src="{{ item.image_url }}">
+                        {% if item.image_url %}
+                            <img alt="Image of {{ item.name }}" class="img-thumbnail" style="max-height:200px;" src="{{ item.image_url }}">
+                        {% else %}
+                            <img alt="Image of {{ item.name }}" class="img-thumbnail" style="max-height:200px;" src="{% static 'img/no_image.png' %}">
+                        {% endif %}
                         <div id="imgbox"></div>
                     </td>
-
                     <td>
                         <div class="hidden-dialog" id="card-info-text-{{ item.product_id }}" title="{{ item.name }}">
                             <table class="card-info-popup-table table-responsive">
@@ -121,7 +123,6 @@
                                             <td>{{ item.color_identity }}</td>
                                         </tr>
                                     {% endif %}
-
                                 </tbody>
                             </table>
 

@@ -45,7 +45,7 @@
                         </div>
                         {% for article in daily_mtg_articles %}
                             <div class="col-sm-12">
-                                <a href="magic.wizards.com{{ article.link }}" id="article-{{ article.id }}">{{ article.title }}</a> <br>
+                                <a href="https://magic.wizards.com{{ article.link }}" id="article-{{ article.id }}">{{ article.title }}</a> <br>
                                 <label for="article-{{ article.id }}">{{ article.published_date }}</label>
                             </div>
                         {% endfor %}
@@ -57,11 +57,24 @@
                             <h2 class="text-center title-font">Preorders</h2>
                         </div>
                         <div style="overflow-y: scroll; max-height: 400px;">
-                            {% cloudinary main_slide.image class='img-thumbnail img-fluid' %}
-                            {% cloudinary main_slide.image class='img-thumbnail img-fluid' %}
-                            {% cloudinary main_slide.image class='img-thumbnail img-fluid' %}
-                            {% cloudinary main_slide.image class='img-thumbnail img-fluid' %}
-                            {% cloudinary main_slide.image class='img-thumbnail img-fluid' %}
+                            {% for preorder in preorders %}
+
+                                <form method="GET" action="{% url 'search' %}">
+                                    <p>
+                                        <button style="background: none; border: none; color: #0000EE;" type="submit">
+                                            <u>{{ preorder.expansion.group_name }}</u>
+                                        </button>
+                                        <br>
+                                        {{ preorder.expansion.release_date }}
+                                    </p>
+                                    <button style="background: none; border: none;" type="submit">
+                                        {% cloudinary preorder.image class='img-thumbnail img-fluid' %}
+                                    </button>
+                                    <input type="hidden" name="preorder" value="{{ preorder.expansion.group_name }}">
+                                </form>
+
+                            {% endfor %}
+
                         </div>
                     </div>
                 </div>
@@ -115,6 +128,68 @@
         </div>
     </div>
 
-{% endif %}
+    <!-- Footer Start -->
+    <div class="row pt-5" style="background-color: rgba(52, 58, 64, 1); color: white;">
+        <div class="col-sm-2">
+            <header>Shop <i class="material-icons">shop</i></header>
+            <ul>
+                <li><a href="#">Sick Deals</a></li>
+                <li><a href="#">Preorders</a></li>
+                <li><a href="#">Singles</a></li>
+            </ul>
+        </div>
 
+        <div class="col-sm-2">
+            <header>Trade <i class="material-icons">shop_two</i></header>
+            <ul>
+                <li><a href="#">Hotlist</a></li>
+                <li><a href="{% url 'buylist' %}">Full Buylist</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-2">
+            <header>Account <i class="material-icons">account_box</i></header>
+            <ul>
+                <li><a href="#">Order History</a></li>
+                <li><a href="#">Buylist History</a></li>
+                <li><a href="#">Wishlist</a></li>
+                <li><a href="#">Restock Alerts</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-2">
+            <header>Social Media <i class="material-icons">person_add</i></header>
+            <ul>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="https://www.facebook.com/MTGFirstGameCenter/">Facebook</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-2">
+            <header>About Us <i class="material-icons">emoji_people</i></header>
+            <ul>
+                <li><a href="{% url 'about_us' %}">Our Story</a></li>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
+                <li><a href="{% url 'terms_of_service' %}">Terms of Service</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-2">
+            <p>
+                {{ address.company }} <br>
+                {{ address.address_line_1 }} <br>
+
+                {% if address.address_line_2 %}
+                    {{ address.address_line_2 }} <br>
+                {% endif %}
+
+                {{ address.city }}, {{ address.state }} {{ address.zip_code }} <br>
+                {{ address.phone }} <br>
+            </p>
+        </div>
+    </div>
+
+{% endif %}
 {% endblock %}
+

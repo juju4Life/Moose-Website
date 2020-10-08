@@ -27,12 +27,10 @@ class Command(BaseCommand):
                 '''
 
         groups = GroupName.objects.filter(category="Magic the Gathering", added=False)
-        print(groups.count())
         for group in groups:
             category = group.category
             upload_list = list()
             expansion = group.group_name
-            print(f"Adding {expansion}")
             count = 0
             cards = set_offset(func=api.get_set_data, group_id=group.group_id)
             if cards is not None:
@@ -50,7 +48,7 @@ class Command(BaseCommand):
 
                     if MTG.objects.filter(product_id=product_id).exists() is False:
 
-                        preorder = True if group.release_date < datetime.now(timezone('EST')) else False
+                        preorder = True if group.release_date > datetime.now(timezone('EST')) else False
 
                         if category == "Magic the Gathering":
 
@@ -85,7 +83,7 @@ class Command(BaseCommand):
 
             if len(upload_list) > 0:
                 MTG.objects.bulk_create(upload_list)
-                if group.release_date >= datetime.now(timezone('EST')):
+                if group.release_date <= datetime.now(timezone('EST')):
                     group.added = True
                     group.save()
 
