@@ -91,14 +91,15 @@ def buylist_page(request):
 
     if query:
         results = MTG.objects.filter(name=query)
-        pages = pagination(request, results, 20)
-        context['items'] = pages[0]
-        context['page_range'] = pages[1]
+    elif request.session['temp_data'] == 'hotlist':
+        results = MTG.objects.filter(Q(normal_hotlist=True) | Q(foil_hotlist=True))
     else:
         results = MTG.objects.filter(normal_buylist=True, foil_buylist=True)
-        pages = pagination(request, results, 20)
-        context["items"] = pages[0]
-        context["page_range"] = pages[1]
+
+    pages = pagination(request, results, 10)
+    context['items'] = pages[0]
+    context['page_range'] = pages[1]
+
     context['form'] = form
     return render(request, template_name=template_name, context=context)
 
@@ -426,6 +427,11 @@ def get_cart(request):
     length = cart.cart_length
     sub_total = cart.total_price
     return render(request, 'buylist_cart.html', {'cart': cart, 'length': length, 'sub_total': sub_total})
+
+
+def hotlist(request):
+    request.GET = {"q": "hotlist"}
+    return redirect("buylist")
 
 
 def remove_from_cart(request, product_id):

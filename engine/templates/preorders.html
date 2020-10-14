@@ -1,0 +1,38 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+    <div class="row mt-1">
+        <div class="">
+            <form id="myForm" method="GET" action="{% url 'preorders' %}">
+                <label for="expansion-select">Filter Available Preorders</label>
+                <select id="expansion-select" onchange="newQuery()" name="q">
+                    {% for expansion in expansions %}
+                        <option value="{{ expansion.group_name }}">{{ expansion.group_name }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+        <div class="offset-1">
+            <h4 class="">{{ current }} - Releases {{ release_date }}</h4>
+        </div>
+    </div>
+
+    {% include 'main_product_data.html' %}
+
+{% endblock content %}
+
+{% block script %}
+<script>
+    function newQuery() {
+        document.getElementById('myForm').submit();
+    }
+
+    let option = "{{ current }}";
+    $('#expansion-select').val(option);
+</script>
+
+{% endblock script %}
+
+
+

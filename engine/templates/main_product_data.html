@@ -4,7 +4,11 @@
 <script src="{% static 'custom_js/search_condition_tab.js' %}"></script>
 
 <div class="row">
-    <div class="col-sm-1 offset-sm-8">
+    <div style="color: rgba(0, 0, 0, 0.6);" class="col-sm-3">Viewing {{ items.start_index }}-{{ items.end_index }} of
+        {{ items.paginator.count }} results
+    </div>
+
+    <div class="col-sm-1 offset-sm-5">
         <div class="dropdown">
             <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown"
                     aria-haspopup="true"
@@ -140,6 +144,10 @@
                             <a href="javascript: void(0)" id="card-info-button-{{ item.product_id }}">
                                 <span>{{ item.name }}</span>
                             </a>
+
+                            {% if item.preorder %}
+                            &nbsp;<span style="background-color: yellow;">This item does no ship until after it's release</span>
+                            {% endif %}
                         </div>
 
                         <script>
@@ -193,15 +201,14 @@
 
                         {% endif %}
 
-
                     </td>
-
-
 
                     {% if item.mana_cost %}
                         <td>
                             <div class="search-page-mana-cost" data-value="{{ item.mana_cost_encoded }}"></div>
                         </td>
+                    {% else %}
+                        <td></td>
                     {% endif %}
 
                     <td>{{item.card_type}}</td>

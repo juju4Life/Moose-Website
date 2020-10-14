@@ -49,12 +49,6 @@
     {% else %}
         <br>
 
-        <div class="row">
-            <div style="color: rgba(0, 0, 0, 0.6);" class="col-sm-3">Viewing {{ items.start_index }}-{{ items.end_index }} of
-                {{ items.paginator.count }} results
-            </div>
-        </div>
-
         {% include 'main_product_data.html' %}
 
     {% endif %}

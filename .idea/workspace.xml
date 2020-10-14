@@ -2,23 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/layout/templates/about_us.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layout/templates/privacy_policy.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layout/templates/terms_of_service.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buylist/hotlist.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/data_query.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/templates/preorders.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/templates/sick_deals.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/add_group_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/add_group_info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/templates/buylist_tabs/buylist_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/templates/buylist_tabs/buylist_data.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/static/custom_js/search_condition_tab.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_js/search_condition_tab.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/templates/main_product_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/main_product_data.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/privacy-policy.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/templates/search_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/search_result.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layout/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/layout/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layout/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/layout/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layout/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/layout/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layout/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/layout/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validators/model_validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/validators/model_validators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layout/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/layout/signals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +29,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="Python Script" />
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -60,19 +60,19 @@
     <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jermo\website\Goat\engine\templates" />
+      <recent name="C:\Users\jermo\website\Goat\engine\static\img" />
+      <recent name="C:\Users\jermo\website\Goat\users\templates\users" />
+      <recent name="C:\Users\jermo\website\Goat" />
+      <recent name="C:\Users\jermo\website\Goat\ppal" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jermo\website\Goat\engine\templates" />
       <recent name="C:\Users\jermo\website\Goat\ppal" />
       <recent name="C:\Users\jermo\website\Goat" />
       <recent name="C:\Users\jermo\website\Goat\other" />
       <recent name="C:\Users\jermo\Goat\my_customs" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\jermo\website\Goat\engine\static\img" />
-      <recent name="C:\Users\jermo\website\Goat\users\templates\users" />
-      <recent name="C:\Users\jermo\website\Goat" />
-      <recent name="C:\Users\jermo\website\Goat\ppal" />
-      <recent name="C:\Users\jermo\website\Goat\users\templates\users\profile_tabs" />
     </key>
   </component>
   <component name="RunManager" selected="Python.manage">
@@ -236,7 +236,8 @@
       <workItem from="1599870020175" duration="64400000" />
       <workItem from="1600473093147" duration="52411000" />
       <workItem from="1601050956852" duration="150775000" />
-      <workItem from="1602118920016" duration="17986000" />
+      <workItem from="1602118920016" duration="55609000" />
+      <workItem from="1602546297662" duration="10201000" />
     </task>
     <servers />
   </component>

@@ -2,10 +2,6 @@ from customer.models import BasicProductInfo
 from django.db import models
 
 
-class SickDeal(BasicProductInfo):
-    price = models.IntegerField(default=0, verbose_name='Percentage Off')
-
-
 class BasicCardInfo(models.Model):
     name = models.CharField(max_length=255, default='', verbose_name='name', db_index=True)
     expansion = models.CharField(max_length=255, default='', db_index=True)
@@ -25,50 +21,6 @@ class BasicCardInfo(models.Model):
 
     class Meta:
         abstract = True
-
-
-class MTGDatabase(models.Model):
-    name = models.CharField(max_length=255, default='', db_index=True)
-    expansion = models.CharField(max_length=255, default='', db_index=True)
-    sku = models.CharField(max_length=255, default='', unique=True)
-    product_id = models.CharField(max_length=255, default='')
-    printing = models.CharField(max_length=255, default='')
-    condition = models.CharField(max_length=255, default='')
-    language = models.CharField(max_length=255, default='')
-    stock = models.IntegerField(default=0)
-    price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-
-    def __string__(self):
-        return self.name
-
-
-class StateInfo(models.Model):
-    name = models.CharField(max_length=255, default='')
-    abbreviation = models.CharField(max_length=2, default='')
-    state_tax_rate = models.DecimalField(max_digits=12, decimal_places=5, default=0)
-    local_tax_rate = models.DecimalField(max_digits=12, decimal_places=5, default=0)
-
-    def __str__(self):
-        return self.name
-
-
-class MTGUpload(BasicCardInfo):
-    upload_status = models.BooleanField(default=False)
-    date_time_created = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
-
-
-class DailyMtgNews(models.Model):
-    title = models.CharField(max_length=255, default='')
-    link = models.URLField(default='')
-    description = models.TextField(default='')
-    published_date = models.CharField(max_length=255, default='')
-    creator = models.CharField(max_length=255, default='')
-
-    def __str__(self):
-        return self.title
 
 
 class CardPriceData(models.Model):
@@ -97,6 +49,39 @@ class CardPriceData(models.Model):
     sell_to = models.CharField(max_length=255, default='')
     best_net = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
     updated = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+
+class DailyMtgNews(models.Model):
+    title = models.CharField(max_length=255, default='')
+    link = models.URLField(default='')
+    description = models.TextField(default='')
+    published_date = models.CharField(max_length=255, default='')
+    creator = models.CharField(max_length=255, default='')
+
+    def __str__(self):
+        return self.title
+
+
+class DirectData(models.Model):
+    name = models.CharField(max_length=255, default='')
+    expansion = models.CharField(max_length=255, default='')
+    condition = models.CharField(max_length=255, default='')
+    language = models.CharField(max_length=255, default='English')
+    foil = models.BooleanField()
+    sku = models.CharField(max_length=255, default='')
+    product_id = models.CharField(max_length=255, default='')
+    consecutive_days_non_direct = models.IntegerField(default=1)
+    total_days_non_direct = models.IntegerField(default=1)
+    last_add = models.DateField(verbose_name="Last Non-direct Date")
+    last_consecutive_run = models.IntegerField(default=1)
+    days_non_direct = models.IntegerField(default=1)
+    in_stock = models.BooleanField(default=False)
+    current_price = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
+    market = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
+    low = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
 
     def __str__(self):
         return self.name
@@ -142,56 +127,6 @@ class MooseInventory(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class TcgGroupPrice(models.Model):
-    product_id = models.CharField(max_length=255, default='')
-    name = models.CharField(max_length=255, default='')
-    expansion = models.CharField(max_length=255, default='')
-    printing = models.CharField(max_length=255, default='')
-    low_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    mid_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    market_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    high_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    direct_low_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    is_direct = models.BooleanField(default=False)
-    price_history = models.TextField(default='')
-
-    def __str__(self):
-        return self.name
-
-
-class DirectData(models.Model):
-    name = models.CharField(max_length=255, default='')
-    expansion = models.CharField(max_length=255, default='')
-    condition = models.CharField(max_length=255, default='')
-    language = models.CharField(max_length=255, default='English')
-    foil = models.BooleanField()
-    sku = models.CharField(max_length=255, default='')
-    product_id = models.CharField(max_length=255, default='')
-    consecutive_days_non_direct = models.IntegerField(default=1)
-    total_days_non_direct = models.IntegerField(default=1)
-    last_add = models.DateField(verbose_name="Last Non-direct Date")
-    last_consecutive_run = models.IntegerField(default=1)
-    days_non_direct = models.IntegerField(default=1)
-    in_stock = models.BooleanField(default=False)
-    current_price = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
-    market = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
-    low = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
-
-    def __str__(self):
-        return self.name
-
-
-class MtgCardInfo(models.Model):
-    name = models.CharField(max_length=255, default='')
-    card_identifier = models.CharField(max_length=255, default='')
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        ordering = ["name", ]
 
 
 class MTG(BasicCardInfo):
@@ -241,8 +176,75 @@ class MTG(BasicCardInfo):
         ordering = ['name', ]
 
 
+class MtgCardInfo(models.Model):
+    name = models.CharField(max_length=255, default='')
+    card_identifier = models.CharField(max_length=255, default='')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["name", ]
+
+
+class MTGDatabase(models.Model):
+    name = models.CharField(max_length=255, default='', db_index=True)
+    expansion = models.CharField(max_length=255, default='', db_index=True)
+    sku = models.CharField(max_length=255, default='', unique=True)
+    product_id = models.CharField(max_length=255, default='')
+    printing = models.CharField(max_length=255, default='')
+    condition = models.CharField(max_length=255, default='')
+    language = models.CharField(max_length=255, default='')
+    stock = models.IntegerField(default=0)
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+
+    def __string__(self):
+        return self.name
+
+
+class MTGUpload(BasicCardInfo):
+    upload_status = models.BooleanField(default=False)
+    date_time_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+
+class SickDeal(BasicProductInfo):
+    price = models.IntegerField(default=0, verbose_name='Percentage Off')
+
+
+class StateInfo(models.Model):
+    name = models.CharField(max_length=255, default='')
+    abbreviation = models.CharField(max_length=2, default='')
+    state_tax_rate = models.DecimalField(max_digits=12, decimal_places=5, default=0)
+    local_tax_rate = models.DecimalField(max_digits=12, decimal_places=5, default=0)
+
+    def __str__(self):
+        return self.name
+
+
 class TcgCredentials(models.Model):
     name = models.CharField(max_length=20, default='', blank=True)
     token = models.TextField(default='')
+
+
+class TcgGroupPrice(models.Model):
+    product_id = models.CharField(max_length=255, default='')
+    name = models.CharField(max_length=255, default='')
+    expansion = models.CharField(max_length=255, default='')
+    printing = models.CharField(max_length=255, default='')
+    low_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    mid_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    market_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    high_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    direct_low_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    is_direct = models.BooleanField(default=False)
+    price_history = models.TextField(default='')
+
+    def __str__(self):
+        return self.name
+
+
 
 

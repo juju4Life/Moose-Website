@@ -1,5 +1,11 @@
 {% load static %}
-
+<div class="row mt-1">
+    <div style="color: rgba(0, 0, 0, 0.6);" class="col-sm-3">
+        Viewing {{ items.start_index }}-{{ items.end_index }} of {{ items.paginator.count }} results
+    </div>
+    <div class="col-sm-7"></div>
+    <div class="col-sm-2">{% include 'pagination.html' %}</div>
+</div>
 <div class="">
     <table class="table table-sm">
         <tbody>

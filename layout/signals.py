@@ -25,3 +25,13 @@ def changing_printing_value(instance, **kwargs):
         cards.update(foil_only=False)
 
 
+@receiver(post_save, sender='layout.PreorderItem', dispatch_uid='update MTG preorders')
+def update_preorder_status(instance, **kwargs):
+    if kwargs['created']:
+        from engine.models import MTG
+        cards = MTG.objects.filter(expansion=instance.expansion.group_name)
+        cards.update(preorder=True)
+
+
+
+

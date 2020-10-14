@@ -89,131 +89,130 @@ function createConditionTableRow(condition, printing, stock, price, productId, n
         row.appendChild(tdRestockNotice);
     } else {
         tdSpan = document.createElement("span");
-    tdSpan.setAttribute("style", "color: rgba(0, 0, 0, .4);");
-    tdSpanText = document.createTextNode(printing);
-    tdSpan.appendChild(tdSpanText);
-
-    td.appendChild(tdSpan);
-    row.appendChild(td);
-
-    // Create form with price and quantity if item quantity > 0
-    if ( stock > 0 && price > 0 ){
-
-        var tdPrice = document.createElement("td");
-        var tdPriceSpan = document.createElement("span");
-        tdPriceSpan.setAttribute("class", "mr-1");
-        var tdPriceSpanText = document.createTextNode(`$${price} ` + '| ' + `qty. ${stock}`);
-        tdPriceSpan.appendChild(tdPriceSpanText);
-        tdPrice.appendChild(tdPriceSpan);
-        row.appendChild(tdPrice);
-
-        // Row Form Data
-        var tdForm = document.createElement("td");
-        var form = document.createElement("form");
-        form.setAttribute("method", "POST");
-        form.setAttribute("class", "add-to-cart-form");
-        form.setAttribute("data-url", `cart/add/${productId}`);
-
-        // Get csrf token
-        var csrfToken = getCookie("csrftoken");
-        var inputElem = document.createElement('input');
-        inputElem.type = 'hidden';
-        inputElem.name = 'csrfmiddlewaretoken';
-        inputElem.value = csrfToken;
-        form.appendChild(inputElem);
-
-        var formDiv = document.createElement('div');
-        formDiv.setAttribute("class", "form-box");
-
-        var formInput = document.createElement("input");
-        formInput.setAttribute("class", "mr-1");
-        formInput.setAttribute("size", 2);
-        formInput.setAttribute("type", "number");
-        formInput.setAttribute("name", "quantity");
-        formInput.setAttribute("min", "1");
-        formInput.setAttribute("max", stock);
-        formDiv.appendChild(formInput);
-
-        var printingInput = document.createElement("input");
-        printingInput.setAttribute("type", "hidden");
-        printingInput.setAttribute("name", "printing");
-        printingInput.setAttribute("value", printing);
-        form.appendChild(printingInput);
-
-        var conditionInput = document.createElement("input");
-        conditionInput.setAttribute("type", "hidden");
-        conditionInput.setAttribute("name", "condition");
-        conditionInput.setAttribute("value", condition);
-        form.appendChild(conditionInput);
-
-        var priceInput = document.createElement("input");
-        priceInput.setAttribute("type", "hidden");
-        priceInput.setAttribute("name", "price");
-        priceInput.setAttribute("value", price);
-        form.appendChild(priceInput);
-
-        var nameInput = document.createElement("input");
-        nameInput.setAttribute("type", "hidden");
-        nameInput.setAttribute("name", "name");
-        nameInput.setAttribute("value", name);
-        form.appendChild(nameInput);
-
-        var setInput = document.createElement("input");
-        setInput.setAttribute("type", "hidden");
-        setInput.setAttribute("name", "expansion");
-        setInput.setAttribute("value", expansion);
-        form.appendChild(setInput);
-
-        var languageInput = document.createElement("input");
-        languageInput.setAttribute("type", "hidden");
-        languageInput.setAttribute("name", "language");
-        languageInput.setAttribute("value", language);
-        form.appendChild(languageInput);
-
-        var maxQuantityInput = document.createElement("input");
-        maxQuantityInput.setAttribute("type", "hidden");
-        maxQuantityInput.setAttribute("name", "max_quantity");
-        maxQuantityInput.setAttribute("value", stock);
-        form.appendChild(maxQuantityInput);
-
-        var formButton = document.createElement("button");
-        formButton.setAttribute("class", "btn btn-success btn-sm mr-1");
-        formButton.setAttribute("type", "submit");
-        formButton.setAttribute("id", `add-to-cart-${printing}-${condition}-${productId}`);
-        formButton.setAttribute("title", "");
-        var buttonIcon1 = document.createElement("i");
-        buttonIcon1.setAttribute("class", "material-icons");
-        buttonIcon1Text = document.createTextNode('add');
-        buttonIcon1.appendChild(buttonIcon1Text);
-        formButton.appendChild(buttonIcon1);
-        var buttonIcon2 = document.createElement("i");
-        buttonIcon2.setAttribute("class", "material-icons");
-        buttonIcon2Text = document.createTextNode('shopping_cart');
-        buttonIcon2.appendChild(buttonIcon2Text);
-        formButton.appendChild(buttonIcon2);
-        formDiv.appendChild(formButton);
-        form.appendChild(formDiv);
-        form.appendChild(formDiv);
-        tdForm.appendChild(form);
-        row.appendChild(tdForm);
-
-    } else{
-
-        var tdOutOfStock = document.createElement("td");
-        var tdSpan = document.createElement("span");
-        tdSpanText = document.createTextNode("Out of Stock");
+        tdSpan.setAttribute("style", "color: rgba(0, 0, 0, .4);");
+        tdSpanText = document.createTextNode(printing);
         tdSpan.appendChild(tdSpanText);
-        tdOutOfStock.appendChild(tdSpan);
-        row.appendChild(tdOutOfStock);
+
+        td.appendChild(tdSpan);
+        row.appendChild(td);
+
+        // Create form with price and quantity if item quantity > 0
+        if ( stock > 0 && price > 0 ){
+            const tdPrice = document.createElement("td");
+            var tdPriceSpan = document.createElement("span");
+            tdPriceSpan.setAttribute("class", "mr-1");
+            var tdPriceSpanText = document.createTextNode(`$${price} ` + '| ' + `qty. ${stock}`);
+            tdPriceSpan.appendChild(tdPriceSpanText);
+            tdPrice.appendChild(tdPriceSpan);
+            row.appendChild(tdPrice);
+
+            // Row Form Data
+            var tdForm = document.createElement("td");
+            var form = document.createElement("form");
+            form.setAttribute("method", "POST");
+            form.setAttribute("class", "add-to-cart-form");
+            form.setAttribute("data-url", `cart/add/${productId}`);
+
+            // Get csrf token
+            var csrfToken = getCookie("csrftoken");
+            var inputElem = document.createElement('input');
+            inputElem.type = 'hidden';
+            inputElem.name = 'csrfmiddlewaretoken';
+            inputElem.value = csrfToken;
+            form.appendChild(inputElem);
+
+            var formDiv = document.createElement('div');
+            formDiv.setAttribute("class", "form-box");
+
+            var formInput = document.createElement("input");
+            formInput.setAttribute("class", "mr-1");
+            formInput.setAttribute("size", 2);
+            formInput.setAttribute("type", "number");
+            formInput.setAttribute("name", "quantity");
+            formInput.setAttribute("min", "1");
+            formInput.setAttribute("max", stock);
+            formDiv.appendChild(formInput);
+
+            var printingInput = document.createElement("input");
+            printingInput.setAttribute("type", "hidden");
+            printingInput.setAttribute("name", "printing");
+            printingInput.setAttribute("value", printing);
+            form.appendChild(printingInput);
+
+            var conditionInput = document.createElement("input");
+            conditionInput.setAttribute("type", "hidden");
+            conditionInput.setAttribute("name", "condition");
+            conditionInput.setAttribute("value", condition);
+            form.appendChild(conditionInput);
+
+            var priceInput = document.createElement("input");
+            priceInput.setAttribute("type", "hidden");
+            priceInput.setAttribute("name", "price");
+            priceInput.setAttribute("value", price);
+            form.appendChild(priceInput);
+
+            var nameInput = document.createElement("input");
+            nameInput.setAttribute("type", "hidden");
+            nameInput.setAttribute("name", "name");
+            nameInput.setAttribute("value", name);
+            form.appendChild(nameInput);
+
+            var setInput = document.createElement("input");
+            setInput.setAttribute("type", "hidden");
+            setInput.setAttribute("name", "expansion");
+            setInput.setAttribute("value", expansion);
+            form.appendChild(setInput);
+
+            var languageInput = document.createElement("input");
+            languageInput.setAttribute("type", "hidden");
+            languageInput.setAttribute("name", "language");
+            languageInput.setAttribute("value", language);
+            form.appendChild(languageInput);
+
+            var maxQuantityInput = document.createElement("input");
+            maxQuantityInput.setAttribute("type", "hidden");
+            maxQuantityInput.setAttribute("name", "max_quantity");
+            maxQuantityInput.setAttribute("value", stock);
+            form.appendChild(maxQuantityInput);
+
+            var formButton = document.createElement("button");
+            formButton.setAttribute("class", "btn btn-success btn-sm mr-1");
+            formButton.setAttribute("type", "submit");
+            formButton.setAttribute("id", `add-to-cart-${printing}-${condition}-${productId}`);
+            formButton.setAttribute("title", "");
+            var buttonIcon1 = document.createElement("i");
+            buttonIcon1.setAttribute("class", "material-icons");
+            buttonIcon1Text = document.createTextNode('add');
+            buttonIcon1.appendChild(buttonIcon1Text);
+            formButton.appendChild(buttonIcon1);
+            var buttonIcon2 = document.createElement("i");
+            buttonIcon2.setAttribute("class", "material-icons");
+            buttonIcon2Text = document.createTextNode('shopping_cart');
+            buttonIcon2.appendChild(buttonIcon2Text);
+            formButton.appendChild(buttonIcon2);
+            formDiv.appendChild(formButton);
+            form.appendChild(formDiv);
+            form.appendChild(formDiv);
+            tdForm.appendChild(form);
+            row.appendChild(tdForm);
+
+        } else{
+
+            var tdOutOfStock = document.createElement("td");
+            var tdSpan = document.createElement("span");
+            tdSpanText = document.createTextNode("Out of Stock");
+            tdSpan.appendChild(tdSpanText);
+            tdOutOfStock.appendChild(tdSpan);
+            row.appendChild(tdOutOfStock);
 
 
-    };
+        }
 
-    };
+    }
 
 
     return row
-};
+}
 
 function createConditionTab(condition, conditionAbbreviation, normalStock, foilStock, productId, is_active){
     var li = document.createElement("li");

@@ -72,3 +72,12 @@
 </div>
 
 {% endblock %}
+
+{% block script %}
+<script>
+	let url = window.location.href;
+	let activeTab = url.substring(url.indexOf("#") + 1);
+	//$('a[href="#'+ activeTab +'"]').tab('show');
+	$(`#${activeTab}`).tab('show')
+</script>
+{% endblock script %}
