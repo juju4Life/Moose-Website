@@ -36,6 +36,7 @@ idna==2.7
 jdcal==1.4.1
 kiwisolver==1.2.0
 kombu==4.2.1
+lxml==4.5.2
 MarkupPy==1.14
 mws==0.8.6
 mysqlclient==2.0.1
