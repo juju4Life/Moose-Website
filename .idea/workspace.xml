@@ -2,23 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/buylist/hotlist.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/data_query.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/templates/preorders.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/templates/sick_deals.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysqlclient-1.4.6-cp39-cp39-win_amd64.whl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/runtime" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Goat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Goat.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/templates/buylist_tabs/buylist_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/templates/buylist_tabs/buylist_data.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/custom_js/search_condition_tab.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_js/search_condition_tab.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/main_product_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/main_product_data.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/search_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/search_result.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layout/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/layout/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JupyterTrust" id="b0eab245-f2e5-4812-a298-0e509089c1ab" />
   <component name="ProjectId" id="1fHYk7zAlv4Z7eNRA9MIQAZDHRm" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -48,7 +39,7 @@
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python&#10;Bash" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/engine/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -57,22 +48,22 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.project" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\jermo\website\Goat\engine\templates" />
-      <recent name="C:\Users\jermo\website\Goat\engine\static\img" />
-      <recent name="C:\Users\jermo\website\Goat\users\templates\users" />
-      <recent name="C:\Users\jermo\website\Goat" />
-      <recent name="C:\Users\jermo\website\Goat\ppal" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jermo\website\Goat\engine\templates" />
       <recent name="C:\Users\jermo\website\Goat\ppal" />
       <recent name="C:\Users\jermo\website\Goat" />
       <recent name="C:\Users\jermo\website\Goat\other" />
       <recent name="C:\Users\jermo\Goat\my_customs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jermo\website\Goat" />
+      <recent name="C:\Users\jermo\website\Goat\engine\templates" />
+      <recent name="C:\Users\jermo\website\Goat\engine\static\img" />
+      <recent name="C:\Users\jermo\website\Goat\users\templates\users" />
+      <recent name="C:\Users\jermo\website\Goat\ppal" />
     </key>
   </component>
   <component name="RunManager" selected="Python.manage">
@@ -237,7 +228,10 @@
       <workItem from="1600473093147" duration="52411000" />
       <workItem from="1601050956852" duration="150775000" />
       <workItem from="1602118920016" duration="55609000" />
-      <workItem from="1602546297662" duration="10201000" />
+      <workItem from="1602546297662" duration="12018000" />
+      <workItem from="1602696562436" duration="80000" />
+      <workItem from="1602698807710" duration="654000" />
+      <workItem from="1602699549746" duration="10108000" />
     </task>
     <servers />
   </component>
@@ -258,6 +252,14 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="445" y="243" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602712183959">
+      <screen x="0" y="0" width="1368" height="882" />
+    </state>
+    <state x="445" y="243" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1368.882@0.0.1368.882" timestamp="1602712183959" />
+    <state x="465" y="197" key="FileChooserDialogImpl" timestamp="1602711514668">
+      <screen x="0" y="0" width="1368" height="882" />
+    </state>
+    <state x="465" y="197" key="FileChooserDialogImpl/0.0.1368.882@0.0.1368.882" timestamp="1602711514668" />
     <state width="1326" height="285" key="GridCell.Tab.0.bottom" timestamp="1597709412361">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
@@ -290,10 +292,10 @@
       <screen x="0" y="0" width="1368" height="882" />
     </state>
     <state width="1326" height="285" key="GridCell.Tab.1.right/0.0.1368.882@0.0.1368.882" timestamp="1597709412361" />
-    <state x="186" y="86" key="SettingsEditor" timestamp="1599693031977">
+    <state x="186" y="86" key="SettingsEditor" timestamp="1602699392802">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state x="186" y="86" key="SettingsEditor/0.0.1368.882@0.0.1368.882" timestamp="1599693031977" />
+    <state x="186" y="86" key="SettingsEditor/0.0.1368.882@0.0.1368.882" timestamp="1602699392802" />
     <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1601329926558">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
