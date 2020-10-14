@@ -38,6 +38,7 @@ kiwisolver==1.2.0
 kombu==4.2.1
 MarkupPy==1.14
 mws==0.8.6
+mysqlclient==2.0.1
 oauthlib==2.0.6
 odfpy==1.4.1
 openpyxl==3.0.4
