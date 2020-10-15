@@ -11,7 +11,6 @@ x = CreateXML()
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-
         send_list = list()
         recipient_list = ['jermol.jupiter@gmail.com', ]  # 'Jlkelsey94@gmail.com',
 
@@ -36,7 +35,7 @@ class Command(BaseCommand):
                     print(check_feed_status['FeedSubmissionInfo']['FeedProcessingStatus']['value'])
 
             except Exception as e:
-                print(e)
+                print(f"Error in Main Amazon MWS file: {e}")
         else:
             update_prices = True
 

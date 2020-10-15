@@ -11,7 +11,6 @@ class CreateXML:
     def generate_mws_price_xml(self, data):
 
         root = objectify.fromstring(self.amazon_xml_header)
-
         head = objectify.Element('Header')
         head.DocumentVersion = '1.01'
         head.MerchantIdentifier = config('MWS_SELLER_ID')

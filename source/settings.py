@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-from decouple import config
+
 from celery.schedules import crontab
 import cloudinary
+from decouple import config
 
 cloudinary.config(
     cloud_name=config('CLOUDINARY_NAME'),
