@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/mws/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/mws/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_customs/exml.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_customs/exml.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_sku.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/management/commands/store_credit_analytics.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/management/commands/store_credit_analytics.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,10 +65,7 @@
       <recent name="C:\Users\jermo\website\Goat\ppal" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.manage">
-    <configuration name="home.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Goat/engine/templates/home.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.store_credit_analytics">
     <configuration name="add_group_info" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Goat" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -150,6 +143,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="store_credit_analytics" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Goat" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/customer/management/commands" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/customer/management/commands/store_credit_analytics.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="try" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Goat" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -195,15 +210,16 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JavaScript Debug.home.html" />
       <item itemvalue="Python.manage" />
-      <item itemvalue="Python.try" />
-      <item itemvalue="Python.daily_mtg_rss" />
       <item itemvalue="Python.add_group_info" />
+      <item itemvalue="Python.daily_mtg_rss" />
+      <item itemvalue="Python.store_credit_analytics" />
+      <item itemvalue="Python.try" />
       <item itemvalue="Python.views" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.store_credit_analytics" />
         <item itemvalue="Python.views" />
         <item itemvalue="Python.add_group_info" />
         <item itemvalue="Python.daily_mtg_rss" />
@@ -237,7 +253,8 @@
       <workItem from="1602699549746" duration="14318000" />
       <workItem from="1602716553873" duration="2212000" />
       <workItem from="1602773363562" duration="14000" />
-      <workItem from="1602773424535" duration="4128000" />
+      <workItem from="1602773424535" duration="18263000" />
+      <workItem from="1602874037259" duration="17427000" />
     </task>
     <servers />
   </component>
@@ -266,22 +283,22 @@
       <screen x="0" y="0" width="1368" height="882" />
     </state>
     <state x="465" y="197" key="FileChooserDialogImpl/0.0.1368.882@0.0.1368.882" timestamp="1602711514668" />
-    <state width="1326" height="285" key="GridCell.Tab.0.bottom" timestamp="1597709412361">
+    <state width="1326" height="447" key="GridCell.Tab.0.bottom" timestamp="1602895874125">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state width="1326" height="285" key="GridCell.Tab.0.bottom/0.0.1368.882@0.0.1368.882" timestamp="1597709412361" />
-    <state width="1326" height="285" key="GridCell.Tab.0.center" timestamp="1597709412361">
+    <state width="1326" height="447" key="GridCell.Tab.0.bottom/0.0.1368.882@0.0.1368.882" timestamp="1602895874125" />
+    <state width="1326" height="447" key="GridCell.Tab.0.center" timestamp="1602895874124">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state width="1326" height="285" key="GridCell.Tab.0.center/0.0.1368.882@0.0.1368.882" timestamp="1597709412361" />
-    <state width="1326" height="285" key="GridCell.Tab.0.left" timestamp="1597709412361">
+    <state width="1326" height="447" key="GridCell.Tab.0.center/0.0.1368.882@0.0.1368.882" timestamp="1602895874124" />
+    <state width="1326" height="447" key="GridCell.Tab.0.left" timestamp="1602895874124">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state width="1326" height="285" key="GridCell.Tab.0.left/0.0.1368.882@0.0.1368.882" timestamp="1597709412361" />
-    <state width="1326" height="285" key="GridCell.Tab.0.right" timestamp="1597709412361">
+    <state width="1326" height="447" key="GridCell.Tab.0.left/0.0.1368.882@0.0.1368.882" timestamp="1602895874124" />
+    <state width="1326" height="447" key="GridCell.Tab.0.right" timestamp="1602895874125">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state width="1326" height="285" key="GridCell.Tab.0.right/0.0.1368.882@0.0.1368.882" timestamp="1597709412361" />
+    <state width="1326" height="447" key="GridCell.Tab.0.right/0.0.1368.882@0.0.1368.882" timestamp="1602895874125" />
     <state width="1326" height="285" key="GridCell.Tab.1.bottom" timestamp="1597709412361">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
@@ -302,10 +319,10 @@
       <screen x="0" y="0" width="1368" height="882" />
     </state>
     <state x="186" y="86" key="SettingsEditor/0.0.1368.882@0.0.1368.882" timestamp="1602699392802" />
-    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1601329926558">
+    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602894797616">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1368.882@0.0.1368.882" timestamp="1601329926558" />
+    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1368.882@0.0.1368.882" timestamp="1602894797616" />
     <state x="0" y="0" width="1338" height="655" key="dock-window-1" timestamp="1602109216336">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
@@ -314,10 +331,10 @@
       <screen x="0" y="0" width="1368" height="882" />
     </state>
     <state x="500" y="285" key="git4idea.ui.GitTagDialog/0.0.1368.882@0.0.1368.882" timestamp="1599693056359" />
-    <state x="459" y="317" width="672" height="678" key="search.everywhere.popup" timestamp="1602120681486">
+    <state x="461" y="319" width="672" height="678" key="search.everywhere.popup" timestamp="1602788607246">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state x="459" y="317" width="672" height="678" key="search.everywhere.popup/0.0.1368.882@0.0.1368.882" timestamp="1602120681486" />
+    <state x="461" y="319" width="672" height="678" key="search.everywhere.popup/0.0.1368.882@0.0.1368.882" timestamp="1602788607246" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -333,6 +350,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Goat$add_group_info.coverage" NAME="add_group_info Coverage Results" MODIFIED="1597430396719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/engine/management/commands" />
     <SUITE FILE_PATH="coverage/Goat$views.coverage" NAME="views Coverage Results" MODIFIED="1597709402874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/engine" />
+    <SUITE FILE_PATH="coverage/Goat$store_credit_analytics.coverage" NAME="store_credit_analytics Coverage Results" MODIFIED="1602895870576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/customer/management/commands" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">

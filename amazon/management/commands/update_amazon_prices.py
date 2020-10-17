@@ -177,8 +177,8 @@ class Command(BaseCommand):
                                                 else:
                                                     if competitive_price < 1.99:
                                                         competitive_price = 1.99
-                                                    if competitive_price >= 10 and competitive_price <= 12.50:
-                                                        competitive_price = 9.99
+                                                    if competitive_price > 19.99 and competitive_price <= 22.25:
+                                                        competitive_price = 19.99
                                                     card_metrics, created = AmazonPriceExclusions.objects.get_or_create(sku=sku)
                                                     card_metrics.price_metrics = price_list
                                                     card_metrics.price = competitive_price
