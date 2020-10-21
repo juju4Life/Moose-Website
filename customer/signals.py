@@ -18,7 +18,7 @@ def track_store_credit(instance, **kwarg):
 
     # Change value for store credit used
     elif instance.credit < instance.last_credit:
-        negative_diff = abs(instance.credit - Decimal(instance.last_credit))
+        negative_diff = Decimal(instance.last_credit) - instance.credit
 
     name = instance.name
 
