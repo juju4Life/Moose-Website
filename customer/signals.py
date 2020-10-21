@@ -12,9 +12,11 @@ def track_store_credit(instance, **kwarg):
     positive_diff = 0
     negative_diff = 0
 
+    # Change value for store credit added
     if instance.credit > instance.last_credit:
         positive_diff = instance.credit - Decimal(instance.last_credit)
 
+    # Change value for store credit used
     elif instance.credit < instance.last_credit:
         negative_diff = abs(instance.credit - Decimal(instance.last_credit))
 
@@ -25,7 +27,7 @@ def track_store_credit(instance, **kwarg):
     n = StoreCredit(
         name=name,
         store_credit=positive_diff,
-        used_credt=negative_diff,
+        used_credit=negative_diff,
         total=current_credit_total["total_credit"],
     )
     n.save()

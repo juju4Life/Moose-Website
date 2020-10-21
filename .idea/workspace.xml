@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/users/templates/users/activation_email.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/static/custom_css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/account_activation.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/account_activation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/profile_tabs/buylist_submissions.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile_tabs/buylist_submissions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_orders.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_restock.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_restock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_wishlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_wishlist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buylist/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/signals.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +252,7 @@
       <workItem from="1602716553873" duration="2212000" />
       <workItem from="1602773363562" duration="14000" />
       <workItem from="1602773424535" duration="18263000" />
-      <workItem from="1602874037259" duration="53222000" />
+      <workItem from="1602874037259" duration="54079000" />
     </task>
     <servers />
   </component>

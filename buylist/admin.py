@@ -27,7 +27,7 @@ class ScgAdmin(admin.ModelAdmin):
 
 @admin.register(StoreCredit)
 class StoreCreditAdmin(admin.ModelAdmin):
-    list_display = ['name', 'store_credit', 'date_time', 'total', ]
+    list_display = ['name', 'store_credit', 'used_credit', 'date_time', 'total', ]
 
 
 
