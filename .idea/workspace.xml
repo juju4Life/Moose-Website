@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/templates/users/activation_email.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a_sku.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/management/commands/store_credit_analytics.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/management/commands/store_credit_analytics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/static/custom_css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/custom_css/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/account_activation.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/account_activation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/profile_tabs/buylist_submissions.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile_tabs/buylist_submissions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_orders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_restock.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_restock.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_wishlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile_tabs/profile_wishlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +25,8 @@
       <list>
         <option value="JavaScript File" />
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -50,19 +57,19 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.project" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jermo\website\Goat\users\templates\users" />
+      <recent name="C:\Users\jermo\website\Goat" />
+      <recent name="C:\Users\jermo\website\Goat\engine\templates" />
+      <recent name="C:\Users\jermo\website\Goat\engine\static\img" />
+      <recent name="C:\Users\jermo\website\Goat\ppal" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jermo\website\Goat\engine\templates" />
       <recent name="C:\Users\jermo\website\Goat\ppal" />
       <recent name="C:\Users\jermo\website\Goat" />
       <recent name="C:\Users\jermo\website\Goat\other" />
       <recent name="C:\Users\jermo\Goat\my_customs" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\jermo\website\Goat" />
-      <recent name="C:\Users\jermo\website\Goat\engine\templates" />
-      <recent name="C:\Users\jermo\website\Goat\engine\static\img" />
-      <recent name="C:\Users\jermo\website\Goat\users\templates\users" />
-      <recent name="C:\Users\jermo\website\Goat\ppal" />
     </key>
   </component>
   <component name="RunManager" selected="Python.store_credit_analytics">
@@ -254,7 +261,7 @@
       <workItem from="1602716553873" duration="2212000" />
       <workItem from="1602773363562" duration="14000" />
       <workItem from="1602773424535" duration="18263000" />
-      <workItem from="1602874037259" duration="17427000" />
+      <workItem from="1602874037259" duration="53222000" />
     </task>
     <servers />
   </component>

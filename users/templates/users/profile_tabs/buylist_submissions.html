@@ -1,55 +1,66 @@
-<div class="row">
-    <div class="col-sm-12">
-        <table class="nav-tabs nav-stacked table table-hover table-sm">
-            <thead>
-                <tr>
-                    <th>Buylist Number</th>
-                    <th>Order Processed</th>
-                    <th>Order Total</th>
-                    <th>Payment Type</th>
-                    <th>Payment Email</th>
-                    <th>Order Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for order in buylist_submissions %}
-                    <tr>
-                        <td>
-                            <a href="#order-details-{{ order.order_number }}" data-toggle="collapse" class="active">
-                                {{ order.order_number }}
-                            </a>
-                            <div id="order-details-{{ order.order_number }}" class="collapse">
-                                <table class="nav-stacked table table-sm">
+{% if not buylist_submission %}
 
-                                    <tbody>
-                                        {% for item in order.items %}
-                                            <tr>
-                                                <td >{{ item.language }}</td>
-                                                <td>{{ item.name }}</td>
-                                                <td>{{ item.expansion }}</td>
-                                                <td>{{ item.printing }}</td>
-                                                <td>{{ item.condition }}</td>
-                                                <td>{{ item.quantity }}</td>
-                                                <td>${{ item.price }}</td>
-                                                <td>${{ item.total_price }}</td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </td>
-                        <td>{{ order.order_date }}</td>
-                        <td>${{ order.total }}</td>
-                        <td>{{ order.payment_type }}</td>
-                        <td>
-                            {% if order.paypal_email %}
-                                {{ order.paypal_email }}
-                            {% endif %}
-                        </td>
-                        <td>{{ order.order_status }}</td>
+    <h4>You have not submitted any buylist orders</h4>
+    <hr>
+    <p>
+        Navigate to our <a href="{% url 'buylist' %}">Buylist</a> to submit your first buylist.
+    </p>
+
+{% else %}
+
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="nav-tabs nav-stacked table table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th>Buylist Number</th>
+                        <th>Order Processed</th>
+                        <th>Order Total</th>
+                        <th>Payment Type</th>
+                        <th>Payment Email</th>
+                        <th>Order Status</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for order in buylist_submissions %}
+                        <tr>
+                            <td>
+                                <a href="#order-details-{{ order.order_number }}" data-toggle="collapse" class="active">
+                                    {{ order.order_number }}
+                                </a>
+                                <div id="order-details-{{ order.order_number }}" class="collapse">
+                                    <table class="nav-stacked table table-sm">
+
+                                        <tbody>
+                                            {% for item in order.items %}
+                                                <tr>
+                                                    <td >{{ item.language }}</td>
+                                                    <td>{{ item.name }}</td>
+                                                    <td>{{ item.expansion }}</td>
+                                                    <td>{{ item.printing }}</td>
+                                                    <td>{{ item.condition }}</td>
+                                                    <td>{{ item.quantity }}</td>
+                                                    <td>${{ item.price }}</td>
+                                                    <td>${{ item.total_price }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                            <td>{{ order.order_date }}</td>
+                            <td>${{ order.total }}</td>
+                            <td>{{ order.payment_type }}</td>
+                            <td>
+                                {% if order.paypal_email %}
+                                    {{ order.paypal_email }}
+                                {% endif %}
+                            </td>
+                            <td>{{ order.order_status }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
+{% endif %}

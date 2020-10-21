@@ -2,7 +2,11 @@
 {% autoescape off %}
 
     Hi {{ user.username }},
-    Please click on the link to confirm your registration,
+    Please click on the link below to confirm your account registration,
 
     https://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+    If you did not submit this request, please let us know using the following contact form
+    https://{{ domain }}{% url 'contact' %}
+
 {% endautoescape %}

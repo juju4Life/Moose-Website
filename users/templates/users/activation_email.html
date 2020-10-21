@@ -1,0 +1,18 @@
+{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="col-sm-6 offset-sm-3 form-wrapper-default">
+    <h4>A new activation account activation link will be sent</h4>
+    <form method="GET" action="{% url 'activation_email' %}">
+        <div class="form-inline">
+            <label for="email" class="">Email</label>
+            <input type="email" name="email" value="" id="email" class="ml-1">
+            <button class="btn btn-success ml-1">Submit</button>
+        </div>
+
+    </form>
+</div>
+
+{% endblock content %}
+

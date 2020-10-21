@@ -24,10 +24,13 @@
         </li>
       {% endif %}
 
-
       <li class="nav-item">
          <a class="nav-link" href="{% url 'buylist' %}">Buylist</a>
       </li>
+
+       <li class="nav-item">
+         <a class="nav-link" href="{% url 'preorders' %}">Preorder</a>
+       </li>
 
        <!-- <li class="nav-item">
         <a class="nav-link dropdown-toggle" href="#" id="suppliesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -111,9 +114,6 @@
           </li>
 
         {% endif %}
-          <li class="nav-item">
-            <a class="nav-link" href="/admin">Admin</a>
-          </li>
 
           <li class="nav-item">
             {% if 'buylist' in request.path %}

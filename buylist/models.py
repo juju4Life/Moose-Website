@@ -41,6 +41,7 @@ class StoreCredit(models.Model):
     total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     entries = models.IntegerField(default=0)
     store_credit = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    used_credit = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     date_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

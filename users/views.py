@@ -1,5 +1,4 @@
 
-
 from buylist.models import BuylistSubmission
 from customer.models import Customer
 from django.core.exceptions import ObjectDoesNotExist
@@ -12,12 +11,13 @@ from django.contrib.auth import authenticate, login
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
+from django.urls import reverse
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from mail.mailgun_api import MailGun
 from my_customs.functions import text_between_two_words, split_text_field_string_for_orders
 from users import forms
-from users.forms import UserRegisterForm, UserUpdateForm, AddressForm, UpdateEmailForm, LoginForm, UpdatePasswordForm
+from users.forms import UserRegisterForm, UserUpdateForm, AddressForm, UpdateEmailForm, LoginForm, UpdatePasswordForm, EmailForm
 from users.tokens import account_activation_token
 
 
@@ -37,6 +37,37 @@ def activate(request, uidb64, token):
         return redirect('login')
     else:
         return HttpResponse('Activation link is invalid!')
+
+
+def activation_email(request):
+    if request.GET.get('email'):
+        email = request.GET.get('email')
+        user = User.objects.get(email=email)
+        if user.is_active is False:
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+            token = account_activation_token.make_token(user)
+            current_site = get_current_site(request)
+            mail_subject = 'Activate your account.'
+
+            message = render_to_string('users/account_activation.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': uid,
+                'token': token,
+            })
+
+            mailgun.send_mail(
+                recipient_list=email,
+                subject=mail_subject,
+                message=message,
+            )
+
+            messages.warning(request, 'Please confirm your email address to complete your registrations.')
+        else:
+            messages.warning(request, 'Your account appears to already be active. Please reset your password if you are having trouble logging into your '
+                                      'account')
+
+    return redirect('login')
 
 
 def make_password_change(request):
@@ -281,32 +312,13 @@ def register(request):
             user = User.objects.get(email=email)
             user.is_active = False
             user.save()
-            mail_subject = 'Activate your account.'
-            current_site = get_current_site(request)
-            message = render_to_string('users/account_activation.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
 
-            to_email = form.cleaned_data.get('email')
-            mailgun.send_mail(
-                recipient_list=to_email,
-                subject=mail_subject,
-                message=message
-            )
-
-            messages.warning(request, 'Please confirm your email address to complete the registration')
-            return redirect('login')
-            # messages.success(request, f'Account Created for {username}. You are now able to log in.')
-            # return redirect('login')
+            return redirect(f"{reverse('activation_email')}?email={email}")
         else:
-            pass  # messages.warning(request, '...')
-
+            messages.warning(request, 'There was a problem with your submission. Please try again')
     else:
         form = UserRegisterForm()
-        
+
     return render(request, 'users/register.html', {'form': form})
 
 
@@ -318,6 +330,15 @@ def remove_wishlist_item(request):
         customer.wishlist = customer.wishlist.replace(product, "")
         customer.save()
         return redirect("profile")
+
+
+def resend_activation_email(request):
+    context = dict()
+    template_name = 'users/activation_email.html'
+    form = EmailForm()
+    context['form'] = form
+
+    return render(request, template_name=template_name, context=context)
 
 
 def reset_password(request):
@@ -455,6 +476,5 @@ def user_login(request):
                     return redirect('login')
 
     return render(request, 'users/login.html', context)
-
 
 
