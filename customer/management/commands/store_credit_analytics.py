@@ -2,7 +2,7 @@ from collections import defaultdict
 from datetime import datetime
 from decimal import Decimal
 
-from buylist.models import StoreCredit
+from customer.models import StoreCredit
 from customer.models import Customer
 from django.core.management.base import BaseCommand
 from django.db.models import Sum

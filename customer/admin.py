@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Customer
+from customer.models import Customer, StoreCredit
 from simple_history.admin import SimpleHistoryAdmin
 
 
@@ -27,3 +27,7 @@ class CustomerAdmin(SimpleHistoryAdmin):
     )
 
 
+@admin.register(StoreCredit)
+class StoreCreditAdmin(admin.ModelAdmin):
+    search_fields = ['name', 'date_time', ]
+    list_display = ['name', 'store_credit', 'used_credit', 'date_time', 'total', ]

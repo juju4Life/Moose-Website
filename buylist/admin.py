@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import HotList, CardKingdomBuylist, StarcityBuylist, StoreCredit, BuylistSubmission
+from .models import HotList, CardKingdomBuylist, StarcityBuylist, BuylistSubmission
 
 
 @admin.register(BuylistSubmission)
@@ -23,13 +23,5 @@ class HotListAdmin(admin.ModelAdmin):
 @admin.register(StarcityBuylist)
 class ScgAdmin(admin.ModelAdmin):
     pass
-
-
-@admin.register(StoreCredit)
-class StoreCreditAdmin(admin.ModelAdmin):
-    list_display = ['name', 'store_credit', 'used_credit', 'date_time', 'total', ]
-
-
-
 
 

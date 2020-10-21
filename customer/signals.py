@@ -7,7 +7,7 @@ from django.dispatch import receiver
 @receiver(pre_save, sender='customer.Customer', dispatch_uid='tracking')
 def track_store_credit(instance, **kwarg):
     from decimal import Decimal
-    from buylist.models import StoreCredit
+    from customer.models import StoreCredit
     from customer.models import Customer
     positive_diff = 0
     negative_diff = 0

@@ -36,20 +36,6 @@ class StarcityBuylist(BuylistFields):
         return self.name
 
 
-class StoreCredit(models.Model):
-    name = models.CharField(max_length=255, default='', blank=True)
-    total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    entries = models.IntegerField(default=0)
-    store_credit = models.DecimalField(max_digits=12, decimal_places=2, default=0, verbose_name='Credit Added')
-    used_credit = models.DecimalField(max_digits=12, decimal_places=2, default=0, verbose_name='Credit Used')
-    date_time = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.store_credit}"
-
-    verbose_name_plural = 'Total'
-
-
 class BuylistSubmission(CustomerInfo):
     status_choice = (
         ("not_received", "Not Received", ),
