@@ -1,13 +1,5 @@
 from ipware import get_client_ip
 
-"""def preorder_list(request):
-    return render_to_response(
-        "preorder-list.html",
-        {'preorder_list' : Preorder.objects.all()},
-        RequestContext(request, {}),
-    )
-report = staff_member_required(preorder_list)"""
-
 
 def get_ip(request):
     ip, is_routable = get_client_ip(request)
