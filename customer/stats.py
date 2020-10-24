@@ -44,7 +44,6 @@ class Stats:
         for rect in bar:
             height = rect.get_height()
             plt.text(rect.get_x() + rect.get_width() / 2.0, height, '%d' % int(height), ha='center', va='bottom')
-
         return self.create_io_uri(fig, 'png')
 
     def create_graph(self, x, y, color, legend_label, x_label, y_label, title):
@@ -57,18 +56,16 @@ class Stats:
 
         plt.title(title)
         fig = plt.gcf()
-
         return self.create_io_uri(fig, 'png')
 
     def store_credit_daily_transactions(self):
-        today = date.today()
+        today = timezone.localtime().today()
         delta = timedelta(days=45)
         n_days_ago = today - delta
         year = date.today().year
         # all_credit_ytd = StoreCredit.objects.filter(date_time__year=year)
 
         credit_last_three_months = StoreCredit.objects.filter(date_time__range=(n_days_ago, today))
-
         # Tuple of each Unique month from last 90 days. Tuple contains years to keep items ordered and still separate previous year
         months = sorted(list(set([(timezone.localtime(i.date_time).year, timezone.localtime(i.date_time).month) for i in credit_last_three_months])))
 
@@ -91,7 +88,7 @@ class Stats:
             if index == 0:
                 start = day_one
             elif index == len(months) - 1:
-                stop = today.day
+                stop = today.day + 1
 
             for day in range(start, stop):
                 months_days.append(date(year, month, day))
@@ -155,8 +152,6 @@ class Stats:
             }
 
             for record in records:
-                name = record.name
-                credit_added = record.store_credit
                 date_added = timezone.localtime(record.date_time)
                 if date_added.month == 5:
                     records_by_date[4] = list()

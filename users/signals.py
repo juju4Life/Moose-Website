@@ -27,7 +27,7 @@ def create_profile(sender, instance, created, **kwargs):
 
 @receiver(user_login_failed)
 def login_failed(sender, credentials, **kwargs):
-	'''email = credentials.get('email')
+	email = credentials.get('email')
 	if email is not None:
 		try:
 			user = User.objects.get(email=email)
@@ -39,12 +39,12 @@ def login_failed(sender, credentials, **kwargs):
 			customer = Customer.objects.get(email=email)
 			customer.login_attempt_counter += 1
 
-			if customer.login_attempt_counter >= 4:
+			if customer.login_attempt_counter >= 5:
 				user.set_unusable_password()
 				customer.login_attempt_counter = 0
 				user.save()
 
-			customer.save()'''
+			customer.save()
 
 
 @receiver(user_logged_in)

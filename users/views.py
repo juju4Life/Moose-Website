@@ -1,5 +1,4 @@
 
-from buylist.models import BuylistSubmission
 from customer.models import Customer
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
@@ -370,7 +369,6 @@ def reset_password(request):
                     message=message,
                 )
                 if success.json()["id"]:
-                    print(success)
                     messages.success(request, f'An email with instructions on how to reset your account has been sent to "{email}"')
                 else:
                     messages.warning(request, 'There was an error with your request. Please try again later.')
@@ -394,6 +392,9 @@ def reset_password_change_form(request, uidb64, token):
         form = forms.SetPasswordForm(user=user)
         context["form"] = form
         context["user_email"] = user.email
+        customer = Customer.objects.get(email=user.email)
+        customer.login_attempt_counter = 0
+        customer.save()
 
     return render(request, template_name=template_name, context=context)
 
