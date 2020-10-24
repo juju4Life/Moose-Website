@@ -52,7 +52,7 @@ class Stats:
         plt.legend()
         plt.xlabel(x_label)
         plt.ylabel(y_label)
-        plt.xticks(np.arange(min(x), max(x) + timedelta(days=1), 9), rotation=30)
+        plt.xticks(np.arange(min(x), max(x) + timedelta(days=1), 9), rotation=10)
 
         plt.title(title)
         fig = plt.gcf()

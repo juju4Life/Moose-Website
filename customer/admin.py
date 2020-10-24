@@ -19,7 +19,8 @@ class CustomerAdmin(SimpleHistoryAdmin):
     search_fields = ['name', ]
     ordering = ['name', ]
     fields = (
-        ('credit', 'employee_initial', ),
+        ('credit', 'clear_credit', ),
+        ('transaction', 'employee_initial', ),
         'name',
         'email',
         'notes',
@@ -31,7 +32,7 @@ class CustomerAdmin(SimpleHistoryAdmin):
 @admin.register(StoreCredit)
 class StoreCreditAdmin(admin.ModelAdmin):
     search_fields = ['name', 'date_time', ]
-    list_display = ['name', 'store_credit', 'used_credit', 'date_time', 'total', ]
+    list_display = ['name', 'store_credit', 'used_credit', 'date_time', 'transaction_type', 'total', ]
 
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}

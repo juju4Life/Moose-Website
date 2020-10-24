@@ -2,8 +2,8 @@ from django.db import models
 from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
-
 from simple_history.models import HistoricalRecords
+from validators.model_validators import cannot_be_empty
 
 
 class BasicProductInfo(models.Model):
@@ -36,6 +36,14 @@ class CustomerInfo(models.Model):
 
 
 class Customer(models.Model):
+    transaction_choices = (
+        ('', '', ),
+        ('other', 'other', ),
+        ('mtg', 'mtg', ),
+        ('pokemon', 'pokemon', ),
+        ('supplies', 'supplies', ),
+        ('yugioh', 'yugioh', ),
+    )
 
     letters_only = RegexValidator(r'^[a-zA-Z ]*$', _('Only letters are allowed.'))
     name = models.CharField(validators=[letters_only], max_length=100, default='')
@@ -71,6 +79,8 @@ class Customer(models.Model):
     restock_list = models.ManyToManyField("customer.CustomerRestockNotice")
     orders = models.TextField(default='', blank=True)
     buylist_submissions = models.TextField(default='', blank=True)
+    clear_credit = models.BooleanField(default=False)
+    transaction = models.CharField(max_length=255, default='', choices=transaction_choices, validators=[cannot_be_empty])
 
     history = HistoricalRecords(
         history_change_reason_field=models.TextField(null=True)
@@ -105,6 +115,7 @@ class StoreCredit(models.Model):
     store_credit = models.DecimalField(max_digits=12, decimal_places=2, default=0, verbose_name='Credit Added')
     used_credit = models.DecimalField(max_digits=12, decimal_places=2, default=0, verbose_name='Credit Used')
     date_time = models.DateTimeField(auto_now_add=True)
+    transaction_type = models.CharField(max_length=255, default='')
 
     def __str__(self):
         return f"{self.store_credit}"

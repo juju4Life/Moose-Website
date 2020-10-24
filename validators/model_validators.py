@@ -1,6 +1,5 @@
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-from engine.models import MTG
 
 
 def validate_name(value):
@@ -43,11 +42,17 @@ def confirm_quantity_sync(value):
 
 
 def correct_expansion_spelling(expansion):
+    from engine.models import MTG
     if MTG.objects.filter(expansion=expansion).exists():
         pass
     else:
         raise ValidationError(
             _('Name must be spelled exactly as it appears on tcgplayer.com'),
+
         )
 
+
+def cannot_be_empty(value):
+    if value == '':
+        raise ValidationError(_('Field cannot be blank'), code='Invalid Selection')
 
