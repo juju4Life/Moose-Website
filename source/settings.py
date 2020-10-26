@@ -122,6 +122,7 @@ INSTALLED_APPS = [
     'layout.apps.LayoutConfig',
     'cloudinary',
     'mail',
+    'administration',
 ]
 
 MIDDLEWARE = [

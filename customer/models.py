@@ -38,11 +38,15 @@ class CustomerInfo(models.Model):
 class Customer(models.Model):
     transaction_choices = (
         ('', '', ),
-        ('other', 'other', ),
-        ('mtg', 'mtg', ),
+        ('concessions', 'concessions',),
+        ('event_entry', 'event_entry', ),
+        ('fow', 'force of will', ),
+        ('mtg', 'magic', ),
+        ('supplies', 'supplies',),
         ('pokemon', 'pokemon', ),
-        ('supplies', 'supplies', ),
+        ('supplies', 'supplies',),
         ('yugioh', 'yugioh', ),
+        ('other', 'other', ),
     )
 
     letters_only = RegexValidator(r'^[a-zA-Z ]*$', _('Only letters are allowed.'))
