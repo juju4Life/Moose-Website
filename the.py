@@ -1,8 +1,94 @@
+import csv
+from decimal import Decimal
+from datetime import datetime
+
+from administration.models import Safe
 from django.db.models import Q
 from django.db import transaction
+from django.utils import timezone
 from engine.models import MTG, MtgCardInfo
 from layout.models import SinglePrintingSet
 from scryfall_api import get_card_data
+
+
+def safe_stuff():
+    with open('safe.csv', newline='') as f:
+        file = csv.reader(f)
+        convert = {
+            "trade ins": 'trade in',
+            "drawer balancing": "drawer balance",
+            "trade": "trade in",
+            "balance drawer": "drawer balance",
+            'safe restock from bank': 'safe restock',
+            'safe restock from bernie': 'safe restock',
+            'paying josh for boxes': 'other purchase',
+            'Safe balancing (reopening)': 'safe balance',
+            'buy': 'trade in',
+            'safe rebalance': 'safe balance',
+            'Daily Deposit + money from josh': 'daily deposit',
+            'daily depsit': 'daily deposit',
+            "josh's buy": 'trade in',
+            'deposit': 'daily deposit',
+            'bank run': 'safe restock',
+            'drawer replenish': 'drawer balance',
+            'taderade': 'trade in',
+            'jumpstart': 'trade in',
+            'balance': 'safe balance',
+            'safe balancing ': 'safe balance',
+            'rtade': 'trade in',
+            'adjustment': 'safe balance',
+            'deposit from a sale (josh)': 'safe restock',
+            'costco run': 'other purchase',
+            'dail deposit': 'daily deposit',
+            'safe restock josh': 'safe restock',
+            'nick money': 'safe restock',
+            'daily deposit. register $18 off': 'daily deposit',
+            'daily deposit. drop $2 over.': 'daily deposit',
+            'trade in': 'trade in',
+            'daily deposit': 'daily deposit',
+            'safe balance': 'safe balance',
+            'drawer balance': 'drawer balance',
+            'restock from bank': 'safe restock',
+            'balancing': 'safe balance',
+            'josh restock': 'safe restock',
+            'for the drawer': 'drawer balance',
+            'safe restock': 'safe restock',
+            'paypal buy for $596': 'trade in',
+            'trade in ': 'trade in',
+            'daily deposit ': 'daily deposit',
+            'bernie replenish': 'safe restock',
+            'daily d': 'daily restock',
+            'daily': 'daily restock',
+            'trdae': 'trade in',
+            'safe restock ': 'safe restock',
+            'daily deposit + money from josh': 'safe restock',
+            'replenish': 'safe restock',
+            'safe balancing (reopening)': 'safe balance',
+            'costco': 'other purchase',
+            '': 'safe balance',
+            'daily restock': 'daily deposit',
+
+
+        }
+
+        converted_reason = {
+            'daily deposit': 'daily_deposit',
+            'drawer balance': 'drawer_balance',
+            'other purchase': 'other_purchase',
+            'safe restock': 'safe_restock',
+            'safe balance': 'safe_balance',
+            'trade in': 'trade_in',
+            'daily restock': 'daily_deposit',
+
+        }
+        next(file)
+        data = Safe.objects.all()
+        for old, new in zip(file, data):
+
+            reason = convert.get(old[6].lower())
+            new.reason = converted_reason[reason]
+            new.save()
+
 
 
 def go():

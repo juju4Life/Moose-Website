@@ -123,6 +123,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'mail',
     'administration',
+    'administration.apps.AdministrationConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,3 +1,4 @@
+from decimal import Decimal, InvalidOperation
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -55,4 +56,35 @@ def correct_expansion_spelling(expansion):
 def cannot_be_empty(value):
     if value == '':
         raise ValidationError(_('Field cannot be blank'), code='Invalid Selection')
+
+
+def contains_plus(value):
+    if value != '0':
+        if not value[0] == "+":
+            raise ValidationError(_('Changing credit must be explicit using + or - for adding or subtracting store credit'), code='Invalid Input')
+
+        try:
+            Decimal(value[1:])
+        except InvalidOperation:
+            raise ValidationError(
+                _('Value could not be converted to a decimal'), code='Invalid Decimal Operation'
+    
+            )
+
+
+def contains_minus(value):
+    if value != '0':
+        if not value[0] == "-":
+            raise ValidationError(
+                _('Changing credit must be explicit using + for deposits and - for withdrawals'), code='Invalid Input'
+            )
+        try:
+
+            Decimal(value[1:])
+        except InvalidOperation:
+            raise ValidationError(
+                _('Value could not be converted to a decimal'), code='Invalid Decimal Operation'
+    
+            )
+
 
