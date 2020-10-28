@@ -69,7 +69,7 @@ six==1.15.0
 sqlparse==0.2.4
 stripe==1.79.0
 tablib==2.0.0
-twilio==6.19.1
+twilio==6.46.0
 urllib3==1.24.1
 vine==1.1.4
 whitenoise==5.0.1

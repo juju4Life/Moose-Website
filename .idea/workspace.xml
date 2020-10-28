@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/administration/templates/admin/administration/safe/change_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sms/twilio_.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/templates/admin/customer/storecredit/change_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/customer/templates/admin/customer/storecredit/change_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administration/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/administration/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administration/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/administration/signals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sms/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/sms/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sms/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/sms/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,7 +256,7 @@
       <workItem from="1602716553873" duration="2212000" />
       <workItem from="1602773363562" duration="14000" />
       <workItem from="1602773424535" duration="18263000" />
-      <workItem from="1602874037259" duration="121295000" />
+      <workItem from="1602874037259" duration="129004000" />
     </task>
     <servers />
   </component>

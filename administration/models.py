@@ -24,12 +24,12 @@ class Safe(models.Model):
     manager_initials = models.CharField(max_length=255, default='')
     seller_name = models.CharField(max_length=255, default='', blank=True)
     notes = models.TextField(default='', blank=True)
+    alert = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.date_time}"
 
     class Meta:
         verbose_name_plural = "Safe"
-
 
 
