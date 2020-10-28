@@ -5,12 +5,15 @@ from validators.model_validators import contains_minus, contains_plus
 class Safe(models.Model):
     reason_choices = (
         ('', '', ),
-        ('daily_deposit', 'daily deposit',),
-        ('drawer_balance', 'drawer balance', ),
-        ('other_purchase', 'other purchase',),
-        ('safe_restock', 'safe restock',),
-        ('safe_balance', 'safe balance',),
+        ('mtg_trade_in', 'mtg trade', ),
+        ('pokemon_trade_in', 'pokemon trade', ),
+        ('yugioh_trade_in', 'yugioh trade', ),
         ('trade_in', 'trade in', ),
+        ('daily_deposit', 'daily deposit', ),
+        ('drawer_balance', 'drawer balance', ),
+        ('other_purchase', 'other purchase', ),
+        ('safe_restock', 'safe restock', ),
+        ('safe_balance', 'safe balance', ),
 
     )
     date_time = models.DateTimeField(auto_now_add=True)

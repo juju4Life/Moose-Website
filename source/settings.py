@@ -162,7 +162,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['engine/templates', 'customer/templates', 'users/templates',
-                'users/templates/registration', 'orders/templates'],
+                'users/templates/registration', 'orders/templates', 'administration/templates'],
 
         'OPTIONS': {
             'loaders': ['admin_tools.template_loaders.Loader', 'django.template.loaders.app_directories.Loader'],

@@ -92,8 +92,8 @@ def sms_response(request):
                        "____________________\n"
                        )
 
-
     # Add a picture message
     #msg.media("https://demo.twilio.com/owl.png")
 
     return HttpResponse(str(resp))
+

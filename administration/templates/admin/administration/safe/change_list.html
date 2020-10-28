@@ -40,25 +40,7 @@
 {% block content %}
   <div id="content-main">
     {% block object-tools %}
-    <figure style="display: flex">
-      <div>
-        <img src="data:image/png;base64,{{ n_day_in_out_graph }}" alt="90-day credit in out graph">
-      </div>
-
-      <div>
-        <img src="data:image/png;base64,{{ n_day_volume_graph }}" alt="90-day transaction volume">
-      </div>
-    </figure>
-
-    <figure  style="display: flex; margin-bottom: 10%;">
-      <div>
-        <img src="data:image/png;base64,{{ ytd_by_month_credit_added }}" alt="ytd credit added by month">
-      </div>
-
-      <div>
-        <img src="data:image/png;base64,{{ ytd_by_month_credit_spent }}" alt="ytd credit spent by month">
-      </div>
-    </figure>
+        <h4>Yolo</h4>
         <ul class="object-tools">
           {% block object-tools-items %}
             {% change_list_object_tools %}
