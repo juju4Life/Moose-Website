@@ -4,341 +4,186 @@
 <script src="{% static 'custom_js/search_condition_tab.js' %}"></script>
 
 <div class="row">
-    <div style="color: rgba(0, 0, 0, 0.6);" class="col-sm-3">Viewing {{ items.start_index }}-{{ items.end_index }} of
-        {{ items.paginator.count }} results
-    </div>
+    {% if not items %}
+        <div class=" col-sm-4 offset-3">
+            <h4>No data to display</h4>
+        </div>
+    {% else %}
 
-    <div class="col-sm-1 offset-sm-5">
-        <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false">
-                Show
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <form method="GET" action="{% url 'search' %}">
-                    <button name="all" value="{{ query }}" class="btn btn-light dropdown-item">all</button>
-                    <button name="in_stock" value="{{ query }}" class="btn btn-light dropdown-item">in-stock only</button>
-                    <button name="per_page_10" value="{{ query }}" class="btn btn-light dropdown-item">10 cards per page</button>
-                    <button name="per_page_20" value="{{ query }}" class="btn btn-light dropdown-item">20 cards per page</button>
-                    <button name="per_page_50" value="{{ query }}" class="btn btn-light dropdown-item">50 cards per page</button>
-                </form>
+        <div style="color: rgba(0, 0, 0, 0.6);" class="col-sm-3">Viewing {{ items.start_index }}-{{ items.end_index }} of
+            {{ items.paginator.count }} results
+        </div>
 
+        <div class="col-sm-1 offset-sm-5">
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                    Show
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <form method="GET" action="{% url 'search' %}">
+                        <button name="all" value="{{ query }}" class="btn btn-light dropdown-item">all</button>
+                        <button name="in_stock" value="{{ query }}" class="btn btn-light dropdown-item">in-stock only</button>
+                        <button name="per_page_10" value="{{ query }}" class="btn btn-light dropdown-item">10 cards per page</button>
+                        <button name="per_page_20" value="{{ query }}" class="btn btn-light dropdown-item">20 cards per page</button>
+                        <button name="per_page_50" value="{{ query }}" class="btn btn-light dropdown-item">50 cards per page</button>
+                    </form>
+
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-sm-1">
-        <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false">
-                Sort By
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <form method="GET" action="{% url 'search' %}">
-                    <button name="sort_by_set" value="{{ query }}" class="btn btn-light dropdown-item">set (a-z)</button>
-                    <button name="sort_by_set_reverse" value="{{ query }}" class="btn btn-light dropdown-item">set (z-a)</button>
+        <div class="col-sm-1">
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                    Sort By
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <form method="GET" action="{% url 'search' %}">
+                        <button name="sort_by_set" value="{{ query }}" class="btn btn-light dropdown-item">set (a-z)</button>
+                        <button name="sort_by_set_reverse" value="{{ query }}" class="btn btn-light dropdown-item">set (z-a)</button>
 
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
+
+        <div class="col-sm-2">{% include 'pagination.html' %}</div>
+
     </div>
 
-    <div class="col-sm-2">{% include 'pagination.html' %}</div>
-
-</div>
-
-<div class="table-responsive">
-    <table style="color: rgb(80,80,80);" class="nav-tabs nav-stacked table table-hover table-sm w-100">
-        <thead class="thead-inverse"></thead>
-        <tbody>
-            {% for item in items %}
-                <tr>
-                    <td>
-                        {% if item.image_url %}
-                            <img alt="Image of {{ item.name }}" class="img-thumbnail" style="max-height:200px;" src="{{ item.image_url }}">
-                        {% else %}
-                            <img alt="Image of {{ item.name }}" class="img-thumbnail" style="max-height:200px;" src="{% static 'img/no_image.png' %}">
-                        {% endif %}
-                        <div id="imgbox"></div>
-                    </td>
-                    <td>
-                        <div class="hidden-dialog" id="card-info-text-{{ item.product_id }}" title="{{ item.name }}">
-                            <table class="card-info-popup-table table-responsive">
-                                <tbody>
-                                    <tr>
-                                        <td class="card-info-popup-data-label">Set:</td>
-                                        <td>{{ item.expansion }}</td>
-                                    </tr>
-
-                                    {% if item.artist %}
-                                        <tr>
-                                            <td class="card-info-popup-data-label">Artist:</td>
-                                            <td>{{ item.artist }}</td>
-                                        </tr>
-                                    {% endif %}
-
-                                    {% if item.power %}
-                                        <tr>
-                                            <td class="card-info-popup-data-label">Power / Toughness:</td>
-                                            <td>{{ item.power }} / {{ item.toughness }}</td>
-                                        </tr>
-                                    {% endif %}
-
-                                    {% if item.loyalty %}
-                                        <tr>
-                                            <td class="card-info-popup-data-label">Loyalty:</td>
-                                            <td>{{ item.loyalty }}</td>
-                                        </tr>
-                                    {% endif %}
-
-                                    {% if item.rarity %}
-                                        <tr>
-                                            <td class="card-info-popup-data-label">Rarity:</td>
-                                            <td>{{ item.rarity }}</td>
-                                        </tr>
-                                    {% endif %}
-
-                                    {% if item.card_type %}
-                                        <tr>
-                                            <td class="card-info-popup-data-label">Card Type:</td>
-                                            <td>{{ item.card_type }}</td>
-                                        </tr>
-                                    {% endif %}
-
-                                    {% if item.subtypes%}
-                                        <tr>
-                                            <td class="card-info-popup-data-label">Subtypes:</td>
-                                            <td>{{ item.subtypes }}</td>
-                                        </tr>
-                                    {% endif %}
-
-                                    {% if item.mana_cost %}
-                                        <tr>
-                                            <td class="card-info-popup-data-label">Mana Cost:</td>
-                                            <td>{{ item.mana_cost }}</td>
-                                        </tr>
-                                    {% endif %}
-
-                                    {% if item.color_identity %}
-                                        <tr>
-                                            <td class="card-info-popup-data-label">Color Identity:</td>
-                                            <td>{{ item.color_identity }}</td>
-                                        </tr>
-                                    {% endif %}
-                                </tbody>
-                            </table>
-
-                            {% if item.oracle_text %}
-                                <br>
-                                <div class="row">
-                                    <p>
-                                        "{{ item.oracle_text }}"
-                                    </p>
-                                </div>
+    <div class="table-responsive">
+        <table style="color: rgb(80,80,80);" class="nav-tabs nav-stacked table table-hover table-sm w-100">
+            <thead class="thead-inverse"></thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>
+                            {% if item.image_url %}
+                                <img alt="Image of {{ item.name }}" class="img-thumbnail" style="max-height:200px;" src="{{ item.image_url }}">
+                            {% else %}
+                                <img alt="Image of {{ item.name }}" class="img-thumbnail" style="max-height:200px;" src="{% static 'img/no_image.png' %}">
                             {% endif %}
-                        </div>
+                            <div id="imgbox"></div>
+                        </td>
+                        <td>
+                            <div class="hidden-dialog" id="card-info-text-{{ item.product_id }}" title="{{ item.name }}">
+                                <table class="card-info-popup-table table-responsive">
+                                    <tbody>
+                                        <tr>
+                                            <td class="card-info-popup-data-label">Set:</td>
+                                            <td>{{ item.expansion }}</td>
+                                        </tr>
 
-                        <div class="form-row">
-                            <a href="javascript: void(0)" id="card-info-button-{{ item.product_id }}">
-                                <span>{{ item.name }}</span>
-                            </a>
+                                        {% if item.artist %}
+                                            <tr>
+                                                <td class="card-info-popup-data-label">Artist:</td>
+                                                <td>{{ item.artist }}</td>
+                                            </tr>
+                                        {% endif %}
 
-                            {% if item.preorder %}
-                            &nbsp;<span style="background-color: yellow;">This item does no ship until after it's release</span>
-                            {% endif %}
-                        </div>
+                                        {% if item.power %}
+                                            <tr>
+                                                <td class="card-info-popup-data-label">Power / Toughness:</td>
+                                                <td>{{ item.power }} / {{ item.toughness }}</td>
+                                            </tr>
+                                        {% endif %}
 
-                        <script>
-                            var textId = "card-info-text-{{ item.product_id }}";
-                            var buttonId = "card-info-button-{{ item.product_id }}";
-                            jqueryDialogBox("#" + textId, "#" + buttonId);
-                        </script>
-                    </td>
+                                        {% if item.loyalty %}
+                                            <tr>
+                                                <td class="card-info-popup-data-label">Loyalty:</td>
+                                                <td>{{ item.loyalty }}</td>
+                                            </tr>
+                                        {% endif %}
 
-                    <td>
-                        {% if request.user.is_authenticated %}
+                                        {% if item.rarity %}
+                                            <tr>
+                                                <td class="card-info-popup-data-label">Rarity:</td>
+                                                <td>{{ item.rarity }}</td>
+                                            </tr>
+                                        {% endif %}
 
-                            <div class="form-row">
-                                <form  method="GET" class="wishlist-submit-form" data-url="{% url 'wishlist' %}"
-                                      data-value="{{ item.product_id }}" title="Added to Wishlist">
-                                    <input type="hidden" name="product_id" value="{{ item.product_id }}">
-                                    <input type="hidden" name="name" value="{{ item.name }}">
-                                    <input type="hidden" name="expansion" value="{{ item.expansion }}">
-                                    <input type="hidden" name="image_url" value="{{ item.image_url }}">
-                                    <button type="submit" class="btn btn-outline-light">
-                                        <i id="wishlist-icon-{{ item.product_id }}" style="color:rgba(0, 0, 0, 0.5);"
-                                           class="material-icons">favorite
-                                        </i>
-                                    </button>
-                                </form>
+                                        {% if item.card_type %}
+                                            <tr>
+                                                <td class="card-info-popup-data-label">Card Type:</td>
+                                                <td>{{ item.card_type }}</td>
+                                            </tr>
+                                        {% endif %}
 
-                            </div>
+                                        {% if item.subtypes%}
+                                            <tr>
+                                                <td class="card-info-popup-data-label">Subtypes:</td>
+                                                <td>{{ item.subtypes }}</td>
+                                            </tr>
+                                        {% endif %}
 
-                        {% else %}
+                                        {% if item.mana_cost %}
+                                            <tr>
+                                                <td class="card-info-popup-data-label">Mana Cost:</td>
+                                                <td>{{ item.mana_cost }}</td>
+                                            </tr>
+                                        {% endif %}
 
-                            <div class="" id="wishlist-content-{{ item.product_id }}" title="Wishlist">
-                                <h4>You must be logged in to use this feature</h4>
-                                <hr>
-                                <form method="GET" action="{% url 'login' %}">
-                                    <button type="submit" class="btn opaque-black-background">Login Now</button>
-                                    <input name="redirect-path" type="hidden" value="{{ request.get_full_path }}">
-                                </form>
+                                        {% if item.color_identity %}
+                                            <tr>
+                                                <td class="card-info-popup-data-label">Color Identity:</td>
+                                                <td>{{ item.color_identity }}</td>
+                                            </tr>
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+
+                                {% if item.oracle_text %}
+                                    <br>
+                                    <div class="row">
+                                        <p>
+                                            "{{ item.oracle_text }}"
+                                        </p>
+                                    </div>
+                                {% endif %}
                             </div>
 
                             <div class="form-row">
-                                <a id="wishlist-button-{{ item.product_id }}" href="javascript: void(0)">
-                                    <i class="material-icons opaque-black-text">favorite</i>
+                                <a href="javascript: void(0)" id="card-info-button-{{ item.product_id }}">
+                                    <span>{{ item.name }}</span>
                                 </a>
+                                {% if item.is_preorder %}
+                                &nbsp;<small style="background-color: yellow;">Ships after {{ item.release_date }}</small>
+                                {% endif %}
                             </div>
 
                             <script>
-                                let textId = "wishlist-content-{{ item.product_id }}";
-                                let buttonId = "wishlist-button-{{ item.product_id }}";
+                                var textId = "card-info-text-{{ item.product_id }}";
+                                var buttonId = "card-info-button-{{ item.product_id }}";
                                 jqueryDialogBox("#" + textId, "#" + buttonId);
                             </script>
-
-                        {% endif %}
-
-                    </td>
-
-                    {% if item.mana_cost %}
-                        <td>
-                            <div class="search-page-mana-cost" data-value="{{ item.mana_cost_encoded }}"></div>
                         </td>
-                    {% else %}
-                        <td></td>
-                    {% endif %}
 
-                    <td>{{item.card_type}}</td>
-
-                    <td>{{item.expansion}} {{item.rarity}}</td>
-
-                    <td class="condition-info-tab">
-                        <div style="position: relative;">
-
-                            <ul class="nav nav-tabs mb-3 condition-info" id="{{item.product_id}}" role="tablist"></ul>
-
-                            <script>
-                                 conditionTab(
-                                    "clean", "CL", "{{item.normal_clean_stock }}", "{{ item.foil_clean_stock }}", "{{ item.product_id }}",
-                                    "true"
-                                 );
-
-                                  conditionTab(
-                                    "played", "PL", "{{ item.normal_played_stock }}", "{{ item.foil_played_stock }}", "{{ item.product_id }}",
-                                    "false"
-                                 );
-
-                                 conditionTab(
-                                    "heavily_played", "HP", "{{ item.normal_heavily_played_stock }}",
-                                     "{{ item.foil_heavily__played_stock }}", "{{ item.product_id }}", "false"
-                                 );
-
-                                 conditionTab(
-                                    "restock", "Restock", "0",
-                                     "0", "{{ item.product_id }}", "false"
-                                 );
-                            </script>
-
-
-                            <div class="tab-content" id="tabs-tabContent-{{ item.product_id }}"></div>
-
+                        <td>
                             {% if request.user.is_authenticated %}
-                                <div class="" id="restock-content-submit-{{ item.product_id }}" title="Select Restock Variants">
 
-                                    <form method="GET" class="restock-submit-form" data-url="{% url 'restock_notice' %}"
-                                          title="Notification list updated!">
-
+                                <div class="form-row">
+                                    <form  method="GET" class="wishlist-submit-form" data-url="{% url 'wishlist' %}"
+                                          data-value="{{ item.product_id }}" title="Added to Wishlist">
                                         <input type="hidden" name="product_id" value="{{ item.product_id }}">
                                         <input type="hidden" name="name" value="{{ item.name }}">
                                         <input type="hidden" name="expansion" value="{{ item.expansion }}">
-
-                                        <div class="form-row opaque-black-text">Printing</div>
-
-                                        <div class="form-check form-check-inline">
-                                          <input class="form-check-input" type="checkbox" id="inlineCheckbox1-{{ item.product_id }}"
-                                                 name="normal" value="normal">
-                                          <label class="form-check-label" for="inlineCheckbox1-{{ item.product_id }}">Normal</label>
-                                        </div>
-
-                                        <div class="form-check form-check-inline">
-                                          <input class="form-check-input" type="checkbox" id="inlineCheckbox2-{{ item.product_id }}"
-                                                 name="foil" value="foil">
-                                          <label class="form-check-label" for="inlineCheckbox2-{{ item.product_id }}">Foil</label>
-                                        </div>
-
-                                        <div class="form-row opaque-black-text">Condition</div>
-
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="clean" value="clean"
-                                                   id="defaultCheck3-{{ item.product_id }}">
-                                            <label class="form-check-label" for="defaultCheck3-{{ item.product_id }}">clean</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="played" value="played"
-                                                   id="defaultCheck4-{{ item.product_id }}">
-                                            <label class="form-check-label" for="defaultCheck4-{{ item.product_id }}">played</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="heavily_played" value="heavily_played"
-                                                   id="defaultCheck5-{{ item.product_id }}">
-                                            <label class="form-check-label" for="defaultCheck5-{{ item.product_id }}">heavily played</label>
-                                        </div>
-
-                                        <hr>
-
-                                        <div class="form-row">
-                                            <button id="restock-button-{{ item.product_id }}" type="submit" onclick="pageSpinner()"
-                                                    class="btn opaque-black-background">Submit</button>
-                                        </div>
-
+                                        <input type="hidden" name="image_url" value="{{ item.image_url }}">
+                                        <button type="submit" class="btn btn-outline-light">
+                                            <i id="wishlist-icon-{{ item.product_id }}" style="color:rgba(0, 0, 0, 0.5);"
+                                               class="material-icons">favorite
+                                            </i>
+                                        </button>
                                     </form>
+
                                 </div>
-
-                                <script>
-                                    populateConditionTable(
-                                        "true", "clean",
-                                         "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}", "{{item.product_id}}",
-                                        "{{ item.normal_clean_stock }}", "{{ item.foil_clean_stock }}", "{{ item.normal_clean_price }}",
-                                          "{{ item.foil_clean_price }}", true, "{{ item.normal_only }}", "{{ item.foil_only }}",
-                                    );
-
-                                    populateConditionTable(
-                                        "false", "played", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
-                                         "{{ item.product_id }}", "{{ item.normal_played_stock }}",
-                                         "{{ item.foil_played_stock }}", "{{ item.normal_played_price }}", "{{ item.foil_played_price }}",
-                                          true, "{{ item.normal_only }}", "{{ item.foil_only }}",
-
-                                    );
-
-                                    populateConditionTable(
-                                        "false", "heavily_played", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
-                                         "{{ item.product_id }}", "{{ item.normal_heavily_played_stock }}",
-                                         "{{ item.foil_heavily_played_stock }}", "{{ item.normal_heavily_played_price }}",
-                                          "{{ item.foil_heavily_played_price }}", true, "{{ item.normal_only }}", "{{ item.foil_only }}",
-
-
-                                    );
-
-                                    populateConditionTable(
-                                        "false", "restock", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
-                                         "{{ item.product_id }}", "0",
-                                         "0", "0", "0", true, "{{ item.normal_only }}", "{{ item.foil_only }}",
-
-                                    );
-
-                                    var textId = "restock-content-submit-{{ item.product_id }}";
-                                    var buttonId = "restock-button-submit-{{ item.product_id }}";
-
-                                    jqueryDialogBox("#" + textId, "#" + buttonId);
-
-                                </script>
 
                             {% else %}
 
-                                <div class="" id="restock-content-login-{{ item.product_id }}" title="Restock">
+                                <div class="" id="wishlist-content-{{ item.product_id }}" title="Wishlist">
                                     <h4>You must be logged in to use this feature</h4>
                                     <hr>
                                     <form method="GET" action="{% url 'login' %}">
@@ -347,58 +192,219 @@
                                     </form>
                                 </div>
 
+                                <div class="form-row">
+                                    <a id="wishlist-button-{{ item.product_id }}" href="javascript: void(0)">
+                                        <i class="material-icons opaque-black-text">favorite</i>
+                                    </a>
+                                </div>
+
                                 <script>
-                                    populateConditionTable(
-                                        "true", "clean", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
-                                         "{{ item.product_id}}", "{{item.normal_clean_stock}}",
-                                         "{{ item.foil_clean_stock }}", "{{ item.normal_clean_price }}",
-                                          "{{ item.foil_clean_price }}", false, "{{ item.normal_only }}", "{{ item.foil_only }}",
-                                    );
-
-                                    populateConditionTable(
-                                        "false", "played", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
-                                        "{{item.product_id}}", "{{item.normal_played_stock}}",
-                                         "{{item.foil_played_stock}}", "{{item.normal_played_price}}",
-                                          "{{item.foil_played_price}}", false, "{{ item.normal_only }}", "{{ item.foil_only }}",
-                                    );
-
-                                    populateConditionTable(
-                                        "false", "heavily_played", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
-                                         "{{item.product_id}}", "{{item.normal_heavily_played_stock}}",
-                                         "{{item.foil_heavily_played_stock}}", "{{item.normal_heavily_played_price}}",
-                                         "{{item.foil_heavily_played_price}}", false, "{{ item.normal_only }}", "{{ item.foil_only }}",
-                                    );
-
-                                    populateConditionTable(
-                                        "false", "restock", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
-                                        "{{item.product_id}}", "0", "0", "0", "0", false, "{{ item.normal_only }}", "{{ item.foil_only }}",
-
-                                    );
-
-                                    var textId = "restock-content-login-{{ item.product_id }}";
-                                    var buttonId = "restock-button-login-{{ item.product_id }}";
-
+                                    let textId = "wishlist-content-{{ item.product_id }}";
+                                    let buttonId = "wishlist-button-{{ item.product_id }}";
                                     jqueryDialogBox("#" + textId, "#" + buttonId);
-
                                 </script>
 
                             {% endif %}
 
-                        </div>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+                        </td>
 
-<div class="row">
-    <div style="color: rgba(0, 0, 0, 0.6);" class="col-sm-3">
-        Viewing {{ items.start_index }}-{{ items.end_index }} of {{ items.paginator.count }} results
+                        {% if item.mana_cost %}
+                            <td>
+                                <div class="search-page-mana-cost" data-value="{{ item.mana_cost_encoded }}"></div>
+                            </td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+
+                        <td>{{item.card_type}}</td>
+
+                        <td>{{item.expansion}} {{item.rarity}}</td>
+
+                        <td class="condition-info-tab">
+                            <div style="position: relative;">
+
+                                <ul class="nav nav-tabs mb-3 condition-info" id="{{item.product_id}}" role="tablist"></ul>
+
+                                <script>
+                                     conditionTab(
+                                        "clean", "CL", "{{item.normal_clean_stock }}", "{{ item.foil_clean_stock }}", "{{ item.product_id }}",
+                                        "true"
+                                     );
+
+                                      conditionTab(
+                                        "played", "PL", "{{ item.normal_played_stock }}", "{{ item.foil_played_stock }}", "{{ item.product_id }}",
+                                        "false"
+                                     );
+
+                                     conditionTab(
+                                        "heavily_played", "HP", "{{ item.normal_heavily_played_stock }}",
+                                         "{{ item.foil_heavily__played_stock }}", "{{ item.product_id }}", "false"
+                                     );
+
+                                     conditionTab(
+                                        "restock", "Restock", "0",
+                                         "0", "{{ item.product_id }}", "false"
+                                     );
+                                </script>
+
+
+                                <div class="tab-content" id="tabs-tabContent-{{ item.product_id }}"></div>
+
+                                {% if request.user.is_authenticated %}
+                                    <div class="" id="restock-content-submit-{{ item.product_id }}" title="Select Restock Variants">
+
+                                        <form method="GET" class="restock-submit-form" data-url="{% url 'restock_notice' %}"
+                                              title="Notification list updated!">
+
+                                            <input type="hidden" name="product_id" value="{{ item.product_id }}">
+                                            <input type="hidden" name="name" value="{{ item.name }}">
+                                            <input type="hidden" name="expansion" value="{{ item.expansion }}">
+
+                                            <div class="form-row opaque-black-text">Printing</div>
+
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1-{{ item.product_id }}"
+                                                     name="normal" value="normal">
+                                              <label class="form-check-label" for="inlineCheckbox1-{{ item.product_id }}">Normal</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox2-{{ item.product_id }}"
+                                                     name="foil" value="foil">
+                                              <label class="form-check-label" for="inlineCheckbox2-{{ item.product_id }}">Foil</label>
+                                            </div>
+
+                                            <div class="form-row opaque-black-text">Condition</div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" name="clean" value="clean"
+                                                       id="defaultCheck3-{{ item.product_id }}">
+                                                <label class="form-check-label" for="defaultCheck3-{{ item.product_id }}">clean</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" name="played" value="played"
+                                                       id="defaultCheck4-{{ item.product_id }}">
+                                                <label class="form-check-label" for="defaultCheck4-{{ item.product_id }}">played</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" name="heavily_played" value="heavily_played"
+                                                       id="defaultCheck5-{{ item.product_id }}">
+                                                <label class="form-check-label" for="defaultCheck5-{{ item.product_id }}">heavily played</label>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="form-row">
+                                                <button id="restock-button-{{ item.product_id }}" type="submit" onclick="pageSpinner()"
+                                                        class="btn opaque-black-background">Submit</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+                                    <script>
+                                        populateConditionTable(
+                                            "true", "clean",
+                                             "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}", "{{item.product_id}}",
+                                            "{{ item.normal_clean_stock }}", "{{ item.foil_clean_stock }}", "{{ item.normal_clean_price }}",
+                                              "{{ item.foil_clean_price }}", true, "{{ item.normal_only }}", "{{ item.foil_only }}",
+                                        );
+
+                                        populateConditionTable(
+                                            "false", "played", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
+                                             "{{ item.product_id }}", "{{ item.normal_played_stock }}",
+                                             "{{ item.foil_played_stock }}", "{{ item.normal_played_price }}", "{{ item.foil_played_price }}",
+                                              true, "{{ item.normal_only }}", "{{ item.foil_only }}",
+
+                                        );
+
+                                        populateConditionTable(
+                                            "false", "heavily_played", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
+                                             "{{ item.product_id }}", "{{ item.normal_heavily_played_stock }}",
+                                             "{{ item.foil_heavily_played_stock }}", "{{ item.normal_heavily_played_price }}",
+                                              "{{ item.foil_heavily_played_price }}", true, "{{ item.normal_only }}", "{{ item.foil_only }}",
+
+
+                                        );
+
+                                        populateConditionTable(
+                                            "false", "restock", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
+                                             "{{ item.product_id }}", "0",
+                                             "0", "0", "0", true, "{{ item.normal_only }}", "{{ item.foil_only }}",
+
+                                        );
+
+                                        var textId = "restock-content-submit-{{ item.product_id }}";
+                                        var buttonId = "restock-button-submit-{{ item.product_id }}";
+
+                                        jqueryDialogBox("#" + textId, "#" + buttonId);
+
+                                    </script>
+
+                                {% else %}
+
+                                    <div class="" id="restock-content-login-{{ item.product_id }}" title="Restock">
+                                        <h4>You must be logged in to use this feature</h4>
+                                        <hr>
+                                        <form method="GET" action="{% url 'login' %}">
+                                            <button type="submit" class="btn opaque-black-background">Login Now</button>
+                                            <input name="redirect-path" type="hidden" value="{{ request.get_full_path }}">
+                                        </form>
+                                    </div>
+
+                                    <script>
+                                        populateConditionTable(
+                                            "true", "clean", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
+                                             "{{ item.product_id}}", "{{item.normal_clean_stock}}",
+                                             "{{ item.foil_clean_stock }}", "{{ item.normal_clean_price }}",
+                                              "{{ item.foil_clean_price }}", false, "{{ item.normal_only }}", "{{ item.foil_only }}",
+                                        );
+
+                                        populateConditionTable(
+                                            "false", "played", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
+                                            "{{item.product_id}}", "{{item.normal_played_stock}}",
+                                             "{{item.foil_played_stock}}", "{{item.normal_played_price}}",
+                                              "{{item.foil_played_price}}", false, "{{ item.normal_only }}", "{{ item.foil_only }}",
+                                        );
+
+                                        populateConditionTable(
+                                            "false", "heavily_played", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
+                                             "{{item.product_id}}", "{{item.normal_heavily_played_stock}}",
+                                             "{{item.foil_heavily_played_stock}}", "{{item.normal_heavily_played_price}}",
+                                             "{{item.foil_heavily_played_price}}", false, "{{ item.normal_only }}", "{{ item.foil_only }}",
+                                        );
+
+                                        populateConditionTable(
+                                            "false", "restock", "{{ item.name }}", "{{ item.expansion }}", "{{ item.language }}",
+                                            "{{item.product_id}}", "0", "0", "0", "0", false, "{{ item.normal_only }}", "{{ item.foil_only }}",
+
+                                        );
+
+                                        var textId = "restock-content-login-{{ item.product_id }}";
+                                        var buttonId = "restock-button-login-{{ item.product_id }}";
+
+                                        jqueryDialogBox("#" + textId, "#" + buttonId);
+
+                                    </script>
+
+                                {% endif %}
+
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-    <div class="col-sm-7"></div>
-    <div class="col-sm-2">{% include 'pagination.html' %}</div>
-</div>
+
+    <div class="row">
+        <div style="color: rgba(0, 0, 0, 0.6);" class="col-sm-3">
+            Viewing {{ items.start_index }}-{{ items.end_index }} of {{ items.paginator.count }} results
+        </div>
+        <div class="col-sm-7"></div>
+        <div class="col-sm-2">{% include 'pagination.html' %}</div>
+    </div>
+{% endif %}
 
 
 <!-- Preselects tab for condition / availability for each item -->

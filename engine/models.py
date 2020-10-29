@@ -1,5 +1,8 @@
+from datetime import datetime
+
 from customer.models import BasicProductInfo
 from django.db import models
+import pytz
 
 
 class BasicCardInfo(models.Model):
@@ -171,6 +174,10 @@ class MTG(BasicCardInfo):
 
     def __str__(self):
         return self.name
+
+    @property
+    def is_preorder(self):
+        return self.release_date > datetime.now(pytz.timezone('EST'))
 
     class Meta:
         verbose_name_plural = "MTG Card Database"

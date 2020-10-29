@@ -10,7 +10,7 @@ from customer.models import Customer
 from django.contrib import messages
 from django.db.models import Q
 from django.http import JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, reverse
 from engine.config import pagination
 from engine.forms import AdvancedSearchForm
 from engine.models import MTG, MTGUpload
@@ -91,7 +91,7 @@ def buylist_page(request):
 
     if query:
         results = MTG.objects.filter(name=query)
-    elif request.session['temp_data'] == 'hotlist':
+    elif request.GET.get('hotlist') == 'hotlist':
         results = MTG.objects.filter(Q(normal_hotlist=True) | Q(foil_hotlist=True))
     else:
         results = MTG.objects.filter(normal_buylist=True, foil_buylist=True)
@@ -430,8 +430,7 @@ def get_cart(request):
 
 
 def hotlist(request):
-    request.GET = {"q": "hotlist"}
-    return redirect("buylist")
+    return redirect(f"{reverse('buylist')}?hotlist=hotlist")
 
 
 def remove_from_cart(request, product_id):

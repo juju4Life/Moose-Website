@@ -9,7 +9,7 @@ def manage_pages(instance, **kwargs):
     if instance.normal_buylist:
         pass
 
-    if instance.sick_deal and instance.sick_deal_percentage> 0:
+    if instance.sick_deal and instance.sick_deal_percentage > 0:
         item, created = SickDeal.objects.get_or_create(
             product_id=instance.product_id,
             name=instance.name,
