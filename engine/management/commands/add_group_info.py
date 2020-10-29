@@ -18,16 +18,17 @@ manifest = Manifest()
 class Command(BaseCommand):
     # @report_error
     def handle(self, *args, **options):
-        '''
+        """
         cats = ["Dragon Shield Card Sleeves", 'KMC Card Sleeves', 'Monster Protectors Card Sleeves', 'BCW Card Sleeves', 'Pirate Lab Card Sleeves',
                 "Player's Choice Card Sleeves", "Ultimate Guard Card Sleeves", "Ultra Pro Card Sleeves", "Dex Protection Card Sleeves", "Legion Premium "
                                                                                                                                         "Supplies Card "
                                                                                                                                         "Sleeves",
                 ] 
-                '''
+        """
 
         groups = GroupName.objects.filter(category="Magic the Gathering", added=False)
         for group in groups:
+            release_date = group.release_date
             category = group.category
             upload_list = list()
             expansion = group.group_name
@@ -47,7 +48,6 @@ class Command(BaseCommand):
                         pass
 
                     if MTG.objects.filter(product_id=product_id).exists() is False:
-
                         preorder = True if group.release_date > datetime.now(timezone('EST')) else False
 
                         if category == "Magic the Gathering":
@@ -60,6 +60,7 @@ class Command(BaseCommand):
                                     image_url=image,
                                     product_id=product_id,
                                     preorder=preorder,
+                                    release_date=release_date,
                                 )
                             )
 
@@ -89,5 +90,4 @@ class Command(BaseCommand):
 
         # Add detailed card attributes
         add_info()
-
 

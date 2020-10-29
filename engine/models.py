@@ -25,8 +25,8 @@ class BasicCardInfo(models.Model):
 
 class CardPriceData(models.Model):
     c = (
-        ('yes', 'Yes',),
-        ('no', 'No',),
+        ('yes', 'Yes', ),
+        ('no', 'No', ),
     )
 
     sku = models.CharField(max_length=255, default='', blank=True)
@@ -166,6 +166,7 @@ class MTG(BasicCardInfo):
     foil_buylist = models.BooleanField(default=False)
     foil_buylist_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     foil_buylist_max_quantity = models.IntegerField(default=0)
+    release_date = models.DateTimeField()
     restock_notice = models.ManyToManyField("customer.CustomerRestockNotice", blank=True)
 
     def __str__(self):

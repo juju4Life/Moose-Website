@@ -32,6 +32,7 @@ def track_store_credit(instance, **kwarg):
         transaction_type=instance.transaction,
 
     )
+    n.save()
 
     instance.last_credit = instance.credit
 
