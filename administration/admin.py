@@ -5,7 +5,7 @@ from django.contrib import admin
 
 @admin.register(Safe)
 class SafeAdmin(admin.ModelAdmin):
-    list_display = ['date_time', 'deposit', 'withdrawal', 'reason', 'manager_initials', 'balance', 'seller_name', 'notes', ]
+    list_display = ['date_time', 'deposit', 'withdrawal', 'reason', 'manager_initials', 'balance', 'seller_name', 'notes', 'alert', ]
     search_fields = ['date_time']
     list_filter = ['reason', 'date_time']
     readonly_fields = ['balance', 'date_time', ]

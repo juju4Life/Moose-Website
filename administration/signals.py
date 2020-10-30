@@ -21,8 +21,8 @@ def manage_safe(instance, **kwargs):
 
     if instance.balance < 2000 and last.alert is False:
 
-        message = f"MTG First amount of ${instance.balance} is below the $2000 threshold. Please visit " \
-                  f"https://www.tcgfirst.com/admin/administration/safe/ to view safe history. username is 'management'."
+        message = f"Safe balance of ${instance.balance} is below the $2000 threshold. Please visit " \
+                  f"https://www.tcgfirst.com/admin/administration/safe/ to view history. username is 'management'."
 
         sent_1 = Twilio().send_message(4435702148, message_body=message)
         Twilio().send_message(4434741655, message_body=message)
@@ -35,6 +35,10 @@ def manage_safe(instance, **kwargs):
 
     else:
         pass
+
+    if instance.balance < 2000 and last.alert is True:
+        instance.alert = True
+
 
 
 
