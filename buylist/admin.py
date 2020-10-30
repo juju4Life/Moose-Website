@@ -13,13 +13,6 @@ class CkAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(HotList)
-class HotListAdmin(admin.ModelAdmin):
-    list_display = ['name', 'expansion', 'price']
-    ordering = ['name']
-    search_fields = ['name']
-
-
 @admin.register(StarcityBuylist)
 class ScgAdmin(admin.ModelAdmin):
     pass

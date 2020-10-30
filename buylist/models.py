@@ -1,6 +1,6 @@
 from customer.models import CustomerInfo, BasicProductInfo
-
 from django.db import models
+from engine.models import MTG
 
 
 class BuylistFields(models.Model):
@@ -22,6 +22,10 @@ class HotList(BasicProductInfo):
 
     class Meta:
         verbose_name_plural = "HotList"
+
+
+class HotListCards(MTG):
+    pass
 
 
 class CardKingdomBuylist(BuylistFields):

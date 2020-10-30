@@ -11,8 +11,41 @@ from tcg.tcg_scraper import TcgScraper
 scraper = TcgScraper()
 
 
-def adjust_product_quantity(obj, condition, printing, product_id, quantity):
+def categorize_product_layout(value: str):
+    value = value.lower()
+    return_value = ''
 
+    if "deck builder's toolkit" in value \
+            or 'deck' in value \
+            or 'world championship deck' in value \
+            or 'intro pack' in value \
+            or 'planeswalker deck' in value \
+            or 'commander collection' in value \
+            or 'draft pack' in value \
+            or 'display' in value \
+            or 'prerelease' in value \
+            or 'secret lair' in value \
+            or 'booster box' in value \
+            or 'theme deck' in value \
+            or 'booster pack' in value \
+            or 'fat pack' in value \
+            or 'bundle' in value \
+            or 'boxed set' in value \
+            or 'box set' in value \
+            or 'gift box' in value \
+            or 'starter' in value \
+            or 'battle pack' in value \
+            or 'ultra pro puzzle' in value:
+
+        return_value = "Sealed"
+
+    elif 'token' in value or 'art card' in value:
+        return_value = 'Token'
+
+    return return_value
+
+
+def adjust_product_quantity(obj, condition, printing, product_id, quantity):
     product = obj.objects.get(product_id=product_id)
 
     if printing == "Normal":

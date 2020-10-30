@@ -9,6 +9,7 @@ from django.utils import timezone
 from engine.models import MTG, MtgCardInfo
 from layout.models import SinglePrintingSet
 from scryfall_api import get_card_data
+from tcg.tcg_functions import categorize_product_layout
 
 
 def safe_stuff():
@@ -138,21 +139,24 @@ def el(product_id):
 
 
 def cs():
-    includes = ["Booster Box", "Theme Deck", "Booster Pack", "Fat Pack", "Bundle", "Boxed Set", "Box Set", "Gift Box", "Starter",
-                "World Championship Deck", "World Championship Deck", "Intro Pack", ]
+    includes = [
+        "Booster Box", "Theme Deck", "Booster Pack", "Fat Pack", "Bundle", "Boxed Set",
+        "Box Set", "Gift Box", "Starter", "World Championship Deck", "World Championship Deck",
+        "Intro Pack", "Planeswalker Deck", "Deck Builder's Toolkit", "Token",
+                ]
 
     query_list = list()
     with transaction.atomic():
-        for include in includes:
 
-            query = MTG.objects.filter(name__icontains=include).filter(layout="")
-            print(query.count())
-            for each in query:
-                query_list.append(each)
+        query = MTG.objects.filter(layout="")
+        print(query.count())
 
-        for q in query_list:
-            q.layout = "Sealed"
-            q.save()
+        for each in query:
+            query_list.append(each)
+
+    for q in query_list:
+        q.layout = categorize_product_layout(q.name)
+        q.save()
 
 
 def add_cards():

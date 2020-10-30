@@ -10,6 +10,7 @@ from engine.add_card_info import add_info
 from engine.tcgplayer_api import TcgPlayerApi
 from engine.tcg_manifest import Manifest
 from engine.models import MTG
+from tcg.tcg_functions import categorize_product_layout
 
 api = TcgPlayerApi('moose')
 manifest = Manifest()
@@ -25,9 +26,10 @@ class Command(BaseCommand):
                                                                                                                                         "Sleeves",
                 ] 
         """
-
         groups = GroupName.objects.filter(category="Magic the Gathering", added=False)
+
         for group in groups:
+            print(group.group_name)
             release_date = group.release_date
             category = group.category
             upload_list = list()
@@ -51,7 +53,7 @@ class Command(BaseCommand):
                         preorder = True if group.release_date > datetime.now(timezone('EST')) else False
 
                         if category == "Magic the Gathering":
-
+                            layout = categorize_product_layout(name)
                             upload_list.append(
                                 MTG(
                                     name=name,
@@ -61,6 +63,7 @@ class Command(BaseCommand):
                                     product_id=product_id,
                                     preorder=preorder,
                                     release_date=release_date,
+                                    layout=layout,
                                 )
                             )
 
