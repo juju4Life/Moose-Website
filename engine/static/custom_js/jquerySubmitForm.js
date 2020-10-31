@@ -5,17 +5,24 @@ $(document).ready( function() {
 
         event.preventDefault();
         // var $formData = $myForm.serialize();
+
         let $thisURL = this.getAttribute("data-url") || window.location.href;
         let inputList = $(this).serializeArray();
         let data = {};
+        let cookie = getCookie("csrftoken");
 
         inputList.forEach( function( input ) {
             data[input.name] = input.value;
-        } );
+        } )
+
         $.ajax({
             method: this.getAttribute("method"),
             url: $thisURL,
-            data: JSON.stringify(data),
+            type: 'POST',
+            headers: {
+                'X-CSRFTOKEN': cookie,
+            },
+            data: data,
             success: handleSuccess,
             error: handleError,
         });
@@ -54,20 +61,24 @@ $(document).ready( function(){
     $myForm.submit( function( event ){
         event.preventDefault();
 
-        let $formData = $myForm.serialize();
+        // let $formData = $myForm.serialize();
         let $thisURL = this.getAttribute("data-url") || window.location.href;
         let inputList = $(this).serializeArray();
         let data = {};
+        let cookie = getCookie("csrftoken");
 
         inputList.forEach( function( input ) {
             data[input.name] = input.value;
         } );
 
-        //console.log( $(this).find(":input") );
         $.ajax({
             method: this.getAttribute("method"),
             url: $thisURL,
             data: data,
+            type: 'POST',
+            headers: {
+                'X-CSRFTOKEN': cookie,
+            },
             success: handleSuccess,
             error: handleError,
         });
@@ -107,6 +118,8 @@ $(document).ready( function(){
         var $thisURL = this.getAttribute("data-url") || window.location.href;
         var inputList = $(this).serializeArray();
         var data = {};
+        let cookie = getCookie("csrftoken");
+
         inputList.forEach( function(input) {
             data[input.name] = input.value;
         } );
@@ -114,6 +127,10 @@ $(document).ready( function(){
             method: this.getAttribute("method"),
             url: $thisURL,
             data: data,
+            type: 'POST',
+            headers: {
+                'X-CSRFTOKEN': cookie,
+            },
             success: handleSuccess,
             error: handleError,
         });

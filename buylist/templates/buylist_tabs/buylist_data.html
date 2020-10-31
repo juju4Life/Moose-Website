@@ -96,7 +96,7 @@
 <script>
     $('.submit-button').click(function (event) {
         event.preventDefault();
-        let cookie = getCookie('csrftoken')
+        let cookie = getCookie('csrftoken');
         let productId = this.value;
         let printing = this.getAttribute('data-printing');
         let formData = $(`#formToSubmit-${productId}-${printing}`).serializeArray();

@@ -5,8 +5,8 @@
 
 <div class="row">
     {% if not items %}
-        <div class=" col-sm-4 offset-3">
-            <h4>No data to display</h4>
+        <div class="col-sm-6 offset-3 form-wrapper-default text-center">
+            <H3>There is no data to show</H3>
         </div>
     {% else %}
 
@@ -199,8 +199,8 @@
                                 </div>
 
                                 <script>
-                                    let textId = "wishlist-content-{{ item.product_id }}";
-                                    let buttonId = "wishlist-button-{{ item.product_id }}";
+                                    var textId = "wishlist-content-{{ item.product_id }}";
+                                    var buttonId = "wishlist-button-{{ item.product_id }}";
                                     jqueryDialogBox("#" + textId, "#" + buttonId);
                                 </script>
 
@@ -384,7 +384,6 @@
                                         var buttonId = "restock-button-login-{{ item.product_id }}";
 
                                         jqueryDialogBox("#" + textId, "#" + buttonId);
-
                                     </script>
 
                                 {% endif %}

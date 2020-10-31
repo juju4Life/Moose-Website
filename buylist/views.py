@@ -5,7 +5,7 @@ from decimal import Decimal
 from buylist.cart import Cart
 from buylist.forms import BuylistPaymentType
 from buylist.grade_price_buylist_card import grade
-from buylist.models import BuylistSubmission
+from buylist.models import BuylistSubmission, HotListCards
 from customer.models import Customer
 from django.contrib import messages
 from django.db.models import Q
@@ -92,7 +92,7 @@ def buylist_page(request):
     if query:
         results = MTG.objects.filter(name=query)
     elif request.GET.get('hotlist') == 'hotlist':
-        results = MTG.objects.filter(Q(normal_hotlist=True) | Q(foil_hotlist=True))
+        results = HotListCards.objects.all()  # MTG.objects.filter(Q(normal_hotlist=True) | Q(foil_hotlist=True))
     else:
         results = MTG.objects.filter(normal_buylist=True, foil_buylist=True)
 

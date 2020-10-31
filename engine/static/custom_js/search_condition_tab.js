@@ -1,22 +1,4 @@
 
-// Get CSRF Token
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-
-
 // Create initial data table for product
 function populateConditionTable( is_active, condition, name, expansion, language, productId, normalStock, foilStock, normalPrice, foilPrice, userAuthenticated, normalOnly, foilOnly ){
 
@@ -112,14 +94,6 @@ function createConditionTableRow(condition, printing, stock, price, productId, n
             form.setAttribute("method", "POST");
             form.setAttribute("class", "add-to-cart-form");
             form.setAttribute("data-url", `cart/add/${productId}`);
-
-            // Get csrf token
-            var csrfToken = getCookie("csrftoken");
-            var inputElem = document.createElement('input');
-            inputElem.type = 'hidden';
-            inputElem.name = 'csrfmiddlewaretoken';
-            inputElem.value = csrfToken;
-            form.appendChild(inputElem);
 
             var formDiv = document.createElement('div');
             formDiv.setAttribute("class", "form-box");

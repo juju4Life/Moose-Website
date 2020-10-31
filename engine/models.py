@@ -1,6 +1,5 @@
 from datetime import datetime
 
-from customer.models import BasicProductInfo
 from django.db import models
 import pytz
 
@@ -156,7 +155,7 @@ class MTG(BasicCardInfo):
     foil_only = models.BooleanField(default=False)
     normal_only = models.BooleanField(default=False)
     preorder = models.BooleanField(default=False)
-    solid_color = models.CharField(max_length=255, default='')
+    solid_color = models.CharField(max_length=255, default='', blank=True)
     sick_deal = models.BooleanField(default=False)
     sick_deal_percentage = models.IntegerField(default=0)
     normal_hotlist = models.BooleanField(default=False)
@@ -218,8 +217,8 @@ class MTGUpload(BasicCardInfo):
         return self.name
 
 
-class SickDeal(BasicProductInfo):
-    price = models.IntegerField(default=0, verbose_name='Percentage Off')
+class SickDeal(MTG):
+    pass
 
 
 class StateInfo(models.Model):
