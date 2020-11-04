@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from validators.model_validators import contains_minus, contains_plus
 
@@ -29,7 +30,14 @@ class Safe(models.Model):
     def __str__(self):
         return f"{self.date_time}"
 
+    def clean(self):
+        if self.deposit == '0' and self.withdrawal == '0':
+            raise ValidationError(
+                '"Withdrawal" and "Deposit" cannot both be 0', code='Cannot be zero',
+            )
+
     class Meta:
         verbose_name_plural = "Safe"
+
 
 

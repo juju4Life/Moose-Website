@@ -9,6 +9,12 @@ class SafeAdmin(admin.ModelAdmin):
     search_fields = ['date_time']
     list_filter = ['reason', 'date_time']
     readonly_fields = ['balance', 'date_time', ]
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # editing an existing object
+            return self.readonly_fields + ['deposit', 'withdrawal', 'manager_initials', ]
+        return self.readonly_fields
+
     fields = (
         ('deposit', 'withdrawal', ),
         ('reason', 'manager_initials', ),

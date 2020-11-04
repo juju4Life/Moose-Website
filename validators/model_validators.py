@@ -60,8 +60,13 @@ def cannot_be_empty(value):
 
 def contains_plus(value):
     if value != '0':
-        if not value[0] == "+":
+        if value[0] != "+":
             raise ValidationError(_('Changing credit must be explicit using + or - for adding or subtracting store credit'), code='Invalid Input')
+
+        if value == '+0':
+            raise ValidationError(
+                _('Must be a number greater than 0. Cannot use "+0"'), code='Invalid Input'
+            )
 
         try:
             Decimal(value[1:])
@@ -74,10 +79,16 @@ def contains_plus(value):
 
 def contains_minus(value):
     if value != '0':
-        if not value[0] == "-":
+        if value[0] != "-":
             raise ValidationError(
                 _('Changing credit must be explicit using + for deposits and - for withdrawals'), code='Invalid Input'
             )
+
+        if value == '-0':
+            raise ValidationError(
+                _('Must be a number less than 0. Cannot use "-0"'), code='Invalid Input'
+            )
+
         try:
 
             Decimal(value[1:])
