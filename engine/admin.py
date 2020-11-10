@@ -41,6 +41,7 @@ class MTGCardInfo(admin.ModelAdmin):
 
 
 class CardDataResource(resources.ModelResource):
+    product_id = Field(attribute='product_id', column_name='ID')
     name = Field(attribute='name', column_name='Name')
     expansion = Field(attribute='expansion', column_name='Set')
     sku = Field(attribute='sku', column_name='Sku')
@@ -49,7 +50,7 @@ class CardDataResource(resources.ModelResource):
         model = CardPriceData
         fields = ()
         exclude = ('id', 'cfb_buylist', 'direct_net', 'store_quantity_needed', 'printing', 'sell_to', 'best_net',
-                   'product_id', 'tcg_direct_price', 'updated', )
+                    'tcg_direct_price', 'updated', )
 
 
 class ListDisplayNoSku(admin.SimpleListFilter):
