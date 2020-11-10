@@ -34,7 +34,7 @@ class CardPriceData(models.Model):
     sku = models.CharField(max_length=255, default='', blank=True)
     name = models.CharField(max_length=255, default='')
     expansion = models.CharField(max_length=255, default='', blank=True)
-    product_id = models.CharField(max_length=255, default='', blank=True)
+    product_id = models.CharField(max_length=255, default='', unique=True)
     tcg_direct_price = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
     direct_net = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)
     tcg_price = models.DecimalField(max_digits=12, decimal_places=2, default=0, blank=True)

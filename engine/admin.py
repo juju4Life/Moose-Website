@@ -6,6 +6,7 @@ from django.contrib import admin
 from django.contrib.admin import SimpleListFilter
 from django.contrib.auth.models import Group
 from django.db.models import Q
+from django.utils.translation import gettext_lazy as _
 from engine.models import MTG, DirectData, TcgGroupPrice, MooseInventory, MooseAutopriceMetrics, CardPriceData, MtgCardInfo, MTGUpload, StateInfo, MTGDatabase
 from engine.tcgplayer_api import TcgPlayerApi
 from import_export.admin import ImportExportModelAdmin
@@ -38,32 +39,45 @@ class UploadAdmin(admin.ModelAdmin):
 class MTGCardInfo(admin.ModelAdmin):
     pass
 
-# TcgPlayer Buylist Hub --------------------------------------------------------------------------------------------------------------------
-
 
 class CardDataResource(resources.ModelResource):
     name = Field(attribute='name', column_name='Name')
     expansion = Field(attribute='expansion', column_name='Set')
-    tcg_net = Field(attribute='tcg_net', column_name='Tcg Net')
-    tcg_price = Field(attribute='tcg_price', column_name='Tcg Price')
-    tcg_market = Field(attribute='tcg_market', column_name='Tcg Market')
-    amazon_price = Field(attribute='amazon_price', column_name='Amazon Price')
-    amazon_net = Field(attribute='amazon_net', column_name='Amazon Net')
-    scg_buylist = Field(attribute='scg_buylist', column_name='SCG Buylist')
-    ck_buylist = Field(attribute='ck_buylist', column_name='CK Buylist')
+    sku = Field(attribute='sku', column_name='Sku')
 
     class Meta:
         model = CardPriceData
+        fields = ()
         exclude = ('id', 'cfb_buylist', 'direct_net', 'store_quantity_needed', 'printing', 'sell_to', 'best_net',
-                   'sku', 'product_id', 'tcg_direct_price', 'updated',)
+                   'product_id', 'tcg_direct_price', 'updated', )
+
+
+class ListDisplayNoSku(admin.SimpleListFilter):
+
+    title = _('No Sku')
+    parameter_name = 'empty'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('no_sku', _('No Sku')),
+            ('skus', _('Skus')),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == 'no_sku':
+            return queryset.filter(sku='')
+        else:
+            return queryset.exclude(sku='')
 
 
 @admin.register(CardPriceData)
 class CardPriceAdmin(ImportExportModelAdmin):
+
     search_fields = ['name']
     list_display = ['name', 'expansion', 'ck_buylist', 'scg_buylist', 'tcg_direct_price', 'tcg_price', 'amazon_price', 'low_store_stock',
                     'store_quantity_needed', 'sell_to', 'updated', ]
     ordering = ['name']
+    list_filter = [ListDisplayNoSku, ]
     resource_class = CardDataResource
 
 

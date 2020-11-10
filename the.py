@@ -3,6 +3,8 @@ from decimal import Decimal
 from datetime import datetime
 
 from administration.models import Safe
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.utils import IntegrityError
 from django.db.models import Count
 from django.db.models import Q
 from django.db import transaction
@@ -16,16 +18,30 @@ from tcg.tcg_functions import categorize_product_layout
 def hub():
     tcg_cards = TcgGroupPrice.objects.all()
     create_list = list()
-    for card in tcg_cards:
-        if CardPriceData.objects.filter(product_id=card.product_id).exists():
-            pass
-        else:
-            ref = MTG.objects.get(product_id=card.product_id)
-            create_list.append(
-                CardPriceData(
+    list_of_already = CardPriceData.objects.values_list('product_id', flat=True)
+    for index, card in enumerate(tcg_cards):
+        print(index)
+        if card.product_id not in list_of_already:
+            try:
+                ref = MTG.objects.get(product_id=card.product_id)
+            except ObjectDoesNotExist as e:
+                print(e)
+                ref = None
 
-                )
-            )
+            if ref:
+                    try:
+                        c = CardPriceData(
+                            name=ref.name,
+                            expansion=ref.expansion,
+                            product_id=card.product_id,
+                        )
+                        c.save()
+                    except IntegrityError as e:
+                        print(e)
+
+
+
+    CardPriceData.objects.bulk_create(create_list)
 
 
 def mu():
