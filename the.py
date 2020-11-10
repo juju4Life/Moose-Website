@@ -3,13 +3,34 @@ from decimal import Decimal
 from datetime import datetime
 
 from administration.models import Safe
+from django.db.models import Count
 from django.db.models import Q
 from django.db import transaction
 from django.utils import timezone
-from engine.models import MTG, MtgCardInfo
+from engine.models import MTG, MtgCardInfo, TcgGroupPrice, CardPriceData
 from layout.models import SinglePrintingSet
 from scryfall_api import get_card_data
 from tcg.tcg_functions import categorize_product_layout
+
+
+def hub():
+    tcg_cards = TcgGroupPrice.objects.all()
+    create_list = list()
+    for card in tcg_cards:
+        if CardPriceData.objects.filter(product_id=card.product_id).exists():
+            pass
+        else:
+            ref = MTG.objects.get(product_id=card.product_id)
+            create_list.append(
+                CardPriceData(
+
+                )
+            )
+
+
+def mu():
+    items = MTG.objects.values_list('product_id', flat=True).annotate(item_count=Count('product_id')).filter(item_count__gt=1)
+    print(items)
 
 
 def safe_stuff():

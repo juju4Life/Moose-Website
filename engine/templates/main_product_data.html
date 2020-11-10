@@ -42,10 +42,11 @@
                     Sort By
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <form method="GET" action="{% url 'search' %}">
-                        <button name="sort_by_set" value="{{ query }}" class="btn btn-light dropdown-item">set (a-z)</button>
-                        <button name="sort_by_set_reverse" value="{{ query }}" class="btn btn-light dropdown-item">set (z-a)</button>
-
+                    <form method="GET" action='{% url on_page %}'>
+                        <button name="filter_page" value="sort_by_name" class="btn btn-light dropdown-item">Name (a-z)</button>
+                        <button name="filter_page" value="sort_by_name_reverse" class="btn btn-light dropdown-item">Name (z-a)</button>
+                        <button name="filter_page" value="sort_by_set" class="btn btn-light dropdown-item">set (a-z)</button>
+                        <button name="filter_page" value="sort_by_set_reverse" class="btn btn-light dropdown-item">set (z-a)</button>
                     </form>
                 </div>
             </div>
@@ -406,6 +407,7 @@
 {% endif %}
 
 
+{% block scripts %}
 <!-- Preselects tab for condition / availability for each item -->
 <script src="{% static 'custom_js/select_tab_search_results.js' %}"></script>
 
@@ -423,3 +425,4 @@
         });
     }
 </script>
+{% endblock scripts %}

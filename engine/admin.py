@@ -164,7 +164,7 @@ class MTGAdmin(ImportExportModelAdmin):
 @admin.register(TcgGroupPrice)
 class TcgGroupPriceAdmin(admin.ModelAdmin):
     search_fields = ['name', ]
-    list_display = ['name', 'expansion', 'direct_low_price', 'market_price', 'low_price', 'mid_price', 'printing', ]
+    list_display = ['direct_low_price', 'market_price', 'low_price', 'mid_price', 'printing', ]
 
 
 @admin.register(DirectData)
@@ -177,5 +177,5 @@ class DirectTrackerAdmin(admin.ModelAdmin):
 
 admin.site.site_header = 'MooseLoot'
 admin.site.site_title = ''
-admin.site.index_title = 'MooseLoot'
+admin.site.index_title = ''
 admin.site.unregister(Group)

@@ -17,7 +17,7 @@ class Report:
             if set_data['success'] is True:
                 yield {"data": set_data['results'], "expansion": expansion.group_name}
             else:
-                yield list()
+                yield None
 
 
 

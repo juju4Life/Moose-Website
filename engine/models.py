@@ -178,6 +178,11 @@ class MTG(BasicCardInfo):
     def is_preorder(self):
         return self.release_date > datetime.now(pytz.timezone('EST'))
 
+    @property
+    def in_stock(self):
+        return True if self.normal_clean_stock > 0 or self.normal_played_stock > 0 or self.normal_heavily_played_stock > 0 \
+            or self.foil_clean_stock > 0 or self.foil_played_stock > 0 or self.foil_heavily_played_stock > 0 else False
+
     class Meta:
         verbose_name_plural = "MTG Card Database"
         ordering = ['name', ]
@@ -238,19 +243,15 @@ class TcgCredentials(models.Model):
 
 class TcgGroupPrice(models.Model):
     product_id = models.CharField(max_length=255, default='')
-    name = models.CharField(max_length=255, default='')
-    expansion = models.CharField(max_length=255, default='')
     printing = models.CharField(max_length=255, default='')
     low_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     mid_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     market_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    high_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     direct_low_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    is_direct = models.BooleanField(default=False)
-    price_history = models.TextField(default='')
+    date_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.product_id
 
 
 

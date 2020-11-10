@@ -7,6 +7,28 @@ from bs4 import BeautifulSoup as b
 from.decorators import offset
 
 
+def sort_model_query(obj, sort_type):
+
+    field = {
+        'sort_by_set': 'expansion',
+        'sort_by_set_reverse': 'expansion',
+        'sort_by_name': 'name',
+        'sort_by_name_reverse': 'name',
+    }
+
+    if sort_type == 'sort_by_set' or sort_type == 'sort_by_name':
+        return obj.order_by(field[sort_type])
+
+    elif sort_type == 'sort_by_set_reverse' or sort_type == 'sort_by_name_reverse':
+        return obj.order_by(f'-{field[sort_type]}')
+
+    elif sort_type == 'in-stock':
+        return obj.filter(in_stock=True)
+
+    else:
+        return obj
+
+
 def change_order_status(string, order_status):
     new_status = replace_text_between_two_words("<status_start>", "<status_end>", replacement=order_status, string=string)
     return new_status
