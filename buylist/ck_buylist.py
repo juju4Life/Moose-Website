@@ -1,6 +1,5 @@
 from my_customs.functions import request_soup
 from my_customs.standardize_sets import Standardize
-from my_customs.decorators import report_error
 from other.models import CardKingdomAnalytics
 from buylist.models import CardKingdomBuylist
 from other.gather_analytics import analyze
@@ -10,18 +9,20 @@ def ck_buylist(page):
 
     path = "https://www.cardkingdom.com/purchasing/mtg_singles?filter%5Bipp%5D=100&filter%5Bsort%5D=name&filter%5Bsearch%5D=mtg_advanced&filter%5Bname%5D=&filter%5Bcategory_id%5D=0&filter%5Bfoil%5D=1&filter%5Bnonfoil%5D=1&filter%5Bprice_op%5D=&filter%5Bprice%5D=&page="
 
+    # --> # Needs to update model instead of deleting all objects, which could result in unexpected behavior when there is a query in-between
+    # re-population of model
     CardKingdomBuylist.objects.all().delete()
 
+    # call standardization class which changes set names to be the same for various platforms
     standardize = Standardize()
-    card_list = []
-    pages = []
+    card_list = list()
+    pages = list()
 
     count = 0
     while count < page:
         pages.append(path + str(count + 1))
         count += 1
     for each in pages:
-        print('Page ', pages.index(each) + 1)
         soup = request_soup(each)
 
         card_data = soup.find_all("div", {"class": "itemContentWrapper"})

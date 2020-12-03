@@ -14,7 +14,6 @@ def update_tcg():
 
         for item in items:
             if item["group"] not in excludes:
-                # product_id = item["productId"] condition = sku["condition"]["name"] is_foil = sku["foil"]
                 for sku in item["skus"]:
                     sku_id = sku["skuId"]
                     language = sku["language"]["name"]
@@ -37,6 +36,7 @@ def update_tcg():
 
                 if upload_price < .49:
                     upload_price = .49
+
                 upload_list.append(
                     {
                         "skuId": sku,

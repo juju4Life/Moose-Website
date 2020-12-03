@@ -56,6 +56,7 @@ class ShippingMethod(models.Model):
         ordering = ["cost", "full_name", ]
 
 
+# --> # Should be moved to Engine app
 class GroupName(models.Model):
     added = models.BooleanField(default=False)
     category = models.CharField(max_length=255, default='Unknown')

@@ -16,6 +16,7 @@ api = TcgPlayerApi('moose')
 mailgun = MailGun()
 
 
+# Periodic update for Tcgplayer api
 @shared_task(name='orders.tasks.update_moose_tcg')
 def update_moose_tcg():
     moose_price()
@@ -48,7 +49,7 @@ def process_order(request, cart, order_number, store_credit, discounts, ):
         # Create list of product ids without prepended sku identifier. maintained order and length are import to iterate using zip() later
         product_id_list = [i["product"][2:] for i in cart]
 
-        # Create a query using the list of product ids. we use set in order to avoid redundant filters
+        # Create a query using the list of product ids. we use set() in order to avoid redundant filters
         mtg_cards = MTG.objects.filter(product_id__in=list(set(product_id_list)))
 
         # iterate over each (cart item, product id) and remove them from inventory or call stock_availability_error(). Return to cart if error
@@ -295,6 +296,7 @@ def process_order(request, cart, order_number, store_credit, discounts, ):
     product_string = '\n'.join([f"{i['language']} | {i['name']} | {i['expansion']} | {i['printing']} | "
                                 f"{i['condition']} | qty: {i['quantity']} | price: ${i['price']} | total: ${i['total']}" for i in cart])
 
+    # --> # model to allow backend user to easily edit message
     message = f"Your order has be received. We are in the process of pulling your items and once they are packaged, you " \
               f"will receive an email with the shipping status of your order along with tracking (if applicable). For reference here are your order " \
               f"details:\n\nOrder Number: {order_number}\n" \

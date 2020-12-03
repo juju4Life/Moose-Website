@@ -4,6 +4,8 @@ from scryfall_api import get_card_data, parse_scryfall_power_toughness
 
 
 def add_info():
+
+    # Map rarity to single letter
     rarity_dict = {
         "mythic": "M",
         "rare": "R",
@@ -16,9 +18,11 @@ def add_info():
 
     with transaction.atomic():
         cards = MTG.objects.filter(converted=False).exclude(layout__in=['supplies', 'Sealed', 'token']).exclude(expansion__in=exclude_list)
-        print(cards.count())
+
         for index, card in enumerate(cards):
             product_id = card.product_id
+
+            # Use Scrfall API to get card info
             scry = get_card_data(product_id)
 
             if scry and scry['object'] != 'error':
@@ -62,8 +66,8 @@ def add_info():
                     colors = card_faces[0]['colors']
                     mana_cost = ''
                     encoded_mana_cost = ''
-
                     split = scry["card_faces"]
+
                     for ind, each in enumerate(split):
                         if ind == 0:
                             encoded_mana_cost += each["mana_cost"]
@@ -202,7 +206,7 @@ def add_info():
                         else:
                             start += 1
                 else:
-                    print(card.name, '|||', card.expansion)
+                    pass
 
 
 

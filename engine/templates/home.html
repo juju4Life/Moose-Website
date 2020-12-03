@@ -133,74 +133,7 @@
             </a>
         </div>
     </div>
-
-    <!-- Footer Start -->
-    <div class="row pt-3" style="background-color: rgba(52, 58, 64, 1); color: white;">
-        <!-- <div class="col-sm-12">
-            <img style="max-height: 75px" src="{% static 'img/Moose_main.png' %}">
-        </div> -->
-
-        <div class="col-sm-2">
-            <header>Shop <i class="material-icons">shop</i></header>
-            <ul>
-                <li><a href="{% url 'preorders' %}">Preorders</a></li>
-                <li><a href="{% url 'sick_deals' %}">Sick Deals</a></li>
-                <li><a href="#">Singles</a></li>
-            </ul>
-        </div>
-
-        <div class="col-sm-2">
-            <header>Trade <i class="material-icons">shop_two</i></header>
-            <ul>
-                <li><a href="{% url 'buylist' %}">Full Buylist</a></li>
-                <li><a href="{% url 'hotlist' %}">Hotlist</a></li>
-            </ul>
-        </div>
-
-        <div class="col-sm-2">
-            <header>Account <i class="material-icons">account_box</i></header>
-            <ul>
-                <li><a href="{% url 'profile' %}">Account Info</a></li>
-                <li><a href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/profile#nav-buylist-submissions-tab">Buylist History</a></li>
-                <li><a href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/profile#nav-orders-tab">Order History</a></li>
-                <li><a href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/profile#nav-restock-tab">Restock Alerts</a></li>
-                <li><a href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/profile#nav-wishlist-tab">Wishlist</a></li>
-            </ul>
-        </div>
-
-        <div class="col-sm-2">
-            <header>Social Media <i class="material-icons">person_add</i></header>
-            <ul>
-                <li><a href="#">Twitter</a></li>
-                <li><a href="https://www.facebook.com/MTGFirstGameCenter/">Facebook</a></li>
-            </ul>
-        </div>
-
-        <div class="col-sm-2">
-            <header>About Us <i class="material-icons">emoji_people</i></header>
-            <ul>
-                <li><a href="{% url 'contact' %}">Contact Us</a></li>
-                <li><a href="{% url 'about_us' %}">Our Story</a></li>
-                <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
-                <li><a href="{% url 'terms_of_service' %}">Terms of Service</a></li>
-            </ul>
-        </div>
-
-        <div class="col-sm-2">
-            <p>
-                {{ address.company }} <br>
-                {{ address.address_line_1 }} <br>
-
-                {% if address.address_line_2 %}
-                    {{ address.address_line_2 }} <br>
-                {% endif %}
-
-                {{ address.city }}, {{ address.state }} {{ address.zip_code }} <br>
-                {{ address.phone }} <br>
-            </p>
-        </div>
-    </div>
-
 {% endif %}
+
 {% endblock %}
 

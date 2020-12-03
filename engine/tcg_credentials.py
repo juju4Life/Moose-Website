@@ -1,24 +1,29 @@
-from .models import TcgCredentials
+
+from decouple import config
+from engine.models import TcgCredentials
 import requests
 
 
 class Credentials:
+
     bearer_tokens = {
         'first': TcgCredentials.objects.get(name='first').token,
         'moose': TcgCredentials.objects.get(name='moose').token,
     }
     content_type = "application/json"
-    first_store_key = "399a7564"
-    moose_store_key = "72a0d337"
+    first_store_key = config('FIRST_STORE_KEY')
+    moose_store_key = config('MOOSE_STORE_KEY')
 
     store_keys = {
         'first': first_store_key,
         'moose': moose_store_key,
     }
-    token = "39cf2a47-1de8-43ad-b29c-1542a670ccd8"
-    public_key = "071BA187-6E51-4A3F-A2AF-C1C27663B543"
-    private_key = "DEBC2A03-0DDF-4CDE-8755-91CB1947A16B"
+    public_key = config("TCG_API_PUBLIC_KEY")
+    private_key = config('TCG_API_PRIVATE_KEY')
+
+    # --> # add model to handle tcgplayer api version
     url = 'https://api.tcgplayer.com/v1.39.0/'
+
     payload = "grant_type=client_credentials&client_id=" + public_key + "&client_secret=" + private_key
 
     def get_request_with_params(self, url, store, **kwargs):
@@ -99,11 +104,10 @@ class Credentials:
     def new_bearer_token(self):
         import requests
 
-        first_access_token = "39cf2a47-1de8-43ad-b29c-1542a670ccd8"
-        moose_access_token = "f53c8f0d-a7b3-48c1-bde1-9fbdd8605ad7"
-        public_key = "071BA187-6E51-4A3F-A2AF-C1C27663B543"
-        private_key = "DEBC2A03-0DDF-4CDE-8755-91CB1947A16B"
-        payload = "grant_type=client_credentials&client_id=" + public_key + "&client_secret=" + private_key
+        first_access_token = config("TCG_API_FIRST_ACCESS_TOKEN")
+        moose_access_token = config('TCG_API_MOOSE_ACCESS_TOKEN')
+
+        payload = "grant_type=client_credentials&client_id=" + self.public_key + "&client_secret=" + self.private_key
 
         first_headers = {
             "Content-Type": self.content_type,

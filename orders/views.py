@@ -15,7 +15,6 @@ def confirm_payment(request):
     template = "confirm_payment.html"
 
     is_paid = False
-
     order_number = request.GET.get("token")
     payer_id = request.GET.get("PayerID")
 
@@ -36,6 +35,7 @@ def confirm_payment(request):
     return render(request, template, context)
 
 
+# --> # Should be changed to be an extension of an admin page instead of using the staff_member_required decorator
 @staff_member_required
 def order_view(request, order_number):
     context = dict()
@@ -43,10 +43,13 @@ def order_view(request, order_number):
     ordered_items = list()
 
     order = Order.objects.get(order_number=order_number)
+
+    # Get text field record of order. Skip the last index because it will always be empty
     cards = order.ordered_items.split("<card>")[:-1]
 
     for c in cards:
         card = c.split("<attribute>")
+
         ordered_items.append(
             {
                 "name": card[0],
@@ -65,6 +68,7 @@ def order_view(request, order_number):
     return render(request, template, context)
 
 
+# --> # Should be changed to be an extension of an admin page instead of using the staff_member_required decorator
 @staff_member_required
 def pull_sheet(request):
     context = dict()
@@ -72,6 +76,8 @@ def pull_sheet(request):
     cards = dict()
 
     cards_from_active_orders = ''.join([i.ordered_items for i in PullingOrder.objects.all()])
+
+    # Skip last index because it will always be empty due to the nature of dynamically adding to text field and splitting data
     cards_from_active_orders = cards_from_active_orders.split("<card>")[:-1]
     for card in cards_from_active_orders:
         attributes = card.split("<attribute>")
@@ -81,13 +87,12 @@ def pull_sheet(request):
         condition = attributes[3]
         language = attributes[4]
         quantity = attributes[5]
-        # price = attributes[6]
-        # total = attributes[7]
 
         sku = f"{language}_{printing}_{condition}_{name}_{expansion}"
         if not cards.get(sku):
             cards[sku] = dict()
 
+        # add to total quantity of specific item, if key error that means it does no exist yet. We then create initial entry, initial value to 0 and add
         try:
             cards[sku]["quantity"] += int(quantity)
         except KeyError:
@@ -109,6 +114,7 @@ def pull_sheet(request):
     return render(request, template, context)
 
 
+# --> # Should be changed to be an extension of an admin page instead of using the staff_member_required decorator
 @staff_member_required
 def packing_slips(request, order_number):
     context = dict()
@@ -117,6 +123,8 @@ def packing_slips(request, order_number):
     all_items = list()
 
     orders = PullingOrder.objects.all()
+
+    # Backend user can choose crate pull list for one order or all
     if order_number.lower() != "all":
         orders = orders.filter(order_number=order_number)
 
@@ -157,6 +165,7 @@ def packing_slips(request, order_number):
     return render(request, template, context)
 
 
+# --> # Should be changed to be an extension of an admin page instead of using the staff_member_required decorator
 @staff_member_required
 def ready_to_ship(request):
     if request.GET:

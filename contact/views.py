@@ -38,14 +38,15 @@ def contact(request):
 
         if CustomerEmail.objects.filter(uuid=uuid).exists():
 
+            # --> # Message to be placed in model for backend user customization
             message = f'You have submitted the following message to MooseLoot.com\n\n"{comment}"\n\n We look forward to helping you with any problems or ' \
                 f'questions that you may have. A team member will review you order shortly. Expect to hear back from us within 24 hours.\n\nThank you for \
 contacting MooseLoot.com,\nMooseLoot Team'
 
-            emailTo = [email, ]
+            email_to = [email, ]
 
             mailgun.send_mail(
-                recipient_list=emailTo, subject=subject, message=message,
+                recipient_list=email_to, subject=subject, message=message,
             )
 
             context['confirm_message'] = 'confirmed'
@@ -58,10 +59,5 @@ contacting MooseLoot.com,\nMooseLoot Team'
 
     else:
         return render(request, template, context)
-
-
-def policy(request):
-    return render(request, 'privacy-policy.html')
-
 
 

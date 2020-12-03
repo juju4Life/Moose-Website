@@ -2,6 +2,7 @@ import decouple
 import requests
 
 
+# Heroku add-on
 class MailGun:
     def __init__(self):
         self.mailgun_domain = decouple.config("MAILGUN_DOMAIN")

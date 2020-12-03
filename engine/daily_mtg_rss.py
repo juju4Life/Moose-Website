@@ -3,6 +3,7 @@ import requests
 import xmltodict
 
 
+# --> # Incomplete function to webhook into Wizards RSS Feed
 def daily_mtg_update():
     current_articles = DailyMtgNews.objects.all()
     r = requests.get(url="https://magic.wizards.com/en/rss/rss.xml?tags=Daily%20MTG&lang=en")

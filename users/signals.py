@@ -7,6 +7,7 @@ from customer.models import Customer
 from datetime import datetime
 
 
+# Connect customer profile when user is created
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
 
@@ -25,6 +26,7 @@ def create_profile(sender, instance, created, **kwargs):
 				)
 
 
+# Handl too many login attempts
 @receiver(user_login_failed)
 def login_failed(sender, credentials, **kwargs):
 	email = credentials.get('email')
@@ -55,10 +57,4 @@ def login_success(sender, request, user, **kwargs):
 @receiver(user_logged_out)
 def logout_success(sender, request, user, **kwargs):
 	pass
-
-
-'''@receiver(post_save, sender=User)
-def save_Profile(sender, instance, **kwargs):
-		pass'''
-
 

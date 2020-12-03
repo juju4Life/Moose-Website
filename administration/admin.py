@@ -10,17 +10,20 @@ class SafeAdmin(admin.ModelAdmin):
     list_filter = ['reason', 'date_time']
     readonly_fields = ['balance', 'date_time', ]
 
+    fields = (
+        ('deposit', 'withdrawal',),
+        ('reason', 'manager_initials',),
+        ('seller_name',),
+        ('notes',),
+
+    )
+
+    # override to allow the object to be created in the admin panel while enforcing read_only fields for viewing *already created* objects only
+    # Default readonly_field behavior does not allow to edit during object creation
     def get_readonly_fields(self, request, obj=None):
-        if obj:  # editing an existing object
+        if obj:
             return self.readonly_fields + ['deposit', 'withdrawal', 'manager_initials', ]
         return self.readonly_fields
 
-    fields = (
-        ('deposit', 'withdrawal', ),
-        ('reason', 'manager_initials', ),
-        ('seller_name', ),
-        ('notes', ),
-
-    )
 
 

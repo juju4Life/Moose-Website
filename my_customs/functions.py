@@ -6,6 +6,19 @@ from uuid import uuid4
 from bs4 import BeautifulSoup as b
 from.decorators import offset
 
+"""
+
+Useful functions used throughout the project
+
+"""
+
+
+def change_str_to_zero(value):
+    if value == '':
+        return 0
+    else:
+        return value
+
 
 def sort_model_query(obj, sort_type):
 

@@ -45,7 +45,7 @@ class Inventory:
                                 card_in_db.update(normal_heavily_played_price=hp)
 
                         if market is not None:
-                            if market >= 1.8:
+                            if market >= 1.5:
                                 group_price_upload_list.append(
                                     TcgGroupPrice(
                                         product_id=product_id,

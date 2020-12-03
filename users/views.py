@@ -24,6 +24,7 @@ mailgun = MailGun()
 
 
 def activate(request, uidb64, token):
+    # activate user account by verifying uid and token
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
@@ -73,7 +74,6 @@ def make_password_change(request):
     if request.method == "POST":
         user = User.objects.get(email=request.POST.get("user_email"))
         password1 = request.POST.get("new_password1")
-        # password2 = request.POST.get("new_password2")
 
         if password1:
             user.set_password(password1)
@@ -91,12 +91,14 @@ def profile(request):
         context = dict()
         customer = Customer.objects.get(email=request.user.email)
 
+        # Splits and converts text string to list of dictionaries to be used for context
         buylist_submissions = split_text_field_string_for_orders(customer.buylist_submissions)
         context['buylist_submissions'] = buylist_submissions
 
         orders_list = split_text_field_string_for_orders(customer.orders)
         context["orders"] = orders_list
 
+        # Format Wishlist items for context
         wishlist_data = customer.wishlist.split(",")[:-1]
         wishlist_items = list()
         for cards in wishlist_data:
@@ -105,6 +107,7 @@ def profile(request):
                 {"name": card_data[1], "expansion": card_data[2], "image_url": card_data[3]}
             )
 
+        # Format restock notice items for context
         restock_list = [
             {
                 "product_id": i.product_id,
@@ -124,7 +127,6 @@ def profile(request):
 
             if request.POST.get('update_password'):
                 password_form = UpdatePasswordForm(request.user, request.POST)
-
                 if password_form.is_valid():
                     updated_password = password_form.save()
                     update_session_auth_hash(request, updated_password)
@@ -262,7 +264,6 @@ def profile(request):
                 return redirect('profile')
 
             # --- Handle Subscription Status ---
-
             elif request.POST.get('subscriptions'):
 
                 if request.POST.get('events'):
@@ -284,6 +285,7 @@ def profile(request):
 
                 return redirect('profile')
 
+            # --> # redundant form creations should be removed and view tested to ensure proper functionality
             else:
                 user_form = UserUpdateForm(request.POST, customer.address_line_1, instance=request.user)
                 profile_form = AddressForm(instance=request.user)
@@ -299,7 +301,7 @@ def profile(request):
         return render(request, 'users/profile.html', context)
 
     else:
-        user_form = None
+        pass
 
 
 def register(request):

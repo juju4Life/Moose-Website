@@ -37,5 +37,4 @@ class Command(BaseCommand):
                     )
 
                     new_group.save()
-                    # print(group_id['name'] + ' added')
 

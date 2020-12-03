@@ -1,7 +1,7 @@
 
-
 def grade(condition, printing, price):
     grade_value = {
+
         "Normal": {
             "clean": 1,
             "played": .70,

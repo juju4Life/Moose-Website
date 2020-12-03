@@ -19,13 +19,13 @@ from mail.mail_templates import customer_info_template, ordered_items_template, 
 from mail.mailgun_api import MailGun
 from my_customs.functions import format_cart_for_text_field_storage, create_random_id, split_text_field_string_for_orders, change_order_status
 from users.forms import AddressForm
+
 mailgun = MailGun()
 
 
 def add_to_cart(request, product_id):
     name = request.POST.get('name')
     expansion = request.POST.get('expansion')
-
     language = request.POST.get('language')
     quantity = request.POST.get('quantity')
     printing = request.POST.get('printing')
@@ -47,6 +47,7 @@ def add_to_cart(request, product_id):
         quantity=quantity,
     )
 
+    # Return Json Repsonse to Ajax after handling POST request
     return JsonResponse({"id": f"button-{product_id}-{printing}"})
 
 
@@ -142,6 +143,7 @@ def check_buylist_order(request, buylist_number):
         post_data = request.POST
         resubmitted_list = list()
 
+        # --> # Duplicate code fragment with lower block. Can be combined into one function
         for i in range(len(post_data.getlist('name'))):
             name = post_data.getlist('name')[i]
             expansion = post_data.getlist('expansion')[i]
@@ -245,6 +247,8 @@ def check_buylist_order(request, buylist_number):
         order.save()
         MTGUpload.objects.bulk_create(upload_list)
         message = ''
+
+        # --> # Move text that user to edit to backend model
         if payment_type == 'store_credit':
             message = f'{total_price} has been credited to your account.'
             customer = Customer.objects.get(email=order.email)
@@ -357,9 +361,11 @@ def confirm_info(request):
                 else:
                     total = cart.total_price
 
+                # Create text field record of cart
                 order_string = format_cart_for_text_field_storage(cart=cart, order_number=buylist_number, payment_type=payment_type,
                                                                   paypal_email=paypal_email, total_price=cart.total_price, store_credit_total=total)
 
+                # If user checked this option, user will see confirmation email after cards are graded
                 seller_review_grading = True if request.POST.get('seller_verify') else False
 
                 new_buylist_sub = BuylistSubmission(
@@ -429,6 +435,7 @@ def get_cart(request):
     return render(request, 'buylist_cart.html', {'cart': cart, 'length': length, 'sub_total': sub_total})
 
 
+# --> # Potentially redundant view
 def hotlist(request):
     return redirect(f"{reverse('buylist')}?hotlist=hotlist")
 

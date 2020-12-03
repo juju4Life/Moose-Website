@@ -14,6 +14,8 @@ def about_us(request):
 
     return render(request, template_name=template_name, context=context)
 
+# Webhook for daily mtg feed
+# --> # Not currently functioning
 @csrf_exempt
 @require_http_methods(["GET", "POST", ])
 def daily_mtg_hook(request):

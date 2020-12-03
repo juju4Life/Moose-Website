@@ -2,6 +2,7 @@ from django.dispatch import receiver
 from django.db.models.signals import pre_save, post_save
 
 
+# Handle order action on save
 def handle_order(instance):
     from orders.admin_actions import OrderAction
     from orders.models import CompletedOrder, PullingOrder, ReadyToShipOrder, Order

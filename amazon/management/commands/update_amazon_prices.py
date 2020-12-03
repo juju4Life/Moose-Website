@@ -1,22 +1,22 @@
 import time
-from django.core.management.base import BaseCommand
+
 from amazon.models import FeedSubmission, AmazonPriceExclusions
 from amazon.amazon_mws import MWS
-from my_customs.exml import CreateXML
+from django.core.management.base import BaseCommand
 from django.utils import timezone
+from my_customs.exml import CreateXML
+
 
 api = MWS()
-x = CreateXML()
+xml_ = CreateXML()
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
         send_list = list()
-        recipient_list = ['jermol.jupiter@gmail.com', ]  # 'Jlkelsey94@gmail.com',
 
         # We first check to see if the latest feed submission has been successful.
         # If False, we do nothing and check again when this code block runs.
-
         last_feed = FeedSubmission.objects.latest('feed_created_on')
         update_prices = False
         if last_feed.success is False:  # Add success
@@ -24,7 +24,6 @@ class Command(BaseCommand):
 
                 # If the check return is False, we request an update from MWS and update the Feed Status accordingly.
                 # If it is true we continue to run the script
-
                 check_feed_status = api.get_feed_submission_list(last_feed.feed_id)
                 if check_feed_status['FeedSubmissionInfo']['FeedProcessingStatus']['value'] == '_DONE_':
                     last_feed.feed_successful_on = timezone.now()
@@ -42,12 +41,10 @@ class Command(BaseCommand):
         if update_prices is True:
             update_feeds = []
             exclude_list = AmazonPriceExclusions.objects.filter(exclude=True).values_list('sku', flat=True)
-            print(f'Length of Exclude list {len(exclude_list)}')
-
             report_id = api.request_and_get_inventory_report('all_listings')
             if report_id is not None:
 
-                # Inventory is separated in New or Collectible Condition
+                # Inventory is separated by New or Collectible Condition
                 inventory_new, inventory_collectible = api.parse_active_listings_report(report_id)
                 inventory = {
                     0: inventory_new,
@@ -206,13 +203,14 @@ class Command(BaseCommand):
                         start += 20
                         stop += 20
                         num_items -= 20
+
                     count += 1
 
                 # Generate the XML file in MWS required format, then submit that file as a feed to MWS
                 if update_feeds:
                     pass
 
-                    feed = x.generate_mws_price_xml(update_feeds)
+                    feed = xml_.generate_mws_price_xml(update_feeds)
                     feed_submission = api.update_sku_price(feed)
 
                     # Store the Feed ID and other associated information for reference. Used to check feed status.

@@ -1,6 +1,4 @@
 from django.core.management.base import BaseCommand
-from engine.models import MooseInventory
-from customs.csv_ import save_csv
 from engine.models import MTG, MtgCardInfo
 from django.db import transaction
 
@@ -9,6 +7,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         with transaction.atomic():
 
+            # Creates list of unique card types
+            # Much redundant code. Put in function if you're going to use it
             MtgCardInfo.objects.all().delete()
 
             sets = list(set(MTG.objects.values_list("expansion", flat=True)))
@@ -64,21 +64,4 @@ class Command(BaseCommand):
             MtgCardInfo.objects.bulk_create(artists)
             MtgCardInfo.objects.bulk_create(rarities)
             MtgCardInfo.objects.bulk_create(names)
-
-        '''
-        cards = MooseInventory.objects.all()
-        header = ['name', 'set', 'condition', 'seller 1 price', 'seller 2 price', 'updated_price']
-        csv_list = []
-
-        for card in cards:
-            csv_list.append(
-                [card.name, card.expansion, card.condition, card.seller_1_total_price, card.seller_2_total_price,
-                 card.updated_price]
-            )
-
-        save_csv(
-            'moose_inv', header=header, rows=csv_list
-        )
-        '''
-
 

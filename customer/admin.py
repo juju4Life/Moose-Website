@@ -10,7 +10,6 @@ from simple_history.admin import SimpleHistoryAdmin
 class CustomerAdmin(SimpleHistoryAdmin):
 
     # ip, is_routable = get_client_ip(request)
-
     # alert.apply_async(que='low_priority', args=(ip, obj.name, obj.credit, obj.id,))
 
     save_on_top = True
@@ -34,6 +33,7 @@ class StoreCreditAdmin(admin.ModelAdmin):
     search_fields = ['name', 'date_time', ]
     list_display = ['name', 'store_credit', 'used_credit', 'date_time', 'transaction_type', 'total', ]
 
+    # override chagelist view to show statisitcs about used store credit
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}
         extra_context['n_day_in_out_graph'] = Stats().store_credit_daily_transactions()['in_out_graph']

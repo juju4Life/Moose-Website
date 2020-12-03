@@ -170,12 +170,12 @@ class MWS:
                           for i in data if i[0] != '' and i[5] != '' and i[5] != '\r' and
                 int(i[5].replace('\r', '')) > 0 and self.condition_guide[i[12]]['short'] == 'New']
 
-        new__like_conditions = new_conditions + [{'sku': i[3], 'price': i[4], 'condition': self.condition_guide[i[12]]} for i in data if i[0] != '' and i[5] !=
-                                             '' and i[5] != '\r' and
+        new__like_conditions = new_conditions + [{'sku': i[3], 'price': i[4], 'condition': self.condition_guide[i[12]]} for i in data if i[0] != '' and i[5]
+                                                 != '' and i[5] != '\r' and
                 int(i[5].replace('\r', '')) > 0 and self.condition_guide[i[12]]['full'] == 'CollectibleLikeNew']
 
-        collectible_conditions = [{'sku': i[3], 'price': i[4], 'condition': self.condition_guide[i[12]]} for i in data if i[0] != '' and i[5] != '' and i[5] != '\r' and
-                int(i[5].replace('\r', '')) > 0 and self.condition_guide[i[12]]['short'] == 'Collectible']
+        collectible_conditions = [{'sku': i[3], 'price': i[4], 'condition': self.condition_guide[i[12]]} for i in data if i[0] != '' and i[5] != '' and i[5]
+                                  != '\r' and int(i[5].replace('\r', '')) > 0 and self.condition_guide[i[12]]['short'] == 'Collectible']
         return new_conditions, collectible_conditions
 
     def update_sku_price(self, xml_file):

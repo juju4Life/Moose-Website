@@ -1,13 +1,12 @@
-from my_customs.decorators import report_error
-from my_customs.functions import check_direct_status, null_to_zero
+
 from engine.models import TcgGroupPrice, MTG, CardPriceData
 from engine.tcgplayer_api import TcgPlayerApi
+from my_customs.functions import check_direct_status, null_to_zero
 from orders.models import GroupName
 
 api = TcgPlayerApi('first')
 
 
-@report_error
 def get_tcg_prices():
     under = 0
     groups = GroupName.objects.filter(category='Magic the Gathering').filter(added=True).exclude(
@@ -95,9 +94,6 @@ def get_tcg_prices():
 
                     else:
                         pass
-        print(index, group, 'Done')
-
-    print(under)
 
 
 

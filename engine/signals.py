@@ -1,7 +1,7 @@
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
-
+# When certain fields on main MTG model is saved, update related models
 @receiver(post_save, sender='engine.MTG')
 def manage_pages(instance, **kwargs):
     from buylist.models import HotListCards

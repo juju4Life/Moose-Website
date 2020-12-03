@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
     {% load static %}
 
     <title>MOOSE</title>
@@ -16,10 +16,6 @@
     <link href="{% static 'img/moose.png' %}" rel="shortcut icon">
     <link href="{% static 'custom_css/material_icons.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'custom_css/base.css' %}" rel="stylesheet" type="text/css">
-    <!-- Bootstrap core CSS
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.2/rangeslider.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
-    <script src="https://cdn.swellrewards.com/loader/ckS4_82z3kUzOF2HMuM2EA.js"></script> -->
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.2/rangeslider.min.css">
@@ -60,37 +56,16 @@
     <div class="container-fluid">
       {% block content %}
       {% endblock %}
+
+      <!-- Footer Start -->
+      {% include 'site_map.html' %}
     </div>
-
-    
-
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-
-
-      <!-- jquerry and Popper required for Bootstrap
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-       -->
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
 
     <!-- Requirements for Jquery UI -->
     <script src="{% static 'jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
     <script src="{% static 'custom_js/jquerySubmitForm.js' %}"></script>
-
-
-    <!-- Ajax Requirements -->
-
-    <!-- Javascript for Bootstrap
-
-     -->
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

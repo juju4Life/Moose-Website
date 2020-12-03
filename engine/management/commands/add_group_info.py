@@ -19,22 +19,17 @@ manifest = Manifest()
 class Command(BaseCommand):
     # @report_error
     def handle(self, *args, **options):
-        """
-        cats = ["Dragon Shield Card Sleeves", 'KMC Card Sleeves', 'Monster Protectors Card Sleeves', 'BCW Card Sleeves', 'Pirate Lab Card Sleeves',
-                "Player's Choice Card Sleeves", "Ultimate Guard Card Sleeves", "Ultra Pro Card Sleeves", "Dex Protection Card Sleeves", "Legion Premium "
-                                                                                                                                        "Supplies Card "
-                                                                                                                                        "Sleeves",
-                ] 
-        """
+
         groups = GroupName.objects.filter(category="Magic the Gathering", added=False)
 
         for group in groups:
-            print(group.group_name)
             release_date = group.release_date
             category = group.category
             upload_list = list()
             expansion = group.group_name
             count = 0
+
+            # API call is required paged requests. We call this function that makes all of the separate requests and combines the data.
             cards = set_offset(func=api.get_set_data, group_id=group.group_id)
             if cards is not None:
 
@@ -50,10 +45,15 @@ class Command(BaseCommand):
                         pass
 
                     if MTG.objects.filter(product_id=product_id).exists() is False:
+
+                        # determine if item is a pre-release product on creation
                         preorder = True if group.release_date > datetime.now(timezone('EST')) else False
 
                         if category == "Magic the Gathering":
+
+                            # Determine category of product (Sealed, Supplies, Singles etc.)
                             layout = categorize_product_layout(name)
+
                             upload_list.append(
                                 MTG(
                                     name=name,
@@ -81,9 +81,6 @@ class Command(BaseCommand):
                             )
 
                         count += 1
-
-            # group_add_input = input('Changed Group Added to True?\n')
-            # if group_add_input.lower() == 'yes':
 
             if len(upload_list) > 0:
                 MTG.objects.bulk_create(upload_list)

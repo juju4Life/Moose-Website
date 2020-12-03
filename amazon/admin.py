@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FeedSubmission, AmazonPriceExclusions, AmazonLiveInventory
+from amazon.models import FeedSubmission, AmazonPriceExclusions
 
 
 @admin.register(FeedSubmission)
@@ -21,11 +21,5 @@ class PricesAdmin(admin.ModelAdmin):
         ('is_foil', 'condition',),
         ('name', 'expansion',),
     )
-
-
-@admin.register(AmazonLiveInventory)
-class AmazonLiveInventoryAdmin(admin.ModelAdmin):
-    pass
-
 
 

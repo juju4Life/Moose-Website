@@ -6,6 +6,7 @@ from my_customs.functions import text_between_two_words
 from tcg.tcg_functions import adjust_product_quantity
 
 
+# Admin change_list functions. Applied to queryset / selected items
 class OrderAction:
 
     @staticmethod

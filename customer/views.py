@@ -11,11 +11,3 @@ def get_ip(request):
             return "public IP"
         else:
             return "Private IP Address"
-
-
-def alert_change(sender, instance, created, request, **kwarg):
-    if created:
-        print("Account created for {}.".format(instance.name))
-
-    else:
-        print("change for {}. Credit: {}".format(instance.name, instance.credit))

@@ -25,7 +25,6 @@ class Stats:
         buf.seek(0)
         string = base64.b64encode(buf.read())
         uri = urllib.parse.quote(string)
-
         return uri
 
     def create_bar_graph(self, x, y, x_label, y_label, title, color, legend_label=None):
@@ -138,6 +137,8 @@ class Stats:
             credit_added_per_month = list()
             num_transactions_by_month = list()
 
+            # --> # You need to use Django simple_history to create these records dynamically and store them in the database
+            # Numbers were hard-coded for access to information quickly
             month_start_balances = {
                 1: Decimal(26175.94),
                 2: Decimal(26479.71),

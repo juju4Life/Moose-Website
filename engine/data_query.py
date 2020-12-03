@@ -2,6 +2,10 @@ from django.db import transaction
 from django.db.models import Q
 from engine.models import MTG
 
+"""
+Functions to handle user results filters. Should be called with views of applicable apps. 
+"""
+
 
 def handle_query(query, filtering, page, cards_per_page=10, check_stock=False):
     with transaction.atomic():

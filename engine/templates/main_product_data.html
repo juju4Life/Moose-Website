@@ -42,12 +42,14 @@
                     Sort By
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <form method="GET" action='{% url on_page %}'>
+
+                    <form method="GET" action=''>
                         <button name="filter_page" value="sort_by_name" class="btn btn-light dropdown-item">Name (a-z)</button>
                         <button name="filter_page" value="sort_by_name_reverse" class="btn btn-light dropdown-item">Name (z-a)</button>
                         <button name="filter_page" value="sort_by_set" class="btn btn-light dropdown-item">set (a-z)</button>
                         <button name="filter_page" value="sort_by_set_reverse" class="btn btn-light dropdown-item">set (z-a)</button>
                     </form>
+
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ from other.models import StarCityAnalytics
 
 standardize = Standardize()
 
+# --> # List can be automatically scrapped and saved to database. List is here for quick testing purposes
 id_list = [
         '5061', '5275', '1003', '1009', '5276', '1015', '1025', '1037', '1053', '5023', '5344', '5131', '1012', '1000', '5355', '1068', '1005', '1039', '1004',
         '5190', '5191', '5365', '5359', '5228', '5308', '1069', '5382', '1070', '1001', '5018', '5271', '5005', '1062', '5040', '5057', '5009', '5213', '5269',
@@ -31,7 +32,7 @@ def buylist_data(cat_id):
 
     expansion = standardize.expansion(results['search'])
 
-    data_list = []
+    data_list = list()
 
     for card_list in results['results']:
         foil = card_list[0]['foil']
