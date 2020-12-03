@@ -64,10 +64,6 @@ class ListDisplayNoSku(admin.SimpleListFilter):
 # Main MTG Resource for Django Import Export
 class MTGResource(resources.ModelResource):
 
-    def after_export(self, queryset, data, *args, **kwargs):
-        print("after")
-        print(data)
-
     product_id = Field(attribute='product_id', column_name='Id')
     name = Field(attribute='name', column_name='Name')
     expansion = Field(attribute='expansion', column_name='Set')

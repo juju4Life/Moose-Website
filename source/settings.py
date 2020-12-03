@@ -202,15 +202,10 @@ USE_TZ = True
 
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https', )
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
-
-#MEDIA_URL = '/static/media/'
-#MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static', 'media')
-
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -227,6 +222,7 @@ SITE_ID = 1
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'profile'
+
 DATA_UPLOAD_MAX_NUMBER_FIELDS = None
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = False

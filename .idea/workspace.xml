@@ -2,158 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/engine/templates/site_map.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/administration/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/administration/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/amazon_mws.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/amazon_mws.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/get_live_amazon_prices.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/management/commands/amazon_prices_to_hub.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/management/commands/buylist_data.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/management/commands/run_command.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/management/commands/update_amazon_fee_calculation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/ck_buylist.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/ck_buylist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/gather_buylist_info.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/grade_price_buylist_card.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/grade_price_buylist_card.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/hotlist.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/scg_buylist.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/scg_buylist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buylist/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/buylist/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/celerybeat-schedule.bak" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.bak" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/celerybeat-schedule.dat" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/celerybeat-schedule.dir" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.dir" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkout/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkout/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkout/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkout/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkout/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkout/templates/checkout.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkout/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkout/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/contact/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/contact/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contact/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/contact/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv_.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/management/commands/store_credit_analytics.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/secrets.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/stats.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ebay/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ebay/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ebay/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ebay/ebay_api.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ebay/list_ebay_item.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ebay/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ebay/migrations/0002_auto_20190320_1725.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ebay/migrations/0003_auto_20190320_1733.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ebay/migrations/0004_ebaylisting_offer_id.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ebay/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ebay/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ebay/tasks.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ebay/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ebay/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/add_card_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/add_card_info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbeat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cworker.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/cloudinary_image.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/daily_mtg_rss.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/daily_mtg_rss.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/data_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/data_query.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/get_group_prices.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/get_group_prices.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/hub_distro.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/add_card_info.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/add_group_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/add_group_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/buylist_guide.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/check_for_new_groups.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/check_for_new_groups.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/daily_prices_update.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/get_group_prices.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/get_inventory_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/get_inventory_stats.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/get_supplies.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/hub_distro.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/non_direct_tracker.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/sql_query.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/test_command.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_direct.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_group.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_group_categries.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_key.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/management/commands/update_moose_tcg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_moose_tcg_via_api.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_mtg_skus.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_other_categories.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/management/commands/update_preorder_price.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/quick_update_moose_tcg.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/quick_update_moose_tcg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/store_inventory.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/store_inventory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/tcg_credentials.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tcg_credentials.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/tcg_manifest.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tcg_manifest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templates/main_product_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/main_product_data.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/templatetags/extended_tags.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templatetags/extended_tags.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/update_direct.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/update_moose_tcg.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/update_moose_tcg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/update_mtg_skus.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/facebook.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/facebook_listen.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/fbchat_custom/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/fbchat_custom/client.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/fbchat_custom/graphql.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/fbchat_custom/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/fbchat_custom/utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facebook_bot/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/model_functions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/layout/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/layout/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layout/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/layout/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail/mailgun_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/mail/mailgun_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_customs/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_customs/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/admin_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/admin_actions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/graph_functions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/gather_analytics.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/management/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/management/commands/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/management/commands/ck_buylist_analytics.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/migrations/0002_cardkingdomanalytics_last_price.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/migrations/0003_cardkingdomanalytics_last_percent_change.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/migrations/0004_cardkingdomanalytics_total_days_without_decrease.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/migrations/0005_starcityanalytics.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppal/paypal_api.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppal/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/ppal/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/app/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/celery.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/celery.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/t.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/the.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/try.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/tokens.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -403,7 +256,7 @@
       <workItem from="1602773424535" duration="18263000" />
       <workItem from="1602874037259" duration="234118000" />
       <workItem from="1605975922479" duration="21179000" />
-      <workItem from="1606769813042" duration="33002000" />
+      <workItem from="1606769813042" duration="34586000" />
     </task>
     <servers />
   </component>
