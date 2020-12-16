@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon/management/commands/update_amazon_prices.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/celerybeat-schedule.bak" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.bak" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/celerybeat-schedule.dat" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/celerybeat-schedule.dir" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.dir" afterDir="false" />
@@ -259,7 +260,7 @@
       <workItem from="1606769813042" duration="45031000" />
       <workItem from="1607439080837" duration="660000" />
       <workItem from="1607656033272" duration="6832000" />
-      <workItem from="1607799827863" duration="3883000" />
+      <workItem from="1607799827863" duration="4092000" />
     </task>
     <servers />
   </component>
