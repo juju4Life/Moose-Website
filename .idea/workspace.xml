@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="" />
+    <list default="true" id="0223ae24-968f-4684-83e0-4a3c2ea59615" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/celerybeat-schedule.bak" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.bak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/celerybeat-schedule.dat" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/celerybeat-schedule.dir" beforeDir="false" afterPath="$PROJECT_DIR$/celerybeat-schedule.dir" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/__init__.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,8 +18,8 @@
       <list>
         <option value="JavaScript File" />
         <option value="CSS File" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -250,7 +256,10 @@
       <workItem from="1602773424535" duration="18263000" />
       <workItem from="1602874037259" duration="234118000" />
       <workItem from="1605975922479" duration="21179000" />
-      <workItem from="1606769813042" duration="34973000" />
+      <workItem from="1606769813042" duration="45031000" />
+      <workItem from="1607439080837" duration="660000" />
+      <workItem from="1607656033272" duration="6832000" />
+      <workItem from="1607799827863" duration="3883000" />
     </task>
     <servers />
   </component>
@@ -271,10 +280,10 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="445" y="243" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606943577459">
+    <state x="445" y="243" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606960771154">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state x="445" y="243" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1368.882@0.0.1368.882" timestamp="1606943577459" />
+    <state x="445" y="243" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1368.882@0.0.1368.882" timestamp="1606960771154" />
     <state x="465" y="197" key="FileChooserDialogImpl" timestamp="1602711514668">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
@@ -299,10 +308,10 @@
       <screen x="0" y="0" width="1368" height="882" />
     </state>
     <state x="186" y="86" key="SettingsEditor/0.0.1368.882@0.0.1368.882" timestamp="1602699392802" />
-    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602894797616">
+    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606963953141">
       <screen x="0" y="0" width="1368" height="882" />
     </state>
-    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1368.882@0.0.1368.882" timestamp="1602894797616" />
+    <state x="93" y="93" width="1181" height="695" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1368.882@0.0.1368.882" timestamp="1606963953141" />
     <state x="285" y="52" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603745530659">
       <screen x="0" y="0" width="1368" height="882" />
     </state>

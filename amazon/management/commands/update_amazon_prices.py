@@ -159,16 +159,16 @@ class Command(BaseCommand):
                                                 if sku in exclude_list:
                                                     data = AmazonPriceExclusions.objects.get(sku=sku)
 
-                                                    # min_price = data.min_price
-                                                    # max_price = data.max_price
-                                                    #
-                                                    # if competitive_price < min_price:
-                                                    #     competitive_price = min_price
-                                                    #
-                                                    # elif competitive_price > max_price:
-                                                    #     competitive_price = max_price
-                                                    #     if competitive_price > old_price * 1.5:
-                                                    #         competitive_price = old_price * 1.5
+                                                    min_price = data.min_price
+                                                    max_price = data.max_price
+
+                                                    if competitive_price < min_price:
+                                                        competitive_price = min_price
+
+                                                    elif competitive_price > max_price:
+                                                        competitive_price = max_price
+                                                        if competitive_price > old_price * 1.5:
+                                                            competitive_price = old_price * 1.5
 
                                                     data.price_metrics = price_list
                                                     data.save()
