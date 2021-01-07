@@ -36,7 +36,7 @@ idna==2.7
 jdcal==1.4.1
 kiwisolver==1.2.0
 kombu==4.2.1
-lxml==4.5.2
+lxml==4.6.2
 MarkupPy==1.14
 matplotlib==3.3.2
 mws==0.8.6
