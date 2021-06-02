@@ -70,7 +70,7 @@ sqlparse==0.2.4
 stripe==1.79.0
 tablib==2.0.0
 twilio==6.46.0
-urllib3==1.24.1
+urllib3==1.26.5
 vine==1.1.4
 whitenoise==5.0.1
 xlrd==1.2.0
