@@ -49,7 +49,7 @@ paypal-checkout-serversdk==1.0.1
 paypalhttp==1.0.0
 Pillow==8.0.0
 pycparser==2.20
-PyJWT==1.7.1
+PyJWT==2.4.0
 pyOpenSSL==19.1.0
 pymysql==0.10.1
 pyparsing==2.4.7
