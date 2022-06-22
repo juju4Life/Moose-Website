@@ -41,7 +41,7 @@ MarkupPy==1.14
 matplotlib==3.3.2
 mws==0.8.6
 mysqlclient==2.0.1
-numpy==1.19.2
+numpy==1.22.0
 oauthlib==2.0.6
 odfpy==1.4.1
 openpyxl==3.0.4
